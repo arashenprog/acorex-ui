@@ -23,7 +23,12 @@
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
+    "@ng-select/ng-select": "^2.18.0",
+    "ag-grid-angular": "^20.2.0",
+    "ag-grid-community": "^20.2.0",
+    "angular2-text-mask": "^9.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
