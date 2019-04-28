@@ -1,0 +1,55 @@
+@import "./sizes";
+@import "./mixins";
+$size-sm: 5px;
+$size-md: 10px;
+$size-lg: 15px;
+$size-xl: 20px;
+$global-sm: 0.75rem;
+$global-md: 0.875rem;
+$global-lg: 1rem;
+$global-xl: 1.5rem;
+$collapsed-size: 70px;
+$header-height: 65px;
+$offscreen-size: 280px;
+$base-objects-height: 50px;
+$base-controls-height: 40px;
+$base-line-height: 1.5;
+$side-bar-collapsed: 70px;
+$tab-height: 43px;
+$side-bar-width: 280px;
+$avatar-image-size: 72px;
+$border-radius-default: 4px;
+
+// Color
+$white: #fff;
+$black: #000;
+$red: #db0f23;
+$green: #2e933c;
+$yellow: #faa916;
+$primary-color: #2774cc !default;
+$primary-color-dark: #0042a3 !default;
+$primary-color-light: #2b82e5;
+$secondary-color: #444444;
+$secondary-color-light: #565656;
+$secondary-color-dark: #2b2b2b;
+$side-nav-dark-font: #99abb4;
+$border-color: #ced4da;
+$outline-color: #faa916;
+/*Grey*/
+
+$grey-light: #efefef;
+$grey: #d8dbdd;
+$grey-dark: #b2bac1;
+$shadow: $grey;
+/* Overwrite bootstrap */
+
+$blue: $primary-color;
+$font-size-base: $global-md;
+// Media
+$tablet: "(max-width: 1024px)";
+
+@mixin base-gradient() {
+  background: linear-gradient($primary-color-dark, $primary-color);
+  background: -webkit-linear-gradient($primary-color-dark, $primary-color);
+  background: -moz-linear-gradient($primary-color-dark, $primary-color);
+}

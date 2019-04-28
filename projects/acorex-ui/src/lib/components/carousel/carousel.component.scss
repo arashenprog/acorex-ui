@@ -1,0 +1,32 @@
+.ax-carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    .ax-carousel-container {
+        img {
+            width: 200px; 
+        }
+    }
+    .circle-ctrl {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #737373;
+        font-size: 26px;
+        box-shadow: 0px 1px 4px #a5a5a5;
+        cursor: pointer;
+    }
+    .next i{
+        display: block;
+        margin: 0 -3px 0 0;
+    }
+    .prev i{
+        display: block;
+        margin: 0 3px 0 0;
+    }
+}

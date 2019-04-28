@@ -1,0 +1,53 @@
+.rtl,
+body {
+    ngb-datepicker-navigation {
+        flex-direction: row-reverse !important;
+    }
+    ax-date-picker {
+        font-family: IRANSansFaNum !important;
+    }
+}
+
+ax-date-picker {
+    ngb-datepicker-navigation-select>.custom-select {
+        border: none !important;
+        margin-left: 2px !important;
+    }
+    ngb-datepicker-month-view {
+        display: block !important;
+        flex: 100% !important;
+    }
+    .bg-light {
+        background-color: #2196f3 !important;
+        outline: none !important
+    }
+    .ngb-dp-month {
+        width: 100% !important;
+    }
+    .btn-link {
+        font-weight: 400;
+        color: #ffffff;
+        background-color: transparent;
+    }
+    .ngb-dp-weekday {
+        &:hover {
+            color: #fff !important
+        }
+        color: #fff !important
+    }
+    .ngb-dp-day,
+    .ngb-dp-week-number,
+    .ngb-dp-weekday {
+        flex: 1 !important;
+        font-style: normal !important
+    }
+    [ngbDatepickerDayView] {
+        width: initial;
+        height: 34px !important;
+        line-height: 34px !important;
+        border-radius: 50% !important;
+    }
+    .ngb-dp-day {
+        outline-color: transparent !important
+    }
+}

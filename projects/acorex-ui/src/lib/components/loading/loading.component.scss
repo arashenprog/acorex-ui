@@ -1,0 +1,23 @@
+@import "../../styles/varibales";
+ax-loading {
+  background: $white;
+  display: flex;
+  border: 1px solid $border-color;
+  @include border-radius(4px);
+  height: 100%;
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-direction: column;
+    span {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+  svg path,
+  svg rect {
+    fill: $primary-color;
+  }
+}

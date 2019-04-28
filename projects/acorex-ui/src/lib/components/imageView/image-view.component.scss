@@ -1,0 +1,24 @@
+ax-image {
+  cursor: pointer;
+  .image-modal-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .image-modal-inner {
+      position: relative;
+      width: 100vh;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 70%;
+    }
+  }
+}

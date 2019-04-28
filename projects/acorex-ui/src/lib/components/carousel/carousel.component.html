@@ -1,0 +1,16 @@
+<div class="ax-carousel">
+  <div class="circle-ctrl next" (click)="onNextClick()">
+    <i class="fas fa-angle-right"></i>
+  </div>
+  <div>
+    <div class="ax-carousel-container">
+      <ng-template
+        [ngTemplateOutlet]="templateRef"
+        [ngTemplateOutletContext]="{ $implicit: selectedItem }"
+      ></ng-template>
+    </div>
+  </div>
+  <div class="circle-ctrl prev" (click)="onPrevClick()">
+    <i class="fas fa-angle-left"></i>
+  </div>
+</div>

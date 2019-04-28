@@ -1,0 +1,20 @@
+<ul class="side-menu">
+  <li *ngIf="lastLevel">
+    <a (click)="onBackClick()">
+      <i class="fas fa-angle-right"></i><span>بازگشت</span>
+    </a>
+  </li>
+  <li *ngFor="let item of selectedLevel" class="left-animation">
+    <a (click)="onItemClick(item)" *ngIf="item.items && item.items.length">
+      <i class="{{ item.icon ? item.icon : 'fas fa-square' }}"></i>
+      <span>{{ item.text }}</span>
+      <i class="fas fa-angle-left"></i>
+    </a>
+    <a (click)="onItemClick(item)" *ngIf="!(item.items && item.items.length)">
+      <i class="{{ item.icon ? item.icon : 'fas fa-square' }}"></i>
+      <span>{{ item.text }}</span>
+
+      <i class="far fa-star favicon"></i>
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,24 @@
+<div class="upload-file-box" (click)="onUploadClick()" *ngIf="type == 'box'">
+    <input type="file" accept="image/*" #file class="d-none" (change)="onFileChange($event)">
+
+    <div class="upload-content" *ngIf="!data">
+        <i class="fas fa-upload"></i>
+        <p>افزودن فایل</p>
+    </div>
+    <div class="preview" [style.background]="'url(' + data + ')'" *ngIf="data">
+    </div>
+    <div class="action-container" *ngIf="data">
+        <div class="circle-button" (click)="onUploadButtonClick()">
+            <i class="fas fa-upload"></i>
+        </div>
+        <div class="circle-button" (click)="onDeleteClick($event)">
+            <i class="fas fa-trash-alt"></i>
+        </div>
+    </div>
+</div>
+
+<div class="upload-file-inline" *ngIf="type == 'inline'">
+    <ax-button  (click)="onInlineButtonClick($event)">
+        <ax-text-box placeholder="..."></ax-text-box>
+    </ax-button>
+</div>

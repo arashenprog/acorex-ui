@@ -1,0 +1,4 @@
+<img src="{{src}}" class="img-responsive" (click)="onImageClick($event)" />
+<div class="image-modal-container" *ngIf="showModal" (click)="onContainerImageClick()">
+    <div class="image-modal-inner" [ngStyle]="{ 'background-image': 'url(' + imageSrc + ')'}"></div>
+</div>

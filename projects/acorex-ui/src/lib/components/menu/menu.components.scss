@@ -1,0 +1,35 @@
+@import "../../styles/varibales";
+ul.side-menu {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  li {
+    &:hover {
+      background: $blue !important;
+      transition: 0.3s ease;
+      color: $white;
+
+      a {
+        i {
+          color: $white;
+        }
+      }
+    }
+    a {
+      color: $secondary-color;
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ebebeb;
+      cursor: pointer;
+      i {
+        color: $border-color;
+      }
+      span {
+        flex: 1;
+        padding: 0 10px;
+      }
+    }
+  }
+}

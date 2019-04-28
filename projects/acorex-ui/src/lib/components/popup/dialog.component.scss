@@ -1,0 +1,20 @@
+.ax-dialog {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    .dialog-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+    }
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        margin: 20px 0 0 0;
+        .btn {
+            margin: 0 5px;
+        }
+    }
+}

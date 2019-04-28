@@ -1,0 +1,17 @@
+<div class="popup-wrapper" >
+  <div class="popup-container" #container [style.width.vw]="width" tabindex="0" cdkTrapFocus cdkDrag>
+    <div class="ppoup-header" cdkDragHandle>
+      <span>
+        {{title}}
+      </span>
+      <span class="header-buttons">
+        <i class="fas fa-expand popup-header-button" (click)="onFullScreen()" *ngIf="maximizable" tabindex="2"></i>
+        <i class="fas fa-times popup-header-button" (click)="onCloseClick()" *ngIf="closable" tabindex="1"></i>
+      </span>
+
+    </div>
+    <div class="popup-body" >
+      <ng-template #popupBody></ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div
+  class="panel-box"
+  [style.height]="dockParrent && !collapsed ? '100%' : 'auto'"
+>
+  <div class="title-bar">
+    <a
+      href="javascript:void(0);"
+      (click)="toggle()"
+      *ngIf="allowCollapse"
+      class="toggle"
+    >
+      <i class="fas fa-angle-down" [hidden]="!collapsed"></i>
+      <i class="fas fa-angle-up" [hidden]="collapsed"></i>
+    </a>
+    <div class="caption">
+      {{ caption }}
+    </div>
+    <div *ngIf="buttons && buttons.length">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button
+          *ngFor="let button of buttons"
+          type="button"
+          class="btn btn-sm btn-{{ button.type || 'secondary' }}"
+        >
+          <i *ngIf="button.icon" class="fas {{ button.icon }}"></i>
+          {{ button.text }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div
+          class="dropdown-menu"
+          *ngIf="_dropdownButtons && _dropdownButtons.length"
+        >
+          <a
+            class="dropdown-item"
+            href="#"
+            *ngFor="let button of _dropdownButtons"
+          >
+            {{ button.text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [@visibilityChanged]="visiblityState" class="panel-content">
+    <ng-content> </ng-content>
+  </div>
+</div>
