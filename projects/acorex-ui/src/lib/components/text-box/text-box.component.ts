@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  ViewEncapsulation
+} from "@angular/core";
 import {
   AXTextInputBaseComponent,
   IValidationWidget
@@ -6,7 +12,8 @@ import {
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
-  styleUrls:["./text-box.component.scss"]
+  styleUrls: ["./text-box.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AXTextBoxComponent extends AXTextInputBaseComponent
   implements IValidationWidget {
