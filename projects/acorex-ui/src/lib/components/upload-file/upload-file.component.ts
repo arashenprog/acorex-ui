@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, Input } from "@angular/core";
 
 @Component({
   selector: "ax-upload-file",
-  templateUrl: "./upload-file.component.html"
+  templateUrl: "./upload-file.component.html",
+  styleUrls: ["./upload-file.component.scss"]
 })
 export class AXUploadFileComponent implements OnInit {
   @ViewChild("file") file;

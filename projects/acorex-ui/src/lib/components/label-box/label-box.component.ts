@@ -7,4 +7,5 @@ import { AXTextBaseComponent } from "../../core/base.class";
 })
 export class AXLabelBoxComponent extends AXTextBaseComponent {
   @Input() hint: string = null;
+  @Input() text: string = "";
 }

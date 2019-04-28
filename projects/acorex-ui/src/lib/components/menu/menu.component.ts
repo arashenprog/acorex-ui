@@ -3,7 +3,8 @@ import { MenuItem } from "../../core/menu.class";
 @Component({
   selector: "ax-menu",
   templateUrl: "./menu.component.html",
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./menu.component.scss"]
 })
 export class AXMenuComponent implements OnInit {
   private _items: MenuItem[];

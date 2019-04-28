@@ -12,6 +12,7 @@ import { ButtonItem } from "../../core/menu.class";
 @Component({
   selector: "ax-panel-box",
   templateUrl: "./panel-box.component.html",
+  styleUrls: ["./panel-box.component.scss"],
   animations: [
     trigger("visibilityChanged", [
       state("shown", style({ opacity: 1, height: "*" })),

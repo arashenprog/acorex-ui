@@ -1,5 +1,5 @@
 @import "../../styles/varibales";
-ax-text-box {
+.ax-text-box-conatiner {
   position: relative;
   .ax-text-box {
     border: none;
@@ -9,6 +9,7 @@ ax-text-box {
     width: 100%;
     outline-color: transparent;
     text-indent: 10px;
+    height: 25px;
     @include border-radius(4px);
     &:focus {
       box-shadow: unset !important;

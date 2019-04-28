@@ -43,6 +43,7 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
   selector: "ax-date-picker",
   templateUrl: "./date-picker.component.html",
   encapsulation: ViewEncapsulation.None,
+  styleUrls: ["./date-picker.component.scss"],
   providers: [
     { provide: NgbCalendar, useClass: NgbCalendarPersian },
     { provide: NgbDatepickerI18n, useClass: NgbDatepickerI18nPersian }

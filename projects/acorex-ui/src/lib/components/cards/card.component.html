@@ -1,11 +1,22 @@
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{image}}" alt="title" *ngIf="image">
-    <div class="card-body">
-        <h5 class="card-title">{{title}}</h5>
-        <p class="card-text">
-            {{content}}
-        </p>
-        <ax-button >
+  <img class="card-img-top" src="{{ image }}" alt="title" *ngIf="image" />
+  <div class="card-body">
+    <h5 class="card-title">{{ title }}</h5>
+    <p class="card-text">
+      {{ content }}
+    </p>
+    <div class="card-buttons">
+      <ng-container *ngFor="let button of buttons">
+        <ax-button
+          [type]="button.type"
+          [submitBehavior]="button.submitBehavior"
+          [cancelBehavior]="button.cancelBehavior"
+          (onClick)="onInnerClick(button)"
+        >
+          <i class="{{ button.icon }}"></i>
+          {{ button.text }}
         </ax-button>
+      </ng-container>
     </div>
+  </div>
 </div>

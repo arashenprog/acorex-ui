@@ -6,7 +6,7 @@ import { AXTextInputBaseComponent } from "../../core/base.class";
   templateUrl: "./password-box.component.html"
 })
 export class AXPasswordBoxComponent extends AXTextInputBaseComponent {
-  private _showOn: string;
+  private _showOn: string = "mouseup";
   @Input()
   get showOn(): string {
     return this._showOn;
@@ -15,26 +15,29 @@ export class AXPasswordBoxComponent extends AXTextInputBaseComponent {
     this._showOn = val;
   }
 
-  typInput: string = "password";
+  typeInput: string = "password";
   hiddenMouse: boolean = false;
   hiddenClick: boolean = false;
 
   onClickInner() {
-    if (this._showOn == "Click") {
-      if (this.typInput == "password") this.typInput = "text";
-      else this.typInput = "password";
+    if (this._showOn == "click") {
+      if (this.typeInput == "password") {
+        this.typeInput = "text";
+      } else {
+        this.typeInput = "password";
+      }
     }
   }
 
   mouseDown() {
-    if (this._showOn == "Mouseup") {
-      this.typInput = "text";
+    if (this._showOn == "mouseup") {
+      this.typeInput = "text";
     }
   }
 
   mouseUp() {
-    if (this._showOn == "Mouseup") {
-      this.typInput = "password";
+    if (this._showOn == "mouseup") {
+      this.typeInput = "password";
     }
   }
 }

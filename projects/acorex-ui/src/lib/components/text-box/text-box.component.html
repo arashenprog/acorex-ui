@@ -1,32 +1,34 @@
-<fieldset
-  class="fieldset"
-  [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
->
-  <legend
-    class="legend"
+<div class="ax-text-box-conatiner">
+  <fieldset
+    class="fieldset"
     [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
   >
-    {{ label }}
-  </legend>
+    <legend
+      class="legend"
+      [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
+    >
+      {{ label }}
+    </legend>
 
-  <input
-    #input
-    [textMask]="{ mask: maskInner, guide: true }"
-    [(ngModel)]="text"
-    type="text"
-    class="ax-text-box"
-    [ngClass]="{ 'dir-ltr': !rtlEnabled }"
-    [placeholder]=""
-    (blur)="onBlur($event)"
-    (focus)="onFocus($event)"
-    (mouseenter)="onMouseEnter()"
-    (mouseleave)="onMouseLeave()"
-    (ngModelChange)="onChange($event)"
-  />
-  <div class="validation-icon" *ngIf="_isError">
-    <i class="fas fa-exclamation-triangle"></i>
-  </div>
-  <div class="validation-text" *ngIf="_isError">
-    {{ errorText }}
-  </div>
-</fieldset>
+    <input
+      #input
+      [textMask]="{ mask: maskInner, guide: true }"
+      [(ngModel)]="text"
+      type="text"
+      class="ax-text-box"
+      [ngClass]="{ 'dir-ltr': !rtlEnabled }"
+      [placeholder]=""
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+      (ngModelChange)="onChange($event)"
+    />
+    <div class="validation-icon" *ngIf="_isError">
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="validation-text" *ngIf="_isError">
+      {{ errorText }}
+    </div>
+  </fieldset>
+</div>

@@ -1,7 +1,35 @@
 <ax-container>
+  <br />
+  <br />
+
+  <ax-pass-box></ax-pass-box>
+  <br />
+  <br />
   <!--The content below is only a placeholder and can be replaced.-->
-  <ax-button text="سلام دنیا"></ax-button>
   <ax-badge text="بدج"></ax-badge>
-  <router-outlet></router-outlet>
   <ax-text-box label="سلام"></ax-text-box>
+  <ax-button text="سلام دنیا"></ax-button>
+  <ax-upload-file></ax-upload-file>
+  <ax-card
+    title="عنوان"
+    content="توضیحات اینجا قرار میگیرد"
+    [buttons]="menuItems"
+  ></ax-card>
+  <ax-selection-list
+    [items]="check_box_items_inline"
+    mode="single"
+  ></ax-selection-list>
+  <ax-selection-list
+    [items]="check_box_items_inline"
+    mode="multiple"
+  ></ax-selection-list>
+  <ax-date-picker></ax-date-picker>
+  <ax-image
+    src="https://i.guim.co.uk/img/media/6c1e707cb7f74882ce42be4afe4e8b23939236a6/0_171_6000_3600/master/6000.jpg?width=620&quality=85&auto=format&fit=max&s=43bf727e959d9aed01200e99c292dab3"
+  ></ax-image>
+  <ax-loading></ax-loading>
+
+  <ax-menu [items]="menuItems"></ax-menu>
 </ax-container>
+
+<router-outlet></router-outlet>
