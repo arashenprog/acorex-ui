@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AXValidationFormComponent } from "./validation-form.component";
-import { AXValidation } from "./validation.widget";
-import { AXValidations } from "./validations.widget";
+import { AXValidationRule } from "./validation-rule.widget";
+import { AXValidations } from "./validation.component";
 
 @NgModule({
-  declarations: [AXValidationFormComponent, AXValidations, AXValidation],
+  declarations: [AXValidationFormComponent, AXValidations, AXValidationRule],
   imports: [CommonModule],
-  exports: [AXValidationFormComponent,AXValidations, AXValidation],
+  exports: [AXValidationFormComponent,AXValidations, AXValidationRule],
   providers: []
 })
 export class AXValidationModule {}

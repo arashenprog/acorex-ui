@@ -15,17 +15,18 @@
         <br />
         <br />
         <ax-text-box label="نام">
-          <ax-validations>
-            <ax-validation
-              type="required"
-              message="مقدار این فیلد الزامی است"
-            ></ax-validation>
-            <ax-validation type="regex" message="ایمیل نادرست است" [value]="regEx"></ax-validation>
-          </ax-validations>
+          <ax-validation>
+            <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+            <ax-validation-rule type="regex" message="ایمیل نادرست است" [value]="regEx"></ax-validation-rule>
+          </ax-validation>
         </ax-text-box>
         <br />
         <br />
-        <ax-text-box label="نام خانوادگی"></ax-text-box>
+        <ax-text-box label="نام خانوادگی">
+          <ax-validation>
+            <ax-validation-rule type="callback" message="مقدار این فیلد الزامی است" [value]="customValidation"></ax-validation-rule>
+          </ax-validation>
+        </ax-text-box>
         <br />
         <br />
         <ax-text-box label="سلام"></ax-text-box>
@@ -37,24 +38,14 @@
         <ax-upload-file></ax-upload-file>
         <br />
         <br />
-        <ax-card
-          title="عنوان"
-          content="توضیحات اینجا قرار میگیرد"
-          [buttons]="menuItems"
-          image="https://placeimg.com/640/480/nature"
-        ></ax-card>
+        <ax-card title="عنوان" content="توضیحات اینجا قرار میگیرد" [buttons]="menuItems"
+          image="https://placeimg.com/640/480/nature"></ax-card>
         <br />
         <br />
-        <ax-selection-list
-          [items]="check_box_items_inline"
-          mode="single"
-        ></ax-selection-list>
+        <ax-selection-list [items]="check_box_items_inline" mode="single"></ax-selection-list>
         <br />
         <br />
-        <ax-selection-list
-          [items]="check_box_items_inline"
-          mode="multiple"
-        ></ax-selection-list>
+        <ax-selection-list [items]="check_box_items_inline" mode="multiple"></ax-selection-list>
         <br />
         <br />
         <ax-image src="https://placeimg.com/640/480/nature"></ax-image>

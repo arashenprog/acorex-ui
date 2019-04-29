@@ -1,9 +1,10 @@
-import { Input, Output, EventEmitter } from "@angular/core";
+import { Input, Output, EventEmitter, ContentChild } from "@angular/core";
 import { ButtonItem } from "./menu.class";
+import { AXValidations } from '../components/validation/validation.component';
+import { IValidationRuleResult } from '../components/validation/validation.classs';
 
-export interface IValidationWidget {
-  validate(): boolean;
-}
+
+
 
 export class PromisResult<T> {
   private _executor: (then: (e?: T) => void) => void;
@@ -44,15 +45,23 @@ export class AXButtonBaseComponent extends AXTextBaseComponent {
   @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
 }
 
-export class AXTextInputBaseComponent extends AXTextBaseComponent {
+export abstract class AXValidatableComponent extends AXTextBaseComponent {
+  abstract validate(): Promise<IValidationRuleResult>;
+  _isError: boolean = false;
+  _showError: boolean = false;
+  @ContentChild(AXValidations) validation: AXValidations;
+}
+
+export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @Input() autocomplete: boolean = false;
   @Input() placeholder: string = "";
+ 
 }
-export class AXSelectBaseComponent extends AXTextInputBaseComponent {
+export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
   @Input() notFoundText: string = "Not Found";
 }
 
-export class AXCheckedBaseComponent extends AXTextInputBaseComponent {
+export abstract class AXCheckedBaseComponent extends AXTextInputBaseComponent {
   _uid: string = "M" + Math.ceil(Math.random() * 10000);
 
   @Input() label: string = " Checkbox label";
@@ -76,7 +85,7 @@ export class AXCheckedBaseComponent extends AXTextInputBaseComponent {
   }
 }
 
-export class AXDatePickerBaseComponent extends AXTextInputBaseComponent {}
+export abstract class AXDatePickerBaseComponent extends AXTextInputBaseComponent {}
 
 export class AXLoadingBaseComponent extends AXTextBaseComponent {}
 

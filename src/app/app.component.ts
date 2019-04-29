@@ -1,10 +1,10 @@
 import { Component, ViewChild } from "@angular/core";
 import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
+import { IValidationRuleResult } from 'projects/acorex-ui/src/lib/components/validation/validation.classs';
 
 @Component({
   selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  templateUrl: "./app.component.html"
 })
 export class AppComponent {
   @ViewChild("form") form: AXValidationFormComponent;
@@ -47,8 +47,22 @@ export class AppComponent {
   ];
 
   onClick() {
-    console.log(this.form.validate());
+    this.form.validate().then(c => {
+      console.log(c);
+    });
   }
 
-  regEx=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+
+  customValidation(value: string): Promise<IValidationRuleResult> {
+    return new Promise<IValidationRuleResult>(resolve => {
+      setTimeout(() => {
+        if (value == "arash")
+          resolve({ result: true });
+        else
+          resolve({ result: false, message: "!!!!!" });
+      }, 1000);
+    });
+  }
 }
