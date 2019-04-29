@@ -42,3 +42,8 @@
 @mixin transition($second) {
   transition: $second ease;
 }
+@mixin base-gradient() {
+  background: linear-gradient($primary-color-dark, $primary-color);
+  background: -webkit-linear-gradient($primary-color-dark, $primary-color);
+  background: -moz-linear-gradient($primary-color-dark, $primary-color);
+}

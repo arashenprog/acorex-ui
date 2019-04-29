@@ -1,10 +1,28 @@
-<div class="input-group">
-  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+<div class="ax-field-set">
+  <div class="ax-field-set-wrapper">
+    <fieldset
+      [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
+    >
+      <legend
+        [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
+      >
+        {{ label }}
+      </legend>
+    </fieldset>
+    <input
+      class="ax-text-box"
+      [placeholder]="placeholder"
+      name="dp"
+      [(ngModel)]="model"
+      ngbDatepicker
+      #d="ngbDatepicker"
+    />
+    <button
+      type="button"
+      class="ax-field-set-button btn btn-primary"
+      (click)="d.toggle()"
+    >
       <i class="fas fa-calendar-alt"></i>
     </button>
   </div>
 </div>
-<hr />
-<pre>Model: {{ model | json }}</pre>

@@ -14,7 +14,6 @@ export class AXPasswordBoxComponent extends AXTextInputBaseComponent {
   set showOn(val: string) {
     this._showOn = val;
   }
-
   typeInput: string = "password";
   hiddenMouse: boolean = false;
   hiddenClick: boolean = false;

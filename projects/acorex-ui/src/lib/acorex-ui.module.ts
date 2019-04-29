@@ -24,6 +24,7 @@ import { AXSelectionListModule } from "./components/selection-list/selection-lis
 import { AXTabPageModule } from "./components/tabpage/tabpage.module";
 import { AXTextBoxModule } from "./components/text-box/text-box.module";
 import { AXUploadFileModule } from "./components/upload-file/upload-file.module";
+import { AXValidationModule } from "./components/validation/validation.module";
 
 @NgModule({
   declarations: [],
@@ -51,7 +52,8 @@ import { AXUploadFileModule } from "./components/upload-file/upload-file.module"
     AXSelectionListModule,
     AXTabPageModule,
     AXTextBoxModule,
-    AXUploadFileModule
+    AXUploadFileModule,
+    AXValidationModule
   ],
   exports: [
     AXButtonModule,
@@ -76,7 +78,8 @@ import { AXUploadFileModule } from "./components/upload-file/upload-file.module"
     AXSelectionListModule,
     AXTabPageModule,
     AXTextBoxModule,
-    AXUploadFileModule
+    AXUploadFileModule,
+    AXValidationModule
   ],
   providers: []
 })

@@ -3,21 +3,23 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ContentChild
 } from "@angular/core";
+import { AXTextInputBaseComponent } from "../../core/base.class";
+import { AXValidations } from "../validation/validations.widget";
 import {
-  AXTextInputBaseComponent,
-  IValidationWidget
-} from "../../core/base.class";
+  IValidationResult
+} from "../validation/validation.classs";
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
   styleUrls: ["./text-box.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AXTextBoxComponent extends AXTextInputBaseComponent
-  implements IValidationWidget {
+export class AXTextBoxComponent extends AXTextInputBaseComponent {
   @ViewChild("input") input: ElementRef;
+  @ContentChild(AXValidations) validation: AXValidations;
 
   _isFocused: boolean = false;
   _isError: boolean = false;
@@ -33,16 +35,33 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent
 
   @Input() errorText: string = "";
 
-  validate(): boolean {
-    if (this.text == "" || this.text == null) {
-      this._isError = true;
+  validate(): Promise<IValidationResult> {
+    // if (this.text == "" || this.text == null) {
+    //   this._isError = true;
 
-      return false;
-    } else {
-      this._isError = false;
-      this._isFocused = true;
-    }
-    return true;
+    //   return false;
+    // } else {
+    //   this._isError = false;
+    //   this._isFocused = true;
+    // }
+    // return true;
+
+    return new Promise<IValidationResult>(resolve => {
+      if (!this.validation) {
+        resolve({ result: true });
+      } else {
+        this.validation.validate(this.text).then(r => {
+          if (r.result) {
+            this._isError = false;
+            this._isFocused = true;
+          } else {
+            this.errorText = r.message;
+            this._isError = true;
+          }
+          resolve(r);
+        });
+      }
+    });
   }
 
   onBlur(e) {

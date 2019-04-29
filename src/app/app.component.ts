@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
+import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
 
 @Component({
   selector: "app-root",
@@ -6,6 +7,8 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
+  @ViewChild("form") form: AXValidationFormComponent;
+
   title = "acorex-framework";
   menuItems: Array<any> = [
     { text: "گزینه 1" },
@@ -42,4 +45,10 @@ export class AppComponent {
       name: "fivei"
     }
   ];
+
+  onClick() {
+    console.log(this.form.validate());
+  }
+
+  regEx=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 }

@@ -3,7 +3,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 @Component({
   selector: "ax-data-grid",
-  templateUrl: "./datagrid.component.html"
+  templateUrl: "./datagrid.component.html",
+  styleUrls: ["./datagrid.component.scss"]
 })
 export class AXDataGridComponent implements OnInit {
   constructor() {}

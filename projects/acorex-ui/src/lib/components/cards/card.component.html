@@ -8,7 +8,6 @@
     <div class="card-buttons">
       <ng-container *ngFor="let button of buttons">
         <ax-button
-          [type]="button.type"
           [submitBehavior]="button.submitBehavior"
           [cancelBehavior]="button.cancelBehavior"
           (onClick)="onInnerClick(button)"

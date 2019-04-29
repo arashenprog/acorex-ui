@@ -5,6 +5,23 @@ export interface IValidationWidget {
   validate(): boolean;
 }
 
+export class PromisResult<T> {
+  private _executor: (then: (e?: T) => void) => void;
+  constructor(executor: (then: (e?: T) => void) => void) {
+    this._executor = executor;
+    setTimeout(() => {
+      this._executor(this.thenAction);
+    }, 50);
+  }
+
+  private thenAction: (e?: T) => void;
+
+  then(action: (e?: T) => void): PromisResult<T> {
+    this.thenAction = action;
+    return this;
+  }
+}
+
 export class AXBaseComponent {
   @Input()
   width: string = "";
@@ -20,6 +37,7 @@ export class AXBaseComponent {
 
 export class AXTextBaseComponent extends AXBaseComponent {
   @Input() text: string;
+  @Input() label: string;
 }
 
 export class AXButtonBaseComponent extends AXTextBaseComponent {
@@ -28,7 +46,7 @@ export class AXButtonBaseComponent extends AXTextBaseComponent {
 
 export class AXTextInputBaseComponent extends AXTextBaseComponent {
   @Input() autocomplete: boolean = false;
-  @Input() placeholder: string = "Placeholder";
+  @Input() placeholder: string = "";
 }
 export class AXSelectBaseComponent extends AXTextInputBaseComponent {
   @Input() notFoundText: string = "Not Found";

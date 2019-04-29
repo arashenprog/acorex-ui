@@ -1,4 +1,4 @@
-import { Component, Injectable, ViewEncapsulation } from "@angular/core";
+import { Component, Injectable, ViewEncapsulation, Input } from "@angular/core";
 import { AXDatePickerBaseComponent } from "../../core/base.class";
 import {
   NgbDateStruct,
@@ -52,7 +52,7 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
 export class AXDatePickerComponent extends AXDatePickerBaseComponent {
   model: NgbDateStruct;
   date: { year: number; month: number };
-
+  @Input() label: string = "تاریخ";
   constructor(private calendar: NgbCalendar) {
     super();
   }
