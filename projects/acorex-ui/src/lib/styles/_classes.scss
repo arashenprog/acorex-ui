@@ -61,17 +61,21 @@
   .ax-field-set-button {
     position: absolute;
     left: 0;
-    width: $base-objects-height / 2;
-    height: $base-objects-height / 2;
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin: $size-sm;
     border: none;
-    border-radius: $border-radius-default;
-    i {
-      font-size: $font-size-small;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: $base-objects-height / 2;
+      height: $base-objects-height / 2;
+      border-radius: $border-radius-default;
+      i {
+        font-size: $font-size-small;
+      }
     }
   }
 }

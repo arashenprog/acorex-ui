@@ -57,6 +57,17 @@
       (mouseleave)="onMouseLeave()"
       (ngModelChange)="onChange($event)"
     />
+    <div class="ax-field-set-button">
+        <button
+        *ngIf="text"
+        type="button"
+        class="btn btn-light"
+        (click)="onTextClearClick()"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+   
     <div class="validation-text" *ngIf="_isError">
       {{ errorText }}
     </div>

@@ -8,9 +8,7 @@ import {
 } from "@angular/core";
 import { AXTextInputBaseComponent } from "../../core/base.class";
 import { AXValidations } from "../validation/validations.widget";
-import {
-  IValidationResult
-} from "../validation/validation.classs";
+import { IValidationResult } from "../validation/validation.classs";
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
@@ -88,6 +86,9 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent {
     console.log(e);
     this.text = e;
     this._isFocused = true;
+  }
+  onTextClearClick() {
+    this.text = "";
   }
   @Input()
   get showErorr(): boolean {
