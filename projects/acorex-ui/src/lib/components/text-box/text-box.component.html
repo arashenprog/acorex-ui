@@ -1,74 +1,19 @@
-<!-- <div class="ax-text-box-conatiner">
-  <fieldset
-    class="fieldset"
-    [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
-  >
-    <legend
-      class="legend"
-      [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
-    >
-      {{ label }}
-    </legend>
-
-    <input
-      #input
-      [textMask]="{ mask: maskInner, guide: true }"
-      [(ngModel)]="text"
-      type="text"
-      class="ax-text-box"
-      [ngClass]="{ 'dir-ltr': !rtlEnabled }"
-      [placeholder]=""
-      (blur)="onBlur($event)"
-      (focus)="onFocus($event)"
-      (mouseenter)="onMouseEnter()"
-      (mouseleave)="onMouseLeave()"
-      (ngModelChange)="onChange($event)"
-    />
-    <div class="validation-icon" *ngIf="_isError">
-      <i class="fas fa-exclamation-triangle"></i>
-    </div>
-    <div class="validation-text" *ngIf="_isError">
-      {{ errorText }}
-    </div>
-  </fieldset>
-</div> -->
 <div class="ax-field-set">
   <div class="ax-field-set-wrapper">
-    <fieldset
-      [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
-    >
-      <legend
-        [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
-      >
+    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+      <legend>
         {{ label }}
       </legend>
     </fieldset>
-    <input
-      #input
-      [textMask]="{ mask: maskInner, guide: true }"
-      [(ngModel)]="text"
-      type="text"
-      class="ax-text-box"
-      [ngClass]="{ 'dir-ltr': !rtlEnabled }"
-      [placeholder]=""
-      (blur)="onBlur($event)"
-      (focus)="onFocus($event)"
-      (mouseenter)="onMouseEnter()"
-      (mouseleave)="onMouseLeave()"
-      (ngModelChange)="onChange($event)"
-    />
+    <input #input [textMask]="{ mask: maskInner, guide: true }" [(ngModel)]="text" type="text" class="ax-text-box"
+      [ngClass]="{ 'dir-ltr': !rtlEnabled }" [placeholder]="placeholder" (blur)="onBlur($event)"
+      (focus)="onFocus($event)" />
     <div class="ax-field-set-button">
-      <button
-        *ngIf="text && clear"
-        type="button"
-        class="btn btn-light"
-        (click)="clearText()"
-      >
+      <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">
         <i class="fas fa-times"></i>
       </button>
     </div>
-
-    <div class="validation-text" *ngIf="_isError">
+    <div class="validation-text" *ngIf="errorText">
       {{ errorText }}
     </div>
   </div>

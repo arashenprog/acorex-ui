@@ -1,34 +1,23 @@
 <div class="ax-field-set">
   <div class="ax-field-set-wrapper">
-    <fieldset
-      [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
-    >
-      <legend
-        [ngClass]="{ 'input-focused': _isFocused, 'input-error': _isError }"
-      >
+    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+      <legend>
         {{ label }}
       </legend>
     </fieldset>
-    <input
-      class="ax-text-box"
-      [placeholder]="placeholder"
-      name="dp"
-      [(ngModel)]="model"
-      ngbDatepicker
-      #d="ngbDatepicker"
-    />
+    <input class="ax-text-box" [placeholder]="placeholder" name="dp" [(ngModel)]="model" ngbDatepicker
+      #d="ngbDatepicker" />
     <div class="ax-field-set-button ">
-      <button
-        *ngIf="model && clear"
-        type="button"
-        class="btn btn-light"
-        (click)="clearText()"
-      >
+      <button *ngIf="model && showClear" type="button" class="btn btn-light" (click)="clearText()">
         <i class="fas fa-times"></i>
       </button>
       <button type="button" class="btn btn-primary" (click)="d.toggle()">
         <i class="fas fa-calendar-alt"></i>
       </button>
     </div>
+    <div class="validation-text" *ngIf="errorText">
+      {{ errorText }}
+    </div>
   </div>
 </div>
+<ng-content></ng-content>

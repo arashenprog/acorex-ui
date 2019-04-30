@@ -8,13 +8,17 @@
         <ax-data-grid></ax-data-grid>
         <br />
         <br />
-        <ax-date-picker></ax-date-picker>
+        <ax-date-picker showClear="true">
+          <ax-validation>
+            <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+          </ax-validation>
+        </ax-date-picker>
         <br />
         <br />
         <ax-pass-box label="پسورد" placeholder=""></ax-pass-box>
         <br />
         <br />
-        <ax-text-box label="نام" clear="true">
+        <ax-text-box label="نام" showClear="true">
           <ax-validation>
             <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
             <ax-validation-rule type="regex" message="ایمیل نادرست است" [value]="regEx"></ax-validation-rule>
@@ -24,24 +28,16 @@
         <br />
         <ax-text-box label="نام خانوادگی">
           <ax-validation>
-            <ax-validation-rule type="callback" message="مقدار این فیلد الزامی است" [value]="customValidation"></ax-validation-rule>
+            <ax-validation-rule type="callback" message="مقدار این فیلد الزامی است" [value]="customValidation">
+            </ax-validation-rule>
           </ax-validation>
         </ax-text-box>
         <br />
         <br />
         <ax-text-box label="سلام"></ax-text-box>
         <br />
+        <ax-pass-box label="پسورد" placeholder="" showClear="true"></ax-pass-box>
         <br />
-        <ax-date-picker></ax-date-picker>
-        <br />
-        <br />
-        <ax-pass-box label="پسورد" placeholder=""  clear="true"></ax-pass-box>
-        <br />
-        <br />
-        <ax-data-grid></ax-data-grid>
-        <br />
-        <br />
-
         <ax-button text="سلام دنیا" (onClick)="onClick()"></ax-button>
         <br />
         <br />

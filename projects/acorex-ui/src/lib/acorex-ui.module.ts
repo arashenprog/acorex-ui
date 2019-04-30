@@ -11,7 +11,6 @@ import { AXDataGridModule } from "./components/data-grid/datagrid.module";
 import { AXDataPickerModule } from "./components/date-picker/data-picker.module";
 import { AXGridLayoutModule } from "./components/grid-layout/grid.layout.module";
 import { AXImageViewModule } from "./components/imageView/image-view.module";
-import { AXLabelBoxModule } from "./components/label-box/label-box.module";
 import { AXLoadingModule } from "./components/loading/loading.module";
 import { AXMenuModule } from "./components/menu/menu.module";
 import { AXPanelBoxModule } from "./components/panel-box/panel-box.module";
@@ -40,7 +39,6 @@ import { AXValidationModule } from "./components/validation/validation.module";
     AXDataPickerModule,
     AXGridLayoutModule,
     AXImageViewModule,
-    AXLabelBoxModule,
     AXLoadingModule,
     AXMenuModule,
     AXPanelBoxModule,
@@ -66,7 +64,6 @@ import { AXValidationModule } from "./components/validation/validation.module";
     AXDataPickerModule,
     AXGridLayoutModule,
     AXImageViewModule,
-    AXLabelBoxModule,
     AXLoadingModule,
     AXMenuModule,
     AXPanelBoxModule,

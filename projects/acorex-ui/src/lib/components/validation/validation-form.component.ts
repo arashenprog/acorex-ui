@@ -21,7 +21,6 @@ export class AXValidationFormComponent implements OnInit {
 
   validate(): Promise<IValidationResult> {
     return new Promise<IValidationResult>(resolve => {
-      debugger;
       Promise.all(this.widgets.map(c => { return (<any>c).validate(); })).then(rules => {
         const failed = rules.filter(c => !c.result);
         if (failed.length) {

@@ -13,7 +13,7 @@ export class AXValidationRule {
   @Input()
   value: any;
 
-  validate(value: string): Promise<IValidationRuleResult> {
+  validate(value: any): Promise<IValidationRuleResult> {
     return new Promise<IValidationRuleResult>(resolve => {
       switch (this.type) {
         case "required":

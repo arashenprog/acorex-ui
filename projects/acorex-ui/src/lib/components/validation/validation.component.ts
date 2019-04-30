@@ -6,7 +6,7 @@ import { IValidationRuleResult } from "./validation.classs";
   selector: "ax-validation",
   template: "<ng-content></ng-content>"
 })
-export class AXValidations {
+export class AXValidationComponent {
   @ContentChildren(AXValidationRule) items: QueryList<AXValidationRule>;
 
   validate(value: any): Promise<IValidationRuleResult> {
