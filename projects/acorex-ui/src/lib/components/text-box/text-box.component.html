@@ -1,7 +1,7 @@
 <div class="ax-field-set">
   <div class="ax-field-set-wrapper">
     <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
-      <legend>
+      <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
