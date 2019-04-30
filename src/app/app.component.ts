@@ -1,14 +1,17 @@
 import { Component, ViewChild } from "@angular/core";
 import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
-import { IValidationRuleResult } from 'projects/acorex-ui/src/lib/components/validation/validation.classs';
+import { IValidationRuleResult } from "projects/acorex-ui/src/lib/components/validation/validation.classs";
+import { DialogService } from "projects/acorex-ui/src/lib/services/DialogService";
+import { PopupService } from "projects/acorex-ui/src/lib/services/PopupService";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html"
 })
 export class AppComponent {
+  constructor(private dialog: DialogService, private popup: PopupService) {}
   @ViewChild("form") form: AXValidationFormComponent;
-
+  loading: boolean = false;
   title = "acorex-framework";
   menuItems: Array<any> = [
     { text: "گزینه 1" },
@@ -47,21 +50,26 @@ export class AppComponent {
   ];
 
   onClick() {
+    this.loading = true;
+
     this.form.validate().then(c => {
       console.log(c);
+      this.loading = false;
     });
   }
-
-  regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
+  onDialogClick() {
+    this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
+  }
+  onPopupClick() {
+    this.popup.open("a", "عنوان");
+  }
+  regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   customValidation(value: string): Promise<IValidationRuleResult> {
     return new Promise<IValidationRuleResult>(resolve => {
       setTimeout(() => {
-        if (value == "arash")
-          resolve({ result: true });
-        else
-          resolve({ result: false, message: "!!!!!" });
+        if (value == "arash") resolve({ result: true });
+        else resolve({ result: false, message: "!!!!!" });
       }, 1000);
     });
   }

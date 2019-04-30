@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PopupService } from "./PopupService";
-import { AXDialogComponent } from "shared/components/popup/dialog.component";
+import { AXDialogComponent } from "../components/popup/dialog.component";
 
 
 export class DialogAlertResult {

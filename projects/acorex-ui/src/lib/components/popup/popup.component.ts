@@ -17,6 +17,7 @@ import { ClosingEventArgs } from "../../services/PopupService";
 @Component({
   selector: "ax-popup",
   templateUrl: "./popup.component.html",
+  styleUrls:["./popup.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {

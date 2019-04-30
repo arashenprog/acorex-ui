@@ -7,7 +7,7 @@
         </div>
         <div *ngIf="loading">
             <i class="fas fa-spinner fa-spin"></i>
-            {{ loadingText }}
+            {{ loadingText ? loadingText : text  }}
         </div>
     </button>
 </div>

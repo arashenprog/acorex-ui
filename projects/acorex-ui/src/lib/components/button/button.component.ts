@@ -37,7 +37,7 @@ export class AXButtonComponent extends AXButtonBaseComponent implements OnInit {
     @Input() submitBehavior: boolean = false;
     @Input() cancelBehavior: boolean = false;
 
-    @Input() loadingText: string = "loading-text";
+    @Input() loadingText: string = "";
 
     onClickInner() {
         this.onClick.emit();

@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
 import { ButtonItem } from "../../core/menu.class";
 
 @Component({
   selector: "ax-dialog",
-  templateUrl: "./dialog.component.html"
+  templateUrl: "./dialog.component.html",
+  styleUrls: ["./dialog.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AXDialogComponent implements OnInit {
   @Input()

@@ -5,8 +5,8 @@
       <ax-col col-sm="10">
         <br />
         <br />
-          
-          <ax-select-box label="انتخاب" [items]="menuItems"></ax-select-box>
+
+        <ax-select-box label="انتخاب" [items]="menuItems"></ax-select-box>
         <br />
         <br />
 
@@ -59,7 +59,24 @@
           showClear="true"
         ></ax-pass-box>
         <br />
-        <ax-button text="سلام دنیا" (onClick)="onClick()"></ax-button>
+        <br />
+        <ax-button
+          [loading]="loading"
+          text="ثبت فرم"
+          (onClick)="onClick()"
+        ></ax-button>
+        <br />
+        <br />
+        <ax-button
+          [loading]="loading"
+          text="نمایش خطا "
+          (onClick)="onDialogClick()"
+        ></ax-button>
+        <ax-button
+          [loading]="loading"
+          text="نمایش پاپ آپ "
+          (onClick)="onPopupClick()"
+        ></ax-button>
         <br />
         <br />
         <ax-upload-file></ax-upload-file>
