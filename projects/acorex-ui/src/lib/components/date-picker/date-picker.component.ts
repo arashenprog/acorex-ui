@@ -50,6 +50,9 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
   ]
 })
 export class AXDatePickerComponent extends AXDatePickerBaseComponent {
+  validate(): Promise<import("../validation/validation.classs").IValidationRuleResult> {
+    throw new Error("Method not implemented.");
+  }
   model: NgbDateStruct;
   date: { year: number; month: number };
   @Input() label: string = "تاریخ";

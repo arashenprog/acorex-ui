@@ -6,6 +6,9 @@ import { AXTextInputBaseComponent } from "../../core/base.class";
   templateUrl: "./password-box.component.html"
 })
 export class AXPasswordBoxComponent extends AXTextInputBaseComponent {
+  validate(): Promise<import("../validation/validation.classs").IValidationRuleResult> {
+    throw new Error("Method not implemented.");
+  }
   private _showOn: string = "mouseup";
   @Input()
   get showOn(): string {

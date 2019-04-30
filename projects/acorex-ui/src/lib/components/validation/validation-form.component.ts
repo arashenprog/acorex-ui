@@ -2,29 +2,38 @@ import {
   Component,
   OnInit,
   QueryList,
-  ViewChildren,
   ContentChildren
 } from "@angular/core";
-import {} from "../../core/base.class";
-import { AXTextBoxComponent } from "../text-box/text-box.component";
+import { AXValidatableComponent } from "../../core/base.class";
+import { IValidationResult } from './validation.classs';
 
 @Component({
   selector: "ax-validation-form",
   template: "<ng-content></ng-content>"
 })
 export class AXValidationFormComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  @ContentChildren(AXTextBoxComponent, { descendants: true })
-  widgets: QueryList<AXTextBoxComponent>;
+  @ContentChildren(AXValidatableComponent, { descendants: true })
+  widgets: QueryList<AXValidatableComponent>;
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  validate(): boolean {
-    let valid: boolean = true;
-    this.widgets.forEach(w => {
-      (<any>w).validate();
+  validate(): Promise<IValidationResult> {
+    return new Promise<IValidationResult>(resolve => {
+      debugger;
+      Promise.all(this.widgets.map(c => { return (<any>c).validate(); })).then(rules => {
+        const failed = rules.filter(c => !c.result);
+        if (failed.length) {
+          resolve({
+            result: false,
+            items: failed
+          });
+        }
+        else {
+          resolve({ result: true });
+        }
+      });
     });
-    return valid;
   }
 }

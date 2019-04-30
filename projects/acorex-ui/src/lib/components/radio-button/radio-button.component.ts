@@ -7,5 +7,8 @@ import { AXCheckedBaseComponent } from "../../core/base.class";
   styleUrls: ["./radio-button.component.scss"]
 })
 export class AXRadioButton extends AXCheckedBaseComponent {
+  validate(): Promise<import("../validation/validation.classs").IValidationRuleResult> {
+    throw new Error("Method not implemented.");
+  }
   @Input() group: string = "GroupName";
 }

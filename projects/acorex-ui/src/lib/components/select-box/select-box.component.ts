@@ -7,5 +7,8 @@ import { AXSelectBaseComponent } from "../../core/base.class";
   templateUrl: "./select-box.component.html"
 })
 export class AXSelectBoxComponent extends AXSelectBaseComponent {
+  validate(): Promise<import("../validation/validation.classs").IValidationRuleResult> {
+    throw new Error("Method not implemented.");
+  }
   @Input() items: any[] = [];
 }

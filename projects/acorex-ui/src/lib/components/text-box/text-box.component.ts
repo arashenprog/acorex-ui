@@ -3,25 +3,23 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  ViewEncapsulation,
-  ContentChild
+  ViewEncapsulation
 } from "@angular/core";
-import { AXTextInputBaseComponent } from "../../core/base.class";
-import { AXValidations } from "../validation/validations.widget";
-import { IValidationResult } from "../validation/validation.classs";
+import { AXTextInputBaseComponent, AXValidatableComponent } from "../../core/base.class";
+import { IValidationRuleResult } from "../validation/validation.classs";
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
   styleUrls: ["./text-box.component.scss"],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [{ provide: AXValidatableComponent, useExisting: AXTextBoxComponent }]
 })
 export class AXTextBoxComponent extends AXTextInputBaseComponent {
   @ViewChild("input") input: ElementRef;
-  @ContentChild(AXValidations) validation: AXValidations;
+ 
 
   _isFocused: boolean = false;
-  _isError: boolean = false;
-  _showError: boolean = false;
+
 
   @Input()
   label: string;
@@ -33,22 +31,13 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent {
 
   @Input() errorText: string = "";
 
-  validate(): Promise<IValidationResult> {
-    // if (this.text == "" || this.text == null) {
-    //   this._isError = true;
-
-    //   return false;
-    // } else {
-    //   this._isError = false;
-    //   this._isFocused = true;
-    // }
-    // return true;
-
-    return new Promise<IValidationResult>(resolve => {
+  validate(): Promise<IValidationRuleResult> {
+    return new Promise<IValidationRuleResult>(resolve => {
       if (!this.validation) {
         resolve({ result: true });
       } else {
         this.validation.validate(this.text).then(r => {
+          r.target = this;
           if (r.result) {
             this._isError = false;
             this._isFocused = true;

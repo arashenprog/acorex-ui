@@ -1,6 +1,11 @@
-import { PromisResult } from "../../core/base.class";
 
-export interface IValidationResult {
+export interface IValidationRuleResult {
   message?: string;
   result: boolean;
+  target?: any;
+}
+
+export interface IValidationResult {
+  result: boolean;
+  items?:IValidationRuleResult[];
 }
