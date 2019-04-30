@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, Input } from "@angular/core";
 import { AXLoadingBaseComponent } from "../../core/base.class";
 
 @Component({
@@ -6,4 +6,7 @@ import { AXLoadingBaseComponent } from "../../core/base.class";
   templateUrl: "./loading.component.html",
   encapsulation: ViewEncapsulation.None
 })
-export class AXLoadingComponent extends AXLoadingBaseComponent {}
+export class AXLoadingComponent extends AXLoadingBaseComponent {
+
+  @Input() text:string;
+}
