@@ -38,6 +38,11 @@ export class AXBaseComponent {
 export class AXTextBaseComponent extends AXBaseComponent {
   @Input() text: string;
   @Input() label: string;
+  @Input() clear: boolean = false;
+
+  clearText():void{
+   this.text = "" 
+  }
 }
 
 export class AXButtonBaseComponent extends AXTextBaseComponent {

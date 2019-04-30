@@ -18,6 +18,14 @@
       #d="ngbDatepicker"
     />
     <div class="ax-field-set-button ">
+      <button
+        *ngIf="model && clear"
+        type="button"
+        class="btn btn-light"
+        (click)="clearText()"
+      >
+        <i class="fas fa-times"></i>
+      </button>
       <button type="button" class="btn btn-primary" (click)="d.toggle()">
         <i class="fas fa-calendar-alt"></i>
       </button>

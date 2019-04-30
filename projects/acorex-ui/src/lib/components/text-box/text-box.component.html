@@ -58,16 +58,16 @@
       (ngModelChange)="onChange($event)"
     />
     <div class="ax-field-set-button">
-        <button
-        *ngIf="text"
+      <button
+        *ngIf="text && clear"
         type="button"
         class="btn btn-light"
-        (click)="onTextClearClick()"
+        (click)="clearText()"
       >
         <i class="fas fa-times"></i>
       </button>
     </div>
-   
+
     <div class="validation-text" *ngIf="_isError">
       {{ errorText }}
     </div>

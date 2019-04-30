@@ -5,32 +5,37 @@
       <ax-col col-sm="10">
         <br />
         <br />
-        <ax-data-grid></ax-data-grid>
-        <br />
-        <br />
-        <ax-date-picker></ax-date-picker>
-        <br />
-        <br />
-        <ax-pass-box label="پسورد" placeholder=""></ax-pass-box>
-        <br />
-        <br />
-        <ax-text-box label="نام">
+        <ax-text-box label="نام" clear="true">
           <ax-validations>
             <ax-validation
               type="required"
               message="مقدار این فیلد الزامی است"
             ></ax-validation>
-            <ax-validation type="regex" message="ایمیل نادرست است" [value]="regEx"></ax-validation>
+            <ax-validation
+              type="regex"
+              message="ایمیل نادرست است"
+              [value]="regEx"
+            ></ax-validation>
           </ax-validations>
         </ax-text-box>
         <br />
         <br />
-        <ax-text-box label="نام خانوادگی"></ax-text-box>
+        <ax-text-box label="نام خانوادگی"  clear="true"></ax-text-box>
         <br />
         <br />
         <ax-text-box label="سلام"></ax-text-box>
         <br />
         <br />
+        <ax-date-picker></ax-date-picker>
+        <br />
+        <br />
+        <ax-pass-box label="پسورد" placeholder=""  clear="true"></ax-pass-box>
+        <br />
+        <br />
+        <ax-data-grid></ax-data-grid>
+        <br />
+        <br />
+
         <ax-button text="سلام دنیا" (onClick)="onClick()"></ax-button>
         <br />
         <br />
