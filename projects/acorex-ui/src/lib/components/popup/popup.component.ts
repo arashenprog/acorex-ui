@@ -12,7 +12,7 @@ import {
   ComponentRef,
   OnDestroy
 } from "@angular/core";
-import { ClosingEventArgs } from "../../services/PopupService";
+import { ClosingEventArgs } from "./popup.service";
 
 @Component({
   selector: "ax-popup",

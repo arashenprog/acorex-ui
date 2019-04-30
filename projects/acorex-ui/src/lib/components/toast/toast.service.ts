@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 
 export interface IToastOptions {
     timeOut?: number;
+    title?: string,
     closebutton?: boolean;
 }
 
@@ -19,18 +20,17 @@ export class ToastService {
         timeOut: 5000,
         extendedTimeOut: 5000
     }
-    info(message, title, options?: IToastOptions) {
-        this.toastr.info(message, title, this.getOptions(options))
+    info(message: string, options?: IToastOptions) {
+        this.toastr.info(message, options ? options.title : null, this.getOptions(options))
     }
-    sucess(message, title, options?: IToastOptions) {
-        this.toastr.success(message, title, this.getOptions(options));
+    sucess(message: string, options?: IToastOptions) {
+        this.toastr.success(message, options ? options.title : null, this.getOptions(options));
     }
-    warning(message, title, options?: IToastOptions) {
-        this.toastr.warning(message, title, this.getOptions(options))
+    warning(message: string, options?: IToastOptions) {
+        this.toastr.warning(message, options ? options.title : null, this.getOptions(options))
     }
-    error(message, title, options?: IToastOptions) {
-
-        this.toastr.error(message, title, this.getOptions(options));
+    error(message: string, options?: IToastOptions) {
+        this.toastr.error(message, options ? options.title : null, this.getOptions(options));
     }
 
     private getOptions(options?: IToastOptions): any {

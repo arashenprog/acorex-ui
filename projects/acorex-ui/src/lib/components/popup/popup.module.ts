@@ -3,10 +3,12 @@ import { CommonModule } from "@angular/common";
 import { AXPopupComponent } from "./popup.component";
 import { AXDialogComponent } from "./dialog.component";
 import { AXButtonModule } from "../button/button.module";
+import { PopupService } from './popup.service';
+import { DialogService } from './dialog.service';
 @NgModule({
   declarations: [AXPopupComponent, AXDialogComponent],
   imports: [CommonModule, AXButtonModule],
   exports: [AXPopupComponent, AXDialogComponent],
-  providers: []
+  providers: [PopupService,DialogService]
 })
 export class AXPopupModule {}

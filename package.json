@@ -25,6 +25,7 @@
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
     "angular2-text-mask": "^9.0.0",
+    "ngx-toastr": "^10.0.2",
     "bootstrap-v4-rtl": "^4.3.1-2",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",

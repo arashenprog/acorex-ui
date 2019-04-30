@@ -1,6 +1,6 @@
 import { Injectable, Type, ComponentRef } from "@angular/core";
-import { InjectionService } from "./InjectionService";
-import { AXPopupComponent } from "../components/popup/popup.component";
+import { InjectionService } from "../../services/injection.service";
+import { AXPopupComponent } from "./popup.component";
 
 export interface ClosingEventArgs {
   cancel?: boolean;

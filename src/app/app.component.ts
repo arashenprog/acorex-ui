@@ -1,6 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
 import { IValidationRuleResult } from 'projects/acorex-ui/src/lib/components/validation/validation.classs';
+import { ToastService } from 'projects/acorex-ui/src/lib/components/toast/toast.service';
 
 @Component({
   selector: "app-root",
@@ -8,6 +9,11 @@ import { IValidationRuleResult } from 'projects/acorex-ui/src/lib/components/val
 })
 export class AppComponent {
   @ViewChild("form") form: AXValidationFormComponent;
+
+  constructor(private toast:ToastService)
+  {
+
+  }
 
   title = "acorex-framework";
   menuItems: Array<any> = [
@@ -49,6 +55,7 @@ export class AppComponent {
   onClick() {
     this.form.validate().then(c => {
       console.log(c);
+      this.toast.sucess("Hello Word!");
     });
   }
 
