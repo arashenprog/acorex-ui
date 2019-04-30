@@ -1,14 +1,13 @@
 import { Component, Input } from "@angular/core";
-import { AXTextInputBaseComponent } from "../../core/base.class";
+import { AXTextInputBaseComponent, AXValidatableComponent } from "../../core/base.class";
 
 @Component({
   selector: "ax-pass-box",
-  templateUrl: "./password-box.component.html"
+  templateUrl: "./password-box.component.html",
+  providers: [{ provide: AXValidatableComponent, useExisting: AXPasswordBoxComponent }]
 })
 export class AXPasswordBoxComponent extends AXTextInputBaseComponent {
-  validate(): Promise<import("../validation/validation.classs").IValidationRuleResult> {
-    throw new Error("Method not implemented.");
-  }
+
   private _showOn: string = "mouseup";
   @Input()
   get showOn(): string {

@@ -15,7 +15,11 @@
         </ax-date-picker>
         <br />
         <br />
-        <ax-pass-box label="پسورد" placeholder=""></ax-pass-box>
+        <ax-pass-box label="پسورد" placeholder="">
+          <ax-validation>
+            <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+          </ax-validation>
+        </ax-pass-box>
         <br />
         <br />
         <ax-text-box label="نام" showClear="true">

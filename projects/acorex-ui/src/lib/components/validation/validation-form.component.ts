@@ -4,8 +4,8 @@ import {
   QueryList,
   ContentChildren
 } from "@angular/core";
-import { AXValidatableComponent } from "../../core/base.class";
 import { IValidationResult } from './validation.classs';
+import { AXValidatableComponent } from '../../core/base.class';
 
 @Component({
   selector: "ax-validation-form",
