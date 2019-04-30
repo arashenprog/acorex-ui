@@ -1,4 +1,4 @@
-import { Component, Injectable, ViewEncapsulation, Input, ContentChild } from "@angular/core";
+import { Component, Injectable, ViewEncapsulation, Input } from "@angular/core";
 import {
   NgbDateStruct,
   NgbCalendar,
@@ -58,6 +58,7 @@ export class AXDatePickerComponent extends AXValidatableComponent {
   model: NgbDateStruct;
   date: { year: number; month: number };
   @Input() label: string = "تاریخ";
+
   constructor(private calendar: NgbCalendar) {
     super();
   }
@@ -72,6 +73,7 @@ export class AXDatePickerComponent extends AXValidatableComponent {
 
 
   validate(): Promise<IValidationRuleResult> {
+    
     return new Promise<IValidationRuleResult>(resolve => {
       debugger;
       if (!this.validation) {
