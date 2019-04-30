@@ -39,11 +39,7 @@ export class AXBaseComponent {
 export class AXTextBaseComponent extends AXBaseComponent {
   @Input() text: string;
   @Input() label: string;
-  @Input() clear: boolean = false;
 
-  clearText():void{
-   this.text = "" 
-  }
 }
 
 export class AXButtonBaseComponent extends AXTextBaseComponent {
@@ -60,6 +56,11 @@ export abstract class AXValidatableComponent extends AXTextBaseComponent {
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @Input() autocomplete: boolean = false;
   @Input() placeholder: string = "";
+  @Input() clear: boolean = false;
+
+  clearText():void{
+   this.text = "" 
+  }
  
 }
 export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {

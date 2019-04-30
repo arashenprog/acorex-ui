@@ -13,7 +13,8 @@
   cursor: pointer;
   position: relative;
   @include border-radius($border-radius-default);
-  @include box-shadow(-2px, 2px, 4px, $border-color);
+  border: $border-width solid;
+  border-color: $border-color;
   &:hover {
     border-color: $primary-color;
     border-style: solid;
