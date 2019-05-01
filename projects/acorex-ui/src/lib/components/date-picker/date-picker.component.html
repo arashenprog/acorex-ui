@@ -6,7 +6,8 @@
       </legend>
     </fieldset>
     <input class="ax-text-box" [placeholder]="placeholder" name="dp" [(ngModel)]="model" ngbDatepicker
-      #d="ngbDatepicker" />
+      #d="ngbDatepicker"  (blur)="onBlur($event)"
+      (focus)="onFocus($event)" />
     <div class="ax-field-set-button ">
       <button *ngIf="model && showClear" type="button" class="btn btn-light" (click)="clearText()">
         <i class="fas fa-times"></i>

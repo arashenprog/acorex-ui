@@ -11,6 +11,8 @@
       [items]="items"
       [placeholder]="placeholder"
       [notFoundText]="notFoundText"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
     >
     </ng-select>
     <div class="ax-field-set-button">
