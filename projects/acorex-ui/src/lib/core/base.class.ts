@@ -58,8 +58,9 @@ export class AXButtonBaseComponent extends AXBaseComponent {
 export abstract class AXValidatableComponent extends AXBaseComponent {
   abstract validate(): Promise<IValidationRuleResult>;
   errorText: string = null;
+  
   @ContentChild(AXValidationComponent)
-  protected validation: AXValidationComponent;
+  protected validator: AXValidationComponent;
 }
 
 
@@ -84,10 +85,10 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
 
   validate(): Promise<IValidationRuleResult> {
     return new Promise<IValidationRuleResult>(resolve => {
-      if (!this.validation) {
+      if (!this.validator) {
         resolve({ result: true });
       } else {
-        this.validation.validate(this.text).then(r => {
+        this.validator.validate(this.text).then(r => {
           r.target = this;
           if (r.result) {
             this.errorText = null;
