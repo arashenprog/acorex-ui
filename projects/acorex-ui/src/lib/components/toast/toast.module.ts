@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { AXCoreModule } from '../../core/core.module';
-import { ToastrModule } from 'ngx-toastr';
-import { ToastService } from './toast.service';
-
+import { NgModule } from "@angular/core";
+import { AXCoreModule } from "../../core/core.module";
+import { ToastService } from "./toast.service";
+import { AXToastWrapperComponent } from "./toast-wrapper/toast-wrapper.component";
+import { AXToastMessageComponent } from "./toast-message/toast-message.component";
 @NgModule({
-    declarations: [],
-    imports: [ AXCoreModule,ToastrModule.forRoot() ],
-    exports: [],
-    providers: [ToastService],
+  declarations: [AXToastWrapperComponent, AXToastMessageComponent],
+  imports: [AXCoreModule],
+  exports: [AXToastWrapperComponent ],
+  entryComponents: [AXToastWrapperComponent,AXToastMessageComponent],
+  providers: [ToastService]
 })
 export class AXToastModule {}

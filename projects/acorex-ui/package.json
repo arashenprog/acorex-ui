@@ -11,7 +11,6 @@
     "@ng-select/ng-select": "^2.18.0",
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
-    "angular2-text-mask": "^9.0.0",
-    "ngx-toastr": "^10.0.2"
+    "angular2-text-mask": "^9.0.0"
   }
 }

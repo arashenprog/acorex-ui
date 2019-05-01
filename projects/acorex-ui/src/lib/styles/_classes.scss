@@ -99,3 +99,35 @@
   color: $red;
   padding: $size-sm $size-lg;
 }
+.bk-primary {
+  background-color: $primary-color;
+  color: $white;
+}
+.bk-success {
+  background-color: $green;
+  color: $white;
+}
+.bk-warning {
+  background-color: $yellow;
+  color: $white;
+}
+.bk-danger {
+  background-color: $red;
+  color: $white;
+}
+.bk-primary-light {
+  background-color: lighten($color: $primary-color, $amount: 5%);
+  color: $white;
+}
+.bk-success-light {
+  background-color: lighten($color: $green, $amount: 5%);
+  color: $white;
+}
+.bk-warning-light {
+  background-color: lighten($color: $yellow, $amount: 5%);
+  color: $white;
+}
+.bk-danger-light {
+  background-color: lighten($color: $red, $amount: 5%);
+  color: $white;
+}

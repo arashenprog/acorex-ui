@@ -24,7 +24,6 @@ import { AXTabPageModule } from "./components/tabpage/tabpage.module";
 import { AXTextBoxModule } from "./components/text-box/text-box.module";
 import { AXUploadFileModule } from "./components/upload-file/upload-file.module";
 import { AXValidationModule } from "./components/validation/validation.module";
-import { AXDialogComponent } from './components/popup/dialog.component';
 import { AXCoreModule } from './core/core.module';
 import { AXToastModule } from './components/toast/toast.module';
 
@@ -57,7 +56,6 @@ import { AXToastModule } from './components/toast/toast.module';
     AXTextBoxModule,
     AXUploadFileModule,
     AXValidationModule,
-    
   ],
   exports: [
     AXCoreModule,
