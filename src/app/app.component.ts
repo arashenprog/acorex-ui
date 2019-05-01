@@ -2,6 +2,8 @@ import { Component, ViewChild } from "@angular/core";
 import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
 import { IValidationRuleResult } from "projects/acorex-ui/src/lib/components/validation/validation.classs";
 import { ToastService } from "projects/acorex-ui/src/lib/components/toast/toast.service";
+import { DialogService } from 'projects/acorex-ui/src/lib/components/popup/dialog.service';
+import { PopupService } from 'projects/acorex-ui/src/lib/components/popup/popup.service';
 
 @Component({
   selector: "app-root",
@@ -21,7 +23,11 @@ export class AppComponent {
     { text: "گزینه 4" },
     { text: "گزینه 5" }
   ];
-
+  defaultBindingsList = [
+    { value: 1, label: 'اصفهان' },
+    { value: 2, label: 'تهران' },
+    { value: 3, label: 'گیلان', disabled: true }
+  ];
   check_box_items_inline: Array<any> = [
     {
       value: 1,
