@@ -1,17 +1,18 @@
 import { Component, ViewChild } from "@angular/core";
 import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
 import { IValidationRuleResult } from "projects/acorex-ui/src/lib/components/validation/validation.classs";
-import { DialogService } from "projects/acorex-ui/src/lib/services/DialogService";
-import { PopupService } from "projects/acorex-ui/src/lib/services/PopupService";
+import { ToastService } from "projects/acorex-ui/src/lib/components/toast/toast.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html"
 })
 export class AppComponent {
-  constructor(private dialog: DialogService, private popup: PopupService) {}
+  constructor(private dialog: DialogService, private popup: PopupService,private toast: ToastService) {}
   @ViewChild("form") form: AXValidationFormComponent;
   loading: boolean = false;
+
+
   title = "acorex-framework";
   menuItems: Array<any> = [
     { text: "گزینه 1" },
@@ -55,6 +56,7 @@ export class AppComponent {
     this.form.validate().then(c => {
       console.log(c);
       this.loading = false;
+      this.toast.sucess("Hello Word!");
     });
   }
   onDialogClick() {
