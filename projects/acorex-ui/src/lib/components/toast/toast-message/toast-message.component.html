@@ -1,0 +1,18 @@
+<div class="toast-container">
+  <header *ngIf="title" class="bk-{{ _style }}">
+    <div>
+      <i class="{{_icon}}"></i>&nbsp;
+      {{ title }}
+    </div>
+    <div *ngIf="closeable" (click)="close()" class="toast-close">
+      <i class="far fa-times-circle"></i>
+    </div>
+  </header>
+  <article class="bk-{{ _style }}-light">
+    {{ message }}
+    <div *ngIf="!title && closeable" (click)="close()" class="toast-close">
+      <i class="far fa-times-circle"></i>
+    </div>
+    <div class="toast-progress" [style.width.%]='toastWidth'></div>
+  </article>
+</div>
