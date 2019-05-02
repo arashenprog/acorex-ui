@@ -1,5 +1,40 @@
-<ng-select [items]="items"
-           [placeholder]="placeholder"
-           [notFoundText]="notFoundText"
-           >
-</ng-select>
+<div class="ax-field-set">
+  <div class="ax-field-set-wrapper">
+    <fieldset
+      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
+    >
+      <legend *ngIf="label">
+        {{ label }}
+      </legend>
+    </fieldset>
+    <ng-select
+      [items]="items"
+      [placeholder]="placeholder"
+      [notFoundText]="notFoundText"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+    >
+    </ng-select>
+    <div class="ax-field-set-button">
+      <button
+        *ngIf="text && showClear"
+        type="button"
+        class="btn btn-light"
+        (click)="clearText()"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <button
+        type="button"
+        class=" btn btn-primary"
+        (click)="onClickInner()"
+      >
+      <i class="fas fa-angle-down"></i>
+      </button>
+    </div>
+    <div class="validation-text" *ngIf="errorText">
+      {{ errorText }}
+    </div>
+  </div>
+  <ng-content></ng-content>
+</div>

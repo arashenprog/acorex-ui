@@ -131,6 +131,8 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
 
 
 export abstract class AXLoadingBaseComponent extends AXBaseComponent {
+  @Input() text: string;
+  @Input() color: string = "#0062cc";
 
 }
 

@@ -12,11 +12,12 @@ import {
   ComponentRef,
   OnDestroy
 } from "@angular/core";
-import { ClosingEventArgs } from "../../services/PopupService";
+import { ClosingEventArgs } from "./popup.service";
 
 @Component({
   selector: "ax-popup",
   templateUrl: "./popup.component.html",
+  styleUrls:["./popup.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {

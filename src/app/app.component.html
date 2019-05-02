@@ -1,3 +1,4 @@
+
 <ax-container>
   <ax-validation-form #form>
     <ax-row>
@@ -5,34 +6,63 @@
       <ax-col col-sm="10">
         <br />
         <br />
-        <ax-data-grid></ax-data-grid>
+        <ax-row>
+          <ax-col col-sm="6">
+            <ax-select-box
+              label="انتخاب"
+              [items]="defaultBindingsList"
+            ></ax-select-box>
+          </ax-col>
+
+          <ax-col col-sm="6">
+            <ax-date-picker showClear="true">
+              <ax-validation>
+                <ax-validation-rule
+                  type="required"
+                  message="مقدار این فیلد الزامی است"
+                ></ax-validation-rule>
+              </ax-validation>
+            </ax-date-picker>
+          </ax-col>
+        </ax-row>
+
         <br />
         <br />
-        <ax-date-picker showClear="true">
-          <ax-validation>
-            <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
-          </ax-validation>
-        </ax-date-picker>
+
         <br />
         <br />
         <ax-pass-box label="پسورد" placeholder="">
           <ax-validation>
-            <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+            <ax-validation-rule
+              type="required"
+              message="مقدار این فیلد الزامی است"
+            ></ax-validation-rule>
           </ax-validation>
         </ax-pass-box>
         <br />
         <br />
         <ax-text-box label="نام" showClear="true">
           <ax-validation>
-            <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
-            <ax-validation-rule type="regex" message="ایمیل نادرست است" [value]="regEx"></ax-validation-rule>
+            <ax-validation-rule
+              type="required"
+              message="مقدار این فیلد الزامی است"
+            ></ax-validation-rule>
+            <ax-validation-rule
+              type="regex"
+              message="ایمیل نادرست است"
+              [value]="regEx"
+            ></ax-validation-rule>
           </ax-validation>
         </ax-text-box>
         <br />
         <br />
         <ax-text-box label="نام خانوادگی">
           <ax-validation>
-            <ax-validation-rule type="callback" message="مقدار این فیلد الزامی است" [value]="customValidation">
+            <ax-validation-rule
+              type="callback"
+              message="مقدار این فیلد الزامی است"
+              [value]="customValidation"
+            >
             </ax-validation-rule>
           </ax-validation>
         </ax-text-box>
@@ -40,22 +70,53 @@
         <br />
         <ax-text-box label="سلام"></ax-text-box>
         <br />
-        <ax-pass-box label="پسورد" placeholder="" showClear="true"></ax-pass-box>
+        <ax-pass-box
+          label="پسورد"
+          placeholder=""
+          showClear="true"
+        ></ax-pass-box>
         <br />
-        <ax-button text="سلام دنیا" (onClick)="onClick()"></ax-button>
+        <br />
+        <ax-button
+          [loading]="loading"
+          text="ثبت فرم"
+          (onClick)="onClick()"
+        ></ax-button>
+        <br />
+        <br />
+        <ax-button
+          [loading]="loading"
+          text="نمایش خطا "
+          (onClick)="onDialogClick()"
+        ></ax-button>
+        <ax-button
+          [loading]="loading"
+          text="نمایش پاپ آپ "
+          (onClick)="onPopupClick()"
+        ></ax-button>
         <br />
         <br />
         <ax-upload-file></ax-upload-file>
         <br />
         <br />
-        <ax-card title="عنوان" content="توضیحات اینجا قرار میگیرد" [buttons]="menuItems"
-          image="https://placeimg.com/640/480/nature"></ax-card>
+        <ax-card
+          title="عنوان"
+          content="توضیحات اینجا قرار میگیرد"
+          [buttons]="menuItems"
+          image="https://placeimg.com/640/480/nature"
+        ></ax-card>
         <br />
         <br />
-        <ax-selection-list [items]="check_box_items_inline" mode="single"></ax-selection-list>
+        <ax-selection-list
+          [items]="check_box_items_inline"
+          mode="single"
+        ></ax-selection-list>
         <br />
         <br />
-        <ax-selection-list [items]="check_box_items_inline" mode="multiple"></ax-selection-list>
+        <ax-selection-list
+          [items]="check_box_items_inline"
+          mode="multiple"
+        ></ax-selection-list>
         <br />
         <br />
         <ax-image src="https://placeimg.com/640/480/nature"></ax-image>

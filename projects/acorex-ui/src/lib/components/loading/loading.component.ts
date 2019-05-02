@@ -7,6 +7,4 @@ import { AXLoadingBaseComponent } from "../../core/base.class";
   encapsulation: ViewEncapsulation.None
 })
 export class AXLoadingComponent extends AXLoadingBaseComponent {
-
-  @Input() text:string;
 }
