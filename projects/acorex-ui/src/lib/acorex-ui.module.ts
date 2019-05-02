@@ -26,6 +26,7 @@ import { AXUploadFileModule } from "./components/upload-file/upload-file.module"
 import { AXValidationModule } from "./components/validation/validation.module";
 import { AXCoreModule } from './core/core.module';
 import { AXToastModule } from './components/toast/toast.module';
+import { AXHttpModule } from './core/http/http.module';
 
 @NgModule({
   declarations: [],
@@ -56,6 +57,8 @@ import { AXToastModule } from './components/toast/toast.module';
     AXTextBoxModule,
     AXUploadFileModule,
     AXValidationModule,
+    //
+    AXHttpModule
   ],
   exports: [
     AXCoreModule,
@@ -82,7 +85,9 @@ import { AXToastModule } from './components/toast/toast.module';
     AXTabPageModule,
     AXTextBoxModule,
     AXUploadFileModule,
-    AXValidationModule
+    AXValidationModule,
+    //
+    AXHttpModule
   ],
   providers: []
 })

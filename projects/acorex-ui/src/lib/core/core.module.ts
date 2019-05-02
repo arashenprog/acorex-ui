@@ -6,10 +6,11 @@ import { TranslateService, TranslatePipe } from '../services/translate.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
     declarations: [TranslatePipe],
-    imports: [CommonModule, FormsModule,BrowserAnimationsModule],
-    exports: [CommonModule, TranslatePipe,BrowserAnimationsModule],
-    providers: [ EventService, InjectionService, TranslateService, InjectionService],
+    imports: [CommonModule, FormsModule, BrowserAnimationsModule],
+    exports: [CommonModule, TranslatePipe, BrowserAnimationsModule],
+    providers: [EventService, InjectionService, TranslateService, InjectionService],
 })
 export class AXCoreModule { }

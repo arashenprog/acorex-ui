@@ -9,6 +9,7 @@ import { DialogService } from './dialog.service';
   declarations: [AXPopupComponent, AXDialogComponent],
   imports: [CommonModule, AXButtonModule],
   exports: [AXPopupComponent, AXDialogComponent],
+  entryComponents:[AXPopupComponent,AXDialogComponent],
   providers: [PopupService,DialogService]
 })
 export class AXPopupModule {}

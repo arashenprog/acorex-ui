@@ -4,6 +4,7 @@ import { IValidationRuleResult } from "projects/acorex-ui/src/lib/components/val
 import { ToastService } from "projects/acorex-ui/src/lib/components/toast/toast.service";
 import { DialogService } from "projects/acorex-ui/src/lib/components/popup/dialog.service";
 import { PopupService } from "projects/acorex-ui/src/lib/components/popup/popup.service";
+import { AXHttpService } from 'projects/acorex-ui/src/public-api';
 
 @Component({
   selector: "app-root",
@@ -13,8 +14,9 @@ export class AppComponent {
   constructor(
     private dialog: DialogService,
     private popup: PopupService,
-    private toast: ToastService
-  ) {}
+    private toast: ToastService,
+    private http: AXHttpService
+  ) { }
   @ViewChild("form") form: AXValidationFormComponent;
   loading: boolean = false;
 
@@ -63,21 +65,25 @@ export class AppComponent {
     this.loading = true;
     this.toast.success("عملیات با موفقیت انجام شد", {
       timeOut: 10000,
-      closeable:true
-
+      closeable: true
     });
     this.form.validate().then(c => {
       console.log(c);
       this.loading = false;
-     
+
       this.toast.error("مقادیر نام و نام خانوادگی تکراری است", {
         timeOut: 5000,
-        title:"خطا",
-        closeable:true
+        title: "خطا",
+        closeable: true
       });
     });
   }
   onDialogClick() {
+    this.http.get("https://jsonplaceholder.typicode.com//todos")
+      .result(c => {
+        console.log("result", c);
+      })
+      .error(c => { console.log("error", c); })
     this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
   }
   onPopupClick() {
