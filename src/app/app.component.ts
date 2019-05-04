@@ -68,7 +68,6 @@ export class AppComponent {
       closeable: true
     });
     this.form.validate().then(c => {
-      console.log(c);
       this.loading = false;
 
       this.toast.error("مقادیر نام و نام خانوادگی تکراری است", {
@@ -81,7 +80,6 @@ export class AppComponent {
   onDialogClick() {
     this.http.get("https://jsonplaceholder.typicode.com//todos")
       .result(c => {
-        console.log("result", c);
       })
     //this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
   }

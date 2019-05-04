@@ -64,7 +64,6 @@ export class AXUploadFileComponent implements OnInit {
       "load",
       () => {
         this.data = fileReader.result;
-        console.log(fileReader.result);
       },
       false
     );
@@ -73,10 +72,8 @@ export class AXUploadFileComponent implements OnInit {
   onFileChange(e) {
     let files = e.target.files;
     this.fileName = files[0].name;
-    console.log(files);
     this.readFile(files[0]);
   }
   onInlineButtonClick(e) {
-    console.log(e);
   }
 }

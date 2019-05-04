@@ -13,7 +13,6 @@ export class AXRowComponent {
   setHeight() {
     if (this.size) {
       let contentWrapper = this.element.nativeElement.closest(".inner-content");
-      console.log(this.size * contentWrapper.clientHeight + "px");
       this.height = this.size * contentWrapper.clientHeight - 25 + "px";
     } else {
       this.height = "auto";
