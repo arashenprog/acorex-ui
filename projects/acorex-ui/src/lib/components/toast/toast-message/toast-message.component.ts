@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, ElementRef } from "@angular/core";
+import { timeout } from "q";
+import { timer } from "rxjs";
 
 @Component({
   templateUrl: "./toast-message.component.html",
@@ -17,16 +19,20 @@ export class AXToastMessageComponent implements OnInit {
   _style: string = "primary";
   _icon: string = "primary";
 
-
   ngOnInit(): void {
     if (this.timeOut) {
-      setTimeout(() => {
+      let timer = setTimeout(() => {
+        debugger;
         this.close();
       }, this.timeOut);
       setInterval(() => {
-        this.toastWidth--;
-        console.log(this.toastWidth--);
-      }, this.timeOut);
+        for (let i = this.timeOut; i <= 0; i++) {
+          debugger;
+          --this.timeOut;
+          console.log(this.timeOut);
+          clearInterval(timer);
+        }
+      });
     }
     switch (this.type) {
       case "success":
@@ -43,7 +49,7 @@ export class AXToastMessageComponent implements OnInit {
         break;
     }
     switch (this.type) {
-        case "success":
+      case "success":
         this._icon = "fas fa-check-circle";
         break;
       case "warning":
