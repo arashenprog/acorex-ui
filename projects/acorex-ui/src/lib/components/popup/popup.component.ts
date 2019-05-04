@@ -91,4 +91,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   deactive() {
     this.isActivated = false;
   }
+  onFullScreen(){
+    
+  }
 }

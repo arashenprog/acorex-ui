@@ -90,6 +90,8 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
       } else {
         this.validator.validate(this.text).then(r => {
           r.target = this;
+          debugger
+
           if (r.result) {
             this.errorText = null;
           } else {

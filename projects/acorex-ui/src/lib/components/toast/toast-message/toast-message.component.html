@@ -13,6 +13,6 @@
     <div *ngIf="!title && closeable" (click)="close()" class="toast-close">
       <i class="far fa-times-circle"></i>
     </div>
-    <div class="toast-progress" [style.width.%]='toastWidth'></div>
+    <div class="toast-progress" [style.width.%]='_toastWidth'></div>
   </article>
 </div>

@@ -64,17 +64,17 @@ export class AppComponent {
   onClick() {
     this.loading = true;
     this.toast.success("عملیات با موفقیت انجام شد", {
-      timeOut: 10000,
+      timeOut: 3000,
       closeable: true
     });
     this.form.validate().then(c => {
       this.loading = false;
 
-      this.toast.error("مقادیر نام و نام خانوادگی تکراری است", {
-        timeOut: 5000,
-        title: "خطا",
-        closeable: true
-      });
+      // this.toast.error("مقادیر نام و نام خانوادگی تکراری است", {
+      //   timeOut: 1000,
+      //   title: "خطا",
+      //   closeable: true
+      // });
     });
   }
   onDialogClick() {

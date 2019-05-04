@@ -1,4 +1,10 @@
 @import "../../../styles/varibales";
+.rtl{
+  .toast-progress {
+    right: 0;
+    left: inherit !important;
+  }
+}
 .toast-container {
   overflow: hidden;
   margin: $size-sm 0;
@@ -28,7 +34,10 @@
     height: 3px;
     width: 100%;
     bottom: 0;
-    right: 0;
+    left: 0;
+    -webkit-transition: linear width; /* Safari */
+    transition: linear width;
+    
   }
 }
 

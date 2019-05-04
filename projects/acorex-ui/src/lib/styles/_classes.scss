@@ -1,4 +1,10 @@
 @import "./varibales";
+.rtl {
+  .ax-field-set-button {
+    left: 0;
+    right: initial !important;
+  }
+}
 .img-responsive {
   display: block;
   margin: auto;
@@ -60,7 +66,7 @@
   }
   .ax-field-set-button {
     position: absolute;
-    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,6 +94,11 @@
   border-color: $red !important;
   color: $red !important;
 }
+.input-success {
+  border-color: $green !important;
+  color: $green !important;
+}
+
 .validation-text {
   position: absolute;
   top: 90%;
