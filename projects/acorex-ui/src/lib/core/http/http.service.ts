@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpResult } from './http-result.class';
 import { IHttpError } from './http-error.class';
+import { AXErrorService } from '../error/error.service';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class AXHttpService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private error: AXErrorService) { }
 
     get<T>(url: string): HttpResult<T> {
         return new HttpResult<T>((result?, error?, complete?) => {
-
             this.http.get<T>(url).toPromise().then(c => {
                 if (result)
                     result(c);
@@ -26,15 +24,13 @@ export class AXHttpService {
                 if (error) {
                     error(r);
                 }
-                if(!r.handled)
-                {
-                    // error service
+                if (!r.handled) {
+                    this.error.handle(r.message);
                 }
             }).finally(() => {
                 if (complete)
                     complete();
             })
-
         })
     }
 

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { InjectionService } from "../../services/injection.service";
+import { InjectionService } from "../../core/injection.service";
 import { AXToastWrapperComponent } from "./toast-wrapper/toast-wrapper.component";
 import { AXToastMessageComponent } from "./toast-message/toast-message.component";
 

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventService } from '../services/event.service';
-import { InjectionService } from '../services/injection.service';
-import { TranslateService, TranslatePipe } from '../services/translate.service';
+import { EventService } from './event.service';
+import { InjectionService } from './injection.service';
+import { TranslateService, TranslatePipe } from './translate.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
