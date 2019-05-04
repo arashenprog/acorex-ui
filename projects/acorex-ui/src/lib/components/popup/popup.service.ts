@@ -1,5 +1,5 @@
 import { Injectable, Type, ComponentRef } from "@angular/core";
-import { InjectionService } from "../../services/injection.service";
+import { InjectionService } from "../../core/injection.service";
 import { AXPopupComponent } from "./popup.component";
 
 export interface ClosingEventArgs {

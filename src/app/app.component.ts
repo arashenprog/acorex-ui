@@ -81,8 +81,7 @@ export class AppComponent {
     this.http.get("https://jsonplaceholder.typicode.com//todos")
       .result(c => {
       })
-      .error(c => {  })
-    this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
+    //this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
   }
   onPopupClick() {
     this.popup.open("a", "عنوان");
