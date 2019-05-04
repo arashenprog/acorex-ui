@@ -24,6 +24,12 @@
       ],
       "acorex-ui/*": [
         "dist/acorex-ui/*"
+      ],
+      "acorex-spa": [
+        "dist/acorex-spa"
+      ],
+      "acorex-spa/*": [
+        "dist/acorex-spa/*"
       ]
     }
   }
