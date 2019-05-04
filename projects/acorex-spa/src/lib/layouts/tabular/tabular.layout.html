@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <div class="wrapper-layout">
+    <ax-side-menu *ngIf="sidebarShow" id="ax-side-menu"></ax-side-menu>
+    <div class="main-layout">
+      <ax-header-layout></ax-header-layout>
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

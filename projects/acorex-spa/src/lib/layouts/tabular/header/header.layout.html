@@ -1,0 +1,30 @@
+<div class="header-content" id="header-content">
+    <div class="toggle">
+        <button type="button" class="circle-button" (click)="onFullClick()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div class="tabs" (mouseWheelUp)="mouseWheelUp($event)">
+        <div [class.active]="tab.active" *ngFor="let tab of tabService.tabs" (click)="tabService.active(tab)">
+            <span>{{tab.title}}</span>
+            <i *ngIf="tab.closable" class="fas fa-times" (click)="tabService.close(tab)"></i>
+            <!-- fa-circle |   fa-spinner fa-spin -->
+        </div>
+    </div>
+    <div class="panel-control">
+        <button type="button" class="circle-button" (click)="config($event)">
+            <i class="fas fa-cogs"></i>
+        </button>
+        <ax-popover></ax-popover>
+        <button type="button" class="circle-button" (click)="fullScreen($event)">
+            <i class="fas fa-expand"></i>
+        </button>
+        <button type="button" class="circle-button">
+            <i class="fas fa-comment-alt"></i>
+        </button>
+        <button type="button" class="circle-button">
+            <i class="fas fa-power-off"></i>
+        </button>
+
+    </div>
+</div>

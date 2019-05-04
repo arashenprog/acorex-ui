@@ -1,0 +1,19 @@
+<div class="side-logo">
+  <h4>هوشمند تصمیم آریا</h4>
+</div>
+<div class="user-box"><img src="../../../assets/images/25130241.jpg" alt="avatar" />
+  <h4>علی صفری</h4>
+  <p>برنامه نویس رابط کاربری</p>
+</div>
+<div class="side-toolbar">
+  <div class="search-bar">
+    <input type="text" placeholder="جستجو ..." [(ngModel)]="searchText" (change)="onSearch($event)" />
+    <i class="fas fa-search"></i>
+  </div>
+  <div class="fav-button">
+    <button type="button" (click)="onFavoriteClick($event)" [ngClass]="favoriteCheck ? 'active' : ''">
+      <i class="fas fa-star"></i>
+    </button>
+  </div>
+</div>
+<ax-menu [items]="items"></ax-menu>

@@ -1,0 +1,19 @@
+@import "../../../assets/scss/themes/base/variables.scss";
+.ax-footer {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 10px -6px 10px -1px $border-color;
+  -webkit-box-shadow: 10px -6px 10px -1px $border-color;
+  -moz-box-shadow: 10px -6px 10px -1px $border-color;
+  border-top: 1px solid $border-color;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 0 10px;
+  z-index: 1003;
+}
