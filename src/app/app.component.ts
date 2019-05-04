@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
 import { IValidationRuleResult } from "projects/acorex-ui/src/lib/components/validation/validation.classs";
-import { ToastService } from "projects/acorex-ui/src/lib/components/toast/toast.service";
+import { AXToastService } from "projects/acorex-ui/src/lib/components/toast/toast.service";
 import { DialogService } from "projects/acorex-ui/src/lib/components/popup/dialog.service";
 import { PopupService } from "projects/acorex-ui/src/lib/components/popup/popup.service";
 import { AXHttpService } from 'projects/acorex-ui/src/public-api';
@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(
     private dialog: DialogService,
     private popup: PopupService,
-    private toast: ToastService,
+    private toast: AXToastService,
     private http: AXHttpService
   ) { }
   @ViewChild("form") form: AXValidationFormComponent;
@@ -78,8 +78,13 @@ export class AppComponent {
     });
   }
   onDialogClick() {
-    this.http.get("https://jsonplaceholder.typicode.com//todos")
+    this.http.get("https://jsonplaceholder.typicode.com/todos", {
+      params: { name: "arash" }
+    })
       .result(c => {
+        console.log(c);
+      }).complete(() => {
+        console.log("complete");
       })
     //this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
   }

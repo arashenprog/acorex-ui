@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { AXCoreModule } from "../../core/core.module";
-import { ToastService } from "./toast.service";
+import { AXToastService } from "./toast.service";
 import { AXToastWrapperComponent } from "./toast-wrapper/toast-wrapper.component";
 import { AXToastMessageComponent } from "./toast-message/toast-message.component";
 @NgModule({
@@ -8,6 +8,6 @@ import { AXToastMessageComponent } from "./toast-message/toast-message.component
   imports: [AXCoreModule],
   exports: [AXToastWrapperComponent ],
   entryComponents: [AXToastWrapperComponent,AXToastMessageComponent],
-  providers: [ToastService]
+  providers: [AXToastService]
 })
 export class AXToastModule {}

@@ -27,6 +27,8 @@ import { AXValidationModule } from "./components/validation/validation.module";
 import { AXCoreModule } from './core/core.module';
 import { AXToastModule } from './components/toast/toast.module';
 import { AXHttpModule } from './core/http/http.module';
+import { AXErrorService } from './core/error/error.service';
+import { AXDefaultErrorService } from './config/default-error.service';
 
 @NgModule({
   declarations: [],
@@ -89,6 +91,11 @@ import { AXHttpModule } from './core/http/http.module';
     //
     AXHttpModule
   ],
-  providers: []
+  providers: [
+    {
+      provide: AXErrorService,
+      useClass: AXDefaultErrorService
+    }
+  ]
 })
-export class AcoreXUIModule {}
+export class AcoreXUIModule { }
