@@ -16,3 +16,8 @@ export * from "./lib/core/pagetab.service";
 
 export * from "./lib/core/menu.class";
 export * from "./lib/core/select.class";
+export * from "./lib/components/validation/validation.classs";
+export * from "./lib/components/validation/validation-form.component";
+
+
+export * from "./lib/components/toast/toast.api"

@@ -1,10 +1,10 @@
 import { Component, ViewChild } from "@angular/core";
-import { AXValidationFormComponent } from "projects/acorex-ui/src/lib/components/validation/validation-form.component";
-import { IValidationRuleResult } from "projects/acorex-ui/src/lib/components/validation/validation.classs";
-import { AXToastService } from "projects/acorex-ui/src/lib/components/toast/toast.service";
-import { DialogService } from "projects/acorex-ui/src/lib/components/popup/dialog.service";
-import { PopupService } from "projects/acorex-ui/src/lib/components/popup/popup.service";
-import { AXHttpService } from 'projects/acorex-ui/src/public-api';
+import { AXValidationFormComponent } from "acorex-ui";
+import { IValidationRuleResult } from "acorex-ui";
+import { AXToastService } from "acorex-ui";
+import { DialogService } from "acorex-ui";
+import { PopupService } from "acorex-ui";
+import { AXHttpService } from 'acorex-ui';
 
 @Component({
   selector: "app-root",

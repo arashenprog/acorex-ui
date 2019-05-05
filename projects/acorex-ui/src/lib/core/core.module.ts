@@ -11,6 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     declarations: [TranslatePipe],
     imports: [CommonModule, FormsModule, BrowserAnimationsModule],
     exports: [ TranslatePipe, BrowserAnimationsModule],
-    providers: [EventService, InjectionService, TranslateService, InjectionService],
+    providers: [EventService, InjectionService, TranslateService],
 })
 export class AXCoreModule { }

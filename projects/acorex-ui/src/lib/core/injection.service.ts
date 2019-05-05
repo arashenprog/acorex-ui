@@ -1,10 +1,10 @@
 import {
     ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable,
-    Injector, ViewContainerRef, EmbeddedViewRef, Type, ReflectiveInjector, SystemJsNgModuleLoader, NgModuleFactory
+    Injector, EmbeddedViewRef, Type
 } from '@angular/core';
 
 
-@Injectable()
+@Injectable({providedIn: "root"})
 export class InjectionService {
     private _container: ComponentRef<any>;
 
@@ -14,7 +14,7 @@ export class InjectionService {
         private injector: Injector) {
     }
 
-   
+
     getRootViewContainer(): ComponentRef<any> {
         if (this._container) return this._container;
 
@@ -28,7 +28,7 @@ export class InjectionService {
         this._container = container;
     }
 
-  
+
     getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
         return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     }

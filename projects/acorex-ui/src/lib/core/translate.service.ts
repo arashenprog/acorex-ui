@@ -3,7 +3,7 @@ import { Inject, Injectable, Pipe, PipeTransform } from "@angular/core";
 
 export type Lang = "fa" | "en";
 
-@Injectable()
+@Injectable({providedIn:"root"})
 export class TranslateService {
 
     private data_en: any[] = [

@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { TabularLayoutComponent } from "./tabular.layout";
+import { AcoreXUIModule } from 'acorex-ui';
 @NgModule({
   declarations: [TabularLayoutComponent],
-  imports: [CommonModule],
+  imports: [AcoreXUIModule],
   exports: [TabularLayoutComponent],
   providers: []
 })
