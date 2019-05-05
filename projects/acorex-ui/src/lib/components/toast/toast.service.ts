@@ -10,7 +10,7 @@ export interface IToastOptions {
 }
 
 @Injectable()
-export class ToastService {
+export class AXToastService {
   constructor(private injectionService: InjectionService) {}
 
   info(message: string, options?: IToastOptions) {
