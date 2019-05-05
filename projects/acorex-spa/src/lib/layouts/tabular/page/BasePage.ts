@@ -1,6 +1,5 @@
-import { ClosingEventArgs, ClosingAction } from "shared/services/PopupService";
+import { ClosingEventArgs, ClosingAction } from "acorex-ui";
 import { EventEmitter, SimpleChanges, OnChanges } from "@angular/core";
-import { e } from "@angular/core/src/render3";
 
 export abstract class BasePage implements OnChanges  {
     //closeHandler: Function;

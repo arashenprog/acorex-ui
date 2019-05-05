@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, DoCheck } from "@angular/core";
-import { PageTabService } from "shared/services/PageTabService";
-import { SettingPage } from "shared/pages/setting/setting.page";
+import { PageTabService } from "acorex-ui";
 
 
 
@@ -64,7 +63,7 @@ export class HeaderLayout implements OnInit, DoCheck {
 
     }
     config(e) {
-        this.tabService.open({ content: SettingPage, title: "تنظیمات" });
+        // this.tabService.open({ content: SettingPage, title: "تنظیمات" });
     }
 
 }

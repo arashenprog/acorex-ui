@@ -12,5 +12,7 @@ export * from "./lib/core/event.service";
 export * from "./lib/components/popup/dialog.service";
 export * from "./lib/components/popup/popup.service";
 
+export * from "./lib/core/pagetab.service";
+
 export * from "./lib/core/menu.class";
 export * from "./lib/core/select.class";

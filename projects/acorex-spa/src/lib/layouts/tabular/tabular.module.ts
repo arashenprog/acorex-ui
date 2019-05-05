@@ -7,4 +7,4 @@ import { TabularLayoutComponent } from "./tabular.layout";
   exports: [TabularLayoutComponent],
   providers: []
 })
-export class TabularModule {}
+export class AXTabularModule {}

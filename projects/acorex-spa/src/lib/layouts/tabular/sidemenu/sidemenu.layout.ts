@@ -1,5 +1,5 @@
 import { Component, Renderer } from "@angular/core";
-import { MenuItem } from "shared/components/classes/menu.class";
+import { MenuItem } from "acorex-ui";
 
 
 @Component({

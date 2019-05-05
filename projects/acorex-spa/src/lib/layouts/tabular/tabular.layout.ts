@@ -6,6 +6,7 @@ declare function initialTheme(): void;
 @Component({
     selector: 'master-layout',
     templateUrl: './master.layout.html',
+    styleUrls:["./tabular.layout.scss"]
 })
 export class TabularLayoutComponent implements AfterViewInit {
     sidebarShow: boolean = true;
