@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AcoreXUIModule } from 'projects/acorex-ui/src/public-api';
+import { AcoreXUIModule } from 'acorex-ui';
 
 @NgModule({
   declarations: [AppComponent],

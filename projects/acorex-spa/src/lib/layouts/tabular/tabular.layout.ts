@@ -1,11 +1,10 @@
 import { Component, AfterViewInit } from "@angular/core";
 
 
-declare function initialTheme(): void;
 
 @Component({
     selector: 'master-layout',
-    templateUrl: './master.layout.html',
+    templateUrl: './tabular.layout.html',
     styleUrls:["./tabular.layout.scss"]
 })
 export class TabularLayoutComponent implements AfterViewInit {

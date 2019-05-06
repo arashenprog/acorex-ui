@@ -9,7 +9,7 @@ import { AXHttpRequestOptions } from './http-request.class';
 // import { of, concat, throwError } from 'rxjs';
 
 
-@Injectable()
+@Injectable({providedIn:"root"})
 export class AXHttpService {
 
     constructor(private http: HttpClient, private error: AXErrorService) { }

@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { AXButtonModule } from "./components/button/button.module";
@@ -98,4 +98,6 @@ import { AXDefaultErrorService } from './config/default-error.service';
     }
   ]
 })
-export class AcoreXUIModule { }
+export class AcoreXUIModule { 
+
+}

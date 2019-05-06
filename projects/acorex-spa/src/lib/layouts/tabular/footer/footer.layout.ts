@@ -1,5 +1,4 @@
 import { Component, Input, EventEmitter, Output } from "@angular/core";
-//import { SelectItem } from "./../classes/select.class";
 
 @Component({
   selector: "footer",

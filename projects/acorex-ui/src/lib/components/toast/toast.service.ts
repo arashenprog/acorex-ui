@@ -9,7 +9,7 @@ export interface IToastOptions {
   closeable?: boolean;
 }
 
-@Injectable()
+@Injectable({providedIn:"root"})
 export class AXToastService {
   constructor(private injectionService: InjectionService) {}
 
