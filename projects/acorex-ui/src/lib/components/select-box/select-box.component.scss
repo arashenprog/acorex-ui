@@ -48,7 +48,7 @@
     border: none;
     min-height: 36px;
     align-items: center;
-    color: $secondary-color-light !important;
+    color: --secondaryColor-light !important;
     &:hover {
       box-shadow: none;
     }
@@ -61,7 +61,7 @@
       padding: 15px 10px 7px 12px !important;
       .ng-select {
         span {
-          color: $secondary-color-light !important;
+          color: --secondaryColor-light !important;
         }
       }
     }

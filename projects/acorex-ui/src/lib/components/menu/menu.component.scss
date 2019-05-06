@@ -17,14 +17,14 @@ ul.side-menu {
       }
     }
     a {
-      color: $secondary-color;
+      color: --secondaryColor;
       padding: 7px 10px;
       display: flex;
       align-items: center;
       border-bottom: 1px solid #ebebeb;
       cursor: pointer;
       i {
-        color: $border-color;
+        color: --borderColor;
       }
       span {
         flex: 1;

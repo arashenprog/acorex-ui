@@ -2,7 +2,7 @@
 ax-loading {
   background: --white;
   display: flex;
-  border: 1px solid $border-color;
+  border: 1px solid --borderColor;
   @include border-radius(4px);
   height: 100%;
   .loader {

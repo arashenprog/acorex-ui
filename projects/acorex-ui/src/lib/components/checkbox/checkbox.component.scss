@@ -28,11 +28,11 @@
   width: 25px;
   background-color: --white;
   border: 1px solid;
-  border-color: $border-color;
+  border-color: --borderColor;
   @include border-radius($border-radius-default);
 }
 .checkbox-container:hover input ~ .checkmark {
-  background-color: $border-color;
+  background-color: --borderColor;
 }
 .checkbox-container input:checked ~ .checkmark {
   background-color: --primaryColor;

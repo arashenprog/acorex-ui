@@ -13,11 +13,11 @@
   padding: 10px;
   .popup-container {
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba($outline-color, 0.8);
+      box-shadow: 0 0 0 0.2rem rgba(--outlineColor, 0.8);
       outline-color: transparent;
     }
     // &:focus-within {
-    //     box-shadow: 0 0 0 0.2rem rgba($outline-color, 0.1);
+    //     box-shadow: 0 0 0 0.2rem rgba(--outlineColor, 0.1);
     // }
     opacity: 1;
     background: --white;
@@ -56,7 +56,7 @@
       max-height: 93vh;
       overflow: hidden;
       .ax-page-content {
-        background: $grey-light;
+        background: --greyLight;
         padding: 10px !important;
       }
     }
