@@ -1,28 +1,29 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { ClosingEventArgs, ClosedEventArgs, ClosingAction } from "../components/popup/popup.service";
+import { ClosingEventArgs, ClosedEventArgs, ClosingAction } from "../popup/popup.service";
 
-export interface IPageTab {
+export interface ITabPage {
     title: string;
     closable: boolean;
     content: any;
     option?: any;
     id: number;
+    isBusy?: false;
     active: boolean;
     closed?: Function;
     closing?: (x: ClosingAction) => void;
     send?: Function;
 }
 
-export interface IPageTabMessage {
-    tab: IPageTab;
+export interface ITabPageMessage {
+    tab: ITabPage;
     data: any;
 }
 
 
 
-export class PageTabResult {
+export class TabPageResult {
     private _executor: (closing: (e?: ClosingAction) => void, closed: (e?: ClosedEventArgs) => void) => void;
-    constructor(private tab: IPageTab,
+    constructor(private tab: ITabPage,
         executor: (closing: (e?: ClosingAction) => void, closed: (e?: ClosingEventArgs) => void) => void
     ) {
         this.tab = tab;
@@ -37,11 +38,11 @@ export class PageTabResult {
     private closedAction: (e?: ClosedEventArgs) => void;
 
 
-    closed(action: (e?: ClosedEventArgs) => void): PageTabResult {
+    closed(action: (e?: ClosedEventArgs) => void): TabPageResult {
         this.closedAction = action;
         return this;
     }
-    closing(action: (e?: ClosingAction) => void): PageTabResult {
+    closing(action: (e?: ClosingAction) => void): TabPageResult {
         this.closingAction = action;
         return this;
     }
@@ -52,26 +53,26 @@ export class PageTabResult {
 }
 
 @Injectable({ providedIn: "root" })
-export class PageTabService {
+export class AXTabPageService {
 
-    tabs: IPageTab[] = new Array<IPageTab>();
+    tabs: ITabPage[] = new Array<ITabPage>();
 
 
-    opened: EventEmitter<IPageTab> = new EventEmitter<IPageTab>();
-    closed: EventEmitter<IPageTab> = new EventEmitter<IPageTab>();
-    received: EventEmitter<IPageTabMessage> = new EventEmitter<IPageTabMessage>();
+    opened: EventEmitter<ITabPage> = new EventEmitter<ITabPage>();
+    closed: EventEmitter<ITabPage> = new EventEmitter<ITabPage>();
+    received: EventEmitter<ITabPageMessage> = new EventEmitter<ITabPageMessage>();
 
 
     constructor() {
 
     }
 
-    open(content: any, title: string): PageTabResult;
-    open(content: any, title: string, data?: any): PageTabResult;
-    open(options: { content: any, title: string, closable?: boolean, data?: any }): PageTabResult;
+    open(content: any, title: string): TabPageResult;
+    open(content: any, title: string, data?: any): TabPageResult;
+    open(options: { content: any, title: string, closable?: boolean, data?: any }): TabPageResult;
 
     open(arg1, arg2?, arg3?) {
-        let newTab: IPageTab;
+        let newTab: ITabPage;
         if (typeof (arg1) === 'object') {
             const options = Object.assign({ closable: true }, arg1);
             newTab = {
@@ -97,7 +98,7 @@ export class PageTabService {
         newTab.send = (data: any) => {
             this.sendMessage({ tab: newTab, data: data });
         }
-        return new PageTabResult(newTab, (closing, closed) => {
+        return new TabPageResult(newTab, (closing, closed) => {
 
             newTab.closed = (e) => {
                 if (closed) closed(e);
@@ -115,7 +116,7 @@ export class PageTabService {
         });
     }
 
-    close(tab: IPageTab, e: ClosingEventArgs) {
+    close(tab: ITabPage, e: ClosingEventArgs) {
         if (tab.content.onClosing) {
             e = Object.assign({ cancel: false }, e);
             let z: ClosingAction = {
@@ -142,17 +143,14 @@ export class PageTabService {
                     }
                 }
             }
-
-
             tab.content.onClosing(z);
         }
         else {
             this.doCloseAction(tab, e);
         }
-
     }
 
-    private doCloseAction(tab: IPageTab, e: ClosingEventArgs): void {
+    private doCloseAction(tab: ITabPage, e: ClosingEventArgs): void {
 
         this.tabs = this.tabs.filter(c => c.id != tab.id);
         let prev = this.tabs.filter(c => c.id < tab.id).reverse()[0];
@@ -161,15 +159,20 @@ export class PageTabService {
         if (tab.closed) tab.closed(e);
     }
 
-    active(tab: IPageTab) {
-        tab.active = true;
-        this.tabs.filter(c => c.id != tab.id).forEach(t => {
-            t.active = false;
-        });
-        this.opened.emit(tab);
+    active(tab: ITabPage) {
+        if (tab) {
+            tab.active = true;
+            this.tabs.filter(c => c.id != tab.id).forEach(t => {
+                t.active = false;
+            });
+            this.opened.emit(tab);
+        }
+        else {
+            return this.tabs.find(c => c.active == true);
+        }
     }
 
-    sendMessage(message: IPageTabMessage) {
+    sendMessage(message: ITabPageMessage) {
         this.received.emit(message);
     }
 

@@ -20,7 +20,7 @@ import { AXProgressBarModule } from "./components/progress-bar/progress-bar.modu
 import { AXRadioButtonModule } from "./components/radio-button/radio-button.module";
 import { AXSelectBoxModule } from "./components/select-box/select-box.module";
 import { AXSelectionListModule } from "./components/selection-list/selection-list.module";
-import { AXTabPageModule } from "./components/tabpage/tabpage.module";
+import { AXTabViewModule } from "./components/tab-view/tab-view.module";
 import { AXTextBoxModule } from "./components/text-box/text-box.module";
 import { AXUploadFileModule } from "./components/upload-file/upload-file.module";
 import { AXValidationModule } from "./components/validation/validation.module";
@@ -29,6 +29,7 @@ import { AXToastModule } from './components/toast/toast.module';
 import { AXHttpModule } from './core/http/http.module';
 import { AXErrorService } from './core/error/error.service';
 import { AXDefaultErrorService } from './config/default-error.service';
+import { AXTabPageModule } from './components/tab-page/api';
 
 @NgModule({
   declarations: [],
@@ -55,10 +56,11 @@ import { AXDefaultErrorService } from './config/default-error.service';
     AXRadioButtonModule,
     AXSelectBoxModule,
     AXSelectionListModule,
-    AXTabPageModule,
+    AXTabViewModule,
     AXTextBoxModule,
     AXUploadFileModule,
     AXValidationModule,
+    AXTabPageModule,
     //
     AXHttpModule
   ],
@@ -84,10 +86,11 @@ import { AXDefaultErrorService } from './config/default-error.service';
     AXRadioButtonModule,
     AXSelectBoxModule,
     AXSelectionListModule,
-    AXTabPageModule,
+    AXTabViewModule,
     AXTextBoxModule,
     AXUploadFileModule,
     AXValidationModule,
+    AXTabPageModule,
     //
     AXHttpModule
   ],

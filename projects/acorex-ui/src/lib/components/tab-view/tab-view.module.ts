@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AXTabComponent } from "./tab.component";
-import { AXTabPageComponent } from "./tabpage.component";
+import { AXTabViewComponent } from "./tab-view.component";
 import { DynamicTabsDirective } from "./dynamic-tabs.directive";
 @NgModule({
-  declarations: [AXTabComponent, AXTabPageComponent, DynamicTabsDirective],
+  declarations: [AXTabComponent, AXTabViewComponent, DynamicTabsDirective],
   imports: [CommonModule],
-  exports: [AXTabComponent, AXTabPageComponent, DynamicTabsDirective],
+  exports: [AXTabComponent, AXTabViewComponent, DynamicTabsDirective],
   providers: []
 })
-export class AXTabPageModule {}
+export class AXTabViewModule {}

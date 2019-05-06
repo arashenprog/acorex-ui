@@ -18,10 +18,11 @@ import { DynamicTabsDirective } from "./dynamic-tabs.directive";
 
 @Component({
   selector: "ax-tabs",
-  templateUrl: "./tabpage.component.html",
+  templateUrl: "./tab-view.component.html",
+  styleUrls: ["./tab-view.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AXTabPageComponent implements AfterContentInit {
+export class AXTabViewComponent implements AfterContentInit {
   dynamicTabs: AXTabComponent[] = [];
 
   @ContentChildren(AXTabComponent) tabs: QueryList<AXTabComponent>;
