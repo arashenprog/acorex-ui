@@ -1,4 +1,3 @@
-@import "../../styles/themes";
 @import "../../styles/mixins";
 // Check Box Custom Style
 .checkbox-container {
@@ -28,11 +27,11 @@
   width: 25px;
   background-color: var(--white-color);
   border: 1px solid;
-  border-color: var( --borderColor);
+  border-color: var( --border-color);
   @include border-radius(var(--borderRadiusDefault));
 }
 .checkbox-container:hover input ~ .checkmark {
-  background-color: var(--borderColor);
+  background-color: var(--border-color);
 }
 .checkbox-container input:checked ~ .checkmark {
   background-color: var(--primary-back-color);

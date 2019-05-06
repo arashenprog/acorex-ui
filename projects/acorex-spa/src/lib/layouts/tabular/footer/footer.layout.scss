@@ -7,10 +7,10 @@
   display: flex;
   align-items: center;
   z-index: 1;
-  box-shadow: 10px -6px 10px -1px var(--borderColor);
-  -webkit-box-shadow: 10px -6px 10px -1px var(--borderColor);
-  -moz-box-shadow: 10px -6px 10px -1px var(--borderColor);
-  border-top: 1px solid var(--borderColor);
+  box-shadow: 10px -6px 10px -1px var(--border-color);
+  -webkit-box-shadow: 10px -6px 10px -1px var(--border-color);
+  -moz-box-shadow: 10px -6px 10px -1px var(--border-color);
+  border-top: 1px solid var(--border-color);
   left: 0;
   right: 0;
   top: 0;
