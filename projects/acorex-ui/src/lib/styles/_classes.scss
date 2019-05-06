@@ -1,4 +1,3 @@
-@import "./varibales";
 @import "./themes.scss";
 
 .rtl {
@@ -22,7 +21,7 @@
   flex-direction: column;
   vertical-align: top;
   .ax-field-set-wrapper {
-    color: $secondary-color-light;
+    color: --secondaryColorLight;
     cursor: text;
     display: inline-flex;
     align-items: center;
@@ -36,15 +35,15 @@
       padding: 0;
       position: absolute;
       border-style: solid;
-      border-width: $border-width;
-      border-radius: $border-radius-default;
+      border-width: --borderWidth;
+      border-radius: --borderRadiusDefault;
       pointer-events: none;
       border-color: $border-color;
       legend {
         width: auto !important;
-        padding: 0 $size-sm;
-        margin: 0 $size-sm;
-        font-size: $font-size-small;
+        padding: 0 --sizeSm;
+        margin: 0 --sizeSm;
+        font-size: --fontSizeSmall;
         line-height: inherit;
         color: inherit;
         white-space: normal;
@@ -72,75 +71,75 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: $size-sm;
+    margin: --sizeSm;
     border: none;
     button {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: $size-sm;
-      width: $base-objects-height / 2;
-      height: $base-objects-height / 2;
-      border-radius: $border-radius-default;
+      margin-right: --sizeSm;
+      width: --baseObjectsHeight / 2;
+      height: --baseObjectsHeight / 2;
+      border-radius: --borderRadiusDefault;
       i {
-        font-size: $font-size-small;
+        font-size: --fontSizeSmall;
       }
     }
   }
 }
 .input-focused {
   border-color: var(--primaryColor) !important;
-  color: $primary-color !important;
+  color: --primaryColor !important;
 }
 .input-error {
-  border-color: $red !important;
-  color: $red !important;
+  border-color: --red !important;
+  color: --red !important;
 }
 .input-success {
-  border-color: $green !important;
-  color: $green !important;
+  border-color: --green !important;
+  color: --green !important;
 }
 
 .validation-text {
   position: absolute;
   top: 90%;
-  right: -$size-sm;
+  right: ---sizeSm;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: $font-size-small;
-  color: $red;
-  padding: $size-sm $size-lg;
+  font-size: --fontSizeSmall;
+  color: --red;
+  padding: --sizeSm $size-lg;
 }
 .bk-primary {
-  background-color: $primary-color;
-  color: $white;
+  background-color: --primaryColor;
+  color: --white;
 }
 .bk-success {
-  background-color: $green;
-  color: $white;
+  background-color: --green;
+  color: --white;
 }
 .bk-warning {
-  background-color: $yellow;
-  color: $white;
+  background-color: --yellow;
+  color: --white;
 }
 .bk-danger {
-  background-color: $red;
-  color: $white;
+  background-color: --red;
+  color: --white;
 }
 .bk-primary-light {
-  background-color: lighten($color: $primary-color, $amount: 5%);
-  color: $white;
+  background-color: lighten($color: --primaryColor, $amount: 5%);
+  color: --white;
 }
 .bk-success-light {
-  background-color: lighten($color: $green, $amount: 5%);
-  color: $white;
+  background-color: lighten($color: --green, $amount: 5%);
+  color: --white;
 }
 .bk-warning-light {
-  background-color: lighten($color: $yellow, $amount: 5%);
-  color: $white;
+  background-color: lighten($color: --yellow, $amount: 5%);
+  color: --white;
 }
 .bk-danger-light {
-  background-color: lighten($color: $red, $amount: 5%);
-  color: $white;
+  background-color: lighten($color: --red, $amount: 5%);
+  color: --white;
 }

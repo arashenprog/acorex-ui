@@ -4,7 +4,6 @@ import { AXButtonBaseComponent } from '../../core/base.class';
 @Component({
     selector: 'ax-button',
     templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss']
 })
 export class AXButtonComponent extends AXButtonBaseComponent implements OnInit {
 

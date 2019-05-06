@@ -1,4 +1,4 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 .upload-file-box {
   display: flex;
   background: --white;
@@ -6,15 +6,15 @@
   justify-content: center;
   align-items: center;
   padding: 10px 0;
-  border-width: $border-width;
+  border-width: --borderWidth;
   border-style: solid;
   border-color: --white;
   min-height: 200px;
   cursor: pointer;
   position: relative;
-  @include border-radius($border-radius-default);
-  border: $border-width solid;
-  border-color: $border-color;
+  @include border-radius(--borderRadiusDefault);
+  border: --borderWidth solid;
+  border-color: --borderColor;
   &:hover {
     border-color: --primaryColor;
     border-style: solid;
@@ -28,7 +28,7 @@
   }
   .upload-content {
     text-align: center;
-    color: $border-color;
+    color: --borderColor;
     i {
       font-size: 30px;
     }
@@ -48,7 +48,7 @@
     min-height: 200px;
   }
   .action-container {
-    background: rgba($secondary-color, 0.5);
+    background: rgba(--secondaryColor, 0.5);
     min-height: 195px;
     display: none;
     flex-direction: row;
@@ -63,8 +63,8 @@
   }
   .circle-button {
     background: --white;
-    border: 1px solid $border-color;
-    color: $border-color;
+    border: 1px solid --borderColor;
+    color: --borderColor;
     width: 40px;
     height: 40px;
     cursor: pointer;

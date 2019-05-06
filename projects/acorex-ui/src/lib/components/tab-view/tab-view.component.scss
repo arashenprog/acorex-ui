@@ -1,4 +1,4 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 ax-tabs {
   display: block;
   margin-top: 10px;
@@ -15,12 +15,12 @@ ax-tabs {
   .tab-pane {
     padding: 1rem;
     background: --white;
-    border: 1px solid $border-color;
+    border: 1px solid --borderColor;
   }
   .nav-pills {
     .nav-link {
       background: --white;
-      border: 1px solid $border-color;
+      border: 1px solid --borderColor;
       border-bottom: 0px !important;
       margin-left: $size-sm !important;
       text-align: right !important;
@@ -30,13 +30,13 @@ ax-tabs {
       flex-grow: 1 !important;
       cursor: pointer;
       @include border-radius-corners(
-        $border-radius-default !important,
-        $border-radius-default !important,
+        --borderRadiusDefault !important,
+        --borderRadiusDefault !important,
         0 !important,
         0 !important
       );
       &:last-child {
-        border-left: 1px solid $border-color !important;
+        border-left: 1px solid --borderColor !important;
         margin-left: 0 !important;
       }
       i.fas.fa-times-circle {

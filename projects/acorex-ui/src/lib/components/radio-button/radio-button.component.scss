@@ -1,18 +1,18 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 
 // Check Box Custom Style
 .radio-container {
   display: inline-block;
   position: relative;
-  padding-right: $base-controls-height;
+  padding-right: --baseControlsHeight;
   cursor: pointer;
   font-size: 14px;
-  line-height: $base-controls-height;
+  line-height: --baseControlsHeight;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: $base-controls-height;
+  height: --baseControlsHeight;
   margin-left: 10px;
 }
 
@@ -32,13 +32,13 @@
   width: 25px;
   background-color: --white;
   border: 1px solid;
-  border-color: $border-color;
+  border-color: --borderColor;
   @include border-radius(50%);
 }
 
 /* On mouse-over, add a grey background color */
 .radio-container:hover input ~ .checkmark {
-  background-color: $border-color;
+  background-color: --borderColor;
 }
 
 /* When the radio button is checked, add a blue background */
