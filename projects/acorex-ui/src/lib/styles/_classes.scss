@@ -1,4 +1,6 @@
 @import "./varibales";
+@import "./themes.scss";
+
 .rtl {
   .ax-field-set-button {
     left: 0;
@@ -87,7 +89,7 @@
   }
 }
 .input-focused {
-  border-color: $primary-color !important;
+  border-color: var(--primaryColor) !important;
   color: $primary-color !important;
 }
 .input-error {

@@ -6,9 +6,10 @@ import { AXSideMenuModule } from './sidemenu/sidemenu.module';
 import { AXPageModule } from './page/page.module';
 import { AXHeaderModule } from './header/header.module';
 import { AXFooterModule } from './footer/footer.module';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [TabularLayoutComponent],
-  imports: [AcoreXUIModule,AXToolbarModule,AXSideMenuModule,AXPageModule,AXHeaderModule,AXFooterModule],
+  imports: [RouterModule,AcoreXUIModule,AXToolbarModule,AXSideMenuModule,AXPageModule,AXHeaderModule,AXFooterModule],
   exports: [TabularLayoutComponent],
   providers: []
 })

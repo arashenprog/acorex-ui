@@ -1,0 +1,11 @@
+.theme-wrapper {
+    --primaryColor: #CCFF22;
+}
+
+$variables: (
+  --primaryColor: var(--primaryColor),
+);
+
+@function var($variable) {
+    @return map-get($variables, $variable);
+}

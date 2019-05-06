@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from "@angular/core";
+import { PageTabService } from 'acorex-ui';
 
 
 
@@ -10,15 +11,9 @@ import { Component, AfterViewInit } from "@angular/core";
 export class TabularLayoutComponent implements AfterViewInit {
     sidebarShow: boolean = true;
 
-    // constructor(
-    //     private tabService: PageTabService,
-    //     private translateService: TranslateService,
-    //     private activatedRoute: ActivatedRoute) {
-    //     this.activatedRoute.queryParams.subscribe(params => {
-    //         const lang = params['lang'];
-    //         this.translateService.setLang(lang);
-    //     });
-    // }
+    constructor(private tabService: PageTabService) {
+     
+    }
 
     ngDoCheck() {
     }
