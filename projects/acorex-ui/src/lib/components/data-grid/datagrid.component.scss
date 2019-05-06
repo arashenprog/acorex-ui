@@ -1,60 +1,67 @@
 @import "../../styles/themes";
+
 ag-grid-angular {
-  width: 100%;
-  height: calc(100vh - 146px);
+    width: 100%;
+    height: calc(100vh - 146px);
 }
 
 .ax-grid-toolbar {
-  padding: 0 5px;
-  display: flex;
-  flex-direction: row;
-  background: #f5f7f7;
-  height: 35px;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #bdc3c7;
-  border-bottom: 0;
-  .title {
-    font-size: 16px;
-    padding: 0 10px;
-  }
-  .right-actions {
-    .btn-group {
-      button {
-        i {
-          display: inline-flex;
-          vertical-align: middle;
-        }
-      }
+    padding: 0 5px;
+    display: flex;
+    flex-direction: row;
+    background: #f5f7f7;
+    height: 35px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #bdc3c7;
+    border-bottom: 0;
+
+    .title {
+        font-size: 16px;
+        padding: 0 10px;
     }
-  }
-  .left-actions {
-    .search-bar {
-      flex: 10;
-      display: flex;
-      justify-content: space-between;
-      border: 1px solid --borderColor;
-      height: 30px;
-      border-radius: 20px;
-      align-items: center;
-      padding: 10px;
-      background: --white;
-      input {
-        border: none !important;
-        outline-color: transparent !important;
-        &::placeholder {
-          color: --greyDark;
+
+    .right-actions {
+        .btn-group {
+            button {
+                i {
+                    display: inline-flex;
+                    vertical-align: middle;
+                }
+            }
         }
-      }
-      i {
-        color: --greyDark;
-      }
     }
-  }
+
+    .left-actions {
+        .search-bar {
+            flex: 10;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid var(--borderColor);
+            height: 30px;
+            border-radius: 20px;
+            align-items: center;
+            padding: 10px;
+            background: var(--white);
+
+            input {
+                border: none !important;
+                outline-color: transparent !important;
+
+                &::placeholder {
+                    color: var(--greyDark);
+                }
+            }
+
+            i {
+                color: var(--greyDark);
+            }
+        }
+    }
 }
 
 .ag-theme-balham {
-  .ag-header {
-    font-family: IRANSans;
-  }
+    .ag-header {
+        font-family: IRANSans;
+    }
 }

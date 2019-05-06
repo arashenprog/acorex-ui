@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from "@angular/core";
-import { PageTabService } from 'acorex-ui';
+import { AXTabPageService } from 'acorex-ui';
 
 
 
@@ -11,7 +11,7 @@ import { PageTabService } from 'acorex-ui';
 export class TabularLayoutComponent implements AfterViewInit {
     sidebarShow: boolean = true;
 
-    constructor(private tabService: PageTabService) {
+    constructor(private tabService: AXTabPageService) {
      
     }
 

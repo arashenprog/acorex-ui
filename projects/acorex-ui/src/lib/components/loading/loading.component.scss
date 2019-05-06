@@ -1,23 +1,28 @@
 @import "../../styles/themes";
+@import "../../styles/mixins";
+
 ax-loading {
-  background: --white;
-  display: flex;
-  border: 1px solid --borderColor;
-  @include border-radius(--borderRadiusDefault);
-  height: 100%;
-  .loader {
+    background: var(--white);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    flex-direction: column;
-    span {
-      display: block;
-      margin-bottom: 5px;
+    border: 1px solid var(--borderColor);
+    @include border-radius(var(--borderRadiusDefault));
+    height: 100%;
+
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        flex-direction: column;
+
+        span {
+            display: block;
+            margin-bottom: 5px;
+        }
     }
-  }
-  svg path,
-  svg rect {
-    fill: --primaryColor;
-  }
+
+    svg path,
+    svg rect {
+        fill: var(--primaryColor);
+    }
 }

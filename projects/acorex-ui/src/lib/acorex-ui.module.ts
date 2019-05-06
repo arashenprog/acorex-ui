@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { AXButtonModule } from "./components/button/button.module";
@@ -20,7 +20,6 @@ import { AXProgressBarModule } from "./components/progress-bar/progress-bar.modu
 import { AXRadioButtonModule } from "./components/radio-button/radio-button.module";
 import { AXSelectBoxModule } from "./components/select-box/select-box.module";
 import { AXSelectionListModule } from "./components/selection-list/selection-list.module";
-import { AXTabViewModule } from "./components/tab-view/tab-view.module";
 import { AXTextBoxModule } from "./components/text-box/text-box.module";
 import { AXUploadFileModule } from "./components/upload-file/upload-file.module";
 import { AXValidationModule } from "./components/validation/validation.module";
@@ -30,9 +29,10 @@ import { AXHttpModule } from './core/http/http.module';
 import { AXErrorService } from './core/error/error.service';
 import { AXDefaultErrorService } from './config/default-error.service';
 import { AXTabPageModule } from './components/tab-page/api';
+import { AXThemeWrapperComponent } from './components/theme-wrapper/theme-wrapper.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [AXThemeWrapperComponent],
   imports: [
     CommonModule,
     AXCoreModule,
@@ -56,7 +56,6 @@ import { AXTabPageModule } from './components/tab-page/api';
     AXRadioButtonModule,
     AXSelectBoxModule,
     AXSelectionListModule,
-    AXTabViewModule,
     AXTextBoxModule,
     AXUploadFileModule,
     AXValidationModule,
@@ -65,6 +64,7 @@ import { AXTabPageModule } from './components/tab-page/api';
     AXHttpModule
   ],
   exports: [
+    AXThemeWrapperComponent,
     AXCoreModule,
     AXToastModule,
     AXButtonModule,
@@ -86,7 +86,6 @@ import { AXTabPageModule } from './components/tab-page/api';
     AXRadioButtonModule,
     AXSelectBoxModule,
     AXSelectionListModule,
-    AXTabViewModule,
     AXTextBoxModule,
     AXUploadFileModule,
     AXValidationModule,

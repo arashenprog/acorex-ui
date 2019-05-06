@@ -1,4 +1,6 @@
 @import "../../../styles/themes";
+@import "../../../styles/mixins";
+
 .rtl {
   .toast-progress {
     right: 0;
@@ -7,20 +9,20 @@
 }
 .toast-container {
   overflow: hidden;
-  margin: $size-sm 0;
-  box-shadow: -3px 3px 4px 0px --shadow;
-  @include border-radius(--borderRadiusDefault);
+  margin: var(--sizeSm) 0;
+  box-shadow: -3px 3px 4px 0px var(--shadow);
+  @include border-radius(var(--borderRadiusDefault));
   animation: slide-in-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   -webkit-animation: slide-in-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
   header {
     display: flex;
     justify-content: space-between;
-    padding: $size-sm --sizeMd;
+    padding: var(--sizeSm) var(--sizeMd);
   }
   article {
-    padding: --sizeMd;
-    min-height: --baseControlsHeight;
+    padding: var(--sizeMd);
+    min-height: var(--baseControlsHeight);
     display: flex;
     align-items: center;
     justify-content: space-between;

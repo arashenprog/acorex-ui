@@ -1,4 +1,5 @@
 @import "../../styles/themes";
+@import "../../styles/mixins";
 .popup-wrapper {
   position: fixed;
   top: 0;
@@ -13,21 +14,21 @@
   padding: 10px;
   .popup-container {
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba(--outlineColor, 0.8);
+      box-shadow: 0 0 0 0.2rem rgba(var(--outlineColor), 0.8);
       outline-color: transparent;
     }
     // &:focus-within {
     //     box-shadow: 0 0 0 0.2rem rgba(--outlineColor, 0.1);
     // }
     opacity: 1;
-    background: --white;
+    background: var(--white);
     display: flex;
     flex-direction: column;
     border-radius: 4px;
     overflow: hidden;
     .ppoup-header {
       @include base-gradient();
-      color: --white;
+      color: var(--white);
       display: flex;
       flex-direction: row;
       height: 40px;
@@ -56,7 +57,7 @@
       max-height: 93vh;
       overflow: hidden;
       .ax-page-content {
-        background: --greyLight;
+        background: var(--greyLight);
         padding: 10px !important;
       }
     }

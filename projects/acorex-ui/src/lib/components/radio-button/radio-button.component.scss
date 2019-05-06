@@ -1,18 +1,19 @@
 @import "../../styles/themes";
+@import "../../styles/mixins";
 
 // Check Box Custom Style
 .radio-container {
   display: inline-block;
   position: relative;
-  padding-right: --baseControlsHeight;
+  padding-right: var(--baseControlsHeight);
   cursor: pointer;
   font-size: 14px;
-  line-height: --baseControlsHeight;
+  line-height: var(--baseControlsHeight);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: --baseControlsHeight;
+  height: var(--baseControlsHeight);
   margin-left: 10px;
 }
 
@@ -30,21 +31,21 @@
   right: 0;
   height: 25px;
   width: 25px;
-  background-color: --white;
+  background-color: var(--white);
   border: 1px solid;
-  border-color: --borderColor;
+  border-color: var(--borderColor);
   @include border-radius(50%);
 }
 
 /* On mouse-over, add a grey background color */
 .radio-container:hover input ~ .checkmark {
-  background-color: --borderColor;
+  background-color: var(--borderColor);
 }
 
 /* When the radio button is checked, add a blue background */
 .radio-container input:checked ~ .checkmark {
-  background-color: --primaryColor;
-  border-color: --primaryColor;
+  background-color: var(--primaryColor);
+  border-color: var(--primaryColor);
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -66,5 +67,5 @@
   width: 8px;
   height: 8px;
   @include border-radius(50%);
-  background: --white;
+  background: var(--white);
 }

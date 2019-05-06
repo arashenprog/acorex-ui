@@ -19,5 +19,5 @@ export * from "./lib/components/validation/validation.classs";
 export * from "./lib/components/validation/validation-form.component";
 
 
-export * from "./lib/components/toast/api"
-export * from "./lib/components/tab-page/api"
+export * from "./lib/components/toast/api";
+export * from "./lib/components/tab-page/api";

@@ -1,6 +1,6 @@
 @import "../../styles/themes";
 .ax-dialog {
-    background: --white;
+    background: var(--white);
     display: flex;
     flex-direction: column;
     padding: 10px;

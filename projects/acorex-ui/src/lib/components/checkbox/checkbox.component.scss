@@ -1,13 +1,13 @@
 @import "../../styles/themes";
-
+@import "../../styles/mixins";
 // Check Box Custom Style
 .checkbox-container {
   display: inline-block;
   position: relative;
-  padding-right: --baseControlsHeight;
+  padding-right: var(--baseControlsHeight);
   cursor: pointer;
   font-size: 14px;
-  line-height: --baseControlsHeight;
+  line-height: var(--baseControlsHeight);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -26,17 +26,17 @@
   right: 0;
   height: 25px;
   width: 25px;
-  background-color: --white;
+  background-color: var(--white);
   border: 1px solid;
-  border-color: --borderColor;
-  @include border-radius(--borderRadiusDefault);
+  border-color: var( --borderColor);
+  @include border-radius(var(--borderRadiusDefault));
 }
 .checkbox-container:hover input ~ .checkmark {
-  background-color: --borderColor;
+  background-color: var(--borderColor);
 }
 .checkbox-container input:checked ~ .checkmark {
-  background-color: --primaryColor;
-  border-color: --primaryColor;
+  background-color: var(--primaryColor);
+  border-color: var(--primaryColor);
 }
 .checkmark:after {
   content: "";

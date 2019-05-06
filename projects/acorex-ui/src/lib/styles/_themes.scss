@@ -1,3 +1,4 @@
+
 .theme-wrapper {
   // Colors
   --white: #fff;
@@ -5,6 +6,7 @@
   --red: #db0f23;
   --green: #2e933c;
   --yellow: #faa916;
+  --blue:#2774cc;
   --primaryColor: #2774cc;
   --primaryColorDark: #0042a3;
   --primaryColorLight: #2b82e5;
@@ -48,6 +50,7 @@ $variables: (
   --white: var(--white),
   --black: var(--black),
   --red: var(--red),
+  --blue:var(--blue),
   --green: var(--green),
   --yellow: var(--yellow),
   --primaryColor: var(--primaryColor),
@@ -62,7 +65,7 @@ $variables: (
   --greyLight: var(--greyLight),
   --grey: var(--grey),
   --greyDark: var(--greyDark),
-  --shadow: --grey
+  --shadow: var(--grey),
   // Sizes
   --fontSize:var(--fontSize),
   --fontSizeSmall:var(--fontSizeSmall),
@@ -85,7 +88,7 @@ $variables: (
   --avatarImageSize: var(--avatarImageSize),
   --borderWidth: var(--borderWidth),
   --borderRadiusDefault: var(--borderRadiusDefault),
-  --circleBorderSize:var(--circleBorderSize),
+  --circleBorderSize:var(--circleBorderSize)
 );
 
 @function var($variable) {

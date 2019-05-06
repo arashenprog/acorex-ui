@@ -8,7 +8,7 @@
 //   width: 100% !important;
 //   margin: $size-lg --sizeMd 0px --sizeMd;
 //   .ng-arrow-wrapper {
-//     padding-left: $size-sm !important;
+//     padding-left: var(--sizeSm) !important;
 //   }
 //   &.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
 //     border-color: --primaryColor-light !important;
@@ -48,7 +48,7 @@
     border: none;
     min-height: 36px;
     align-items: center;
-    color: --secondaryColorLight !important;
+    color: var( --secondaryColorLight ) !important;
     &:hover {
       box-shadow: none;
     }
@@ -61,7 +61,7 @@
       padding: 15px 10px 7px 12px !important;
       .ng-select {
         span {
-          color: --secondaryColorLight !important;
+          color: var( --secondaryColorLight ) !important;
         }
       }
     }

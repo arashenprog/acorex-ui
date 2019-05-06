@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, DoCheck } from "@angular/core";
-import { PageTabService } from "acorex-ui";
+import { AXTabPageService } from 'acorex-ui';
 
 
 
@@ -11,7 +11,7 @@ export class AXHeaderComponent implements OnInit, DoCheck {
 
     fullWidth: boolean = true;
 
-    constructor( public tabService: PageTabService) {
+    constructor( public tabService: AXTabPageService) {
     }
 
     ngOnInit(): void {
