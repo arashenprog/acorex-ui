@@ -43,8 +43,8 @@
 
 /* When the radio button is checked, add a blue background */
 .radio-container input:checked ~ .checkmark {
-  background-color: $primary-color;
-  border-color: $primary-color;
+  background-color: --primaryColor;
+  border-color: --primaryColor;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */

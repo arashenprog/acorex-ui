@@ -1,11 +1,93 @@
 .theme-wrapper {
-    --primaryColor: #CCFF22;
+  // Colors
+  --white: #fff;
+  --black: #000;
+  --red: #db0f23;
+  --green: #2e933c;
+  --yellow: #faa916;
+  --primaryColor: #2774cc;
+  --primaryColorDark: #0042a3;
+  --primaryColorLight: #2b82e5;
+  --secondaryColor: #444444;
+  --secondaryColorLight: #565656;
+  --secondaryColorDark: #2b2b2b;
+  --sideNavDarkFont: #99abb4;
+  --borderColor: #abb0b5;
+  --outlineColor: #faa916;
+  --greyLight: #efefef;
+  --grey: #d8dbdd;
+  --greyDark: #1b1f22;
+  --shadow: --grey;
+  // Sizes
+  --fontSize: 1em;
+  --fontSizeSmall: 0.75em;
+  --fontFamily: IRANSans, sans-serif;
+  --sizeSm: 5px;
+  --sizeMd: 10px;
+  --sizeLg: 15px;
+  --sizeXl: 20px;
+  --globalSm: 0.75rem;
+  --globalMd: 0.875rem;
+  --globalLg: 1rem;
+  --globalXl: 1.5rem;
+  --collapsedSize: 70px;
+  --baseObjectsHeight: 50px;
+  --baseControlsHeight: 40px;
+  --baseLineHeight: 1.5;
+  --sideBarCollapsed: 70px;
+  --tabHeight: 43px;
+  --sideBarWidth: 280px;
+  --avatarImageSize: 72px;
+  --borderWidth: 1px;
+  --borderRadiusDefault: 4px;
+  --circleBorderSize: 100px;
 }
 
 $variables: (
+  // Colors
+  --white: var(--white),
+  --black: var(--black),
+  --red: var(--red),
+  --green: var(--green),
+  --yellow: var(--yellow),
   --primaryColor: var(--primaryColor),
+  --primaryColorDark: var(--primaryColorDark),
+  --primaryColorLight: var(--primaryColorLight),
+  --secondaryColor: var(--secondaryColor),
+  --secondaryColorLight: var(--secondaryColorLight),
+  --secondaryColorDark: var(--secondaryColorDark),
+  --sideNavDarkFont: var(--sideNavDarkFont),
+  --borderColor: var(--borderColor),
+  --outlineColor: var(--outlineColor),
+  --greyLight: var(--greyLight),
+  --grey: var(--grey),
+  --greyDark: var(--greyDark),
+  --shadow: --grey
+  // Sizes
+  --fontSize:var(--fontSize),
+  --fontSizeSmall:var(--fontSizeSmall),
+  --fontFamily: var(--fontFamily),
+  --sizeSm: var(--sizeSm),
+  --sizeMd: var(--sizeMd),
+  --sizeLg: var(--sizeLg),
+  --sizeXl:var(--sizeXl),
+  --globalSm: var(--globalSm),
+  --globalMd:var(--globalMd),
+  --globalLg: var(--globalLg),
+  --globalXl: var(--globalXl),
+  --collapsedSize:var(--collapsedSize),
+  --baseObjectsHeight: var(--baseObjectsHeight),
+  --baseControlsHeight: var(--baseControlsHeight),
+  --baseLineHeight: var(--baseLineHeight),
+  --sideBarCollapsed: var(--sideBarCollapsed),
+  --tabHeight: var(--tabHeight),
+  --sideBarWidth: var(--sideBarWidth),
+  --avatarImageSize: var(--avatarImageSize),
+  --borderWidth: var(--borderWidth),
+  --borderRadiusDefault: var(--borderRadiusDefault),
+  --circleBorderSize:var(--circleBorderSize),
 );
 
 @function var($variable) {
-    @return map-get($variables, $variable);
+  @return map-get($variables, $variable);
 }

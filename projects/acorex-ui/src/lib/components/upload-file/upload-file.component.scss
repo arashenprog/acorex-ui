@@ -16,11 +16,11 @@
   border: $border-width solid;
   border-color: $border-color;
   &:hover {
-    border-color: $primary-color;
+    border-color: --primaryColor;
     border-style: solid;
     @include transition(0.5s);
     .upload-content {
-      color: $primary-color;
+      color: --primaryColor;
     }
     .action-container {
       display: flex !important;
@@ -75,7 +75,7 @@
     align-items: center;
     margin-right: 10px;
     &:hover {
-      background: $primary-color;
+      background: --primaryColor;
       @include transition(0.3s);
       color: $white;
     }
