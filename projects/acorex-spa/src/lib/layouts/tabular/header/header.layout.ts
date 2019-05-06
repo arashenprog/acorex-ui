@@ -7,7 +7,7 @@ import { PageTabService } from "acorex-ui";
     selector: 'ax-header-layout',
     templateUrl: './header.layout.html',
 })
-export class HeaderLayout implements OnInit, DoCheck {
+export class AXHeaderComponent implements OnInit, DoCheck {
 
     fullWidth: boolean = true;
 
