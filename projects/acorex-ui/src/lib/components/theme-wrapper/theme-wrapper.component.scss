@@ -157,8 +157,8 @@ $sizes: (
       justify-content: center;
       align-items: center;
       margin-right: var(--sp-sm-size);
-      width: var(--baseObjectsHeight) / 2;
-      height: var(--baseObjectsHeight) / 2;
+      width: calc(var(--baseObjectsHeight) / 2);
+      height: calc(var(--baseObjectsHeight) / 2);
       border-radius: var(--borderRadiusDefault);
       i {
         font-size: var( --font-sm-size);
@@ -188,7 +188,7 @@ $sizes: (
   align-items: center;
   font-size: var(--font-sm-size);
   color: var(--danger-color);
-  padding: var(--sp-sm-size) var(--size-lg);
+  padding: var(--sp-sm-size) var(--sp-lg-size);
 }
 .bk-primary {
   background-color: var(--primary-back-color);
