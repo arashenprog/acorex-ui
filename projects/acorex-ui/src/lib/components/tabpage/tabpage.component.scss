@@ -14,12 +14,12 @@ ax-tabs {
   }
   .tab-pane {
     padding: 1rem;
-    background: $white;
+    background: --white;
     border: 1px solid $border-color;
   }
   .nav-pills {
     .nav-link {
-      background: $white;
+      background: --white;
       border: 1px solid $border-color;
       border-bottom: 0px !important;
       margin-left: $size-sm !important;

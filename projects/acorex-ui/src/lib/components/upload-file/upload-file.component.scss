@@ -1,14 +1,14 @@
 @import "../../styles/varibales";
 .upload-file-box {
   display: flex;
-  background: $white;
+  background: --white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px 0;
   border-width: $border-width;
   border-style: solid;
-  border-color: $white;
+  border-color: --white;
   min-height: 200px;
   cursor: pointer;
   position: relative;
@@ -62,7 +62,7 @@
     right: 0;
   }
   .circle-button {
-    background: $white;
+    background: --white;
     border: 1px solid $border-color;
     color: $border-color;
     width: 40px;
@@ -77,7 +77,7 @@
     &:hover {
       background: --primaryColor;
       @include transition(0.3s);
-      color: $white;
+      color: --white;
     }
   }
 }

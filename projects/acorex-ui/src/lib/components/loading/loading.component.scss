@@ -1,6 +1,6 @@
 @import "../../styles/varibales";
 ax-loading {
-  background: $white;
+  background: --white;
   display: flex;
   border: 1px solid $border-color;
   @include border-radius(4px);

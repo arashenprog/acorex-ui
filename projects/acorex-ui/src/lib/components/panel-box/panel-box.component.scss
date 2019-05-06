@@ -2,7 +2,7 @@
 
 .panel-box {
   display: block;
-  background: $white;
+  background: --white;
   @include border-radius($border-radius-default);
   border: 1px solid $border-color;
   position: relative;
@@ -60,7 +60,7 @@
   }
   .panel-title-button {
     flex: 1;
-    background: $white;
+    background: --white;
     border: 1px solid $border-color;
     @include border-radius(4px);
     margin-left: 10px;
