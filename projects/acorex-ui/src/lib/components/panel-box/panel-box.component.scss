@@ -3,7 +3,7 @@
 
 .panel-box {
   display: block;
-  background: var(--white);
+  background: var(--white-color);
   @include border-radius(var(--borderRadiusDefault));
   border: 1px solid var(--borderColor);
   position: relative;
@@ -40,7 +40,7 @@
       }
 
       a {
-        color: var(--primaryColor);
+        color: var(--primary-back-color);
       }
     }
   }
@@ -61,7 +61,7 @@
   }
   .panel-title-button {
     flex: 1;
-    background: var(--white);
+    background: var(--white-color);
     border: 1px solid var(--borderColor);
     @include border-radius(4px);
     margin-left: 10px;

@@ -1,15 +1,6 @@
 
 $variables: (
-  // Colors
-  --white: var(--white),
-  --black: var(--black),
-  --red: var(--red),
-  --blue:var(--blue),
-  --green: var(--green),
-  --yellow: var(--yellow),
-  --primaryColor: var(--primaryColor),
-  --primaryColorDark: var(--primaryColorDark),
-  --primaryColorLight: var(--primaryColorLight),
+  // primary
   --secondaryColor: var(--secondaryColor),
   --secondaryColorLight: var(--secondaryColorLight),
   --secondaryColorDark: var(--secondaryColorDark),
@@ -45,6 +36,7 @@ $variables: (
   --circleBorderSize:var(--circleBorderSize)
 );
 
-@function var($variable) {
-  @return map-get($variables, $variable);
-}
+// @function var($variable) {
+//   @return map-get($variables, $variable);
+// }
+

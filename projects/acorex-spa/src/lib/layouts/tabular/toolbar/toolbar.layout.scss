@@ -1,16 +1,16 @@
-@import "../../../styles/varibales";
+@import "../../../styles/master";
 .ax-toolbar {
     position: relative;
     width: 100%;
-    background: $white;
+    background: var(--white-colorColor);
     height: 40px;
     display: flex;
     align-items: center;
     z-index: 1;
-    box-shadow: 10px 6px 10px -1px $border-color;
-    -webkit-box-shadow: 10px 6px 10px -1px $border-color;
-    -moz-box-shadow: 10px 6px 10px -1px $border-color;
-    border-top: 1px solid $border-color;
+    box-shadow: 10px 6px 10px -1px var(--borderColor);
+    -webkit-box-shadow: 10px 6px 10px -1px var(--borderColor);
+    -moz-box-shadow: 10px 6px 10px -1px var(--borderColor);
+    border-top: 1px solid var(--borderColor);
     top: 50px;
     left: 0;
     right: 0;

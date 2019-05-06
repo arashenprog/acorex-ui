@@ -1,4 +1,5 @@
 @import "../../styles/themes";
+@import "../../styles/mixins";
 ul.side-menu {
   padding: 0;
   list-style: none;
@@ -6,13 +7,11 @@ ul.side-menu {
   flex-direction: column;
   li {
     &:hover {
-      background: var(--blue) !important;
+      @include primary-style();
       transition: 0.3s ease;
-      color: var(--white);
-
       a {
         i {
-          color: var(--white);
+          color: var(--primary-fore-color);
         }
       }
     }

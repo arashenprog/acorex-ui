@@ -21,14 +21,14 @@
     //     box-shadow: 0 0 0 0.2rem rgba(--outlineColor, 0.1);
     // }
     opacity: 1;
-    background: var(--white);
+    background: var(--white-color);
     display: flex;
     flex-direction: column;
     border-radius: 4px;
     overflow: hidden;
     .ppoup-header {
       @include base-gradient();
-      color: var(--white);
+      color: var(--white-color);
       display: flex;
       flex-direction: row;
       height: 40px;

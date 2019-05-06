@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 ax-loading {
-    background: var(--white);
+    background: var(--white-color);
     display: flex;
     border: 1px solid var(--borderColor);
     @include border-radius(var(--borderRadiusDefault));
@@ -23,6 +23,6 @@ ax-loading {
 
     svg path,
     svg rect {
-        fill: var(--primaryColor);
+        fill: var(--primary-back-color);
     }
 }

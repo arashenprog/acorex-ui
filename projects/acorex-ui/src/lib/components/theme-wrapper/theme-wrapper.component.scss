@@ -1,48 +1,46 @@
-.theme-wrapper {
-  // Colors
-  --white: #fff;
-  --black: #000;
-  --red: #db0f23;
-  --green: #2e933c;
-  --yellow: #faa916;
-  --blue:#2774cc;
-  --primaryColor: #2774cc;
-  --primaryColorDark: #0042a3;
-  --primaryColorLight: #2b82e5;
-  --secondaryColor: #444444;
-  --secondaryColorLight: #565656;
-  --secondaryColorDark: #2b2b2b;
-  --sideNavDarkFont: #99abb4;
-  --borderColor: #abb0b5;
-  --outlineColor: #faa916;
-  --greyLight: #efefef;
-  --grey: #d8dbdd;
-  --greyDark: #1b1f22;
-  --shadow: --grey;
-  // Sizes
-  --fontSize: 1em;
-  --fontSizeSmall: 0.75em;
-  --fontFamily: IRANSans, sans-serif;
-  --sizeSm: 5px;
-  --sizeMd: 10px;
-  --sizeLg: 15px;
-  --sizeXl: 20px;
-  --globalSm: 0.75rem;
-  --globalMd: 0.875rem;
-  --globalLg: 1rem;
-  --globalXl: 1.5rem;
-  --collapsedSize: 70px;
-  --baseObjectsHeight: 50px;
-  --baseControlsHeight: 40px;
-  --baseLineHeight: 1.5;
-  --sideBarCollapsed: 70px;
-  --tabHeight: 43px;
-  --sideBarWidth: 280px;
-  --avatarImageSize: 72px;
-  --borderWidth: 1px;
-  --borderRadiusDefault: 4px;
-  --circleBorderSize: 100px;
+$color-suffix:color;
+
+$white :#FFF;
+$primary :#2774cc;
+
+$colors: (
+  'white':$white,
+  'black':#000,
+  'red':#db0f23,
+  'green':#2e933c,
+  'yellow':#faa916,
+  'blue':#2774cc,
+  'primary': (
+    'base': $primary,
+    'back':$primary,
+    'fore': $white,
+    'light': lighten($primary, 15%),
+    'dark': darken($primary, 15%),
+    'trans': transparentize($primary, 0.5)
+  ),
+  'secondary': (
+    'base': #0969A2,
+    'back': #0969A2,
+    'fore':$white,
+    'light': lighten(#0969A2, 15%),
+    'dark': darken(#0969A2, 15%),
+    'trans': transparentize(#0969A2, 0.5)
+  )
+);
+
+:root {
+  @each $name, $color in $colors {
+    @if type-of($color) == "map" {
+      @each $subname, $variant in $color {  
+        --#{$name}-#{$subname}-#{$color-suffix}:  #{$variant};
+      }
+    } 
+    @else {
+      --#{$name}-#{$color-suffix}: #{$color};
+    }
+  }
 }
+
 
 .rtl {
   .ax-field-set-button {
@@ -132,16 +130,16 @@
   }
 }
 .input-focused {
-  border-color: var(--primaryColor) !important;
-  color: var(--primaryColor) !important;
+  border-color: var(--primary-back-color) !important;
+  color: var(--primary-back-color) !important;
 }
 .input-error {
-  border-color: var(--red) !important;
-  color: var(--red) !important;
+  border-color: var(--red-color) !important;
+  color: var(--red-color) !important;
 }
 .input-success {
-  border-color: var(--green) !important;
-  color: var(--green) !important;
+  border-color: var(--green-color) !important;
+  color: var(--green-color) !important;
 }
 
 .validation-text {
@@ -152,44 +150,44 @@
   justify-content: center;
   align-items: center;
   font-size: var(--fontSizeSmall);
-  color: var(--red);
+  color: var(--red-color);
   padding: var(--sizeSm) var(--size-lg);
 }
 .bk-primary {
-  background-color: var(--primaryColor);
-  color: var(--white);
+  background-color: var(--primary-back-color);
+  color: var(--white-color);
 }
 .bk-success {
-  background-color: var( --green);
-  color: var(--white);
+  background-color: var( --green-color);
+  color: var(--white-color);
 }
 .bk-warning {
-  background-color: var(--yellow);
-  color: var(--white);
+  background-color: var(--yellow-color);
+  color: var(--white-color);
 }
 .bk-danger {
-  background-color: var(--red);
-  color: var(--white);
+  background-color: var(--red-color);
+  color: var(--white-color);
 }
 .bk-primary-light {
-  background-color: var(--primaryColor);
-  color: var(--white);
+  background-color: var(--primary-back-color);
+  color: var(--white-color);
 }
 .bk-success-light {
-  background-color: var(--green);
-  color: var(--white);
+  background-color: var(--green-color);
+  color: var(--white-color);
 }
 .bk-warning-light {
-  background-color: var(--yellow);
-  color: var(--white);
+  background-color: var(--yellow-color);
+  color: var(--white-color);
 }
 .bk-danger-light {
-  background-color: var(--red);
-  color: var(--white);
+  background-color: var(--red-color);
+  color: var(--white-color);
 }
 
 .btn-primary {
-  color: var(--white);
-  background-color:var(--primaryColor);
-  border-color:var(--primaryColor);
+  color: var(--white-color);
+  background-color:var(--primary-back-color);
+  border-color:var(--primary-back-color);
 }
