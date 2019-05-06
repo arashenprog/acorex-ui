@@ -1,13 +1,13 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 
 // Check Box Custom Style
 .checkbox-container {
   display: inline-block;
   position: relative;
-  padding-right: $base-controls-height;
+  padding-right: --baseControlsHeight;
   cursor: pointer;
   font-size: 14px;
-  line-height: $base-controls-height;
+  line-height: --baseControlsHeight;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -29,7 +29,7 @@
   background-color: --white;
   border: 1px solid;
   border-color: --borderColor;
-  @include border-radius($border-radius-default);
+  @include border-radius(--borderRadiusDefault);
 }
 .checkbox-container:hover input ~ .checkmark {
   background-color: --borderColor;

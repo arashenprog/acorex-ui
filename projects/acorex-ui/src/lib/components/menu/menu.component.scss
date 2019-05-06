@@ -1,4 +1,4 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 ul.side-menu {
   padding: 0;
   list-style: none;
@@ -6,7 +6,7 @@ ul.side-menu {
   flex-direction: column;
   li {
     &:hover {
-      background: $blue !important;
+      background: --blue !important;
       transition: 0.3s ease;
       color: --white;
 

@@ -1,4 +1,4 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 @import "../../../../node_modules/@ng-select/ng-select/themes/default.theme.css";
 // .ng-select {
 //   z-index: 1 !important;
@@ -6,7 +6,7 @@
 //   display: block !important;
 //   box-sizing: border-box !important;
 //   width: 100% !important;
-//   margin: $size-lg $size-md 0px $size-md;
+//   margin: $size-lg --sizeMd 0px --sizeMd;
 //   .ng-arrow-wrapper {
 //     padding-left: $size-sm !important;
 //   }
@@ -48,7 +48,7 @@
     border: none;
     min-height: 36px;
     align-items: center;
-    color: --secondaryColor-light !important;
+    color: --secondaryColorLight !important;
     &:hover {
       box-shadow: none;
     }
@@ -61,7 +61,7 @@
       padding: 15px 10px 7px 12px !important;
       .ng-select {
         span {
-          color: --secondaryColor-light !important;
+          color: --secondaryColorLight !important;
         }
       }
     }

@@ -4,7 +4,7 @@ $font-size-small: 0.75em !default;
 $font-family: IRANSans, sans-serif !default;
 
 $size-sm: 5px !default;
-$size-md: 10px !default;
+--sizeMd: 10px !default;
 $size-lg: 15px !default;
 $size-xl: 20px !default;
 
@@ -16,7 +16,7 @@ $global-xl: 1.5rem !default;
 $collapsed-size: 70px !default;
 
 $base-objects-height: 50px !default;
-$base-controls-height: 40px !default;
+--baseControlsHeight: 40px !default;
 $base-line-height: 1.5 !default;
 
 $side-bar-collapsed: 70px !default;
@@ -24,6 +24,6 @@ $tab-height: 43px !default;
 $side-bar-width: 280px !default;
 $avatar-image-size: 72px !default;
 
-$border-width: 1px !default;
-$border-radius-default: 4px !default;
+--borderWidth: 1px !default;
+--borderRadiusDefault: 4px !default;
 $circle-border-size: 100px !default;

@@ -1,9 +1,9 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 
 .panel-box {
   display: block;
   background: --white;
-  @include border-radius($border-radius-default);
+  @include border-radius(--borderRadiusDefault);
   border: 1px solid --borderColor;
   position: relative;
   .title-bar {
@@ -17,7 +17,7 @@
     z-index: 1;
     background: #ffffff;
     width: 100%;
-    @include border-radius($border-radius-default);
+    @include border-radius(--borderRadiusDefault);
     .caption {
       line-height: 26px;
       font-size: $size-lg;
@@ -29,7 +29,7 @@
       i {
         width: 25px;
         line-height: 25px;
-        @include border-radius($border-radius-default);
+        @include border-radius(--borderRadiusDefault);
         border: 1px solid --borderColor;
         text-align: center;
         color: --secondaryColor-dark;

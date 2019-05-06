@@ -7,7 +7,6 @@ import { AXTextInputBaseComponent, AXValidatableComponent } from "../../core/bas
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
-  styleUrls: ["./text-box.component.scss"],
   encapsulation: ViewEncapsulation.None,
   providers: [{ provide: AXValidatableComponent, useExisting: AXTextBoxComponent }]
 })

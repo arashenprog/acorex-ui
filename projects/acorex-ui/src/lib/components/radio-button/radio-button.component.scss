@@ -1,18 +1,18 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 
 // Check Box Custom Style
 .radio-container {
   display: inline-block;
   position: relative;
-  padding-right: $base-controls-height;
+  padding-right: --baseControlsHeight;
   cursor: pointer;
   font-size: 14px;
-  line-height: $base-controls-height;
+  line-height: --baseControlsHeight;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: $base-controls-height;
+  height: --baseControlsHeight;
   margin-left: 10px;
 }
 

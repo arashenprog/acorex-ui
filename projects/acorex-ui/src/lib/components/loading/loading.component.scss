@@ -1,9 +1,9 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 ax-loading {
   background: --white;
   display: flex;
   border: 1px solid --borderColor;
-  @include border-radius(4px);
+  @include border-radius(--borderRadiusDefault);
   height: 100%;
   .loader {
     display: flex;

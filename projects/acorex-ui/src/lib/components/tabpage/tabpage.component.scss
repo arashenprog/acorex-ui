@@ -1,4 +1,4 @@
-@import "../../styles/varibales";
+@import "../../styles/themes";
 ax-tabs {
   display: block;
   margin-top: 10px;
@@ -30,8 +30,8 @@ ax-tabs {
       flex-grow: 1 !important;
       cursor: pointer;
       @include border-radius-corners(
-        $border-radius-default !important,
-        $border-radius-default !important,
+        --borderRadiusDefault !important,
+        --borderRadiusDefault !important,
         0 !important,
         0 !important
       );
