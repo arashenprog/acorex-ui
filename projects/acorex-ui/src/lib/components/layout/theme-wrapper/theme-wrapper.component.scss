@@ -5,28 +5,44 @@ $white :#FFF;
 $primary :#2774cc;
 $secondary :#444444;
 $gray :#b5b5b5;
+$danger:#db0f23;
+$success:#2e933c;
+$warning:#faa916;
+$info:#2774cc;
 //
 $colors: (
     white:$white,
     black:#000,
-    danger:#db0f23,
-    success:#2e933c,
-    warning:#faa916,
-    info:#2774cc,
+    danger:(
+        "":$danger,
+        light:lighten($danger, 15%),
+    ),
+    success:(
+        "":$success,
+        light:lighten($success, 15%),
+    ),
+    warning:(
+        "":$warning,
+        light:lighten($warning, 15%),
+    ),
+    info:(
+        "":$info,
+        light:lighten($info, 15%),
+    ),
     gray:(
-        base:$gray,
+        "":$gray,
         light:lighten($gray, 15%),
         dark:darken($gray, 15%)
     ),
     primary: (
-        back:$primary,
+        "":$primary,
         fore: $white,
         light: lighten($primary, 15%),
         dark: darken($primary, 15%),
         trans: transparentize($primary, 0.5)
     ),
     secondary: (
-        back: $secondary,
+        "": $secondary,
         fore:$white,
         light: lighten($secondary, 15%),
         dark: darken($secondary, 15%),
@@ -64,7 +80,12 @@ $sizes: (
 
             @each $subname,
             $variant in $color {
-                --#{$name}-#{$subname}-#{$color-suffix}: #{$variant};
+                @if $subname=="" {
+                    --#{$name}-#{$color-suffix}: #{$variant};
+                }
+                @else {
+                    --#{$name}-#{$subname}-#{$color-suffix}: #{$variant};
+                }
             }
         }
 
@@ -191,8 +212,8 @@ $sizes: (
 }
 
 .input-focused {
-    border-color: var(--primary-back-color) !important;
-    color: var(--primary-back-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .input-error {
@@ -218,7 +239,7 @@ $sizes: (
 }
 
 .bk-primary {
-    background-color: var(--primary-back-color);
+    background-color: var(--primary-color);
     color: var(--white-color);
 }
 
@@ -238,29 +259,29 @@ $sizes: (
 }
 
 .bk-primary-light {
-    background-color: var(--primary-back-color);
+    background-color: var(--primary-light-color);
     color: var(--white-color);
 }
 
 .bk-success-light {
-    background-color: var(--success-color);
+    background-color: var(--success-light-color);
     color: var(--white-color);
 }
 
 .bk-warning-light {
-    background-color: var(--warning-color);
+    background-color: var(--warning-light-color);
     color: var(--white-color);
 }
 
 .bk-danger-light {
-    background-color: var(--danger-color);
+    background-color: var(--danger-light-color);
     color: var(--white-color);
 }
 
 .btn-primary {
     color: var(--white-color);
-    background-color: var(--primary-back-color);
-    border-color: var(--primary-back-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .circle-button {
@@ -278,7 +299,7 @@ $sizes: (
     margin-right: 10px;
 
     &:hover {
-        background: var(--primary-back-color);
+        background: var(--primary-color);
         color: var(--white-color);
     }
 }

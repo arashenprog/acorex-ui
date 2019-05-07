@@ -87,7 +87,7 @@ ax-side-menu {
         margin-right: 5px;
         &.active {
           background: var(--warning-color);
-          border-color: var(--gray-base-color);
+          border-color: var(--gray-color);
           color: var(--white-color);
         }
       }
@@ -115,7 +115,7 @@ ax-side-menu {
       align-items: center;
       z-index: 1;
       flex-grow: 12;
-      @include box-shadow(-7px, 2px, 8px, var(--gray-base-color));
+      @include box-shadow(-7px, 2px, 8px, var(--gray-color));
       .toggle {
         flex: 0.5;
         height: 40px;

@@ -20,7 +20,6 @@ export class AXTabularLayoutComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        debugger;
         if (this.startUpTab)
             this.tabService.open(this.startUpTab);
     }

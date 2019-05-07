@@ -1,16 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IValidationRuleResult, DialogService, PopupService, AXToastService, AXHttpService, AXValidationFormComponent } from 'acorex-ui';
+import { IValidationRuleResult, DialogService, PopupService, AXToastService, AXHttpService, AXValidationFormComponent, AXTabPageService, AXBasePageComponent } from 'acorex-ui';
 
 @Component({
     templateUrl: './test-page.component.html'
 })
-export class TestPageComponent  {
+export class TestPageComponent  extends AXBasePageComponent {
     constructor(
         private dialog: DialogService,
         private popup: PopupService,
+        private tab: AXTabPageService,
         private toast: AXToastService,
         private http: AXHttpService
-      ) { }
+      ) { 
+          super();
+      }
       @ViewChild("form") form: AXValidationFormComponent;
       loading: boolean = false;
     
@@ -59,7 +62,8 @@ export class TestPageComponent  {
         this.loading = true;
         debugger;
         this.toast.success("عملیات با موفقیت انجام شد", {
-          timeOut: 300000,
+          title : "تست",
+          timeOut: 50000,
           closeable: true
         });
         this.form.validate().then(c => {
@@ -84,7 +88,8 @@ export class TestPageComponent  {
         this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
       }
       onPopupClick() {
-        this.popup.open(TestPageComponent, "عنوان");
+        this.tab.open(TestPageComponent, "عنوان");
+        //this.popup.open(TestPageComponent, "عنوان");
       }
       regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     

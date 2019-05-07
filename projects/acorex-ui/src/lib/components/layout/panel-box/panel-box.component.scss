@@ -9,7 +9,7 @@
   .title-bar {
     display: flex;
     height: 35px;
-    color: var(--secondary-back-color);
+    color: var(--secondary-color);
     justify-content: center;
     align-items: center;
     padding: 0 5px;
@@ -39,7 +39,7 @@
       }
 
       a {
-        color: var(--primary-back-color);
+        color: var(--primary-color);
       }
     }
   }
@@ -64,7 +64,7 @@
     border: 1px solid var(--border-color);
     @include border-radius(4px);
     margin-left: 10px;
-    color: var(--secondary-back-color);
+    color: var(--secondary-color);
     line-height: 25px;
     min-width: 25px;
     cursor: pointer;

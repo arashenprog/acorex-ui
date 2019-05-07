@@ -32,6 +32,9 @@ export class AXTabPageRendererComponent {
                 const factory = this.resolver.resolveComponentFactory(tab.content);
                 let componentRef = this.container.createComponent(factory);
                 componentRef.id = tab.id;
+                if (!componentRef.instance.closeEvent) {
+                   throw Error("The Component must be inherited from AXBasePageComponent!")
+                }
                 componentRef.instance.closeEvent.subscribe((e: ClosingEventArgs) => {
                     tabService.close(tab, e);
                 });

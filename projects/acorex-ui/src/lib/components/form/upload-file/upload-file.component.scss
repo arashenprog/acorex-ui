@@ -17,11 +17,11 @@
   border: var(--border-width-size) solid;
   border-color: var(--border-color);
   &:hover {
-    border-color: var(--primary-back-color);
+    border-color: var(--primary-color);
     border-style: solid;
     @include transition(0.5s);
     .upload-content {
-      color: var(--primary-back-color);
+      color: var(--primary-color);
     }
     .action-container {
       display: flex !important;
@@ -49,7 +49,7 @@
     min-height: 200px;
   }
   .action-container {
-    background: rgba(var(--secondary-back-color), 0.5);
+    background: rgba(var(--secondary-color), 0.5);
     min-height: 195px;
     display: none;
     flex-direction: row;

@@ -34,8 +34,8 @@
   background-color: var(--border-color);
 }
 .checkbox-container input:checked ~ .checkmark {
-  background-color: var(--primary-back-color);
-  border-color: var(--primary-back-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 .checkmark:after {
   content: "";
