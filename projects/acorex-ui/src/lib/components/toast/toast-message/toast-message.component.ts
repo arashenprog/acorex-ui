@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ElementRef } from "@angular/core";
+import { Component, OnInit, Input, ElementRef, ViewEncapsulation } from "@angular/core";
 
 @Component({
   templateUrl: "./toast-message.component.html",
-  styleUrls: ["./toast-message.component.scss"]
+  styleUrls: ["./toast-message.component.scss"],
+  encapsulation:ViewEncapsulation.None
 })
 export class AXToastMessageComponent implements OnInit {
   constructor(private elRef: ElementRef) {}

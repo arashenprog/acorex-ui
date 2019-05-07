@@ -65,7 +65,8 @@
   }
   .circle-button {
     background: var(--white);
-    border: 1px solid var(--borderColor);
+    border: 1px solid;
+    border-color: var(--borderColor);
     color: var(--borderColor);
     width: 40px;
     height: 40px;
@@ -78,6 +79,7 @@
     margin-right: 10px;
     &:hover {
       background: var(--primaryColor);
+      border-color: var(--primaryColor);
       @include transition(0.3s);
       color: var(--white);
     }

@@ -1,10 +1,9 @@
-
 $variables: (
   // Colors
-  --white: var(--white),
+    --white: var(--white),
   --black: var(--black),
   --red: var(--red),
-  --blue:var(--blue),
+  --blue: var(--blue),
   --green: var(--green),
   --yellow: var(--yellow),
   --primaryColor: var(--primaryColor),
@@ -20,19 +19,18 @@ $variables: (
   --grey: var(--grey),
   --greyDark: var(--greyDark),
   --shadow: var(--grey),
-  // Sizes
-  --fontSize:var(--fontSize),
-  --fontSizeSmall:var(--fontSizeSmall),
+  // Sizes --fontSize: var(--fontSize),
+  --fontSizeSmall: var(--fontSizeSmall),
   --fontFamily: var(--fontFamily),
   --sizeSm: var(--sizeSm),
   --sizeMd: var(--sizeMd),
   --sizeLg: var(--sizeLg),
-  --sizeXl:var(--sizeXl),
+  --sizeXl: var(--sizeXl),
   --globalSm: var(--globalSm),
-  --globalMd:var(--globalMd),
+  --globalMd: var(--globalMd),
   --globalLg: var(--globalLg),
   --globalXl: var(--globalXl),
-  --collapsedSize:var(--collapsedSize),
+  --collapsedSize: var(--collapsedSize),
   --baseObjectsHeight: var(--baseObjectsHeight),
   --baseControlsHeight: var(--baseControlsHeight),
   --baseLineHeight: var(--baseLineHeight),
@@ -42,9 +40,15 @@ $variables: (
   --avatarImageSize: var(--avatarImageSize),
   --borderWidth: var(--borderWidth),
   --borderRadiusDefault: var(--borderRadiusDefault),
-  --circleBorderSize:var(--circleBorderSize)
+  --circleBorderSize: var(--circleBorderSize)
 );
 
 @function var($variable) {
   @return map-get($variables, $variable);
 }
+
+$theme-colors: (
+  "primary": var(--primaryColor) !important
+);
+
+

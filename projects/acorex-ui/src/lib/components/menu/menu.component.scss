@@ -6,7 +6,7 @@ ul.side-menu {
   flex-direction: column;
   li {
     &:hover {
-      background: var(--blue) !important;
+      background: var(--primaryColor) !important;
       transition: 0.3s ease;
       color: var(--white);
 

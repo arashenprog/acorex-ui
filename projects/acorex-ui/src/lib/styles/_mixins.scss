@@ -50,3 +50,7 @@
   background: -webkit-linear-gradient(var(--primaryColorDark), var(--primaryColor));
   background: -moz-linear-gradient(var(--primaryColorDark),var( --primaryColor));
 }
+
+@mixin #{$name}-style {
+  
+}
