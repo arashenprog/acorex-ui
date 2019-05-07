@@ -1,11 +1,13 @@
-<div class="wrapper">
-  <div class="wrapper-layout">
-    <ax-side-menu *ngIf="sidebarShow" id="ax-side-menu"></ax-side-menu>
-    <div class="main-layout">
-      <ax-header-layout></ax-header-layout>
-      <div class="content-wrapper">
-        <router-outlet></router-outlet>
+<ax-theme-wrapper>
+  <div class="wrapper">
+    <div class="wrapper-layout">
+      <ax-side-menu *ngIf="sidebarShow" id="ax-side-menu"></ax-side-menu>
+      <div class="main-layout">
+        <ax-header-layout></ax-header-layout>
+        <div class="content-wrapper">
+          <ax-tab-page-renderer></ax-tab-page-renderer>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ax-theme-wrapper>

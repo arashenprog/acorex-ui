@@ -29,8 +29,8 @@ ax-tabs {
       flex-grow: 1 !important;
       cursor: pointer;
       @include border-radius-corners(
-        --borderRadiusDefault !important,
-        --borderRadiusDefault !important,
+        --border-radius-size !important,
+        --border-radius-size !important,
         0 !important,
         0 !important
       );

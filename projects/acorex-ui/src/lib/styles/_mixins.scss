@@ -1,16 +1,3 @@
-
-// Gradient Mixin
-@mixin gradient($start, $end) {
-    background-color: $start;
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$start}, endColorstr=#{$end});
-    background-image: -moz-linear-gradient(center top, $start, $end);
-    background-image: -webkit-gradient(linear,
-        0% 0%,
-        0% 100%,
-        from($start),
-        to($end));
-}
-
 // Border Raius Mixin
 @mixin border-radius($radius) {
     border-radius: $radius;
@@ -45,9 +32,11 @@
 }
 
 @mixin base-gradient() {
-    background: linear-gradient(var(--primary-dark-color), var(--primary-back-color));
-    background: -webkit-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
-    background: -moz-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+    // background: linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+    // background: -webkit-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+    // background: -moz-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+
+    background-color: var(--primary-dark-color);
 }
 
 

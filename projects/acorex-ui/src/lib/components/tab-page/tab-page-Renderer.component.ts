@@ -6,7 +6,7 @@ import { ClosingEventArgs } from '../popup/popup.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
-    selector: 'page-renderer',
+    selector: 'ax-tab-page-renderer',
     template: `<template #container></template><div *ngIf="isBusy" class="loading-overlay"></div>`,
 })
 // tslint:disable-next-line:component-class-suffix

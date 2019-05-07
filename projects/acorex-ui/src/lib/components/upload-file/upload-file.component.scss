@@ -7,14 +7,14 @@
   justify-content: center;
   align-items: center;
   padding: 10px 0;
-  border-width: var(--borderWidth);
+  border-width: var(--border-width-size);
   border-style: solid;
   border-color: var(--white-color);
   min-height: 200px;
   cursor: pointer;
   position: relative;
-  @include border-radius(var(--borderRadiusDefault));
-  border: var(--borderWidth) solid;
+  @include border-radius(var(--border-radius-size));
+  border: var(--border-width-size) solid;
   border-color: var(--border-color);
   &:hover {
     border-color: var(--primary-back-color);
@@ -62,23 +62,5 @@
     left: 0;
     right: 0;
   }
-  .circle-button {
-    background: var(--white-color);
-    border: 1px solid var(--border-color);
-    color: var(--border-color);
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    outline-color: transparent !important;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    &:hover {
-      background: var(--primary-back-color);
-      @include transition(0.3s);
-      color: var(--white-color);
-    }
-  }
+  
 }

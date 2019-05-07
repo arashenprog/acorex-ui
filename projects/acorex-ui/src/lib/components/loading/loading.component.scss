@@ -4,7 +4,7 @@ ax-loading {
     background: var(--white-color);
     display: flex;
     border: 1px solid var(--border-color);
-    @include border-radius(var(--borderRadiusDefault));
+    @include border-radius(var(--border-radius-size));
     height: 100%;
 
     .loader {

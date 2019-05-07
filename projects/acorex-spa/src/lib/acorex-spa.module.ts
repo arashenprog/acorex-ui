@@ -1,25 +1,21 @@
 import { NgModule } from "@angular/core";
 import { AXTabularModule } from "./layouts/tabular/tabular.module";
-import { AXSideMenuModule } from "./layouts/tabular/sidemenu/sidemenu.module";
-import { AXHeaderModule } from "./layouts/tabular/header/header.module";
-import { AXFooterModule } from "./layouts/tabular/footer/footer.module";
-import { AXToolbarModule } from "./layouts/tabular/toolbar/toolbar.module";
+import { AXPageComponent } from './layouts/shared/page.component';
+import { AXPageContentComponent } from './layouts/shared/content.component';
+
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AXPageComponent,
+    AXPageContentComponent
+  ],
   imports: [
     AXTabularModule,
-    AXSideMenuModule,
-    AXHeaderModule,
-    AXFooterModule,
-    AXToolbarModule
   ],
   exports: [
     AXTabularModule,
-    AXSideMenuModule,
-    AXHeaderModule,
-    AXFooterModule,
-    AXToolbarModule
+    AXPageComponent,
+    AXPageContentComponent
   ]
 })
 export class AcorexSpaModule {}

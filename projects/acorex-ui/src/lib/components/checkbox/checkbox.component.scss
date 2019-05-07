@@ -28,7 +28,7 @@
   background-color: var(--white-color);
   border: 1px solid;
   border-color: var( --border-color);
-  @include border-radius(var(--borderRadiusDefault));
+  @include border-radius(var(--border-radius-size));
 }
 .checkbox-container:hover input ~ .checkmark {
   background-color: var(--border-color);

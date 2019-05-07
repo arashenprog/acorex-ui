@@ -1,0 +1,18 @@
+
+@mixin transition($second) {
+    transition: $second ease;
+}
+
+@mixin base-gradient() {
+    // background: linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+    // background: -webkit-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+    // background: -moz-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
+
+    background-color: var(--primary-dark-color);
+}
+
+@mixin box-shadow($left, $top, $radius, $color) {
+    box-shadow: $left $top $radius $color;
+    -webkit-box-shadow: $left $top $radius $color;
+    -moz-box-shadow: $left $top $radius $color;
+}

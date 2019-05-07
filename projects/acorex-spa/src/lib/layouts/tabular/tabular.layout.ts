@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from "@angular/core";
+import { Component, AfterViewInit, ViewEncapsulation, Inject } from "@angular/core";
 import { AXTabPageService } from 'acorex-ui';
 
 
@@ -6,24 +6,22 @@ import { AXTabPageService } from 'acorex-ui';
 @Component({
     selector: 'master-layout',
     templateUrl: './tabular.layout.html',
-    styleUrls:["./tabular.layout.scss"]
+    styleUrls: ["./tabular.layout.scss"],
+    encapsulation: ViewEncapsulation.None
 })
-export class TabularLayoutComponent implements AfterViewInit {
+export class AXTabularLayoutComponent implements AfterViewInit {
     sidebarShow: boolean = true;
 
-    constructor(private tabService: AXTabPageService) {
-     
+    constructor(private tabService: AXTabPageService, @Inject("startUpTab") private startUpTab: any) {
+
     }
 
     ngDoCheck() {
     }
 
     ngAfterViewInit() {
-
-        // this.tabService.open({
-        //     content: DashboardPage,
-        //     title: "داشبورد",
-        //     closable: false
-        // });
+        debugger;
+        if (this.startUpTab)
+            this.tabService.open(this.startUpTab);
     }
 }

@@ -1,15 +1,26 @@
 import { NgModule } from "@angular/core";
-import { TabularLayoutComponent } from "./tabular.layout";
+import { AXTabularLayoutComponent } from "./tabular.layout";
 import { AcoreXUIModule } from 'acorex-ui';
-import { AXToolbarModule } from './toolbar/toolbar.module';
-import { AXSideMenuModule } from './sidemenu/sidemenu.module';
-import { AXHeaderModule } from './header/header.module';
-import { AXFooterModule } from './footer/footer.module';
 import { RouterModule } from '@angular/router';
+import { AXToolbarComponent } from './toolbar/toolbar.layout';
+import { AXHeaderComponent } from './header/header.layout';
+import { AXFooterComponent } from './footer/footer.layout';
+import { AXSideMenuComponent } from './sidemenu/sidemenu.layout';
+import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [TabularLayoutComponent],
-  imports: [RouterModule,AcoreXUIModule,AXToolbarModule,AXSideMenuModule,AXHeaderModule,AXFooterModule],
-  exports: [TabularLayoutComponent],
+  declarations: [
+    AXTabularLayoutComponent,
+    AXHeaderComponent,
+    AXToolbarComponent,
+    AXFooterComponent,
+    AXSideMenuComponent
+  ],
+  imports: [
+    RouterModule,
+    FormsModule,
+    AcoreXUIModule,
+  ],
+  exports: [AXTabularLayoutComponent],
   providers: []
 })
-export class AXTabularModule {}
+export class AXTabularModule { }

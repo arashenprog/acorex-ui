@@ -55,8 +55,8 @@ export class AXHeaderComponent implements OnInit, DoCheck {
         console.log(e)
     }
     fullScreen(e) {
-        let body = document.getElementById("body")
-        body.requestFullscreen()
+        let body = document.getElementsByTagName("body")
+        body[0].requestFullscreen()
         if (document.fullscreenEnabled) {
             document.exitFullscreen()
         }

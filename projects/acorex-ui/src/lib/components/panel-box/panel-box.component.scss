@@ -3,7 +3,7 @@
 .panel-box {
   display: block;
   background: var(--white-color);
-  @include border-radius(var(--borderRadiusDefault));
+  @include border-radius(var(--border-radius-size));
   border: 1px solid var(--border-color);
   position: relative;
   .title-bar {
@@ -17,7 +17,7 @@
     z-index: 1;
     background: #ffffff;
     width: 100%;
-    @include border-radius(var(--borderRadiusDefault));
+    @include border-radius(var(--border-radius-size));
     .caption {
       line-height: 26px;
       font-size: var(--sp-lg-size);
@@ -29,7 +29,7 @@
       i {
         width: 25px;
         line-height: 25px;
-        @include border-radius(var(--borderRadiusDefault));
+        @include border-radius(var(--border-radius-size));
         border: 1px solid var(--border-color);
         text-align: center;
         color: var(--secondary-dark-color);

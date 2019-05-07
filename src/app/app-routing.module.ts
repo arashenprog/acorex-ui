@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AXTabularLayoutComponent } from 'acorex-spa';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "",
+    component: AXTabularLayoutComponent
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
