@@ -50,15 +50,10 @@
     background: -moz-linear-gradient(var(--primary-dark-color), var(--primary-back-color));
 }
 
-<<<<<<< HEAD
-@mixin #{$name}-style {
-  
-=======
 
 
 
 @mixin primary-style() {
     color: var(--primary-fore-color);
     background-color: var(--primary-back-color);
->>>>>>> bd8e1ea18cd7de3fb4c1d50a0d4f421e88154057
 }
