@@ -1,6 +1,19 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
-.theme-wrapper{
-    --primaryColor:green !important;
-  }
-
+.theme-wrapper {
+  // Colors
+  --sideNavDarkFont: #99abb4;
+  --shadow: --grey;
+  // Sizes
+  --collapsedSize: 70px;
+  --baseObjectsHeight: 50px;
+  --baseControlsHeight: 40px;
+  --baseLineHeight: 1.5;
+  --sideBarCollapsed: 70px;
+  --tabHeight: 43px;
+  --sideBarWidth: 280px;
+  --avatarImageSize: 72px;
+  --borderWidth: 1px;
+  --borderRadiusDefault: 4px;
+  --circleBorderSize: 100px;
+}

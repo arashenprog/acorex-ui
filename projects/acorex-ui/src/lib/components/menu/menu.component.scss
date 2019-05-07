@@ -1,4 +1,4 @@
-@import "../../styles/themes";
+@import "../../styles/mixins";
 ul.side-menu {
   padding: 0;
   list-style: none;
@@ -6,25 +6,23 @@ ul.side-menu {
   flex-direction: column;
   li {
     &:hover {
-      background: var(--primaryColor) !important;
+      @include primary-style();
       transition: 0.3s ease;
-      color: var(--white);
-
       a {
         i {
-          color: var(--white);
+          color: var(--primary-fore-color);
         }
       }
     }
     a {
-      color: var(--secondaryColor);
+      color: var(--secondary-back-color);
       padding: 7px 10px;
       display: flex;
       align-items: center;
       border-bottom: 1px solid #ebebeb;
       cursor: pointer;
       i {
-        color: var(--borderColor);
+        color: var(--border-color);
       }
       span {
         flex: 1;

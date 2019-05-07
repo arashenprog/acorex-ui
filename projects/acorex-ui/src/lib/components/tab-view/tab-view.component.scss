@@ -1,4 +1,3 @@
-@import "../../styles/themes";
 ax-tabs {
   display: block;
   margin-top: 10px;
@@ -14,13 +13,13 @@ ax-tabs {
   }
   .tab-pane {
     padding: 1rem;
-    background: --white;
-    border: 1px solid --borderColor;
+    background: --white-color;
+    border: 1px solid --border-color;
   }
   .nav-pills {
     .nav-link {
-      background: --white;
-      border: 1px solid --borderColor;
+      background: --white-color;
+      border: 1px solid --border-color;
       border-bottom: 0px !important;
       margin-left: $size-sm !important;
       text-align: right !important;
@@ -36,7 +35,7 @@ ax-tabs {
         0 !important
       );
       &:last-child {
-        border-left: 1px solid --borderColor !important;
+        border-left: 1px solid --border-color !important;
         margin-left: 0 !important;
       }
       i.fas.fa-times-circle {

@@ -1,16 +1,16 @@
-@import "../../../styles/varibales";
+@import "../../../styles/master";
 .ax-footer {
   position: relative;
   width: 100%;
-  background: #fff;
+  background:var(--white-colorColor);
   height: 40px;
   display: flex;
   align-items: center;
   z-index: 1;
-  box-shadow: 10px -6px 10px -1px $border-color;
-  -webkit-box-shadow: 10px -6px 10px -1px $border-color;
-  -moz-box-shadow: 10px -6px 10px -1px $border-color;
-  border-top: 1px solid $border-color;
+  box-shadow: 10px -6px 10px -1px var(--border-color);
+  -webkit-box-shadow: 10px -6px 10px -1px var(--border-color);
+  -moz-box-shadow: 10px -6px 10px -1px var(--border-color);
+  border-top: 1px solid var(--border-color);
   left: 0;
   right: 0;
   top: 0;

@@ -1,48 +1,83 @@
-.theme-wrapper {
-  // Colors
-  --white: #fff;
-  --black: #000;
-  --red: #db0f23;
-  --green: #2e933c;
-  --yellow: #faa916;
-  --blue:#2774cc;
-  --primaryColor: #2774cc;
-  --primaryColorDark: #0042a3;
-  --primaryColorLight: #2b82e5;
-  --secondaryColor: #444444;
-  --secondaryColorLight: #565656;
-  --secondaryColorDark: #2b2b2b;
-  --sideNavDarkFont: #99abb4;
-  --borderColor: #abb0b5;
-  --outlineColor: #faa916;
-  --greyLight: #efefef;
-  --grey: #d8dbdd;
-  --greyDark: #1b1f22;
-  --shadow: --grey;
-  // Sizes
-  --fontSize: 1em;
-  --fontSizeSmall: 0.75em;
-  --fontFamily: IRANSans, sans-serif;
-  --sizeSm: 5px;
-  --sizeMd: 10px;
-  --sizeLg: 15px;
-  --sizeXl: 20px;
-  --globalSm: 0.75rem;
-  --globalMd: 0.875rem;
-  --globalLg: 1rem;
-  --globalXl: 1.5rem;
-  --collapsedSize: 70px;
-  --baseObjectsHeight: 50px;
-  --baseControlsHeight: 40px;
-  --baseLineHeight: 1.5;
-  --sideBarCollapsed: 70px;
-  --tabHeight: 43px;
-  --sideBarWidth: 280px;
-  --avatarImageSize: 72px;
-  --borderWidth: 1px;
-  --borderRadiusDefault: 4px;
-  --circleBorderSize: 100px;
+$color-suffix:color;
+$size-suffix:size;
+//
+$white :#FFF;
+$primary :#2774cc;
+$secondary :#444444;
+$gray :#d8dbdd;
+//
+$colors: (
+  white:$white,
+  black:#000,
+  danger:#db0f23,
+  success:#2e933c,
+  warning:#faa916,
+  info:#2774cc,
+  gray:(
+    base:$gray,
+    light:lighten($gray, 15%),
+    dark:darken($gray, 15%)
+  ),
+  primary: (
+    back:$primary,
+    fore: $white,
+    light: lighten($primary, 15%),
+    dark: darken($primary, 15%),
+    trans: transparentize($primary, 0.5)
+  ),
+  secondary: (
+    back: $secondary,
+    fore:$white,
+    light: lighten($secondary, 15%),
+    dark: darken($secondary, 15%),
+    trans: transparentize($secondary, 0.5)
+  ),
+  border:$secondary,
+  outline:$primary
+);
+
+$sizes: (
+  sp :(
+    sm:5px,
+    md:10px,
+    lg:15px,
+    xl:20px
+  ),
+  font :(
+    sm:0.75em,
+    md: 1em,
+    lg: 1.25em,
+    xl:1.5em
+  )
+);
+
+:root {
+  @each $name, $color in $colors {
+    @if type-of($color) == "map" {
+      @each $subname, $variant in $color {  
+        --#{$name}-#{$subname}-#{$color-suffix}:  #{$variant};
+      }
+    } 
+    @else {
+      --#{$name}-#{$color-suffix}: #{$color};
+    }
+  }
+
+
+  @each $name, $size in $sizes {
+    @if type-of($size) == "map" {
+      @each $subname, $variant in $size {  
+        --#{$name}-#{$subname}-#{$size-suffix}:  #{$variant};
+      }
+    } 
+    @else {
+      --#{$name}-#{$size-suffix}: #{$size};
+    }
+  }
 }
+
+
+
 
 .rtl {
   .ax-field-set-button {
@@ -65,7 +100,7 @@
   flex-direction: column;
   vertical-align: top;
   .ax-field-set-wrapper {
-    color: var(--secondaryColorLight);
+    color: var(--secondary-light-color);
     cursor: text;
     display: inline-flex;
     align-items: center;
@@ -82,12 +117,12 @@
       border-width: var(--borderWidth);
       border-radius: var(--borderRadiusDefault);
       pointer-events: none;
-      border-color: var( --borderColor);
+      border-color: var( --border-color);
       legend {
         width: auto !important;
-        padding: 0 var(--sizeSm);
-        margin: 0 var(--sizeSm);
-        font-size: var(--fontSizeSmall);
+        padding: 0 var(--sp-sm-size);
+        margin: 0 var(--sp-sm-size);
+        font-size: var(--font-sm-size);
         line-height: inherit;
         color: inherit;
         white-space: normal;
@@ -95,7 +130,7 @@
     }
   }
   input {
-    font-size: var(--fontSize);
+    font-size: var(--font-md-size);
     color: currentColor;
     width: 100%;
     border: 0;
@@ -115,81 +150,81 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: var(--sizeSm);
+    margin: var(--sp-sm-size);
     border: none;
     button {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: var(--sizeSm);
-      width: var(--baseObjectsHeight) / 2;
-      height: var(--baseObjectsHeight) / 2;
+      margin-right: var(--sp-sm-size);
+      width: calc(var(--baseObjectsHeight) / 2);
+      height: calc(var(--baseObjectsHeight) / 2);
       border-radius: var(--borderRadiusDefault);
       i {
-        font-size: var( --fontSizeSmall);
+        font-size: var( --font-sm-size);
       }
     }
   }
 }
 .input-focused {
-  border-color: var(--primaryColor) !important;
-  color: var(--primaryColor) !important;
+  border-color: var(--primary-back-color) !important;
+  color: var(--primary-back-color) !important;
 }
 .input-error {
-  border-color: var(--red) !important;
-  color: var(--red) !important;
+  border-color: var(--danger-color) !important;
+  color: var(--danger-color) !important;
 }
 .input-success {
-  border-color: var(--green) !important;
-  color: var(--green) !important;
+  border-color: var(--success-color) !important;
+  color: var(--success-color) !important;
 }
 
 .validation-text {
   position: absolute;
   top: 90%;
-  right: var(--sizeSm);
+  right: var(--sp-sm-size);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fontSizeSmall);
-  color: var(--red);
-  padding: var(--sizeSm) var(--size-lg);
+  font-size: var(--font-sm-size);
+  color: var(--danger-color);
+  padding: var(--sp-sm-size) var(--sp-lg-size);
 }
 .bk-primary {
-  background-color: var(--primaryColor);
-  color: var(--white);
+  background-color: var(--primary-back-color);
+  color: var(--white-color);
 }
 .bk-success {
-  background-color: var( --green);
-  color: var(--white);
+  background-color: var( --success-color);
+  color: var(--white-color);
 }
 .bk-warning {
-  background-color: var(--yellow);
-  color: var(--white);
+  background-color: var(--warning-color);
+  color: var(--white-color);
 }
 .bk-danger {
-  background-color: var(--red);
-  color: var(--white);
+  background-color: var(--danger-color);
+  color: var(--white-color);
 }
 .bk-primary-light {
-  background-color: var(--primaryColor);
-  color: var(--white);
+  background-color: var(--primary-back-color);
+  color: var(--white-color);
 }
 .bk-success-light {
-  background-color: var(--green);
-  color: var(--white);
+  background-color: var(--success-color);
+  color: var(--white-color);
 }
 .bk-warning-light {
-  background-color: var(--yellow);
-  color: var(--white);
+  background-color: var(--warning-color);
+  color: var(--white-color);
 }
 .bk-danger-light {
-  background-color: var(--red);
-  color: var(--white);
+  background-color: var(--danger-color);
+  color: var(--white-color);
 }
 
 .btn-primary {
-  color: var(--white);
-  background-color:var(--primaryColor);
-  border-color:var(--primaryColor);
+  color: var(--white-color);
+  background-color:var(--primary-back-color);
+  border-color:var(--primary-back-color);
 }

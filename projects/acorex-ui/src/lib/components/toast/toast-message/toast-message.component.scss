@@ -1,4 +1,3 @@
-@import "../../../styles/themes";
 @import "../../../styles/mixins";
 
 .rtl {
@@ -9,7 +8,7 @@
 }
 .toast-container {
   overflow: hidden;
-  margin: var(--sizeSm) 0;
+  margin: var(--sp-sm-size) 0;
   box-shadow: -3px 3px 4px 0px var(--shadow);
   @include border-radius(var(--borderRadiusDefault));
   animation: slide-in-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -18,10 +17,10 @@
   header {
     display: flex;
     justify-content: space-between;
-    padding: var(--sizeSm) var(--sizeMd);
+    padding: var(--sp-sm-size) var(--sp-md-size);
   }
   article {
-    padding: var(--sizeMd);
+    padding: var(--sp-md-size);
     min-height: var(--baseControlsHeight);
     display: flex;
     align-items: center;

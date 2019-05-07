@@ -1,28 +1,27 @@
-@import "../../styles/themes";
 @import "../../styles/mixins";
 
 .upload-file-box {
   display: flex;
-  background: var(--white);
+  background: var(--white-color);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px 0;
   border-width: var(--borderWidth);
   border-style: solid;
-  border-color: var(--white);
+  border-color: var(--white-color);
   min-height: 200px;
   cursor: pointer;
   position: relative;
   @include border-radius(var(--borderRadiusDefault));
   border: var(--borderWidth) solid;
-  border-color: var(--borderColor);
+  border-color: var(--border-color);
   &:hover {
-    border-color: var(--primaryColor);
+    border-color: var(--primary-back-color);
     border-style: solid;
     @include transition(0.5s);
     .upload-content {
-      color: var(--primaryColor);
+      color: var(--primary-back-color);
     }
     .action-container {
       display: flex !important;
@@ -30,7 +29,7 @@
   }
   .upload-content {
     text-align: center;
-    color: var(--borderColor);
+    color: var(--border-color);
     i {
       font-size: 30px;
     }
@@ -50,7 +49,7 @@
     min-height: 200px;
   }
   .action-container {
-    background: rgba(var(--secondaryColor), 0.5);
+    background: rgba(var(--secondary-back-color), 0.5);
     min-height: 195px;
     display: none;
     flex-direction: row;
@@ -64,10 +63,9 @@
     right: 0;
   }
   .circle-button {
-    background: var(--white);
-    border: 1px solid;
-    border-color: var(--borderColor);
-    color: var(--borderColor);
+    background: var(--white-color);
+    border: 1px solid var(--border-color);
+    color: var(--border-color);
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -78,10 +76,9 @@
     align-items: center;
     margin-right: 10px;
     &:hover {
-      background: var(--primaryColor);
-      border-color: var(--primaryColor);
+      background: var(--primary-back-color);
       @include transition(0.3s);
-      color: var(--white);
+      color: var(--white-color);
     }
   }
 }
