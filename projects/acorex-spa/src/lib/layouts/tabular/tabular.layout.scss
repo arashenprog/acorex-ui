@@ -217,28 +217,28 @@ ax-side-menu {
   height: 84vh !important;
 }
 
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
+// ::-webkit-scrollbar-track {
+//   background-color: transparent;
+// }
 
-::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
-  background-color: transparent;
-}
+// ::-webkit-scrollbar {
+//   width: 9px;
+//   height: 9px;
+//   background-color: transparent;
+// }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--grey-dark);
-}
+// ::-webkit-scrollbar-thumb {
+//   background-color: var(--grey-dark-color);
+// }
 
-.tabs::-webkit-scrollbar {
-  height: 3px; // manage scrollbar width here
-}
+// .tabs::-webkit-scrollbar {
+//   height: 3px; // manage scrollbar width here
+// }
 
-.tabs::-webkit-scrollbar * {
-  background: transparent; // manage scrollbar background color here
-}
+// .tabs::-webkit-scrollbar * {
+//   background: transparent; // manage scrollbar background color here
+// }
 
-.tabs::-webkit-scrollbar-thumb {
-  background: var(--grey-dark) !important; // manage scrollbar thumb background color here
-}
+// .tabs::-webkit-scrollbar-thumb {
+//   background: var(--grey-dark-color) !important; // manage scrollbar thumb background color here
+// }

@@ -1,6 +1,6 @@
 import { AXErrorService } from '../core/error/error.service';
 import { Injectable } from '@angular/core';
-import { AXToastService } from '../components/toast/toast.service';
+import { AXToastService } from '../components/layout/toast/toast.service';
 
 @Injectable()
 export class AXDefaultErrorService extends AXErrorService {

@@ -1,0 +1,27 @@
+@import "../../../styles/mixins";
+
+ax-loading {
+    background: var(--white-color);
+    display: flex;
+    border: 1px solid var(--border-color);
+    @include border-radius(var(--border-radius-size));
+    height: 100%;
+
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        flex-direction: column;
+
+        span {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+
+    svg path,
+    svg rect {
+        fill: var(--primary-back-color);
+    }
+}

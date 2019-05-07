@@ -1,7 +1,7 @@
 import { Input, Output, EventEmitter, ContentChild, ViewChild, ElementRef } from "@angular/core";
 import { ButtonItem } from "./menu.class";
-import { AXValidationComponent } from '../components/validation/validation.component';
-import { IValidationRuleResult } from '../components/validation/validation.classs';
+import { AXValidationComponent } from '../components/form/validation/validation.component';
+import { IValidationRuleResult } from '../components/form/validation/validation.classs';
 
 
 export class PromisResult<T> {

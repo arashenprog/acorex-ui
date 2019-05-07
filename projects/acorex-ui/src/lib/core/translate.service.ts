@@ -1,4 +1,4 @@
-import { Inject, Injectable, Pipe, PipeTransform } from "@angular/core";
+import { Injectable, Pipe, PipeTransform } from "@angular/core";
 
 
 export type Lang = "fa" | "en";
