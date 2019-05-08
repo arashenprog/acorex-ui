@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { MenuItem } from "acorex-ui"
-import { AXNavMenuService } from '../../../services/nav-menu.service';
+import { AXNavMenuService } from '../../shared/services/nav-menu.service';
 
 
 @Component({

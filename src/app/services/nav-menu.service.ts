@@ -1,30 +1,37 @@
 import { Injectable } from '@angular/core';
-import { AXNavMenuService } from 'acorex-spa';
+
 import { PromisResult, MenuItem } from 'acorex-ui';
+import { AXNavMenuService } from 'acorex-spa';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
+
+    private mockItems:MenuItem[]=[
+        { name: "item1", text: "آیتم 1", id: "10", visible:true },
+        { name: "item2", text: "آیتم 2", id: "20", visible:true },
+        { name: "item3", text: "آیتم 3", id: "30", visible:true },
+        { name: "item4", text: "آیتم 4", id: "40", visible:true }
+    ]
+
     getItems(): PromisResult<MenuItem[]> {
         return new PromisResult((resolve) => {
-            let items: MenuItem[]=[];
-            items.push({ name: "item1", text: "آیتم 1", id: "10", visible:true });
-            items.push({ name: "item2", text: "آیتم 2", id: "20", visible:true });
-            items.push({ name: "item3", text: "آیتم 3", id: "30", visible:true });
-            items.push({ name: "item4", text: "آیتم 4", id: "40", visible:true });
-
-            resolve(items);
+            resolve(this.mockItems);
         });
     }
     getFavorites(): PromisResult<MenuItem[]> {
-        throw new Error("Method not implemented.");
+        return new PromisResult((resolve) => {
+            resolve(this.mockItems.slice(1,2));
+        });
     }
 
     setFavorites(menu: MenuItem, value: boolean): PromisResult<boolean> {
         throw new Error("Method not implemented.");
     }
 
-    serach(search: String): PromisResult<MenuItem[]> {
-        throw new Error("Method not implemented.");
+    serach(search: string): PromisResult<MenuItem[]> {
+        return new PromisResult((resolve) => {
+            resolve(this.mockItems.filter(c=>c.text.includes(search)));
+        });
     }
 
     clickItem(item: MenuItem): PromisResult<boolean> {

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { AXTabularModule } from "./layouts/tabular/tabular.module";
 import { AXPageComponent } from './layouts/shared/page.component';
 import { AXPageContentComponent } from './layouts/shared/content.component';
-import { AXNavMenuService } from './services/nav-menu.service';
+import { AXNavMenuService } from './layouts/shared/services/nav-menu.service';
 
 
 @NgModule({

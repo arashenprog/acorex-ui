@@ -6,6 +6,6 @@ export abstract class AXNavMenuService{
     abstract getFavorites():PromisResult<MenuItem[]>;
 
     abstract setFavorites(menu:MenuItem,value:boolean):PromisResult<boolean>;
-    abstract serach(search:String):PromisResult<MenuItem[]>;
+    abstract serach(text:string):PromisResult<MenuItem[]>;
     abstract clickItem(item:MenuItem):PromisResult<boolean>;
 }
