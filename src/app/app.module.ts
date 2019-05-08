@@ -4,9 +4,10 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AcoreXUIModule } from 'acorex-ui';
-import { AcorexSpaModule } from 'acorex-spa';
+import { AcorexSpaModule, AXNavMenuService } from 'acorex-spa';
 import { FormsModule } from '@angular/forms';
 import { TestPageComponent } from './test-page.component';
+import { NavMenuService } from './services/nav-menu.service';
 
 
 @NgModule({
@@ -21,6 +22,10 @@ import { TestPageComponent } from './test-page.component';
     {
       provide: "startUpTab",
       useValue: { content: TestPageComponent, title: "داشبورد", closable: false }
+    },
+    {
+      provide: AXNavMenuService,
+      useClass: NavMenuService
     }
   ],
   entryComponents:[TestPageComponent],

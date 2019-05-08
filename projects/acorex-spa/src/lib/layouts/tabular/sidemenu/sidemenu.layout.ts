@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { MenuItem } from "acorex-ui";
+import { MenuItem } from "acorex-ui"
+import { AXNavMenuService } from '../../../services/nav-menu.service';
 
 
 @Component({
@@ -8,117 +9,103 @@ import { MenuItem } from "acorex-ui";
 })
 export class AXSideMenuComponent {
 
+
+
+  constructor(private navMenuService: AXNavMenuService) {
+
+  }
+
   searchText: string;
-
-  constructor() {
-  
-  }
-
-  get items(): MenuItem[] {
-    if (this.searchText) {
-      return this.search(this.searchText);
-    }
-    else {
-      if (this.favoriteCheck)
-        return this.favoriteItems;
-      else
-        return this.allItems;
-    }
-  }
-
-  favoriteItems: MenuItem[] = [
-    {
-      id: "121",
-      text: "ساب ساب 1",
-      items: []
-    },
-    {
-      id: "122",
-      text: "ساب ساب 2",
-      items: []
-    },
-  ]
-
-
-
-  allItems: MenuItem[] = [
-    {
-      id: "1",
-      text: "رووت 1",
-      icon: "fas fa-store-alt",
-      items: [
-        {
-          id: "11",
-          text: "ساب 1"
-        },
-        {
-          id: "12",
-          text: "ساب 2",
-          items: [
-            {
-              id: "121",
-              text: "ساب ساب 1",
-              type: "form"
-            },
-          ]
-        },
-      ]
-    },
-    {
-      id: "2",
-      text: "رووت 2",
-      icon: "fas fa-archive"
-    },
-    {
-      id: "3",
-      text: "رووت 3",
-      icon: "fas fa-book"
-
-    },
-    {
-      id: "4",
-      text: "رووت 4",
-      icon: "fas fa-suitcase"
-
-    },
-    {
-      id: "5",
-      text: "رووت 5",
-      icon: "fas fa-chart-pie"
-
-    },
-  ]
-
-
-  private search(text: string): MenuItem[] {
-    let result = new Array<MenuItem>();
-    this.applySearch(text, this.allItems, result);
-    return result;
-  }
-
-  private applySearch(text: string, items: MenuItem[], result: MenuItem[]): void {
-    if (items && items.length) {
-      let found = items.filter(c => c.text.indexOf(text) >= 0 && c.type == "form");
-      found.forEach(d => {
-        if (!result.find(z => z.id == d.id))
-          result.push(d);
-      });
-      items.forEach(i => {
-        this.applySearch(text, i.items, result);
-      });
-    }
-  }
-
+  current: MenuItem = null;
   favoriteCheck: boolean = false;
+  private items: MenuItem[];
+  private allItems: MenuItem[] = [];
+  currentItems: MenuItem[] = []
+
+
+  // get currentItems(): Promise<MenuItem[]> {
+  //   return new Promise((resolve, reject) => {
+  //     if (this.searchText) {
+  //       return this.search(this.searchText);
+  //     } else {
+  //       if (this.favoriteCheck) resolve(this.favoriteItems);
+  //       else return resolve(this.items.filter(c => c.visible));
+  //     }
+  //   });
+  // }
+
+  favoriteItems: MenuItem[] = []
+
+  ngOnInit() {
+    this.navMenuService.getItems().then(c => {
+      debugger;
+      this.allItems = c;
+      this.refresh();
+    })
+    this.navMenuService.getFavorites().then(c => {
+      this.allItems = c;
+    })
+  }
+
+  private refresh() {
+    this.items = this.allItems.filter(c => c.parentId == null).slice();
+    if (this.searchText) {
+      this.search(this.searchText).then(d => {
+        this.currentItems = d;
+      });
+    } else {
+      if (this.favoriteCheck)
+        this.currentItems = this.favoriteItems.slice();
+      else
+        this.currentItems = this.items.filter(c => c.visible).slice();
+    }
+  }
+
+  onItemClick(item: MenuItem) {
+    this.navMenuService.clickItem(item)
+  }
+
+
+  onBackClick() {
+    if (this.current && this.current.parentId) {
+      this.items = this.allItems
+        .filter(c => c.parentId == this.current.parentId)
+        .slice();
+      this.current = this.allItems.find(
+        c => (c.id == this.current.parentId)
+      );
+    } else {
+      this.current = null;
+      this.refresh();
+    }
+  }
+
+  private search(text: string): Promise<MenuItem[]> {
+    return new Promise((resolve, reject) => {
+      this.navMenuService.serach(text).then(c => {
+        resolve(c);
+      });
+    });
+  }
+
   onFavoriteClick(e) {
     this.favoriteCheck = !this.favoriteCheck;
   }
 
 
-  onSearch(e) {
-
+  onToggleFav(item: MenuItem) {
+    if (!item.data)
+      item.data = {};
+    item.data.fav = item.data.fav == true ? false : true
+    if (item.data.fav) {
+      if (!this.favoriteItems.some(c => c.name == item.name)) {
+        this.favoriteItems.push(item);
+      }
+    }
+    else {
+      this.favoriteItems = this.favoriteItems.filter(c => c.name != item.name);
+    }
+    this.navMenuService.setFavorites(item, item.data.fav);
   }
-
-
 
 }

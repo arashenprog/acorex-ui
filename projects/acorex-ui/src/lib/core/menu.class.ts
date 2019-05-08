@@ -1,5 +1,6 @@
 export class BaseMenuItem {
   id?: string;
+  parentId?: string;
   name?: string;
   text: string;
   icon?: string;

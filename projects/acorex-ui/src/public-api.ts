@@ -10,6 +10,7 @@ export * from "./lib/core/translate.service";
 export * from "./lib/core/event.service";
 
 
+export * from "./lib/core/base.class";
 export * from "./lib/core/menu.class";
 export * from "./lib/core/select.class";
 export * from "./lib/components/form/validation/validation.classs";
