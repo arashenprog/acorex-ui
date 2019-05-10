@@ -26,6 +26,7 @@ ax-side-menu {
   background: var(--white-color);
   position: relative;
   height: 100%;
+  min-width: 260px;
   overflow: hidden;
   border-left: 1px solid var(--border-color);
   .user-box {

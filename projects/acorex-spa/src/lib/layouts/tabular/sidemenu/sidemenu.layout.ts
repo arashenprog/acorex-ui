@@ -88,8 +88,14 @@ export class AXSideMenuComponent {
     });
   }
 
+  onSearch(e)
+  {
+    this.refresh();
+  }
+
   onFavoriteClick(e) {
     this.favoriteCheck = !this.favoriteCheck;
+    this.refresh();
   }
 
 
