@@ -7,7 +7,7 @@
 </div>
 <div class="side-toolbar">
   <div class="search-bar">
-    <input type="text" placeholder="جستجو ..." [(ngModel)]="searchText" (change)="onSearch($event)" />
+    <input type="text" placeholder="جستجو ..." (input)="onSearchChanged($event.target.value)"/>
     <i class="fas fa-search"></i>
   </div>
   <div class="fav-button" *ngIf="!searchText">
@@ -18,13 +18,12 @@
 </div>
 <ul class="side-menu">
   <li *ngIf="current && !searchText && !favoriteCheck"><a (click)="onBackClick()"><i class="fa fa-angle-right"></i><span>بازگشت</span></a></li>
-  <li *ngFor="let item of currentItems" class="left-animation">
+  <li *ngFor="let item of displayItems" class="left-animation">
     <a (dblclick)="onItemClick(item)"  *ngIf="item.visible"  >
       <i class="fa  {{item.icon ? item.icon: 'fa-stop'}}"></i>
       <span>{{item.text}}</span>
-      <!-- <i class="fa fa-angle-left" *ngIf="item.data.arrow"></i> -->
-      <!-- *ngIf="!item.data.arrow" -->
-      <!-- <i class="fa " [ngClass]="item.data.fav ? 'fas fa-star' : 'far fa-star'"  (click)="onToggleFav(item)"></i> -->
+      <i class="fa fa-angle-left" *ngIf="item.isRoot" ></i>
+      <i class="fav" [ngClass]="item.isFav ? 'fas fa-star' : 'far fa-star'"  (click)="onToggleFav(item)" *ngIf="!item.isRoot"></i>
     </a>
   </li>
 </ul>
