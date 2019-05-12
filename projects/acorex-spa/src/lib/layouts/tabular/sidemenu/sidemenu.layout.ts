@@ -49,7 +49,7 @@ export class AXSideMenuComponent {
   private mapToDisplay(item: MenuItem) {
     let i: any = Object.assign({}, item);
     i.isRoot = this.allItems.some(c => c.parentId == item.id);
-    i.isFav = this.allItems.some(c => c.id == item.id);
+    i.isFav = this.favoriteItems.some(c => c.id == item.id);
     return i;
   }
 
@@ -81,7 +81,6 @@ export class AXSideMenuComponent {
   }
 
   onBackClick() {
-    debugger;
     if (this.current && this.current.parentId) {
       this.items = this.allItems
         .filter(c => c.parentId == this.current.parentId)
@@ -105,11 +104,9 @@ export class AXSideMenuComponent {
   }
 
 
-  onToggleFav(item: MenuItem) {
-    if (!item.data)
-      item.data = {};
-    item.data.fav = item.data.fav == true ? false : true
-    if (item.data.fav) {
+  onToggleFav(item: any) {
+    item.isFav = !item.isFav;
+    if (item.isFav) {
       if (!this.favoriteItems.some(c => c.name == item.name)) {
         this.favoriteItems.push(item);
       }
@@ -117,7 +114,7 @@ export class AXSideMenuComponent {
     else {
       this.favoriteItems = this.favoriteItems.filter(c => c.name != item.name);
     }
-    this.navMenuService.setFavorites(item, item.data.fav);
+    this.navMenuService.setFavorites(item, item.isFav);
   }
 
 

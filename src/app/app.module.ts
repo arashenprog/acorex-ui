@@ -18,7 +18,7 @@ import { NavMenuService } from './services/nav-menu.service';
     AppRoutingModule,
     AcoreXUIModule,
     AcorexSpaModule],
-  providers: [
+    providers: [
     {
       provide: "startUpTab",
       useValue: { content: TestPageComponent, title: "داشبورد", closable: false }

@@ -26,10 +26,16 @@ import { AXValidationModule } from "./components/form/validation/validation.modu
 import { AXCoreModule } from './core/core.module';
 import { AXToastModule } from './components/layout/toast/toast.module';
 import { AXHttpModule } from './core/http/http.module';
-import { AXErrorService } from './core/error/error.service';
-import { AXDefaultErrorService } from './config/default-error.service';
+
 import { AXTabPageModule } from './components/nav/api';
 import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme-wrapper.component';
+//
+import { AX_HTTP_ERROR_INTERCEPTOR } from './core/http/api';
+import { AXDefaultHttpErrorInterceptor } from './config/default-http-error.interceptor';
+import { AX_ERROR_DISPLAY_INTERCEPTOR } from './core/error/error.service';
+import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interceptor';
+//
+
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -95,8 +101,12 @@ import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme
   ],
   providers: [
     {
-      provide: AXErrorService,
-      useClass: AXDefaultErrorService
+      provide: AX_ERROR_DISPLAY_INTERCEPTOR,
+      useClass: AXDefaultErrorDisplayInterceptor
+    },
+    {
+      provide:  AX_HTTP_ERROR_INTERCEPTOR, 
+      useClass: AXDefaultHttpErrorInterceptor
     }
   ]
 })

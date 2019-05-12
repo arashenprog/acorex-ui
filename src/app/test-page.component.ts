@@ -63,7 +63,7 @@ export class TestPageComponent  extends AXBasePageComponent {
         debugger;
         this.toast.success("عملیات با موفقیت انجام شد", {
           title : "تست",
-          timeOut: 50000,
+          timeOut: 3000,
           closeable: true
         });
         this.form.validate().then(c => {
@@ -77,7 +77,7 @@ export class TestPageComponent  extends AXBasePageComponent {
         });
       }
       onDialogClick() {
-        this.http.get("https://jsonplaceholder.typicode.com/todos", {
+        this.http.get("https://jsonplaceholder.typicodes.com/todos", {
           params: { name: "arash" }
         })
           .result(c => {
@@ -85,7 +85,7 @@ export class TestPageComponent  extends AXBasePageComponent {
           }).complete(() => {
             console.log("complete");
           })
-        this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
+        //this.dialog.alert("هشدار", "شما روی کلید نمایش کلیک کردید");
       }
       onPopupClick() {
         this.tab.open(TestPageComponent, "عنوان");
