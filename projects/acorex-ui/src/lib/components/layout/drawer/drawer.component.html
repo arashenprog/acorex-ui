@@ -1,0 +1,12 @@
+<div
+  [ngClass]="{
+    'from-right': _isRight,
+    'from-left': !_isRight,
+    'float-none': !float 
+  }"
+  class="drawer-container"
+  *ngIf="show"
+ @openDrawer
+>
+  <ng-content></ng-content>
+</div>

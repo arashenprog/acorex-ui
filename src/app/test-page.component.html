@@ -2,11 +2,11 @@
   <content>
     <ax-container>
       <ax-validation-form #form>
-        <ax-row>
-          <ax-col col-sm="1"></ax-col>
-          <ax-col col-sm="10">
             <br />
             <br />
+            <ax-drawer [show]="drawerOpen" direction="right" [float]="true" >
+              <h1>Test</h1>
+            </ax-drawer>
             <ax-row>
               <ax-col col-sm="6">
                 <ax-select-box label="انتخاب" [items]="defaultBindingsList"></ax-select-box>
@@ -83,9 +83,6 @@
             <ax-menu [items]="menuItems"></ax-menu>
             <br />
             <br />
-          </ax-col>
-          <ax-col col-sm="1"></ax-col>
-        </ax-row>
       </ax-validation-form>
     </ax-container>
   </content>

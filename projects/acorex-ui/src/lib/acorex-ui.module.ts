@@ -36,6 +36,7 @@ import { AX_ERROR_DISPLAY_INTERCEPTOR } from './core/error/error.service';
 import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interceptor';
 //
 
+import { AXDrawerModule } from './components/layout/drawer/drawer.module';
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -66,6 +67,7 @@ import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interce
     AXUploadFileModule,
     AXValidationModule,
     AXTabPageModule,
+    AXDrawerModule,
     //
     AXHttpModule
   ],
@@ -96,6 +98,7 @@ import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interce
     AXUploadFileModule,
     AXValidationModule,
     AXTabPageModule,
+    AXDrawerModule,
     //
     AXHttpModule
   ],
