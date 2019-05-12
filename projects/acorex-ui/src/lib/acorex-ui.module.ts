@@ -30,6 +30,7 @@ import { AXErrorService } from './core/error/error.service';
 import { AXDefaultErrorService } from './config/default-error.service';
 import { AXTabPageModule } from './components/nav/api';
 import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme-wrapper.component';
+import { AXDrawerModule } from './components/layout/drawer/drawer.module';
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -60,6 +61,7 @@ import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme
     AXUploadFileModule,
     AXValidationModule,
     AXTabPageModule,
+    AXDrawerModule,
     //
     AXHttpModule
   ],
@@ -90,6 +92,7 @@ import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme
     AXUploadFileModule,
     AXValidationModule,
     AXTabPageModule,
+    AXDrawerModule,
     //
     AXHttpModule
   ],
