@@ -8,9 +8,10 @@ import { AcorexSpaModule, AXNavMenuService } from 'acorex-spa';
 import { FormsModule } from '@angular/forms';
 import { TestPageComponent } from './test-page.component';
 import { NavMenuService } from './services/nav-menu.service';
-import { AX_HTTP_ERROR_INTERCEPTOR} from 'acorex-ui';
+import { AXHeaderBarMenuService } from 'acorex-spa';
+import { HeaderBarMenuService } from './services/header-bar-menu.service';
 
-class MyIn implements AXHttpErrorService {
+export class MyIn implements AXHttpErrorService {
   intercept(error: IHttpError) {
     alert(error.message);
   }
@@ -34,9 +35,8 @@ class MyIn implements AXHttpErrorService {
       useClass: NavMenuService
     },
     {
-      provide: AX_HTTP_ERROR_INTERCEPTOR,
-      useValue: new MyIn(),
-      multi:true
+      provide: AXHeaderBarMenuService,
+      useClass: HeaderBarMenuService
     }
   ],
   entryComponents: [TestPageComponent],

@@ -254,13 +254,13 @@ $sizes: (
 }
 
 .bk-danger {
-    background-color: var(--danger-color);
-    color: var(--white-color);
+    background-color: var(--danger-color) !important;
+    color: var(--white-color) !important;
 }
 
 .bk-primary-light {
-    background-color: var(--primary-light-color);
-    color: var(--white-color);
+    background-color: var(--primary-light-color) !important;
+    color: var(--white-color) !important;
 }
 
 .bk-success-light {
@@ -285,7 +285,7 @@ $sizes: (
 }
 
 .circle-button {
-    background: var(--white-color);
+    background-color: var(--white-color);
     border: 1px solid var(--border-color);
     color: var(--border-color);
     width: 40px;

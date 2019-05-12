@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import {
   IValidationRuleResult,
   DialogService,
-  PopupService,
+  AXPopupService,
   AXToastService,
   AXHttpService,
   AXValidationFormComponent,
@@ -16,7 +16,7 @@ import {
 export class TestPageComponent  extends AXBasePageComponent {
     constructor(
         private dialog: DialogService,
-        private popup: PopupService,
+        private popup: AXPopupService,
         private tab: AXTabPageService,
         private toast: AXToastService,
         private http: AXHttpService

@@ -1,4 +1,4 @@
-import { Injectable, Type, ComponentRef } from "@angular/core";
+import { Injectable,  ComponentRef } from "@angular/core";
 import { InjectionService } from "../../../core/injection.service";
 import { AXPopupComponent } from "./popup.component";
 
@@ -17,7 +17,7 @@ export interface ClosedEventArgs {
   data?: any;
 }
 
-export class PopupResult {
+export class AXPopupResult {
   private _executor: (
     closing: (e?: ClosingAction) => void,
     closed: (e?: ClosingEventArgs) => void
@@ -38,11 +38,11 @@ export class PopupResult {
   private closingAction: (e?: ClosingAction) => void;
   private closedAction: (e?: ClosedEventArgs) => void;
 
-  closed(action: (e?: ClosedEventArgs) => void): PopupResult {
+  closed(action: (e?: ClosedEventArgs) => void): AXPopupResult {
     this.closedAction = action;
     return this;
   }
-  closing(action: (e?: ClosingAction) => void): PopupResult {
+  closing(action: (e?: ClosingAction) => void): AXPopupResult {
     this.closingAction = action;
     return this;
   }
@@ -53,12 +53,12 @@ export class PopupResult {
 }
 
 @Injectable({ providedIn: "root" })
-export class PopupService {
+export class AXPopupService {
   private stack: Array<AXPopupComponent> = [];
 
   constructor(private injection: InjectionService) {}
 
-  open(content: any, title: string): PopupResult;
+  open(content: any, title: string): AXPopupResult;
   open(
     content: any,
     options?: {
@@ -68,9 +68,9 @@ export class PopupService {
       size?: "sm" | "md" | "lg" | "full";
       data?: any;
     }
-  ): PopupResult;
+  ): AXPopupResult;
 
-  open(arg1, arg2): PopupResult {
+  open(arg1, arg2): AXPopupResult {
     const options: any = { closable: true, size: "md", maximizable: false };
     if (typeof arg2 == "string") {
       options.title = arg2;
@@ -99,7 +99,7 @@ export class PopupService {
         popup.width = 100;
         break;
     }
-    return new PopupResult(popup, (closing, closed) => {
+    return new AXPopupResult(popup, (closing, closed) => {
       popup.close.subscribe((e: ClosingEventArgs) => {
         if (popup.content.onClosing) {
           e = Object.assign({ cancel: false }, e);

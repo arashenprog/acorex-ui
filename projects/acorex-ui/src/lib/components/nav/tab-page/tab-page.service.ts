@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { ClosingEventArgs, ClosedEventArgs, ClosingAction } from "../popup/popup.service";
 
-export interface ITabPage {
+export interface AXTabPage {
     title: string;
     closable: boolean;
     content: any;
@@ -14,16 +14,16 @@ export interface ITabPage {
     send?: Function;
 }
 
-export interface ITabPageMessage {
-    tab: ITabPage;
+export interface AXTabPageMessage {
+    tab: AXTabPage;
     data: any;
 }
 
 
 
-export class TabPageResult {
+export class AXTabPageResult {
     private _executor: (closing: (e?: ClosingAction) => void, closed: (e?: ClosedEventArgs) => void) => void;
-    constructor(private tab: ITabPage,
+    constructor(private tab: AXTabPage,
         executor: (closing: (e?: ClosingAction) => void, closed: (e?: ClosingEventArgs) => void) => void
     ) {
         this.tab = tab;
@@ -38,11 +38,11 @@ export class TabPageResult {
     private closedAction: (e?: ClosedEventArgs) => void;
 
 
-    closed(action: (e?: ClosedEventArgs) => void): TabPageResult {
+    closed(action: (e?: ClosedEventArgs) => void): AXTabPageResult {
         this.closedAction = action;
         return this;
     }
-    closing(action: (e?: ClosingAction) => void): TabPageResult {
+    closing(action: (e?: ClosingAction) => void): AXTabPageResult {
         this.closingAction = action;
         return this;
     }
@@ -55,24 +55,24 @@ export class TabPageResult {
 @Injectable({ providedIn: "root" })
 export class AXTabPageService {
 
-    tabs: ITabPage[] = new Array<ITabPage>();
+    tabs: AXTabPage[] = new Array<AXTabPage>();
 
 
-    opened: EventEmitter<ITabPage> = new EventEmitter<ITabPage>();
-    closed: EventEmitter<ITabPage> = new EventEmitter<ITabPage>();
-    received: EventEmitter<ITabPageMessage> = new EventEmitter<ITabPageMessage>();
+    opened: EventEmitter<AXTabPage> = new EventEmitter<AXTabPage>();
+    closed: EventEmitter<AXTabPage> = new EventEmitter<AXTabPage>();
+    received: EventEmitter<AXTabPageMessage> = new EventEmitter<AXTabPageMessage>();
 
 
     constructor() {
 
     }
 
-    open(content: any, title: string): TabPageResult;
-    open(content: any, title: string, data?: any): TabPageResult;
-    open(options: { content: any, title: string, closable?: boolean, data?: any }): TabPageResult;
+    open(content: any, title: string): AXTabPageResult;
+    open(content: any, title: string, data?: any): AXTabPageResult;
+    open(options: { content: any, title: string, closable?: boolean, data?: any }): AXTabPageResult;
 
     open(arg1, arg2?, arg3?) {
-        let newTab: ITabPage;
+        let newTab: AXTabPage;
         if (typeof (arg1) === 'object') {
             const options = Object.assign({ closable: true }, arg1);
             newTab = {
@@ -98,7 +98,7 @@ export class AXTabPageService {
         newTab.send = (data: any) => {
             this.sendMessage({ tab: newTab, data: data });
         }
-        return new TabPageResult(newTab, (closing, closed) => {
+        return new AXTabPageResult(newTab, (closing, closed) => {
 
             newTab.closed = (e) => {
                 if (closed) closed(e);
@@ -116,7 +116,7 @@ export class AXTabPageService {
         });
     }
 
-    close(tab: ITabPage, e: ClosingEventArgs) {
+    close(tab: AXTabPage, e: ClosingEventArgs) {
         if (tab.content.onClosing) {
             e = Object.assign({ cancel: false }, e);
             let z: ClosingAction = {
@@ -150,7 +150,7 @@ export class AXTabPageService {
         }
     }
 
-    private doCloseAction(tab: ITabPage, e: ClosingEventArgs): void {
+    private doCloseAction(tab: AXTabPage, e: ClosingEventArgs): void {
 
         this.tabs = this.tabs.filter(c => c.id != tab.id);
         let prev = this.tabs.filter(c => c.id < tab.id).reverse()[0];
@@ -159,7 +159,7 @@ export class AXTabPageService {
         if (tab.closed) tab.closed(e);
     }
 
-    active(tab: ITabPage) {
+    active(tab: AXTabPage) {
         if (tab) {
             tab.active = true;
             this.tabs.filter(c => c.id != tab.id).forEach(t => {
@@ -172,7 +172,7 @@ export class AXTabPageService {
         }
     }
 
-    sendMessage(message: ITabPageMessage) {
+    sendMessage(message: AXTabPageMessage) {
         this.received.emit(message);
     }
 

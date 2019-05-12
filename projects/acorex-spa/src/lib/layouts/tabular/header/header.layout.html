@@ -12,18 +12,14 @@
         </div>
     </div>
     <div class="panel-control">
-        <button type="button" class="circle-button" (click)="config($event)">
-            <i class="fas fa-cogs"></i>
-        </button>
-        <button type="button" class="circle-button" (click)="fullScreen($event)">
-            <i class="fas fa-expand"></i>
-        </button>
-        <button type="button" class="circle-button">
-            <i class="fas fa-comment-alt"></i>
-        </button>
-        <button type="button" class="circle-button">
-            <i class="fas fa-power-off"></i>
-        </button>
+        <ng-container *ngFor="let b of headerItems">
+            <button type="button" class="circle-button {{b.style}}"  [attr.title]="b.tooltip" (click)="onHeaderClick(b)">
+                <i [class]="b.icon"></i>
+            </button>
+        </ng-container>
+
+
+      
 
     </div>
 </div>

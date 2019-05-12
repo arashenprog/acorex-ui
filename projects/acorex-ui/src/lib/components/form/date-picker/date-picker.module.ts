@@ -10,4 +10,4 @@ import { AXValidationModule } from '../validation/validation.module';
   exports: [AXDatePickerComponent],
   providers: []
 })
-export class AXDataPickerModule {}
+export class AXDatePickerModule {}

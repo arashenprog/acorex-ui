@@ -1,6 +1,6 @@
 import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AXTabPageService, ITabPage, ITabPageMessage } from './tab-page.service';
+import { AXTabPageService, AXTabPage, AXTabPageMessage } from './tab-page.service';
 import { ClosingEventArgs } from '../popup/popup.service';
 
 
@@ -19,7 +19,7 @@ export class AXTabPageRendererComponent {
         private resolver: ComponentFactoryResolver,
         tabService: AXTabPageService,
         titleService: Title) {
-        tabService.opened.subscribe((tab: ITabPage) => {
+        tabService.opened.subscribe((tab: AXTabPage) => {
             this.isBusy = tab.isBusy;
             this.childs.forEach(v => {
                 v.hostView.rootNodes[0].hidden = true;
@@ -44,12 +44,12 @@ export class AXTabPageRendererComponent {
             }
             titleService.setTitle(tab.title);
         });
-        tabService.closed.subscribe((tab: ITabPage) => {
+        tabService.closed.subscribe((tab: AXTabPage) => {
             let com = this.childs.find(c => c.id == tab.id);
             com.destroy();
             this.childs = this.childs.filter(c => c.id != tab.id);
         });
-        tabService.received.subscribe((m: ITabPageMessage) => {
+        tabService.received.subscribe((m: AXTabPageMessage) => {
             let com = this.childs.find(c => c.id == m.tab.id);
             if (com)
                 com.instance.onReceiveData(m.data);

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AXDialogComponent } from './dialog.component';
-import { PopupService } from '../popup/popup.service';
+import { AXPopupService } from '../popup/popup.service';
 
 export class DialogAlertResult {
     private _executor: (close: (e?: any) => void) => void;
@@ -56,7 +56,7 @@ export class DialogConfirmResult {
 export class DialogService 
 {
     
-    constructor(private popupService: PopupService) {
+    constructor(private popupService: AXPopupService) {
 
     }
 

@@ -8,7 +8,7 @@ import { AXCarouselModule } from "./components/layout/carousel/carousel.module";
 import { AXCheckBoxModule } from "./components/form/checkbox/checkbox.module";
 import { AXContainerModule } from "./components/layout/container/container.module";
 import { AXDataGridModule } from "./components/data-grid/datagrid.module";
-import { AXDataPickerModule } from "./components/form/date-picker/data-picker.module";
+import { AXDatePickerModule } from "./components/form/date-picker/date-picker.module";
 import { AXGridLayoutModule } from "./components/layout/grid-layout/grid.layout.module";
 import { AXImageViewModule } from "./components/layout/image-view/image-view.module";
 import { AXLoadingModule } from "./components/layout/loading/loading.module";
@@ -50,7 +50,7 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
     AXCheckBoxModule,
     AXContainerModule,
     AXDataGridModule,
-    AXDataPickerModule,
+    AXDatePickerModule,
     AXGridLayoutModule,
     AXImageViewModule,
     AXLoadingModule,
@@ -81,7 +81,7 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
     AXCheckBoxModule,
     AXContainerModule,
     AXDataGridModule,
-    AXDataPickerModule,
+    AXDatePickerModule,
     AXGridLayoutModule,
     AXImageViewModule,
     AXLoadingModule,
@@ -104,13 +104,11 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
   providers: [
     {
       provide: AX_ERROR_DISPLAY_INTERCEPTOR,
-      useClass: AXDefaultErrorDisplayInterceptor,
-      multi:true
+      useClass: AXDefaultErrorDisplayInterceptor
     },
     {
       provide:  AX_HTTP_ERROR_INTERCEPTOR, 
-      useClass: AXDefaultHttpErrorInterceptor,
-      multi:true
+      useClass: AXDefaultHttpErrorInterceptor
     }
   ]
 })

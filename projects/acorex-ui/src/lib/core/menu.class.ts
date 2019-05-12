@@ -1,12 +1,14 @@
 export class BaseMenuItem {
   id?: string;
   name?: string;
-  text: string;
+  text?: string;
+  tooltip?: string;
   icon?: string;
   visible?: boolean = true;
   disable?: boolean = false;
   type?: string = "primary";
   data?: any;
+  style?:string;
 }
 
 export class MenuItem extends BaseMenuItem {
