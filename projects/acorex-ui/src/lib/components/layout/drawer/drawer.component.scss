@@ -12,7 +12,14 @@
   -o-box-shadow: 0px 0px 8px 0px var(--border-color);
   overflow-y: auto;
 }
-.fromRight {
+.from-right {
   right: 0 !important;
   left: initial !important;
+}
+.from-left {
+  right: initial !important;
+  left: 0 !important;
+}
+.float-none {
+  position: relative !important;
 }
