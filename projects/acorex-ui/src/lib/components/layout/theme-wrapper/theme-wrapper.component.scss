@@ -301,5 +301,6 @@ $sizes: (
     &:hover {
         background: var(--primary-color);
         color: var(--white-color);
+        border-color: var(--primary-color) !important;
     }
 }
