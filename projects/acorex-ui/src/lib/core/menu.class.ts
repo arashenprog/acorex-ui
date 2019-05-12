@@ -1,6 +1,5 @@
 export class BaseMenuItem {
   id?: string;
-  parentId?: string;
   name?: string;
   text: string;
   icon?: string;
@@ -12,6 +11,7 @@ export class BaseMenuItem {
 
 export class MenuItem extends BaseMenuItem {
   items?: MenuItem[];
+  parentId?: string;
 }
 
 export class ButtonItem extends BaseMenuItem {

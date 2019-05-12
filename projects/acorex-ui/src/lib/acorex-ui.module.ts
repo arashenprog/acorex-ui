@@ -35,7 +35,6 @@ import { AXDefaultHttpErrorInterceptor } from './config/default-http-error.inter
 import { AX_ERROR_DISPLAY_INTERCEPTOR } from './core/error/error.service';
 import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interceptor';
 //
-
 import { AXDrawerModule } from './components/layout/drawer/drawer.module';
 
 @NgModule({
@@ -105,11 +104,13 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
   providers: [
     {
       provide: AX_ERROR_DISPLAY_INTERCEPTOR,
-      useClass: AXDefaultErrorDisplayInterceptor
+      useClass: AXDefaultErrorDisplayInterceptor,
+      multi:true
     },
     {
       provide:  AX_HTTP_ERROR_INTERCEPTOR, 
-      useClass: AXDefaultHttpErrorInterceptor
+      useClass: AXDefaultHttpErrorInterceptor,
+      multi:true
     }
   ]
 })
