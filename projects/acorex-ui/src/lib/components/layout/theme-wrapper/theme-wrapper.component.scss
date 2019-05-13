@@ -10,66 +10,46 @@ $success:#2e933c;
 $warning:#faa916;
 $info:#2774cc;
 //
-$colors: (
-    white:$white,
-    black:#000,
-    danger:(
-        "":$danger,
-        light:lighten($danger, 15%),
-    ),
-    success:(
-        "":$success,
-        light:lighten($success, 15%),
-    ),
-    warning:(
-        "":$warning,
-        light:lighten($warning, 15%),
-    ),
-    info:(
-        "":$info,
-        light:lighten($info, 15%),
-    ),
-    gray:(
-        "":$gray,
-        light:lighten($gray, 15%),
-        dark:darken($gray, 15%)
-    ),
-    primary: (
-        "":$primary,
-        fore: $white,
-        light: lighten($primary, 15%),
-        dark: darken($primary, 15%),
-        trans: transparentize($primary, 0.5)
-    ),
-    secondary: (
-        "": $secondary,
-        fore:$white,
-        light: lighten($secondary, 15%),
-        dark: darken($secondary, 15%),
-        trans: transparentize($secondary, 0.5)
-    ),
-    border:$gray,
-    outline:$primary
-);
+$colors: (white:$white,
+black:#000,
+danger:("":$danger,
+light:lighten($danger, 15%),
+),
+success:("":$success,
+light:lighten($success, 15%),
+),
+warning:("":$warning,
+light:lighten($warning, 15%),
+),
+info:("":$info,
+light:lighten($info, 15%),
+),
+gray:("":$gray,
+light:lighten($gray, 15%),
+dark:darken($gray, 15%)),
+primary: ("":$primary,
+fore: $white,
+light: lighten($primary, 15%),
+dark: darken($primary, 15%),
+trans: transparentize($primary, 0.5)),
+secondary: ("": $secondary,
+fore:$white,
+light: lighten($secondary, 15%),
+dark: darken($secondary, 15%),
+trans: transparentize($secondary, 0.5)),
+border:$gray,
+outline:$primary);
 
-$sizes: (
-    sp :(
-        sm:5px,
-        md:10px,
-        lg:15px,
-        xl:20px
-    ),
-    font :
-    (
-        sm:0.75em,
-        md: 1em,
-        lg: 1.25em,
-        xl:1.5em
-    ),
-    border:(
-        width:1px,
-        radius:5px
-    ),
+$sizes: (sp :(sm:5px,
+md:10px,
+lg:15px,
+xl:20px),
+font : (sm:0.75em,
+md: 1em,
+lg: 1.25em,
+xl:1.5em),
+border:(width:1px,
+radius:5px),
 );
 
 :root {
@@ -83,6 +63,7 @@ $sizes: (
                 @if $subname=="" {
                     --#{$name}-#{$color-suffix}: #{$variant};
                 }
+
                 @else {
                     --#{$name}-#{$subname}-#{$color-suffix}: #{$variant};
                 }
@@ -239,18 +220,18 @@ $sizes: (
 }
 
 .bk-primary {
-    background-color: var(--primary-color);
-    color: var(--white-color);
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
 }
 
 .bk-success {
-    background-color: var(--success-color);
-    color: var(--white-color);
+    background-color: var(--success-color) !important;
+    color: var(--white-color) !important;
 }
 
 .bk-warning {
-    background-color: var(--warning-color);
-    color: var(--white-color);
+    background-color: var(--warning-color) !important;
+    color: var(--white-color) !important;
 }
 
 .bk-danger {
@@ -286,7 +267,8 @@ $sizes: (
 
 .circle-button {
     background-color: var(--white-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid;
+    border-color: inherit;
     color: var(--border-color);
     width: 40px;
     height: 40px;
@@ -299,8 +281,9 @@ $sizes: (
     margin-right: 10px;
 
     &:hover {
-        background: var(--primary-color);
+        background-color: var(--primary-color);
         color: var(--white-color);
-        border-color: var(--primary-color) !important;
+        border-width: 1px !important;
+        border-color: transparent !important;
     }
 }

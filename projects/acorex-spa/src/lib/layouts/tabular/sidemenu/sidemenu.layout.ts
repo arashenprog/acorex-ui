@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from "@angular/core";
 import { MenuItem } from "acorex-ui"
 import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 import { AXNavMenuService } from '../../shared/services/nav-menu.service';
@@ -9,6 +9,8 @@ import { InternalFormsSharedModule } from '@angular/forms/src/directives';
 @Component({
   selector: "ax-side-menu",
   templateUrl: "./sidemenu.layout.html",
+  styleUrls: ["./sidemenu.layout.scss"],
+  encapsulation:ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXSideMenuComponent {
@@ -74,8 +76,8 @@ export class AXSideMenuComponent {
         .slice();
       this.refresh();
     } else {
-      this.navMenuService.clickItem(item).then(c=>{
-          //
+      this.navMenuService.clickItem(item).then(c => {
+        //
       });
     }
   }

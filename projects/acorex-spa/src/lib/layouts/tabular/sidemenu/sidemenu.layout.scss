@@ -1,52 +1,78 @@
-.search-bar {
-    border: 2px solid var(--border-color);
-    border-radius: 50px;
+@import "../../../styles/master";
+ax-side-menu {
+  background: var(--white-color);
+  position: relative;
+  height: 100%;
+  min-width: 260px;
+  overflow: hidden;
+  border-left: 1px solid var(--border-color);
+  .user-box {
+    @include base-gradient();
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 5px;
-    width: 100%;
-    background: transparent;
-    height: 30px;
-    input {
-      border: none !important;
-      outline-color: transparent !important;
-      background: transparent;
-      text-indent: 10px;
-      color: var(--white-color);
-      font-weight: 300;
-      font-size: 14px;
+    color: var(--white-color);
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+    h4 {
+      font-size: 18px;
+      margin: 10px;
+      font-weight: 400;
+    }
+  }
+  .side-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    .search-bar {
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5px;
+      height: 30px;
       width: 100%;
-      &::placeholder {
-        color: var(--white-color);
+      background: transparent;
+      flex: 1;
+      input {
+        border: none !important;
+        outline-color: transparent !important;
+        text-indent: 10px;
+        background: transparent !important;
+      }
+      i {
+        color: var(--border-color);
+        margin: 0 5px;
       }
     }
-    i {
-      color: var(--white-color);
-      margin: 0 5px;
-    }
-}
-.fav-button {
-    display: flex;
-    flex: 1;
-    height: 34px;
-    button {
-      width: 40px;
+    .fav-button {
       display: flex;
-      height: 30px;
-      background: transparent;
-      border: 2px solid var(--border-color);
-      border-radius: 20px;
-      outline-color: transparent !important;
-      color:  var(--white-color);
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      margin-right: 5px;
-      &.active {
-        background: var(--yellow-color);
-        border-color: var(--yellow-color);
-        color: var(--white-color);
+      flex: 1;
+      button {
+        flex: 1;
+        display: flex;
+        height: 30px;
+        background: var(--white-color);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        outline-color: transparent !important;
+        color: var(--border-color);
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-right: 5px;
+        &.active {
+          background: var(--warning-color);
+          border-color: var(--warning-color);
+          color: var(--white-color);
+        }
       }
     }
   }
+}

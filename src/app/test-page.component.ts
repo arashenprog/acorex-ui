@@ -25,6 +25,7 @@ export class TestPageComponent  extends AXBasePageComponent {
       }
       @ViewChild("form") form: AXValidationFormComponent;
       loading: boolean = false;
+      drawerOpen:boolean=false;
     
       title = "acorex-framework";
       menuItems: Array<any> = [
@@ -69,10 +70,11 @@ export class TestPageComponent  extends AXBasePageComponent {
     
       onClick() {
         this.loading = true;
+        this.drawerOpen=!this.drawerOpen;
         debugger;
         this.toast.success("عملیات با موفقیت انجام شد", {
           title : "تست",
-          timeOut: 3000,
+          timeOut: 30000,
           closeable: true
         });
         this.form.validate().then(c => {

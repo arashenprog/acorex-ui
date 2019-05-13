@@ -10,6 +10,7 @@ import { TestPageComponent } from './test-page.component';
 import { NavMenuService } from './services/nav-menu.service';
 import { AXHeaderBarMenuService } from 'acorex-spa';
 import { HeaderBarMenuService } from './services/header-bar-menu.service';
+import { TestHttpComponent } from './pages/http-test.page';
 
 export class MyIn implements AXHttpErrorService {
   intercept(error: IHttpError) {
@@ -18,7 +19,7 @@ export class MyIn implements AXHttpErrorService {
 }
 
 @NgModule({
-  declarations: [AppComponent, TestPageComponent],
+  declarations: [AppComponent, TestPageComponent,TestHttpComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -39,7 +40,7 @@ export class MyIn implements AXHttpErrorService {
       useClass: HeaderBarMenuService
     }
   ],
-  entryComponents: [TestPageComponent],
+  entryComponents: [TestPageComponent,TestHttpComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
