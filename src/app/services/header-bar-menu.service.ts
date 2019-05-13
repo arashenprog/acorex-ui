@@ -7,10 +7,10 @@ import { AXNavMenuService, AXHeaderBarMenuService } from 'acorex-spa';
 export class HeaderBarMenuService extends AXHeaderBarMenuService {
 
     private mockItems: BaseMenuItem[] = [
-        { icon: "fas fa-cogs", style: "bk-danger" },
-        { icon: "fas fa-expand", style: "bk-success" },
+        { icon: "fas fa-cogs",  },
+        { icon: "fas fa-expand" },
         { icon: "fas fa-comment-alt" },
-        { icon: "fas fa-power-off" },
+        { icon: "fas fa-power-off",style: "bk-danger" },
 
     ]
 
