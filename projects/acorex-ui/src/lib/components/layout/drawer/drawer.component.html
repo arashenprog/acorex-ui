@@ -1,12 +1,25 @@
 <div
-  [ngClass]="{
-    'from-right': _isRight,
-    'from-left': !_isRight,
-    'float-none': !float 
-  }"
-  class="drawer-container"
   *ngIf="show"
- @openDrawer
+  [ngClass]="{ 'drawer-overlay': overlay }"
+  (click)="onClose($event)"
 >
-  <ng-content></ng-content>
+  <div
+    [ngClass]="{
+      'from-right': direction == 'right',
+      'float-outer': mode == 'outer'
+    }"
+    class="drawer-container"
+    @openDrawer
+  >
+  <div style="margin-bottom:10px" *ngIf="close == 'button'">
+    <i
+      
+      class="fas fa-times close-drawer"
+      [ngClass]="{ 'from-right': direction == 'right' }"
+      (click)="onClose($event)"
+    ></i>
+  </div>
+    
+    <ng-content></ng-content>
+  </div>
 </div>

@@ -283,7 +283,25 @@ radius:5px),
     &:hover {
         background-color: var(--primary-color);
         color: var(--white-color);
-        border-width: 1px !important;
-        border-color: transparent !important;
     }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-light-color); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color); 
 }

@@ -5,7 +5,10 @@ ax-side-menu {
   height: 100%;
   min-width: 260px;
   overflow: hidden;
-  border-left: 1px solid var(--border-color);
+  box-shadow: 0px 0px 8px 0px var(--border-color);
+  -moz-box-shadow: 0px 0px 8px 0px var(--border-color);
+  -webkit-box-shadow: 0px 0px 8px 0px var(--border-color);
+  -o-box-shadow: 0px 0px 8px 0px var(--border-color);
   .user-box {
     @include base-gradient();
     display: flex;
