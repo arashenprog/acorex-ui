@@ -9,7 +9,7 @@
 .toast-container {
   overflow: hidden;
   margin: var(--sp-sm-size) 0;
-  box-shadow: -3px 3px 4px 0px var(--shadow);
+  box-shadow: -3px 3px 4px 0px var(--shadow-color);
   @include border-radius(var(--border-radius-size));
   animation: slide-in-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   -webkit-animation: slide-in-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
