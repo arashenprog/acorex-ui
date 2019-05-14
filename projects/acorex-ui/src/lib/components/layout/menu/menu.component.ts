@@ -23,6 +23,7 @@ export class AXMenuComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
+  
   }
 
   private refresh() {

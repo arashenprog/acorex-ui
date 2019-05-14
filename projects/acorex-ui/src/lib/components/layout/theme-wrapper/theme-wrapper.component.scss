@@ -1,288 +1,316 @@
-$color-suffix:color;
-$size-suffix:size;
+$color-suffix: color;
+$size-suffix: size;
 //
-$white :#FFF;
-$primary :#2774cc;
-$secondary :#444444;
-$gray :#b5b5b5;
-$danger:#db0f23;
-$success:#2e933c;
-$warning:#faa916;
-$info:#2774cc;
+$white: #fff;
+$primary: #3949ab;
+$secondary: #444444;
+$gray: #dbdbdb;
+$danger: #db0f23;
+$success: #2e933c;
+$warning: #faa916;
+$info: #2774cc;
+$shadow: rgba(0, 0, 0, 0.1);
 //
-$colors: (white:$white,
-black:#000,
-danger:("":$danger,
-light:lighten($danger, 15%),
-),
-success:("":$success,
-light:lighten($success, 15%),
-),
-warning:("":$warning,
-light:lighten($warning, 15%),
-),
-info:("":$info,
-light:lighten($info, 15%),
-),
-gray:("":$gray,
-light:lighten($gray, 15%),
-dark:darken($gray, 15%)),
-primary: ("":$primary,
-fore: $white,
-light: lighten($primary, 15%),
-dark: darken($primary, 15%),
-trans: transparentize($primary, 0.5)),
-secondary: ("": $secondary,
-fore:$white,
-light: lighten($secondary, 15%),
-dark: darken($secondary, 15%),
-trans: transparentize($secondary, 0.5)),
-border:$gray,
-outline:$primary);
+$colors: (
+  white: $white,
+  black: #000,
+  danger: (
+    "": $danger,
+    light: lighten($danger, 15%),
+    dark: darken($danger, 15%)
 
-$sizes: (sp :(sm:5px,
-md:10px,
-lg:15px,
-xl:20px),
-font : (sm:0.75em,
-md: 1em,
-lg: 1.25em,
-xl:1.5em),
-border:(width:1px,
-radius:5px),
+  ),
+  success: (
+    "": $success,
+    light: lighten($success, 15%),
+    dark: darken($success, 15%)
+
+  ),
+  warning: (
+    "": $warning,
+    light: lighten($warning, 15%),
+    dark: darken($warning, 15%)
+
+  ),
+  info: (
+    "": $info,
+    light: lighten($info, 15%),
+    dark: darken($info, 15%)
+
+  ),
+  gray: (
+    "": $gray,
+    light: lighten($gray, 15%),
+    dark: darken($gray, 15%)
+  ),
+  primary: (
+    "": $primary,
+    fore: $white,
+    light: lighten($primary, 15%),
+    dark: darken($primary, 15%),
+    trans: transparentize($primary, 0.5)
+  ),
+  secondary: (
+    "": $secondary,
+    fore: $white,
+    light: lighten($secondary, 15%),
+    dark: darken($secondary, 15%),
+    trans: transparentize($secondary, 0.5)
+  ),
+  shadow: $shadow,
+  border: $gray,
+  outline: $primary
+);
+
+$sizes: (
+  sp: (
+    sm: 5px,
+    md: 10px,
+    lg: 15px,
+    xl: 20px
+  ),
+  font: (
+    sm: 0.75em,
+    md: 1em,
+    lg: 1.25em,
+    xl: 1.5em
+  ),
+  border: (
+    width: 1px,
+    radius: 4px
+  )
 );
 
 :root {
-
-    @each $name,
-    $color in $colors {
-        @if type-of($color)=="map" {
-
-            @each $subname,
-            $variant in $color {
-                @if $subname=="" {
-                    --#{$name}-#{$color-suffix}: #{$variant};
-                }
-
-                @else {
-                    --#{$name}-#{$subname}-#{$color-suffix}: #{$variant};
-                }
-            }
+  @each $name, $color in $colors {
+    @if type-of($color) == "map" {
+      @each $subname, $variant in $color {
+        @if $subname== "" {
+          --#{$name}-#{$color-suffix}: #{$variant};
+        } @else {
+          --#{$name}-#{$subname}-#{$color-suffix}: #{$variant};
         }
-
-        @else {
-            --#{$name}-#{$color-suffix}: #{$color};
-        }
+      }
+    } @else {
+      --#{$name}-#{$color-suffix}: #{$color};
     }
+  }
 
-
-    @each $name,
-    $size in $sizes {
-        @if type-of($size)=="map" {
-
-            @each $subname,
-            $variant in $size {
-                --#{$name}-#{$subname}-#{$size-suffix}: #{$variant};
-            }
-        }
-
-        @else {
-            --#{$name}-#{$size-suffix}: #{$size};
-        }
+  @each $name, $size in $sizes {
+    @if type-of($size) == "map" {
+      @each $subname, $variant in $size {
+        --#{$name}-#{$subname}-#{$size-suffix}: #{$variant};
+      }
+    } @else {
+      --#{$name}-#{$size-suffix}: #{$size};
     }
+  }
 }
 
-
-
-
 .rtl {
-    .ax-field-set-button {
-        left: 0;
-        right: initial !important;
-    }
+  .ax-field-set-button {
+    left: 0;
+    right: initial !important;
+  }
 }
 
 .img-responsive {
-    display: block;
-    margin: auto;
-    width: 100%;
+  display: block;
+  margin: auto;
+  width: 100%;
 }
 
 .ax-field-set {
+  width: 100%;
+  border: 0;
+  display: inline-flex;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+
+  .ax-field-set-wrapper {
+    color: var(--secondary-light-color);
+    cursor: text;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+
+    fieldset {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      border-style: solid;
+      border-width: var(--border-width-size);
+      border-radius: var(--border-radius-size);
+      pointer-events: none;
+      border-color: var(--border-color);
+
+      legend {
+        width: auto !important;
+        padding: 0 var(--sp-sm-size);
+        margin: 0 var(--sp-sm-size);
+        font-size: var(--font-sm-size);
+        line-height: inherit;
+        color: inherit;
+        white-space: normal;
+      }
+    }
+  }
+
+  input {
+    font-size: var(--font-md-size);
+    color: currentColor;
     width: 100%;
     border: 0;
-    display: inline-flex;
-    padding: 0;
-    position: relative;
+    margin: 0;
+    padding: 15px 12px 7px 12px;
+    display: block;
     min-width: 0;
-    flex-direction: column;
-    vertical-align: top;
+    height: 100%;
+    box-sizing: content-box;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
+    outline-color: transparent;
+  }
 
-    .ax-field-set-wrapper {
-        color: var(--secondary-light-color);
-        cursor: text;
-        display: inline-flex;
-        align-items: center;
-        position: relative;
+  .ax-field-set-button {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--sp-sm-size);
+    border: none;
 
-        fieldset {
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            border-style: solid;
-            border-width: var(--border-width-size);
-            border-radius: var(--border-radius-size);
-            pointer-events: none;
-            border-color: var(--border-color);
-
-            legend {
-                width: auto !important;
-                padding: 0 var(--sp-sm-size);
-                margin: 0 var(--sp-sm-size);
-                font-size: var(--font-sm-size);
-                line-height: inherit;
-                color: inherit;
-                white-space: normal;
-            }
-        }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(var(--baseObjectsHeight) / 2);
+      height: calc(var(--baseObjectsHeight) / 2);
+      i {
+        font-size: var(--font-sm-size);
+      }
     }
-
-    input {
-        font-size: var(--font-md-size);
-        color: currentColor;
-        width: 100%;
-        border: 0;
-        margin: 0;
-        padding: 15px 12px 7px 12px;
-        display: block;
-        min-width: 0;
-        height: 100%;
-        box-sizing: content-box;
-        background: none;
-        -webkit-tap-highlight-color: transparent;
-        outline-color: transparent;
-    }
-
-    .ax-field-set-button {
-        position: absolute;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: var(--sp-sm-size);
-        border: none;
-
-        button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: var(--sp-sm-size);
-            width: calc(var(--baseObjectsHeight) / 2);
-            height: calc(var(--baseObjectsHeight) / 2);
-            border-radius: var(--border-radius-size);
-
-            i {
-                font-size: var(--font-sm-size);
-            }
-        }
-    }
+  }
 }
 
 .input-focused {
-    border-color: var(--primary-color) !important;
-    color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 .input-error {
-    border-color: var(--danger-color) !important;
-    color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  color: var(--danger-color) !important;
 }
 
 .input-success {
-    border-color: var(--success-color) !important;
-    color: var(--success-color) !important;
+  border-color: var(--success-color) !important;
+  color: var(--success-color) !important;
 }
 
 .validation-text {
-    position: absolute;
-    top: 90%;
-    right: var(--sp-sm-size);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--font-sm-size);
-    color: var(--danger-color);
-    padding: var(--sp-sm-size) var(--sp-lg-size);
+  position: absolute;
+  top: 90%;
+  right: var(--sp-sm-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-sm-size);
+  color: var(--danger-color);
+  padding: var(--sp-sm-size) var(--sp-lg-size);
 }
 
 .bk-primary {
-    background-color: var(--primary-color) !important;
-    color: var(--white-color) !important;
+  background-color: var(--primary-color) !important;
+  color: var(--white-color) !important;
 }
 
 .bk-success {
-    background-color: var(--success-color) !important;
-    color: var(--white-color) !important;
+  background-color: var(--success-color) !important;
+  color: var(--white-color) !important;
 }
 
 .bk-warning {
-    background-color: var(--warning-color) !important;
-    color: var(--white-color) !important;
+  background-color: var(--warning-color) !important;
+  color: var(--white-color) !important;
 }
 
 .bk-danger {
-    background-color: var(--danger-color) !important;
-    color: var(--white-color) !important;
+  background-color: var(--danger-color) !important;
+  color: var(--white-color) !important;
 }
 
 .bk-primary-light {
-    background-color: var(--primary-light-color) !important;
-    color: var(--white-color) !important;
+  background-color: var(--primary-light-color) !important;
+  color: var(--white-color) !important;
 }
 
 .bk-success-light {
-    background-color: var(--success-light-color);
-    color: var(--white-color);
+  background-color: var(--success-light-color);
+  color: var(--white-color);
 }
 
 .bk-warning-light {
-    background-color: var(--warning-light-color);
-    color: var(--white-color);
+  background-color: var(--warning-light-color);
+  color: var(--white-color);
 }
 
 .bk-danger-light {
-    background-color: var(--danger-light-color);
-    color: var(--white-color);
+  background-color: var(--danger-light-color);
+  color: var(--white-color);
 }
 
 .btn-primary {
-    color: var(--white-color);
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .circle-button {
-    background-color: var(--white-color);
-    border: 1px solid;
-    border-color: inherit;
-    color: var(--border-color);
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    outline-color: transparent !important;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+  background-color: var(--white-color);
+  border: 1px solid;
+  border-color: inherit;
+  color: var(--border-color);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  outline-color: transparent !important;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 
-    &:hover {
-        background-color: var(--primary-color);
-        color: var(--white-color);
-    }
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
 }
-
+.btn-primary:hover {
+  background-color: var(--primary-dark-color) !important;
+  border-color: var(--primary-dark-color) !important;
+}
+.btn-warning:hover {
+  background-color: var(--warning-dark-color) !important;
+  border-color: var(--warning-dark-color) !important;
+}
+.btn-info:hover {
+  background-color: var(--info-dark-color) !important;
+  border-color: var(--info-dark-color) !important;
+}
+.btn-danger:hover {
+  background-color: var(--danger-dark-color) !important;
+  border-color: var(--danger-dark-color) !important;
+}
+.btn-success:hover {
+  background-color: var(--success-dark-color) !important;
+  border-color: var(--success-dark-color) !important;
+}

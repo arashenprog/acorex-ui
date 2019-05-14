@@ -1,39 +1,47 @@
 @import "../../../styles/mixins";
 
+.rtl {
+  .radio-container {
+    padding-right: 30px !important;
+    padding-left: 0 !important;
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+    .checkmark {
+      right: 0 !important;
+      left: inherit !important;
+    }
+  }
+}
 // Check Box Custom Style
 .radio-container {
   display: inline-block;
   position: relative;
-  padding-right: var(--baseControlsHeight);
+  padding-left: 30px;
   cursor: pointer;
   font-size: 14px;
-  line-height: var(--baseControlsHeight);
+  line-height: 30px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: var(--baseControlsHeight);
-  margin-left: 10px;
-}
-
-/* Hide the browser's default radio button */
-.radio-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 5px;
-  right: 0;
-  height: 25px;
-  width: 25px;
-  background-color: var(--white-color);
-  border: 1px solid;
-  border-color: var(--border-color);
-  @include border-radius(50%);
+  height: 30px;
+  margin-right: 10px;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: var(--white-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+    @include border-radius(50%);
+  }
 }
 
 /* On mouse-over, add a grey background color */
