@@ -3,6 +3,14 @@
   ax-side-menu{
     border-right: none !important; 
     border-left: 1px solid var(--border-color);
+    .side-toolbar{
+      .fav-button{
+        button{
+          margin-right: 10px !important;
+          margin-left: 0px !important;
+        }
+      }
+    }
   }
 }
 ax-side-menu {
@@ -72,7 +80,7 @@ ax-side-menu {
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        margin-right: 5px;
+        margin-left: 5px;
         &.active {
           background: var(--warning-color);
           border-color: var(--warning-color);

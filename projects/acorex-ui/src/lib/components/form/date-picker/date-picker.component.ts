@@ -57,7 +57,7 @@ export class AXDatePickerComponent extends AXValidatableComponent {
   
   model: NgbDateStruct;
   date: { year: number; month: number };
-  @Input() label: string = "تاریخ";
+  @Input() label: string = "Date";
 
   constructor(private calendar: NgbCalendar) {
     super();
