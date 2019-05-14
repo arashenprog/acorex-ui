@@ -2,7 +2,7 @@ $color-suffix: color;
 $size-suffix: size;
 //
 $white: #fff;
-$primary: #2774cc;
+$primary: #3949ab;
 $secondary: #444444;
 $gray: #dbdbdb;
 $danger: #db0f23;
@@ -16,19 +16,27 @@ $colors: (
   black: #000,
   danger: (
     "": $danger,
-    light: lighten($danger, 15%)
+    light: lighten($danger, 15%),
+    dark: darken($danger, 15%)
+
   ),
   success: (
     "": $success,
-    light: lighten($success, 15%)
+    light: lighten($success, 15%),
+    dark: darken($success, 15%)
+
   ),
   warning: (
     "": $warning,
-    light: lighten($warning, 15%)
+    light: lighten($warning, 15%),
+    dark: darken($warning, 15%)
+
   ),
   info: (
     "": $info,
-    light: lighten($info, 15%)
+    light: lighten($info, 15%),
+    dark: darken($info, 15%)
+
   ),
   gray: (
     "": $gray,
@@ -285,4 +293,24 @@ $sizes: (
     background-color: var(--primary-color);
     color: var(--white-color);
   }
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark-color) !important;
+  border-color: var(--primary-dark-color) !important;
+}
+.btn-warning:hover {
+  background-color: var(--warning-dark-color) !important;
+  border-color: var(--warning-dark-color) !important;
+}
+.btn-info:hover {
+  background-color: var(--info-dark-color) !important;
+  border-color: var(--info-dark-color) !important;
+}
+.btn-danger:hover {
+  background-color: var(--danger-dark-color) !important;
+  border-color: var(--danger-dark-color) !important;
+}
+.btn-success:hover {
+  background-color: var(--success-dark-color) !important;
+  border-color: var(--success-dark-color) !important;
 }
