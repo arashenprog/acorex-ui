@@ -16,7 +16,7 @@
       </ax-drawer>
 
       <ax-select-box
-        label="انتخاب"
+        label="Select Box"
         [items]="defaultBindingsList"
       ></ax-select-box>
 
@@ -24,66 +24,66 @@
         <ax-validation>
           <ax-validation-rule
             type="required"
-            message="مقدار این فیلد الزامی است"
+            message="this field is required"
           ></ax-validation-rule>
         </ax-validation>
       </ax-date-picker>
-      <ax-pass-box label="پسورد" placeholder="">
+      <ax-pass-box label="Password Box" placeholder="">
         <ax-validation>
           <ax-validation-rule
             type="required"
-            message="مقدار این فیلد الزامی است"
+            message="this field is required"
           ></ax-validation-rule>
         </ax-validation>
       </ax-pass-box>
 
-      <ax-text-box label="نام" showClear="true">
+      <ax-text-box label="First Name" showClear="true">
         <ax-validation>
           <ax-validation-rule
             type="required"
-            message="مقدار این فیلد الزامی است"
+            message="this field is required"
           ></ax-validation-rule>
           <ax-validation-rule
             type="regex"
-            message="ایمیل نادرست است"
+            message="E-Mail is invalid"
             [value]="regEx"
           ></ax-validation-rule>
         </ax-validation>
       </ax-text-box>
 
-      <ax-text-box label="نام خانوادگی">
+      <ax-text-box label="Last Name">
         <ax-validation>
           <ax-validation-rule
             type="callback"
-            message="مقدار این فیلد الزامی است"
+            message="this field is required"
             [value]="customValidation"
           >
           </ax-validation-rule>
         </ax-validation>
       </ax-text-box>
-      <ax-text-box label="سلام"></ax-text-box>
-      <ax-pass-box label="پسورد" placeholder="" showClear="true"></ax-pass-box>
+      <ax-text-box label="Simple Textbox"></ax-text-box>
+      <ax-pass-box label="Password with clear button" placeholder="" showClear="true"></ax-pass-box>
       <ax-button
       type="secondary"
         [loading]="loading"
-        text="ثبت فرم"
+        text="Submit"
         (onClick)="onClick()">
       </ax-button>
 
       <ax-button
         [loading]="loading"
-        text="نمایش خطا "
+        text="Show Errors"
         (onClick)="onDialogClick()"
       ></ax-button>
       <ax-button
         [loading]="loading"
-        text="نمایش پاپ آپ "
+        text="Show Popup"
         (onClick)="onPopupClick()"
       ></ax-button>
       <ax-upload-file></ax-upload-file>
       <ax-card
-        title="عنوان"
-        content="توضیحات اینجا قرار میگیرد"
+        title="Cart Title"
+        content="more text here"
         [buttons]="menuItems"
         image="https://placeimg.com/640/480/nature"
       ></ax-card>

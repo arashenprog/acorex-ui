@@ -1,3 +1,10 @@
+.rtl{
+    .ax-dialog{
+        .buttons{
+            flex-direction: row !important;
+        }
+    }
+}
 .ax-dialog {
     background: var(--white-color);
     display: flex;
@@ -11,7 +18,7 @@
     }
     .buttons {
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         margin: 20px 0 0 0;
         .btn {
             margin: 0 5px;

@@ -24,7 +24,7 @@ import { TestHttpComponent } from './pages/http-test.page';
   providers: [
     {
       provide: "startUpTab",
-      useValue: { content: TestPageComponent, title: "داشبورد", closable: false }
+      useValue: { content: TestPageComponent, title: "Dashboard", closable: false }
     },
     {
       provide: AXNavMenuService,

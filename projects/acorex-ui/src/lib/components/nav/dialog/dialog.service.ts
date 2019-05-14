@@ -70,7 +70,7 @@ export class DialogService
                     buttons: [
                         {
                             name: "confirm",
-                            text: "تایید",
+                            text: "Confirm",
                             type: "success",
                             submitBehavior: true,
                         }
@@ -94,7 +94,7 @@ export class DialogService
                     buttons: [
                         {
                             name: "confirm",
-                            text: "تایید",
+                            text: "Confirm",
                             type: "success",
                             submitBehavior: true,
                             cancelBehavior: false,
