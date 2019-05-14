@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpResult } from './http-result.class';
 import { IHttpError } from './http-error.class';
 
@@ -7,7 +7,8 @@ import { AXHttpRequestOptions } from './http-request.class';
 import {
     AX_HTTP_ERROR_EVENT_INTERCEPTOR,
     AX_HTTP_COMPLETE_EVENT_INTERCEPTOR,
-    AX_HTTP_BEGIN_EVENT_INTERCEPTOR
+    AX_HTTP_BEGIN_EVENT_INTERCEPTOR,
+    AX_HTTP_RESULT_EVENT_INTERCEPTOR
 } from './http-events.interceptor';
 // import { catchError, retry, retryWhen, mergeMap, delay, switchMap, scan, takeWhile, flatMap } from 'rxjs/operators';
 // import { of, concat, throwError } from 'rxjs';
@@ -36,11 +37,10 @@ export class AXHttpService {
                 .get<T>(url, this.mapOptions(config))
                 //.pipe(this.retry)
                 .subscribe(data => {
-                    this.handleResult(data, result, config);
+                    this.handleResult(data, result, complete, config);
                 }, c => {
-                    this.handleError(c, error, config);
-                }, () => {
-                    this.handleComplete(complete, config);
+                    this.handleError(c, error, complete, config);
+
                 });
         })
     }
@@ -52,19 +52,22 @@ export class AXHttpService {
                 .post<T>(url, this.mapOptions(config))
                 //.pipe(this.retry)
                 .subscribe(data => {
-                    this.handleResult(data, result, config);
+                    this.handleResult(data, result, complete, config);
                 }, c => {
-                    this.handleError(c, error, config);
-                }, () => {
-                    this.handleComplete(complete, config);
+                    this.handleError(c, error, complete, config);
                 });
         })
     }
 
 
-    private handleResult(data, result, config?: AXHttpRequestOptions) {
+    private handleResult(data, result, complete, config?: AXHttpRequestOptions) {
+        const event = this.injector.get(AX_HTTP_RESULT_EVENT_INTERCEPTOR);
+        if (event)
+            event.intercept(config, data);
+        //
         if (result)
             result(data);
+        this.handleComplete(complete, config);
     }
     private handleBegin(config?: AXHttpRequestOptions) {
         const event = this.injector.get(AX_HTTP_BEGIN_EVENT_INTERCEPTOR);
@@ -78,7 +81,7 @@ export class AXHttpService {
         if (event) event.intercept(config);
     }
 
-    private handleError(c, error, config?: AXHttpRequestOptions) {
+    private handleError(c, error, complete, config?: AXHttpRequestOptions) {
         let r: IHttpError = {
             message: c.message,
             status: c.status,
@@ -92,6 +95,7 @@ export class AXHttpService {
             const err = this.injector.get(AX_HTTP_ERROR_EVENT_INTERCEPTOR);
             if (err) err.intercept(config, r);
         }
+        this.handleComplete(complete, config);
     }
 
     private mapOptions(options?: AXHttpRequestOptions) {

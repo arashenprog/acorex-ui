@@ -1,12 +1,6 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component} from "@angular/core";
 import {
-  IValidationRuleResult,
-  DialogService,
-  AXPopupService,
-  AXToastService,
   AXHttpService,
-  AXValidationFormComponent,
-  AXTabPageService,
   AXBasePageComponent
 } from "acorex-ui";
 
@@ -25,8 +19,6 @@ export class TestHttpComponent  extends AXBasePageComponent {
         })
           .result(c => {
             console.log(c);
-          }).complete(() => {
-            console.log("complete");
           })
       }
     

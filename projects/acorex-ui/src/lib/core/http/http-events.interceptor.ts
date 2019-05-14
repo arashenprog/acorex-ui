@@ -22,3 +22,10 @@ export interface AXHttpCompleteEventInterceptor {
 }
 
 
+export const  AX_HTTP_RESULT_EVENT_INTERCEPTOR = new InjectionToken<AXHttpResultEventInterceptor>('ax.http.result');
+
+export interface AXHttpResultEventInterceptor {
+    intercept(request:AXHttpRequestOptions,result:any);
+}
+
+
