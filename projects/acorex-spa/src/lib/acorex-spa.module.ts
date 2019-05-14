@@ -1,22 +1,19 @@
 import { NgModule } from "@angular/core";
 import { AXTabularModule } from "./layouts/tabular/tabular.module";
-import { AXPageComponent } from './layouts/shared/page.component';
-import { AXPageContentComponent } from './layouts/shared/content.component';
+import { AXPageComponent } from './layouts/shared/page/page.component';
+import { AXPageContentComponent } from './layouts/shared/page/content.component';
 import { AXNavMenuService } from './layouts/shared/services/nav-menu.service';
+import { AXPageFooterComponent } from './layouts/shared/page/footer.component';
 
 
 @NgModule({
   declarations: [
-    AXPageComponent,
-    AXPageContentComponent
   ],
   imports: [
     AXTabularModule,
   ],
   exports: [
     AXTabularModule,
-    AXPageComponent,
-    AXPageContentComponent
   ],
   providers: [{
     provide: AXNavMenuService,

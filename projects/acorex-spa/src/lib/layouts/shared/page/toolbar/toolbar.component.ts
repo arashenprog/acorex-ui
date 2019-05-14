@@ -3,11 +3,11 @@ import { MenuItem } from "acorex-ui";
 
 
 @Component({
-  selector: "toolbar",
-  templateUrl: "./toolbar.layout.html",
-  styleUrls: ["./toolbar.layout.scss"]
+  selector: "ax-page-toolbar",
+  templateUrl: "./toolbar.component.html",
+  styleUrls: ["./toolbar.component.scss"]
 })
-export class AXToolbarComponent implements AfterViewInit {
+export class AXPageToolbarComponent implements AfterViewInit {
   @Input()
   items: MenuItem[] = []
 

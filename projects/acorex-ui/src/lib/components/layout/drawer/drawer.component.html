@@ -9,6 +9,7 @@
       'float-outer': mode == 'outer'
     }"
     class="drawer-container"
+    (click)="onAreaClick($event)"
     @openDrawer
   >
   <div style="margin-bottom:10px" *ngIf="close == 'button'">

@@ -57,4 +57,10 @@ export class AXDrawerComponent {
       this.show = false;
     }
   }
+
+
+  onAreaClick(e)
+  {
+    e.stopImmediatePropagation();
+  }
 }

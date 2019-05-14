@@ -1,139 +1,87 @@
-<page>
-  <content>
-    <ax-container>
-      <ax-validation-form #form>
-        <ax-drawer
-          [show]="drawerOpen"
-          [overlay]="true"
-          mode="inner"
-          onBlur="onBlur"
-          close="button"
-        >
-          <h1>Test</h1>
-        </ax-drawer>
-        <ax-row>
-          <ax-col col-sm="6">
-            <ax-select-box
-              label="انتخاب"
-              [items]="defaultBindingsList"
-            ></ax-select-box>
-          </ax-col>
+<ax-page>
+  <ax-page-toolbar [items]="toolbarItems" (itemClick)="onMenuItemClick($event)"></ax-page-toolbar>
+  <ax-page-content>
+    <ax-validation-form #form>
+      <ax-drawer [show]="drawerOpen" [overlay]="true" mode="inner" onBlur="onBlur" close="button">
+        <h1>Test</h1>
+      </ax-drawer>
+      <ax-row>
+        <ax-col col-sm="6">
+          <ax-select-box label="انتخاب" [items]="defaultBindingsList"></ax-select-box>
+        </ax-col>
 
-          <ax-col col-sm="6">
-            <ax-date-picker showClear="true">
-              <ax-validation>
-                <ax-validation-rule
-                  type="required"
-                  message="مقدار این فیلد الزامی است"
-                ></ax-validation-rule>
-              </ax-validation>
-            </ax-date-picker>
-          </ax-col>
-        </ax-row>
+        <ax-col col-sm="6">
+          <ax-date-picker showClear="true">
+            <ax-validation>
+              <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+            </ax-validation>
+          </ax-date-picker>
+        </ax-col>
+      </ax-row>
 
-        <br />
-        <br />
+      <br />
+      <br />
 
-        <br />
-        <br />
-        <ax-pass-box label="پسورد" placeholder="">
-          <ax-validation>
-            <ax-validation-rule
-              type="required"
-              message="مقدار این فیلد الزامی است"
-            ></ax-validation-rule>
-          </ax-validation>
-        </ax-pass-box>
-        <br />
-        <br />
-        <ax-text-box label="نام" showClear="true">
-          <ax-validation>
-            <ax-validation-rule
-              type="required"
-              message="مقدار این فیلد الزامی است"
-            ></ax-validation-rule>
-            <ax-validation-rule
-              type="regex"
-              message="ایمیل نادرست است"
-              [value]="regEx"
-            ></ax-validation-rule>
-          </ax-validation>
-        </ax-text-box>
-        <br />
-        <br />
-        <ax-text-box label="نام خانوادگی">
-          <ax-validation>
-            <ax-validation-rule
-              type="callback"
-              message="مقدار این فیلد الزامی است"
-              [value]="customValidation"
-            >
-            </ax-validation-rule>
-          </ax-validation>
-        </ax-text-box>
-        <br />
-        <br />
-        <ax-text-box label="سلام"></ax-text-box>
-        <br />
-        <ax-pass-box
-          label="پسورد"
-          placeholder=""
-          showClear="true"
-        ></ax-pass-box>
-        <br />
-        <br />
-        <ax-button
-          [loading]="loading"
-          text="ثبت فرم"
-          (onClick)="onClick()"
-        ></ax-button>
-        <br />
-        <br />
-        <ax-button
-          [loading]="loading"
-          text="نمایش خطا "
-          (onClick)="onDialogClick()"
-        ></ax-button>
-        <ax-button
-          [loading]="loading"
-          text="نمایش پاپ آپ "
-          (onClick)="onPopupClick()"
-        ></ax-button>
-        <br />
-        <br />
-        <ax-upload-file></ax-upload-file>
-        <br />
-        <br />
-        <ax-card
-          title="عنوان"
-          content="توضیحات اینجا قرار میگیرد"
-          [buttons]="menuItems"
-          image="https://placeimg.com/640/480/nature"
-        ></ax-card>
-        <br />
-        <br />
-        <ax-selection-list
-          [items]="check_box_items_inline"
-          mode="single"
-        ></ax-selection-list>
-        <br />
-        <br />
-        <ax-selection-list
-          [items]="check_box_items_inline"
-          mode="multiple"
-        ></ax-selection-list>
-        <br />
-        <br />
-        <ax-image src="https://placeimg.com/640/480/nature"></ax-image>
-        <br />
-        <br />
-        <ax-loading></ax-loading>
-        <br />
-        <br />
-        <ax-menu [items]="menuItems"></ax-menu>
-        <br />
-        <br />
-      </ax-validation-form>
-    </ax-container>
-  </content>
-</page>
+      <br />
+      <br />
+      <ax-pass-box label="پسورد" placeholder="">
+        <ax-validation>
+          <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+        </ax-validation>
+      </ax-pass-box>
+      <br />
+      <br />
+      <ax-text-box label="نام" showClear="true">
+        <ax-validation>
+          <ax-validation-rule type="required" message="مقدار این فیلد الزامی است"></ax-validation-rule>
+          <ax-validation-rule type="regex" message="ایمیل نادرست است" [value]="regEx"></ax-validation-rule>
+        </ax-validation>
+      </ax-text-box>
+      <br />
+      <br />
+      <ax-text-box label="نام خانوادگی">
+        <ax-validation>
+          <ax-validation-rule type="callback" message="مقدار این فیلد الزامی است" [value]="customValidation">
+          </ax-validation-rule>
+        </ax-validation>
+      </ax-text-box>
+      <br />
+      <br />
+      <ax-text-box label="سلام"></ax-text-box>
+      <br />
+      <ax-pass-box label="پسورد" placeholder="" showClear="true"></ax-pass-box>
+      <br />
+      <br />
+      <ax-button [loading]="loading" text="ثبت فرم" (onClick)="onClick()"></ax-button>
+      <br />
+      <br />
+      <ax-button [loading]="loading" text="نمایش خطا " (onClick)="onDialogClick()"></ax-button>
+      <ax-button [loading]="loading" text="نمایش پاپ آپ " (onClick)="onPopupClick()"></ax-button>
+      <br />
+      <br />
+      <ax-upload-file></ax-upload-file>
+      <br />
+      <br />
+      <ax-card title="عنوان" content="توضیحات اینجا قرار میگیرد" [buttons]="menuItems"
+        image="https://placeimg.com/640/480/nature"></ax-card>
+      <br />
+      <br />
+      <ax-selection-list [items]="check_box_items_inline" mode="single"></ax-selection-list>
+      <br />
+      <br />
+      <ax-selection-list [items]="check_box_items_inline" mode="multiple"></ax-selection-list>
+      <br />
+      <br />
+      <ax-image src="https://placeimg.com/640/480/nature"></ax-image>
+      <br />
+      <br />
+      <ax-loading></ax-loading>
+      <br />
+      <br />
+      <ax-menu [items]="menuItems"></ax-menu>
+      <br />
+      <br />
+    </ax-validation-form>
+  </ax-page-content>
+  <ax-page-footer>  <span>Copyright © 2017 | All rights reserved.</span></ax-page-footer>
+</ax-page>

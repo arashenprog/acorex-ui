@@ -1,0 +1,30 @@
+<div class="ax-page-toolbar">
+    <div class="ax-toolbar" >
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li *ngFor="let item of items" class="nav-item" [class.dropdown]="item.items">
+                        <button (click)="onToolbarItemClick(item)" class="nav-link btn btn-sm btn-{{item.type}}"
+                            [class.dropdown-toggle]="item.items" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="{{item.icon}}"></i>
+                            {{item.text}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                            *ngIf="item.items && item.items.length > 0 ">
+                            <a class="dropdown-item" *ngFor="let i of item.items" href="javascript:void(0)"
+                                (click)="onToolbarItemClick(i)">
+                                <i class="{{i.icon}}"></i>
+                                {{i.text}}
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
