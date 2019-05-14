@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AcoreXUIModule, IHttpError, AXHttpErrorService } from 'acorex-ui';
+import { AcoreXUIModule, IHttpError,  } from 'acorex-ui';
 import { AcorexSpaModule, AXNavMenuService } from 'acorex-spa';
 import { FormsModule } from '@angular/forms';
 import { TestPageComponent } from './test-page.component';
@@ -12,11 +12,6 @@ import { AXHeaderBarMenuService } from 'acorex-spa';
 import { HeaderBarMenuService } from './services/header-bar-menu.service';
 import { TestHttpComponent } from './pages/http-test.page';
 
-export class MyIn implements AXHttpErrorService {
-  intercept(error: IHttpError) {
-    alert(error.message);
-  }
-}
 
 @NgModule({
   declarations: [AppComponent, TestPageComponent,TestHttpComponent],

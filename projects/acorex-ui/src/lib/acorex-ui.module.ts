@@ -30,12 +30,15 @@ import { AXHttpModule } from './core/http/http.module';
 import { AXTabPageModule } from './components/nav/api';
 import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme-wrapper.component';
 //
-import { AX_HTTP_ERROR_INTERCEPTOR } from './core/http/api';
-import { AXDefaultHttpErrorInterceptor } from './config/default-http-error.interceptor';
+import { AXDefaultHttpErrorInterceptor, AXDefaultHttpCompleteInterceptor, AXDefaultHttpBeginInterceptor } from './config/default-http.interceptors';
 import { AX_ERROR_DISPLAY_INTERCEPTOR } from './core/error/error.service';
 import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interceptor';
 //
 import { AXDrawerModule } from './components/layout/drawer/drawer.module';
+import { 
+  AX_HTTP_BEGIN_EVENT_INTERCEPTOR, 
+  AX_HTTP_COMPLETE_EVENT_INTERCEPTOR, 
+  AX_HTTP_ERROR_EVENT_INTERCEPTOR } from './core/http/http-events.interceptor'
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -107,11 +110,19 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
       useClass: AXDefaultErrorDisplayInterceptor
     },
     {
-      provide:  AX_HTTP_ERROR_INTERCEPTOR, 
+      provide: AX_HTTP_ERROR_EVENT_INTERCEPTOR,
       useClass: AXDefaultHttpErrorInterceptor
+    },
+    {
+      provide: AX_HTTP_BEGIN_EVENT_INTERCEPTOR,
+      useClass: AXDefaultHttpBeginInterceptor
+    },
+    {
+      provide: AX_HTTP_COMPLETE_EVENT_INTERCEPTOR,
+      useClass: AXDefaultHttpCompleteInterceptor
     }
   ]
 })
-export class AcoreXUIModule { 
+export class AcoreXUIModule {
 
 }
