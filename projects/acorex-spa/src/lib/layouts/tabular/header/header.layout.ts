@@ -1,5 +1,4 @@
-import { Component, OnInit, AfterViewInit, DoCheck } from "@angular/core";
-import { AXTabPageService } from 'acorex-ui';
+import { Component, OnInit, DoCheck } from "@angular/core";
 import { AXHeaderBarMenuService } from '../../shared/api';
 import { BaseMenuItem } from 'acorex-ui';
 
@@ -15,7 +14,7 @@ export class AXHeaderComponent implements OnInit, DoCheck {
 
     headerItems: BaseMenuItem[];
 
-    constructor(public tabService: AXTabPageService, private headerBarMenuService: AXHeaderBarMenuService) {
+    constructor(private headerBarMenuService: AXHeaderBarMenuService) {
 
     }
 
@@ -67,16 +66,4 @@ export class AXHeaderComponent implements OnInit, DoCheck {
         this.headerBarMenuService.clickItem(e).then(c=>{
         });
     }
-    // fullScreen(e) {
-    //     let body = document.getElementsByTagName("body")
-    //     body[0].requestFullscreen()
-    //     if (document.fullscreenEnabled) {
-    //         document.exitFullscreen()
-    //     }
-
-    // }
-    // config(e) {
-    //     // this.tabService.open({ content: SettingPage, title: "تنظیمات" });
-    // }
-
 }
