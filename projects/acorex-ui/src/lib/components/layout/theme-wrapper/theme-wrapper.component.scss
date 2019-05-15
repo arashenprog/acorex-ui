@@ -189,7 +189,9 @@ $sizes: (
     align-items: center;
     margin: var(--sp-sm-size);
     border: none;
-
+    &:first-child {
+      margin-right: 10px;
+    }
     button {
       display: flex;
       justify-content: center;
@@ -219,12 +221,6 @@ $sizes: (
 }
 
 .validation-text {
-  position: absolute;
-  top: 90%;
-  right: var(--sp-sm-size);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: var(--font-sm-size);
   color: var(--danger-color);
   padding: var(--sp-sm-size) var(--sp-lg-size);
