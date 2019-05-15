@@ -148,7 +148,7 @@
       height: 100vh;
       overflow-x: hidden;
       overflow-y: auto;
-
+      -webkit-overflow-scrolling: touch;
       /* width */
       &::-webkit-scrollbar {
         width: 10px;
