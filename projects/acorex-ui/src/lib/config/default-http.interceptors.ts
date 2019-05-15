@@ -1,45 +1,30 @@
 import { Injectable } from '@angular/core';
 import { AXErrorService } from '../core/error/error.service';
 import {
-    AXHttpErrorEventInterceptor,
-    AXHttpBeginEventInterceptor,
-    AXHttpCompleteEventInterceptor,
     AXHttpRequestOptions,
-    IHttpError
+    IHttpError,
+    AXHttpEventInterceptor
 } from '../core/http/api';
 
 @Injectable()
-export class AXDefaultHttpErrorInterceptor implements AXHttpErrorEventInterceptor {
+export class AXDefaultHttpInterceptor implements AXHttpEventInterceptor {
+
+    begin(request: AXHttpRequestOptions) {
+        
+    }
+    success(request: AXHttpRequestOptions, result: any) {
+        
+    }
+    complete(request: AXHttpRequestOptions) {
+        
+    }
+    error(request: AXHttpRequestOptions,error: IHttpError) {
+        this.errorService.handle(error.message)
+    }
 
     constructor(private errorService: AXErrorService) {
 
     }
 
-    intercept(request: AXHttpRequestOptions, error: IHttpError) {
-        this.errorService.handle(error.message);
-    }
-}
-
-@Injectable()
-export class AXDefaultHttpBeginInterceptor implements AXHttpBeginEventInterceptor {
-
-    constructor() {
-
-    }
-
-    intercept(request: AXHttpRequestOptions) {
-        console.log("begin request");
-    }
-}
-
-@Injectable()
-export class AXDefaultHttpCompleteInterceptor implements AXHttpCompleteEventInterceptor {
-
-    constructor() {
-
-    }
-
-    intercept(request: AXHttpRequestOptions) {
-        console.log("begin complete");
-    }
+   
 }

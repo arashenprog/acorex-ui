@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from "@angular/core";
 import { AXHeaderBarMenuService } from '../../shared/api';
-import { BaseMenuItem } from 'acorex-ui';
+import { BaseMenuItem, AXTabPageService } from 'acorex-ui';
 
 
 
@@ -14,7 +14,7 @@ export class AXHeaderComponent implements OnInit, DoCheck {
 
     headerItems: BaseMenuItem[];
 
-    constructor(private headerBarMenuService: AXHeaderBarMenuService) {
+    constructor(private headerBarMenuService: AXHeaderBarMenuService, public tabService: AXTabPageService) {
 
     }
 
@@ -61,9 +61,8 @@ export class AXHeaderComponent implements OnInit, DoCheck {
         console.log(e)
     }
 
-    onHeaderClick(e:BaseMenuItem)
-    {
-        this.headerBarMenuService.clickItem(e).then(c=>{
+    onHeaderClick(e: BaseMenuItem) {
+        this.headerBarMenuService.clickItem(e).then(c => {
         });
     }
 }

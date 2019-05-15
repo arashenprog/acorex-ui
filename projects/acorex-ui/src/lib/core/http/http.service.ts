@@ -5,10 +5,7 @@ import { IHttpError } from './http-error.class';
 
 import { AXHttpRequestOptions } from './http-request.class';
 import {
-    AX_HTTP_ERROR_EVENT_INTERCEPTOR,
-    AX_HTTP_COMPLETE_EVENT_INTERCEPTOR,
-    AX_HTTP_BEGIN_EVENT_INTERCEPTOR,
-    AX_HTTP_RESULT_EVENT_INTERCEPTOR
+    AX_HTTP_EVENT_INTERCEPTOR, AXHttpEventInterceptor
 } from './http-events.interceptor';
 // import { catchError, retry, retryWhen, mergeMap, delay, switchMap, scan, takeWhile, flatMap } from 'rxjs/operators';
 // import { of, concat, throwError } from 'rxjs';
@@ -17,7 +14,10 @@ import {
 @Injectable({ providedIn: "root" })
 export class AXHttpService {
 
-    constructor(private http: HttpClient, private injector: Injector) { }
+    private interceptor: AXHttpEventInterceptor;
+    constructor(private http: HttpClient, private injector: Injector) {
+        this.interceptor = this.injector.get(AX_HTTP_EVENT_INTERCEPTOR);
+    }
 
     // private retry = retryWhen(errors => {
     //     let retries = 0;
@@ -61,24 +61,23 @@ export class AXHttpService {
 
 
     private handleResult(data, result, complete, config?: AXHttpRequestOptions) {
-        const event = this.injector.get(AX_HTTP_RESULT_EVENT_INTERCEPTOR);
-        if (event)
-            event.intercept(config, data);
+        if (this.interceptor)
+            this.interceptor.success(config, data);
         //
         if (result)
             result(data);
         this.handleComplete(complete, config);
     }
     private handleBegin(config?: AXHttpRequestOptions) {
-        const event = this.injector.get(AX_HTTP_BEGIN_EVENT_INTERCEPTOR);
-        if (event) event.intercept(config);
+        if (this.interceptor)
+            this.interceptor.begin(config);
     }
 
     private handleComplete(complete, config?: AXHttpRequestOptions) {
         if (complete)
             complete();
-        const event = this.injector.get(AX_HTTP_COMPLETE_EVENT_INTERCEPTOR);
-        if (event) event.intercept(config);
+        if (this.interceptor)
+            this.interceptor.complete(config);
     }
 
     private handleError(c, error, complete, config?: AXHttpRequestOptions) {
@@ -92,8 +91,8 @@ export class AXHttpService {
             error(r);
         }
         if (!r.handled) {
-            const err = this.injector.get(AX_HTTP_ERROR_EVENT_INTERCEPTOR);
-            if (err) err.intercept(config, r);
+            if (this.interceptor)
+                this.interceptor.error(config, r);
         }
         this.handleComplete(complete, config);
     }
