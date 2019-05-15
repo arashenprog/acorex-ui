@@ -38,6 +38,7 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
 import {
   AX_HTTP_EVENT_INTERCEPTOR,
 } from './core/http/http-events.interceptor'
+import { AXDataSourceModule } from './components/datasource/datasource.module';
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -70,7 +71,8 @@ import {
     AXTabPageModule,
     AXDrawerModule,
     //
-    AXHttpModule
+    AXHttpModule,
+    AXDataSourceModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -101,7 +103,8 @@ import {
     AXTabPageModule,
     AXDrawerModule,
     //
-    AXHttpModule
+    AXHttpModule,
+    AXDataSourceModule
   ],
   providers: [
     {

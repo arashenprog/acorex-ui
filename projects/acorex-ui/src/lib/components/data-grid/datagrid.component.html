@@ -7,7 +7,7 @@
             <button type="button" class="btn btn-primary btn-sm">
                 <i class="fas fa-pencil-alt"></i>
             </button>
-            <button type="button" class="btn btn-secondary btn-sm">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="refresh()">
                 <i class="fas fa-sync"></i>
             </button>
             <button type="button" class="btn btn-danger btn-sm">
@@ -16,7 +16,7 @@
         </div> 
     </div>
     <div class="title">
-        ثبت اطلاعات نسخه
+       {{title}}
     </div>
     <div class="left-actions">
         <div class="search-bar">
@@ -25,6 +25,6 @@
         </div>
     </div>
 </div>
-<ag-grid-angular class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [enableRtl]="true"
+<ag-grid-angular class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [enableRtl]="false"
     [enableFilter]="true" [enableSorting]="true" [enableColResize]="true" [suppressMenuHide]="true">
 </ag-grid-angular>

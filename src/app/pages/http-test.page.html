@@ -1,6 +1,10 @@
 <ax-page>
     <ax-page-content>
-        <ax-button icon="fas fas-cogs" text="Test" (click)="test()">
-        </ax-button>
+        <ax-data-grid title="Test remote data">
+            <ax-data-source >
+                <ax-remote-read url="https://jsonplaceholder.typicode.com/todos">
+                </ax-remote-read>
+            </ax-data-source>
+        </ax-data-grid>
     </ax-page-content>
 </ax-page>

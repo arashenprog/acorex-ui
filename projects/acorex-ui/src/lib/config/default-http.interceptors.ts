@@ -24,12 +24,13 @@ export class AXDefaultHttpInterceptor implements AXHttpEventInterceptor {
     }
 
     success(request: AXHttpRequestOptions, result: any):PromisResult<any> {
-        return new PromisResult((resolve)=>{
-            result = {
-                items: result
-            }
-            resolve(result);
-        });
+        // return new PromisResult((resolve)=>{
+        //     result = {
+        //         items: result
+        //     }
+        //     resolve(result);
+        // });
+        return PromisResult.resolve(result);
     }
     complete(request: AXHttpRequestOptions) {
         console.log("request completed");

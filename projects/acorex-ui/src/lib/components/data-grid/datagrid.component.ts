@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, ContentChild, Input } from "@angular/core";
+import { AXDataSourceComponent } from '../datasource/datasource.component';
 // import { HttpService } from "../../services/HttpService";
 
 @Component({
@@ -7,14 +8,16 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
   styleUrls: ["./datagrid.component.scss"]
 })
 export class AXDataGridComponent implements OnInit {
-  constructor() {}
+  constructor() { }
+
+  @ContentChild(AXDataSourceComponent)
+  private dataSource: AXDataSourceComponent;
+
+  @Input()
+  title:string;
 
   columnDefs = [
-    { headerName: "نام دارو", field: "1", width: 100 },
-    { headerName: "شکل", field: "2", width: 100 },
-    { headerName: "دوز مصرف", field: "4", width: 100 },
-    { headerName: "تعداد", field: "3", width: 100 },
-    { headerName: "توضیحات", field: "5", width: 100 }
+    { headerName: "title", field: "title", width: 100 }
   ];
 
   searchText: string = "";
@@ -22,82 +25,19 @@ export class AXDataGridComponent implements OnInit {
   rowData = [];
 
   ngOnInit(): void {
-    // this.httpService.get("https://jsonplaceholder.typicode.com/todos").fetch(data => {
-    //     this.rowData = data;
-    // })
-    this.rowData = [
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      },
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      },
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      },
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      },
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      },
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      },
-      {
-        1: "بیمه رازی",
-        2: "ندارد",
-        3: 90,
-        4: "حسن حسنی",
-        5: 54998,
-        6: 2,
-        7: "1397/5/12",
-        8: 20333
-      }
-    ];
+    this.dataSource.onLoad.subscribe(c => {
+      this.rowData = c;
+    })
   }
 
-  onSearch(e) {}
+  ngAfterViewInit(): void {
+    
+  }
+
+
+  refresh(){
+    this.dataSource.refresh();
+  }
+
+  onSearch(e) { }
 }
