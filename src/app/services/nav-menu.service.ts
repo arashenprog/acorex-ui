@@ -45,18 +45,29 @@ export class NavMenuService extends AXNavMenuService {
   }
   getFavorites(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
-      resolve(this.mockItems.slice(1, 2));
+      let favs: string[] = localStorage.getItem("favs") ? JSON.parse(localStorage.getItem("favs")) : [];
+      resolve(this.mockItems.filter(c => favs.includes(c.id)));
     });
   }
 
   setFavorites(menu: MenuItem, value: boolean): PromisResult<boolean> {
-    throw new Error("Method not implemented.");
+    let favs: string[] = localStorage.getItem("favs") ? JSON.parse(localStorage.getItem("favs")) : [];
+    if (value) {
+      if (!favs.some(c => c == menu.id)) {
+        favs.push(menu.id);
+      }
+    }
+    else {
+      favs = favs.filter(c => c != menu.id);
+    }
+    localStorage.setItem("favs", JSON.stringify(favs));
+    return PromisResult.resolve(true);
   }
 
   serach(search: string): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       debugger;
-      resolve(this.mockItems.filter(c => c.text.includes(search)));
+      resolve(this.mockItems.filter(c => c.text.toLowerCase().includes(search.toLowerCase())));
     });
   }
 

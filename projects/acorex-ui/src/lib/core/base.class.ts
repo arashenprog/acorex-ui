@@ -19,6 +19,13 @@ export class PromisResult<T> {
     this.thenAction = action;
     return this;
   }
+
+  static resolve<T>(value: T): PromisResult<T> {
+    const r = new PromisResult<T>((z => {
+      z(value);
+    })).then(c=>{});
+    return r;
+  }
 }
 
 export class AXBaseComponent {
@@ -58,7 +65,7 @@ export class AXButtonBaseComponent extends AXBaseComponent {
 export abstract class AXValidatableComponent extends AXBaseComponent {
   abstract validate(): Promise<IValidationRuleResult>;
   errorText: string = null;
-  
+
   @ContentChild(AXValidationComponent)
   protected validator: AXValidationComponent;
 }

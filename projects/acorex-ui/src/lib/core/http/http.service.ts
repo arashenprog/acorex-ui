@@ -7,6 +7,7 @@ import { AXHttpRequestOptions } from './http-request.class';
 import {
     AX_HTTP_EVENT_INTERCEPTOR, AXHttpEventInterceptor
 } from './http-events.interceptor';
+import { PromisResult } from '../base.class';
 // import { catchError, retry, retryWhen, mergeMap, delay, switchMap, scan, takeWhile, flatMap } from 'rxjs/operators';
 // import { of, concat, throwError } from 'rxjs';
 
@@ -32,54 +33,70 @@ export class AXHttpService {
 
     get<T>(url: string, config?: AXHttpRequestOptions): HttpResult<T> {
         return new HttpResult<T>((result?, error?, complete?) => {
-            this.handleBegin(config);
-            this.http
-                .get<T>(url, this.mapOptions(config))
-                //.pipe(this.retry)
-                .subscribe(data => {
-                    this.handleResult(data, result, complete, config);
-                }, c => {
-                    this.handleError(c, error, complete, config);
-
-                });
+            this.handleBegin(config).then(c => {
+                this.http
+                    .get<T>(url, this.mapOptions(c))
+                    //.pipe(this.retry)
+                    .subscribe(data => {
+                        this.handleResult(data, result, complete, c);
+                    }, c => {
+                        this.handleError(c, error, complete, c);
+                    });
+            });
         })
     }
 
     post<T>(url: string, config?: AXHttpRequestOptions): HttpResult<T> {
         return new HttpResult<T>((result?, error?, complete?) => {
-            this.handleBegin(config);
-            this.http
-                .post<T>(url, this.mapOptions(config))
-                //.pipe(this.retry)
-                .subscribe(data => {
-                    this.handleResult(data, result, complete, config);
-                }, c => {
-                    this.handleError(c, error, complete, config);
-                });
+            this.handleBegin(config).then(c => {
+                this.http
+                    .post<T>(url, this.mapOptions(config))
+                    //.pipe(this.retry)
+                    .subscribe(data => {
+                        this.handleResult(data, result, complete, config);
+                    }, c => {
+                        this.handleError(c, error, complete, config);
+                    });
+            });
         })
     }
 
 
     private handleResult(data, result, complete, config?: AXHttpRequestOptions) {
-        if (this.interceptor)
-            this.interceptor.success(config, data);
-        //
-        if (result)
-            result(data);
-        this.handleComplete(complete, config);
+        if (this.interceptor) {
+            this.interceptor.success(config, data).then(c => {
+                if (result)
+                    result(c);
+                this.handleComplete(complete, config);
+            });
+        }
+        else {
+            //
+            if (result)
+                result(data);
+            this.handleComplete(complete, config);
+        }
     }
 
-    private handleBegin(config?: AXHttpRequestOptions) {
-        if (!config) {
-            config = {};
-        }
-        if (!config.headers)
-            config.headers = {};
-        if (!config.params)
-            config.params = {};
-        //
-        if (this.interceptor)
-            this.interceptor.begin(config);
+    private handleBegin(config?: AXHttpRequestOptions): PromisResult<AXHttpRequestOptions> {
+        return new PromisResult((resolve) => {
+            if (!config) {
+                config = {};
+            }
+            if (!config.headers)
+                config.headers = {};
+            if (!config.params)
+                config.params = {};
+            //
+            if (this.interceptor) {
+                this.interceptor.begin(config).then(c => {
+                    resolve(c);
+                });
+            }
+            else {
+                resolve(config)
+            }
+        })
     }
 
     private handleComplete(complete, config?: AXHttpRequestOptions) {

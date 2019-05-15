@@ -43,16 +43,14 @@
       <i class="fa  {{ item.icon ? item.icon : 'fa-stop' }}"></i>
       <span>{{ item.text }}</span>
       <i
-      class="fas"
         [ngClass]="{
-          'fa-angle-left': isRtl,
-          'fa-angle-right': !isRtl
+          'fas fa-angle-left': isRtl,
+          'fas fa-angle-right': !isRtl
         }"
         *ngIf="item.isRoot"
       ></i>
       <i
-        class="fas"
-        [ngClass]="item.isFav ? 'fas fa-star' : 'far fa-star'"
+        [ngClass]="item.isFav ? 'fas fa-star warning-light' : 'far fa-star'"
         (click)="onToggleFav(item)"
         *ngIf="!item.isRoot"
       ></i>

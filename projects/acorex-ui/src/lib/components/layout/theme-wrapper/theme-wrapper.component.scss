@@ -17,31 +17,33 @@ $colors: (
   danger: (
     "": $danger,
     light: lighten($danger, 15%),
-    dark: darken($danger, 15%)
-
+    dark: darken($danger, 15%),
+    fore: $white
   ),
   success: (
     "": $success,
     light: lighten($success, 15%),
-    dark: darken($success, 15%)
+    dark: darken($success, 15%),
+    fore: $white
 
   ),
   warning: (
     "": $warning,
     light: lighten($warning, 15%),
-    dark: darken($warning, 15%)
-
+    dark: darken($warning, 15%),
+    fore: $white
   ),
   info: (
     "": $info,
     light: lighten($info, 15%),
-    dark: darken($info, 15%)
-
+    dark: darken($info, 15%),
+    fore: $white
   ),
   gray: (
     "": $gray,
     light: lighten($gray, 15%),
-    dark: darken($gray, 15%)
+    dark: darken($gray, 15%),
+    fore: $white
   ),
   primary: (
     "": $primary,
@@ -228,51 +230,66 @@ $sizes: (
   padding: var(--sp-sm-size) var(--sp-lg-size);
 }
 
-.bk-primary {
-  background-color: var(--primary-color) !important;
-  color: var(--white-color) !important;
+
+@each $name, $color in $colors {
+  @if type-of($color) == "map" {
+    @each $subname, $variant in $color {
+      @if $subname== "" {
+        .#{$name}{
+          color: var(--#{$name}-#{$color-suffix}) !important;
+        }
+        .bk-#{$name}{
+          background-color: var(--#{$name}-#{$color-suffix}) !important;
+          color: var(--#{$name}-fore-#{$color-suffix}) !important;
+        }
+        .btn-#{$name} {
+          color: var(--#{$name}-fore-#{$color-suffix});
+          background-color: var(--#{$name}-#{$color-suffix});
+          border-color: var(--#{$name}-#{$color-suffix});
+        }
+        .btn-#{$name}:hover {
+          background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+          border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+        }
+      } @else {
+        .#{$name}-#{$subname}{
+          color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
+        }
+        .bk-#{$name}-#{$subname}{
+          background-color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
+          color: var(--#{$name}-fore-#{$color-suffix}) !important;
+        }
+        .btn-#{$name}-#{$subname} {
+          color: var(--#{$name}-fore-#{$color-suffix});
+          background-color: var(--#{$name}-#{$subname}-#{$color-suffix});
+          border-color: var(--#{$name}-#{$subname}-#{$color-suffix});
+        }
+        .btn-#{$name}:hover {
+          background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+          border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+        }
+      }
+    }
+  } @else {
+    .#{$name}{
+      color: var(--#{$name}-#{$color-suffix}) !important;
+    }
+    .bk-#{$name}{
+      background-color: var(--#{$name}-#{$color-suffix}) !important;
+      color: var(--#{$name}-fore-#{$color-suffix}) !important;
+    }
+    .btn-#{$name} {
+      color: var(--#{$name}-fore-#{$color-suffix});
+      background-color: var(--#{$name}-#{$color-suffix});
+      border-color: var(--#{$name}-#{$color-suffix});
+    }
+    .btn-#{$name}:hover {
+      background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+      border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+    }
+  }
 }
 
-.bk-success {
-  background-color: var(--success-color) !important;
-  color: var(--white-color) !important;
-}
-
-.bk-warning {
-  background-color: var(--warning-color) !important;
-  color: var(--white-color) !important;
-}
-
-.bk-danger {
-  background-color: var(--danger-color) !important;
-  color: var(--white-color) !important;
-}
-
-.bk-primary-light {
-  background-color: var(--primary-light-color) !important;
-  color: var(--white-color) !important;
-}
-
-.bk-success-light {
-  background-color: var(--success-light-color);
-  color: var(--white-color);
-}
-
-.bk-warning-light {
-  background-color: var(--warning-light-color);
-  color: var(--white-color);
-}
-
-.bk-danger-light {
-  background-color: var(--danger-light-color);
-  color: var(--white-color);
-}
-
-.btn-primary {
-  color: var(--white-color);
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-}
 
 .circle-button {
   background-color: var(--white-color);
@@ -293,24 +310,4 @@ $sizes: (
     background-color: var(--primary-color);
     color: var(--white-color);
   }
-}
-.btn-primary:hover {
-  background-color: var(--primary-dark-color) !important;
-  border-color: var(--primary-dark-color) !important;
-}
-.btn-warning:hover {
-  background-color: var(--warning-dark-color) !important;
-  border-color: var(--warning-dark-color) !important;
-}
-.btn-info:hover {
-  background-color: var(--info-dark-color) !important;
-  border-color: var(--info-dark-color) !important;
-}
-.btn-danger:hover {
-  background-color: var(--danger-dark-color) !important;
-  border-color: var(--danger-dark-color) !important;
-}
-.btn-success:hover {
-  background-color: var(--success-dark-color) !important;
-  border-color: var(--success-dark-color) !important;
 }

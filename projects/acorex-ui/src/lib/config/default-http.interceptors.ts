@@ -5,28 +5,36 @@ import {
     IHttpError,
     AXHttpEventInterceptor
 } from '../core/http/api';
+import { PromisResult } from '../core/base.class';
 
 @Injectable()
 export class AXDefaultHttpInterceptor implements AXHttpEventInterceptor {
-
-    begin(request: AXHttpRequestOptions) {
-        request.headers = { "autentication": "brear askdjaskjhdj;laksnbdkjakjsdk" };
-        request.params = { "randoem": Math.random() };
-        console.log("begin request", request);
-    }
-    success(request: AXHttpRequestOptions, result: any) {
-
-    }
-    complete(request: AXHttpRequestOptions) {
-
-    }
-    error(request: AXHttpRequestOptions, error: IHttpError) {
-        this.errorService.handle(error.message)
-    }
 
     constructor(private errorService: AXErrorService) {
 
     }
 
+    begin(request: AXHttpRequestOptions):PromisResult<AXHttpRequestOptions> {
+        return new PromisResult((resolve)=>{
+            request.headers.autentication = "brear askdjaskjhdj;laksnbdkjakjsdk";
+            request.params.random = Math.random();
+            console.log("begin request", request);
+            resolve(request);
+        });
+    }
 
+    success(request: AXHttpRequestOptions, result: any):PromisResult<any> {
+        return new PromisResult((resolve)=>{
+            result = {
+                items: result
+            }
+            resolve(result);
+        });
+    }
+    complete(request: AXHttpRequestOptions) {
+        console.log("request completed");
+    }
+    error(request: AXHttpRequestOptions, error: IHttpError) {
+        this.errorService.handle(error.message)
+    }
 }
