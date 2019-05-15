@@ -14,7 +14,7 @@ export class TestHttpComponent  extends AXBasePageComponent {
           super();
       }
       test() {
-        this.http.post("https://jsonplaceholder.typicodes.com/todos", {
+        this.http.get("https://jsonplaceholder.typicode.com/todos", {
           params: { name: "arash" }
         })
           .result(c => {

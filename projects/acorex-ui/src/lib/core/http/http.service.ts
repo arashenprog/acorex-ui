@@ -68,7 +68,16 @@ export class AXHttpService {
             result(data);
         this.handleComplete(complete, config);
     }
+
     private handleBegin(config?: AXHttpRequestOptions) {
+        if (!config) {
+            config = {};
+        }
+        if (!config.headers)
+            config.headers = {};
+        if (!config.params)
+            config.params = {};
+        //
         if (this.interceptor)
             this.interceptor.begin(config);
     }
