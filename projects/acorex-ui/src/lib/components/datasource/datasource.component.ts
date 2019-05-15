@@ -1,5 +1,5 @@
 import { Component, ContentChild, EventEmitter } from "@angular/core";
-import { AXDataSourceReadComponent } from './read-component';
+import { AXDataSourceRead } from './read-component';
 
 @Component({
     selector: "ax-data-source",
@@ -7,8 +7,8 @@ import { AXDataSourceReadComponent } from './read-component';
 })
 export class AXDataSourceComponent {
 
-    @ContentChild(AXDataSourceReadComponent)
-    private read: AXDataSourceReadComponent;
+    @ContentChild(AXDataSourceRead)
+    private read: AXDataSourceRead;
 
     onLoad: EventEmitter<any> = new EventEmitter<any>();
 

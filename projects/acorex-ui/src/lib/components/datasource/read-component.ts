@@ -2,7 +2,7 @@ import { Component, Input, EventEmitter } from '@angular/core';
 import { AXHttpService } from '../../core/http/api';
 
 
-export abstract class AXDataSourceReadComponent {
+export abstract class AXDataSourceRead {
     abstract read(): void;
     abstract onLoad: EventEmitter<any>;
 }
@@ -10,9 +10,9 @@ export abstract class AXDataSourceReadComponent {
 @Component({
     selector: 'ax-remote-read',
     template: "",
-    providers: [{ provide: AXDataSourceReadComponent, useExisting: AXDataSourceRemoteReadComponent }]
+    providers: [{ provide: AXDataSourceRead, useExisting: AXDataSourceRemoteRead }]
 })
-export class AXDataSourceRemoteReadComponent extends AXDataSourceReadComponent {
+export class AXDataSourceRemoteRead extends AXDataSourceRead {
 
     constructor(private http: AXHttpService) {
         super();
