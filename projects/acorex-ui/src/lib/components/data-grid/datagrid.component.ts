@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ContentChild, Input } from "@angular/core";
 import { AXDataSourceComponent } from '../datasource/datasource.component';
-// import { HttpService } from "../../services/HttpService";
 
 @Component({
   selector: "ax-data-grid",
