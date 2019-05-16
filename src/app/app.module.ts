@@ -11,10 +11,11 @@ import { NavMenuService } from './services/nav-menu.service';
 import { AXHeaderBarMenuService } from 'acorex-spa';
 import { HeaderBarMenuService } from './services/header-bar-menu.service';
 import { TestHttpComponent } from './pages/http-test.page';
+import { LoginPageComponent } from './pages/login/login.page';
 
 
 @NgModule({
-  declarations: [AppComponent, TestPageComponent,TestHttpComponent],
+  declarations: [AppComponent, TestPageComponent,TestHttpComponent,LoginPageComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -35,7 +36,7 @@ import { TestHttpComponent } from './pages/http-test.page';
       useClass: HeaderBarMenuService
     }
   ],
-  entryComponents: [TestPageComponent,TestHttpComponent],
+  entryComponents: [TestPageComponent,TestHttpComponent,LoginPageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,33 @@
+<ax-blank-layout>
+  <div class="full-page-wrapper d-flex-center d-flex-col">
+    <div>
+      <img
+        src="assets/images/logo.png"
+        alt="CQ Flooring logo"
+        class="login-logo"
+      />
+      <div class="d-padding-md"></div>
+
+    </div>
+    <div class="box d-flex-col d-padding-md">
+      <div>
+        <ax-text-box label="Username" placeholder="demo"></ax-text-box>
+      </div>
+      <div class="d-padding-sm"></div>
+
+      <div>
+        <ax-pass-box label="Password" placeholder="demo"></ax-pass-box>
+      </div>
+      <div class="d-padding-md"></div>
+      <div>
+        <ax-button
+          text="Login"
+          [loading]="isLoading"
+          loadingText=" "
+          [block]="true"
+          (onClick)="onLoginClick()"
+        ></ax-button>
+      </div>
+    </div>
+  </div>
+</ax-blank-layout>

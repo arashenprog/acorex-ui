@@ -1,0 +1,49 @@
+.full-page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+}
+.d-flex {
+  display: flex;
+}
+.d-flex-row {
+  flex-direction: row;
+}
+.d-flex-row-rev {
+  flex-direction: row-reverse;
+}
+.d-flex-col {
+  flex-direction: column;
+}
+.d-flex-col-rev {
+  flex-direction: column-reverse;
+}
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.d-padding-sm {
+  padding: var(--sp-sm-size);
+}
+.d-padding-md {
+  padding: var(--sp-md-size);
+}
+.d-padding-lg {
+  padding: var(--sp-lg-size);
+}
+.d-padding-xl {
+  padding: var(--sp-xl-size);
+}
+.box {
+  background: #fff;
+  min-width: 350px;
+  box-shadow: 0px 1px 7px 0px #bdbdbd;
+  border-radius: 4px;
+}
+.login-logo {
+  padding: 10px;
+  width: 250px;
+  display: block;
+  margin: auto;
+}
