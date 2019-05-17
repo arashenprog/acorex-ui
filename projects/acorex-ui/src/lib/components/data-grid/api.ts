@@ -1,3 +1,5 @@
-export * from "./column.component";
+export * from "./columns/column.component";
+export * from "./columns/text-column.component";
+export * from "./columns/check-column.component";
 export * from "./datagrid.component";
 export * from "./datagrid.module";

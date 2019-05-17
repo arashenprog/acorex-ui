@@ -1,10 +1,12 @@
 import { Component, Input, EventEmitter } from '@angular/core';
 import { AXHttpService } from '../../core/http/api';
+import { PromisResult } from '../../core/base.class';
+import { AXDataSourceReadParams } from './read-param';
 
 
 export abstract class AXDataSourceRead {
-    abstract read(): void;
-    abstract onLoad: EventEmitter<any>;
+    abstract fetch(params: AXDataSourceReadParams): PromisResult<any>;
+    abstract onDataReceived: EventEmitter<any>;
 }
 
 @Component({
@@ -20,27 +22,38 @@ export class AXDataSourceRemoteRead extends AXDataSourceRead {
 
     @Input()
     url: string;
-    @Input()
-    params: string;
 
     @Input()
-    headers: string;
+    params: any;
+
+    @Input()
+    headers: any;
 
     @Input()
     method: "get" | "post" = "get";
 
-    onLoad: EventEmitter<any> = new EventEmitter<any>();
+    @Input()
+    remoteOperation: boolean = false;
 
-    read(): void {
-        debugger;
-        if (this.method == "get") {
-            this.http.get(this.url, {
+    onDataReceived: EventEmitter<any> = new EventEmitter<any>();
+
+    fetch(params: AXDataSourceReadParams = {}): PromisResult<any> {
+        if (!this.params) this.params = {};
+        if (this.remoteOperation) {
+            Object.assign(this.params, params);
+        }
+        return new PromisResult((resolve) => {
+            this.http.request({
+                url: this.url,
+                method: this.method,
                 params: this.params,
                 headers: this.headers
             }).result(c => {
-                this.onLoad.emit(c);
+                if (resolve)
+                    resolve(c);
+                this.onDataReceived.emit(c);
             })
-        }
+        })
     }
 
 }

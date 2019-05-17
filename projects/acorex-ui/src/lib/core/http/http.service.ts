@@ -31,26 +31,24 @@ export class AXHttpService {
     //     );
     // });
 
-    get<T>(url: string, config?: AXHttpRequestOptions): HttpResult<T> {
-        return new HttpResult<T>((result?, error?, complete?) => {
-            this.handleBegin(config).then(c => {
-                this.http
-                    .get<T>(url, this.mapOptions(c))
-                    //.pipe(this.retry)
-                    .subscribe(data => {
-                        this.handleResult(data, result, complete, c);
-                    }, c => {
-                        this.handleError(c, error, complete, c);
-                    });
-            });
-        })
+    get<T>(url: string, config: AXHttpRequestOptions = {}): HttpResult<T> {
+        config.url = url;
+        config.method = "get";
+        return this.request(config);
     }
 
-    post<T>(url: string, config?: AXHttpRequestOptions): HttpResult<T> {
+    post<T>(url: string, config: AXHttpRequestOptions = {}): HttpResult<T> {
+        config.url = url;
+        config.method = "post";
+        return this.request(config);
+    }
+
+
+    request<T>(config: AXHttpRequestOptions): HttpResult<T> {
         return new HttpResult<T>((result?, error?, complete?) => {
             this.handleBegin(config).then(c => {
                 this.http
-                    .post<T>(url, this.mapOptions(config))
+                    .request<T>(config.method, config.url, this.mapOptions(config))
                     //.pipe(this.retry)
                     .subscribe(data => {
                         this.handleResult(data, result, complete, config);
@@ -62,7 +60,7 @@ export class AXHttpService {
     }
 
 
-    private handleResult(data, result, complete, config?: AXHttpRequestOptions) {
+    private handleResult(data, result, complete, config: AXHttpRequestOptions) {
         if (this.interceptor) {
             this.interceptor.success(config, data).then(c => {
                 if (result)
@@ -78,11 +76,8 @@ export class AXHttpService {
         }
     }
 
-    private handleBegin(config?: AXHttpRequestOptions): PromisResult<AXHttpRequestOptions> {
+    private handleBegin(config: AXHttpRequestOptions): PromisResult<AXHttpRequestOptions> {
         return new PromisResult((resolve) => {
-            if (!config) {
-                config = {};
-            }
             if (!config.headers)
                 config.headers = {};
             if (!config.params)
@@ -99,14 +94,14 @@ export class AXHttpService {
         })
     }
 
-    private handleComplete(complete, config?: AXHttpRequestOptions) {
+    private handleComplete(complete, config: AXHttpRequestOptions) {
         if (complete)
             complete();
         if (this.interceptor)
             this.interceptor.complete(config);
     }
 
-    private handleError(c, error, complete, config?: AXHttpRequestOptions) {
+    private handleError(c, error, complete, config: AXHttpRequestOptions) {
         let r: IHttpError = {
             message: c.message,
             status: c.status,
@@ -123,10 +118,9 @@ export class AXHttpService {
         this.handleComplete(complete, config);
     }
 
-    private mapOptions(options?: AXHttpRequestOptions) {
+    private mapOptions(options: AXHttpRequestOptions) {
         let headers = new HttpHeaders();
         let params = new HttpParams();
-        if (!options) return {};
         for (const key in options.headers) {
             if (options.headers.hasOwnProperty(key)) {
                 const value = options.headers[key];

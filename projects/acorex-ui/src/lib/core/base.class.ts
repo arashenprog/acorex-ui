@@ -117,7 +117,7 @@ export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
 
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
 
-  @Input() label: string = " Checkbox label";
+  @Input() label: string = "";
   @Input() value: any = null;
 
   // Value

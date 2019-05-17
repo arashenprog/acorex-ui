@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, ContentChild, Input, ContentChildren, QueryList, ChangeDetectionStrategy } from "@angular/core";
+import { Component, OnInit, ContentChild, Input, ContentChildren, QueryList } from "@angular/core";
 import { AXDataSourceComponent } from '../datasource/datasource.component';
-import { AXGridDataColumn } from './column.component';
+import { AXGridDataColumn } from './columns/column.component';
+import { AXDataSourceReadParams } from '../datasource/read-param';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   selector: "ax-data-grid",
@@ -8,7 +10,10 @@ import { AXGridDataColumn } from './column.component';
   styleUrls: ["./datagrid.component.scss"]
 })
 export class AXDataGridComponent implements OnInit {
+
   constructor() { }
+
+  private gridApi;
 
   @ContentChildren(AXGridDataColumn)
   private _columns: QueryList<AXGridDataColumn>;
@@ -19,51 +24,85 @@ export class AXDataGridComponent implements OnInit {
   @Input()
   title: string;
 
-  columnDefs = [];
+  columnDefs: any[] = [];
 
   searchText: string = "";
+  rowModelType = "clientSide";
+  rowGroupPanelShow = "always";
 
-  rowData = [];
+
+  private remoteOperation: boolean = false;
+
+
+
+  onGridReady(gridOptions: GridOptions) {
+    debugger;
+    this.gridApi = gridOptions.api;
+    const that = this;
+
+    //
+    if (that.remoteOperation) {
+      let dataSource = {
+        rowCount: null,
+        getRows: function (params) {
+          console.log("grid filetr", params);
+          let loadParams: AXDataSourceReadParams = {};
+          loadParams.searchText = that.searchText;
+          loadParams.skip = params.startRow;
+          loadParams.take = params.endRow - params.startRow;
+          loadParams.sort = params.sortModel.map(c => {
+            return {
+              field: c.colId,
+              sort: c.sort
+            }
+          });
+          // loadParams.filter = params.sortModel.map(c => {
+          //   return {
+          //     field: c.colId,
+          //     sort: c.sort
+          //   }
+          // });
+          that.dataSource.fetch(loadParams).then(c => {
+            params.successCallback(c, c.length);
+          })
+        }
+      };
+      gridOptions.api.setDatasource(dataSource);
+    }
+    else {
+      that.dataSource.onDataReceived.subscribe(c => {
+        that.gridApi.setRowData(c)
+      });
+      //
+      this.refresh();
+    }
+  }
 
   ngOnInit(): void {
 
-    //
-    this.dataSource.onLoad.subscribe(c => {
-      this.rowData = c;
-    })
   }
 
   ngAfterViewInit(): void {
+    debugger;
+    this.remoteOperation = (<any>this.dataSource.read).remoteOperation;
+    if (this.remoteOperation)
+      this.rowModelType = "infinite";
+
     this.mapColumns();
   }
 
   mapColumns() {
-    this.columnDefs = this._columns.map(c => {
-      const col: any = {
-        field: c.field,
-        width: c.width,
-      };
-      if (c.caption)
-        col.headerName = c.caption;
-      if (c.minWidth)
-        col.minWidth = c.minWidth;
-      if (c.maxWidth)
-        col.maxWidth = c.maxWidth;
-      if (c.pinned)
-        col.pinned = c.pinned;
-      if (c.sortable)
-        col.sortable = c.sortable;
-      if (c.sort)
-        col.sort = c.sort;
-      if (c.renderer)
-        col.cellRendererFramework = c.renderer;
-      return col;
-    });
+    this.columnDefs = this._columns.map(c => c.render());
   }
 
 
   refresh() {
-    this.dataSource.refresh();
+    if (this.remoteOperation) {
+      this.gridApi.refreshView();
+    }
+    else {
+      this.dataSource.fetch();
+    }
   }
 
   onSearch(e) { }

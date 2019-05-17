@@ -3,13 +3,13 @@
     <ax-page-content>
         <ax-data-grid title="Test remote data">
             <ax-data-source >
-                <ax-remote-read url="https://jsonplaceholder.typicode.com/todos">
+                <ax-remote-read url="https://jsonplaceholder.typicode.com/todos" >
                 </ax-remote-read>
             </ax-data-source>
             <ax-text-column field="id" caption="ID" [width]="100"></ax-text-column>
             <ax-text-column field="userId" caption="UserId" [width]="100"></ax-text-column>
             <ax-text-column field="title" caption="Title" [width]="300"></ax-text-column>
-            <ax-check-column field="completed" caption="completed" [width]="100"></ax-check-column>
+            <ax-check-column field="completed" caption="Completed" [width]="100"></ax-check-column>
         </ax-data-grid>
     </ax-page-content>
 </ax-page>
