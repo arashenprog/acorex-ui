@@ -15,6 +15,7 @@ import {
   BooleanFilterRenderrer
 } from "./columns/check-column.component";
 import { AXTextBoxModule } from '../form/text-box/text-box.module';
+import { AXDataGridFilterComponent } from './filters/filter.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AXTextBoxModule } from '../form/text-box/text-box.module';
     BooleanRenderer,
     BooleanFilterRenderrer,
     TextFilterRenderrer,
+    AXDataGridFilterComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { AXTextBoxModule } from '../form/text-box/text-box.module';
     AXGridCheckColumn,
     BooleanRenderer,
     BooleanFilterRenderrer,
-    TextFilterRenderrer
+    TextFilterRenderrer,
+    AXDataGridFilterComponent
   ],
   entryComponents: [
     BooleanRenderer,

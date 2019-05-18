@@ -1,0 +1,17 @@
+.ax-grid-filter-container {
+  min-width: 140px;
+  margin: 5px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-color: var(--border-color);
+  legend {
+    font-size: inherit !important;
+  }
+  .btn-group {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}

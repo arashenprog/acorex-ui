@@ -33,10 +33,10 @@ export class AXGridTextColumn extends AXGridDataColumn {
 
 @Component({
   template: `
-    <div class="ax-grid-filter-container">
+    <ax-data-grid-filter>
       <ax-text-box label="Filter" showClear="true">
       </ax-text-box>
-    </div>
+    </ax-data-grid-filter>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
