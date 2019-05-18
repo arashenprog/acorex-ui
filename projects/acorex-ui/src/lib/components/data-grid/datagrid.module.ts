@@ -16,6 +16,8 @@ import {
 } from "./columns/check-column.component";
 import { AXTextBoxModule } from '../form/text-box/text-box.module';
 import { AXDataGridFilterComponent } from './filters/filter.component';
+import { AXSelectBoxModule } from '../form/select-box/select-box.module';
+import { AXCheckBoxModule } from '../form/checkbox/checkbox.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AXDataGridFilterComponent } from './filters/filter.component';
     FormsModule,
     AgGridModule,
     AXDataSourceModule,
-    AXTextBoxModule
+    AXTextBoxModule,
+    AXSelectBoxModule,
+    AXCheckBoxModule
 
   ],
   exports: [
