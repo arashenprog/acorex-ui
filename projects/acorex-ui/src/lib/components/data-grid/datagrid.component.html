@@ -1,30 +1,46 @@
 <div class="ax-grid-toolbar">
-    <div class="right-actions">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success btn-sm">
-                <i class="fas fa-plus-circle"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm">
-                <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button type="button" class="btn btn-secondary btn-sm" (click)="refresh()">
-                <i class="fas fa-sync"></i>
-            </button>
-            <button type="button" class="btn btn-danger btn-sm">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </div> 
+  <div class="right-actions">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-light btn-sm">
+        <i class="fas fa-plus-circle text-success"></i>
+      </button>
+      <button type="button" class="btn btn-light btn-sm">
+        <i class="fas fa-pencil-alt text-primary"></i>
+      </button>
+      <button type="button" class="btn btn-light btn-sm" (click)="refresh()">
+        <i class="fas fa-sync text-info"></i>
+      </button>
+      <button type="button" class="btn btn-light btn-sm">
+        <i class="fas fa-trash-alt text-danger"></i>
+      </button>
     </div>
-    <div class="title">
-       {{title}}
+  </div>
+  <div class="title">
+    {{ title }}
+  </div>
+  <div class="left-actions">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search ..."
+        [(ngModel)]="searchText"
+        (change)="onSearch($event)"
+      />
+      <i class="fas fa-search text-secondary"></i>
     </div>
-    <div class="left-actions">
-        <div class="search-bar">
-            <input type="text" placeholder="Search ..." [(ngModel)]="searchText" (change)="onSearch($event)" />
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
+  </div>
 </div>
-<ag-grid-angular class="ag-theme-balham"  [columnDefs]="columnDefs" [enableRtl]="false" [pagination]="true"  [rowGroupPanelShow]="rowGroupPanelShow"
-    [enableFilter]="true" [rowModelType]="rowModelType" [enableSorting]="true" [enableColResize]="true" [suppressMenuHide]="true" (gridReady)="onGridReady($event)">
+<ag-grid-angular
+  class="ag-theme-balham"
+  [columnDefs]="columnDefs"
+  [enableRtl]="false"
+  [pagination]="true"
+  [rowGroupPanelShow]="rowGroupPanelShow"
+  [enableFilter]="true"
+  [rowModelType]="rowModelType"
+  [enableSorting]="true"
+  [enableColResize]="true"
+  [suppressMenuHide]="true"
+  (gridReady)="onGridReady($event)"
+>
 </ag-grid-angular>

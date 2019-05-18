@@ -50,7 +50,8 @@ $colors: (
     fore: $white,
     light: lighten($primary, 15%),
     dark: darken($primary, 15%),
-    trans: transparentize($primary, 0.5)
+    trans: transparentize($primary, 0.5),
+    lighter: transparentize($primary, 0.9)
   ),
   secondary: (
     "": $secondary,

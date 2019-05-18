@@ -3,11 +3,13 @@ import { AXDataSourceComponent } from '../datasource/datasource.component';
 import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../datasource/read-param';
 import { GridOptions } from 'ag-grid-community';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: "ax-data-grid",
   templateUrl: "./datagrid.component.html",
-  styleUrls: ["./datagrid.component.scss"]
+  styleUrls: ["./datagrid.component.scss"],
+  encapsulation:ViewEncapsulation.None
 })
 export class AXDataGridComponent implements OnInit {
 

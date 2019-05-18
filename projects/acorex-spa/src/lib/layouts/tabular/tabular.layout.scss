@@ -157,7 +157,7 @@
 
       /* Track */
       &::-webkit-scrollbar-track {
-        background: #ccc !important;
+        background: var(--border-color) !important;
       }
 
       /* Handle */
