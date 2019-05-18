@@ -188,7 +188,7 @@ $sizes: (
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: var(--sp-sm-size);
+    margin: 4px 3px 0 0 !important;
     border: none;
     &:first-child {
       margin-right: 10px;

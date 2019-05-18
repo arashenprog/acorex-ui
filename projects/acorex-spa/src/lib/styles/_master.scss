@@ -8,7 +8,7 @@
     // background: -webkit-linear-gradient(var(--primary-dark-color), var(--primary-color));
     // background: -moz-linear-gradient(var(--primary-dark-color), var(--primary-color));
 
-    background-color: var(--primary-dark-color);
+    background-color: var(--primary-color);
 }
 
 @mixin box-shadow($left, $top, $radius, $color) {

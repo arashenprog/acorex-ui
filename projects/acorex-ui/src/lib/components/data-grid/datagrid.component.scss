@@ -6,6 +6,19 @@
 ag-grid-angular {
   width: 100%;
   height: calc(100vh - 160px);
+
+  .ax-grid-filter-container {
+    min-width: 140px;
+    margin: 5px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: var(--border-color);
+    legend {
+      font-size: inherit !important;
+    }
+  }
 }
 .ax-grid-toolbar {
   padding: 0 5px;
@@ -91,4 +104,7 @@ ag-grid-angular {
       background: var(--secondary-color);
     }
   }
+}
+.ag-theme-balham .ag-filter input[type="text"], .ag-theme-balham .ag-filter input[type="date"] {
+  padding-left: 10px !important;
 }

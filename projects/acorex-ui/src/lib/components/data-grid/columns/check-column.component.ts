@@ -27,7 +27,7 @@ export class AXGridCheckColumn extends AXGridDataColumn  {
 
 
 @Component({
-    template: `<input type="checkbox"   [(ngModel)]="value" [ngModelOptions]="{standalone: true}" readonly/>`,
+    template: `<input type="checkbox" [(ngModel)]="value" [ngModelOptions]="{standalone: true}" readonly/>`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooleanRenderer implements ICellRendererAngularComp {
@@ -45,7 +45,11 @@ export class BooleanRenderer implements ICellRendererAngularComp {
 }
 
 @Component({
-    template: `<input type="checkbox" #input (ngModelChange)="onChange($event)" [ngModel]="value" >`,
+    template: `
+    <div class="ax-grid-filter-container">
+        <input type="checkbox" #input (ngModelChange)="onChange($event)" [ngModel]="value" >
+    </div>
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooleanFilterRenderrer implements IFilterAngularComp {
