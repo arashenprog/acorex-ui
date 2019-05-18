@@ -4,6 +4,7 @@
 
 export * from "./lib/core/http/api";
 export * from "./lib/core/core.module";
+
 export * from "./lib/acorex-ui.module";
 
 export * from "./lib/core/translate.service";
@@ -18,3 +19,5 @@ export * from "./lib/components/form/validation/validation-form.component";
 
 export * from "./lib/components/nav/api";
 export * from "./lib/components/layout/toast/api";
+
+export * from "./lib/components/datasource/api";

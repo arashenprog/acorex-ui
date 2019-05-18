@@ -41,7 +41,7 @@ export abstract class AXGridDataColumn {
         if (this.maxWidth)
             col.maxWidth = this.maxWidth;
         if (this.pinned)
-            col.pinned = this.pinned;
+            col.pinned = this.pinned == "start" ? "left" : "right"; //TODO: Change based on layout
         if (this.sortable)
             col.sortable = this.sortable;
         if (this.sort)
