@@ -5,17 +5,23 @@ import { AXDataSourceReadParams } from '../datasource/read-param';
 import { GridOptions } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
 
+export interface AXGridRowCommandEvent {
+    data: any;
+    name: string;
+}
+
 @Component({
   selector: "ax-data-grid",
   templateUrl: "./datagrid.component.html",
   styleUrls: ["./datagrid.component.scss"],
-  encapsulation:ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class AXDataGridComponent implements OnInit {
 
   constructor() { }
 
   private gridApi;
+  private dataSourceSuccessCallback;
 
   @ContentChildren(AXGridDataColumn)
   private _columns: QueryList<AXGridDataColumn>;
@@ -47,6 +53,7 @@ export class AXDataGridComponent implements OnInit {
       let dataSource = {
         rowCount: null,
         getRows: function (params) {
+          that.dataSourceSuccessCallback = params.successCallback;
           console.log("grid filetr", params);
           let loadParams: AXDataSourceReadParams = {};
           loadParams.searchText = that.searchText;
@@ -64,33 +71,37 @@ export class AXDataGridComponent implements OnInit {
           //     sort: c.sort
           //   }
           // });
-          that.dataSource.fetch(loadParams).then(c => {
-            params.successCallback(c, c.length);
-          })
+          that.dataSource.fetch(loadParams);
         }
       };
       gridOptions.api.setDatasource(dataSource);
     }
     else {
-      that.dataSource.onDataReceived.subscribe(c => {
-        that.gridApi.setRowData(c)
-      });
-      //
-      this.refresh();
+      this.dataSource.fetch();
     }
   }
 
   ngOnInit(): void {
 
+
   }
 
   ngAfterViewInit(): void {
-    debugger;
     this.remoteOperation = (<any>this.dataSource.read).remoteOperation;
     if (this.remoteOperation)
       this.rowModelType = "infinite";
 
     this.mapColumns();
+    //
+    this.dataSource.onDataReceived.subscribe(c => {
+      debugger;
+      if (this.remoteOperation && this.dataSourceSuccessCallback) {
+        this.dataSourceSuccessCallback(c, c.length);
+      }
+      else {
+        this.gridApi.setRowData(c)
+      }
+    });
   }
 
   mapColumns() {
@@ -106,6 +117,8 @@ export class AXDataGridComponent implements OnInit {
       this.dataSource.fetch();
     }
   }
+
+
 
   onSearch(e) { }
 }

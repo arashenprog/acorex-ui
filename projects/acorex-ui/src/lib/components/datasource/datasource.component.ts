@@ -1,7 +1,6 @@
 import { Component, ContentChild, EventEmitter } from "@angular/core";
-import { AXDataSourceRead } from './read-component';
 import { PromisResult } from '../../core/base.class';
-import { AXDataSourceReadParams } from './read-param';
+import { AXDataSourceReadParams, AXDataSourceRead } from './read-param';
 
 
 
@@ -30,7 +29,7 @@ export class AXDataSourceComponent {
     }
 
 
-    fetch(params: AXDataSourceReadParams = {}):PromisResult<any> {
-        return this.read.fetch(params);
+    fetch(params: AXDataSourceReadParams = {}){
+        this.read.fetch(params);
     }
 }

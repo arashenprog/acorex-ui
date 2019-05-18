@@ -1,3 +1,7 @@
+import { EventEmitter } from '@angular/core';
+import { PromisResult } from '../../core/base.class';
+
+
 
 export interface AXSortParams
 {
@@ -25,4 +29,10 @@ export interface AXDataSourceReadParams
     sort?:AXSortParams[];
     filter?:AXFilterParams[];
     searchText?:string;
+}
+
+
+export abstract class AXDataSourceRead {
+    abstract fetch(params: AXDataSourceReadParams):void;
+    abstract onDataReceived: EventEmitter<any>;
 }

@@ -23,7 +23,7 @@ export class PromisResult<T> {
   static resolve<T>(value: T): PromisResult<T> {
     const r = new PromisResult<T>((z => {
       z(value);
-    })).then(c=>{});
+    })).then(c => { });
     return r;
   }
 }
@@ -73,7 +73,22 @@ export abstract class AXValidatableComponent extends AXBaseComponent {
 
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
 
-  @Input() text: string;
+
+
+  @Output()
+  textChange: EventEmitter<string> = new EventEmitter<string>();
+
+  private _text: string;
+  @Input()
+  public get text(): string {
+    return this._text;
+  }
+  public set text(v: string) {
+    this._text = v;
+    this.textChange.emit(v);
+  }
+
+
   @Input() label: string;
   @Input() autocomplete: boolean = false;
   @Input() placeholder: string = "";
