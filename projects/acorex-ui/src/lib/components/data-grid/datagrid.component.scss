@@ -6,6 +6,7 @@
 ag-grid-angular {
   width: 100%;
   height: calc(100vh - 160px);
+
 }
 .ax-grid-toolbar {
   padding: 0 5px;
@@ -69,6 +70,9 @@ ag-grid-angular {
 }
 
 .ag-theme-balham {
+  .ax-field-set-button {
+    margin: 4px 2px !important;
+  }
   .ag-header {
     background-color: var(--primary-lighter-color) !important;
     border-color: var(--border-color);
@@ -91,4 +95,8 @@ ag-grid-angular {
       background: var(--secondary-color);
     }
   }
+}
+.ag-theme-balham .ag-filter input[type="text"],
+.ag-theme-balham .ag-filter input[type="date"] {
+  padding-left: 10px !important;
 }

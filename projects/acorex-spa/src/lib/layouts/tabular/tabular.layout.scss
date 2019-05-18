@@ -96,7 +96,7 @@
           @include transition(0.3s);
 
           &.active {
-            border-color: var(--primary-dark-color) !important;
+            border-color: var(--primary-color) !important;
             @include base-gradient();
             color: var(--white-color);
 
