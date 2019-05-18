@@ -13,6 +13,7 @@ import { AXDataGridFilterComponent } from './filters/filter.component';
 import { AXTextBoxModule } from '../form/text-box/text-box.module';
 import { AXCheckBoxModule } from '../form/checkbox/checkbox.module';
 import { AXSelectBoxModule } from '../form/select-box/select-box.module';
+import { AXButtonModule } from '../form/button/button.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AXSelectBoxModule } from '../form/select-box/select-box.module';
     AXTextBoxModule,
     AXCheckBoxModule,
     AXSelectBoxModule,
-    AXDataSourceModule
+    AXDataSourceModule,
+    AXButtonModule
   ],
   exports: [
     AXDataGridComponent,

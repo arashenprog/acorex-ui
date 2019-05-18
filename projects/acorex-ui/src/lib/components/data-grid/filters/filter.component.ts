@@ -8,11 +8,11 @@ import { ViewEncapsulation } from "@angular/core";
     <div class="ax-grid-filter-container">
       <ng-content></ng-content>
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-light btn-sm">
-          <i class="fas fa-filter text-primary"></i>
+        <button type="button" class="btn btn-primary btn-sm">
+          <i class="fas fa-filter"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm">
-          <i class="fas fa-trash-alt text-danger"></i>
+        <button type="button" class="btn btn-danger btn-sm">
+          <i class="fas fa-trash-alt"></i>
         </button>
       </div>
     </div>

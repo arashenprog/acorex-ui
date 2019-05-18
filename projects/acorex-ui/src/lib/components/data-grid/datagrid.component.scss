@@ -108,6 +108,29 @@ ag-grid-angular {
         }
       }
     }
+    ax-button {
+
+      .ax-button {
+        display: inline-flex;
+        margin: 4px 0px 0 5px;
+
+      }
+      .btn {
+        padding: 0 0.75rem;
+        font-size: 0.85rem;
+        line-height: 1.2;
+      }
+    }
+  }
+}
+.rtl {
+  .ag-cell {
+    ax-button {
+      .ax-button {
+        display: inline-flex;
+        margin: 4px 5px 0 0px;
+      }
+    }
   }
 }
 .ag-theme-balham .ag-filter input[type="text"],

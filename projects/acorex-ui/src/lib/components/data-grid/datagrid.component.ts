@@ -54,7 +54,7 @@ export class AXDataGridComponent implements OnInit {
         rowCount: null,
         getRows: function (params) {
           that.dataSourceSuccessCallback = params.successCallback;
-          console.log("grid filetr", params);
+          console.log("grid filter", params);
           let loadParams: AXDataSourceReadParams = {};
           loadParams.searchText = that.searchText;
           loadParams.skip = params.startRow;
