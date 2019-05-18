@@ -197,7 +197,7 @@
         right: 0;
         bottom: 0;
         padding: 0 10px;
-        z-index: 1;
+        z-index: 0;
         &:host {
           height: calc(100vh - 130px) !important;
         }

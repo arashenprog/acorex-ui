@@ -1,6 +1,7 @@
 <div
   *ngIf="show"
   [ngClass]="{ 'drawer-overlay': overlay }"
+  [ngStyle]="{'top':mode === 'outer' ? '0px' : '50px' }"
   (click)="onClose($event)"
 >
   <div
