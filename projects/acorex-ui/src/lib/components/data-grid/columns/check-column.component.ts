@@ -35,7 +35,7 @@ export class AXGridCheckColumn extends AXGridDataColumn {
 
 @Component({
   template: `
-    <ax-check-box></ax-check-box>
+    <ax-check-box [value]="value" readOnly="true"></ax-check-box>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -13,4 +13,9 @@ export class AXCheckBoxComponent extends AXCheckedBaseComponent {
   > {
     throw new Error("Method not implemented.");
   }
+
+  onClick(e) {
+    if (this.readOnly)
+      return false;
+  }
 }

@@ -4,10 +4,12 @@ import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../datasource/read-param';
 import { GridOptions } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 export interface AXGridRowCommandEvent {
-    data: any;
-    name: string;
+  data: any;
+  name: string;
 }
 
 @Component({
@@ -34,7 +36,23 @@ export class AXDataGridComponent implements OnInit {
 
   columnDefs: any[] = [];
 
-  searchText: string = "";
+
+
+  private _searchText: string;
+  @Input()
+  public get searchText(): string {
+    return this._searchText;
+  }
+  public set searchText(v: string) {
+    if (v != this._searchText) {
+      this._searchText = v;
+      if (this.gridApi)
+        this.gridApi.setQuickFilter(this.searchText);
+    }
+  }
+
+  searchChangeObserver: any;
+
   rowModelType = "clientSide";
   rowGroupPanelShow = "always";
 
@@ -120,5 +138,18 @@ export class AXDataGridComponent implements OnInit {
 
 
 
-  onSearch(e) { }
+  onSearchChanged(text: string) {
+    if (!this.searchChangeObserver) {
+      Observable.create(observer => {
+        this.searchChangeObserver = observer;
+      })
+        .pipe(debounceTime(500))
+        .pipe(distinctUntilChanged())
+        .subscribe(c => {
+          this.searchText = c;
+        });
+    }
+
+    this.searchChangeObserver.next(text);
+  }
 }

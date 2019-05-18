@@ -14,7 +14,7 @@
   &::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
   }
-  resize: both;
+  resize: none;
 }
 .ax-grid-filter-container {
   min-width: 140px;

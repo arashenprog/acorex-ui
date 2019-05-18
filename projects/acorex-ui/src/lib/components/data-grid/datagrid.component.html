@@ -23,8 +23,7 @@
       <input
         type="text"
         placeholder="Search ..."
-        [(ngModel)]="searchText"
-        (change)="onSearch($event)"
+        (input)="onSearchChanged($event.target.value)"
       />
       <i class="fas fa-search text-secondary"></i>
     </div>

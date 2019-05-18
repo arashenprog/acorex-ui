@@ -35,8 +35,7 @@ export class AXGridCommandColumn extends AXGridDataColumn {
 
 @Component({
   template: `
-  <ax-button *ngFor="let bt of items" type="{{bt.type}}">{{ bt.text }}</ax-button>
-
+  <button class="btn btn-sm " *ngFor="let bt of items" type="button" [title]="bt.tooltip"><i [ngClass]="bt.icon"></i>{{ bt.text }}</button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

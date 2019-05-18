@@ -30,14 +30,13 @@ export class TestHttpComponent extends AXBasePageComponent {
   commandItems: MenuItem[] = [
     {
       name: "01",
-      text: "Send",
       type:"success",
-      icon:"fas fa-check"
+      icon:"fas fa-check text-primary"
     },
     {
       name: "02",
-      text: "Cancel",
-      type:"danger"
+      type:"danger",
+      icon:"fas fa-pen text-danger"
     }
   ];
 }

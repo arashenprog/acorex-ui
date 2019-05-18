@@ -1,5 +1,5 @@
 <label class="checkbox-container" for="{{_uid}}">
     {{label}}
-    <input type="checkbox" id={{_uid}}>
+    <input #input type="checkbox" id={{_uid}}  [(checked)]="value" (click)="onClick($event)">
     <span class="checkmark"></span>
 </label>
