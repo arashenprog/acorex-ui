@@ -1,16 +1,14 @@
 <div
   class="ax-list-container"
   [ngClass]="{
-    'ax-flex-row': layout == 'vertical',
-    'ax-flex-row ax-flex-wrap': layout == 'vertical-wrap',
-    'ax-flex-col ax-full-width ax-overflow-auto': layout == 'horizontal-wrap',
-    'ax-flex-col ax-full-width ax-full-height ax-overflow-auto': layout == 'horizontal'
+    'ax-flex-col': layout === 'vertical',
+    'ax-flex-row ax-flex-wrap': layout === 'vertical-wrap',
+    'ax-flex-row': layout === 'horizontal-wrap',
+    'ax-flex-row ax-full-height ax-full-width ax-overflow-auto': layout === 'horizontal-full'
   }"
 >
   <div
-    [ngClass]="{
-      'ax-card-box ax-pad-md ax-mar-sm': !noStyle
-    }"
+    [ngClass]="{ 'ax-card-box ax-pad-md ax-mar-sm': !noStyle }"
     class="ax-list-item"
     *ngFor="let item of items"
   >

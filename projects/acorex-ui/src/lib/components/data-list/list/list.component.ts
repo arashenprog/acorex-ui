@@ -19,10 +19,11 @@ export class AXListComponent extends AXDataListComponent {
   }
 
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+
   @Input()
   noStyle: boolean = false;
 
-  @Input() layout:"vertical"| "vertical-wrap"| "horizontal"| "horizontal-wrap" = "horizontal";
+  @Input() layout: "vertical"| "vertical-wrap"| "horizontal-wrap"| "horizontal-full" = "vertical";
 
   ngAfterViewInit(): void {
     
