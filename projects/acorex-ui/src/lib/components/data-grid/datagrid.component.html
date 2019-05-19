@@ -40,6 +40,12 @@
   [enableSorting]="true"
   [enableColResize]="true"
   [suppressMenuHide]="true"
+  (cellClicked)="onGridCellClicked($event)"
+  (cellDoubleClicked)="onGridCellDoubleClicked($event)"
+  (cellFocused)="onGridCellFocused($event)"
+  (rowClicked)="onGridRowClicked($event)"
+  (selectionChanged)="onGridSelectionChanged($event)"
+  (rowDoubleClicked)="onGridRowDoubleClicked($event)"
   (gridReady)="onGridReady($event)"
 >
 </ag-grid-angular>
