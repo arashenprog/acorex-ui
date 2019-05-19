@@ -66,7 +66,6 @@ export class NavMenuService extends AXNavMenuService {
 
   serach(search: string): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
-      debugger;
       resolve(this.mockItems.filter(c => c.text.toLowerCase().includes(search.toLowerCase())));
     });
   }

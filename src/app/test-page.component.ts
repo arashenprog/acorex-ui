@@ -71,7 +71,6 @@ export class TestPageComponent  extends AXBasePageComponent {
       onClick() {
         this.loading = true;
         this.drawerOpen=!this.drawerOpen;
-        debugger;
         this.toast.success("Submit was done successfully", {
           title : "Test",
           timeOut: 30000,

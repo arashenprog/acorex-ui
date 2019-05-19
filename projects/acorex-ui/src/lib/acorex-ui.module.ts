@@ -39,6 +39,7 @@ import {
   AX_HTTP_EVENT_INTERCEPTOR,
 } from './core/http/http-events.interceptor'
 import { AXDataSourceModule } from './components/datasource/datasource.module';
+import { AXListModule } from './components/data-list/list/list.module';
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -70,6 +71,7 @@ import { AXDataSourceModule } from './components/datasource/datasource.module';
     AXValidationModule,
     AXTabPageModule,
     AXDrawerModule,
+    AXListModule,
     //
     AXHttpModule,
     AXDataSourceModule
@@ -102,6 +104,7 @@ import { AXDataSourceModule } from './components/datasource/datasource.module';
     AXValidationModule,
     AXTabPageModule,
     AXDrawerModule,
+    AXListModule,
     //
     AXHttpModule,
     AXDataSourceModule

@@ -27,7 +27,6 @@ export class EventService {
     }
 
     public destroy(key: string, callback: (options?: any) => void): void {
-        debugger;
         const d = this.list.find(c => c.key == key);
         if (d) {
             //d.events = d.events.filter(c => c.callback != callback);
