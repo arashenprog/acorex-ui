@@ -1,0 +1,20 @@
+<div
+  class="ax-list-container"
+  [ngClass]="{
+    'ax-flex-row': layout == 'vertical',
+    'ax-flex-row ax-flex-wrap': layout == 'vertical-wrap',
+    'ax-flex-col ax-full-width ax-overflow-auto': layout == 'horizontal-wrap',
+    'ax-flex-col ax-full-width ax-full-height ax-overflow-auto': layout == 'horizontal'
+  }"
+>
+  <div
+    [ngClass]="{
+      'ax-card-box ax-pad-md ax-mar-sm': !noStyle
+    }"
+    class="ax-list-item"
+    *ngFor="let item of items"
+  >
+    <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
+    </ng-container>
+  </div>
+</div>

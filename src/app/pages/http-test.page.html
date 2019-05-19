@@ -1,18 +1,13 @@
 <ax-page>
-    <ax-page-toolbar></ax-page-toolbar>
-    <ax-page-content>
-        <ax-data-grid title="Test remote data">
-            <ax-data-source >
-                <!-- <ax-remote-read url="https://jsonplaceholder.typicode.com/todos"  >
-                </ax-remote-read> -->
-                <ax-callback-read [provideData]="provideData"></ax-callback-read>
-            </ax-data-source>
-            <ax-selection-column ></ax-selection-column>
-            <ax-text-column field="id" caption="ID" [width]="100"></ax-text-column>
-            <ax-text-column field="userId" caption="UserId" [width]="100"></ax-text-column>
-            <ax-text-column field="title" caption="Title" [width]="300"></ax-text-column>
-            <ax-check-column field="completed" caption="Completed" [width]="100"></ax-check-column>
-            <ax-command-column [items]="commandItems"></ax-command-column>
-        </ax-data-grid>
-    </ax-page-content>
+  <ax-page-toolbar [items]="toolbarItems" (itemClick)="onMenuItemClick($event)"></ax-page-toolbar>
+  <ax-page-content>
+    <ax-list layout="vertical">
+      <ax-data-source>
+        <ax-callback-read [provideData]="provideData"></ax-callback-read>
+      </ax-data-source>
+      <ng-template let-item>
+        <span>{{ item.title }}</span>
+      </ng-template>
+    </ax-list>
+  </ax-page-content>
 </ax-page>

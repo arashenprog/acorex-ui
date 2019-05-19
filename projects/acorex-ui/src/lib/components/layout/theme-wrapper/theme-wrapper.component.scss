@@ -25,7 +25,6 @@ $colors: (
     light: lighten($success, 15%),
     dark: darken($success, 15%),
     fore: $white
-
   ),
   warning: (
     "": $warning,
@@ -227,15 +226,14 @@ $sizes: (
   padding: var(--sp-sm-size) var(--sp-lg-size);
 }
 
-
 @each $name, $color in $colors {
   @if type-of($color) == "map" {
     @each $subname, $variant in $color {
       @if $subname== "" {
-        .#{$name}{
+        .#{$name} {
           color: var(--#{$name}-#{$color-suffix}) !important;
         }
-        .bk-#{$name}{
+        .bk-#{$name} {
           background-color: var(--#{$name}-#{$color-suffix}) !important;
           color: var(--#{$name}-fore-#{$color-suffix}) !important;
         }
@@ -249,11 +247,13 @@ $sizes: (
           border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
         }
       } @else {
-        .#{$name}-#{$subname}{
+        .#{$name}-#{$subname} {
           color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
         }
-        .bk-#{$name}-#{$subname}{
-          background-color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
+        .bk-#{$name}-#{$subname} {
+          background-color: var(
+            --#{$name}-#{$subname}-#{$color-suffix}
+          ) !important;
           color: var(--#{$name}-fore-#{$color-suffix}) !important;
         }
         .btn-#{$name}-#{$subname} {
@@ -272,10 +272,10 @@ $sizes: (
       }
     }
   } @else {
-    .#{$name}{
+    .#{$name} {
       color: var(--#{$name}-#{$color-suffix}) !important;
     }
-    .bk-#{$name}{
+    .bk-#{$name} {
       background-color: var(--#{$name}-#{$color-suffix}) !important;
       color: var(--#{$name}-fore-#{$color-suffix}) !important;
     }
@@ -293,9 +293,7 @@ $sizes: (
       border-color: var(--#{$name}-light-#{$color-suffix}) !important;
     }
   }
-  
 }
-
 
 .circle-button {
   background-color: var(--white-color);
@@ -316,4 +314,96 @@ $sizes: (
     background-color: var(--primary-color);
     color: var(--white-color);
   }
+}
+.ax-flex {
+  display: flex !important;
+}
+.ax-flex-row {
+  flex-direction: row !important;
+}
+.ax-flex-row-rev {
+  flex-direction: row-reverse !important;
+}
+.ax-flex-col {
+  flex-direction: column !important;
+}
+.ax-flex-col-rev {
+  flex-direction: column-reverse !important;
+}
+.ax-flex-center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.ax-flex-wrap {
+  flex-wrap: wrap !important;
+}
+.ax-flex-wrap-rev {
+  flex-wrap: wrap-reverse !important;
+}
+
+.ax-flex-no-wrap {
+  flex-wrap: nowrap !important;
+}
+.ax-overflow-auto {
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: var(--border-color) !important;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary-light-color);
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+  }
+}
+.ax-pad-sm {
+  padding: var(--sp-sm-size) !important;
+}
+.ax-pad-md {
+  padding: var(--sp-md-size) !important;
+}
+.ax-pad-lg {
+  padding: var(--sp-lg-size) !important;
+}
+.ax-pad-xl {
+  padding: var(--sp-xl-size) !important;
+}
+
+.ax-mar-sm {
+  margin: var(--sp-sm-size) !important;
+}
+.ax-mar-md {
+  margin: var(--sp-md-size) !important;
+}
+.ax-mar-lg {
+  margin: var(--sp-lg-size) !important;
+}
+.ax-mar-xl {
+  margin: var(--sp-xl-size) !important;
+}
+
+.ax-card-box {
+  background: var(--white);
+  min-width: 350px;
+  box-shadow: 0px 1px 7px 0px var(--border-color);
+  border-radius: var(--border-radius-size);
+}
+.ax-full-width {
+  width: 100% !important;
+}
+.ax-full-height {
+  height: 100% !important;
 }

@@ -62,7 +62,6 @@ export class AXDataGridComponent implements OnInit {
 
 
   onGridReady(gridOptions: GridOptions) {
-    debugger;
     this.gridApi = gridOptions.api;
     const that = this;
 
@@ -112,7 +111,6 @@ export class AXDataGridComponent implements OnInit {
     this.mapColumns();
     //
     this.dataSource.onDataReceived.subscribe(c => {
-      debugger;
       if (this.remoteOperation && this.dataSourceSuccessCallback) {
         this.dataSourceSuccessCallback(c, c.length);
       }
