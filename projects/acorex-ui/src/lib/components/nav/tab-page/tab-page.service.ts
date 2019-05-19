@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { ClosingEventArgs, ClosedEventArgs, ClosingAction } from "../popup/popup.service";
+import { TabbedLayout } from 'ag-grid-community';
 
 export interface AXTabPage {
     title: string;
@@ -110,7 +111,6 @@ export class AXTabPageService {
                 if (closing) closing(e);
                 e.resolve();
             }
-
             this.tabs.push(newTab);
             this.tabs.filter(c => c.id != newTab.id).forEach(t => {
                 t.active = false;
@@ -162,8 +162,18 @@ export class AXTabPageService {
         if (tab.closed) tab.closed(e);
     }
 
-    active(tab: AXTabPage) {
-        if (tab) {
+   
+
+    active(tab: AXTabPage): void ;
+    active(uid: string): void ;
+    active(): AXTabPage;
+    active(arg1?): void | AXTabPage {
+        debugger;
+        if (!arg1) {
+            return this.tabs.find(c => c.active == true);
+        }
+        if (typeof (arg1) === 'object') {
+            let tab = <AXTabPage>arg1;
             tab.active = true;
             this.tabs.filter(c => c.id != tab.id).forEach(t => {
                 t.active = false;
@@ -171,7 +181,8 @@ export class AXTabPageService {
             this.opened.emit(tab);
         }
         else {
-            return this.tabs.find(c => c.active == true);
+            let tab = this.tabs.find(c => c.uid == arg1);
+            if (tab) this.active(tab);
         }
     }
 

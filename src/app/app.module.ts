@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AcoreXUIModule, IHttpError,  } from 'acorex-ui';
+import { AcoreXUIModule, IHttpError, } from 'acorex-ui';
 import { AcorexSpaModule, AXNavMenuService } from 'acorex-spa';
 import { FormsModule } from '@angular/forms';
 import { TestPageComponent } from './test-page.component';
@@ -15,7 +15,7 @@ import { LoginPageComponent } from './pages/login/login.page';
 
 
 @NgModule({
-  declarations: [AppComponent, TestPageComponent,TestHttpComponent,LoginPageComponent],
+  declarations: [AppComponent, TestPageComponent, TestHttpComponent, LoginPageComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -25,7 +25,7 @@ import { LoginPageComponent } from './pages/login/login.page';
   providers: [
     {
       provide: "startUpTab",
-      useValue: { content: TestPageComponent, title: "Dashboard", closable: false }
+      useValue: { content: TestPageComponent, title: "Dashboard", closable: false, uid: "dashboard" }
     },
     {
       provide: AXNavMenuService,
@@ -36,7 +36,7 @@ import { LoginPageComponent } from './pages/login/login.page';
       useClass: HeaderBarMenuService
     }
   ],
-  entryComponents: [TestPageComponent,TestHttpComponent,LoginPageComponent],
+  entryComponents: [TestPageComponent, TestHttpComponent, LoginPageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

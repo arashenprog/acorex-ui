@@ -17,14 +17,14 @@ export class NavMenuService extends AXNavMenuService {
       text: "Home",
       id: "10",
       visible: true,
-      data: { page: TestPageComponent, token: "" }
+      data: { page: TestPageComponent, uid: "dashboard" }
     },
     {
       name: "item2",
       text: "Http Test",
       id: "20",
       visible: true,
-      data: { page: TestHttpComponent }
+      data: { page: TestHttpComponent, uid: "test" }
     },
     { name: "item3", text: "Item 1", id: "30", visible: true },
     { name: "item4", text: "Item 2", id: "40", visible: true },
@@ -71,15 +71,26 @@ export class NavMenuService extends AXNavMenuService {
   }
 
   clickItem(item: MenuItem): PromisResult<boolean> {
-    return new PromisResult(resolve => {
-      //console.log(item);
-      if (item.data.page)
-        this.tab.open({
-          title: item.text,
-          content: item.data.page,
-          uid: item.data.id
-        });
-      resolve(true);
-    });
+    if (item.data.page)
+    {
+      // if(item.data.uid)
+      // {
+      //   this.tab.active(item.data.uid);
+      // }
+      // else
+      // {
+      //   this.tab.open({
+      //     title: item.text,
+      //     content: item.data.page,
+      //     uid: item.data.uid
+      //   });
+      // }
+      this.tab.open({
+        title: item.text,
+        content: item.data.page,
+        uid: item.data.uid
+      });
+    }
+    return PromisResult.resolve(true);
   }
 }
