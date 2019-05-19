@@ -5,8 +5,9 @@ export interface AXTabPage {
     title: string;
     closable: boolean;
     content: any;
-    option?: any;
+    data?: any;
     id: number;
+    uid?: string;
     isBusy?: false;
     active: boolean;
     closed?: Function;
@@ -69,28 +70,30 @@ export class AXTabPageService {
 
     open(content: any, title: string): AXTabPageResult;
     open(content: any, title: string, data?: any): AXTabPageResult;
-    open(options: { content: any, title: string, closable?: boolean, data?: any }): AXTabPageResult;
+    open(options: { content: any, title: string, closable?: boolean, data?: any, uid?: string }): AXTabPageResult;
 
     open(arg1, arg2?, arg3?) {
         let newTab: AXTabPage;
+        let id = new Date().getTime();
         if (typeof (arg1) === 'object') {
             const options = Object.assign({ closable: true }, arg1);
             newTab = {
-                id: this.tabs.length,
+                id: id,
                 title: options.title,
                 closable: options.closable,
                 content: options.content,
-                option: options.data,
+                data: options.data,
+                uid: options.uid,
                 active: true
             };
         }
         else {
             newTab = {
-                id: this.tabs.length,
+                id: id,
                 title: arg2,
                 closable: true,
                 content: arg1,
-                option: arg3,
+                data: arg3,
                 active: true,
             };
         }
@@ -171,6 +174,10 @@ export class AXTabPageService {
             return this.tabs.find(c => c.active == true);
         }
     }
+
+
+
+
 
     sendMessage(message: AXTabPageMessage) {
         this.received.emit(message);

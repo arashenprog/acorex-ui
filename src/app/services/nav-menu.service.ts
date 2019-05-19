@@ -17,7 +17,7 @@ export class NavMenuService extends AXNavMenuService {
       text: "Home",
       id: "10",
       visible: true,
-      data: { page: TestPageComponent }
+      data: { page: TestPageComponent, token: "" }
     },
     {
       name: "item2",
@@ -73,8 +73,13 @@ export class NavMenuService extends AXNavMenuService {
 
   clickItem(item: MenuItem): PromisResult<boolean> {
     return new PromisResult(resolve => {
-      console.log(item);
-      if (item.data.page) this.tab.open(item.data.page, "Test");
+      //console.log(item);
+      if (item.data.page)
+        this.tab.open({
+          title: item.text,
+          content: item.data.page,
+          uid: item.data.id
+        });
       resolve(true);
     });
   }

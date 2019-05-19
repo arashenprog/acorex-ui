@@ -21,7 +21,9 @@ export class AXGridSelectionColumn extends AXGridDataColumn {
         let col = super.render();
         col.checkboxSelection = true;
         col.headerCheckboxSelection = true;
+        col.filter= false;
         col.resizable = false;
+        col.sortable=false;
         col.width = 40;
 
         return col;

@@ -50,4 +50,9 @@ export class TestHttpComponent extends AXBasePageComponent {
   {
     console.log(e);
   }
+
+  onItemClick(e)
+  {
+    console.log("onItemClick",e);
+  }
 }

@@ -6,24 +6,8 @@ import { GridOptions, CellClickedEvent, RowClickedEvent, CellEvent, RowEvent } f
 import { ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent } from './events.class';
 
-export interface AXGridRowCommandEvent {
-  data: any;
-  name: string;
-}
-export interface AXGridRowEvent {
-  data: any;
-  rowIndex: number;
-  rowLevel:number;
-}
-export interface AXGridCellEvent extends AXGridRowEvent {
-  column: any;
-  value: any;
-}
-
-export interface AXGridRowSelectionEvent {
-  items: AXGridRowEvent[];
-}
 
 @Component({
   selector: "ax-data-grid",

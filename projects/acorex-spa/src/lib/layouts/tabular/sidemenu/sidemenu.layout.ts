@@ -65,12 +65,11 @@ export class AXSideMenuComponent {
     this.navMenuService.getItems().then(c => {
       this.allItems = c;
       this.items = this.allItems.filter(c => !c.parentId).slice();
-      this.refresh();
+      this.navMenuService.getFavorites().then(c => {
+        this.favoriteItems = c;
+        this.refresh();
+      });
     });
-    this.navMenuService.getFavorites().then(c => {
-      this.favoriteItems = c;
-    });
- 
   }
 
   onItemClick(item: any) {
