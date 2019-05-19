@@ -1,7 +1,7 @@
 <ax-page>
     <ax-page-toolbar></ax-page-toolbar>
     <ax-page-content>
-        <ax-data-grid title="Test remote data">
+        <ax-data-grid title="Test remote data" (cellDbClick)="onCellDbClick($event)" (selectionChanged)=onSelectionChanged($event)>
             <ax-data-source >
                 <!-- <ax-remote-read url="https://jsonplaceholder.typicode.com/todos"  >
                 </ax-remote-read> -->

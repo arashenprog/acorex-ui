@@ -39,4 +39,15 @@ export class TestHttpComponent extends AXBasePageComponent {
       icon:"fas fa-pen text-danger"
     }
   ];
+
+  onCellDbClick(e)
+  {
+    debugger;
+    console.log("cell db click",e);
+  }
+
+  onSelectionChanged(e)
+  {
+    console.log(e);
+  }
 }

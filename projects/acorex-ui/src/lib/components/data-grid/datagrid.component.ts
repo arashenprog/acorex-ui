@@ -1,8 +1,8 @@
-import { Component, OnInit, ContentChild, Input, ContentChildren, QueryList } from "@angular/core";
+import { Component, OnInit, ContentChild, Input, ContentChildren, QueryList, EventEmitter, Output } from "@angular/core";
 import { AXDataSourceComponent } from '../datasource/datasource.component';
 import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../datasource/read-param';
-import { GridOptions } from 'ag-grid-community';
+import { GridOptions, CellClickedEvent, RowClickedEvent, CellEvent, RowEvent } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -10,6 +10,19 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export interface AXGridRowCommandEvent {
   data: any;
   name: string;
+}
+export interface AXGridRowEvent {
+  data: any;
+  rowIndex: number;
+  rowLevel:number;
+}
+export interface AXGridCellEvent extends AXGridRowEvent {
+  column: any;
+  value: any;
+}
+
+export interface AXGridRowSelectionEvent {
+  items: AXGridRowEvent[];
 }
 
 @Component({
@@ -19,6 +32,22 @@ export interface AXGridRowCommandEvent {
   encapsulation: ViewEncapsulation.None
 })
 export class AXDataGridComponent implements OnInit {
+
+
+  @Output()
+  cellClick: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>();
+  @Output()
+  cellDbClick: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>();
+  @Output()
+  cellFocuse: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>()
+  @Output()
+  rowClick: EventEmitter<AXGridRowEvent> = new EventEmitter<AXGridRowEvent>();;
+
+  @Output()
+  rowDbClick: EventEmitter<AXGridRowEvent> = new EventEmitter<AXGridRowEvent>();
+  @Output()
+  selectionChanged: EventEmitter<AXGridRowSelectionEvent> = new EventEmitter<AXGridRowSelectionEvent>();
+
 
   constructor() { }
 
@@ -62,7 +91,6 @@ export class AXDataGridComponent implements OnInit {
 
 
   onGridReady(gridOptions: GridOptions) {
-    debugger;
     this.gridApi = gridOptions.api;
     const that = this;
 
@@ -112,7 +140,6 @@ export class AXDataGridComponent implements OnInit {
     this.mapColumns();
     //
     this.dataSource.onDataReceived.subscribe(c => {
-      debugger;
       if (this.remoteOperation && this.dataSourceSuccessCallback) {
         this.dataSourceSuccessCallback(c, c.length);
       }
@@ -151,5 +178,58 @@ export class AXDataGridComponent implements OnInit {
     }
 
     this.searchChangeObserver.next(text);
+  }
+
+
+  onGridCellClicked(e: CellClickedEvent) {
+    this.cellClick.emit(this.mapCellEvent(e));
+  }
+
+  onGridCellDoubleClicked(e: CellClickedEvent) {
+    this.cellDbClick.emit(this.mapCellEvent(e));
+  }
+
+  onGridCellFocused(e: CellClickedEvent) {
+    this.cellFocuse.emit(this.mapCellEvent(e));
+  }
+
+  onGridRowClicked(e: RowClickedEvent) {
+    this.rowClick.emit(this.mapRowEvent(e));
+  }
+
+  onGridRowDoubleClicked(e: CellClickedEvent) {
+    this.rowDbClick.emit(this.mapRowEvent(e));
+  }
+
+  onGridSelectionChanged(e) {
+    let args: AXGridRowSelectionEvent = { items: [] };
+    let nodes = this.gridApi.getSelectedNodes();
+    nodes.forEach(i => {
+      args.items.push({
+        rowLevel:i.level,
+        rowIndex: i.rowIndex,
+        data: i.data
+      })
+    });
+    this.selectionChanged.emit(args);
+  }
+
+
+  private mapCellEvent(e: CellEvent): AXGridCellEvent {
+    return {
+      rowLevel:0,
+      column: e.column,
+      data: e.data,
+      rowIndex: e.rowIndex,
+      value: e.value
+    };
+  }
+
+  private mapRowEvent(e: RowEvent): AXGridRowEvent {
+    return {
+      rowLevel:0,
+      data: e.data,
+      rowIndex: e.rowIndex,
+    };
   }
 }
