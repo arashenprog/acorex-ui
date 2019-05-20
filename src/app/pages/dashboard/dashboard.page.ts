@@ -4,7 +4,7 @@ import {
     IWidget,
     MenuItem,
     AXWidgetManagerComponent
-} from "@acorex/acorex-ui";
+} from "acorex-ui";
 
 @Component({
     templateUrl: "./dashboard.page.html"

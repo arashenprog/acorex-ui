@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { PromisResult, MenuItem, BaseMenuItem } from '@acorex/acorex-ui';
+import { PromisResult, MenuItem, BaseMenuItem } from 'acorex-ui';
 import { AXNavMenuService, AXHeaderBarMenuService } from '@acorex/acorex-spa';
 
 @Injectable()
