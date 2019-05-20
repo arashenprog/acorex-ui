@@ -1,0 +1,11 @@
+<div class="widget">
+  <div class="edit-mode" *ngIf="isInEditing" (click)="$event.stopPropagation()">
+    <button (click)="remove($event)">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="widget-loading" *ngIf="isLoading">
+    <ax-loading></ax-loading>>
+  </div>
+  <ng-content></ng-content>
+</div>

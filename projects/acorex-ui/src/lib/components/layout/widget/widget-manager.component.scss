@@ -1,0 +1,15 @@
+ax-widget-manager {
+    display: flex;
+    height: calc(100% - 60px);
+    direction: ltr;
+}
+
+gridster {
+    background: var(--white-color) !important;
+    .gridster-column {
+        border-color: var(--primary-light-color) !important;
+    }
+    .gridster-row {
+        border-color: var(--primary-light-color) !important;
+    }
+}

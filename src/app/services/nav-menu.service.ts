@@ -4,6 +4,7 @@ import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
 import { TestHttpComponent } from "../pages/http-test.page";
 import { TestPageComponent } from "../test-page.component";
+import { DashboardPage } from '../pages/dashboard/dashboard.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -14,17 +15,24 @@ export class NavMenuService extends AXNavMenuService {
   private mockItems: MenuItem[] = [
     {
       name: "item1",
-      text: "Home",
+      text: "Dashboard",
       id: "10",
       visible: true,
-      data: { page: TestPageComponent, uid: "dashboard" }
+      data: { page: DashboardPage, uid: "dashboard" }
     },
     {
       name: "item2",
       text: "Http Test",
       id: "20",
       visible: true,
-      data: { page: TestHttpComponent, uid: "test" }
+      data: { page: TestHttpComponent }
+    },
+    {
+      name: "item2",
+      text: "UI Test",
+      id: "30",
+      visible: true,
+      data: { page: TestPageComponent }
     },
     { name: "item3", text: "Item 1", id: "30", visible: true },
     { name: "item4", text: "Item 2", id: "40", visible: true },

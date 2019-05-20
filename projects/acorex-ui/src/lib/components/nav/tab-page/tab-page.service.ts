@@ -103,19 +103,24 @@ export class AXTabPageService {
             this.sendMessage({ tab: newTab, data: data });
         }
         return new AXTabPageResult(newTab, (closing, closed) => {
-
-            newTab.closed = (e) => {
-                if (closed) closed(e);
+            let existTab = this.tabs.find(c => newTab.uid && c.uid == newTab.uid);
+            if (existTab) {
+                this.active(existTab)
             }
-            newTab.closing = (e) => {
-                if (closing) closing(e);
-                e.resolve();
+            else {
+                newTab.closed = (e) => {
+                    if (closed) closed(e);
+                }
+                newTab.closing = (e) => {
+                    if (closing) closing(e);
+                    e.resolve();
+                }
+                this.tabs.push(newTab);
+                this.tabs.filter(c => c.id != newTab.id).forEach(t => {
+                    t.active = false;
+                });
+                this.opened.emit(newTab);
             }
-            this.tabs.push(newTab);
-            this.tabs.filter(c => c.id != newTab.id).forEach(t => {
-                t.active = false;
-            });
-            this.opened.emit(newTab);
         });
     }
 
@@ -162,13 +167,12 @@ export class AXTabPageService {
         if (tab.closed) tab.closed(e);
     }
 
-   
 
-    active(tab: AXTabPage): void ;
-    active(uid: string): void ;
+
+    active(tab: AXTabPage): void;
+    active(uid: string): void;
     active(): AXTabPage;
     active(arg1?): void | AXTabPage {
-        debugger;
         if (!arg1) {
             return this.tabs.find(c => c.active == true);
         }
@@ -180,7 +184,7 @@ export class AXTabPageService {
             });
             this.opened.emit(tab);
         }
-        else {
+        else if (typeof (arg1) === 'string') {
             let tab = this.tabs.find(c => c.uid == arg1);
             if (tab) this.active(tab);
         }

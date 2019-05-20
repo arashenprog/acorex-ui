@@ -1,0 +1,23 @@
+.time-number {
+    font-size: 80px;
+    text-align: center;
+    text-shadow: 5px 1px 13px rgba(0, 0, 0, 0.27);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.date-number-container {
+    display: flex;
+    flex-direction: row-reverse;
+    .date-number {
+        font-size: 36px;
+        padding-left: 10px;
+        font-weight: 700;
+    }
+    .date-text {
+        display: flex;
+        flex-direction: column;
+        font-weight: 300;
+        font-size: 15px;
+    }
+}
