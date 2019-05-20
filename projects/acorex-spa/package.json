@@ -1,6 +1,16 @@
 {
-  "name": "acorex-spa",
-  "version": "0.0.1",
+  "name": "@acorex/acorex-spa",
+  "version": "1.0.0",
+  "description": "acorex spa is layout manager",
+  "private": true,
+  "scripts": {
+    "start": "ng build --watch"
+  },
+  "keywords": [
+    "acorex",
+    "acorex-spa"
+  ],
+  "author": "Arash Oshnoudi & Ali Safari",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
