@@ -59,13 +59,14 @@ export class AXWidgetManagerComponent implements OnInit {
 
 
     addWidget(i: IWidget, editMode: boolean = false) {
-
+        debugger;
         const w = {
             cols: 2,
             rows: 2,
             y: 0,
             x: 0,
             initCallback: (e, r) => {
+                debugger;
                 const t = this.widgetService.resolve(i.name);
                 if (t) {
                     i.component = this.injection.appendComponent(t.type, {}, r.el).instance;
@@ -82,6 +83,7 @@ export class AXWidgetManagerComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        debugger;
         this.widgets.forEach(i => {
             this.addWidget(i);
         });

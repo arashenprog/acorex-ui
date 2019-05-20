@@ -38,6 +38,9 @@ export class DashboardPage extends AXBasePageComponent {
         {
             name: 'AXDateWidgetComponent',
         },
+        {
+            name: 'AXNoteWidgetComponent',
+        },
     ]
 
     onToolbarItemClick(e: MenuItem) {

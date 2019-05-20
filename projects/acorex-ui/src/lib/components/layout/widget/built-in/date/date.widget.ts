@@ -1,7 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 
 
-import * as moment from "jalali-moment";
+import * as _moment from "jalali-moment";
+const  moment = _moment;
 import { AXWidgetComponent, registerWidget } from '../../api';
 
 
