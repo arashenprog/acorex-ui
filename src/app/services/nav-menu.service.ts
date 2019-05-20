@@ -4,6 +4,7 @@ import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
 import { TestHttpComponent } from "../pages/http-test.page";
 import { TestPageComponent } from "../test-page.component";
+import { DashboardPage } from '../pages/dashboard/dashboard.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -14,10 +15,10 @@ export class NavMenuService extends AXNavMenuService {
   private mockItems: MenuItem[] = [
     {
       name: "item1",
-      text: "Home",
+      text: "Dashboard",
       id: "10",
       visible: true,
-      data: { page: TestPageComponent, token: "" }
+      data: { page: DashboardPage, uid: "dashboard" }
     },
     {
       name: "item2",
@@ -25,6 +26,13 @@ export class NavMenuService extends AXNavMenuService {
       id: "20",
       visible: true,
       data: { page: TestHttpComponent }
+    },
+    {
+      name: "item2",
+      text: "UI Test",
+      id: "30",
+      visible: true,
+      data: { page: TestPageComponent }
     },
     { name: "item3", text: "Item 1", id: "30", visible: true },
     { name: "item4", text: "Item 2", id: "40", visible: true },
@@ -71,15 +79,26 @@ export class NavMenuService extends AXNavMenuService {
   }
 
   clickItem(item: MenuItem): PromisResult<boolean> {
-    return new PromisResult(resolve => {
-      //console.log(item);
-      if (item.data.page)
-        this.tab.open({
-          title: item.text,
-          content: item.data.page,
-          uid: item.data.id
-        });
-      resolve(true);
-    });
+    if (item.data.page)
+    {
+      // if(item.data.uid)
+      // {
+      //   this.tab.active(item.data.uid);
+      // }
+      // else
+      // {
+      //   this.tab.open({
+      //     title: item.text,
+      //     content: item.data.page,
+      //     uid: item.data.uid
+      //   });
+      // }
+      this.tab.open({
+        title: item.text,
+        content: item.data.page,
+        uid: item.data.uid
+      });
+    }
+    return PromisResult.resolve(true);
   }
 }

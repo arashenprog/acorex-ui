@@ -1,0 +1,17 @@
+<ax-widget>
+  <div class="note-container">
+    <textarea
+      class="back"
+      [style.background-color]="color"
+      *ngIf="color"
+    ></textarea>
+    <div class="color-picker" *ngIf="!color">
+      <div
+        class="color"
+        *ngFor="let color of colors"
+        [style.background-color]="color"
+        (click)="setColor(color)"
+      ></div>
+    </div>
+  </div>
+</ax-widget>

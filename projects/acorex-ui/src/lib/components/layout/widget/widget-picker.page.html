@@ -1,0 +1,14 @@
+<div class="widget-picker-container">
+  <div
+    class="widget-picker-card"
+    *ngFor="let w of widgetService.getItems()"
+    (click)="addWidget(w)"
+  >
+    {{ w.title }}
+    <div class="widget-picker-buttons">
+      <button>
+        <i class="fa fa-plus white" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>

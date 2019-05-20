@@ -37,3 +37,8 @@
     -moz-border-radius-bottomright: $bottomright;
     -moz-border-radius-bottomleft: $bottomleft;
 }
+
+@mixin primary-style() {
+    color: var(--primary-fore-color);
+    background-color: var(--primary-color);
+}

@@ -40,6 +40,7 @@ import {
 } from './core/http/http-events.interceptor'
 import { AXDataSourceModule } from './components/datasource/datasource.module';
 import { AXListModule } from './components/data-list/list/list.module';
+import { AXWidgetModule } from './components/layout/widget/widget.module';
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -72,6 +73,7 @@ import { AXListModule } from './components/data-list/list/list.module';
     AXTabPageModule,
     AXDrawerModule,
     AXListModule,
+    AXWidgetModule,
     //
     AXHttpModule,
     AXDataSourceModule
@@ -105,6 +107,7 @@ import { AXListModule } from './components/data-list/list/list.module';
     AXTabPageModule,
     AXDrawerModule,
     AXListModule,
+    AXWidgetModule,
     //
     AXHttpModule,
     AXDataSourceModule

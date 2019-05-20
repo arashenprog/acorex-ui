@@ -20,12 +20,13 @@
         >
           <button
             (click)="onToolbarItemClick(item)"
-            class="nav-link btn btn-sm btn-{{ item.type }}"
+            class="nav-link btn btn-sm {{item.style}}"
             [class.dropdown-toggle]="item.items"
             role="button"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            *ngIf="item.visible!=false"
           >
             <i class="{{ item.icon }}"></i>
             {{ item.text }}
@@ -33,7 +34,7 @@
           <div
             class="dropdown-menu"
             aria-labelledby="navbarDropdownMenuLink"
-            *ngIf="item.items && item.items.length > 0"
+            *ngIf="item.items && item.items.length > 0 && item.visible!=false"
           >
             <a
               class="dropdown-item"
