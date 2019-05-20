@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { AXTabularLayoutComponent } from "./tabular.layout";
-import { AcoreXUIModule } from 'acorex-ui';
+import { AcoreXUIModule } from '@acorex/acorex-ui';
 import { RouterModule } from '@angular/router';
 import { AXHeaderComponent } from './header/header.layout';
 import { AXSideMenuComponent } from './sidemenu/sidemenu.layout';

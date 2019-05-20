@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from "@angular/core";
+import { BaseMenuItem, AXTabPageService } from '@acorex/acorex-ui';
 import { AXHeaderBarMenuService } from '../../shared/api';
-import { BaseMenuItem, AXTabPageService } from 'acorex-ui';
 
 
 

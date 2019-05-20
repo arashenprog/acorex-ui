@@ -2,9 +2,9 @@ import { Component, ViewChild } from "@angular/core";
 import {
     AXBasePageComponent,
     IWidget,
-    MenuItem
-} from "acorex-ui";
-import { AXWidgetManagerComponent } from 'acorex-ui';
+    MenuItem,
+    AXWidgetManagerComponent
+} from "@acorex/acorex-ui";
 
 @Component({
     templateUrl: "./dashboard.page.html"

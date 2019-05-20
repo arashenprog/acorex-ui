@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ViewEncapsulation, Inject } from "@angular/core";
-import { AXTabPageService } from 'acorex-ui';
+import { AXTabPageService } from '@acorex/acorex-ui';
 
 
 

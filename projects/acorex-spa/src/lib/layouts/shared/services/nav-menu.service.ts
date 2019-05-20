@@ -1,5 +1,4 @@
-import { MenuItem } from 'acorex-ui';
-import { PromisResult } from 'acorex-ui';
+import { MenuItem, PromisResult } from '@acorex/acorex-ui';
 
 export abstract class AXNavMenuService{
     abstract getItems():PromisResult<MenuItem[]>;
