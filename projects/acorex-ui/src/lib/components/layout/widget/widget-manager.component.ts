@@ -4,7 +4,7 @@ import { GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 import { AXWidgetPickerPage } from './widget-picker.page';
 import { AXWidgetComponent } from './widget.component';
 import { InjectionService } from '../../../core/injection.service';
-import { AXPopupService } from '../../nav/api';
+import { AXPopupService } from '../../nav/popup/popup.service';
 
 @Component({
     selector: 'ax-widget-manager',

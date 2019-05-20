@@ -1,5 +1,5 @@
 {
-  "name": "@acorex/acorex-ui",
+  "name": 'acorex-ui',
   "version": "1.0.0",
   "description": "acorex ui elements",
   "private": true,

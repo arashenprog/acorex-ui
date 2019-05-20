@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, DoCheck, Input, Output, EventEmitter } from "@angular/core";
-import { MenuItem } from "@acorex/acorex-ui";
+import { MenuItem } from 'acorex-ui';
 
 
 @Component({

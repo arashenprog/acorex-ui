@@ -1,4 +1,4 @@
-import { MenuItem ,PromisResult } from '@acorex/acorex-ui';
+import { MenuItem ,PromisResult } from 'acorex-ui';
 
 export abstract class AXHeaderBarMenuService{
     abstract getItems():PromisResult<MenuItem[]>;

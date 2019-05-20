@@ -8,10 +8,10 @@ import { CommonModule } from '@angular/common';
 import { GridsterModule } from 'angular-gridster2';
 import { AXWidgetPickerPage } from './widget-picker.page';
 import { AXCoreModule } from '../../../core/core.module';
-import { AXPopupModule } from '../../nav/api';
 import { AXLoadingModule } from '../loading/loading.module';
 import { AXDateWidgetComponent } from './built-in/date/date.widget';
 import { AXNoteWidgetComponent } from './built-in/note/note.widget';
+import { AXPopupModule } from '../../nav/popup/popup.module';
 
 
 

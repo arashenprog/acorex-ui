@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { PromisResult, MenuItem, BaseMenuItem } from 'acorex-ui';
-import { AXNavMenuService, AXHeaderBarMenuService } from '@acorex/acorex-spa';
+import { AXNavMenuService, AXHeaderBarMenuService } from 'acorex-spa';
 
 @Injectable()
 export class HeaderBarMenuService extends AXHeaderBarMenuService {

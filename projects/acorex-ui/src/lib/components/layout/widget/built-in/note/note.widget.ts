@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AXWidgetComponent, registerWidget } from '../../api';
+import { AXWidgetComponent } from '../../widget.component';
+import { registerWidget } from '../../widget.service';
 
 @Component({
     templateUrl: './note.widget.html',

@@ -4,11 +4,10 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation
 } from "@angular/core";
-import { MenuItem } from "@acorex/acorex-ui";
+import { MenuItem } from 'acorex-ui';
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
 import { AXNavMenuService } from "../../shared/services/nav-menu.service";
 import { Observable } from "rxjs";
-import { InternalFormsSharedModule } from "@angular/forms/src/directives";
 
 @Component({
   selector: "ax-side-menu",

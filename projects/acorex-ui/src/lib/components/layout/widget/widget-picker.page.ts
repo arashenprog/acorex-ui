@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AXWidgetService, IWidget } from './widget.service';
-import { AXBasePageComponent } from '../../nav/api';
+import { AXBasePageComponent } from '../../nav/page.component';
 
 @Component({
   selector: 'app-widget-picker',
