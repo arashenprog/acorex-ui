@@ -1,5 +1,5 @@
 {
-  "name": 'acorex-ui',
+  "name": "acorex-ui",
   "version": "1.0.0",
   "description": "acorex ui elements",
   "private": true,
@@ -10,18 +10,27 @@
     "acorex"
   ],
   "author": "Arash Oshnoudi & Ali Safari",
-  "peerDependencies": {
+  "dependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "angular-gridster2": "^7.2.0"
-  },
-  "dependencies": {
+    "angular-gridster2": "^7.2.0",
     "@angular/animations": "^7.2.14",
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "@ng-select/ng-select": "^2.18.0",
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
+    "angular2-text-mask": "^9.0.0",
+    "jalali-moment": "^3.3.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
     "angular-gridster2": "^7.2.0",
+    "@angular/animations": "^7.2.14",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
+    "@ng-select/ng-select": "^2.18.0",
+    "ag-grid-angular": "^20.2.0",
+    "ag-grid-community": "^20.2.0",
     "angular2-text-mask": "^9.0.0",
     "jalali-moment": "^3.3.2"
   }

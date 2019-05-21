@@ -1,10 +1,10 @@
 {
-  "name": "@acorex/acorex-spa",
+  "name": "acorex-spa",
   "version": "1.0.0",
   "description": "acorex spa is layout manager",
   "private": true,
   "scripts": {
-    "start": "ng build --watch"
+    "start": "ng build acorex-spa --watch"
   },
   "keywords": [
     "acorex",
