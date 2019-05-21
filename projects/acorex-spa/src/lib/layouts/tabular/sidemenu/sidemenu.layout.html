@@ -29,7 +29,7 @@
   <li *ngIf="current && !searchText && !favoriteCheck">
     <a (click)="onBackClick()">
       <i
-      class="fas"
+        class="fas"
         [ngClass]="{
           'fa-angle-right': isRtl,
           'fa-angle-left': !isRtl
@@ -40,7 +40,7 @@
   </li>
   <li *ngFor="let item of displayItems">
     <a (dblclick)="onItemClick(item)" *ngIf="item.visible">
-      <i class="fa  {{ item.icon ? item.icon : 'fa-stop' }}"></i>
+      <i class="far  {{ item.icon ? item.icon : 'fa-arrow-alt-circle-right' }}"></i>
       <span>{{ item.text }}</span>
       <i
         [ngClass]="{

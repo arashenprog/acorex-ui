@@ -94,6 +94,9 @@
           @include border-radius-corners(15px, 15px, 0px, 0px);
           border-bottom: 0px !important;
           @include transition(0.3s);
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
 
           &.active {
             border-color: var(--primary-color) !important;

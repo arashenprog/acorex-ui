@@ -4,7 +4,7 @@
   "description": "acorex ui elements",
   "private": true,
   "scripts": {
-    "start": "ng build --watch"
+    "start": "ng build acorex-ui --watch"
   },
   "keywords": [
     "acorex"
