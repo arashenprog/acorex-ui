@@ -3,15 +3,20 @@ import {
     AXBasePageComponent,
     IWidget,
     MenuItem,
-    AXWidgetManagerComponent
+    AXWidgetManagerComponent,
+    AXNoteWidgetComponent,
+    AXDateWidgetComponent,
+    AXWidgetService
 } from "acorex-ui";
 
 @Component({
     templateUrl: "./dashboard.page.html"
 })
 export class DashboardPage extends AXBasePageComponent {
-    constructor() {
+    constructor(widgetService:AXWidgetService) {
         super();
+        widgetService.register(AXNoteWidgetComponent.define)
+        widgetService.register(AXDateWidgetComponent.define)
     }
 
     @ViewChild("manager") manager: AXWidgetManagerComponent;

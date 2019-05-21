@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AXWidgetComponent } from '../../widget.component';
-import { registerWidget } from '../../widget.service';
+import { registerWidget, IWidget } from '../../widget.service';
 
 @Component({
     templateUrl: './note.widget.html',
@@ -42,16 +42,20 @@ export class AXNoteWidgetComponent extends AXWidgetComponent {
         this.onChange.emit(this);
     }
 
-    // onTextChange(e) {
-    //     this.text = e.target.value;
-    // }
+
+    static define: IWidget = {
+        type: AXNoteWidgetComponent,
+        title: "Note-Widget",
+        cols: 5,
+        rows: 5,
+    }
 
 }
 
 
-registerWidget({
-    type: AXNoteWidgetComponent,
-    title: "Note-Widget",
-    cols:5,
-    rows:5,
-});
+// registerWidget({
+//     type: AXNoteWidgetComponent,
+//     title: "Note-Widget",
+//     cols:5,
+//     rows:5,
+// });

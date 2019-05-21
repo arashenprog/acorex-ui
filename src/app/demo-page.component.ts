@@ -5,7 +5,8 @@ import {
   CheckItem,
   AXToastService,
   DialogService,
-  AXPopupService
+  AXPopupService,
+  MenuItem
 } from "acorex-ui";
 import { Component } from "@angular/core";
 import { TestHttpComponent } from "./pages/http-test.page";
@@ -114,4 +115,17 @@ export class DemoPage extends AXBasePageComponent {
       alert("you clicked confirm");
     });
   }
+
+  commandItems: MenuItem[] = [
+    {
+      name: "01",
+      type: "success",
+      icon: "fas fa-check text-primary"
+    },
+    {
+      name: "02",
+      type: "danger",
+      icon: "fas fa-pen text-danger"
+    }
+  ];
 }

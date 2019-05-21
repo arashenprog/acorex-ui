@@ -18,6 +18,7 @@ export interface IWidget {
 export class AXWidgetService {
     static types: IWidget[] = [];
     register(widget: IWidget) {
+        // debugger;
         widget.name = widget.type.name;
         AXWidgetService.types.push(widget)
     }
@@ -36,5 +37,6 @@ const injector = ReflectiveInjector.fromResolvedProviders(providers);
 const widgetService = injector.get(AXWidgetService);
 
 export function registerWidget(widget: IWidget) {
+    console.log("register widgets");
     widgetService.register(widget);
 }

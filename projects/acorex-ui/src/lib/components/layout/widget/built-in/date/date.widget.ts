@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as _moment from "jalali-moment";
 import { AXWidgetComponent } from '../../widget.component';
-import { registerWidget } from '../../widget.service';
+import { registerWidget, IWidget } from '../../widget.service';
 
 const moment = _moment;
 
@@ -46,16 +46,22 @@ export class AXDateWidgetComponent extends AXWidgetComponent implements AfterVie
 
     }
 
-    get options()
-    {
+    get options() {
         return null;
+    }
+
+    static define: IWidget = {
+        type: AXDateWidgetComponent,
+        title: "Date-Widget",
+        cols: 5,
+        rows: 5,
     }
 }
 
 
-registerWidget({
-    type: AXDateWidgetComponent,
-    title: "Date-Widget",
-    cols:5,
-    rows:5,
-});
+// registerWidget({
+//     type: AXDateWidgetComponent,
+//     title: "Date-Widget",
+//     cols:5,
+//     rows:5,
+// });

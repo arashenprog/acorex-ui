@@ -25,7 +25,7 @@ export class AXListComponent extends AXDataListComponent {
   noStyle: boolean = false;
 
   @Input() layout:
-     "vertical"
+    "vertical"
     | "vertical-wrap"
     | "horizontal-wrap"
     | "horizontal-full" = "vertical";
@@ -35,21 +35,6 @@ export class AXListComponent extends AXDataListComponent {
   }
   setDirection(e) {
     debugger;
-    switch (e) {
-      case "vertical":
-        this.layout = "vertical";
-        break;
-      case "vertical-wrap":
-        this.layout = "vertical-wrap";
-        break;
-      case "horizontal-wrap":
-        this.layout = "horizontal-wrap";
-        break;
-      case "horizontal-full":
-        this.layout = "horizontal-full";
-        break;
-      default:
-        break;
-    }
+    this.layout = e;
   }
 }

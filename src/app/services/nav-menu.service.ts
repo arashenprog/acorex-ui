@@ -25,7 +25,6 @@ export class NavMenuService extends AXNavMenuService {
       name: "components_demo",
       text: "Components Demo",
       id: "0_0",
-      parentId: "0",
       visible: true,
       data: { page: DemoPage }
     },
@@ -246,10 +245,9 @@ export class NavMenuService extends AXNavMenuService {
       let favs: string[] = localStorage.getItem("favs")
         ? JSON.parse(localStorage.getItem("favs"))
         : [];
-        //resolve(this.mockItems);
-        if(this.mockItems != null){
-          resolve(this.mockItems.filter(c => favs.includes(c.id)));
-        }
+      if (this.mockItems != null) {
+        resolve(this.mockItems.filter(c => favs.some(d => d == c.id)));
+      }
     });
   }
 
@@ -272,7 +270,7 @@ export class NavMenuService extends AXNavMenuService {
     return new PromisResult(resolve => {
       resolve(
         this.mockItems.filter(c =>
-          c.text.toLowerCase().includes(search.toLowerCase())
+          c.text.toLowerCase().includes(search.toLowerCase()) && c.parentId
         )
       );
     });
