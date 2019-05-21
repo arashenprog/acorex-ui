@@ -2,16 +2,205 @@
   <ax-page-content>
     <ax-row>
       <ax-col col-sm="3" col-xs="12">
-        <ax-text-box label="Text Box"></ax-text-box>
+        <ax-text-box label="Text Box">
+          <ax-validation>
+            <ax-validation-rule
+              type="required"
+              message="this field is required"
+            ></ax-validation-rule>
+          </ax-validation>
+        </ax-text-box>
       </ax-col>
       <ax-col col-sm="3" col-xs="12">
-        <ax-pass-box label="Password Box"></ax-pass-box>
+        <ax-pass-box label="Password Box">
+          <ax-validation>
+            <ax-validation-rule
+              type="required"
+              message="this field is required"
+            ></ax-validation-rule>
+          </ax-validation>
+        </ax-pass-box>
       </ax-col>
       <ax-col col-sm="3" col-xs="12">
-        <ax-select-box label="Select Box"></ax-select-box>
+        <ax-select-box label="Select Box">
+          <ax-validation>
+            <ax-validation-rule
+              type="required"
+              message="this field is required"
+            ></ax-validation-rule>
+          </ax-validation>
+        </ax-select-box>
       </ax-col>
       <ax-col col-sm="3" col-xs="12">
-        <ax-date-picker label="Date Picker"></ax-date-picker>
+        <ax-date-picker label="Date Picker">
+          <!-- TODO : date picker validation does not work -->
+          <ax-validation>
+            <ax-validation-rule
+              type="required"
+              message="this field is required"
+            ></ax-validation-rule>
+          </ax-validation>
+        </ax-date-picker>
+      </ax-col>
+    </ax-row>
+    <ax-row>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button [block]="true" size="lg" (onClick)="infoToast()"
+          >Primary</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="secondary"
+          [block]="true"
+          size="lg"
+          (onClick)="infoToast()"
+          >Secondary</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="success"
+          [block]="true"
+          size="lg"
+          (onClick)="successToast()"
+          >Success</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="danger"
+          [block]="true"
+          size="lg"
+          (onClick)="errorToast()"
+          >Danger</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="info" [block]="true" size="lg" (onClick)="infoToast()"
+          >Info</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="warning"
+          [block]="true"
+          size="lg"
+          (onClick)="warningToast()"
+          >Warning</ax-button
+        >
+      </ax-col>
+    </ax-row>
+    <ax-row>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button [block]="true" (onClick)="infoToast()">Primary</ax-button>
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="secondary" [block]="true" (onClick)="infoToast()"
+          >Secondary</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="success" [block]="true" (onClick)="successToast()"
+          >Success</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="danger" [block]="true" (onClick)="errorToast()"
+          >Danger</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="info" [block]="true" (onClick)="infoToast()"
+          >Info</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="warning" [block]="true" (onClick)="warningToast()"
+          >Warning</ax-button
+        >
+      </ax-col>
+    </ax-row>
+    <ax-row>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button [block]="true" size="sm" (onClick)="infoToast()"
+          >Primary</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="secondary"
+          [block]="true"
+          size="sm"
+          (onClick)="infoToast()"
+          >Secondary</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="success"
+          [block]="true"
+          size="sm"
+          (onClick)="successToast()"
+          >Success</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="danger"
+          [block]="true"
+          size="sm"
+          (onClick)="errorToast()"
+          >Danger</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button type="info" [block]="true" size="sm" (onClick)="infoToast()"
+          >Info</ax-button
+        >
+      </ax-col>
+      <ax-col col-sm="2" col-xs="12">
+        <ax-button
+          type="warning"
+          [block]="true"
+          size="sm"
+          (onClick)="warningToast()"
+          >Warning</ax-button
+        >
+      </ax-col>
+    </ax-row>
+    <ax-row>
+      <ax-col col-sm="6">
+        <p>Radio Section</p>
+        <ax-selection-list [items]="sectionList"> </ax-selection-list>
+      </ax-col>
+      <ax-col col-sm="6">
+        <p>Checkbox Section</p>
+        <ax-selection-list mode="multiple" [items]="sectionList">
+        </ax-selection-list>
+      </ax-col>
+    </ax-row>
+    <ax-row>
+      <ax-col col-sm="4">
+        <p>Popup Section</p>
+        <ax-button (onClick)="openPopup()">Open Popup</ax-button>
+      </ax-col>
+      <ax-col col-sm="4">
+        <p>Drawer Section</p>
+        <ax-button (onClick)="openDrawer()">Open Drawer</ax-button>
+        <ax-drawer
+          [show]="drawerOpen"
+          [overlay]="true"
+          mode="outer"
+          onBlur="onBlur"
+          close="button"
+        >
+          <h5>Content can be here</h5>
+        </ax-drawer>
+      </ax-col>
+      <ax-col col-sm="4">
+        <p>Upload Section</p>
+        <ax-upload-file></ax-upload-file>
       </ax-col>
     </ax-row>
     <ax-row>
