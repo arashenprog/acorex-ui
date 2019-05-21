@@ -23,6 +23,7 @@ export class DemoPage extends AXBasePageComponent {
     super();
   }
   drawerOpen: boolean = false;
+  //TODO : data structure select box
   selectBoxItems: any[] = [
     { value: 1, label: "New York" },
     { value: 2, label: "London" },
