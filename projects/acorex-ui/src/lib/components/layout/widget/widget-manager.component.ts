@@ -1,10 +1,15 @@
-import { Component, OnInit, Input, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { AXWidgetService, IWidget } from './widget.service';
 import { GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 import { AXWidgetPickerPage } from './widget-picker.page';
 import { AXWidgetComponent } from './widget.component';
 import { InjectionService } from '../../../core/injection.service';
 import { AXPopupService } from '../../nav/popup/popup.service';
+
+export interface AXWidgetManagerChangeEvent {
+    json: string,
+    widgets: IWidget[];
+}
 
 @Component({
     selector: 'ax-widget-manager',
@@ -17,6 +22,9 @@ import { AXPopupService } from '../../nav/popup/popup.service';
     encapsulation: ViewEncapsulation.None
 })
 export class AXWidgetManagerComponent implements OnInit {
+
+    @Output()
+    change: EventEmitter<AXWidgetManagerChangeEvent> = new EventEmitter<AXWidgetManagerChangeEvent>();
 
     @Input()
     widgets: IWidget[] = [];
@@ -37,7 +45,7 @@ export class AXWidgetManagerComponent implements OnInit {
         this.options.resizable.enabled = value;
         this.options.api.optionsChanged();
         this.widgets.forEach(w => {
-            if(w.component)
+            if (w.component)
                 w.component.isInEditing = value;
         })
     }
@@ -48,7 +56,7 @@ export class AXWidgetManagerComponent implements OnInit {
 
 
     open() {
-        this.popupService.open(AXWidgetPickerPage, "افزودن").closed((e) => {
+        this.popupService.open(AXWidgetPickerPage, "Add-Widget").closed((e) => {
             if (e.data) {
                 this.widgets.push(e.data);
                 this.addWidget(e.data, true);
@@ -59,14 +67,15 @@ export class AXWidgetManagerComponent implements OnInit {
 
 
     addWidget(i: IWidget, editMode: boolean = false) {
-        debugger;
+        i.uid = Math.round(Math.random() * 10000000);
         const w = {
-            cols: 2,
-            rows: 2,
+            cols: i.cols,
+            rows: i.rows,
             y: 0,
             x: 0,
+            uid: i.uid,
+            type: i.name,
             initCallback: (e, r) => {
-                debugger;
                 const t = this.widgetService.resolve(i.name);
                 if (t) {
                     i.component = this.injection.appendComponent(t.type, {}, r.el).instance;
@@ -74,12 +83,13 @@ export class AXWidgetManagerComponent implements OnInit {
                     i.component.isInEditing = editMode;
                     i.component.onRemoved.subscribe((c: AXWidgetComponent) => {
                         this.gridItems.splice(this.gridItems.indexOf(w), 1);
+                        this.emitChange();
                     });
                 }
             }
         };
         this.gridItems.push(w);
-
+        this.emitChange();
     }
 
     ngOnInit(): void {
@@ -98,12 +108,37 @@ export class AXWidgetManagerComponent implements OnInit {
                 enabled: false
             },
             gridType: GridType.Fixed,
-            fixedRowHeight: 120,
-            fixedColWidth: 120,
+            fixedRowHeight: 50,
+            fixedColWidth: 50,
             itemChangeCallback: (e) => {
-                //localStorage.setItem("zxc",JSON.stringify(this.gridItems));
+                let w = this.widgets.find(c => c.uid == e.uid);
+                w.cols = e.cols;
+                w.rows = e.rows;
+                w.x = e.x;
+                w.y = e.y;
+                this.emitChange();
             }
         };
+    }
+
+
+    private emitChange(): void {
+        let r: AXWidgetManagerChangeEvent = {
+            json: JSON.stringify(this.widgets.map(c => {
+                return {
+                    type: c.type,
+                    title: c.title,
+                    uid: c.uid,
+                    cols: c.cols,
+                    rows: c.rows,
+                    x: c.x,
+                    y: c.y
+
+                }
+            })),
+            widgets: this.widgets
+        }
+        this.change.emit(r);
     }
 
 

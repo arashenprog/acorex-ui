@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, Input, ViewEncapsulation, EventEmitter, Output, ViewChild } from '@angular/core';
 
 
 export interface IWidgetComponent {
@@ -8,8 +8,6 @@ export interface IWidgetComponent {
     isLoading: boolean;
 
     showTitle: boolean;
-
-    type: "green" | "blue" | "orange" | "red" | "teal";
 
     title: string;
 
@@ -24,11 +22,12 @@ export interface IWidgetComponent {
     encapsulation: ViewEncapsulation.None
 })
 export class AXWidgetContainerComponent implements IWidgetComponent {
-    type: "green" | "blue" | "orange" | "red" | "teal";
     title: string;
     isInEditing: boolean;
     showTitle: boolean;
     isLoading: boolean;
+    cols:number=1;
+    rows:number=1;
 
     @Output()
     onRemoved: EventEmitter<IWidgetComponent> = new EventEmitter<IWidgetComponent>();
@@ -73,34 +72,24 @@ export class AXWidgetComponent implements IWidgetComponent {
 
     showTitle: boolean;
 
-    uid: number;
-
-
     @Input()
     title: string;
-
-    @Input()
-    type: "green" | "blue" | "orange" | "red" | "teal" = "blue";
 
     @Output()
     onRemoved: EventEmitter<IWidgetComponent> = new EventEmitter<IWidgetComponent>();
 
     constructor() {
-        this.uid = Math.round(Math.random() * 100000000);
         this.isLoadingChange.subscribe(value => {
             this.container.isLoading = value;
         });
         this.isInEditingChange.subscribe(value => {
             this.container.isInEditing = value;
         });
-
-
     }
 
     ngOnInit(): void {
         this.container.showTitle = this.showTitle;
         this.container.title = this.title;
-        this.container.type = this.type;
         this.container.onRemoved.subscribe(c => {
             this.isInEditing = false;
             setTimeout(() => {

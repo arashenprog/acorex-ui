@@ -21,7 +21,6 @@ export class AXDateWidgetComponent extends AXWidgetComponent implements AfterVie
 
     constructor() {
         super();
-        this.type = "teal";
         this.showTitle = false;
     }
 

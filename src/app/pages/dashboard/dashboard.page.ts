@@ -22,8 +22,6 @@ export class DashboardPage extends AXBasePageComponent {
             text: "Edit",
             style: "text-primary",
             icon: "fas fa-pen",
-           
-
         },
         {
             name: "add",
@@ -37,11 +35,20 @@ export class DashboardPage extends AXBasePageComponent {
     widgets: IWidget[] = [
         {
             name: 'AXDateWidgetComponent',
+            cols:4,
+            rows:4,
         },
         {
             name: 'AXNoteWidgetComponent',
+            cols:6,
+            rows:4,
         },
     ]
+
+    onWidgetChange(e:IWidget){
+        
+        console.log(e);
+    }
 
     onToolbarItemClick(e: MenuItem) {
         if (e.name == "edit") {
