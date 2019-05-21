@@ -1,10 +1,54 @@
+<div class="ax-data-list-toolbar">
+  <div class="right-actions">
+    <div class="btn-group" role="group">
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        (click)="setDirection('vertical')"
+      >
+        <i class="fas fa-arrows-alt-v text-dark"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        (click)="setDirection('vertical-wrap')"
+      >
+        <i class="fas fa-arrows-alt-h text-dark"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        (click)="setDirection('horizontal-wrap')"
+      >
+        <i class="fas fa-grip-horizontal text-dark"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        (click)="setDirection('horizontal-full')"
+      >
+        <i class="fas fa-bars text-dark"></i>
+      </button>
+    </div>
+  </div>
+  <div class="title">
+    {{ title }}
+  </div>
+  <div class="left-actions">
+    <div class="search-bar">
+      <input type="text" placeholder="Search ..." />
+      <i class="fas fa-search text-secondary"></i>
+    </div>
+  </div>
+</div>
 <div
   class="ax-list-container"
   [ngClass]="{
     'ax-flex-col': layout === 'vertical',
     'ax-flex-row ax-flex-wrap': layout === 'vertical-wrap',
     'ax-flex-row': layout === 'horizontal-wrap',
-    'ax-flex-row ax-full-height ax-full-width ax-overflow-auto': layout === 'horizontal-full'
+    'ax-flex-row ax-full-height ax-full-width ax-overflow-auto':
+      layout === 'horizontal-full'
   }"
 >
   <div

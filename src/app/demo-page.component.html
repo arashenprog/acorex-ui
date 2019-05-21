@@ -183,11 +183,21 @@
     <ax-row>
       <ax-col col-sm="4">
         <p>Popup Section</p>
-        <ax-button (onClick)="openPopup()">Open Popup</ax-button>
+        <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
+        <div class="ax-pad-sm"></div>
+        <ax-button [block]="true" type="danger" (onClick)="openAlert()"
+          >Open Alert</ax-button
+        >
+        <div class="ax-pad-sm"></div>
+        <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()"
+          >Open Confirm</ax-button
+        >
       </ax-col>
       <ax-col col-sm="4">
         <p>Drawer Section</p>
-        <ax-button (onClick)="openDrawer()">Open Drawer</ax-button>
+        <ax-button type="secondary" [block]="true" (onClick)="openDrawer()"
+          >Open Drawer</ax-button
+        >
         <ax-drawer
           [show]="drawerOpen"
           [overlay]="true"
@@ -197,6 +207,11 @@
         >
           <h5>Content can be here</h5>
         </ax-drawer>
+        <br />
+        <p>Loading Section</p>
+        <ax-loading></ax-loading>
+        <p>Progressbar Section</p>
+        <ax-progress-bar progress="58"></ax-progress-bar>
       </ax-col>
       <ax-col col-sm="4">
         <p>Upload Section</p>
@@ -204,14 +219,43 @@
       </ax-col>
     </ax-row>
     <ax-row>
+      <ax-col col-sm="4">
+        <p>Image Section</p>
+        <ax-image
+          src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"
+        ></ax-image>
+      </ax-col>
+      <ax-col col-sm="4"> </ax-col>
+      <ax-col col-sm="4"> </ax-col>
+    </ax-row>
+    <ax-row>
       <ax-col col-sm="12">
+        <p>List Section</p>
+        <ax-list title="List Title">
+          <ax-data-source>
+            <ax-callback-read
+              [provideData]="provideListData"
+            ></ax-callback-read>
+          </ax-data-source>
+          <ng-template let-item>
+            <span>{{ item.name }}</span>
+          </ng-template>
+        </ax-list>
+      </ax-col>
+    </ax-row>
+    <ax-row>
+      <ax-col col-sm="12">
+        <p>Grid Section</p>
+
         <ax-data-grid
           title="Test remote data"
           (cellDbClick)="onCellDbClick($event)"
           (selectionChanged)="onSelectionChanged($event)"
         >
           <ax-data-source>
-            <ax-callback-read [provideData]="provideData"></ax-callback-read>
+            <ax-callback-read
+              [provideData]="provideGridData"
+            ></ax-callback-read>
           </ax-data-source>
           <ax-selection-column></ax-selection-column>
           <ax-text-column

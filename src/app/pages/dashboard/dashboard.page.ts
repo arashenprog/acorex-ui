@@ -20,13 +20,13 @@ export class DashboardPage extends AXBasePageComponent {
         {
             name: "edit",
             text: "Edit",
-            style: "text-primary",
+            style: "btn-primary",
             icon: "fas fa-pen",
         },
         {
             name: "add",
             text: "Add",
-            style: "text-primary-light",
+            style: "btn-info",
             icon: "fas fa-plus",
             visible: false,
         }
@@ -52,7 +52,7 @@ export class DashboardPage extends AXBasePageComponent {
             this.manager.allowEdit(!this.manager.isInEditing);
             e.text = this.manager.isInEditing ? "Apply" : "Edit";
             e.icon = this.manager.isInEditing ? "fas fa-check" : "fas fa-pen";
-            e.style = this.manager.isInEditing ? "text-success" : "text-primary";
+            e.style = this.manager.isInEditing ? "btn-success" : "btn-primary";
             this.toolbarItems[1].visible = this.manager.isInEditing;
         }
         if (e.name == "add") {

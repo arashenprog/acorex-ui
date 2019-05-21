@@ -46,7 +46,7 @@ export class DemoPage extends AXBasePageComponent {
     }
   ];
 
-  provideData = () => {
+  provideGridData = () => {
     return new PromisResult(resolve => {
       this.http
         .get("https://jsonplaceholder.typicode.com/todos", {})
@@ -56,6 +56,16 @@ export class DemoPage extends AXBasePageComponent {
         });
     });
   };
+  provideListData = () =>{
+    return new PromisResult(resolve => {
+      this.http
+        .get("https://jsonplaceholder.typicode.com/users", {})
+        .result(c => {
+          resolve(c);
+          console.log(c);
+        });
+    });
+  }
   warningToast() {
     this.toast.warning("This is warning message", {
       timeOut: 2000,
@@ -90,7 +100,14 @@ export class DemoPage extends AXBasePageComponent {
   openDrawer() {
     this.drawerOpen = true;
   }
-  openDialog() {
+  openAlert() {
     this.dialog.alert("Alert", "This is alert message");
+
+  }
+  openAlertConfirm(){
+    this.dialog.confirm("Confirm","Confirm message can be here").okay(()=>{
+      alert("you clicked confirm")
+    })
+
   }
 }

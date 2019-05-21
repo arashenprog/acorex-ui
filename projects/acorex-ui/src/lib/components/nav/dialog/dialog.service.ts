@@ -23,9 +23,9 @@ export class DialogAlertResult {
 }
 
 export class DialogConfirmResult {
-    private _executor: (okay: () => void, cancel: () => void, finall: () => void) => void;
+    private _executor: (okay: () => void, cancel: () => void, final: () => void) => void;
     constructor(
-        executor: (okay: () => void, cancel: () => void, finall: () => void) => void
+        executor: (okay: () => void, cancel: () => void, final: () => void) => void
     ) {
         this._executor = executor;
         setTimeout(() => {
@@ -101,7 +101,7 @@ export class DialogService
                         },
                         {
                             name: "cancel",
-                            text: "انصراف",
+                            text: "Cancel",
                             type: "danger",
                             submitBehavior: false,
                             cancelBehavior: true,
