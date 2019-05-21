@@ -45,10 +45,17 @@ export class AXDateWidgetComponent extends AXWidgetComponent implements AfterVie
     ngOnDestroy(): void {
 
     }
+
+    get options()
+    {
+        return null;
+    }
 }
 
 
 registerWidget({
     type: AXDateWidgetComponent,
-    title: "Date"
+    title: "Date-Widget",
+    cols:5,
+    rows:5,
 });

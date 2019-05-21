@@ -1,6 +1,6 @@
 <ax-page>
     <ax-page-toolbar [items]="toolbarItems" (itemClick)="onToolbarItemClick($event)"></ax-page-toolbar>
     <ax-page-content>
-        <ax-widget-manager #manager [widgets]="widgets" (change)="onWidgetChange($event)"> </ax-widget-manager>
+        <ax-widget-manager #manager [widgets]="widgets" (onChange)="onWidgetChange($event)"> </ax-widget-manager>
     </ax-page-content>
 </ax-page>

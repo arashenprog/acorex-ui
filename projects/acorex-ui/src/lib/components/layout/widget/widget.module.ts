@@ -12,6 +12,7 @@ import { AXLoadingModule } from '../loading/loading.module';
 import { AXDateWidgetComponent } from './built-in/date/date.widget';
 import { AXNoteWidgetComponent } from './built-in/note/note.widget';
 import { AXPopupModule } from '../../nav/popup/popup.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +26,7 @@ import { AXPopupModule } from '../../nav/popup/popup.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AXCoreModule,
     AXPopupModule,
     AXLoadingModule,

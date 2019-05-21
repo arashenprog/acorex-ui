@@ -6,11 +6,12 @@ export interface IWidget {
     type?: any;
     title?: string;
     uid?: number;
-    component?: AXWidgetComponent
-    cols?:number,
-    rows?:number
-    x?:number
-    y?:number
+    component?: AXWidgetComponent;
+    cols?:number;
+    rows?:number;
+    x?:number;
+    y?:number;
+    options?:any;
 }
 
 @Injectable({ providedIn: "root" })

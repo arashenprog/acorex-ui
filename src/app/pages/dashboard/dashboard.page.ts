@@ -28,34 +28,32 @@ export class DashboardPage extends AXBasePageComponent {
             text: "Add",
             style: "text-primary-light",
             icon: "fas fa-plus",
-            visible:false,
+            visible: false,
         }
     ]
 
-    widgets: IWidget[] = [
-        {
-            name: 'AXDateWidgetComponent',
-            cols:4,
-            rows:4,
-        },
-        {
-            name: 'AXNoteWidgetComponent',
-            cols:6,
-            rows:4,
-        },
-    ]
+    ngOnInit(): void {
+        if (localStorage.getItem("widgets")) {
+            this.widgets = JSON.parse(localStorage.getItem("widgets"));
+            console.log("widgets", this.widgets);
+        }
+    }
 
-    onWidgetChange(e:IWidget){
-        
-        console.log(e);
+    widgets: IWidget[] = [];
+   
+
+    onWidgetChange(e) {
+        localStorage.setItem("widgets", e.json)
+        console.log("json", e);
     }
 
     onToolbarItemClick(e: MenuItem) {
         if (e.name == "edit") {
             this.manager.allowEdit(!this.manager.isInEditing);
-            e.text = this.manager.isInEditing ? "Save" : "Edit";
+            e.text = this.manager.isInEditing ? "Apply" : "Edit";
+            e.icon = this.manager.isInEditing ? "fas fa-check" : "fas fa-pen";
             e.style = this.manager.isInEditing ? "text-success" : "text-primary";
-            this.toolbarItems[1].visible=this.manager.isInEditing;
+            this.toolbarItems[1].visible = this.manager.isInEditing;
         }
         if (e.name == "add") {
             this.manager.open();

@@ -8,7 +8,7 @@ import { registerWidget } from '../../widget.service';
 })
 export class AXNoteWidgetComponent extends AXWidgetComponent {
 
-    colors:string[]=[
+    colors: string[] = [
         "#bbdefb",
         "#b2ebf2",
         "#c8e6c9",
@@ -28,12 +28,30 @@ export class AXNoteWidgetComponent extends AXWidgetComponent {
 
     setColor(color: string) {
         this.color = color;
+        this.onChange.emit(this);
     }
+
+    get options() {
+        return {
+            color: this.color,
+            text: this.text
+        }
+    }
+
+    onBlur(e) {
+        this.onChange.emit(this);
+    }
+
+    // onTextChange(e) {
+    //     this.text = e.target.value;
+    // }
 
 }
 
 
 registerWidget({
     type: AXNoteWidgetComponent,
-    title: "Note"
+    title: "Note-Widget",
+    cols:5,
+    rows:5,
 });

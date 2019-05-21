@@ -24,7 +24,7 @@ export interface AXWidgetManagerChangeEvent {
 export class AXWidgetManagerComponent implements OnInit {
 
     @Output()
-    change: EventEmitter<AXWidgetManagerChangeEvent> = new EventEmitter<AXWidgetManagerChangeEvent>();
+    onChange: EventEmitter<AXWidgetManagerChangeEvent> = new EventEmitter<AXWidgetManagerChangeEvent>();
 
     @Input()
     widgets: IWidget[] = [];
@@ -58,45 +58,50 @@ export class AXWidgetManagerComponent implements OnInit {
     open() {
         this.popupService.open(AXWidgetPickerPage, "Add-Widget").closed((e) => {
             if (e.data) {
-                this.widgets.push(e.data);
-                this.addWidget(e.data, true);
-                //this.allowEdit(false);
+                let w = {};
+                Object.assign(w, e.data)
+                this.widgets.push(w);
+                this.addWidget(w, true);
             }
         });
     }
 
 
     addWidget(i: IWidget, editMode: boolean = false) {
-        i.uid = Math.round(Math.random() * 10000000);
+        debugger;
+        i.uid = new Date().getTime();
         const w = {
             cols: i.cols,
             rows: i.rows,
-            y: 0,
-            x: 0,
+            x: i.x,
+            y: i.y,
             uid: i.uid,
             type: i.name,
             initCallback: (e, r) => {
                 const t = this.widgetService.resolve(i.name);
                 if (t) {
                     i.component = this.injection.appendComponent(t.type, {}, r.el).instance;
+                    Object.assign(i.component, i.options);
                     i.component.title = t.title;
                     i.component.isInEditing = editMode;
                     i.component.onRemoved.subscribe((c: AXWidgetComponent) => {
-                        this.gridItems.splice(this.gridItems.indexOf(w), 1);
+                        //this.gridItems.splice(this.gridItems.indexOf(w), 1);
+                        this.gridItems = this.gridItems.filter(f => f.uid != i.uid);
+                        this.widgets = this.widgets.filter(f => f.uid != i.uid);
                         this.emitChange();
                     });
+                    i.component.onChange.subscribe((c: AXWidgetComponent) => {
+                        this.emitChange();
+                    });
+                    this.emitChange();
                 }
             }
         };
         this.gridItems.push(w);
-        this.emitChange();
     }
 
     ngOnInit(): void {
-        debugger;
-        this.widgets.forEach(i => {
-            this.addWidget(i);
-        });
+
         this.options = {
             displayGrid: "none",
             margin: 5,
@@ -121,8 +126,15 @@ export class AXWidgetManagerComponent implements OnInit {
         };
     }
 
+    ngAfterViewInit(): void {
+        this.widgets.forEach(i => {
+            this.addWidget(i);
+        });
+    }
+
 
     private emitChange(): void {
+        debugger;
         let r: AXWidgetManagerChangeEvent = {
             json: JSON.stringify(this.widgets.map(c => {
                 return {
@@ -132,13 +144,14 @@ export class AXWidgetManagerComponent implements OnInit {
                     cols: c.cols,
                     rows: c.rows,
                     x: c.x,
-                    y: c.y
-
+                    y: c.y,
+                    name: c.name,
+                    options: c.component ? c.component.options : null
                 }
             })),
             widgets: this.widgets
         }
-        this.change.emit(r);
+        this.onChange.emit(r);
     }
 
 

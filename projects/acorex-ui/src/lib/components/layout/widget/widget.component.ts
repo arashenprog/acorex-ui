@@ -26,8 +26,8 @@ export class AXWidgetContainerComponent implements IWidgetComponent {
     isInEditing: boolean;
     showTitle: boolean;
     isLoading: boolean;
-    cols:number=1;
-    rows:number=1;
+    cols:number=5;
+    rows:number=5;
 
     @Output()
     onRemoved: EventEmitter<IWidgetComponent> = new EventEmitter<IWidgetComponent>();
@@ -38,7 +38,7 @@ export class AXWidgetContainerComponent implements IWidgetComponent {
     }
 }
 
-export class AXWidgetComponent implements IWidgetComponent {
+export abstract class AXWidgetComponent implements IWidgetComponent {
 
     @ViewChild(AXWidgetContainerComponent) container: AXWidgetContainerComponent;
 
@@ -78,6 +78,9 @@ export class AXWidgetComponent implements IWidgetComponent {
     @Output()
     onRemoved: EventEmitter<IWidgetComponent> = new EventEmitter<IWidgetComponent>();
 
+    @Output()
+    onChange: EventEmitter<IWidgetComponent> = new EventEmitter<IWidgetComponent>();
+
     constructor() {
         this.isLoadingChange.subscribe(value => {
             this.container.isLoading = value;
@@ -98,6 +101,9 @@ export class AXWidgetComponent implements IWidgetComponent {
             
         });
     }
+
+
+    abstract get options():any;
 
 
 }

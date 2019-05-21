@@ -2,7 +2,9 @@
   <div class="note-container">
     <textarea
       class="back"
+      [(ngModel)]="text"
       [style.background-color]="color"
+      (blur)="onBlur($event)"
       *ngIf="color"
     ></textarea>
     <div class="color-picker" *ngIf="!color">
