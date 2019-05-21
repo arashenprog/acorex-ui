@@ -22,7 +22,12 @@ export class DemoPage extends AXBasePageComponent {
   ) {
     super();
   }
-  drawerOpen:boolean = false;
+  drawerOpen: boolean = false;
+  selectBoxItems: any[] = [
+    { value: 1, label: "New York" },
+    { value: 2, label: "London" },
+    { value: 3, label: "Paris", disabled: true }
+  ];
   sectionList: CheckItem[] = [
     {
       text: "First",
@@ -56,7 +61,7 @@ export class DemoPage extends AXBasePageComponent {
         });
     });
   };
-  provideListData = () =>{
+  provideListData = () => {
     return new PromisResult(resolve => {
       this.http
         .get("https://jsonplaceholder.typicode.com/users", {})
@@ -65,7 +70,7 @@ export class DemoPage extends AXBasePageComponent {
           console.log(c);
         });
     });
-  }
+  };
   warningToast() {
     this.toast.warning("This is warning message", {
       timeOut: 2000,
@@ -102,12 +107,10 @@ export class DemoPage extends AXBasePageComponent {
   }
   openAlert() {
     this.dialog.alert("Alert", "This is alert message");
-
   }
-  openAlertConfirm(){
-    this.dialog.confirm("Confirm","Confirm message can be here").okay(()=>{
-      alert("you clicked confirm")
-    })
-
+  openAlertConfirm() {
+    this.dialog.confirm("Confirm", "Confirm message can be here").okay(() => {
+      alert("you clicked confirm");
+    });
   }
 }

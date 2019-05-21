@@ -22,7 +22,8 @@
         </ax-pass-box>
       </ax-col>
       <ax-col col-sm="3" col-xs="12">
-        <ax-select-box label="Select Box">
+        
+        <ax-select-box label="Select Box" [items]="selectBoxItems">
           <ax-validation>
             <ax-validation-rule
               type="required"
