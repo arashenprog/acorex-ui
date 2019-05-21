@@ -246,10 +246,10 @@ export class NavMenuService extends AXNavMenuService {
       let favs: string[] = localStorage.getItem("favs")
         ? JSON.parse(localStorage.getItem("favs"))
         : [];
-       resolve(this.mockItems);
-        // if(this.mockItems != null){
-        //   resolve(this.mockItems.filter(c => favs.includes(c.id)));
-        // }
+        //resolve(this.mockItems);
+        if(this.mockItems != null){
+          resolve(this.mockItems.filter(c => favs.includes(c.id)));
+        }
     });
   }
 
