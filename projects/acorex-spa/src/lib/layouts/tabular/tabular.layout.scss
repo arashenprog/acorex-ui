@@ -86,7 +86,7 @@
           margin: 4px 0 0 10px;
           background: var(--white-color);
           height: 45px;
-          padding: 0 20px;
+          padding: 0px 10px;
           min-width: 130px;
           max-width: 200px;
           border: 1px solid var(--border-color);
@@ -94,6 +94,9 @@
           @include border-radius-corners(15px, 15px, 0px, 0px);
           border-bottom: 0px !important;
           @include transition(0.3s);
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
 
           &.active {
             border-color: var(--primary-color) !important;
