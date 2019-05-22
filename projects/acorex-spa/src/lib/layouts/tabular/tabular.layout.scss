@@ -152,26 +152,7 @@
       height: 100vh;
       overflow-x: hidden;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      /* width */
-      &::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      /* Track */
-      &::-webkit-scrollbar-track {
-        background: var(--border-color) !important;
-      }
-
-      /* Handle */
-      &::-webkit-scrollbar-thumb {
-        background: var(--secondary-light-color);
-      }
-
-      /* Handle on hover */
-      &::-webkit-scrollbar-thumb:hover {
-        background: var(--secondary-color);
-      }
+     
     }
     .page-content-wrap {
       position: relative;
