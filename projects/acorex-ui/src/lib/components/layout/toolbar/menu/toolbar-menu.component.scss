@@ -1,0 +1,19 @@
+.navbar {
+    padding: 0 !important;
+}
+
+.navbar-nav {
+    padding: 0 !important;
+
+    .nav-item {
+        margin-right: 5px !important;
+    }
+}
+
+.nav-link {
+    padding: 0.25rem 0.5rem !important;
+
+    i {
+        vertical-align: initial !important;
+    }
+}

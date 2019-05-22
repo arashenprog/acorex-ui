@@ -139,12 +139,12 @@
     <ax-row>
       <ax-col col-sm="12">
         <p>List Section</p>
-        <ax-list title="List Title">
+        <ax-list title="List Title" [height]="'300px'">
           <ax-data-source>
             <ax-callback-read [provideData]="provideListData"></ax-callback-read>
           </ax-data-source>
           <ng-template let-item>
-            <span>{{ item.name }}</span>
+            <div style="width: 200px;">{{ item.name }}</div>
           </ng-template>
         </ax-list>
       </ax-col>

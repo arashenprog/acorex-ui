@@ -1,0 +1,24 @@
+<ax-page>
+    <ax-page-toolbar [items]="toolbarItems"></ax-page-toolbar>
+    <ax-page-content>
+        <ax-data-grid  (cellDbClick)="onCellDbClick($event)"
+            (selectionChanged)="onSelectionChanged($event)">
+            <!-- <ax-grid-toolar >
+                <ax-grid-menu></ax-grid-menu>
+                <ax-serach-title></ax-title>
+                <ax-serach-></ax-serach>
+                <ax-grid-menu></ax-grid-menu>
+            </ax-grid-toolar> -->
+            <ax-data-source>
+                <ax-callback-read [provideData]="provideData"></ax-callback-read>
+            </ax-data-source>
+            <ax-selection-column></ax-selection-column>
+            <ax-text-column field="name" caption="NAME" [width]="100"></ax-text-column>
+            <ax-text-column field="company" caption="COMPANY" [width]="200"></ax-text-column>
+            <ax-text-column field="email" caption="EMAIL" [width]="300"></ax-text-column>
+            <ax-text-column field="source" caption="SOURCE" [width]="200"></ax-text-column>
+            <ax-text-column field="owner" caption="LEAD OWNER " [width]="200"></ax-text-column>
+            <ax-command-column [items]="commandItems"></ax-command-column>
+        </ax-data-grid>
+    </ax-page-content>
+</ax-page>

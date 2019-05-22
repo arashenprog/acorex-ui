@@ -2,10 +2,11 @@ import { Injectable } from "@angular/core";
 
 import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
-import { TestHttpComponent } from "../pages/http-test.page";
-import { TestPageComponent } from "../test-page.component";
-import { DashboardPage } from "../pages/dashboard/dashboard.page";
-import { DemoPage } from "../demo-page.component";
+import { TestHttpComponent } from "../../modules/demo/http-test.page";
+import { TestPageComponent } from "../../modules/demo/test-page.component";
+import { DashboardPage } from "../../modules/demo/dashboard/dashboard.page";
+import { DemoPage } from "../../modules/demo/demo-page.component";
+import { LeadListPage } from 'src/app/modules/crm/lead/pages/lead-list.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -33,7 +34,8 @@ export class NavMenuService extends AXNavMenuService {
       text: "Leads",
       id: "0_1",
       parentId: "0",
-      visible: true
+      visible: true,
+      data: { page: LeadListPage }
     },
     {
       name: "quotes",

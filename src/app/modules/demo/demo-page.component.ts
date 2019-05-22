@@ -9,7 +9,7 @@ import {
   MenuItem
 } from "acorex-ui";
 import { Component } from "@angular/core";
-import { TestHttpComponent } from "./pages/http-test.page";
+import { TestHttpComponent } from "./http-test.page";
 
 @Component({
   templateUrl: "./demo-page.component.html"
@@ -68,7 +68,7 @@ export class DemoPage extends AXBasePageComponent {
       this.http
         .get("https://jsonplaceholder.typicode.com/users", {})
         .result(c => {
-          resolve(c);
+          resolve((<any>c).slice(0,8));
           console.log(c);
         });
     });

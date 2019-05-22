@@ -1,62 +1,35 @@
-<div class="ax-data-list-toolbar">
-  <div class="right-actions">
-    <div class="btn-group" role="group">
-      <button
-        type="button"
-        class="btn btn-light btn-sm"
-        (click)="setDirection('vertical')"
-      >
-        <i class="fas fa-arrows-alt-v text-dark"></i>
-      </button>
-      <button
-        type="button"
-        class="btn btn-light btn-sm"
-        (click)="setDirection('vertical-wrap')"
-      >
-        <i class="fas fa-arrows-alt-h text-dark"></i>
-      </button>
-      <button
-        type="button"
-        class="btn btn-light btn-sm"
-        (click)="setDirection('horizontal-wrap')"
-      >
-        <i class="fas fa-grip-horizontal text-dark"></i>
-      </button>
-      <button
-        type="button"
-        class="btn btn-light btn-sm"
-        (click)="setDirection('horizontal-full')"
-      >
-        <i class="fas fa-bars text-dark"></i>
-      </button>
+<div [style.height]="height" [style.width]="width">
+  <div class="ax-data-list-toolbar" >
+    <div class="right-actions">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-light btn-sm" (click)="setDirection('vertical')" title="vertical">
+          <i class="fas fa-bars text-dark"></i>
+        </button>
+        <button type="button" class="btn btn-light btn-sm" (click)="setDirection('vertical-wrap')" title="vertical-wrap">
+          <i class="fas fa-grip-horizontal text-dark "></i>
+        </button>
+        <button type="button" class="btn btn-light btn-sm" (click)="setDirection('horizontal-wrap')" title="horizontal-wrap">
+          <i class="fas fa-bars text-dark  fa-rotate-90"></i>
+        </button>
+        <button type="button" class="btn btn-light btn-sm" (click)="setDirection('horizontal')" title="horizontal">
+          <i class="fas fa-grip-horizontal  fa-rotate-90 text-dark"></i>
+        </button>
+      </div>
+    </div>
+    <div class="title">
+      {{ title }}
+    </div>
+    <div class="left-actions">
+      <div class="search-bar">
+        <input type="text" placeholder="Search ..." />
+        <i class="fas fa-search text-secondary"></i>
+      </div>
     </div>
   </div>
-  <div class="title">
-    {{ title }}
-  </div>
-  <div class="left-actions">
-    <div class="search-bar">
-      <input type="text" placeholder="Search ..." />
-      <i class="fas fa-search text-secondary"></i>
+  <div class="ax-list-container" [ngClass]="style" >
+    <div [ngClass]="{ 'ax-card-box ax-pad-md ax-mar-sm': !noStyle }" class="ax-list-item" *ngFor="let item of items">
+      <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
+      </ng-container>
     </div>
-  </div>
-</div>
-<div
-  class="ax-list-container"
-  [ngClass]="{
-    'ax-flex-col': layout === 'vertical',
-    'ax-flex-row ax-flex-wrap': layout === 'vertical-wrap',
-    'ax-flex-row': layout === 'horizontal-wrap',
-    'ax-flex-row ax-full-height ax-full-width ax-overflow-auto':
-      layout === 'horizontal-full'
-  }"
->
-  <div
-    [ngClass]="{ 'ax-card-box ax-pad-md ax-mar-sm': !noStyle }"
-    class="ax-list-item"
-    *ngFor="let item of items"
-  >
-    <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
-    </ng-container>
   </div>
 </div>

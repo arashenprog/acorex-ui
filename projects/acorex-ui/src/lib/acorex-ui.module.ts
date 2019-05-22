@@ -41,6 +41,7 @@ import {
 import { AXDataSourceModule } from './components/datasource/datasource.module';
 import { AXListModule } from './components/data-list/list/list.module';
 import { AXWidgetModule } from './components/layout/widget/widget.module';
+import { AXToolbarModule } from "./components/layout/toolbar/api";
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -74,6 +75,7 @@ import { AXWidgetModule } from './components/layout/widget/widget.module';
     AXDrawerModule,
     AXListModule,
     AXWidgetModule,
+    AXToolbarModule,
     //
     AXHttpModule,
     AXDataSourceModule
@@ -108,6 +110,7 @@ import { AXWidgetModule } from './components/layout/widget/widget.module';
     AXDrawerModule,
     AXListModule,
     AXWidgetModule,
+    AXToolbarModule,
     //
     AXHttpModule,
     AXDataSourceModule

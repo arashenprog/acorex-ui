@@ -28,13 +28,31 @@ export class AXListComponent extends AXDataListComponent {
     "vertical"
     | "vertical-wrap"
     | "horizontal-wrap"
-    | "horizontal-full" = "vertical";
+    | "horizontal" = "vertical";
 
   ngAfterViewInit(): void {
     this.fetch();
   }
   setDirection(e) {
-    debugger;
-    this.layout = e;
+    switch (e) {
+      case 'vertical': {
+        this.style = 'ax-flex-col';
+        break
+      }
+      case 'vertical-wrap': {
+        this.style = 'ax-flex-row ax-flex-wrap';
+        break;
+      }
+      case 'horizontal-wrap': {
+        this.style = 'ax-flex-row ax-full-width ax-overflow-auto';
+        break
+      }
+      default:
+        this.style = 'ax-flex-wrap ';
+    }
   }
+
+  style: any = {};
+
+
 }

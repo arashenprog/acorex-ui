@@ -1,0 +1,11 @@
+.ax-toolbar {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    justify-content: space-between;
+    button {
+        i {
+            vertical-align: middle;
+        }
+    }
+}
