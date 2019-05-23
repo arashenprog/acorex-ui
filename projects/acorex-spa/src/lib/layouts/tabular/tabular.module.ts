@@ -6,13 +6,12 @@ import { AXHeaderComponent } from './header/header.layout';
 import { AXSideMenuComponent } from './sidemenu/sidemenu.layout';
 import { FormsModule } from '@angular/forms';
 import {
-  AXPageFooterComponent, AXPageToolbarComponent, AXPageContentComponent, AXPageComponent
+  AXPageFooterComponent, AXPageContentComponent, AXPageComponent
 } from '../shared/api';
 @NgModule({
   declarations: [
     AXTabularLayoutComponent,
     AXHeaderComponent,
-    AXPageToolbarComponent,
     AXPageFooterComponent,
     AXPageContentComponent,
     AXPageComponent,
@@ -26,7 +25,6 @@ import {
   exports: [
     AXTabularLayoutComponent,
     AXHeaderComponent,
-    AXPageToolbarComponent,
     AXPageFooterComponent,
     AXPageContentComponent,
     AXPageComponent,

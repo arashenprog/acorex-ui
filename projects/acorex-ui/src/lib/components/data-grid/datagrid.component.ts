@@ -4,9 +4,8 @@ import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../datasource/read-param';
 import { GridOptions, CellClickedEvent, RowClickedEvent, CellEvent, RowEvent } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent } from './events.class';
+import { AXToolbarSearchComponent } from "../layout/toolbar/search/toolbar-search.component";
 
 
 @Component({
@@ -41,6 +40,10 @@ export class AXDataGridComponent implements OnInit {
   @ContentChildren(AXGridDataColumn)
   private _columns: QueryList<AXGridDataColumn>;
 
+
+  @ContentChild(AXToolbarSearchComponent)
+  searchInput: AXToolbarSearchComponent;
+
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;
 
@@ -64,7 +67,7 @@ export class AXDataGridComponent implements OnInit {
     }
   }
 
-  searchChangeObserver: any;
+
 
   rowModelType = "clientSide";
   rowGroupPanelShow = "always";
@@ -131,6 +134,12 @@ export class AXDataGridComponent implements OnInit {
         this.gridApi.setRowData(c)
       }
     });
+    //
+    if (this.searchInput) {
+      this.searchInput.onTextChanged.subscribe(c => {
+        this.searchText = c;
+      })
+    }
   }
 
   mapColumns() {
@@ -149,20 +158,7 @@ export class AXDataGridComponent implements OnInit {
 
 
 
-  onSearchChanged(text: string) {
-    if (!this.searchChangeObserver) {
-      Observable.create(observer => {
-        this.searchChangeObserver = observer;
-      })
-        .pipe(debounceTime(500))
-        .pipe(distinctUntilChanged())
-        .subscribe(c => {
-          this.searchText = c;
-        });
-    }
 
-    this.searchChangeObserver.next(text);
-  }
 
 
   onGridCellClicked(e: CellClickedEvent) {
@@ -190,7 +186,7 @@ export class AXDataGridComponent implements OnInit {
     let nodes = this.gridApi.getSelectedNodes();
     nodes.forEach(i => {
       args.items.push({
-        rowLevel:i.level,
+        rowLevel: i.level,
         rowIndex: i.rowIndex,
         data: i.data
       })
@@ -201,7 +197,7 @@ export class AXDataGridComponent implements OnInit {
 
   private mapCellEvent(e: CellEvent): AXGridCellEvent {
     return {
-      rowLevel:0,
+      rowLevel: 0,
       column: e.column,
       data: e.data,
       rowIndex: e.rowIndex,
@@ -211,7 +207,7 @@ export class AXDataGridComponent implements OnInit {
 
   private mapRowEvent(e: RowEvent): AXGridRowEvent {
     return {
-      rowLevel:0,
+      rowLevel: 0,
       data: e.data,
       rowIndex: e.rowIndex,
     };

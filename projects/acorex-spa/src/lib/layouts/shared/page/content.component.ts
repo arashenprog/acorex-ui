@@ -21,7 +21,7 @@ export class AXPageContentComponent {
       if (footer) {
         pageHeight += 50;
       }
-      let toolbar = page.querySelector(".ax-page-toolbar");
+      let toolbar = page.querySelector(".ax-toolbar");
       if (toolbar) {
         pageHeight += 50;
       }

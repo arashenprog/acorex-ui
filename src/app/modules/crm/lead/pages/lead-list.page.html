@@ -1,14 +1,14 @@
 <ax-page>
-    <ax-page-toolbar [items]="toolbarItems"></ax-page-toolbar>
+    <ax-toolbar>
+        <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
+    </ax-toolbar>
     <ax-page-content>
         <ax-data-grid  (cellDbClick)="onCellDbClick($event)"
             (selectionChanged)="onSelectionChanged($event)">
-            <!-- <ax-grid-toolar >
-                <ax-grid-menu></ax-grid-menu>
-                <ax-serach-title></ax-title>
-                <ax-serach-></ax-serach>
-                <ax-grid-menu></ax-grid-menu>
-            </ax-grid-toolar> -->
+            <ax-toolbar>
+                <ax-toolbar-menu ></ax-toolbar-menu>
+                <ax-toolbar-search></ax-toolbar-search>
+            </ax-toolbar>
             <ax-data-source>
                 <ax-callback-read [provideData]="provideData"></ax-callback-read>
             </ax-data-source>

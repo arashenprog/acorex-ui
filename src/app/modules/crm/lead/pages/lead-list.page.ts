@@ -43,7 +43,6 @@ export class LeadListPage extends AXBasePageComponent {
     },
     {
       id: "m1",
-      text: "ساخت",
       icon: "fas fa-plus-square",
       type: "success",
       items: [
