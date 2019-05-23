@@ -14,7 +14,13 @@ export class LeadListPage extends AXBasePageComponent {
     super();
   }
 
-
+  gridItems: MenuItem[] = [
+    {
+      name: "insert",
+      icon: "fas fa-sync",
+      style: "btn btn-light text-info"
+    }
+  ];
   toolbarItems: MenuItem[] = [
     {
       name: "insert",

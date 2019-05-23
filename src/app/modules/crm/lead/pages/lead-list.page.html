@@ -6,7 +6,7 @@
         <ax-data-grid  (cellDbClick)="onCellDbClick($event)"
             (selectionChanged)="onSelectionChanged($event)">
             <ax-toolbar>
-                <ax-toolbar-menu ></ax-toolbar-menu>
+                <ax-toolbar-menu [items]="gridItems"></ax-toolbar-menu>
                 <ax-toolbar-search></ax-toolbar-search>
             </ax-toolbar>
             <ax-data-source>
