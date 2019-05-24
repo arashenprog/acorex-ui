@@ -18,7 +18,6 @@ export interface IWidget {
 export class AXWidgetService {
     static types: IWidget[] = [];
     register(widget: IWidget) {
-        // debugger;
         widget.name = widget.type.name;
         AXWidgetService.types.push(widget)
     }

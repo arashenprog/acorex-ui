@@ -56,7 +56,6 @@ export class TestHttpComponent extends AXBasePageComponent {
   layout: string = "vertical";
 
   onMenuItemClick(e) {
-    debugger
     switch (e.name) {
       case "vertical":
         this.layout == "vertical";
@@ -90,7 +89,6 @@ export class TestHttpComponent extends AXBasePageComponent {
 
   onCellDbClick(e)
   {
-    debugger;
     console.log("cell db click",e);
   }
 

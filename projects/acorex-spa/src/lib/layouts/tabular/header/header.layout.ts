@@ -57,8 +57,8 @@ export class AXHeaderComponent implements OnInit, DoCheck {
             header.style.width = window.innerWidth - sidebar.offsetWidth + "px";
         }
     }
-    mouseWheelUp(e) {
-        console.log(e)
+    onMouseWheel(e) {
+        console.log("onMouseWheel",e)
     }
 
     onHeaderClick(e: BaseMenuItem) {

@@ -68,7 +68,6 @@ export class AXWidgetManagerComponent implements OnInit {
 
 
     addWidget(i: IWidget, editMode: boolean = false) {
-        debugger;
         i.uid = new Date().getTime();
         const w = {
             cols: i.cols,
@@ -134,7 +133,6 @@ export class AXWidgetManagerComponent implements OnInit {
 
 
     private emitChange(): void {
-        debugger;
         let r: AXWidgetManagerChangeEvent = {
             json: JSON.stringify(this.widgets.map(c => {
                 return {

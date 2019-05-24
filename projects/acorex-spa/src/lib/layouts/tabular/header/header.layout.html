@@ -4,7 +4,7 @@
             <i class="fas fa-bars"></i>
         </button>
     </div>
-    <div class="tabs" (mouseWheelUp)="mouseWheelUp($event)">
+    <div class="tabs" (wheel)="onMouseWheel($event)">
         <div [class.active]="tab.active" *ngFor="let tab of tabService.tabs" (click)="tabService.active(tab)">
             <span>{{tab.title}}</span>
             <i *ngIf="tab.closable" class="fas fa-times" (click)="tabService.close(tab,{})"></i>

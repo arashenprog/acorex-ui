@@ -32,6 +32,5 @@
   },
   "include": ["src/**/*.ts", "node_modules/ng4-fittext/*.d.ts"],
   "exclude": [],
-  "compileOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "compileOnSave": false
 }

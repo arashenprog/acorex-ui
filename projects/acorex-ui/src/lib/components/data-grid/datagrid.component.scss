@@ -31,21 +31,6 @@ ag-grid-angular {
   .ag-root {
     border-color: var(--border-color) !important;
   }
-  .ag-body-viewport {
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-    &::-webkit-scrollbar-track {
-      background: var(--border-color) !important;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: var(--secondary-light-color);
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: var(--secondary-color);
-    }
-  }
   .ag-cell {
     ax-check-box {
       display: flex;

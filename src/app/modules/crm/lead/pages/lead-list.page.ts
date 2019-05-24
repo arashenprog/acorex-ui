@@ -87,7 +87,6 @@ export class LeadListPage extends AXBasePageComponent {
   ];
 
   onCellDbClick(e) {
-    debugger;
     console.log("cell db click", e);
   }
 

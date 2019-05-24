@@ -1,19 +1,5 @@
 .ag-menu {
   border-color: var(--border-color);
-
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-track {
-    background: var(--border-color) !important;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--secondary-light-color);
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
-  }
   resize: none;
 }
 .ax-grid-filter-container {
