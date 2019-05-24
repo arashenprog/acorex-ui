@@ -1,11 +1,12 @@
 import { Component, OnInit, ContentChild, Input, ContentChildren, QueryList, EventEmitter, Output } from "@angular/core";
-import { AXDataSourceComponent } from '../datasource/datasource.component';
+import { AXDataSourceComponent } from '../data-source/datasource.component';
 import { AXGridDataColumn } from './columns/column.component';
-import { AXDataSourceReadParams } from '../datasource/read-param';
+import { AXDataSourceReadParams } from '../data-source/read-param';
 import { GridOptions, CellClickedEvent, RowClickedEvent, CellEvent, RowEvent } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
 import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent } from './events.class';
-import { AXToolbarSearchComponent } from "../layout/toolbar/search/toolbar-search.component";
+import { AXToolbarSearchComponent } from "../../layout/toolbar/search/toolbar-search.component";
+import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
 
 
 @Component({
@@ -43,6 +44,9 @@ export class AXDataGridComponent implements OnInit {
 
   @ContentChild(AXToolbarSearchComponent)
   searchInput: AXToolbarSearchComponent;
+
+  @ContentChild(AXToolbarComponent)
+  toolbar: AXToolbarComponent;
 
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;

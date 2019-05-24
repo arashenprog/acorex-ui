@@ -1,6 +1,6 @@
 import { ContentChild } from "@angular/core";
-import { AXDataSourceComponent, AXDataSourceReadParams } from "../../datasource/api";
-import { AXBaseComponent } from "../../../core/base.class";
+import { AXDataSourceComponent, AXDataSourceReadParams } from "../../data-source/api";
+import { AXBaseComponent } from "../../../../core/base.class";
 
 export abstract class AXDataListComponent extends AXBaseComponent {
   items: any[] = [];

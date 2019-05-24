@@ -7,6 +7,9 @@ import {
   ElementRef
 } from "@angular/core";
 import { AXDataListComponent } from "../core/data-list.component";
+import { AXToolbarSearchComponent } from "../../../layout/toolbar/search/toolbar-search.component";
+import { AXToolbarComponent } from "../../../layout/toolbar/toolbar.component";
+import { AXToolbarListViewComponent, AXListViewDirection } from "./toolbar-list-view.component";
 
 @Component({
   selector: "ax-list",
@@ -21,19 +24,33 @@ export class AXListComponent extends AXDataListComponent {
 
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
 
+  @ContentChild(AXToolbarSearchComponent)
+  searchToolbar: AXToolbarSearchComponent;
+
+  @ContentChild(AXToolbarListViewComponent)
+  viewToolbar: AXToolbarListViewComponent;
+
+  @ContentChild(AXToolbarComponent)
+  toolbar: AXToolbarComponent;
+
   @Input()
   noStyle: boolean = false;
 
-  @Input() layout:
-    "vertical"
-    | "vertical-wrap"
-    | "horizontal-wrap"
-    | "horizontal" = "vertical";
+  @Input() direction: AXListViewDirection = "vertical";
 
   ngAfterViewInit(): void {
     this.fetch();
+    if (this.viewToolbar) {
+      this.viewToolbar.onDirectionChanged.subscribe(c => {
+        debugger;
+        this.setDirection(c);
+      });
+    }
   }
-  setDirection(e) {
+
+
+ 
+  setDirection(e: AXListViewDirection) {
     switch (e) {
       case 'vertical': {
         this.style = 'ax-flex-col';

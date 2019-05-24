@@ -8,6 +8,7 @@ import { MenuItem } from 'acorex-ui';
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
 import { AXNavMenuService } from "../../shared/services/nav-menu.service";
 import { Observable } from "rxjs";
+import { AXStorageService } from "acorex-ui";
 
 @Component({
   selector: "ax-side-menu",
@@ -19,11 +20,13 @@ import { Observable } from "rxjs";
 export class AXSideMenuComponent {
   constructor(
     private navMenuService: AXNavMenuService,
+    private storage: AXStorageService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
     if (document.getElementsByTagName("body")[0].classList.contains("rtl")) {
       this.isRtl = true;
     }
+
   }
 
   searchText: string;
@@ -66,6 +69,7 @@ export class AXSideMenuComponent {
       this.items = this.allItems.filter(c => !c.parentId).slice();
       this.navMenuService.getFavorites().then(c => {
         this.favoriteItems = c;
+        this.favoriteCheck = this.storage.get("FAV");
         this.refresh();
       });
     });
@@ -98,6 +102,7 @@ export class AXSideMenuComponent {
 
   onFavoriteClick(e) {
     this.favoriteCheck = !this.favoriteCheck;
+    this.storage.set("FAV", this.favoriteCheck);
     this.refresh();
   }
 

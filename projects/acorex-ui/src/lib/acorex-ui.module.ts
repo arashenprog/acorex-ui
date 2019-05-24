@@ -7,7 +7,7 @@ import { AXCardModule } from "./components/layout/cards/card.module";
 import { AXCarouselModule } from "./components/layout/carousel/carousel.module";
 import { AXCheckBoxModule } from "./components/form/checkbox/checkbox.module";
 import { AXContainerModule } from "./components/layout/container/container.module";
-import { AXDataGridModule } from "./components/data-grid/datagrid.module";
+import { AXDataGridModule } from "./components/data/data-grid/datagrid.module";
 import { AXDatePickerModule } from "./components/form/date-picker/date-picker.module";
 import { AXGridLayoutModule } from "./components/layout/grid-layout/grid.layout.module";
 import { AXImageViewModule } from "./components/layout/image-view/image-view.module";
@@ -38,8 +38,8 @@ import { AXDrawerModule } from './components/layout/drawer/drawer.module';
 import {
   AX_HTTP_EVENT_INTERCEPTOR,
 } from './core/http/http-events.interceptor'
-import { AXDataSourceModule } from './components/datasource/datasource.module';
-import { AXListModule } from './components/data-list/list/list.module';
+import { AXDataSourceModule } from './components/data/data-source/datasource.module';
+import { AXListModule } from './components/data/data-list/list/list.module';
 import { AXWidgetModule } from './components/layout/widget/widget.module';
 import { AXToolbarModule } from "./components/layout/toolbar/api";
 

@@ -140,6 +140,10 @@
       <ax-col col-sm="12">
         <p>List Section</p>
         <ax-list title="List Title" [height]="'300px'">
+          <ax-toolbar>
+            <ax-toolbar-list-view [horizontal-wrap]='false'></ax-toolbar-list-view>
+            <ax-toolbar-search ></ax-toolbar-search>
+          </ax-toolbar>
           <ax-data-source>
             <ax-callback-read [provideData]="provideListData"></ax-callback-read>
           </ax-data-source>
@@ -153,7 +157,7 @@
       <ax-col col-sm="12">
         <p>Grid Section</p>
 
-        <ax-data-grid title="Test remote data" >
+        <ax-data-grid title="Test remote data">
           <ax-data-source>
             <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
           </ax-data-source>

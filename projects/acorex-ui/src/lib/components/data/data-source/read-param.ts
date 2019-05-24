@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { PromisResult } from '../../core/base.class';
+import { PromisResult } from '../../../core/base.class';
 
 
 

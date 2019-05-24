@@ -8,6 +8,7 @@ export * from "./lib/core/core.module";
 export * from "./lib/acorex-ui.module";
 
 export * from "./lib/core/translate.service";
+export * from "./lib/core/storage.service";
 export * from "./lib/core/event.service";
 
 
@@ -23,4 +24,4 @@ export * from "./lib/components/layout/toast/api";
 export * from "./lib/components/layout/toolbar/api";
 
 
-export * from "./lib/components/datasource/api";
+export * from "./lib/components/data/data-source/api";

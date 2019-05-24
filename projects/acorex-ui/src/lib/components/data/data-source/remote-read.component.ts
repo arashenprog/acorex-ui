@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter } from '@angular/core';
-import { AXHttpService } from '../../core/http/api';
-import { PromisResult } from '../../core/base.class';
+import { AXHttpService } from '../../../core/http/api';
+import { PromisResult } from '../../../core/base.class';
 import { AXDataSourceReadParams, AXDataSourceRead } from './read-param';
 
 
