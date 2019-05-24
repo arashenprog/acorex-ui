@@ -10,9 +10,7 @@ import {
 import { MenuItem } from "../../../core/menu.class";
 import { ICellRendererAngularComp } from "ag-grid-angular/dist/interfaces";
 import { ICellRendererParams } from "ag-grid-community";
-import { AXGridRowCommandEvent } from '../events.class';
-
-
+import { AXGridRowCommandEvent } from "../events.class";
 
 @Component({
   selector: "ax-command-column",
@@ -26,21 +24,22 @@ export class AXGridCommandColumn extends AXGridDataColumn {
   items: MenuItem[] = [];
 
   @Output()
-  itemClick: EventEmitter<AXGridRowCommandEvent> = new EventEmitter<AXGridRowCommandEvent>();
-
+  itemClick: EventEmitter<AXGridRowCommandEvent> = new EventEmitter<
+    AXGridRowCommandEvent
+  >();
 
   render() {
     let col = super.render();
     col.cellRendererFramework = CommandRenderer;
     col.cellRendererParams = {
       items: this.items,
-      onClick: (e)=>{
+      onClick: e => {
         this.itemClick.emit({
           command: e.name,
           data: e.data,
           rowIndex: e.rowIndex,
           rowLevel: e.rowLevel
-        })
+        });
       }
     };
     col.sortable = false;
@@ -50,13 +49,22 @@ export class AXGridCommandColumn extends AXGridDataColumn {
     };
     return col;
   }
- 
 }
 
 @Component({
+  selector: "ax-command-cell",
   template: `
-  <button class="btn btn-sm " *ngFor="let bt of items" type="button" [title]="bt.tooltip" (click)="onClick(bt)"><i [ngClass]="bt.icon"></i>{{ bt.text }}</button>
+    <button
+      class="btn-light ax-grid-command-button"
+      *ngFor="let bt of items"
+      type="button"
+      [title]="bt.tooltip"
+      (click)="onClick(bt)"
+    >
+      <i [ngClass]="bt.icon"></i>{{ bt.text }}
+    </button>
   `,
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommandRenderer implements ICellRendererAngularComp {
@@ -64,14 +72,14 @@ export class CommandRenderer implements ICellRendererAngularComp {
   node: any;
   private clickCallback: Function;
 
-  constructor() { }
+  constructor() {}
 
   agInit(params: ICellRendererParams): void {
     this.mapParams(params);
   }
 
   refresh(params: ICellRendererParams): boolean {
-    this.mapParams(params)
+    this.mapParams(params);
     return true;
   }
 

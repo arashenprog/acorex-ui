@@ -4,8 +4,8 @@ import { AXDataGridComponent } from "./datagrid.component";
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { AXDataSourceModule } from '../datasource/datasource.module';
-import { AXGridTextColumn, TextFilterRenderrer } from './columns/text-column.component';
-import { AXGridCheckColumn, BooleanRenderer, BooleanFilterRenderrer } from './columns/check-column.component';
+import { AXGridTextColumn, TextFilterRenderer } from './columns/text-column.component';
+import { AXGridCheckColumn, BooleanRenderer, BooleanFilterRenderer } from './columns/check-column.component';
 import { AXCoreModule } from '../../core/core.module';
 import { AXGridSelectionColumn } from './columns/selection-column.component';
 import { CommandRenderer, AXGridCommandColumn } from './columns/command-column.component';
@@ -23,8 +23,8 @@ import { AXButtonModule } from '../form/button/button.module';
     AXGridSelectionColumn,
     AXGridCommandColumn,
     BooleanRenderer,
-    BooleanFilterRenderrer,
-    TextFilterRenderrer,
+    BooleanFilterRenderer,
+    TextFilterRenderer,
     AXDataGridFilterComponent,
     CommandRenderer],
   imports: [
@@ -46,14 +46,14 @@ import { AXButtonModule } from '../form/button/button.module';
     AXGridSelectionColumn,
     AXGridCommandColumn,
     BooleanRenderer,
-    BooleanFilterRenderrer,
+    BooleanFilterRenderer,
     CommandRenderer
   ],
   entryComponents: [
     BooleanRenderer,
-    BooleanFilterRenderrer,
+    BooleanFilterRenderer,
     CommandRenderer,
-    TextFilterRenderrer
+    TextFilterRenderer
   ],
   providers: []
 })

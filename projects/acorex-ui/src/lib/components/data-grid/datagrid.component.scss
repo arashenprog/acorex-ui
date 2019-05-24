@@ -1,3 +1,4 @@
+@import "../../styles/mixins";
 .rtl {
   .ag-header {
     font-family: IRANSans;
@@ -37,20 +38,18 @@ ag-grid-angular {
       justify-content: center;
       align-items: center;
       .checkmark {
-        height: 20px;
-        width: 20px;
+        height: 16px;
+        width: 16px;
         &::after {
-          left: 7px;
-          top: 3px;
+          left: 5px;
+          top: 1px;
         }
       }
     }
     ax-button {
-
       .ax-button {
         display: inline-flex;
         margin: 4px 0px 0 5px;
-
       }
       .btn {
         padding: 0 0.75rem;
@@ -73,4 +72,21 @@ ag-grid-angular {
 .ag-theme-balham .ag-filter input[type="text"],
 .ag-theme-balham .ag-filter input[type="date"] {
   padding-left: 10px !important;
+}
+.ax-grid-command-button {
+  border: none;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 12px;
+  align-items: center;
+  @include border-radius(--border-radius-size)
+}
+ax-command-cell {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
 }
