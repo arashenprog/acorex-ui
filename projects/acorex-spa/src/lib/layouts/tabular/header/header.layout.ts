@@ -52,7 +52,6 @@ export class AXHeaderComponent implements OnInit, DoCheck {
     }
   }
   onMouseWheel(e) {
-    console.log("mouse wheel", e);
     let delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
     document.getElementsByClassName("tabs")[0].scrollLeft -= (delta * 40);
   }
