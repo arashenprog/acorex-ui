@@ -28,7 +28,7 @@ export class AXGridCheckColumn extends AXGridDataColumn {
   render() {
     let col = super.render();
     col.cellRendererFramework = BooleanRenderer;
-    col.filterFramework = BooleanFilterRenderrer;
+    col.filterFramework = BooleanFilterRenderer;
     return col;
   }
 }
@@ -62,7 +62,7 @@ export class BooleanRenderer implements ICellRendererAngularComp {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BooleanFilterRenderrer implements IFilterAngularComp {
+export class BooleanFilterRenderer implements IFilterAngularComp {
   public value?: boolean = null;
   private params: IFilterParams;
   private valueGetter: (rowNode: RowNode) => any;
