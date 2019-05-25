@@ -126,6 +126,6 @@ import { AXToolbarModule } from "./components/layout/toolbar/api";
     }
   ]
 })
-export class AcoreXUIModule {
+export class ACoreXUIModule {
 
 }
