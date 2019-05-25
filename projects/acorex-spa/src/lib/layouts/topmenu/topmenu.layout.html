@@ -1,5 +1,41 @@
 <ax-theme-wrapper>
-    <h1>Top Menu</h1>
+  <div class="top-menu-header">
+    <div class="brand">
+      <strong>CQFlooring</strong>
+    </div>
+    <div class="menu">
+        <ax-toolbar ></ax-toolbar>
+    </div>
+    <div class="commands">
+      <ng-container *ngFor="let b of headerItems">
+        <button
+          type="button"
+          class="circle-button {{ b.style }}"
+          [attr.title]="b.tooltip"
+          (click)="onHeaderClick(b)"
+        >
+          <i [class]="b.icon"></i>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="top-menu-wrapper">
     <ax-tab-page-renderer></ax-tab-page-renderer>
-
+  </div>
+  <div class="tabs" (wheel)="onMouseWheel($event)">
+    <div
+      [class.active]="tab.active"
+      *ngFor="let tab of tabService.tabs"
+      (click)="tabService.active(tab)"
+    >
+      <span>{{ tab.title }}</span>
+      <i
+        *ngIf="tab.closable"
+        class="fas fa-times"
+        (click)="tabService.close(tab, {})"
+      ></i>
+      <!-- fa-circle |   fa-spinner fa-spin -->
+    </div>
+  </div>
+  <div class="top-menu-footer"></div>
 </ax-theme-wrapper>
