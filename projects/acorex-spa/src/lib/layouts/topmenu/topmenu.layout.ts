@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { BaseMenuItem, AXTabPageService } from "acorex-ui";
 import { AXHeaderBarMenuService } from "../shared/api";
 
@@ -7,9 +7,20 @@ import { AXHeaderBarMenuService } from "../shared/api";
   templateUrl: "./topmenu.layout.html",
   styleUrls: ["./topmenu.layout.scss"]
 })
-export class AXTopMenuLayoutComponent implements OnInit {
+export class AXTopMenuLayoutComponent {
     
-    constructor(private headerBarMenuService: AXHeaderBarMenuService,public tabService: AXTabPageService) {}
+  constructor(public tabService: AXTabPageService,public headerBarMenuService:AXHeaderBarMenuService , @Inject("startUpTab") private startUpTab: any) {
+
+  }
+
+  ngDoCheck() {
+  }
+
+  ngAfterViewInit() {
+      if (this.startUpTab)
+          this.tabService.open(this.startUpTab);
+  }
+
   headerItems: BaseMenuItem[];
 
   ngOnInit(): void {

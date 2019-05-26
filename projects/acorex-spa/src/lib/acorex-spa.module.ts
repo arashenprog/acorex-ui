@@ -7,6 +7,7 @@ import { AXTopMenuModule } from "./layouts/topmenu/topmenu.module";
 
 @NgModule({
   declarations: [
+    
   ],
   imports: [
     AXTabularModule,

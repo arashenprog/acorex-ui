@@ -20,22 +20,9 @@
     </div>
   </div>
   <div class="top-menu-wrapper">
-    <ax-tab-page-renderer></ax-tab-page-renderer>
+  
   </div>
-  <div class="tabs" (wheel)="onMouseWheel($event)">
-    <div
-      [class.active]="tab.active"
-      *ngFor="let tab of tabService.tabs"
-      (click)="tabService.active(tab)"
-    >
-      <span>{{ tab.title }}</span>
-      <i
-        *ngIf="tab.closable"
-        class="fas fa-times"
-        (click)="tabService.close(tab, {})"
-      ></i>
-      <!-- fa-circle |   fa-spinner fa-spin -->
-    </div>
-  </div>
+  <ax-tabs></ax-tabs>
+  <ax-tab-page-renderer></ax-tab-page-renderer>
   <div class="top-menu-footer"></div>
 </ax-theme-wrapper>

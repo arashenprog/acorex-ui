@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, ViewEncapsulation, Inject } from "@angular/core";
-import { AXTabPageService } from 'acorex-ui';
+import { Component, ViewEncapsulation, Inject } from "@angular/core";
+import { BaseMenuItem } from 'acorex-ui';
+import { AXHeaderBarMenuService } from '../shared/services/header-bar-menu-service';
 
 
 
@@ -9,18 +10,48 @@ import { AXTabPageService } from 'acorex-ui';
     styleUrls: ["./tabular.layout.scss"],
     encapsulation: ViewEncapsulation.None
 })
-export class AXTabularLayoutComponent implements AfterViewInit {
+export class AXTabularLayoutComponent  {
     sidebarShow: boolean = true;
 
-    constructor(private tabService: AXTabPageService, @Inject("startUpTab") private startUpTab: any) {
+    headerItems: BaseMenuItem[];
 
+    constructor(
+      private headerBarMenuService: AXHeaderBarMenuService,
+    ) {}
+  
+    ngAfterViewInit(): void {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+      this.headerBarMenuService.getItems().then(c => {
+        this.headerItems = c;
+      });
+  
+      let sidebar = document.getElementById("ax-side-menu");
+      let header = document.getElementById("header-content");
+      if (sidebar.classList.contains("d-none")) {
+        header.style.width = window.innerWidth + "px";
+      } else {
+        header.style.width = window.innerWidth - sidebar.offsetWidth + "px";
+      }
     }
 
-    ngDoCheck() {
+    onFullClick() {
+      let side = document.getElementsByTagName("ax-side-menu");
+      let sidebar = document.getElementById("ax-side-menu");
+      let header = document.getElementById("header-content");
+      if (side) {
+        sidebar.classList.toggle("d-none");
+      }
+      if (sidebar.classList.contains("d-none")) {
+        header.style.width = window.innerWidth + "px";
+      } else {
+        header.style.width = window.innerWidth - sidebar.offsetWidth + "px";
+      }
     }
-
-    ngAfterViewInit() {
-        if (this.startUpTab)
-            this.tabService.open(this.startUpTab);
+   
+  
+    onHeaderClick(e: BaseMenuItem) {
+      this.headerBarMenuService.clickItem(e).then(c => {});
     }
+    
 }

@@ -19,12 +19,17 @@ import { CRMModule } from "./modules/crm/crm.module";
 
 const routes: Routes = [
   {
-    path: "",
-    component: LoginPageComponent
+    path: "layout1",
+    component: AXTabularLayoutComponent
   },
   {
-    path: "home",
+    path: "layout2",
     component: AXTopMenuLayoutComponent
+  },
+  {
+    path: "",
+    redirectTo:"layout2",
+    pathMatch:"full"
   }
 ];
 
