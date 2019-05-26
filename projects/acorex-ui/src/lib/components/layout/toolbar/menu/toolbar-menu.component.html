@@ -57,12 +57,15 @@
   <ul>
     <ng-template #recursiveList let-list>
       <li
+        #myLabel
         *ngFor="let item of list"
         class="btn btn-sm {{ item.style }}"
         (click)="onToolbarItemClick(item)"
       >
-        <i class="{{ item.icon }}"></i>
-        {{ item.text }}
+        <span>
+          <i class="{{ item.icon }}"></i>
+          {{ item.text }}
+        </span>
         <i
           class="fas fa-chevron-down dropdown-icon"
           *ngIf="item.items && item.items.length > 0"
@@ -73,6 +76,7 @@
           class="ax-menu-dropdown"
         >
           <ng-container
+            [ngClass]="{ dady: true }"
             *ngTemplateOutlet="
               recursiveList;
               context: { $implicit: item.items }
@@ -81,6 +85,8 @@
         </ul>
       </li>
     </ng-template>
-    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: items }"></ng-container>
+    <ng-container
+      *ngTemplateOutlet="recursiveList; context: { $implicit: items }"
+    ></ng-container>
   </ul>
 </div>

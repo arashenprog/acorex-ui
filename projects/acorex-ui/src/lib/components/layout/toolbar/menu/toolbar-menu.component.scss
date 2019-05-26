@@ -5,9 +5,9 @@
         .dropdown-icon {
           padding-right: 5px !important;
           padding-left: 0 !important;
-          > ul {
-            text-align: right !important;
-            > li {
+          ul {
+            li {
+              text-align: right !important;
             }
           }
         }
@@ -15,6 +15,7 @@
     }
   }
 }
+
 .ax-toolbar-menu-container {
   ul {
     padding: 0;
@@ -27,18 +28,16 @@
         font-size: 10px;
         padding-left: 5px;
       }
-      ul:nth-child(1) {
-        left: 0 !important;
-      }
-      > ul {
+
+      ul {
         margin: 0;
         list-style: none;
         position: absolute;
-        top: 30px;
-        left: 100%;
+        top: 10%;
+        left: 95%;
         background: var(--white-color);
         min-width: 120px;
-        display: flex;
+        display: none;
         flex-direction: column-reverse;
         border-radius: 4px;
         color: var(--secondary-color);
@@ -46,15 +45,48 @@
         -webkit-box-shadow: 0 0 5px 0 var(--shadow-color);
         -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
         border: 1px solid var(--border-color);
-        text-align: left;
-        > li {
+        li {
+          text-align: left;
           margin: 0;
           padding: 5px 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .dropdown-icon {
+            transform: rotate(270deg);
+            transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            -webkit-transform: rotate(270deg);
+            -moz-transition: all 0.5s ease;
+            -webkit-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            padding: 0 !important;
+          }
           &:hover {
+            .dropdown-icon {
+              transform: rotate(310deg);
+              -ms-transform: rotate(310deg);
+              -webkit-transform: rotate(310deg);
+            }
             background: var(--primary-lighter-color);
           }
         }
       }
     }
   }
+}
+.ax-toolbar-menu-container > ul > li > ul {
+  left: 0 !important;
+  top: 30px !important;
+}
+.ax-menu-active {
+  display: flex !important;
+}
+.show {
+  display: flex !important;
+}
+
+.hide {
+  opacity: none !important;
 }

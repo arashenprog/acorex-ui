@@ -1,10 +1,6 @@
 import { Component } from "@angular/core";
-import {
-  AXBasePageComponent,
-  PromisResult,
-  MenuItem
-} from "acorex-ui";
-import { LeadService } from '../lead.service';
+import { AXBasePageComponent, PromisResult, MenuItem } from "acorex-ui";
+import { LeadService } from "../lead.service";
 
 @Component({
   templateUrl: "./lead-list.page.html"
@@ -39,7 +35,6 @@ export class LeadListPage extends AXBasePageComponent {
       icon: "fas fa-sync",
       style: "btn btn-light text-info",
       text: "Refresh"
-
     },
     {
       name: "delete",
@@ -49,40 +44,58 @@ export class LeadListPage extends AXBasePageComponent {
     },
     {
       id: "m1",
+      text: "More Options",
       icon: "fas fa-plus-square",
-      style: "btn btn-success",
+      style: "btn btn-light text-success",
       items: [
         {
           id: "s1",
           text: "New form",
+          icon: "fas fa-plus-square"
         },
         {
           id: "s2",
           text: "New page",
+          icon: "fas fa-plus-square"
         },
         {
           id: "s3",
           text: "Send data",
+          icon: "fas fa-tachometer-alt",
+
           items: [
             {
+              icon: "fas fa-tachometer-alt",
               text: "child s3",
+              items: [
+                {
+                  icon: "fas fa-tachometer-alt",
+                  text: "child s33"
+                },
+                {
+                  icon: "fas fa-tachometer-alt",
+                  text: "child s33"
+                }
+              ]
             },
             {
-              text: "child s3",
+              icon: "fas fa-tachometer-alt",
+              text: "child s3"
             },
             {
-              text: "child s3",
+              icon: "fas fa-tachometer-alt",
+
+              text: "child s3"
             }
           ]
         }
       ]
     }
-  ]
+  ];
 
   provideData = () => {
     return this.lead.getList();
   };
-
 
   commandItems: MenuItem[] = [
     {

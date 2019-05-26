@@ -6,7 +6,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 })
-export class AXToolbarComponent   implements OnInit {
+export class AXToolbarComponent implements OnInit {
 
     constructor() { }
 
