@@ -6,6 +6,7 @@ import { TestHttpComponent } from './http-test.page';
 import { DashboardPage } from './dashboard/dashboard.page';
 import { AcorexSpaModule } from 'acorex-spa';
 import { ACoreXUIModule } from 'acorex-ui';
+import { LeadListPage } from '../crm/lead/pages/lead-list.page';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,7 @@ import { ACoreXUIModule } from 'acorex-ui';
     providers: [{
         provide: "startUpTab",
         useValue: {
-            content: DashboardPage,
+            content: LeadListPage,
             title: "Dashboard",
             closable: false,
             uid: "dashboard"

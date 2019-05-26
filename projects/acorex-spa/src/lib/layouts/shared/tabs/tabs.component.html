@@ -1,5 +1,6 @@
 <div class="tabs" (wheel)="onMouseWheel($event)">
     <div
+      class="tab-item"
       [class.active]="tab.active"
       *ngFor="let tab of tabService.tabs"
       (click)="tabService.active(tab)"

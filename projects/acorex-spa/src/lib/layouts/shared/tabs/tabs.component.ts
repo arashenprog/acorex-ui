@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { AXTabPageService } from "acorex-ui";
 
 @Component({
     selector: 'ax-tabs',
     templateUrl: './tabs.component.html',
-    styleUrls: ['./tabs.component.scss']
+    styleUrls: ['./tabs.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AXLayoutTabsComponent implements OnInit {
     constructor(public tabService: AXTabPageService, @Inject("startUpTab") private startUpTab: any) { }

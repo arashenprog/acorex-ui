@@ -53,5 +53,9 @@ export class AXTabularLayoutComponent  {
     onHeaderClick(e: BaseMenuItem) {
       this.headerBarMenuService.clickItem(e).then(c => {});
     }
+    onMouseWheel(e) {
+      let delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
+      document.getElementsByClassName("tabs")[0].scrollLeft -= (delta * 40);
+    }
     
 }

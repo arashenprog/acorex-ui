@@ -1,11 +1,12 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, ViewEncapsulation } from "@angular/core";
 import { BaseMenuItem, AXTabPageService } from "acorex-ui";
 import { AXHeaderBarMenuService } from "../shared/api";
 
 @Component({
   selector: "top-menu",
   templateUrl: "./topmenu.layout.html",
-  styleUrls: ["./topmenu.layout.scss"]
+  styleUrls: ["./topmenu.layout.scss"],
+  encapsulation:ViewEncapsulation.None
 })
 export class AXTopMenuLayoutComponent {
     
