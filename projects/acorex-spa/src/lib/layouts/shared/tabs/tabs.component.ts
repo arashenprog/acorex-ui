@@ -17,7 +17,8 @@ export class AXLayoutTabsComponent implements OnInit {
             this.tabService.open(this.startUpTab);
     }
     onMouseWheel(e) {
+        console.log(e)
         let delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
-        document.getElementsByClassName("tabs")[0].scrollLeft -= (delta * 40);
+        document.getElementsByTagName("ax-tabs")[0].scrollLeft -= (delta * 40);
     }
 }

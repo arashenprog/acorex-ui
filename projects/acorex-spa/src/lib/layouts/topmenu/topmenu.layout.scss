@@ -30,13 +30,14 @@
     top: 40px;
     background: var(--primary-lighter-color);
     width: 100%;
+    border-bottom: 2px solid var(--primary-color);
  
   }
   article {
     position: fixed;
     top: 80px;
     width: 100%;
-    padding: 10px;
+    padding: 10px 2px;
     height: calc(100vh - 80px);
     .page-content-wrap {
       position: relative;
@@ -57,6 +58,7 @@
         width: 100%;
         height: calc(100vh - 130px) !important;
         padding: 0 2px;
+        overflow: auto
       }
     }
   }

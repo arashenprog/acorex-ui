@@ -7,6 +7,9 @@ export interface AXIDatePicker{
     validate(): Promise<IValidationRuleResult>;
     selectToday():void;
     clear(): void
+    label: string;
+    placeholder: string;
+    showClear: boolean;
 }
 
 export abstract class AXDatePicker extends AXValidatableComponent implements AXIDatePicker{
@@ -30,6 +33,10 @@ export abstract class AXDatePicker extends AXValidatableComponent implements AXI
 
     clear(): void {
         this.model = null;
+    }
+
+    ngAfterViewInit(): void {
+        this.selectToday();
     }
 
 

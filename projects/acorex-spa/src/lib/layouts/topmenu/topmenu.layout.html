@@ -4,7 +4,9 @@
       <div class="menu-container">
         <div class="logo-container">CQFlooring</div>
         <div class="toolbar-container">
-            <ax-toolbar></ax-toolbar>
+            <ax-toolbar>
+              <ax-toolbar-menu [items]="navMenuItems" (itemClick)="onItemClick($event)"></ax-toolbar-menu>
+            </ax-toolbar>
         </div>
         <div class="commands-container">
           <ng-container *ngFor="let b of headerItems">
