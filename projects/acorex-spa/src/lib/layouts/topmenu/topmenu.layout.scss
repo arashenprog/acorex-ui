@@ -28,8 +28,9 @@
   .tabs-container {
     position: fixed;
     top: 40px;
-    background: var(--border-color);
+    background: var(--primary-lighter-color);
     width: 100%;
+ 
   }
   article {
     position: fixed;
@@ -39,7 +40,6 @@
     height: calc(100vh - 80px);
     .page-content-wrap {
       position: relative;
-      overflow-y: scroll;
       .ax-page-toolbar {
         position: fixed;
         top: 80px;
@@ -56,7 +56,7 @@
         top: 40px;
         width: 100%;
         height: calc(100vh - 130px) !important;
-        overflow-y: auto;
+        padding: 0 2px;
       }
     }
   }
