@@ -82,7 +82,7 @@ ag-grid-angular {
   justify-content: center;
   font-size: 12px;
   align-items: center;
-  @include border-radius(--border-radius-size)
+  @include border-radius(var(--border-radius-size))
 }
 ax-command-cell {
   display: flex;

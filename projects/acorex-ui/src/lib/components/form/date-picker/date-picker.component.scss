@@ -1,5 +1,4 @@
-.rtl,
-body {
+.rtl {
   ngb-datepicker-navigation {
     flex-direction: row-reverse !important;
   }
@@ -52,5 +51,8 @@ ax-date-picker {
   }
   .ngb-dp-arrow.right {
     justify-content: flex-start !important;
+  }
+  .btn-link:hover {
+    color: rgba(255, 255, 255, 0.5) !important;
   }
 }

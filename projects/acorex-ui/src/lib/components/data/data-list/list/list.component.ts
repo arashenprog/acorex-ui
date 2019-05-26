@@ -42,7 +42,6 @@ export class AXListComponent extends AXDataListComponent {
     this.fetch();
     if (this.viewToolbar) {
       this.viewToolbar.onDirectionChanged.subscribe(c => {
-        debugger;
         this.setDirection(c);
       });
     }
