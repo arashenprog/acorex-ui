@@ -10,6 +10,7 @@ import { AXHeaderBarMenuService, AXNavMenuService } from "../shared/api";
 })
 export class AXTopMenuLayoutComponent {
 
+  hasToolbar: boolean = false;
   constructor(
     public tabService: AXTabPageService,
     public headerBarMenuService: AXHeaderBarMenuService,
@@ -35,7 +36,9 @@ export class AXTopMenuLayoutComponent {
     this.navMenuService.getItems().then(c => {
       this.navMenuItems = c.filter(c => c.parentId == null);
     });
+
   }
+
   onHeaderClick(e: BaseMenuItem) {
     this.headerBarMenuService.clickItem(e).then(c => { });
   }
@@ -50,8 +53,7 @@ export class AXTopMenuLayoutComponent {
   }];
 
 
-  onItemClick(e:MenuItem)
-  {
+  onItemClick(e: MenuItem) {
     this.navMenuService.clickItem(e);
   }
 }

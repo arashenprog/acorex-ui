@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<!-- <nav class="navbar navbar-expand-lg">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,4 +23,64 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->
+<!-- <div class="ax-toolbar-menu-container">
+  <ul>
+    <ng-template ngFor let-item [ngForOf]="items">
+      <li
+        class="btn btn-sm {{ item.style }}"
+        *ngIf="item.visible !== false"
+        (click)="onToolbarItemClick(item)"
+      >
+        <i class="{{ item.icon }}"></i>
+        {{ item.text }}
+        <i
+          class="fas fa-chevron-down dropdown-icon"
+          *ngIf="item.items && item.items.length > 0"
+        ></i>
+
+        <ul
+          *ngIf="item.items && item.items.length > 0 && item.visible != false"
+          class="ax-menu-dropdown"
+        >
+          <li *ngFor="let subItem of item.items">
+            <i class="{{ subItem.icon }}"></i>
+            {{ subItem.text }}
+          </li>
+        </ul>
+      </li>
+    </ng-template>
+  </ul>
+</div> -->
+
+<div class="ax-toolbar-menu-container">
+  <ul>
+    <ng-template #recursiveList let-list>
+      <li
+        *ngFor="let item of list"
+        class="btn btn-sm {{ item.style }}"
+        (click)="onToolbarItemClick(item)"
+      >
+        <i class="{{ item.icon }}"></i>
+        {{ item.text }}
+        <i
+          class="fas fa-chevron-down dropdown-icon"
+          *ngIf="item.items && item.items.length > 0"
+        ></i>
+
+        <ul
+          *ngIf="item.items && item.items.length > 0 && item.visible != false"
+          class="ax-menu-dropdown"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              recursiveList;
+              context: { $implicit: item.items }
+            "
+          ></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: items }"></ng-container>
+  </ul>
+</div>

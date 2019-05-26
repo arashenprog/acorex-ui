@@ -50,19 +50,30 @@ export class LeadListPage extends AXBasePageComponent {
     {
       id: "m1",
       icon: "fas fa-plus-square",
-      type: "success",
+      style: "btn btn-success",
       items: [
         {
           id: "s1",
-          text: "فرم جدید",
+          text: "New form",
         },
         {
           id: "s2",
-          text: "صفحه جدید",
+          text: "New page",
         },
         {
           id: "s3",
-          text: "ارسال داده",
+          text: "Send data",
+          items: [
+            {
+              text: "child s3",
+            },
+            {
+              text: "child s3",
+            },
+            {
+              text: "child s3",
+            }
+          ]
         }
       ]
     }
