@@ -5,7 +5,7 @@ import { DemoPage } from './demo-page.component';
 import { TestHttpComponent } from './http-test.page';
 import { DashboardPage } from './dashboard/dashboard.page';
 import { AcorexSpaModule } from 'acorex-spa';
-import { AcoreXUIModule } from 'acorex-ui';
+import { ACoreXUIModule } from 'acorex-ui';
 
 @NgModule({
     declarations: [
@@ -16,7 +16,7 @@ import { AcoreXUIModule } from 'acorex-ui';
     ],
     imports: [
         CommonModule,
-        AcoreXUIModule,
+        ACoreXUIModule,
         AcorexSpaModule
     ],
     exports: [],

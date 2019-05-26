@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AcorexSpaModule } from 'acorex-spa';
-import { AcoreXUIModule } from 'acorex-ui';
+import { ACoreXUIModule } from 'acorex-ui';
 import { LeadModule } from './lead/lead.module';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { LeadModule } from './lead/lead.module';
     ],
     imports: [
         CommonModule,
-        AcoreXUIModule,
+        ACoreXUIModule,
         AcorexSpaModule,
         LeadModule
     ],

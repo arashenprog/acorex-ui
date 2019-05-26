@@ -66,78 +66,7 @@
         }
       }
 
-      .tabs {
-        display: flex;
-        align-items: center;
-        flex: 10.5;
-        overflow-y: hidden;
-        overflow-x: hidden;
-        @include transition(0.5s);
-        &::-webkit-scrollbar {
-          width: 5px !important;
-          height: 5px !important;
-        }
-        &:hover {
-          overflow-x: overlay;
-        }
-
-        div {
-          flex: 1;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 4px 0 0 10px;
-          background: var(--white-color);
-          height: 35px;
-          padding: 0px 10px;
-          min-width: 130px;
-          max-width: 200px;
-          border: 1px solid var(--border-color);
-          cursor: pointer;
-          @include border-radius-corners(15px, 15px, 0px, 0px);
-          border-bottom: 0px !important;
-          @include transition(0.3s);
-
-          span {
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-          }
-
-          &.active {
-            border-color: var(--primary-color) !important;
-            @include base-gradient();
-            color: var(--white-color);
-
-            i {
-              color: var(--white-color);
-            }
-          }
-
-          &:hover {
-            @include base-gradient();
-            color: var(--white-color);
-
-            i {
-              color: var(--white-color);
-            }
-          }
-
-          i {
-            color: var(--border-color);
-            width: 20px;
-            height: 20px;
-            text-align: center;
-            line-height: 20px;
-            @include transition(0.3s);
-
-            &:hover {
-              background: rgba(255, 255, 255, 0.5);
-              border-radius: 50%;
-            }
-          }
-        }
-      }
+     
 
       .panel-control {
         flex: 1;

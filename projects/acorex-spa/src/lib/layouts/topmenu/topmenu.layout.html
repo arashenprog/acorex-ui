@@ -1,0 +1,28 @@
+<ax-theme-wrapper>
+  <div class="top-menu-header">
+    <div class="brand">
+      <strong>CQFlooring</strong>
+    </div>
+    <div class="menu">
+        <ax-toolbar ></ax-toolbar>
+    </div>
+    <div class="commands">
+      <ng-container *ngFor="let b of headerItems">
+        <button
+          type="button"
+          class="circle-button {{ b.style }}"
+          [attr.title]="b.tooltip"
+          (click)="onHeaderClick(b)"
+        >
+          <i [class]="b.icon"></i>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="top-menu-wrapper">
+  
+  </div>
+  <ax-tabs></ax-tabs>
+  <ax-tab-page-renderer></ax-tab-page-renderer>
+  <div class="top-menu-footer"></div>
+</ax-theme-wrapper>

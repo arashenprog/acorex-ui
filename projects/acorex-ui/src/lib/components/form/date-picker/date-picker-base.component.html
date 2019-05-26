@@ -9,7 +9,7 @@
       #d="ngbDatepicker"  (blur)="onBlur($event)"
       (focus)="onFocus($event)" />
     <div class="ax-field-set-button ">
-      <button *ngIf="model && showClear" type="button" class="btn btn-light" (click)="clearText()">
+      <button *ngIf="model && showClear" type="button" class="btn btn-light" (click)="clear()">
         <i class="fas fa-times"></i>
       </button>
       <button type="button" class="btn btn-primary" (click)="d.toggle()">

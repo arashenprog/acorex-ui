@@ -3,7 +3,22 @@
     <div class="wrapper-layout">
       <ax-side-menu *ngIf="sidebarShow" id="ax-side-menu"></ax-side-menu>
       <div class="main-layout">
-        <ax-header-layout></ax-header-layout>
+        <div class="header-content" id="header-content">
+          <div class="toggle">
+            <button type="button" class="circle-button" (click)="onFullClick()">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+          <ax-tabs></ax-tabs>
+          <div class="panel-control">
+            <ng-container *ngFor="let b of headerItems">
+              <button type="button" class="circle-button {{b.style}}" [attr.title]="b.tooltip"
+                (click)="onHeaderClick(b)">
+                <i [class]="b.icon"></i>
+              </button>
+            </ng-container>
+          </div>
+        </div>
         <div class="content-wrapper">
           <ax-tab-page-renderer></ax-tab-page-renderer>
         </div>
