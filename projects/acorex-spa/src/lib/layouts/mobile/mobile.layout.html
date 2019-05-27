@@ -17,5 +17,31 @@
       <ax-tab-page-renderer></ax-tab-page-renderer>
     </div>
   </div>
-  <ax-tabs></ax-tabs>
+  <ax-drawer
+    [show]="showDrawerTabs"
+    [overlay]="true"
+    mode="inner"
+    onBlur="onBlur"
+    close="button"
+    direction="left"
+  >
+    <div class="mobile-tabs-container">
+      <ax-tabs></ax-tabs>
+    </div>
+  </ax-drawer>
+  <ax-drawer
+    [show]="showDrawerMenu"
+    [overlay]="true"
+    mode="inner"
+    onBlur="onBlur"
+    close="button"
+    direction="right"
+  >
+    <div class="mobile-menu-container">
+      <ax-toolbar-menu
+        [items]="navMenuItems"
+        (itemClick)="onItemClick($event)"
+      ></ax-toolbar-menu>
+    </div>
+  </ax-drawer>
 </ax-theme-wrapper>
