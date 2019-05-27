@@ -1,0 +1,21 @@
+<ax-theme-wrapper>
+  <div class="ax-mobile-layout">
+    <div class="header">
+      <div class="buttons-container" (click)="openDrawerTabs()">
+        <i class="fab fa-buffer"></i>
+      </div>
+      <div class="logo-container">
+        <span>
+          CQFlooring
+        </span>
+      </div>
+      <div class="buttons-container" (click)="openDrawerMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="ax-mobile-content-wrapper">
+      <ax-tab-page-renderer></ax-tab-page-renderer>
+    </div>
+  </div>
+  <ax-tabs></ax-tabs>
+</ax-theme-wrapper>

@@ -6,7 +6,8 @@ import {
   AcorexSpaModule,
   AXNavMenuService,
   AXTabularLayoutComponent,
-  AXTopMenuLayoutComponent
+  AXTopMenuLayoutComponent,
+  AXMobileLayoutComponent
 } from "acorex-spa";
 import { FormsModule } from "@angular/forms";
 import { NavMenuService } from "./shared/services/nav-menu.service";
@@ -27,8 +28,12 @@ const routes: Routes = [
     component: AXTopMenuLayoutComponent
   },
   {
+    path: "layout3",
+    component: AXMobileLayoutComponent
+  },
+  {
     path: "",
-    redirectTo:"layout2",
+    redirectTo:"layout3",
     pathMatch:"full"
   }
 ];

@@ -57,11 +57,11 @@
   <ul>
     <ng-template #recursiveList let-list>
       <li
-        #myLabel
         *ngFor="let item of list"
         class="btn btn-sm {{ item.style }}"
-        (click)="onToolbarItemClick(item)"
+        (click)="onToolbarItemClick(item,$event)"
       >
+       
         <span>
           <i class="{{ item.icon }}"></i>
           {{ item.text }}

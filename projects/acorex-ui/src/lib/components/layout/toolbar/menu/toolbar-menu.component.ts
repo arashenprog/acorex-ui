@@ -23,8 +23,7 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     super();
   }
 
-  public shouldShow = true;
-  @ViewChild("myLabel") lab;
+ 
 
   @Input()
   items: MenuItem[] = [];
@@ -34,23 +33,17 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
   ngAfterViewInit(): void {}
 
-  onToolbarItemClick(item: MenuItem) {
+  // fix this fucking event \o/
+  onToolbarItemClick(item: MenuItem,event) {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
     }
-    if (item.items.length) {
-      this.showOrHideManually();
-    }
+    
+   if(event.target.tagName == "SPAN"){
+     event.target.parentNode.onclick
+   }
+   console.log(event.target)
+   
   }
-  showOrHideManually() {
-    debugger;
-    this.shouldShow = !this.shouldShow;
-    if (this.shouldShow) {
-      this.lab.nativeElement.classList.add("show");
-      this.lab.nativeElement.classList.remove("hide");
-    } else {
-      this.lab.nativeElement.classList.add("hide");
-      this.lab.nativeElement.classList.remove("show");
-    }
-  }
+  
 }
