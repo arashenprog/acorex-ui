@@ -40,15 +40,20 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
     }
-    //debugger
     let selected = event.target;
     let childrens = selected.children;
     for (let i = 0; i < childrens.length; i++) {
       let el = childrens[i];
 
       if (el.nodeName == "UL") {
-        el.classList.toggle("active")
+        debugger
+        if (el.classList.contains('active')) {
+          el.classList.remove('active')
+        }
+        el.classList.add('active')
+
       }
+
     }
 
 
