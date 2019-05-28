@@ -6,7 +6,9 @@ import {
   Output,
   ViewChild,
   ElementRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChildren,
+  QueryList
 } from "@angular/core";
 import { AXToolbarItem } from "../toolbar-item";
 import { MenuItem } from "../../../../core/menu.class";
@@ -23,27 +25,38 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     super();
   }
 
- 
 
+  @ViewChildren("NavItem") NavItem: QueryList<AXToolbarMenuComponent>
   @Input()
   items: MenuItem[] = [];
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   // fix this fucking event \o/
-  onToolbarItemClick(item: MenuItem,event) {
+  onToolbarItemClick(item: MenuItem, event) {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
     }
-    
-   if(event.target.tagName == "SPAN"){
-     event.target.parentNode.onclick
-   }
-   console.log(event.target)
-   
+    //debugger
+    let selected = event.target;
+    let childrens = selected.children;
+    for (let i = 0; i < childrens.length; i++) {
+      let el = childrens[i];
+
+      if (el.nodeName == "UL") {
+        el.classList.toggle("active")
+      }
+    }
+
+
+
+
   }
-  
+  onSpanClick() {
+    return false
+  }
+
 }

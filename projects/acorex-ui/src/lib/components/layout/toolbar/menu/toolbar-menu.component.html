@@ -52,17 +52,17 @@
     </ng-template>
   </ul>
 </div> -->
-
 <div class="ax-toolbar-menu-container">
   <ul>
     <ng-template #recursiveList let-list>
       <li
+        #NavItem
         *ngFor="let item of list"
         class="btn btn-sm {{ item.style }}"
         (click)="onToolbarItemClick(item,$event)"
       >
        
-        <span>
+        <span (click)="onSpanClick()">
           <i class="{{ item.icon }}"></i>
           {{ item.text }}
         </span>
