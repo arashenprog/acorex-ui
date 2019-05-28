@@ -33,10 +33,16 @@ export class AXTopMenuLayoutComponent {
     this.headerBarMenuService.getItems().then(c => {
       this.headerItems = c;
     });
-    this.navMenuService.getItems().then(c => {
-      this.navMenuItems = c.filter(c => c.parentId == null);
+    this.navMenuService.getItems().then(all => {
+
+      this.navMenuItems = all.filter(c => c.parentId == null)//.map(c => {  this.transformMenus(c, all); });
     });
 
+  }
+
+  private transformMenus(item: MenuItem, items: MenuItem[]) {
+    item.items = items.filter(c => c.parentId == item.id);
+    return item;
   }
 
   onHeaderClick(e: BaseMenuItem) {

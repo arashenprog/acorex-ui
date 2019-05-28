@@ -40,25 +40,22 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
     }
-    let selected = event.target;
-    let childrens = selected.children;
-    for (let i = 0; i < childrens.length; i++) {
-      let el = childrens[i];
-
-      if (el.nodeName == "UL") {
-        debugger
-        if (el.classList.contains('active')) {
-          el.classList.remove('active')
-        }
-        el.classList.add('active')
-
+    let el = (event.target as HTMLElement).querySelector('ul');
+    if (el) {
+      if (el.classList.contains('active')) {
+        el.classList.remove('active');
+        el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
       }
-
+      else {
+        el.classList.add('active')
+      }
     }
+    document.addEventListener('click',()=>{
+      el.classList.remove('active');
+      el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
 
-
-
-
+    })
+    event.stopPropagation();
   }
   onSpanClick() {
     return false
