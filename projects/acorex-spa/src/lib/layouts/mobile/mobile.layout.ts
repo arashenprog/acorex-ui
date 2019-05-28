@@ -10,7 +10,6 @@ import { AXNavMenuService } from "../shared/services/nav-menu.service";
 })
 export class AXMobileLayoutComponent implements OnInit {
   showDrawerMenu: boolean = false;
-  showDrawerTabs: boolean = false;
   navMenuItems: MenuItem[] = [];
 
   constructor(
@@ -31,13 +30,9 @@ export class AXMobileLayoutComponent implements OnInit {
     this.pageSizeControl();
   }
 
-  openDrawerTabs() {
-    this.showDrawerTabs = !this.showDrawerTabs;
-    this.showDrawerMenu = false;
-  }
+
   openDrawerMenu() {
     this.showDrawerMenu = !this.showDrawerMenu;
-    this.showDrawerTabs = false;
   }
   onItemClick(e: MenuItem) {
     this.navMenuService.clickItem(e);

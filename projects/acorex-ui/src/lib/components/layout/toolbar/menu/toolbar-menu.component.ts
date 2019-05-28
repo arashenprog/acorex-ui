@@ -47,15 +47,17 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
       if (el.classList.contains('active')) {
         el.classList.remove('active');
         el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
+
       }
       else {
         el.classList.add('active')
       }
     }
-    // document.addEventListener('click',()=>{
-    //   el.classList.remove('active');
-    //   el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
-    // })
+
+    document.addEventListener('click',()=>{
+      el.classList.remove('active');
+      el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
+    })
     event.stopPropagation();
   }
 
