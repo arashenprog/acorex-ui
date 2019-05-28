@@ -8,7 +8,9 @@ import {
   ElementRef,
   ViewEncapsulation,
   ViewChildren,
-  QueryList
+  QueryList,
+  Host,
+  HostListener
 } from "@angular/core";
 import { AXToolbarItem } from "../toolbar-item";
 import { MenuItem } from "../../../../core/menu.class";
@@ -21,7 +23,7 @@ import { MenuItem } from "../../../../core/menu.class";
   encapsulation: ViewEncapsulation.None
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
-  constructor() {
+  constructor(private element: ElementRef) {
     super();
   }
 
@@ -50,15 +52,17 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
         el.classList.add('active')
       }
     }
-    document.addEventListener('click',()=>{
-      el.classList.remove('active');
-      el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
-
-    })
+    // document.addEventListener('click',()=>{
+    //   el.classList.remove('active');
+    //   el.querySelectorAll('.active').forEach(c => c.classList.remove('active'))
+    // })
     event.stopPropagation();
   }
-  onSpanClick() {
-    return false
+
+
+  @HostListener('document:click')
+  bodyClick() {
+    this.element.nativeElement.querySelectorAll('active').forEach(c => c.classList.remove('active'))
   }
 
 }

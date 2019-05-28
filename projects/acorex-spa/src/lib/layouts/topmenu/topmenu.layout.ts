@@ -35,7 +35,10 @@ export class AXTopMenuLayoutComponent {
     });
     this.navMenuService.getItems().then(all => {
 
-      this.navMenuItems = all.filter(c => c.parentId == null)//.map(c => {  this.transformMenus(c, all); });
+      this.navMenuItems = all.filter(c => c.parentId == null); //.map(c => {  this.transformMenus(c, all); });
+      this.navMenuItems.forEach(i => {
+        this.transformMenus(i, all);
+      })
     });
 
   }
