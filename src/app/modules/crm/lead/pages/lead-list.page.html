@@ -1,28 +1,40 @@
 <ax-page>
   <ax-toolbar>
+    <ax-toolbar-menu
+      [items]="toolbarItemsLeft"
+      (itemClick)="onItemMenuLeftClick($event)"
+    ></ax-toolbar-menu>
     <div></div>
-    <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
+    <ax-toolbar-menu
+      [items]="toolbarItemsRight"
+      (itemClick)="onItemMenuRightClick($event)"
+    ></ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
     <div style="width: 100%; height: calc(100vh - 130px);">
       <as-split direction="horizontal">
         <as-split-area size="20">
           <div style="height: 100%;padding: 5px;">
-            <ax-panel-box title="Next Action" [height]="200">
-              <ax-selection-list mode="multiple" [items]="nextAction">
-              </ax-selection-list>
-            </ax-panel-box>
-            <ax-panel-box title="Staff" [height]="200">
-              <ax-selection-list mode="multiple" [items]="staff">
-              </ax-selection-list>
-            </ax-panel-box>
-            <ax-panel-box title="Dates" [height]="200">
-              <ax-selection-list mode="multiple" [items]="dates">
-              </ax-selection-list>
-            </ax-panel-box>
+            <div *ngIf="showFilter">
+              <ax-panel-box title="Next Action" [height]="200">
+                <ax-selection-list mode="multiple" [items]="nextAction">
+                </ax-selection-list>
+              </ax-panel-box>
+              <ax-panel-box title="Staff" [height]="200">
+                <ax-selection-list mode="multiple" [items]="staff">
+                </ax-selection-list>
+              </ax-panel-box>
+              <ax-panel-box title="Dates" [height]="200">
+                <ax-selection-list mode="multiple" [items]="dates">
+                </ax-selection-list>
+              </ax-panel-box>
+            </div>
+            <div *ngIf="!showFilter">
+              <h1>Trello</h1>
+            </div>
           </div>
-        </as-split-area>
-        <as-split-area size="80">
+            </as-split-area>
+        <as-split-area size="80" *ngIf="showLeads">
           <as-split direction="vertical">
             <as-split-area size="100">
               <ax-data-grid
@@ -66,6 +78,7 @@
                 ></ax-text-column>
                 <ax-command-column [items]="commandItems"></ax-command-column>
               </ax-data-grid>
+              
             </as-split-area>
             <as-split-area size="0">
               <ax-data-grid
@@ -111,7 +124,14 @@
               </ax-data-grid>
             </as-split-area>
           </as-split>
+          
         </as-split-area>
+        <as-split-area size="80" *ngIf="!showLeads">
+                <as-split>
+                        <div *ngIf="showScheduler"><h1>Scheduler</h1></div>
+                        <div *ngIf="showCalendar"><h1>Calendar</h1></div>
+                </as-split>
+          </as-split-area>
       </as-split>
     </div>
   </ax-page-content>

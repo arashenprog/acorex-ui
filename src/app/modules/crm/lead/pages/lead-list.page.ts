@@ -17,79 +17,39 @@ export class LeadListPage extends AXBasePageComponent {
       style: "btn btn-light text-info"
     }
   ];
-  toolbarItems: MenuItem[] = [
+  toolbarItemsRight: MenuItem[] = [
     {
-      name: "insert",
-      icon: "fas fa-plus-circle",
-      style: "btn btn-light text-success",
-      text: "Add"
+      name: "leads",
+      icon: "fas fa-user-alt",
+      style: "btn btn-light text-secondary",
+      text: "Leads"
     },
     {
-      name: "update",
-      icon: "fas fa-pencil-alt",
-      style: "btn btn-light text-primary",
-      text: "Edit"
+      name: "scheduler",
+      icon: "fas fa-calendar",
+      style: "btn btn-light text-secondary",
+      text: "Scheduler"
     },
     {
-      name: "refresh",
-      icon: "fas fa-sync",
+      name: "calendar",
+      icon: "fas fa-calendar-alt",
+      style: "btn btn-light text-secondary",
+      text: "Calendar"
+    },
+
+  ];
+  toolbarItemsLeft: MenuItem[] = [
+    {
+      name: "filter",
+      icon: "fas fa-filter",
       style: "btn btn-light text-info",
-      text: "Refresh"
+      text: "Filter"
     },
     {
-      name: "delete",
-      icon: "fas fa-trash-alt",
-      style: "btn btn-light text-danger",
-      text: "Delete"
-    },
-    {
-      id: "m1",
-      text: "More Options",
-      icon: "fas fa-plus-square",
-      style: "btn btn-light text-success",
-      items: [
-        {
-          id: "s1",
-          text: "New form",
-          icon: "fas fa-plus-square"
-        },
-        {
-          id: "s2",
-          text: "New page",
-          icon: "fas fa-plus-square"
-        },
-        {
-          id: "s3",
-          text: "Send data",
-          icon: "fas fa-tachometer-alt",
-
-          items: [
-            {
-              icon: "fas fa-tachometer-alt",
-              text: "child s3",
-              items: [
-                {
-                  icon: "fas fa-tachometer-alt",
-                  text: "child s33"
-                },
-                {
-                  icon: "fas fa-tachometer-alt",
-                  text: "child s33"
-                }
-              ]
-            },
-            {
-              icon: "fas fa-tachometer-alt",
-              text: "child s3"
-            },
-            {
-              icon: "fas fa-tachometer-alt",
-
-              text: "child s3"
-            }
-          ]
-        }
-      ]
+      name: "trello",
+      icon: "fas fa-calendar",
+      style: "btn btn-light text-primary",
+      text: "Trello & SMS Delivery"
     }
   ];
   nextAction: CheckItem[] = [
@@ -179,6 +139,7 @@ export class LeadListPage extends AXBasePageComponent {
       value: false
     }
   ];
+
   provideData = () => {
     return this.lead.getList();
   };
@@ -206,5 +167,48 @@ export class LeadListPage extends AXBasePageComponent {
 
   onItemClick(e) {
     console.log("onItemClick", e);
+  }
+
+  showFilter: boolean = true;
+  onItemMenuLeftClick(e) {
+    console.log(e)
+    switch (e.name) {
+      case "trello":
+        this.showFilter = false
+
+        break;
+      case "filter":
+        this.showFilter = true
+        break;
+      default:
+        break;
+    }
+
+  }
+  showLeads: boolean = true;
+  showScheduler: boolean = false;
+  showCalendar: boolean = false;
+
+  onItemMenuRightClick(e) {
+    switch (e.name) {
+      case "scheduler":
+        this.showScheduler = true;
+        this.showCalendar = false;
+        this.showLeads = false;
+        break;
+      case "calendar":
+        this.showCalendar = true;
+        this.showLeads = false;
+        this.showScheduler = false;
+        break;
+      case "leads":
+        this.showLeads = true
+        this.showScheduler = false
+        this.showCalendar = false
+
+        break;
+      default:
+        break;
+    }
   }
 }
