@@ -10,6 +10,7 @@ import {
   AXMobileLayoutComponent
 } from "acorex-spa";
 import { FormsModule } from "@angular/forms";
+import { AngularSplitModule } from 'angular-split';
 import { NavMenuService } from "./shared/services/nav-menu.service";
 import { AXHeaderBarMenuService } from "acorex-spa";
 import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service";
@@ -47,7 +48,8 @@ const routes: Routes = [
     AcorexSpaModule,
     DemoModule,
     CRMModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AngularSplitModule.forRoot(),
   ],
   providers: [
     {

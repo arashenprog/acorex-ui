@@ -11,7 +11,7 @@ import { LeadModule } from './lead/lead.module';
         CommonModule,
         ACoreXUIModule,
         AcorexSpaModule,
-        LeadModule
+        LeadModule,
     ],
     exports: [],
     entryComponents: [

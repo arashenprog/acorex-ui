@@ -17,3 +17,9 @@
   --avatarImageSize: 72px;
   --circleBorderSize: 100px;
 }
+.as-split-gutter {
+  flex-basis: 5px !important;
+}
+as-split {
+  padding: 0 5px;
+}
