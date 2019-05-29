@@ -1,4 +1,4 @@
-<div
+<!-- <div
   class="panel-box"
   [style.height]="dockParrent && !collapsed ? '100%' : 'auto'"
 >
@@ -51,5 +51,20 @@
   </div>
   <div [@visibilityChanged]="visiblityState" class="panel-content">
     <ng-content> </ng-content>
+  </div>
+</div> -->
+<div class="ax-panel-box">
+  <header>
+    <div>{{ title }}</div>
+    <div>
+      <i
+        [ngClass]="{ 'fa-minus-square' : show ,'fa-plus-square' : !show }"
+        class="fas toggle-button"
+        (click)="togglePanel()"
+      ></i>
+    </div>
+  </header>
+  <div class="ax-panel-box-content" *ngIf="show">
+    <ng-content></ng-content>
   </div>
 </div>

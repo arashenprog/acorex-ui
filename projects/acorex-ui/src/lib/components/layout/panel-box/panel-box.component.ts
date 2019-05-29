@@ -31,65 +31,70 @@ import { ButtonItem } from "../../../core/menu.class";
   ]
 })
 export class AXPanelBoxComponent extends AXButtonBaseComponent {
-  _inlineButtons: Array<ButtonItem> = [];
-  _dropdownButtons: Array<ButtonItem> = [];
-  private _buttons: Array<ButtonItem> = [];
+  // _inlineButtons: Array<ButtonItem> = [];
+  // _dropdownButtons: Array<ButtonItem> = [];
+  // private _buttons: Array<ButtonItem> = [];
 
-  @Input()
-  get buttons() {
-    return this._buttons;
-  }
+  // @Input()
+  // get buttons() {
+  //   return this._buttons;
+  // }
 
-  set buttons(val: Array<ButtonItem>) {
-    this._buttons = val || [];
-    this._inlineButtons = this._buttons.filter(c => !c.dropdown);
-    this._dropdownButtons = this._buttons.filter(c => c.dropdown);
-  }
+  // set buttons(val: Array<ButtonItem>) {
+  //   this._buttons = val || [];
+  //   this._inlineButtons = this._buttons.filter(c => !c.dropdown);
+  //   this._dropdownButtons = this._buttons.filter(c => c.dropdown);
+  // }
 
-  onClickInner() {
-    this.onClick.emit("test");
-  }
+  // onClickInner() {
+  //   this.onClick.emit("test");
+  // }
 
-  visiblityState: string = "shown";
+  // visiblityState: string = "shown";
 
-  @Output() captionChange: EventEmitter<string> = new EventEmitter<string>();
-  private _caption: string;
-  @Input()
-  get caption(): string {
-    return this._caption;
-  }
-  set caption(val: string) {
-    this._caption = val || "caption";
-    this.captionChange.emit(this._caption);
-  }
+  // @Output() captionChange: EventEmitter<string> = new EventEmitter<string>();
+  // private _caption: string;
+  // @Input()
+  // get caption(): string {
+  //   return this._caption;
+  // }
+  // set caption(val: string) {
+  //   this._caption = val || "caption";
+  //   this.captionChange.emit(this._caption);
+  // }
 
-  @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<
-    boolean
-  >();
-  private _collapsed: boolean = false;
+  // @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<
+  //   boolean
+  // >();
+  // private _collapsed: boolean = false;
 
-  @Input()
-  get collapsed(): boolean {
-    return this._collapsed;
-  }
-  set collapsed(val: boolean) {
-    if (val != this._collapsed) {
-      this._collapsed = val;
-      this.visiblityState = val ? "hidden" : "shown";
-      this.collapsedChange.emit(this._collapsed);
-    }
-  }
+  // @Input()
+  // get collapsed(): boolean {
+  //   return this._collapsed;
+  // }
+  // set collapsed(val: boolean) {
+  //   if (val != this._collapsed) {
+  //     this._collapsed = val;
+  //     this.visiblityState = val ? "hidden" : "shown";
+  //     this.collapsedChange.emit(this._collapsed);
+  //   }
+  // }
 
-  @Input()
-  isParent: boolean = false;
+  // @Input()
+  // isParent: boolean = false;
 
-  @Input()
-  allowCollapse: boolean = true;
+  // @Input()
+  // allowCollapse: boolean = true;
 
-  @Input()
-  dockParrent: boolean = false;
+  // @Input()
+  // dockParrent: boolean = false;
 
-  toggle() {
-    this.collapsed = !this.collapsed;
+  // toggle() {
+  //   this.collapsed = !this.collapsed;
+  // }
+  @Input() title: string;
+  show: boolean = true;
+  togglePanel(){
+    this.show = !this.show;
   }
 }

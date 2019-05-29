@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AXBasePageComponent, PromisResult, MenuItem } from "acorex-ui";
+import { AXBasePageComponent, PromisResult, MenuItem, CheckItem } from "acorex-ui";
 import { LeadService } from "../lead.service";
 
 @Component({
@@ -92,7 +92,93 @@ export class LeadListPage extends AXBasePageComponent {
       ]
     }
   ];
-
+  nextAction: CheckItem[] = [
+    {
+      text: "First Contact",
+      value: false
+    },
+    {
+      text: "Waiting for visit",
+      value: false
+    },
+    {
+      text: "Determine Product / Service",
+      value: false
+    },
+    {
+      text: "Measure Size",
+      value: false
+    }
+  ];
+  staff: CheckItem[] = [
+    {
+      text: "Sam",
+      value: false
+    },
+    {
+      text: "Fred",
+      value: false
+    },
+    {
+      text: "Kia",
+      value: false
+    },
+    {
+      text: "Tar",
+      value: false
+    },
+    {
+      text: "Alex",
+      value: false
+    }
+  ];
+  dates: CheckItem[] = [
+    {
+      text: "Today",
+      value: false
+    },
+    {
+      text: "This Week",
+      value: false
+    },
+    {
+      text: "Last Week",
+      value: false
+    },
+    {
+      text: "Last 2 Week",
+      value: false
+    },
+    {
+      text: "This Month",
+      value: false
+    },
+    {
+      text: "Last 2 Month",
+      value: false
+    },
+    {
+      text: "Yesterday",
+      value: false
+    },
+    {
+      text: "Last 7 Days",
+      value: false
+    }, {
+      text: "Last 14 Days",
+      value: false
+    }, {
+      text: "Last 30 Days",
+      value: false
+    }, {
+      text: "Last 60 Days",
+      value: false
+    },
+    {
+      text: "Custom",
+      value: false
+    }
+  ];
   provideData = () => {
     return this.lead.getList();
   };
