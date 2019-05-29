@@ -1,4 +1,5 @@
 export class BaseMenuItem {
+  uid?:string=new Date().getTime().toString();
   id?: string;
   name?: string;
   text?: string;
@@ -6,6 +7,7 @@ export class BaseMenuItem {
   icon?: string;
   visible?: boolean = true;
   disable?: boolean = false;
+  selected?: boolean = false;
   type?: string = "primary";
   data?: any;
   style?:string;

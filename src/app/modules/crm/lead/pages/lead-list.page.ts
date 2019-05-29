@@ -1,6 +1,25 @@
 import { Component } from "@angular/core";
 import { AXBasePageComponent, PromisResult, MenuItem, CheckItem } from "acorex-ui";
 import { LeadService } from "../lead.service";
+import { addHours, startOfDay } from 'date-fns';
+import {
+  CalendarEvent,
+  CalendarEventTimesChangedEvent,
+} from 'angular-calendar';
+
+
+const users = [
+  {
+    id: 0,
+    name: 'John smith',
+    color: { primary:"var(--warning-color)",secondary:"var(--warning-light-color)" } 
+  },
+  {
+    id: 1,
+    name: 'Jane Doe',
+    color: { primary:"var(--primary-color)",secondary:"var(--primary-light-color)" } 
+  }
+];
 
 @Component({
   templateUrl: "./lead-list.page.html"
@@ -21,19 +40,20 @@ export class LeadListPage extends AXBasePageComponent {
     {
       name: "leads",
       icon: "fas fa-user-alt",
-      style: "btn btn-light text-secondary",
-      text: "Leads"
+      style: "btn btn-primary btn-primary-text",
+      text: "Leads",
+      selected:true
     },
     {
       name: "scheduler",
       icon: "fas fa-calendar",
-      style: "btn btn-light text-secondary",
+      style: "btn btn-primary btn-primary-text",
       text: "Scheduler"
     },
     {
       name: "calendar",
-      icon: "fas fa-calendar-alt",
-      style: "btn btn-light text-secondary",
+      icon: "fas fa-calendar-alt  ",
+      style: "btn btn-primary btn-primary-text",
       text: "Calendar"
     },
 
@@ -42,14 +62,15 @@ export class LeadListPage extends AXBasePageComponent {
     {
       name: "filter",
       icon: "fas fa-filter",
-      style: "btn btn-light text-info",
-      text: "Filter"
+      style: "btn btn-light btn-primary-text",
+      text: "Filter",
+      selected:true
     },
     {
       name: "trello",
       icon: "fas fa-calendar",
-      style: "btn btn-light text-primary",
-      text: "Trello & SMS Delivery"
+      style: "btn btn-primary btn-primary-text",
+      text: "Delivery"
     }
   ];
   nextAction: CheckItem[] = [
@@ -211,4 +232,50 @@ export class LeadListPage extends AXBasePageComponent {
         break;
     }
   }
+
+
+  viewDate: Date = new Date();
+ 
+
+  events: CalendarEvent[] = [
+    {
+      title: 'An event',
+      color: users[0].color,
+      start: addHours(startOfDay(new Date()), 5),
+      meta: {
+        user: users[0]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      title: 'Another event',
+      color: users[1].color,
+      start: addHours(startOfDay(new Date()), 2),
+      meta: {
+        user: users[1]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      title: 'An 3rd event',
+      color: users[0].color,
+      start: addHours(startOfDay(new Date()), 7),
+      meta: {
+        user: users[0]
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    }
+  ];
 }
