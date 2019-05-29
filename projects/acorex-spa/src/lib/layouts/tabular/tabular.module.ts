@@ -7,28 +7,24 @@ import { FormsModule } from '@angular/forms';
 import {
   AXPageFooterComponent, AXPageContentComponent, AXPageComponent,AXLayoutSharedModule
 } from '../shared/api';
+import { AXPageModule } from "../shared/page/page.module";
 
 
 
 @NgModule({
   declarations: [
     AXTabularLayoutComponent,
-    AXPageFooterComponent,
-    AXPageContentComponent,
-    AXPageComponent,
     AXSideMenuComponent
   ],
   imports: [
     RouterModule,
     FormsModule,
     ACoreXUIModule,
+    AXPageModule,
     AXLayoutSharedModule
   ],
   exports: [
     AXTabularLayoutComponent,
-    AXPageFooterComponent,
-    AXPageContentComponent,
-    AXPageComponent,
     AXSideMenuComponent
   ],
   providers: []

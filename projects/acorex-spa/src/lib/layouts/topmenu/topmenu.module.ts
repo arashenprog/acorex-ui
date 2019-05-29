@@ -5,11 +5,12 @@ import { ACoreXUIModule } from 'acorex-ui';
 import {
     AXLayoutSharedModule
 } from '../shared/api';
+import { AXPageModule } from '../shared/page/page.module';
 
 
 @NgModule({
     declarations: [AXTopMenuLayoutComponent],
-    imports: [CommonModule, ACoreXUIModule, AXLayoutSharedModule],
+    imports: [CommonModule, ACoreXUIModule, AXLayoutSharedModule, AXPageModule],
     exports: [AXTopMenuLayoutComponent],
     providers: [],
 })
