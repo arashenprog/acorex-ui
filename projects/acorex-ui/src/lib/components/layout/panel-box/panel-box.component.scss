@@ -82,12 +82,13 @@
     align-items: center;
     border-bottom: 1px solid var(--border-color);
     padding: 0 var(--sp-sm-size);
+    background-color: var(--primary-color);
+    color: var(--white-color);
   }
   .ax-panel-box-content {
     padding: var(--sp-sm-size);
   }
   .toggle-button{
       cursor: pointer;
-      color: var(--secondary-light-color)
   }
 }
