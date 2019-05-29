@@ -40,20 +40,20 @@ export class LeadListPage extends AXBasePageComponent {
     {
       name: "leads",
       icon: "fas fa-user-alt",
-      style: "btn btn-primary btn-primary-text",
+      style: "btn btn-light",
       text: "Leads",
       selected:true
     },
     {
       name: "scheduler",
       icon: "fas fa-calendar",
-      style: "btn btn-primary btn-primary-text",
+      style: "btn btn-light",
       text: "Scheduler"
     },
     {
       name: "calendar",
       icon: "fas fa-calendar-alt  ",
-      style: "btn btn-primary btn-primary-text",
+      style: "btn btn-light",
       text: "Calendar"
     },
 
@@ -62,14 +62,14 @@ export class LeadListPage extends AXBasePageComponent {
     {
       name: "filter",
       icon: "fas fa-filter",
-      style: "btn btn-light btn-primary-text",
+      style: "btn btn-light",
       text: "Filter",
       selected:true
     },
     {
       name: "trello",
       icon: "fas fa-calendar",
-      style: "btn btn-primary btn-primary-text",
+      style: "btn btn-light ",
       text: "Delivery"
     }
   ];

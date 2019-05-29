@@ -17,6 +17,9 @@
 }
 
 .ax-toolbar-menu-container {
+  .active {
+    display: flex !important;
+  }
   ul {
     padding: 0;
     margin: 0;
@@ -92,9 +95,9 @@
   left: 0 !important;
   top: 30px !important;
 }
-.ax-menu-active {
-  display: flex !important;
-}
-.active {
-  display: flex !important;
-}
+// .ax-menu-active {
+//   display: flex !important;
+// }
+// .active {
+//   display: flex !important;
+// }

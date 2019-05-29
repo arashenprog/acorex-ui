@@ -283,6 +283,10 @@ body {
           background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
           border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
         }
+        .btn-#{$name}:disabled {
+          background-color: var(--#{$name}-light-#{$color-suffix}) !important;
+          border-color: var(--#{$name}-light-#{$color-suffix}) !important;
+        }
       } @else {
         .#{$name}-#{$subname} {
           color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
@@ -298,11 +302,11 @@ body {
           background-color: var(--#{$name}-#{$subname}-#{$color-suffix});
           border-color: var(--#{$name}-#{$subname}-#{$color-suffix});
         }
-        .btn-#{$name}:hover {
+        .btn-#{$name}-#{$subname}:hover {
           background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
           border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
         }
-        .btn-#{$name}:disabled {
+        .btn-#{$name}-#{$subname}:disabled {
           background-color: var(--#{$name}-light-#{$color-suffix}) !important;
           border-color: var(--#{$name}-light-#{$color-suffix}) !important;
         }
@@ -328,7 +332,7 @@ body {
     .btn-#{$name}:disabled {
       background-color: var(--#{$name}-light-#{$color-suffix}) !important;
       border-color: var(--#{$name}-light-#{$color-suffix}) !important;
-    }
+    }    
   }
 }
 
