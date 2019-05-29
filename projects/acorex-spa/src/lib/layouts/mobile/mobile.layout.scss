@@ -54,6 +54,7 @@
         -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
         padding: var(--sp-sm-size) var(--sp-md-size);
         border-top: 1px solid var(--border-color);
+        z-index: 1;
       }
     }
   }
@@ -61,9 +62,10 @@
     position: fixed;
     top: 110px;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 5px;
     left: 0;
     right: 0;
+    overflow: scroll;
   }
 }
 .mobile-menu-container {
@@ -85,22 +87,6 @@
         justify-content: center;
         align-items: center;
       }
-    }
-  }
-}
-.mobile-tabs-container {
-  .tabs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    .tab-item {
-      width: 100%;
-      display: flex;
-      border: none;
-      border-radius: 0px !important;
-      padding: 0;
-      margin: 0;
-      line-height: 48px;
     }
   }
 }

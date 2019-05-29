@@ -16,25 +16,30 @@ ax-tabs {
   &:hover {
     overflow-x: overlay;
   }
+
   .tabs {
     display: flex;
+    flex: 1;
+    margin: 0 20px;
     .tab-item {
       flex: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 4px 0 0 10px;
+      font-size: 14px;
+      margin: 5px -2px 0;
       background: var(--white-color);
       height: 35px;
-      padding: 0px 10px;
+      padding: 0 10px 0 10px;
       min-width: 130px;
       max-width: 200px;
-      border: 1px solid var(--border-color);
       cursor: pointer;
-      @include border-radius-corners(15px, 15px, 0px, 0px);
-      border-bottom: 0px !important;
-      @include transition(0.3s);
-
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      border-bottom: 0 !important;
+      transition: 0.3s;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
       span {
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -45,7 +50,13 @@ ax-tabs {
         border-color: var(--primary-color) !important;
         @include base-gradient();
         color: var(--white-color);
-
+        z-index: 2;
+        &::before {
+          border-color: transparent #efefef transparent transparent;
+        }
+        &::after {
+          border-color: transparent transparent transparent #efefef;
+        }
         i {
           color: var(--white-color);
         }
@@ -67,6 +78,7 @@ ax-tabs {
         text-align: center;
         line-height: 20px;
         @include transition(0.3s);
+        font-size: 12px;
 
         &:hover {
           background: rgba(255, 255, 255, 0.5);
