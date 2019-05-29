@@ -1,103 +1,67 @@
- <ax-page>
-  <ax-toolbar>
-    <div></div>
-    <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
-  </ax-toolbar>
-  <ax-page-content>
-    <div style="width: 100%; height: calc(100vh - 130px);">
-      <as-split direction="horizontal">
-        <as-split-area size="20"> </as-split-area>
-        <as-split-area size="80">
-          <as-split direction="vertical">
-            <as-split-area size="100">
-                <ax-data-grid
-                  (cellDbClick)="onCellDbClick($event)"
-                  (selectionChanged)="onSelectionChanged($event)"
-                >
-                  <ax-toolbar>
-                    <ax-toolbar-menu [items]="gridItems"></ax-toolbar-menu>
-                    <ax-toolbar-search></ax-toolbar-search>
-                  </ax-toolbar>
-                  <ax-data-source>
-                    <ax-callback-read
-                      [provideData]="provideData"
-                    ></ax-callback-read>
-                  </ax-data-source>
-                  <ax-selection-column></ax-selection-column>
-                  <ax-text-column
-                    field="name"
-                    caption="NAME"
-                    [width]="100"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="company"
-                    caption="COMPANY"
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="email"
-                    caption="EMAIL"
-                    [width]="300"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="source"
-                    caption="SOURCE"
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="owner"
-                    caption="LEAD OWNER "
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-command-column [items]="commandItems"></ax-command-column>
-                </ax-data-grid>
-            </as-split-area>
-            <as-split-area size="0">
-                <ax-data-grid
-                  (cellDbClick)="onCellDbClick($event)"
-                  (selectionChanged)="onSelectionChanged($event)"
-                >
-                  <ax-toolbar>
-                    <ax-toolbar-menu [items]="gridItems"></ax-toolbar-menu>
-                    <ax-toolbar-search></ax-toolbar-search>
-                  </ax-toolbar>
-                  <ax-data-source>
-                    <ax-callback-read
-                      [provideData]="provideData"
-                    ></ax-callback-read>
-                  </ax-data-source>
-                  <ax-selection-column></ax-selection-column>
-                  <ax-text-column
-                    field="name"
-                    caption="NAME"
-                    [width]="100"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="company"
-                    caption="COMPANY"
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="email"
-                    caption="EMAIL"
-                    [width]="300"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="source"
-                    caption="SOURCE"
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="owner"
-                    caption="LEAD OWNER "
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-command-column [items]="commandItems"></ax-command-column>
-                </ax-data-grid>
-            </as-split-area>
-          </as-split>
-        </as-split-area>
-      </as-split>
-    </div>
-  </ax-page-content>
+<ax-page>
+    <ax-toolbar>
+        <div></div>
+        <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
+    </ax-toolbar>
+    <ax-page-content>
+        <div style="width: 100%; height: calc(100vh - 130px);">
+            <as-split direction="horizontal">
+                <as-split-area size="20">
+                    <div style="height: 100%;padding: 5px;">
+                        <ax-panel-box caption="Next Action" [height]="200">
+                            A
+                        </ax-panel-box>
+                        <ax-panel-box caption="Staff" [height]="200">
+                            B
+                        </ax-panel-box>
+                        <ax-panel-box caption="Dates" [height]="200">
+                            C
+                        </ax-panel-box>
+                    </div>
+                </as-split-area>
+                <as-split-area size="80">
+                    <as-split direction="vertical">
+                        <as-split-area size="100">
+                            <ax-data-grid (cellDbClick)="onCellDbClick($event)"
+                                (selectionChanged)="onSelectionChanged($event)">
+                                <ax-toolbar>
+                                    <ax-toolbar-menu [items]="gridItems"></ax-toolbar-menu>
+                                    <ax-toolbar-search></ax-toolbar-search>
+                                </ax-toolbar>
+                                <ax-data-source>
+                                    <ax-callback-read [provideData]="provideData"></ax-callback-read>
+                                </ax-data-source>
+                                <ax-selection-column></ax-selection-column>
+                                <ax-text-column field="name" caption="NAME" [width]="100"></ax-text-column>
+                                <ax-text-column field="company" caption="COMPANY" [width]="200"></ax-text-column>
+                                <ax-text-column field="email" caption="EMAIL" [width]="300"></ax-text-column>
+                                <ax-text-column field="source" caption="SOURCE" [width]="200"></ax-text-column>
+                                <ax-text-column field="owner" caption="LEAD OWNER " [width]="200"></ax-text-column>
+                                <ax-command-column [items]="commandItems"></ax-command-column>
+                            </ax-data-grid>
+                        </as-split-area>
+                        <as-split-area size="0">
+                            <ax-data-grid (cellDbClick)="onCellDbClick($event)"
+                                (selectionChanged)="onSelectionChanged($event)">
+                                <ax-toolbar>
+                                    <ax-toolbar-menu [items]="gridItems"></ax-toolbar-menu>
+                                    <ax-toolbar-search></ax-toolbar-search>
+                                </ax-toolbar>
+                                <ax-data-source>
+                                    <ax-callback-read [provideData]="provideData"></ax-callback-read>
+                                </ax-data-source>
+                                <ax-selection-column></ax-selection-column>
+                                <ax-text-column field="name" caption="NAME" [width]="100"></ax-text-column>
+                                <ax-text-column field="company" caption="COMPANY" [width]="200"></ax-text-column>
+                                <ax-text-column field="email" caption="EMAIL" [width]="300"></ax-text-column>
+                                <ax-text-column field="source" caption="SOURCE" [width]="200"></ax-text-column>
+                                <ax-text-column field="owner" caption="LEAD OWNER " [width]="200"></ax-text-column>
+                                <ax-command-column [items]="commandItems"></ax-command-column>
+                            </ax-data-grid>
+                        </as-split-area>
+                    </as-split>
+                </as-split-area>
+            </as-split>
+        </div>
+    </ax-page-content>
 </ax-page>
