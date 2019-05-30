@@ -84,6 +84,7 @@
     padding: 0 var(--sp-sm-size);
     background-color: var(--primary-color);
     color: var(--white-color);
+    @include border-radius(4px)
   }
   .ax-panel-box-content {
     padding: var(--sp-sm-size);

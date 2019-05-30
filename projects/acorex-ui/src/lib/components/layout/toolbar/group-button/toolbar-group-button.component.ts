@@ -8,7 +8,7 @@ import { BaseMenuItem } from '../../../../core/menu.class';
     selector: 'ax-toolbar-group-button',
     template: `
     <div class="btn-group" role="group">
-        <button type="button" *ngFor="let item of items" class="btn  btn-sm  {{ item.style }}" [class.active]="item.selected"   (click)="onClick(item)" [title]="item.tooltip">
+        <button type="button" *ngFor="let item of items" class="btn btn-sm {{ item.style }}" [class.active]="item.selected" (click)="onClick(item)" [title]="item.tooltip">
             <i class="{{ item.icon }}"></i>
             {{ item.text }}
         </button>

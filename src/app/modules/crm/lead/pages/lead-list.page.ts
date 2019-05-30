@@ -1,23 +1,33 @@
 import { Component } from "@angular/core";
-import { AXBasePageComponent, PromisResult, MenuItem, CheckItem } from "acorex-ui";
+import {
+  AXBasePageComponent,
+  PromisResult,
+  MenuItem,
+  CheckItem
+} from "acorex-ui";
 import { LeadService } from "../lead.service";
-import { addHours, startOfDay } from 'date-fns';
+import { addHours, startOfDay } from "date-fns";
 import {
   CalendarEvent,
-  CalendarEventTimesChangedEvent,
-} from 'angular-calendar';
-
+  CalendarEventTimesChangedEvent
+} from "angular-calendar";
 
 const users = [
   {
     id: 0,
-    name: 'John smith',
-    color: { primary:"var(--warning-color)",secondary:"var(--warning-light-color)" } 
+    name: "John smith",
+    color: {
+      primary: "var(--warning-color)",
+      secondary: "var(--warning-light-color)"
+    }
   },
   {
     id: 1,
-    name: 'Jane Doe',
-    color: { primary:"var(--primary-color)",secondary:"var(--primary-light-color)" } 
+    name: "Jane Doe",
+    color: {
+      primary: "var(--primary-color)",
+      secondary: "var(--primary-light-color)"
+    }
   }
 ];
 
@@ -42,7 +52,7 @@ export class LeadListPage extends AXBasePageComponent {
       icon: "fas fa-user-alt",
       style: "btn btn-light",
       text: "Leads",
-      selected:true
+      selected: true
     },
     {
       name: "scheduler",
@@ -55,8 +65,7 @@ export class LeadListPage extends AXBasePageComponent {
       icon: "fas fa-calendar-alt  ",
       style: "btn btn-light",
       text: "Calendar"
-    },
-
+    }
   ];
   toolbarItemsLeft: MenuItem[] = [
     {
@@ -64,7 +73,7 @@ export class LeadListPage extends AXBasePageComponent {
       icon: "fas fa-filter",
       style: "btn btn-light",
       text: "Filter",
-      selected:true
+      selected: true
     },
     {
       name: "trello",
@@ -145,13 +154,16 @@ export class LeadListPage extends AXBasePageComponent {
     {
       text: "Last 7 Days",
       value: false
-    }, {
+    },
+    {
       text: "Last 14 Days",
       value: false
-    }, {
+    },
+    {
       text: "Last 30 Days",
       value: false
-    }, {
+    },
+    {
       text: "Last 60 Days",
       value: false
     },
@@ -164,7 +176,9 @@ export class LeadListPage extends AXBasePageComponent {
   provideData = () => {
     return this.lead.getList();
   };
-
+  provideTaskData = () => {
+    return this.lead.getTasks();
+  };
   commandItems: MenuItem[] = [
     {
       name: "01",
@@ -192,19 +206,18 @@ export class LeadListPage extends AXBasePageComponent {
 
   showFilter: boolean = true;
   onItemMenuLeftClick(e) {
-    console.log(e)
+    console.log(e);
     switch (e.name) {
       case "trello":
-        this.showFilter = false
+        this.showFilter = false;
 
         break;
       case "filter":
-        this.showFilter = true
+        this.showFilter = true;
         break;
       default:
         break;
     }
-
   }
   showLeads: boolean = true;
   showScheduler: boolean = false;
@@ -223,9 +236,9 @@ export class LeadListPage extends AXBasePageComponent {
         this.showScheduler = false;
         break;
       case "leads":
-        this.showLeads = true
-        this.showScheduler = false
-        this.showCalendar = false
+        this.showLeads = true;
+        this.showScheduler = false;
+        this.showCalendar = false;
 
         break;
       default:
@@ -233,13 +246,11 @@ export class LeadListPage extends AXBasePageComponent {
     }
   }
 
-
   viewDate: Date = new Date();
- 
 
   events: CalendarEvent[] = [
     {
-      title: 'An event',
+      title: "An event",
       color: users[0].color,
       start: addHours(startOfDay(new Date()), 5),
       meta: {
@@ -252,7 +263,7 @@ export class LeadListPage extends AXBasePageComponent {
       draggable: true
     },
     {
-      title: 'Another event',
+      title: "Another event",
       color: users[1].color,
       start: addHours(startOfDay(new Date()), 2),
       meta: {
@@ -265,7 +276,7 @@ export class LeadListPage extends AXBasePageComponent {
       draggable: true
     },
     {
-      title: 'An 3rd event',
+      title: "An 3rd event",
       color: users[0].color,
       start: addHours(startOfDay(new Date()), 7),
       meta: {

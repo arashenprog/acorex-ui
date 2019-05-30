@@ -114,8 +114,8 @@ body {
   scroll-behavior: smooth;
 }
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-button {
   width: 0px;
@@ -124,7 +124,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--gray-color);
   border: none;
-  border-radius: 50px;
+  // border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light-color);
@@ -135,7 +135,7 @@ body {
 ::-webkit-scrollbar-track {
   background: var(--white-color);
   border: none;
-  border-radius: 5px;
+  // border-radius: 5px;
 }
 ::-webkit-scrollbar-track:hover {
   background: var(--gray-color);
@@ -431,4 +431,9 @@ body {
   width: 100vw;
   height: 100vh;
   background: var(--white);
+}
+.btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show>.btn-light.dropdown-toggle {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-light-color);
 }

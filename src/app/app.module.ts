@@ -18,6 +18,7 @@ import { LoginPageComponent } from "./shared/login/login.page";
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { CRMModule } from "./modules/crm/crm.module";
+import { TaskCardModule } from './shared/components/task-card/task-card.module';
 
 const routes: Routes = [
   {
