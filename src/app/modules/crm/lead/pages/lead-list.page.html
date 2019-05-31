@@ -8,6 +8,14 @@
       [items]="toolbarItemsRight"
       (itemClick)="onItemMenuRightClick($event)"
     ></ax-toolbar-group-button>
+    <ax-toolbar-group-button
+      [items]="toolbarItemsLeft"
+      (itemClick)="onItemMenuLeftClick($event)"
+    ></ax-toolbar-group-button>
+    <ax-toolbar-group-button
+      [items]="toolbarItemsRight"
+      (itemClick)="onItemMenuRightClick($event)"
+    ></ax-toolbar-group-button>
   </ax-toolbar>
   <ax-page-content>
     <div style="width: 100%; height: calc(100vh - 130px);">

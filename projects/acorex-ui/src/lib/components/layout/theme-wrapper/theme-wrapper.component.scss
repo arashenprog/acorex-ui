@@ -80,6 +80,18 @@ $sizes: (
   border: (
     width: 1px,
     radius: 4px
+  ),
+  media: (
+    // smaller phone viewpoints,
+      xs: 320px,
+    // small devices and most phones,
+      sm: 480px,
+    // most tablets,
+      md: 768px,
+    // smaller desktop viewpoints,
+      lg: 992px,
+    // large devices and wide screens
+      xl: 1200px
   )
 );
 
@@ -332,7 +344,7 @@ body {
     .btn-#{$name}:disabled {
       background-color: var(--#{$name}-light-#{$color-suffix}) !important;
       border-color: var(--#{$name}-light-#{$color-suffix}) !important;
-    }    
+    }
   }
 }
 
@@ -432,7 +444,9 @@ body {
   height: 100vh;
   background: var(--white);
 }
-.btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show>.btn-light.dropdown-toggle {
+.btn-light:not(:disabled):not(.disabled).active,
+.btn-light:not(:disabled):not(.disabled):active,
+.show > .btn-light.dropdown-toggle {
   color: var(--white-color);
   background-color: var(--primary-color);
   border-color: var(--primary-light-color);
