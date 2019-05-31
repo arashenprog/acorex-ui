@@ -1,3 +1,4 @@
+@import "../../../../styles/mixins";
 .rtl {
   .ax-toolbar-menu-container {
     ul {
@@ -54,6 +55,7 @@
         -webkit-box-shadow: 0 0 5px 0 var(--shadow-color);
         -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
         border: 1px solid var(--border-color);
+        z-index: 1;
         li {
           text-align: left;
           margin: 0;
@@ -101,3 +103,43 @@
 // .active {
 //   display: flex !important;
 // }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .ax-responsive-menu-container {
+    display: flex !important;
+  }
+  .ax-toolbar-menu-container > ul {
+    display: none;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .ax-responsive-menu-container {
+    display: flex !important;
+  }
+  .ax-toolbar-menu-container > ul {
+    display: none;
+  }
+}
+
+.ax-responsive-menu-container {
+  display: none;
+  .circle-button{
+    margin-left:0 !important
+  }
+  .ax-responsive-menu{
+    background: var(--white-color);
+    top: 40px;
+    position: absolute;
+    padding: 10px;
+    box-shadow: 1px 1px 4px 0px var(--shadow-color);
+    @include border-radius(4px);
+    z-index: 1;
+    li {
+      display: flex;
+      min-width: 200px;
+      margin: 0 0 5px 0;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
