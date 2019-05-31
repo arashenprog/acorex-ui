@@ -21,15 +21,7 @@ import { LeadListPage } from '../crm/lead/pages/lead-list.page';
         AcorexSpaModule
     ],
     exports: [],
-    providers: [{
-        provide: "startUpTab",
-        useValue: {
-            content: LeadListPage,
-            title: "Dashboard",
-            closable: false,
-            uid: "dashboard"
-        }
-    }],
+    providers: [],
     entryComponents: [
         TestPageComponent,
         DemoPage,

@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ElementRef, ViewContainerRef,  ContentChildren, QueryList } from '@angular/core';
 import * as GoldenLayout from 'golden-layout';
+import { AXDockPanelComponent } from './dock-panel.component';
 declare var $: any;
 
 
@@ -10,6 +11,9 @@ declare var $: any;
 })
 export class AXDockLayoutComponent  {
 
+
+    @ContentChildren(AXDockPanelComponent)
+    private panel:QueryList<AXDockPanelComponent>;
     private config: any;
     private layout: any;
 
@@ -25,33 +29,26 @@ export class AXDockLayoutComponent  {
                 showMaximiseIcon: false,
                 showCloseIcon: false
             },
-            content: [{
-                type: 'row',
-                isClosable: false,
-              
-                content: [{
-                    type:'component',
-                    componentName: 'example',
-                    width:200,
-                    componentState: { text: 'Component 1' }
-                },
-                {
-                    type:'component',
-                    componentName: 'example',
-                    componentState: { text: 'Component 2' }
-                }]
-            }]
+            content: []
         };
-
-    
 
     }
 
     ngAfterViewInit(): void {
+        this.panel.forEach(p => {
+            this.config.content.push(p.config())
+        });
+
         this.layout = new GoldenLayout(this.config, $('#layoutContainer'));
-        this.layout.registerComponent( 'example', function( container, state ){
+        this.layout.registerComponent( 'component', function( container, state ){
             container.getElement().html( '<h2>' + state.text + '</h2>');
+            //container.getElement().html(state.component);
+            state.render( container.getElement());
+            //console.log(state);
         });
         this.layout.init();
     }
+
+
+
 }

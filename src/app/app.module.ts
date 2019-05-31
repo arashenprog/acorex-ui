@@ -19,6 +19,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { CRMModule } from "./modules/crm/crm.module";
 import { TaskCardModule } from './shared/components/task-card/task-card.module';
+import { LeadListPage } from './modules/crm/lead/pages/lead-list.page';
 
 const routes: Routes = [
   {
@@ -60,7 +61,16 @@ const routes: Routes = [
     {
       provide: AXHeaderBarMenuService,
       useClass: HeaderBarMenuService
-    }
+    },
+    {
+      provide: "startUpTab",
+      useValue: {
+          content: LeadListPage,
+          title: "Dashboard",
+          closable: false,
+          uid: "dashboard"
+      }
+  }
   ],
   entryComponents: [LoginPageComponent],
   bootstrap: [AppComponent]
