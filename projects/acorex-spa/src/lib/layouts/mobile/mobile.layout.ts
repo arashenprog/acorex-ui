@@ -30,14 +30,16 @@ export class AXMobileLayoutComponent implements OnInit {
     this.pageSizeControl();
   }
 
-
   openDrawerMenu() {
     this.showDrawerMenu = !this.showDrawerMenu;
   }
   onItemClick(e: MenuItem) {
     this.navMenuService.clickItem(e);
+    let lastTab = this.tabService.tabs[this.tabService.tabs.length - 1];
+    if ( lastTab.closable === true){
+      this.tabService.close(lastTab, {});
+    }
     this.showDrawerMenu = false;
-
   }
   //fix top menu space
   pageSizeControl() {}
