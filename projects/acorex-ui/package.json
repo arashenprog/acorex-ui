@@ -16,11 +16,14 @@
     "@angular/core": "^7.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "@ng-select/ng-select": "^2.18.0",
+    "@types/jquery": "^3.3.29",
     "ag-grid-angular": "^20.2.0",
     "ag-grid-community": "^20.2.0",
     "angular-gridster2": "^7.2.0",
     "angular2-text-mask": "^9.0.0",
-    "jalali-moment": "^3.3.2"
+    "golden-layout": "^1.5.9",
+    "jalali-moment": "^3.3.2",
+    "jquery": "^3.4.1"
   },
   "peerDependencies": {
     "@angular/common": "^7.2.0",

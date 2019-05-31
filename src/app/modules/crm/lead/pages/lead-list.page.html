@@ -10,8 +10,8 @@
     ></ax-toolbar-group-button>
   </ax-toolbar>
   <ax-page-content>
-    <div style="width: 100%; height: calc(100vh - 130px);">
-      <as-split direction="horizontal">
+     <div style="width: 100%; height: calc(100vh - 130px);">
+      <!--<as-split direction="horizontal">
         <as-split-area size="20">
           <div style="height: 100%;padding: 5px;">
             <div *ngIf="showFilter">
@@ -140,7 +140,11 @@
           <mwl-calendar-month-view [viewDate]="viewDate" [events]="events">
           </mwl-calendar-month-view>
         </as-split-area>
-      </as-split>
+      </as-split> -->
+      <ax-dock-layout>
+      
+      </ax-dock-layout>
     </div>
+    
   </ax-page-content>
 </ax-page>
