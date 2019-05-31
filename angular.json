@@ -33,7 +33,9 @@
               "node_modules/bootstrap-v4-rtl/dist/css/bootstrap-rtl.min.css"
 
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/zepto/dist/zepto.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

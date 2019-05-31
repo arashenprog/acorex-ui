@@ -42,6 +42,15 @@ import { AXDataSourceModule } from './components/data/data-source/datasource.mod
 import { AXListModule } from './components/data/data-list/list/list.module';
 import { AXWidgetModule } from './components/layout/widget/widget.module';
 import { AXToolbarModule } from "./components/layout/toolbar/api";
+import { AXDockLayoutModule } from "./components/layout/dock-layout/dock-layout.module";
+
+
+
+
+import * as $ from 'jquery';
+
+// It is required to have JQuery as global in the window object.
+window['$'] = $;
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -76,6 +85,7 @@ import { AXToolbarModule } from "./components/layout/toolbar/api";
     AXListModule,
     AXWidgetModule,
     AXToolbarModule,
+    AXDockLayoutModule,
     //
     AXHttpModule,
     AXDataSourceModule
@@ -111,6 +121,7 @@ import { AXToolbarModule } from "./components/layout/toolbar/api";
     AXListModule,
     AXWidgetModule,
     AXToolbarModule,
+    AXDockLayoutModule,
     //
     AXHttpModule,
     AXDataSourceModule
