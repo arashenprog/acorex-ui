@@ -29,7 +29,7 @@
               </ax-panel-box>
             </div>
             <div *ngIf="!showFilter">
-              <ax-list title="List Title">
+              <ax-list title="List Title" [style]="ax-list-none-style">
                 <ax-data-source>
                   <ax-callback-read
                     [provideData]="provideTaskData"

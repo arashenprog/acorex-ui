@@ -68,6 +68,7 @@ export class AXListComponent extends AXDataListComponent {
     }
   }
 
+  @Input()
   style: any = {};
 
 
