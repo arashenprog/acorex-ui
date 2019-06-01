@@ -1,28 +1,6 @@
 @import "../../styles/master";
 
-.side-logo {
-  background: var(--white-color);
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
 
-  h4 {
-    margin: 0 !important;
-    @include base-gradient();
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  img {
-    width: 100%;
-    display: block;
-    padding: 60px;
-  }
-}
 
 .wrapper-layout {
   background: var(--white-color);

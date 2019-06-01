@@ -46,7 +46,7 @@ import {
 export class AXDrawerComponent {
   @Input() show: boolean = false;
 
-  @Input() direction: "left" | "right" = "left";
+  @Input() direction: "left" | "right" = "right";
   @Input() mode: "inner" | "outer" = "inner";
   @Input() close: "onBlur" | "button" = "onBlur";
   @Input() overlay: boolean = false;

@@ -4,11 +4,10 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation
 } from "@angular/core";
-import { MenuItem } from 'acorex-ui';
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
-import { AXNavMenuService } from "../../shared/services/nav-menu.service";
+import { AXNavMenuService } from "../services/nav-menu.service";
 import { Observable } from "rxjs";
-import { AXStorageService } from "acorex-ui";
+import { AXStorageService, MenuItem } from "acorex-ui";
 
 @Component({
   selector: "ax-side-menu",
@@ -26,7 +25,6 @@ export class AXSideMenuComponent {
     if (document.getElementsByTagName("body")[0].classList.contains("rtl")) {
       this.isRtl = true;
     }
-
   }
 
   searchText: string;

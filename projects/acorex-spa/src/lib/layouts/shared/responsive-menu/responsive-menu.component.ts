@@ -1,15 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'ax-responsive-menu',
-  templateUrl: './responsive-menu.component.html',
-  styleUrls: ['./responsive-menu.component.scss']
+  selector: "ax-responsive-menu",
+  templateUrl: "./responsive-menu.component.html",
+  styleUrls: ["./responsive-menu.component.scss"]
 })
 export class AXResponsiveMenuComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
   @Input() show: boolean = false;
 
-  ngOnInit(): void { }
+  @Input() direction: "left" | "right" = "left";
+  @Input() mode: "inner" | "outer" = "inner";
+  @Input() close: "onBlur" | "button" = "onBlur";
+  @Input() overlay: boolean = false;
 
+  onClose(e): void {
+    if (this.close == "onBlur" || this.close == "button") {
+      e.preventDefault();
+      this.show = false;
+    }
+  }
+
+  ngOnInit(): void {}
 }

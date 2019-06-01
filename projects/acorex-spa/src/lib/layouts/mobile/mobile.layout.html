@@ -23,20 +23,5 @@
       <ax-tab-page-renderer></ax-tab-page-renderer>
     </div>
   </div>
-  <ax-responsive-menu [show]="true"></ax-responsive-menu>
-  <ax-drawer
-    [show]="showDrawerMenu"
-    [overlay]="true"
-    mode="inner"
-    onBlur="onBlur"
-    close="button"
-    direction="right"
-  >
-    <div class="mobile-menu-container">
-      <ax-toolbar-menu
-        [items]="navMenuItems"
-        (itemClick)="onItemClick($event)"
-      ></ax-toolbar-menu>
-    </div>
-  </ax-drawer>
+    <ax-responsive-menu [show]="showDrawerMenu" direction="right"></ax-responsive-menu>
 </ax-theme-wrapper>
