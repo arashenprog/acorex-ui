@@ -70,3 +70,17 @@
     }
   }
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .popup-container {
+    width: 100vw !important;
+    height: 100vh;
+    border-radius: 0px !important;
+  }
+  .popup-wrapper {
+    padding: 0 !important;
+  }
+  .popup-body {
+    min-height: 93vh !important;
+  }
+}
