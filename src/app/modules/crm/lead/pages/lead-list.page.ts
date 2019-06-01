@@ -48,40 +48,17 @@ export class LeadListPage extends AXBasePageComponent {
   ];
   toolbarItemsRight: MenuItem[] = [
     {
-      name: "leads",
-      icon: "fas fa-user-alt",
-      style: "btn btn-light",
-      text: "Leads",
-      selected: true
+      name: "reset",
+      icon: "fas fa-sync",
+      style: "btn btn-warning",
     },
     {
-      name: "scheduler",
-      icon: "fas fa-calendar",
+      name: "edit",
+      icon: "fas fa-pen",
       style: "btn btn-light",
-      text: "Scheduler"
-    },
-    {
-      name: "calendar",
-      icon: "fas fa-calendar-alt  ",
-      style: "btn btn-light",
-      text: "Calendar"
     }
   ];
-  toolbarItemsLeft: MenuItem[] = [
-    {
-      name: "filter",
-      icon: "fas fa-filter",
-      style: "btn btn-light",
-      text: "Filter",
-      selected: true
-    },
-    {
-      name: "trello",
-      icon: "fas fa-calendar",
-      style: "btn btn-light ",
-      text: "Delivery"
-    }
-  ];
+  
   nextAction: CheckItem[] = [
     {
       text: "First Contact",

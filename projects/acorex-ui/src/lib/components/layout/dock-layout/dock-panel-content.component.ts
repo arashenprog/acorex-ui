@@ -1,16 +1,15 @@
-import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { SelectorFlags } from '@angular/core/src/render3/interfaces/projection';
 
 @Component({
     selector: 'ax-dock-content',
-    template: `
-        <h1>{{this.caption}}</h1>
-    `,
+    template: `<ng-content></ng-content>`,
 })
 export class AXDockPanelContentComponent implements OnInit {
 
-    // @ContentChild(TemplateRef) template: TemplateRef<any>;
+    @ContentChild(TemplateRef) template: TemplateRef<any>;
 
-    constructor() { }
+    constructor(public viewContainerRef: ViewContainerRef) { }
 
     @Input()
     caption: string;
@@ -26,21 +25,30 @@ export class AXDockPanelContentComponent implements OnInit {
         conf.componentName = "component";
         conf.content = [];
         conf.title = this.caption;
-        //conf.
         // if (this.template)
         // {
-        //     conf.template = this.template;
-        //     console.log(conf.template)
+        //     //conf.template = this.template.elementRef.nativeElement;
+        //     console.log((this.template as any)._def.regrences)
         // }
         //conf.componentState = { component: this.elt.nativeElement }
         //console.log(this.caption, (this.templateRef));
-        conf.componentState = { text: this.caption, render: this.render }
+        let self = this;
+        conf.componentState = {
+            text: this.caption,
+            render: (el: any) => {
+                //console.log(self, el);
+                if (self.template) {
+                    let view = self.viewContainerRef.createEmbeddedView(self.template)
+                    view.rootNodes.forEach(element => {
+                        el.append(element);
+                    });
+                }
+
+            }
+        }
         return conf;
     }
 
     ngOnInit(): void { }
 
-    render(el) {
-        console.log(this, el);
-    }
 }

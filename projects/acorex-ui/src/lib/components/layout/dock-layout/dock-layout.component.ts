@@ -39,13 +39,9 @@ export class AXDockLayoutComponent {
     this.panel.forEach(p => {
       this.config.content.push(p.config());
     });
-    let THAT= this;
     this.layout = new GoldenLayout(this.config, $('#layoutContainer'));
     this.layout.registerComponent('component', function (container, state) {
-      container.getElement().html('<h2>' + state.text + '</h2>');
-      //container.getElement().html(state.component);
-      //state.render(container.getElement());
-      console.log(THAT.config);
+      state.render(container.getElement());
     });
     this.layout.init();
   }
