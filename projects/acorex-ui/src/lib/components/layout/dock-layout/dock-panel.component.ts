@@ -27,11 +27,13 @@ export class AXDockPanelComponent implements OnInit {
     config(): any {
         let conf: any = {}
         conf.type = this.type;
+        conf.uid = this.uid;
         conf.content = [];
+        console.log(this.size,this.type);
         if (this.type == "column" && this.size)
-            conf.width = this.size;
-        if (this.type == "row" && this.size)
             conf.height = this.size;
+        if ((this.type == "row" || this.type == "stack") && this.size)
+            conf.width = this.size;
 
         this.panels.filter(c => c.uid != this.uid).forEach(p => {
             conf.content.push(p.config())

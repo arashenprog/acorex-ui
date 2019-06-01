@@ -55,7 +55,7 @@ export class LeadListPage extends AXBasePageComponent {
     {
       name: "edit",
       icon: "fas fa-pen",
-      style: "btn btn-light",
+      style: "btn btn-primary",
     }
   ];
   

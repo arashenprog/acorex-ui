@@ -10,7 +10,7 @@
 
       <ax-dock-layout>
         <ax-dock-panel type="row">
-          <ax-dock-panel type="stack" [size]="30">
+          <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
               <ng-template>
                 <ax-panel-box title="Next Action" [height]="200">
@@ -41,7 +41,7 @@
               </ng-template>
             </ax-dock-content>
           </ax-dock-panel>
-          <ax-dock-panel type="stack" [size]="70">
+          <ax-dock-panel type="stack" [size]="80">
             <ax-dock-content caption="Leads">
               <ng-template>
                 <ax-data-grid (cellDbClick)="onCellDbClick($event)" (selectionChanged)="onSelectionChanged($event)">

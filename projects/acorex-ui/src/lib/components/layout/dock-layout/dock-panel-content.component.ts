@@ -25,13 +25,7 @@ export class AXDockPanelContentComponent implements OnInit {
         conf.componentName = "component";
         conf.content = [];
         conf.title = this.caption;
-        // if (this.template)
-        // {
-        //     //conf.template = this.template.elementRef.nativeElement;
-        //     console.log((this.template as any)._def.regrences)
-        // }
-        //conf.componentState = { component: this.elt.nativeElement }
-        //console.log(this.caption, (this.templateRef));
+        conf.uid = this.uid;
         let self = this;
         conf.componentState = {
             text: this.caption,
