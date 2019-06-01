@@ -1,6 +1,8 @@
-import { Component, ElementRef, ViewContainerRef, ContentChildren, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener } from '@angular/core';
 import * as GoldenLayout from 'golden-layout';
 import { AXDockPanelComponent } from './dock-panel.component';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 declare var $: any;
 
 
@@ -11,16 +13,12 @@ declare var $: any;
   encapsulation: ViewEncapsulation.None
 })
 export class AXDockLayoutComponent {
-
-
   @ContentChildren(AXDockPanelComponent)
   private panel: QueryList<AXDockPanelComponent>;
   private config: any;
   private layout: any;
 
-  constructor(
-    private el: ElementRef,
-    private viewContainer: ViewContainerRef) {
+  constructor() {
 
 
     this.config = {
@@ -36,8 +34,11 @@ export class AXDockLayoutComponent {
   }
 
   ngAfterViewInit(): void {
-
     this.loadState();
+    let that = this;
+    this.layout.on('stateChanged', function (e) {
+      that.saveState();
+    });
   }
 
   saveState(): void {
@@ -48,9 +49,10 @@ export class AXDockLayoutComponent {
         return val;
       }
     };
-    var state = JSON.stringify(this.layout.toConfig(), replacer);
-    console.log(state)
-    localStorage.setItem('savedState', state);
+    if (this.layout.isInitialised) {
+      var state = JSON.stringify(this.layout.toConfig(), replacer);
+      localStorage.setItem('savedState', state);
+    }
   }
 
   loadState() {
@@ -59,59 +61,65 @@ export class AXDockLayoutComponent {
     });
     if (localStorage.getItem("savedState")) {
       try {
-        debugger;
         let list1: any[] = [];
-        this.findComponents(this.config, list1);
+        this.findComponents(this.config.content, list1);
         let old = JSON.parse(localStorage.getItem("savedState"));
         let list2: any[] = [];
-        this.findComponents(old, list2);
-
-        console.log(list1, list2);
-
-        //this.config = old;
+        if (old) {
+          this.findComponents(old.content, list2);
+          list2.forEach(l2 => {
+            let l1 = list1.find(c => c.title == l2.title);
+            if (l1 && l1.componentState) {
+              l2.componentState = l1.componentState;
+            }
+          });
+          this.config = old;
+        }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
-
     this.render();
   }
 
-  private findComponents(input: any, output: any[]) {
-    for (const key in input) {
-      if (input.hasOwnProperty(key)) {
-        const e = input[key];
-        if (key == "content" && e) {
-          e.forEach(c => {
-            if (c.type == "component")
-              output.push(c);
-          });
-        }
-        this.findComponents(e, output);
+  private findComponents(input: any[], output: any[]) {
+    input.forEach(e => {
+      if (e.type == "component")
+        output.push(e);
+      if (e.content) {
+        this.findComponents(e.content, output);
       }
-    }
-    // input.forEach(e => {
-    //   if (e.componentName == "component")
-    //     output.push(e);
-    //   if (e.content) {
-    //     this.findComponents(e.content, output);
-    //   }
-    // });
+    });
   }
 
   private render() {
+    if (this.layout)
+      this.layout.destroy();
     this.layout = new GoldenLayout(this.config, $('#layoutContainer'));
     this.layout.registerComponent('component', function (container, state) {
       state.render(container.getElement());
     });
-    let that = this;
-    this.layout.on('stateChanged', function (e) {
-      that.saveState();
-    });
+
     this.layout.init();
   }
 
-
+  private resizeChangeObserver: any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    console.log("resize");
+    if (!this.resizeChangeObserver) {
+      Observable.create(observer => {
+        this.resizeChangeObserver = observer;
+      })
+        .pipe(debounceTime(500))
+        .pipe(distinctUntilChanged())
+        .subscribe(c => {
+          console.log("resize rx");
+          this.layout.updateSize();
+        });
+    }
+    this.resizeChangeObserver.next(event);
+  }
 
 
 
