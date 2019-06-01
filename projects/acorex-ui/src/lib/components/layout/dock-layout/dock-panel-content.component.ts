@@ -26,7 +26,7 @@ export class AXDockPanelContentComponent implements OnInit {
         conf.componentName = "component";
         conf.content = [];
         conf.title = this.caption;
-        conf.
+        //conf.
         // if (this.template)
         // {
         //     conf.template = this.template;
