@@ -5,9 +5,9 @@ import { AXPageModule } from './page/page.module';
 
 
 @NgModule({
-    declarations: [AXLayoutTabsComponent],
-    imports: [ CommonModule ,AXPageModule],
-    exports: [AXLayoutTabsComponent],
-    providers: [],
+  declarations: [AXLayoutTabsComponent],
+  imports: [CommonModule, AXPageModule],
+  exports: [AXLayoutTabsComponent],
+  providers: [],
 })
-export class AXLayoutSharedModule {}
+export class AXLayoutSharedModule { }

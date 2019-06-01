@@ -451,3 +451,12 @@ body {
   background-color: var(--primary-color);
   border-color: var(--primary-light-color);
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  ax-row {
+    margin-bottom: var(--sp-md-size);
+  }
+  ax-col {
+    margin-bottom: var(--sp-md-size);
+  }
+}
