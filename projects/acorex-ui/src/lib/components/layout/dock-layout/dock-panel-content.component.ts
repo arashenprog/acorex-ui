@@ -3,12 +3,12 @@ import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewCh
 @Component({
     selector: 'ax-dock-content',
     template: `
-        <ng-content></ng-content>
+        <h1>{{this.caption}}</h1>
     `,
 })
 export class AXDockPanelContentComponent implements OnInit {
 
-    @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+    // @ContentChild(TemplateRef) template: TemplateRef<any>;
 
     constructor() { }
 
@@ -26,7 +26,12 @@ export class AXDockPanelContentComponent implements OnInit {
         conf.componentName = "component";
         conf.content = [];
         conf.title = this.caption;
-
+        conf.
+        // if (this.template)
+        // {
+        //     conf.template = this.template;
+        //     console.log(conf.template)
+        // }
         //conf.componentState = { component: this.elt.nativeElement }
         //console.log(this.caption, (this.templateRef));
         conf.componentState = { text: this.caption, render: this.render }
