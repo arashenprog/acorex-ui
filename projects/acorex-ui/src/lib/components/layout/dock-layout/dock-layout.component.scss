@@ -18,6 +18,9 @@
   color: var(--white-color) !important;
   box-shadow: none !important;
   padding-bottom: 0 !important;
+  .lm_close_tab {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAQUlEQVR4nHXOQQ4AMAgCQeT/f6aXpsGK3jSTuCVJAAr7iBdoAwCKd0nwfaAdHbYERw5b44+E8JoBjEYGMBq5gAYP3usUDu2IvoUAAAAASUVORK5CYII=) !important ;
+  }
 }
 .lm_tab {
   cursor: pointer;
@@ -31,5 +34,4 @@
 .lm_close_tab {
   top: 4px!important;
   right: 6px!important;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAQUlEQVR4nHXOQQ4AMAgCQeT/f6aXpsGK3jSTuCVJAAr7iBdoAwCKd0nwfaAdHbYERw5b44+E8JoBjEYGMBq5gAYP3usUDu2IvoUAAAAASUVORK5CYII=) !important ;
 }
