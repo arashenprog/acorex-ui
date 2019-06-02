@@ -10,66 +10,93 @@ import {
   ViewChildren,
   QueryList,
   Host,
-  HostListener
-} from "@angular/core";
-import { AXToolbarItem } from "../toolbar-item";
-import { MenuItem } from "../../../../core/menu.class";
+  HostListener,
+  ChangeDetectionStrategy,
+  NgZone
+} from '@angular/core';
+import { AXToolbarItem } from '../toolbar-item';
+import { MenuItem } from '../../../../core/menu.class';
 
 @Component({
-  selector: "ax-toolbar-menu",
-  templateUrl: "./toolbar-menu.component.html",
-  styleUrls: ["./toolbar-menu.component.scss"],
+  selector: 'ax-toolbar-menu',
+  templateUrl: './toolbar-menu.component.html',
+  styleUrls: ['./toolbar-menu.component.scss'],
   providers: [{ provide: AXToolbarItem, useExisting: AXToolbarMenuComponent }],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private zone: NgZone) {
     super();
   }
-  showResponsiveMenu: boolean = false;
+  showResponsiveMenu = false;
 
-  @ViewChildren("NavItem") NavItem: QueryList<AXToolbarMenuComponent>;
+  // @ViewChildren('NavItem') NavItem: QueryList<AXToolbarMenuComponent>;
   @Input()
   items: MenuItem[] = [];
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-  ngAfterViewInit(): void {}
 
-  // fix this fucking event \o/
+  // cumulativeOffset(element) {
+  //   let top = 0;
+  //   let left = 0;
+  //   do {
+  //     top += element.offsetTop || 0;
+  //     left += element.offsetLeft || 0;
+  //     element = element.offsetParent;
+  //   } while (element);
+
+  //   return {
+  //     top: top,
+  //     left: left
+  //   };
+  // };
+
+
   onToolbarItemClick(item: MenuItem, event) {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
+      this.closeAll();
     }
-    let el = (event.target as HTMLElement).querySelector("ul");
+    const el = (event.target as HTMLElement).querySelector('ul');
     if (el) {
-      if (el.classList.contains("active")) {
-        el.classList.remove("active");
-        el.querySelectorAll(".active").forEach(c =>
-          c.classList.remove("active")
+      if (el.classList.contains('active')) {
+        el.classList.remove('active');
+        el.querySelectorAll('.active').forEach(c =>
+          c.classList.remove('active')
         );
       } else {
-        el.classList.add("active");
+        el.classList.add('active');
       }
     }
-
-    document.addEventListener("click", () => {
-      el.classList.remove("active");
-      el.querySelectorAll(".active").forEach(c => c.classList.remove("active"));
-  
-    });
     event.stopPropagation();
   }
 
-  @HostListener("document:click")
-  bodyClick() {
+  bodyClick(event: MouseEvent) {
+    this.closeAll();
+    event.stopPropagation();
+  }
+
+  private closeAll() {
     this.element.nativeElement
-      .querySelectorAll("active")
-      .forEach(c => c.classList.remove("active"));
-   
+      .querySelectorAll('.active')
+      .forEach(c => c.classList.remove('active'));
+  }
+
+  ngOnInit(): void {
+    this.zone.runOutsideAngular(() => {
+      window.document.addEventListener('click', this.bodyClick.bind(this));
+    });
+  }
+
+  ngOnDestroy(): void {
+    document.removeEventListener("click", this.bodyClick);
   }
   onResponsiveMenuButtonClick() {
     this.showResponsiveMenu = !this.showResponsiveMenu;
   }
+
+
 }

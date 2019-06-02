@@ -1,26 +1,35 @@
-import { Component, ElementRef, ViewContainerRef, ContentChildren, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import * as GoldenLayout from 'golden-layout';
 import { AXDockPanelComponent } from './dock-panel.component';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 declare var $: any;
 
+export class AXDockLayoutState {
+  json: string;
+}
 
 @Component({
   selector: 'ax-dock-layout',
-  templateUrl: './dock-layout.component.html',
+  template: '<div id="{{uid}}" class="layoutContainer"></div>',
   styleUrls: ['./dock-layout.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AXDockLayoutComponent {
-
-
   @ContentChildren(AXDockPanelComponent)
   private panel: QueryList<AXDockPanelComponent>;
   private config: any;
   private layout: any;
+  uid = "dock-" + Math.floor(Math.random() * 100000000);
 
-  constructor(
-    private el: ElementRef,
-    private viewContainer: ViewContainerRef) {
+  @Output()
+  onSave: EventEmitter<AXDockLayoutState> = new EventEmitter<AXDockLayoutState>();
+
+
+  @Input()
+  autoSave: boolean = true;
+
+  constructor() {
 
 
     this.config = {
@@ -36,11 +45,15 @@ export class AXDockLayoutComponent {
   }
 
   ngAfterViewInit(): void {
-
-    this.loadState();
+    this.loadLayout();
+    let that = this;
+    this.layout.on('stateChanged', function (e) {
+      if (that.autoSave)
+        that.saveLayout();
+    });
   }
 
-  saveState(): void {
+  saveLayout(): void {
     let replacer = (name, val) => {
       if (name === 'componentState') {
         return undefined;
@@ -48,70 +61,83 @@ export class AXDockLayoutComponent {
         return val;
       }
     };
-    var state = JSON.stringify(this.layout.toConfig(), replacer);
-    console.log(state)
-    localStorage.setItem('savedState', state);
+    if (this.layout.isInitialised) {
+      let json = JSON.stringify(this.layout.toConfig(), replacer);
+      this.onSave.emit({ json: json })
+    }
   }
 
-  loadState() {
+  loadLayout(json?: any) {
     this.panel.forEach(p => {
       this.config.content.push(p.config());
     });
-    if (localStorage.getItem("savedState")) {
+    let state = null;
+    try {
+      if (json)
+        state = JSON.parse(json);
+    } catch (error) {
+      console.error(error);
+    }
+    if (state) {
       try {
-        debugger;
         let list1: any[] = [];
-        this.findComponents(this.config, list1);
-        let old = JSON.parse(localStorage.getItem("savedState"));
+        this.findComponents(this.config.content, list1);
         let list2: any[] = [];
-        this.findComponents(old, list2);
-
-        console.log(list1, list2);
-
-        //this.config = old;
+        if (state && state.content) {
+          this.findComponents(state.content, list2);
+          list2.forEach(l2 => {
+            let l1 = list1.find(c => c.title == l2.title);
+            if (l1 && l1.componentState) {
+              l2.componentState = l1.componentState;
+            }
+          });
+          this.config = state;
+        }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
-
     this.render();
   }
 
-  private findComponents(input: any, output: any[]) {
-    for (const key in input) {
-      if (input.hasOwnProperty(key)) {
-        const e = input[key];
-        if (key == "content" && e) {
-          e.forEach(c => {
-            if (c.type == "component")
-              output.push(c);
-          });
-        }
-        this.findComponents(e, output);
+  private findComponents(input: any[], output: any[]) {
+    input.forEach(e => {
+      if (e.type == "component")
+        output.push(e);
+      if (e.content) {
+        this.findComponents(e.content, output);
       }
-    }
-    // input.forEach(e => {
-    //   if (e.componentName == "component")
-    //     output.push(e);
-    //   if (e.content) {
-    //     this.findComponents(e.content, output);
-    //   }
-    // });
+    });
   }
 
   private render() {
-    this.layout = new GoldenLayout(this.config, $('#layoutContainer'));
+    if (this.layout)
+      this.layout.destroy();
+    this.layout = new GoldenLayout(this.config, $('#' + this.uid));
     this.layout.registerComponent('component', function (container, state) {
       state.render(container.getElement());
     });
-    let that = this;
-    this.layout.on('stateChanged', function (e) {
-      that.saveState();
-    });
+
     this.layout.init();
   }
 
-
+  private resizeChangeObserver: any;
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    console.log("resize");
+    if (!this.resizeChangeObserver) {
+      Observable.create(observer => {
+        this.resizeChangeObserver = observer;
+      })
+        .pipe(debounceTime(500))
+        .pipe(distinctUntilChanged())
+        .subscribe(c => {
+          console.log("resize rx");
+          this.layout.updateSize();
+        });
+    }
+    this.resizeChangeObserver.next(event);
+  }
 
 
 

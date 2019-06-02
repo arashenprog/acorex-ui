@@ -29,7 +29,6 @@ export class AXDockPanelComponent implements OnInit {
         conf.type = this.type;
         conf.uid = this.uid;
         conf.content = [];
-        console.log(this.size,this.type);
         if (this.type == "column" && this.size)
             conf.height = this.size;
         if ((this.type == "row" || this.type == "stack") && this.size)

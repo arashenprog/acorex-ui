@@ -8,7 +8,7 @@
   <ax-page-content>
     <div style="width: 100%; height: calc(100vh - 135px);">
 
-      <ax-dock-layout>
+      <ax-dock-layout #layout (onSave)="onLayoutSave($event)" [autoSave]="false">
         <ax-dock-panel type="row">
           <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
@@ -29,13 +29,13 @@
             </ax-dock-content>
             <ax-dock-content caption="Tasks">
               <ng-template>
-                <ax-list title="List Title" [style]="ax-list-none-style">
+                <ax-list title="List Title" [style]="ax - list - none - style">
                   <ax-data-source>
                     <ax-callback-read [provideData]="provideTaskData"></ax-callback-read>
                   </ax-data-source>
                   <ng-template let-item>
-                    <task-card [buttons]="item.buttons" icon="{{item.icon}}" title="{{item.title}}"
-                      subtitle="{{item.subtitle}}" body="{{item.body}}" author="{{item.author}}"></task-card>
+                    <task-card [buttons]="item.buttons" icon="{{ item.icon }}" title="{{ item.title }}"
+                      subtitle="{{ item.subtitle }}" body="{{ item.body }}" author="{{ item.author }}"></task-card>
                   </ng-template>
                 </ax-list>
               </ng-template>
@@ -78,20 +78,5 @@
         </ax-dock-panel>
       </ax-dock-layout>
     </div>
-    <!-- <ng-template #sp1>
-      <ax-panel-box title="Next Action" [height]="200">
-        <ax-selection-list mode="multiple" [items]="nextAction">
-        </ax-selection-list>
-      </ax-panel-box>
-      <ax-panel-box title="Staff" [height]="200">
-        <ax-selection-list mode="multiple" [items]="staff">
-        </ax-selection-list>
-      </ax-panel-box>
-      <ax-panel-box title="Dates" [height]="200">
-        <ax-selection-list mode="single" [items]="dates">
-        </ax-selection-list>
-      </ax-panel-box>
-    </ng-template>
-    <ng-container  [ngTemplateOutlet]="sp1"></ng-container > -->
   </ax-page-content>
 </ax-page>

@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import {
   AXBasePageComponent,
   PromisResult,
   MenuItem,
-  CheckItem
+  CheckItem,
+  AXToastService
 } from "acorex-ui";
 import { LeadService } from "../lead.service";
 import { addHours, startOfDay } from "date-fns";
@@ -11,6 +12,7 @@ import {
   CalendarEvent,
   CalendarEventTimesChangedEvent
 } from "angular-calendar";
+import { AXDockLayoutComponent } from 'acorex-ui';
 
 const users = [
   {
@@ -35,9 +37,12 @@ const users = [
   templateUrl: "./lead-list.page.html"
 })
 export class LeadListPage extends AXBasePageComponent {
-  constructor(private lead: LeadService) {
+  constructor(private lead: LeadService, private toast: AXToastService) {
     super();
   }
+
+
+  @ViewChild('layout') layout: AXDockLayoutComponent;
 
   gridItems: MenuItem[] = [
     {
@@ -48,17 +53,46 @@ export class LeadListPage extends AXBasePageComponent {
   ];
   toolbarItemsRight: MenuItem[] = [
     {
-      name: "reset",
-      icon: "fas fa-sync",
-      style: "btn btn-warning",
+      icon: "fas fa-table",
+      style: "btn btn-success",
+      text: "Layout",
+      items: [
+        {
+          text: "Layout1",
+          name: "L1",
+        },
+        {
+          text: "Layout2",
+          name: "L2",
+        }
+        ,
+        {
+          text: "Layout3",
+          name: "L3",
+        }
+      ]
     },
     {
-      name: "edit",
-      icon: "fas fa-pen",
+      icon: "fas fa-save",
       style: "btn btn-primary",
+      items: [
+        {
+          text: "Save",
+          name: "save",
+        },
+        {
+          text: "Save As",
+          name: "saveAs",
+        }
+      ]
+    },
+    {
+      icon: "fas fa-sync",
+      style: "btn btn-warning",
+      name: "reset"
     }
   ];
-  
+
   nextAction: CheckItem[] = [
     {
       text: "First Contact",
@@ -181,46 +215,38 @@ export class LeadListPage extends AXBasePageComponent {
     console.log("onItemClick", e);
   }
 
-  showFilter: boolean = true;
-  onItemMenuLeftClick(e) {
-    console.log(e);
+
+  onItemMenuRightClick(e) {
     switch (e.name) {
-      case "trello":
-        this.showFilter = false;
+      case "save":
+        this.layout.saveLayout();
 
         break;
-      case "filter":
-        this.showFilter = true;
-        break;
+      case "reset": {
+        this.loadLayout();
+        break
+      }
       default:
         break;
     }
   }
-  showLeads: boolean = true;
-  showScheduler: boolean = false;
-  showCalendar: boolean = false;
 
-  onItemMenuRightClick(e) {
-    switch (e.name) {
-      case "scheduler":
-        this.showScheduler = true;
-        this.showCalendar = false;
-        this.showLeads = false;
-        break;
-      case "calendar":
-        this.showCalendar = true;
-        this.showLeads = false;
-        this.showScheduler = false;
-        break;
-      case "leads":
-        this.showLeads = true;
-        this.showScheduler = false;
-        this.showCalendar = false;
+  onLayoutSave(e) {
+    console.log("save layout")
+    localStorage.setItem("LAYOUT", e.json);
+    this.toast.success("Saved Successfully!",{ 
+      title:"Layout"
+    })
+  }
 
-        break;
-      default:
-        break;
-    }
+  ngAfterViewInit() {
+    this.loadLayout();
+  }
+
+  private loadLayout() {
+    let layoutJson = localStorage.getItem("LAYOUT");
+    if (layoutJson)
+      this.layout.loadLayout(layoutJson);
   }
 
   viewDate: Date = new Date();

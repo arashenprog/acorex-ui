@@ -19,6 +19,7 @@ export * from "./lib/components/form/validation/validation.classs";
 export * from "./lib/components/form/validation/validation-form.component";
 
 export * from "./lib/components/nav/api";
+export * from "./lib/components/layout/dock-layout/api";
 export * from "./lib/components/layout/widget/api";
 export * from "./lib/components/layout/toast/api";
 export * from "./lib/components/layout/toolbar/api";
