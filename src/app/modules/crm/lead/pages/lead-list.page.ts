@@ -55,10 +55,45 @@ export class LeadListPage extends AXBasePageComponent {
     {
       name: "edit",
       icon: "fas fa-pen",
+      text:"Layout",
       style: "btn btn-primary",
+      items: [
+        {
+          text: "s1"
+        },
+        {
+          text: "s2"
+        },
+        {
+          text: "s3"
+        },
+        {
+          text: "s4"
+        },
+        {
+          text: "s5",
+          items: [
+            {
+              text: "s1"
+            },
+            {
+              text: "s2"
+            },
+            {
+              text: "s3"
+            },
+            {
+              text: "s4"
+            },
+            {
+              text: "s5"
+            }
+          ]
+        }
+      ]
     }
   ];
-  
+
   nextAction: CheckItem[] = [
     {
       text: "First Contact",
