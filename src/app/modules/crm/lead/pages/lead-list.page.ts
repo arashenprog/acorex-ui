@@ -234,7 +234,9 @@ export class LeadListPage extends AXBasePageComponent {
   onLayoutSave(e) {
     console.log("save layout")
     localStorage.setItem("LAYOUT", e.json);
-    this.toast.success("Layout saved successfully.")
+    this.toast.success("Saved Successfully!",{ 
+      title:"Layout"
+    })
   }
 
   ngAfterViewInit() {
