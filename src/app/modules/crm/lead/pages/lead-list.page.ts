@@ -53,6 +53,7 @@ export class LeadListPage extends AXBasePageComponent {
   ];
   toolbarItemsRight: MenuItem[] = [
     {
+<<<<<<< HEAD
       icon: "fas fa-table",
       style: "btn btn-success",
       text: "Layout",
@@ -85,6 +86,50 @@ export class LeadListPage extends AXBasePageComponent {
         //   //   }
         //   // ]
         // }
+=======
+      name: "reset",
+      icon: "fas fa-sync",
+      style: "btn btn-warning",
+    },
+    {
+      name: "edit",
+      icon: "fas fa-pen",
+      text:"Layout",
+      style: "btn btn-primary",
+      items: [
+        {
+          text: "s1"
+        },
+        {
+          text: "s2"
+        },
+        {
+          text: "s3"
+        },
+        {
+          text: "s4"
+        },
+        {
+          text: "s5",
+          items: [
+            {
+              text: "s1"
+            },
+            {
+              text: "s2"
+            },
+            {
+              text: "s3"
+            },
+            {
+              text: "s4"
+            },
+            {
+              text: "s5"
+            }
+          ]
+        }
+>>>>>>> 9db45b3ed5da3ad8576c88b1b433f50420fff5f5
       ]
     }
   ];

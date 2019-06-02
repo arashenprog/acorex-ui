@@ -61,7 +61,7 @@
         class="btn btn-sm {{ item.style }}"
         (click)="onToolbarItemClick(item,$event)"
       >
-       
+
         <span >
           <i class="{{ item.icon }}"></i>
           {{ item.text }}
@@ -101,7 +101,7 @@
           class="btn btn-sm {{ item.style }}"
           (click)="onToolbarItemClick(item,$event)"
         >
-         
+
           <span >
             <i class="{{ item.icon }}"></i>
             {{ item.text }}
@@ -110,7 +110,7 @@
             class="fas fa-chevron-down dropdown-icon"
             *ngIf="item.items && item.items.length > 0"
           ></i>
-  
+
           <ul
             *ngIf="item.items && item.items.length > 0 && item.visible != false"
             class="ax-menu-dropdown"
@@ -129,5 +129,5 @@
       ></ng-container>
     </ul>
   </div>
- 
+
 </div>
