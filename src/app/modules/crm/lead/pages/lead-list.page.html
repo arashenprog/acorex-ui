@@ -2,15 +2,13 @@
   <ax-toolbar>
     <ax-toolbar-group-button>
     </ax-toolbar-group-button>
-    <ax-toolbar-menu [items]="toolbarItemsRight"  (itemClick)="onItemMenuRightClick($event)">
+    <ax-toolbar-menu [items]="toolbarItemsRight" (itemClick)="onItemMenuRightClick($event)">
     </ax-toolbar-menu>
-      <ax-toolbar-group-button> </ax-toolbar-group-button>
-
   </ax-toolbar>
   <ax-page-content>
     <div style="width: 100%; height: calc(100vh - 135px);">
 
-      <ax-dock-layout #layout (onSave)="onLayoutSave($event)" autoSave="false">
+      <ax-dock-layout #layout (onSave)="onLayoutSave($event)" [autoSave]="false">
         <ax-dock-panel type="row">
           <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
@@ -33,19 +31,11 @@
               <ng-template>
                 <ax-list title="List Title" [style]="ax - list - none - style">
                   <ax-data-source>
-                    <ax-callback-read
-                      [provideData]="provideTaskData"
-                    ></ax-callback-read>
+                    <ax-callback-read [provideData]="provideTaskData"></ax-callback-read>
                   </ax-data-source>
                   <ng-template let-item>
-                    <task-card
-                      [buttons]="item.buttons"
-                      icon="{{ item.icon }}"
-                      title="{{ item.title }}"
-                      subtitle="{{ item.subtitle }}"
-                      body="{{ item.body }}"
-                      author="{{ item.author }}"
-                    ></task-card>
+                    <task-card [buttons]="item.buttons" icon="{{ item.icon }}" title="{{ item.title }}"
+                      subtitle="{{ item.subtitle }}" body="{{ item.body }}" author="{{ item.author }}"></task-card>
                   </ng-template>
                 </ax-list>
               </ng-template>
@@ -54,55 +44,27 @@
           <ax-dock-panel type="stack" [size]="80">
             <ax-dock-content caption="Leads">
               <ng-template>
-                <ax-data-grid
-                  (cellDbClick)="onCellDbClick($event)"
-                  (selectionChanged)="onSelectionChanged($event)"
-                >
+                <ax-data-grid (cellDbClick)="onCellDbClick($event)" (selectionChanged)="onSelectionChanged($event)">
                   <ax-toolbar>
                     <ax-toolbar-menu [items]="gridItems"></ax-toolbar-menu>
                     <ax-toolbar-search></ax-toolbar-search>
                   </ax-toolbar>
                   <ax-data-source>
-                    <ax-callback-read
-                      [provideData]="provideData"
-                    ></ax-callback-read>
+                    <ax-callback-read [provideData]="provideData"></ax-callback-read>
                   </ax-data-source>
                   <ax-selection-column></ax-selection-column>
-                  <ax-text-column
-                    field="name"
-                    caption="NAME"
-                    [width]="100"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="company"
-                    caption="COMPANY"
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="email"
-                    caption="EMAIL"
-                    [width]="300"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="source"
-                    caption="SOURCE"
-                    [width]="200"
-                  ></ax-text-column>
-                  <ax-text-column
-                    field="owner"
-                    caption="LEAD OWNER "
-                    [width]="200"
-                  ></ax-text-column>
+                  <ax-text-column field="name" caption="NAME" [width]="100"></ax-text-column>
+                  <ax-text-column field="company" caption="COMPANY" [width]="200"></ax-text-column>
+                  <ax-text-column field="email" caption="EMAIL" [width]="300"></ax-text-column>
+                  <ax-text-column field="source" caption="SOURCE" [width]="200"></ax-text-column>
+                  <ax-text-column field="owner" caption="LEAD OWNER " [width]="200"></ax-text-column>
                   <ax-command-column [items]="commandItems"></ax-command-column>
                 </ax-data-grid>
               </ng-template>
             </ax-dock-content>
             <ax-dock-content caption="Calendar">
               <ng-template>
-                <mwl-calendar-month-view
-                  [viewDate]="viewDate"
-                  [events]="events"
-                >
+                <mwl-calendar-month-view [viewDate]="viewDate" [events]="events">
                 </mwl-calendar-month-view>
               </ng-template>
             </ax-dock-content>

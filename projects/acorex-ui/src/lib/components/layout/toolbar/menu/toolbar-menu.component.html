@@ -55,79 +55,50 @@
 <div class="ax-toolbar-menu-container">
   <ul>
     <ng-template #recursiveList let-list>
-      <li
-        #NavItem
-        *ngFor="let item of list"
-        class="btn btn-sm {{ item.style }}"
-        (click)="onToolbarItemClick(item,$event)"
-      >
+      <li #NavItem *ngFor="let item of list" class="btn btn-sm {{ item.style }}"
+        (click)="onToolbarItemClick(item,$event)">
 
-        <span >
+        <span>
           <i class="{{ item.icon }}"></i>
           {{ item.text }}
         </span>
-        <i
-          class="fas fa-chevron-down dropdown-icon"
-          *ngIf="item.items && item.items.length > 0"
-        ></i>
+        <i class="fas fa-chevron-down dropdown-icon" *ngIf="item.items && item.items.length > 0"></i>
 
-        <ul
-          *ngIf="item.items && item.items.length > 0 && item.visible != false"
-          class="ax-menu-dropdown"
-        >
-          <ng-container
-            *ngTemplateOutlet="
+        <ul *ngIf="item.items && item.items.length > 0 && item.visible != false" class="ax-menu-dropdown">
+          <ng-container *ngTemplateOutlet="
               recursiveList;
-              context: { $implicit: item.items }
-            "
-          ></ng-container>
+              context: { $implicit: item.items.reverse() }
+            "></ng-container>
         </ul>
       </li>
     </ng-template>
-    <ng-container
-      *ngTemplateOutlet="recursiveList; context: { $implicit: items }"
-    ></ng-container>
+    <ng-container *ngTemplateOutlet="recursiveList; context: { $implicit: items }"></ng-container>
   </ul>
-  <div class="ax-responsive-menu-container">
-    <div class="circle-button" (click)="onResponsiveMenuButtonClick()">
-      <i class="fas fa-bars">
-     </i>
-    </div>
-    <ul class="ax-responsive-menu" *ngIf="showResponsiveMenu">
-      <ng-template #recursiveList let-list>
-        <li
-          #NavItem
-          *ngFor="let item of list"
-          class="btn btn-sm {{ item.style }}"
-          (click)="onToolbarItemClick(item,$event)"
-        >
-
-          <span >
-            <i class="{{ item.icon }}"></i>
-            {{ item.text }}
-          </span>
-          <i
-            class="fas fa-chevron-down dropdown-icon"
-            *ngIf="item.items && item.items.length > 0"
-          ></i>
-
-          <ul
-            *ngIf="item.items && item.items.length > 0 && item.visible != false"
-            class="ax-menu-dropdown"
-          >
-            <ng-container
-              *ngTemplateOutlet="
-                recursiveList;
-                context: { $implicit: item.items }
-              "
-            ></ng-container>
-          </ul>
-        </li>
-      </ng-template>
-      <ng-container
-        *ngTemplateOutlet="recursiveList; context: { $implicit: items }"
-      ></ng-container>
-    </ul>
+</div>
+<div class="ax-responsive-menu-container">
+  <div class="circle-button" (click)="onResponsiveMenuButtonClick()">
+    <i class="fas fa-bars">
+    </i>
   </div>
+  <ul class="ax-responsive-menu" *ngIf="showResponsiveMenu">
+    <ng-template #recursiveList let-list>
+      <li #NavItem *ngFor="let item of list" class="btn btn-sm {{ item.style }}"
+        (click)="onToolbarItemClick(item,$event)">
 
+        <span>
+          <i class="{{ item.icon }}"></i>
+          {{ item.text }}
+        </span>
+        <i class="fas fa-chevron-down dropdown-icon" *ngIf="item.items && item.items.length > 0"></i>
+
+        <ul *ngIf="item.items && item.items.length > 0 && item.visible != false" class="ax-menu-dropdown">
+          <ng-container *ngTemplateOutlet="
+              recursiveList;
+              context: { $implicit: item.items }
+            "></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursiveList; context: { $implicit: items }"></ng-container>
+  </ul>
 </div>

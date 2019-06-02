@@ -10,7 +10,9 @@ import {
   ViewChildren,
   QueryList,
   Host,
-  HostListener
+  HostListener,
+  ChangeDetectionStrategy,
+  NgZone
 } from '@angular/core';
 import { AXToolbarItem } from '../toolbar-item';
 import { MenuItem } from '../../../../core/menu.class';
@@ -23,40 +25,41 @@ import { MenuItem } from '../../../../core/menu.class';
   encapsulation: ViewEncapsulation.None
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private zone: NgZone) {
     super();
   }
   showResponsiveMenu = false;
 
-  @ViewChildren('NavItem') NavItem: QueryList<AXToolbarMenuComponent>;
+  // @ViewChildren('NavItem') NavItem: QueryList<AXToolbarMenuComponent>;
   @Input()
   items: MenuItem[] = [];
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
-  cumulativeOffset(element) {
-    let top = 0;
-    let left = 0;
-    do {
-      top += element.offsetTop || 0;
-      left += element.offsetLeft || 0;
-      element = element.offsetParent;
-    } while (element);
 
-    return {
-      top: top,
-      left: left
-    };
-  };
-  // fix this fucking event \o/
+
+  // cumulativeOffset(element) {
+  //   let top = 0;
+  //   let left = 0;
+  //   do {
+  //     top += element.offsetTop || 0;
+  //     left += element.offsetLeft || 0;
+  //     element = element.offsetParent;
+  //   } while (element);
+
+  //   return {
+  //     top: top,
+  //     left: left
+  //   };
+  // };
+
+
   onToolbarItemClick(item: MenuItem, event) {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
+      this.closeAll();
     }
-
     const el = (event.target as HTMLElement).querySelector('ul');
-
-
     if (el) {
       if (el.classList.contains('active')) {
         el.classList.remove('active');
@@ -67,23 +70,32 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
         el.classList.add('active');
       }
     }
-
-    document.addEventListener('click', () => {
-      el.classList.remove('active');
-      el.querySelectorAll('.active').forEach(c => c.classList.remove('active'));
-
-    });
     event.stopPropagation();
   }
 
-  @HostListener('document:click')
-  bodyClick() {
-    this.element.nativeElement
-      .querySelectorAll('active')
-      .forEach(c => c.classList.remove('active'));
+  bodyClick(event: MouseEvent) {
+    this.closeAll();
+    event.stopPropagation();
+  }
 
+  private closeAll() {
+    this.element.nativeElement
+      .querySelectorAll('.active')
+      .forEach(c => c.classList.remove('active'));
+  }
+
+  ngOnInit(): void {
+    this.zone.runOutsideAngular(() => {
+      window.document.addEventListener('click', this.bodyClick.bind(this));
+    });
+  }
+
+  ngOnDestroy(): void {
+    document.removeEventListener("click", this.bodyClick);
   }
   onResponsiveMenuButtonClick() {
     this.showResponsiveMenu = !this.showResponsiveMenu;
   }
+
+
 }
