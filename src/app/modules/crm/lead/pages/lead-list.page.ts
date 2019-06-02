@@ -58,34 +58,38 @@ export class LeadListPage extends AXBasePageComponent {
       text: "Layout",
       items: [
         {
+          text: "Layout1",
+          name: "L1",
+        },
+        {
+          text: "Layout2",
+          name: "L2",
+        }
+        ,
+        {
+          text: "Layout3",
+          name: "L3",
+        }
+      ]
+    },
+    {
+      icon: "fas fa-save",
+      style: "btn btn-primary",
+      items: [
+        {
           text: "Save",
           name: "save",
         },
         {
           text: "Save As",
           name: "saveAs",
-        },
-        {
-          text: "Reset",
-          name: "reset"
         }
-        // ,
-        // {
-        //   text: "Open",
-        //   // items: [
-        //   //   {
-        //   //     text: "Layout1"
-        //   //   },
-        //   //   {
-        //   //     text: "Layout2"
-        //   //   },
-        //   //   ,
-        //   //   {
-        //   //     text: "Layout3"
-        //   //   }
-        //   // ]
-        // }
       ]
+    },
+    {
+      icon: "fas fa-sync",
+      style: "btn btn-warning",
+      name: "reset"
     }
   ];
 
@@ -211,30 +215,12 @@ export class LeadListPage extends AXBasePageComponent {
     console.log("onItemClick", e);
   }
 
-  showFilter: boolean = true;
-  onItemMenuLeftClick(e) {
-    console.log(e);
-    switch (e.name) {
-      case "trello":
-        this.showFilter = false;
-
-        break;
-      case "filter":
-        this.showFilter = true;
-        break;
-      default:
-        break;
-    }
-  }
-  showLeads: boolean = true;
-  showScheduler: boolean = false;
-  showCalendar: boolean = false;
 
   onItemMenuRightClick(e) {
     switch (e.name) {
       case "save":
         this.layout.saveLayout();
-        
+
         break;
       case "reset": {
         this.loadLayout();

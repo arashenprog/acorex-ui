@@ -67,7 +67,7 @@
         <ul *ngIf="item.items && item.items.length > 0 && item.visible != false" class="ax-menu-dropdown">
           <ng-container *ngTemplateOutlet="
               recursiveList;
-              context: { $implicit: item.items.reverse() }
+              context: { $implicit: item.items }
             "></ng-container>
         </ul>
       </li>
@@ -75,7 +75,7 @@
     <ng-container *ngTemplateOutlet="recursiveList; context: { $implicit: items }"></ng-container>
   </ul>
 </div>
-<div class="ax-responsive-menu-container">
+<!-- <div class="ax-responsive-menu-container">
   <div class="circle-button" (click)="onResponsiveMenuButtonClick()">
     <i class="fas fa-bars">
     </i>
@@ -101,4 +101,4 @@
     </ng-template>
     <ng-container *ngTemplateOutlet="recursiveList; context: { $implicit: items }"></ng-container>
   </ul>
-</div>
+</div> -->

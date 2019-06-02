@@ -22,7 +22,8 @@ import { MenuItem } from '../../../../core/menu.class';
   templateUrl: './toolbar-menu.component.html',
   styleUrls: ['./toolbar-menu.component.scss'],
   providers: [{ provide: AXToolbarItem, useExisting: AXToolbarMenuComponent }],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
   constructor(private element: ElementRef, private zone: NgZone) {
