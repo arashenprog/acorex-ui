@@ -1,14 +1,17 @@
-import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import * as GoldenLayout from 'golden-layout';
 import { AXDockPanelComponent } from './dock-panel.component';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 declare var $: any;
 
+export class AXDockLayoutState {
+  json: string;
+}
 
 @Component({
   selector: 'ax-dock-layout',
-  templateUrl: './dock-layout.component.html',
+  template: '<div id="{{uid}}" class="layoutContainer"></div>',
   styleUrls: ['./dock-layout.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
@@ -17,6 +20,14 @@ export class AXDockLayoutComponent {
   private panel: QueryList<AXDockPanelComponent>;
   private config: any;
   private layout: any;
+  uid = "dock-" + Math.floor(Math.random() * 100000000);
+
+  @Output()
+  onSave: EventEmitter<AXDockLayoutState> = new EventEmitter<AXDockLayoutState>();
+
+
+  @Input()
+  autoSave: boolean = true;
 
   constructor() {
 
@@ -34,14 +45,15 @@ export class AXDockLayoutComponent {
   }
 
   ngAfterViewInit(): void {
-    this.loadState();
+    this.loadLayout();
     let that = this;
     this.layout.on('stateChanged', function (e) {
-      that.saveState();
+      if (that.autoSave)
+        that.saveLayout();
     });
   }
 
-  saveState(): void {
+  saveLayout(): void {
     let replacer = (name, val) => {
       if (name === 'componentState') {
         return undefined;
@@ -50,30 +62,36 @@ export class AXDockLayoutComponent {
       }
     };
     if (this.layout.isInitialised) {
-      var state = JSON.stringify(this.layout.toConfig(), replacer);
-      localStorage.setItem('savedState', state);
+      let json = JSON.stringify(this.layout.toConfig(), replacer);
+      this.onSave.emit({ json: json })
     }
   }
 
-  loadState() {
+  loadLayout(json?: any) {
     this.panel.forEach(p => {
       this.config.content.push(p.config());
     });
-    if (localStorage.getItem("savedState")) {
+    let state = null;
+    try {
+      if (json)
+        state = JSON.parse(json);
+    } catch (error) {
+      console.error(error);
+    }
+    if (state) {
       try {
         let list1: any[] = [];
         this.findComponents(this.config.content, list1);
-        let old = JSON.parse(localStorage.getItem("savedState"));
         let list2: any[] = [];
-        if (old) {
-          this.findComponents(old.content, list2);
+        if (state && state.content) {
+          this.findComponents(state.content, list2);
           list2.forEach(l2 => {
             let l1 = list1.find(c => c.title == l2.title);
             if (l1 && l1.componentState) {
               l2.componentState = l1.componentState;
             }
           });
-          this.config = old;
+          this.config = state;
         }
       } catch (error) {
         console.error(error);
@@ -95,7 +113,7 @@ export class AXDockLayoutComponent {
   private render() {
     if (this.layout)
       this.layout.destroy();
-    this.layout = new GoldenLayout(this.config, $('#layoutContainer'));
+    this.layout = new GoldenLayout(this.config, $('#' + this.uid));
     this.layout.registerComponent('component', function (container, state) {
       state.render(container.getElement());
     });

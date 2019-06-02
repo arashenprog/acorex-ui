@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import {
   AXBasePageComponent,
   PromisResult,
   MenuItem,
-  CheckItem
+  CheckItem,
+  AXToastService
 } from "acorex-ui";
 import { LeadService } from "../lead.service";
 import { addHours, startOfDay } from "date-fns";
@@ -11,6 +12,7 @@ import {
   CalendarEvent,
   CalendarEventTimesChangedEvent
 } from "angular-calendar";
+import { AXDockLayoutComponent } from 'acorex-ui';
 
 const users = [
   {
@@ -35,9 +37,12 @@ const users = [
   templateUrl: "./lead-list.page.html"
 })
 export class LeadListPage extends AXBasePageComponent {
-  constructor(private lead: LeadService) {
+  constructor(private lead: LeadService, private toast: AXToastService) {
     super();
   }
+
+
+  @ViewChild('layout') layout: AXDockLayoutComponent;
 
   gridItems: MenuItem[] = [
     {
@@ -48,17 +53,42 @@ export class LeadListPage extends AXBasePageComponent {
   ];
   toolbarItemsRight: MenuItem[] = [
     {
-      name: "reset",
-      icon: "fas fa-sync",
-      style: "btn btn-warning",
-    },
-    {
-      name: "edit",
-      icon: "fas fa-pen",
-      style: "btn btn-primary",
+      icon: "fas fa-table",
+      style: "btn btn-success",
+      text: "Layout",
+      items: [
+        {
+          text: "Save",
+          name: "save",
+        },
+        {
+          text: "Save As",
+          name: "saveAs",
+        },
+        {
+          text: "Reset",
+          name: "reset"
+        }
+        // ,
+        // {
+        //   text: "Open",
+        //   // items: [
+        //   //   {
+        //   //     text: "Layout1"
+        //   //   },
+        //   //   {
+        //   //     text: "Layout2"
+        //   //   },
+        //   //   ,
+        //   //   {
+        //   //     text: "Layout3"
+        //   //   }
+        //   // ]
+        // }
+      ]
     }
   ];
-  
+
   nextAction: CheckItem[] = [
     {
       text: "First Contact",
@@ -202,25 +232,33 @@ export class LeadListPage extends AXBasePageComponent {
 
   onItemMenuRightClick(e) {
     switch (e.name) {
-      case "scheduler":
-        this.showScheduler = true;
-        this.showCalendar = false;
-        this.showLeads = false;
+      case "save":
+        this.layout.saveLayout();
+        
         break;
-      case "calendar":
-        this.showCalendar = true;
-        this.showLeads = false;
-        this.showScheduler = false;
-        break;
-      case "leads":
-        this.showLeads = true;
-        this.showScheduler = false;
-        this.showCalendar = false;
-
-        break;
+      case "reset": {
+        this.loadLayout();
+        break
+      }
       default:
         break;
     }
+  }
+
+  onLayoutSave(e) {
+    console.log("save layout")
+    localStorage.setItem("LAYOUT", e.json);
+    this.toast.success("Layout saved successfully.")
+  }
+
+  ngAfterViewInit() {
+    this.loadLayout();
+  }
+
+  private loadLayout() {
+    let layoutJson = localStorage.getItem("LAYOUT");
+    if (layoutJson)
+      this.layout.loadLayout(layoutJson);
   }
 
   viewDate: Date = new Date();
