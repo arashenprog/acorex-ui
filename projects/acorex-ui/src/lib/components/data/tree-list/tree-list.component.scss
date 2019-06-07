@@ -1,0 +1,53 @@
+.ax-tree-list-container {
+    padding: var(--sp-sm-size);
+  ul,
+  .ax-tree-list {
+    list-style-type: none;
+  }
+
+  .ax-tree-list {
+    margin: 0;
+    padding: 0;
+  }
+  .ax-tree-list-item {
+    cursor: pointer;
+    .checkbox-container {
+      padding-left: 10px !important;
+      .checkmark {
+        top: -8px !important;
+      }
+    }
+    .caret {
+      cursor: pointer;
+      -webkit-user-select: none; /* Safari 3.1+ */
+      -moz-user-select: none; /* Firefox 2+ */
+      -ms-user-select: none; /* IE 10+ */
+      user-select: none;
+      padding: 0 0 0 var(--sp-sm-size) ;
+      &::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f0da";
+        color: var(--secondary-light-color);
+        display: inline-block;
+        margin-right: 6px;
+      }
+    }
+  }
+  .caret-down {
+    .caret {
+      &::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        transform: rotate(90deg);
+      }
+    }
+  }
+  .nested {
+    display: none;
+  }
+
+  .active {
+    display: block;
+  }
+}

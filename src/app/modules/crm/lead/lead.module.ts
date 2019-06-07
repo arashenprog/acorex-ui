@@ -8,6 +8,7 @@ import { AngularSplitModule } from "angular-split";
 import { CalendarModule, DateAdapter } from "angular-calendar";
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { TaskCardModule } from 'src/app/shared/components/task-card/task-card.module';
+import { TaskDetailComponent } from '../task/pages/tasks-detail.page';
 
 @NgModule({
   declarations: [LeadListPage],
@@ -25,6 +26,6 @@ import { TaskCardModule } from 'src/app/shared/components/task-card/task-card.mo
   ],
   exports: [LeadListPage],
   providers: [LeadService],
-  entryComponents: [LeadListPage]
+  entryComponents: [LeadListPage,TaskDetailComponent]
 })
 export class LeadModule {}

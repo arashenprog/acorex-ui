@@ -1,4 +1,4 @@
-<div class="task-card-container">
+<div class="task-card-container" (click)="onClickInner()">
   <header>
     <div class="task-icon">
       <i class="{{ icon }}"></i>
@@ -9,13 +9,14 @@
       <i class="author">by: {{ author }}</i>
     </div>
   </header>
-  <div class="task-body">
-    {{ body }}
+  <div class="task-body" *ngIf="lessBody">
+    <div>
+      {{ body }}
+    </div>
+    <ng-template ngFor let-item [ngForOf]="buttons" *ngIf="buttons">
+      <button class="btn btn-sm btn-{{ item.type }}">
+        {{ item.icon }} {{ item.text }}
+      </button>
+    </ng-template>
   </div>
-  
-  <ng-template ngFor let-item [ngForOf]="buttons" *ngIf="buttons">
-      <button class="btn btn-sm btn-{{item.type}}">{{item.icon}} {{item.text}}</button>
-  </ng-template>
-  
-
 </div>

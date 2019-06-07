@@ -1,0 +1,60 @@
+<div class="ax-tree-list-container">
+  <ul class="ax-tree-list">
+    <ng-template #recursiveList let-list>
+      <li *ngFor="let item of list" class="ax-tree-list-item">
+        <span *ngIf="item.items && item.items.length > 0" class="caret"></span>
+        <span>
+          <ax-check-box></ax-check-box>
+        </span>
+        <span>
+          {{ item.text }}
+        </span>
+        <ul
+          *ngIf="item.items && item.items.length > 0 && item.visible != false"
+          class="nested"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              recursiveList;
+              context: { $implicit: item.items }
+            "
+          ></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+    <ng-container
+      *ngTemplateOutlet="recursiveList; context: { $implicit: dataSource }"
+    ></ng-container>
+  </ul>
+</div>
+<!-- <ul>
+  <ng-template #recursiveList let-list>
+    <li
+      #NavItem
+      *ngFor="let item of list"
+      class="btn btn-sm {{ item.style }}"
+      (click)="onToolbarItemClick(item, $event)"
+    >
+      <span>
+        <i class="{{ item.icon }}"></i>
+        {{ item.text }}
+      </span>
+      <i
+        class="fas fa-chevron-down dropdown-icon"
+        *ngIf="item.items && item.items.length > 0"
+      ></i>
+
+      <ul
+        *ngIf="item.items && item.items.length > 0 && item.visible != false"
+        class="ax-menu-dropdown"
+      >
+        <ng-container
+          *ngTemplateOutlet="recursiveList; context: { $implicit: item.items }"
+        ></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container
+    *ngTemplateOutlet="recursiveList; context: { $implicit: items }"
+  ></ng-container>
+</ul> -->

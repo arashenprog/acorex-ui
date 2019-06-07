@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
 import { AXButtonModule } from "./components/form/button/button.module";
 import { AXBadgeModule } from "./components/layout/badge/badge.module";
 import { AXCardModule } from "./components/layout/cards/card.module";
@@ -23,34 +22,26 @@ import { AXSelectionListModule } from "./components/form/selection-list/selectio
 import { AXTextBoxModule } from "./components/form/text-box/text-box.module";
 import { AXUploadFileModule } from "./components/form/upload-file/upload-file.module";
 import { AXValidationModule } from "./components/form/validation/validation.module";
-import { AXCoreModule } from './core/core.module';
-import { AXToastModule } from './components/layout/toast/toast.module';
-import { AXHttpModule } from './core/http/http.module';
-
-import { AXTabPageModule } from './components/nav/api';
-import { AXThemeWrapperComponent } from './components/layout/theme-wrapper/theme-wrapper.component';
-//
-import { AXDefaultHttpInterceptor } from './config/default-http.interceptors';
-import { AX_ERROR_DISPLAY_INTERCEPTOR } from './core/error/error.service';
-import { AXDefaultErrorDisplayInterceptor } from './config/default-error.interceptor';
-//
-import { AXDrawerModule } from './components/layout/drawer/drawer.module';
-import {
-  AX_HTTP_EVENT_INTERCEPTOR,
-} from './core/http/http-events.interceptor'
-import { AXDataSourceModule } from './components/data/data-source/datasource.module';
-import { AXListModule } from './components/data/data-list/list/list.module';
-import { AXWidgetModule } from './components/layout/widget/widget.module';
+import { AXCoreModule } from "./core/core.module";
+import { AXToastModule } from "./components/layout/toast/toast.module";
+import { AXHttpModule } from "./core/http/http.module";
+import { AXTabPageModule } from "./components/nav/api";
+import { AXThemeWrapperComponent } from "./components/layout/theme-wrapper/theme-wrapper.component";
+import { AXDefaultHttpInterceptor } from "./config/default-http.interceptors";
+import { AX_ERROR_DISPLAY_INTERCEPTOR } from "./core/error/error.service";
+import { AXDefaultErrorDisplayInterceptor } from "./config/default-error.interceptor";
+import { AXDrawerModule } from "./components/layout/drawer/drawer.module";
+import { AX_HTTP_EVENT_INTERCEPTOR } from "./core/http/http-events.interceptor";
+import { AXDataSourceModule } from "./components/data/data-source/datasource.module";
+import { AXListModule } from "./components/data/data-list/list/list.module";
+import { AXWidgetModule } from "./components/layout/widget/widget.module";
 import { AXToolbarModule } from "./components/layout/toolbar/api";
 import { AXDockLayoutModule } from "./components/layout/dock-layout/dock-layout.module";
+import { AXTreeListModule } from "./components/data/tree-list/tree-list.module";
 
-
-
-
-import * as $ from 'jquery';
-
+import * as $ from "jquery";
 // It is required to have JQuery as global in the window object.
-window['$'] = $;
+window["$"] = $;
 
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -86,9 +77,9 @@ window['$'] = $;
     AXWidgetModule,
     AXToolbarModule,
     AXDockLayoutModule,
-    //
     AXHttpModule,
-    AXDataSourceModule
+    AXDataSourceModule,
+    AXTreeListModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -122,9 +113,9 @@ window['$'] = $;
     AXWidgetModule,
     AXToolbarModule,
     AXDockLayoutModule,
-    //
     AXHttpModule,
-    AXDataSourceModule
+    AXDataSourceModule,
+    AXTreeListModule
   ],
   providers: [
     {
@@ -137,6 +128,4 @@ window['$'] = $;
     }
   ]
 })
-export class ACoreXUIModule {
-
-}
+export class ACoreXUIModule {}

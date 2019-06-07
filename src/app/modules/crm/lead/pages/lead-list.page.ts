@@ -4,7 +4,8 @@ import {
   PromisResult,
   MenuItem,
   CheckItem,
-  AXToastService
+  AXToastService,
+  AXPopupService
 } from "acorex-ui";
 import { LeadService } from "../lead.service";
 import { addHours, startOfDay } from "date-fns";
@@ -12,7 +13,8 @@ import {
   CalendarEvent,
   CalendarEventTimesChangedEvent
 } from "angular-calendar";
-import { AXDockLayoutComponent } from 'acorex-ui';
+import { AXDockLayoutComponent } from "acorex-ui";
+import { TaskDetailComponent } from "../../task/pages/tasks-detail.page";
 
 const users = [
   {
@@ -37,18 +39,28 @@ const users = [
   templateUrl: "./lead-list.page.html"
 })
 export class LeadListPage extends AXBasePageComponent {
-  constructor(private lead: LeadService, private toast: AXToastService) {
+  constructor(
+    private lead: LeadService,
+    private toast: AXToastService,
+    private popup: AXPopupService
+  ) {
     super();
   }
 
-
-  @ViewChild('layout') layout: AXDockLayoutComponent;
+  @ViewChild("layout") layout: AXDockLayoutComponent;
 
   gridItems: MenuItem[] = [
     {
       name: "insert",
       icon: "fas fa-sync",
       style: "btn btn-light text-info"
+    }
+  ];
+  listToolbarItems: MenuItem[] = [
+    {
+      name: "compact",
+      text: "Compact View",
+      style: "btn btn-light"
     }
   ];
   toolbarItemsRight: MenuItem[] = [
@@ -59,16 +71,15 @@ export class LeadListPage extends AXBasePageComponent {
       items: [
         {
           text: "Layout1",
-          name: "L1",
+          name: "L1"
         },
         {
           text: "Layout2",
-          name: "L2",
-        }
-        ,
+          name: "L2"
+        },
         {
           text: "Layout3",
-          name: "L3",
+          name: "L3"
         }
       ]
     },
@@ -78,11 +89,11 @@ export class LeadListPage extends AXBasePageComponent {
       items: [
         {
           text: "Save",
-          name: "save",
+          name: "save"
         },
         {
           text: "Save As",
-          name: "saveAs",
+          name: "saveAs"
         }
       ]
     },
@@ -183,7 +194,12 @@ export class LeadListPage extends AXBasePageComponent {
       value: false
     }
   ];
-
+  treeDataSource: any[] = [
+    {
+      text: "Ali",
+      items: [{ text: "Mamad", items: [{ text: "Mamad2" }] }]
+    }
+  ];
   provideData = () => {
     return this.lead.getList();
   };
@@ -214,8 +230,20 @@ export class LeadListPage extends AXBasePageComponent {
   onItemClick(e) {
     console.log("onItemClick", e);
   }
-
-
+  onCardClick() {
+    this.popup.open(TaskDetailComponent, {
+      title: "Detail",
+      size: "lg",
+      maximizable: true
+    });
+  }
+  lessCard: boolean = false;
+  onToolbarItemClick(e) {
+    console.log(e);
+    if (e.name == "compact") {
+      this.lessCard = !this.lessCard;
+    }
+  }
   onItemMenuRightClick(e) {
     switch (e.name) {
       case "save":
@@ -224,7 +252,7 @@ export class LeadListPage extends AXBasePageComponent {
         break;
       case "reset": {
         this.loadLayout();
-        break
+        break;
       }
       default:
         break;
@@ -232,11 +260,11 @@ export class LeadListPage extends AXBasePageComponent {
   }
 
   onLayoutSave(e) {
-    console.log("save layout")
+    console.log("save layout");
     localStorage.setItem("LAYOUT", e.json);
-    this.toast.success("Saved Successfully!",{ 
-      title:"Layout"
-    })
+    this.toast.success("Saved Successfully!", {
+      title: "Layout"
+    });
   }
 
   ngAfterViewInit() {
@@ -245,8 +273,7 @@ export class LeadListPage extends AXBasePageComponent {
 
   private loadLayout() {
     let layoutJson = localStorage.getItem("LAYOUT");
-    if (layoutJson)
-      this.layout.loadLayout(layoutJson);
+    if (layoutJson) this.layout.loadLayout(layoutJson);
   }
 
   viewDate: Date = new Date();

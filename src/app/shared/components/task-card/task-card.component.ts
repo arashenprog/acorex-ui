@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewEncapsulation,
+  EventEmitter,
+  Output
+} from "@angular/core";
 
 @Component({
   selector: "task-card",
@@ -17,7 +24,14 @@ export class TaskCardComponent implements OnInit {
   @Input() author: string;
   @Input() body: string;
 
+  @Input() lessBody: boolean = false;
   @Input() buttons: TaskButtons[];
+
+  @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
+
+  onClickInner() {
+    this.onClick.emit();
+  }
 }
 
 interface TaskButtons {
