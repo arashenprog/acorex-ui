@@ -2,11 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
-import { TestHttpComponent } from "../../modules/demo/http-test.page";
-import { TestPageComponent } from "../../modules/demo/test-page.component";
-import { DashboardPage } from "../../modules/demo/dashboard/dashboard.page";
-import { DemoPage } from "../../modules/demo/demo-page.component";
-import { LeadListPage } from 'src/app/modules/crm/lead/pages/lead-list.page';
+import { DesignerPage } from 'src/app/modules/form-builder/designer/designer.page';
 
 @Injectable()
 export class NavMenuServiceFa extends AXNavMenuService {
@@ -21,6 +17,14 @@ export class NavMenuServiceFa extends AXNavMenuService {
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true
+    },
+    {
+      name: "FormBuilder",
+      text: "فرم پویا",
+      icon: "fas fa-table",
+      id: "0",
+      visible: true,
+      data: { page: DesignerPage }
     }
   ]
   getItems(): PromisResult<MenuItem[]> {

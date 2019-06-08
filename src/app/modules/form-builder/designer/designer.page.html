@@ -1,0 +1,28 @@
+<ax-page>
+    <ax-toolbar>
+        <ax-toolbar-menu [items]="toolbarItems" (itemClick)="onItemMenuRightClick($event)">
+        </ax-toolbar-menu>
+    </ax-toolbar>
+    <ax-page-content>
+
+        <ax-row>
+            <ax-col col-sm="3">
+                <ax-text-box label="کد" [(text)]="code">
+                </ax-text-box>
+            </ax-col>
+            <ax-col col-sm="9">
+                <ax-text-box label="عنوان" [(text)]="title">
+                </ax-text-box>
+            </ax-col>
+        </ax-row>
+        <ax-row>
+            <ax-col col-sm="12" >
+                <iframe [src]="url" [style.height.px]="frmHeight"
+                    style="width:100%;overflow:hidden;  border:none;min-height:500px" #frame>
+                </iframe>
+            </ax-col>
+        </ax-row>
+
+
+    </ax-page-content>
+</ax-page>
