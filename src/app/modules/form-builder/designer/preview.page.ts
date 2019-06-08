@@ -28,7 +28,12 @@ export class PreviewFormPage extends AXBasePageComponent {
         if (action == "LoadForm") {
             this.loadForm();
         }
+        if (action == "Scroll") {
+            window.scrollTo(0, e.data.y);
+        }
     }
+
+ 
 
     onReceiveData(e) {
         this.schema = e;

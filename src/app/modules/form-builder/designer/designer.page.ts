@@ -13,7 +13,9 @@ export class DesignerPage extends AXBasePageComponent {
         private formsService: FormsService,
         private toast: AXToastService,
         private popup: AXPopupService,
-        private dialog: DialogService) {
+        private dialog: DialogService,
+        private element:ElementRef
+        ) {
         super();
         this.url = sanitizer.bypassSecurityTrustResourceUrl("http://192.168.105.55:4201/JSA/designer?ws=demo")
     }
@@ -131,6 +133,16 @@ export class DesignerPage extends AXBasePageComponent {
         }, '*');
     }
 
+    // @HostListener('window:scroll', ['$event'])
+    // handleScroll(e) {
+    //     console.log(e);
+    //     let scrollY = window.parent.pageYOffset;
+    //     this.frame.nativeElement.contentWindow.postMessage({
+    //         action: "Scroll",
+    //         y: scrollY
+    //     }, '*');
+    // }
+
     onReceiveData(e) {
         this.formsService.loadForm(e.code).then((f) => {
             if (f) {
@@ -140,5 +152,17 @@ export class DesignerPage extends AXBasePageComponent {
                 this.loadForm();
             }
         });
+    }
+
+    ngAfterViewInit(): void {
+        this.element.nativeElement.querySelector("* .ax-page-content").addEventListener("scroll",(e)=>{
+            let scrollY = e.target.scrollTop +50;
+            console.log(e);
+            console.log(scrollY);
+            this.frame.nativeElement.contentWindow.postMessage({
+                action: "Scroll",
+                y: scrollY
+            }, '*');
+        })
     }
 }
