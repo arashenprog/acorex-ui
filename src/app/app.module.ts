@@ -20,6 +20,9 @@ import { DemoModule } from "./modules/demo/demo.module";
 import { CRMModule } from "./modules/crm/crm.module";
 import { TaskCardModule } from './shared/components/task-card/task-card.module';
 import { LeadListPage } from './modules/crm/lead/pages/lead-list.page';
+import { FormBuilderModule } from './modules/form-builder/form-builder.module';
+import { DashboardPage } from './modules/form-builder/dashboard/dashboard.page';
+import { NavMenuServiceFa } from './shared/services/nav-menu-fa.service';
 
 const routes: Routes = [
   {
@@ -36,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo:"layout2",
+    redirectTo:"layout1",
     pathMatch:"full"
   }
 ];
@@ -50,13 +53,14 @@ const routes: Routes = [
     AcorexSpaModule,
     DemoModule,
     CRMModule,
+    FormBuilderModule,
     RouterModule.forRoot(routes),
     AngularSplitModule.forRoot(),
   ],
   providers: [
     {
       provide: AXNavMenuService,
-      useClass: NavMenuService
+      useClass: NavMenuServiceFa
     },
     {
       provide: AXHeaderBarMenuService,
@@ -65,8 +69,8 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-          content: LeadListPage,
-          title: "Dashboard",
+          content: DashboardPage,
+          title: "داشبورد",
           closable: false,
           uid: "dashboard"
       }

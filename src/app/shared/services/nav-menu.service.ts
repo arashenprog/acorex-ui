@@ -236,7 +236,15 @@ export class NavMenuService extends AXNavMenuService {
       visible: true
     }
   ];
-
+  private mockItemFarsi: MenuItem[] = [
+    {
+      name: "dashboard",
+      text: "داشبورد",
+      icon: "fas fa-tachometer-alt",
+      id: "0",
+      visible: true
+    }
+  ]
   getItems(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(this.mockItems);
@@ -252,6 +260,7 @@ export class NavMenuService extends AXNavMenuService {
       }
     });
   }
+
 
   setFavorites(menu: MenuItem, value: boolean): PromisResult<boolean> {
     let favs: string[] = localStorage.getItem("favs")
