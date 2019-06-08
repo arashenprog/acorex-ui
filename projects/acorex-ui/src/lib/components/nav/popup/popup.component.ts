@@ -38,7 +38,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     const factory = this.resolver.resolveComponentFactory(this.content);
     this.comRef = this.popupBody.createComponent(factory);
     let com = this.comRef.instance as any;
-    Object.assign(com, this.data);
+    //Object.assign(com, this.data);
     if (com.closeEvent) {
       com.closeEvent.subscribe((e: ClosingEventArgs) => {
         this.close.emit(e);
@@ -46,6 +46,10 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     }
     this.content = com;
     //
+    if(com.onReceiveData && this.data)
+    {
+      com.onReceiveData(this.data);
+    }
   }
 
   ngAfterViewInit() {

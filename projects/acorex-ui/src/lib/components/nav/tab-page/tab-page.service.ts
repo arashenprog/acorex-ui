@@ -120,6 +120,10 @@ export class AXTabPageService {
                     t.active = false;
                 });
                 this.opened.emit(newTab);
+                if(newTab.data)
+                {
+                    newTab.send(newTab.data);
+                }
             }
         });
     }

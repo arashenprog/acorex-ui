@@ -1,23 +1,14 @@
 <ax-page>
   <ax-toolbar>
-    <ax-toolbar-menu
-      [items]="toolbarItemsRight"
-      (itemClick)="onItemMenuRightClick($event)"
-    >
+    <ax-toolbar-menu [items]="toolbarItemsRight" (itemClick)="onItemMenuRightClick($event)">
     </ax-toolbar-menu>
     <ax-toolbar-search (onTextChanged)="onSearch($event)"></ax-toolbar-search>
   </ax-toolbar>
   <ax-page-content>
     <div class="dashboard-card-container">
-      <a href="{{item.url}}"  *ngFor="let item of cardItems">
-          <div class="card-box" [style.backgroundImage]="'url('+ item.image +')'" >
-              {{ item.title }}
-          </div>
-      </a>
+      <div class="card-box" *ngFor="let item of cardItems" [style.backgroundImage]="'url(assets/images/form.jpg)'" (click)="onItemClick(item)">
+        {{ item.title }}
+      </div>
     </div>
   </ax-page-content>
 </ax-page>
-
-      
-      
-    

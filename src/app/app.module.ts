@@ -21,7 +21,7 @@ import { CRMModule } from "./modules/crm/crm.module";
 import { TaskCardModule } from './shared/components/task-card/task-card.module';
 import { LeadListPage } from './modules/crm/lead/pages/lead-list.page';
 import { FormBuilderModule } from './modules/form-builder/form-builder.module';
-import { DashboardPage } from './modules/form-builder/dashboard/dashboard.page';
+import { FormsListPage } from './modules/form-builder/dashboard/dashboard.page';
 import { NavMenuServiceFa } from './shared/services/nav-menu-fa.service';
 
 const routes: Routes = [
@@ -69,7 +69,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-          content: DashboardPage,
+          content: FormsListPage,
           title: "داشبورد",
           closable: false,
           uid: "dashboard"
