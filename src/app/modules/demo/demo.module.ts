@@ -7,13 +7,15 @@ import { DashboardPage } from './dashboard/dashboard.page';
 import { AcorexSpaModule } from 'acorex-spa';
 import { ACoreXUIModule } from 'acorex-ui';
 import { LeadListPage } from '../crm/lead/pages/lead-list.page';
+import { AliPage } from './ali/ali.page';
 
 @NgModule({
     declarations: [
         TestPageComponent,
         DemoPage,
         TestHttpComponent,
-        DashboardPage
+        DashboardPage,
+        AliPage
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { LeadListPage } from '../crm/lead/pages/lead-list.page';
         TestPageComponent,
         DemoPage,
         TestHttpComponent,
-        DashboardPage
+        DashboardPage,
+        AliPage
     ]
 })
 export class DemoModule { }
