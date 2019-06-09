@@ -8,12 +8,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PreviewFormPage extends AXBasePageComponent {
     constructor(public sanitizer: DomSanitizer) {
         super();
-        this.url = sanitizer.bypassSecurityTrustResourceUrl("http://192.168.105.55:4201/JSA/view?ws=demo");
+        this.url = sanitizer.bypassSecurityTrustResourceUrl("http://192.168.105.55:6600/JSA/view?ws=demo");
     }
 
     url: any = null;
     frmHeight: number = 500;
     schema: any = null;
+    dataSources: any = null;
 
 
     @ViewChild('frame')
@@ -31,19 +32,25 @@ export class PreviewFormPage extends AXBasePageComponent {
         if (action == "Scroll") {
             window.scrollTo(0, e.data.y);
         }
+        if (action == "Submit") {
+            console.log(e.data.data);
+           this.close();
+        }
     }
 
  
 
     onReceiveData(e) {
-        this.schema = e;
+        this.schema = e.data;
+        this.dataSources=e.dataSources;
     }
 
     private loadForm() {
         this.frame.nativeElement.contentWindow.postMessage({
             action: "LoadForm",
             form: this.schema,
-            dataSources: []
+            dataSources: this.dataSources,
+            buttons :[ {  style:"success", Name:"ارسال", Action:"Submit" }]
         }, '*');
     }
 

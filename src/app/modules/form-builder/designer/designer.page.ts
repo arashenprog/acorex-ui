@@ -14,10 +14,10 @@ export class DesignerPage extends AXBasePageComponent {
         private toast: AXToastService,
         private popup: AXPopupService,
         private dialog: DialogService,
-        private element:ElementRef
-        ) {
+        private element: ElementRef
+    ) {
         super();
-        this.url = sanitizer.bypassSecurityTrustResourceUrl("http://192.168.105.55:4201/JSA/designer?ws=demo")
+        this.url = sanitizer.bypassSecurityTrustResourceUrl("http://192.168.105.55:6600/JSA/designer?ws=demo")
     }
 
     @ViewChild('frame')
@@ -33,6 +33,28 @@ export class DesignerPage extends AXBasePageComponent {
 
     url: any = null;
     frmHeight: number = 500;
+
+    dataSources: any[] = [
+        {
+            ID:"Staff",
+            Type: "1", 
+            Title: "لیست  اشخاص",
+            Value: [
+                { id: "001", title: "علی رضایی" },
+                { id: "002", title: "رضا صفری" }
+            ]
+        },
+        {
+            ID:"Fidder",
+            Type: "1", 
+            Title: "لیست فیدر",
+            Value: [
+                { id: "001", title: "فیدر 1" },
+                { id: "002", title: "فیدر 2" },
+                { id: "003", title: "فیدر 3" }
+            ]
+        }
+    ];
 
 
     toolbarItems: MenuItem[] = [
@@ -84,8 +106,11 @@ export class DesignerPage extends AXBasePageComponent {
         if (e.name == "preview") {
             this.popup.open(PreviewFormPage, {
                 title: "پیش نمایش",
-                data: this.data,
-                size:"sm"
+                data: {
+                    data: this.data,
+                    dataSources: this.dataSources
+                },
+                size: "sm"
             })
         }
     }
@@ -99,10 +124,10 @@ export class DesignerPage extends AXBasePageComponent {
                     data: this.data ? JSON.stringify(this.data) : null
                 }).then(() => {
                     this.toast.success("با موفقیت انجام شد")
-                    setTimeout(() => {
-                        if (close)
+                    if (close)
+                        setTimeout(() => {
                             this.close();
-                    }, 100);
+                        }, 500);
                 });
             }
         });
@@ -129,19 +154,9 @@ export class DesignerPage extends AXBasePageComponent {
         this.frame.nativeElement.contentWindow.postMessage({
             action: "LoadForm",
             form: this.data,
-            dataSources: []
+            dataSources: this.dataSources
         }, '*');
     }
-
-    // @HostListener('window:scroll', ['$event'])
-    // handleScroll(e) {
-    //     console.log(e);
-    //     let scrollY = window.parent.pageYOffset;
-    //     this.frame.nativeElement.contentWindow.postMessage({
-    //         action: "Scroll",
-    //         y: scrollY
-    //     }, '*');
-    // }
 
     onReceiveData(e) {
         this.formsService.loadForm(e.code).then((f) => {
@@ -155,14 +170,18 @@ export class DesignerPage extends AXBasePageComponent {
     }
 
     ngAfterViewInit(): void {
-        this.element.nativeElement.querySelector("* .ax-page-content").addEventListener("scroll",(e)=>{
-            let scrollY = e.target.scrollTop +50;
-            console.log(e);
-            console.log(scrollY);
-            this.frame.nativeElement.contentWindow.postMessage({
-                action: "Scroll",
-                y: scrollY
-            }, '*');
-        })
+        this.element.nativeElement.querySelector("* .ax-page-content").addEventListener("scroll", this.handleScroll.bind(this));
+    }
+
+    ngOnDestroy() {
+        this.element.nativeElement.querySelector("* .ax-page-content").removeEventListener("scroll", this.handleScroll.bind(this));
+    }
+
+    private handleScroll(e) {
+        let scrollY = e.target.scrollTop + 50;
+        this.frame.nativeElement.contentWindow.postMessage({
+            action: "Scroll",
+            y: scrollY
+        }, '*');
     }
 }

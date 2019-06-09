@@ -6,8 +6,12 @@
   </ax-toolbar>
   <ax-page-content>
     <div class="dashboard-card-container">
-      <div class="card-box" *ngFor="let item of cardItems" [style.backgroundImage]="'url(assets/images/form.jpg)'" (click)="onItemClick(item)">
-        {{ item.title }}
+      <div class="card-box" *ngFor="let item of cardItems" [style.backgroundImage]="'url(assets/images/form.jpg)'"
+        (click)="onItemClick(item)">
+        <span>
+          {{ item.title }}
+        </span>
+        <i class="fas fa-external-link-alt"></i>
       </div>
     </div>
   </ax-page-content>
