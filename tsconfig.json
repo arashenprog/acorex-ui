@@ -15,19 +15,10 @@
     "typeRoots": ["node_modules/@types"],
     "paths": {
       "@angular/*": ["node_modules/@angular/*"],
-      "acorex-ui": ["dist/acorex-ui", "projects/acorex-ui/src/public-api.ts"],
-      "acorex-ui/*": [
-        "dist/acorex-ui/*",
-        "projects/acorex-ui/src/public-api.ts"
-      ],
-      "acorex-spa": [
-        "dist/acorex-spa",
-        "projects/acorex-spa/src/public-api.ts"
-      ],
-      "acorex-spa/*": [
-        "dist/acorex-spa/*",
-        "projects/acorex-spa/src/public-api.ts"
-      ]
+      "acorex-ui": ["dist/acorex-ui"],
+      "acorex-ui/*": ["dist/acorex-ui/*"],
+      "acorex-spa": ["dist/acorex-spa"],
+      "acorex-spa/*": ["dist/acorex-spa/*"]
     }
   },
   "include": ["src/**/*.ts", "node_modules/ng4-fittext/*.d.ts"],
