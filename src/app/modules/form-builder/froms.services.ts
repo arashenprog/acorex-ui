@@ -94,7 +94,6 @@ export class FormsService {
             let db = this.getDb();
             db.transaction(function (tx) {
                 tx.executeSql('SELECT * FROM Forms where code = ?', [code], function (tx, results) {
-                    debugger;
                     if (results.rows.length) {
                         let item = results.rows.item(0);
                         resolve({

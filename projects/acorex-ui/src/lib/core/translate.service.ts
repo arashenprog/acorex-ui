@@ -9,11 +9,13 @@ export class TranslateService {
     private data_en: any[] = [
         { "Apply": "Apply" },
         { "Close": "Close" },
+        {"LOGO_TITLE" : "Smart Co."}
     ]
 
     private data_fa: any[] = [
         { "Apply": "اعمال" },
         { "Close": "بستن" },
+        {"LOGO_TITLE" : "هوشمند تصمیم آریا"}
     ]
     private lang: Lang = "fa";
 

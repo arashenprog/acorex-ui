@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo:"layout1",
+    redirectTo:"layout2",
     pathMatch:"full"
   }
 ];

@@ -17,15 +17,16 @@ export class NavMenuServiceFa extends AXNavMenuService {
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true
-    },
-    {
-      name: "FormBuilder",
-      text: "فرم پویا",
-      icon: "fas fa-table",
-      id: "0",
-      visible: true,
-      data: { page: DesignerPage }
     }
+    // ,
+    // {
+    //   name: "FormBuilder",
+    //   text: "فرم پویا",
+    //   icon: "fas fa-table",
+    //   id: "0",
+    //   visible: true,
+    //   data: { page: DesignerPage }
+    // }
   ]
   getItems(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
