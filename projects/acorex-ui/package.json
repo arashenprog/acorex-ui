@@ -4,7 +4,10 @@
   "description": "acorex ui elements",
   "private": true,
   "scripts": {
-    "start": "ng build acorex-ui --watch"
+    "start": "ng build acorex-spa --watch",
+    "build": "ng build acorex-spa",
+    "copy": "xcopy /s \"../../dist/acorex-spa\" \"c:\\acorex\\acorex-spa\" /Y /i",
+    "deploy": "npm run build && npm run copy"
   },
   "keywords": [
     "acorex"
