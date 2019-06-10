@@ -34,7 +34,7 @@ export class AXListComponent extends AXDataListComponent {
   toolbar: AXToolbarComponent;
 
   @Input()
-  noStyle: boolean = false;
+  theme:"none"|"default"="default"
 
   @Input() direction: AXListViewDirection = "vertical";
 

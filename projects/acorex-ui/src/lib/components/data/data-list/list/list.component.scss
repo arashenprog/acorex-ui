@@ -8,6 +8,25 @@
   }
 
 }
+.ax-list-none-style{
+  border:none !important;
+  box-shadow: unset !important;
+  .ax-list-container{
+  border:none !important;
+  }
+  .ax-list-toolbar{
+  border:none !important;
+  border-radius: 0 !important;
+  box-shadow: unset !important    
+  }
+  .ax-card-box{
+    border:none !important;
+    border-radius: 0 !important;
+    box-shadow: unset !important;
+    margin: 0 !important;
+    padding: 0 !important;   
+  }
+}
 
 .ax-list-toolbar {
   padding: 4px 5px;
@@ -22,6 +41,3 @@
   border-top-right-radius: 4px;
 }
 
-.ax-list-none-style{
-  border: 0px !important;
-}

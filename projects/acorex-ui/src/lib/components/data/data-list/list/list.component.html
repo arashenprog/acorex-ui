@@ -1,9 +1,9 @@
-<div [style.height]="height" [style.width]="width">  
+<div [style.height]="height" [style.width]="width" [ngClass]="{'ax-list-none-style': theme=='none'}">  
   <div class="ax-list-toolbar" *ngIf="toolbar">
     <ng-content select="ax-toolbar"></ng-content>
   </div>
-  <div class="ax-list-container" [ngClass]="style" >
-    <div [ngClass]="{ 'ax-card-box ax-pad-md ax-mar-sm': !noStyle }" class="ax-list-item" *ngFor="let item of items">
+  <div class="ax-list-container" >
+    <div class="ax-list-item ax-card-box ax-pad-md ax-mar-sm" *ngFor="let item of items">
       <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
       </ng-container>
     </div>

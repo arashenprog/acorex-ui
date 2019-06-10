@@ -7,6 +7,7 @@ import { TestPageComponent } from "../../modules/demo/test-page.component";
 import { DashboardPage } from "../../modules/demo/dashboard/dashboard.page";
 import { DemoPage } from "../../modules/demo/demo-page.component";
 import { LeadListPage } from 'src/app/modules/crm/lead/pages/lead-list.page';
+import { AliPage } from 'src/app/modules/demo/ali/ali.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -21,6 +22,14 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true
+    },
+    {
+      name: "ali",
+      text: "Ali Work Page",
+      icon: "fas fa-tachometer-alt",
+      id: "00",
+      visible: true,
+      data:{page:AliPage}
     },
     {
       name: "components_demo",

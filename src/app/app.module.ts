@@ -60,7 +60,7 @@ const routes: Routes = [
   providers: [
     {
       provide: AXNavMenuService,
-      useClass: NavMenuServiceFa
+      useClass: NavMenuService
     },
     {
       provide: AXHeaderBarMenuService,
