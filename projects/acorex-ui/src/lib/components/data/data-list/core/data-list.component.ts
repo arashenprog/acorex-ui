@@ -19,7 +19,14 @@ export abstract class AXDataListComponent extends AXBaseComponent {
     this.items = data;
   }
 
+  private params: AXDataSourceReadParams = {};
+
   fetch(params: AXDataSourceReadParams = {}) {
     this.dataSource.fetch(params);
+    this.params = params;
+  }
+
+  refresh() {
+    this.fetch(this.params);
   }
 }

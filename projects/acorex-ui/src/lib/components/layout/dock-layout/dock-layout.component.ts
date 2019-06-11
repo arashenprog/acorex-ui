@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener, Input, Output, EventEmitter, Attribute } from '@angular/core';
 import * as GoldenLayout from 'golden-layout';
 import { AXDockPanelComponent } from './dock-panel.component';
 import { Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 declare var $: any;
 
 export class AXDockLayoutState {
+  storageKey: string;
   json: string;
 }
 
@@ -26,12 +27,12 @@ export class AXDockLayoutComponent {
   onSave: EventEmitter<AXDockLayoutState> = new EventEmitter<AXDockLayoutState>();
 
 
-  @Input()
-  autoSave: boolean = true;
-
-  constructor() {
 
 
+  constructor(
+    @Attribute("storageKey") public storageKey: string,
+    @Attribute("autoSave") public autoSave: boolean = true,
+  ) {
     this.config = {
       settings: {
         hasHeaders: true,
@@ -63,7 +64,7 @@ export class AXDockLayoutComponent {
     };
     if (this.layout.isInitialised) {
       let json = JSON.stringify(this.layout.toConfig(), replacer);
-      this.onSave.emit({ json: json })
+      this.onSave.emit({ storageKey: this.storageKey, json: json })
     }
   }
 
@@ -138,7 +139,4 @@ export class AXDockLayoutComponent {
     }
     this.resizeChangeObserver.next(event);
   }
-
-
-
 }

@@ -10,7 +10,7 @@ import { AXDockPanelContentComponent } from './dock-panel-content.component';
 export class AXDockPanelComponent implements OnInit {
     constructor() { }
 
-    uid: string = "panel-" + Math.floor(Math.random()*100000000);
+    private uid: string = "panel-" + Math.floor(Math.random()*100000000);
 
     @ContentChildren(AXDockPanelComponent)
     private panels: QueryList<AXDockPanelComponent>;

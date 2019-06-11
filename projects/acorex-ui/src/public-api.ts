@@ -5,7 +5,7 @@
 export * from "./lib/core/http/api";
 export * from "./lib/core/core.module";
 
-export * from "./lib/acorex-ui.module";
+
 
 export * from "./lib/core/translate.service";
 export * from "./lib/core/storage.service";
@@ -25,4 +25,9 @@ export * from "./lib/components/layout/toast/api";
 export * from "./lib/components/layout/toolbar/api";
 
 
+export * from "./lib/components/data/data-grid/api";
+export * from "./lib/components/data/data-list/api";
 export * from "./lib/components/data/data-source/api";
+
+
+export * from "./lib/acorex-ui.module";

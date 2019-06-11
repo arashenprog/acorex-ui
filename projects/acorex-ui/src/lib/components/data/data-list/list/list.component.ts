@@ -38,9 +38,6 @@ export class AXListComponent extends AXDataListComponent {
   @ContentChild(AXToolbarComponent)
   toolbar: AXToolbarComponent;
 
-  @Input()
-  theme: "none" | "default" = "default";
-
   @Input() direction: AXListViewDirection = "vertical";
 
   ngAfterViewInit(): void {
@@ -70,7 +67,5 @@ export class AXListComponent extends AXDataListComponent {
         this.style = "ax-flex-wrap ";
     }
   }
-
-  @Input()
   style: any = {};
 }
