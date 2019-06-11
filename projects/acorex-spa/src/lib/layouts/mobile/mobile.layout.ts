@@ -14,8 +14,7 @@ export class AXMobileLayoutComponent implements OnInit {
 
   constructor(
     public tabService: AXTabPageService,
-    private navMenuService: AXNavMenuService,
-    @Inject("startUpTab") private startUpTab: any
+    private navMenuService: AXNavMenuService
   ) {}
 
   ngOnInit(): void {
@@ -24,9 +23,6 @@ export class AXMobileLayoutComponent implements OnInit {
     });
   }
   ngAfterViewInit() {
-    if (this.startUpTab) {
-      this.tabService.open(this.startUpTab);
-    }
     this.pageSizeControl();
   }
 
@@ -36,7 +32,7 @@ export class AXMobileLayoutComponent implements OnInit {
   onItemClick(e: MenuItem) {
     this.navMenuService.clickItem(e);
     let lastTab = this.tabService.tabs[this.tabService.tabs.length - 1];
-    if ( lastTab.closable === true){
+    if (lastTab.closable === true) {
       this.tabService.close(lastTab, {});
     }
     this.showDrawerMenu = false;

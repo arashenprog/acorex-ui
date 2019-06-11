@@ -9,12 +9,17 @@ import {
 import { AXDataListComponent } from "../core/data-list.component";
 import { AXToolbarSearchComponent } from "../../../layout/toolbar/search/toolbar-search.component";
 import { AXToolbarComponent } from "../../../layout/toolbar/toolbar.component";
-import { AXToolbarListViewComponent, AXListViewDirection } from "./toolbar-list-view.component";
+import {
+  AXToolbarListViewComponent,
+  AXListViewDirection
+} from "./toolbar-list-view.component";
+import { ViewEncapsulation } from "@angular/core";
 
 @Component({
   selector: "ax-list",
   templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.scss"]
+  styleUrls: ["./list.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AXListComponent extends AXDataListComponent {
   constructor() {
@@ -34,7 +39,7 @@ export class AXListComponent extends AXDataListComponent {
   toolbar: AXToolbarComponent;
 
   @Input()
-  theme:"none"|"default"="default"
+  theme: "none" | "default" = "default";
 
   @Input() direction: AXListViewDirection = "vertical";
 
@@ -47,29 +52,25 @@ export class AXListComponent extends AXDataListComponent {
     }
   }
 
-
- 
   setDirection(e: AXListViewDirection) {
     switch (e) {
-      case 'vertical': {
-        this.style = 'ax-flex-col';
-        break
-      }
-      case 'vertical-wrap': {
-        this.style = 'ax-flex-row ax-flex-wrap';
+      case "vertical": {
+        this.style = "ax-flex-col";
         break;
       }
-      case 'horizontal-wrap': {
-        this.style = 'ax-flex-row ax-full-width ax-overflow-auto';
-        break
+      case "vertical-wrap": {
+        this.style = "ax-flex-row ax-flex-wrap";
+        break;
+      }
+      case "horizontal-wrap": {
+        this.style = "ax-flex-row ax-full-width ax-overflow-auto";
+        break;
       }
       default:
-        this.style = 'ax-flex-wrap ';
+        this.style = "ax-flex-wrap ";
     }
   }
 
   @Input()
   style: any = {};
-
-
 }
