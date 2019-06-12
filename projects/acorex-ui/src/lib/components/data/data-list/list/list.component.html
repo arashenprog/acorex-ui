@@ -4,7 +4,9 @@
   </div>
   <div class="ax-list-container" [ngClass]="style">
     <div class="ax-list-item" *ngFor="let item of items">
-      <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
+      <ng-container
+        *ngTemplateOutlet="templateRef; context: { $implicit: item }"
+      >
       </ng-container>
     </div>
   </div>
