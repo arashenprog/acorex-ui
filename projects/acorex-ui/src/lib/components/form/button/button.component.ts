@@ -17,7 +17,7 @@ export class AXButtonComponent extends AXButtonBaseComponent implements OnInit {
         }
     }
 
-    @ViewChild('container') container: ElementRef;
+    @ViewChild('container', { static: true }) container: ElementRef;
 
     constructor() {
         super();

@@ -66,7 +66,7 @@ export class BooleanFilterRenderer implements IFilterAngularComp {
   public value?: boolean = null;
   private params: IFilterParams;
   private valueGetter: (rowNode: RowNode) => any;
-  @ViewChild("input", { read: ViewContainerRef }) public input;
+  @ViewChild("input", { read: ViewContainerRef,static:true }) public input;
 
   selectItem = [
     { value: 0, label: "True" },

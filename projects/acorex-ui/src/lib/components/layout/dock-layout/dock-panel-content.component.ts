@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { SelectorFlags } from '@angular/core/src/render3/interfaces/projection';
 
 @Component({
     selector: 'ax-dock-content',
@@ -7,7 +6,7 @@ import { SelectorFlags } from '@angular/core/src/render3/interfaces/projection';
 })
 export class AXDockPanelContentComponent implements OnInit {
 
-    @ContentChild(TemplateRef) template: TemplateRef<any>;
+    @ContentChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
     constructor(public viewContainerRef: ViewContainerRef) { }
 

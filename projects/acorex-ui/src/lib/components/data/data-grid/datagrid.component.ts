@@ -42,13 +42,13 @@ export class AXDataGridComponent implements OnInit {
   private _columns: QueryList<AXGridDataColumn>;
 
 
-  @ContentChild(AXToolbarSearchComponent)
+  @ContentChild(AXToolbarSearchComponent, { static: true })
   searchInput: AXToolbarSearchComponent;
 
-  @ContentChild(AXToolbarComponent)
+  @ContentChild(AXToolbarComponent, { static: true })
   toolbar: AXToolbarComponent;
 
-  @ContentChild(AXDataSourceComponent)
+  @ContentChild(AXDataSourceComponent, { static: true })
   private dataSource: AXDataSourceComponent;
 
   @Input()

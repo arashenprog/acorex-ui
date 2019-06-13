@@ -44,7 +44,7 @@ export class TextFilterRenderer implements IFilterAngularComp {
   public value?: boolean = null;
   private params: IFilterParams;
   private valueGetter: (rowNode: RowNode) => any;
-  @ViewChild("input", { read: ViewContainerRef }) public input;
+  @ViewChild("input", { read: ViewContainerRef,static:true }) public input;
 
   agInit(params: IFilterParams): void {
     this.params = params;

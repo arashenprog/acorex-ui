@@ -29,7 +29,7 @@ export class PromisResult<T> {
 }
 
 export class AXBaseComponent {
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input", { static: true }) input: ElementRef;
   _uid: string = "M" + Math.ceil(Math.random() * 10000);
   @Input()
   width: string = "";
@@ -67,7 +67,7 @@ export abstract class AXValidatableComponent extends AXBaseComponent {
   abstract validate(): Promise<IValidationRuleResult>;
   errorText: string = null;
 
-  @ContentChild(AXValidationComponent)
+  @ContentChild(AXValidationComponent, { static: true })
   protected validator: AXValidationComponent;
 }
 

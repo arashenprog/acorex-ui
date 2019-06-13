@@ -5,7 +5,7 @@ import { AXBaseComponent } from "../../../../core/base.class";
 export abstract class AXDataListComponent extends AXBaseComponent {
   items: any[] = [];
 
-  @ContentChild(AXDataSourceComponent)
+  @ContentChild(AXDataSourceComponent, { static: true })
   private dataSource: AXDataSourceComponent;
 
   ngOnInit(): void {

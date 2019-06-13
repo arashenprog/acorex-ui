@@ -13,7 +13,7 @@ import { ClosingEventArgs } from '../popup/popup.service';
 export class AXTabPageRendererComponent {
     childs: any[] = [];
     isBusy: boolean = false;
-    @ViewChild("container", { read: ViewContainerRef }) container;
+    @ViewChild("container", { read: ViewContainerRef,static:true }) container;
 
     constructor(
         private resolver: ComponentFactoryResolver,

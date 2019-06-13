@@ -40,7 +40,7 @@ export class AXWidgetContainerComponent implements IWidgetComponent {
 
 export abstract class AXWidgetComponent implements IWidgetComponent {
 
-    @ViewChild(AXWidgetContainerComponent) container: AXWidgetContainerComponent;
+    @ViewChild(AXWidgetContainerComponent, { static: true }) container: AXWidgetContainerComponent;
 
     @Output()
     isInEditingChange: EventEmitter<boolean> = new EventEmitter<boolean>();

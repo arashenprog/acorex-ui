@@ -27,15 +27,15 @@ export class AXListComponent extends AXDataListComponent {
   }
   @Input() title: string;
 
-  @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
 
-  @ContentChild(AXToolbarSearchComponent)
+  @ContentChild(AXToolbarSearchComponent, { static: true })
   searchToolbar: AXToolbarSearchComponent;
 
-  @ContentChild(AXToolbarListViewComponent)
+  @ContentChild(AXToolbarListViewComponent, { static: true })
   viewToolbar: AXToolbarListViewComponent;
 
-  @ContentChild(AXToolbarComponent)
+  @ContentChild(AXToolbarComponent, { static: true })
   toolbar: AXToolbarComponent;
 
   @Input() direction: AXListViewDirection = "vertical";

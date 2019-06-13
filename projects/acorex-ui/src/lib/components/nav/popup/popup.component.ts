@@ -21,9 +21,9 @@ import { ClosingEventArgs } from "./popup.service";
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {
-  @ViewChild("popupBody", { read: ViewContainerRef })
+  @ViewChild("popupBody", { read: ViewContainerRef ,static:true})
   private popupBody: ViewContainerRef;
-  @ViewChild("container")
+  @ViewChild("container", { static: true })
   private container: ElementRef;
 
   @HostListener("keydown.escape", ["$event"])

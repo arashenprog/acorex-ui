@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild, Input } from "@angular/core";
   styleUrls: ["./upload-file.component.scss"]
 })
 export class AXUploadFileComponent implements OnInit {
-  @ViewChild("file") file;
+  @ViewChild("file", { static: true }) file;
 
   fileName: string = "";
   data: any;

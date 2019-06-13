@@ -19,7 +19,7 @@ import { NgSelectComponent } from "@ng-select/ng-select";
 })
 
 export class AXSelectBoxComponent extends AXSelectBaseComponent {
-  @ViewChild(NgSelectComponent) ngSelect: NgSelectComponent;
+  @ViewChild(NgSelectComponent, { static: true }) ngSelect: NgSelectComponent;
 
   constructor() {
     super();

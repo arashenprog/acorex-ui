@@ -29,7 +29,7 @@ import { Input } from "@angular/core";
 })
 export class AXDatePickerComponent extends AXValidatableComponent implements AXIDatePicker {
 
-  @ViewChild(AXDatePicker) picker: AXDatePicker;
+  @ViewChild(AXDatePicker, { static: true }) picker: AXDatePicker;
 
   validate(): Promise<IValidationRuleResult> {
     return this.picker.validate();
