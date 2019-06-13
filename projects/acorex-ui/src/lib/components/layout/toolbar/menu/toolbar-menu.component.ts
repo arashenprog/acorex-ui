@@ -30,6 +30,8 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   constructor(private element: ElementRef, private zone: NgZone) {
     super();
   }
+
+  //https://codepen.io/tauhidpro/pen/xpXrML
   showResponsiveMenu = false;
 
   @Input()
