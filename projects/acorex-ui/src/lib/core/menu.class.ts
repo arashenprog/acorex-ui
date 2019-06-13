@@ -16,6 +16,7 @@ export class BaseMenuItem {
 export class MenuItem extends BaseMenuItem {
   items?: MenuItem[];
   parentId?: string;
+  split?:boolean;
 }
 
 export class ButtonItem extends BaseMenuItem {

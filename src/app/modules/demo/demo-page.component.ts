@@ -9,7 +9,6 @@ import {
   MenuItem
 } from "acorex-ui";
 import { Component } from "@angular/core";
-import { TestHttpComponent } from "./http-test.page";
 
 @Component({
   templateUrl: "./demo-page.component.html"
@@ -102,7 +101,7 @@ export class DemoPage extends AXBasePageComponent {
     });
   }
   openPopup() {
-    this.popup.open(TestHttpComponent, "Title Popup Here");
+    //this.popup.open(TestHttpComponent, "Title Popup Here");
   }
   openDrawer() {
     this.drawerOpen = true;

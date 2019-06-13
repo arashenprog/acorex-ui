@@ -14,15 +14,9 @@ import { AngularSplitModule } from 'angular-split';
 import { NavMenuService } from "./shared/services/nav-menu.service";
 import { AXHeaderBarMenuService } from "acorex-spa";
 import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service";
-import { LoginPageComponent } from "./shared/login/login.page";
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
-import { CRMModule } from "./modules/crm/crm.module";
-import { TaskCardModule } from './shared/components/task-card/task-card.module';
-import { LeadListPage } from './modules/crm/lead/pages/lead-list.page';
-import { FormBuilderModule } from './modules/form-builder/form-builder.module';
-import { FormsListPage } from './modules/form-builder/dashboard/dashboard.page';
-import { NavMenuServiceFa } from './shared/services/nav-menu-fa.service';
+import { DemoPage } from './modules/demo/demo-page.component';
 
 const routes: Routes = [
   {
@@ -45,15 +39,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
     ACoreXUIModule,
     AcorexSpaModule,
     DemoModule,
-    CRMModule,
-    FormBuilderModule,
     RouterModule.forRoot(routes),
     AngularSplitModule.forRoot(),
   ],
@@ -69,14 +61,14 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-          content: FormsListPage,
+          content: DemoPage,
           title: "داشبورد",
           closable: false,
           uid: "dashboard"
       }
   }
   ],
-  entryComponents: [LoginPageComponent],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -2,11 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
-import { TestHttpComponent } from "../../modules/demo/http-test.page";
-import { TestPageComponent } from "../../modules/demo/test-page.component";
-import { DashboardPage } from "../../modules/demo/dashboard/dashboard.page";
 import { DemoPage } from "../../modules/demo/demo-page.component";
-import { LeadListPage } from 'src/app/modules/crm/lead/pages/lead-list.page';
 import { AliPage } from 'src/app/modules/demo/ali/ali.page';
 
 @Injectable()
@@ -44,7 +40,6 @@ export class NavMenuService extends AXNavMenuService {
       id: "0_1",
       parentId: "0",
       visible: true,
-      data: { page: LeadListPage }
     },
     {
       name: "quotes",
@@ -74,35 +69,34 @@ export class NavMenuService extends AXNavMenuService {
       id: "1",
       visible: true
     },
-    {
-      name: "customers",
-      text: "Customers",
-      id: "1_1",
-      parentId: "1",
-      visible: true,
-      data: { page: TestHttpComponent }
-    },
-    {
-      name: "suppliers",
-      text: "Suppliers",
-      id: "1_2",
-      parentId: "1",
-      visible: true
-    },
-    {
-      name: "subcontractors",
-      text: "Subcontractors",
-      id: "1_3",
-      parentId: "1",
-      visible: true
-    },
-    {
-      name: "staff",
-      text: "Staff",
-      id: "1_4",
-      parentId: "1",
-      visible: true
-    },
+    // {
+    //   name: "customers",
+    //   text: "Customers",
+    //   id: "1_1",
+    //   parentId: "1",
+    //   visible: true
+    // },
+    // {
+    //   name: "suppliers",
+    //   text: "Suppliers",
+    //   id: "1_2",
+    //   parentId: "1",
+    //   visible: true
+    // },
+    // {
+    //   name: "subcontractors",
+    //   text: "Subcontractors",
+    //   id: "1_3",
+    //   parentId: "1",
+    //   visible: true
+    // },
+    // {
+    //   name: "staff",
+    //   text: "Staff",
+    //   id: "1_4",
+    //   parentId: "1",
+    //   visible: true
+    // },
     {
       name: "things_to_sell",
       text: "Things To Sell",
@@ -124,7 +118,20 @@ export class NavMenuService extends AXNavMenuService {
       parentId: "2",
       visible: true
     },
-
+    {
+      name: "service A",
+      text: "Service A",
+      id: "2_2_1",
+      parentId: "2_2",
+      visible: true
+    },
+    {
+      name: "service B",
+      text: "Service B",
+      id: "2_2_2",
+      parentId: "2_2",
+      visible: true
+    },
     {
       name: "accounts",
       text: "Accounts",
@@ -174,20 +181,20 @@ export class NavMenuService extends AXNavMenuService {
       parentId: "5",
       visible: true
     },
-    {
-      name: "reports",
-      text: "Reports",
-      icon: "fas fa-file-alt",
-      id: "6",
-      visible: true
-    },
-    {
-      name: "settings",
-      text: "Settings",
-      icon: "fas fa-cog",
-      id: "7",
-      visible: true
-    },
+    // {
+    //   name: "reports",
+    //   text: "Reports",
+    //   icon: "fas fa-file-alt",
+    //   id: "6",
+    //   visible: true
+    // },
+    // {
+    //   name: "settings",
+    //   text: "Settings",
+    //   icon: "fas fa-cog",
+    //   id: "7",
+    //   visible: true
+    // },
     {
       name: "automations",
       text: "Automations",

@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 
 import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
-import { DesignerPage } from 'src/app/modules/form-builder/designer/designer.page';
 
 @Injectable()
 export class NavMenuServiceFa extends AXNavMenuService {

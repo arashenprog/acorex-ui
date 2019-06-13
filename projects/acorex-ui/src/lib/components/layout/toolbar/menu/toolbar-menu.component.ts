@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import { AXToolbarItem } from '../toolbar-item';
 import { MenuItem } from '../../../../core/menu.class';
+declare var $: any;
 
 @Component({
   selector: 'ax-toolbar-menu',
@@ -23,7 +24,7 @@ import { MenuItem } from '../../../../core/menu.class';
   styleUrls: ['./toolbar-menu.component.scss'],
   providers: [{ provide: AXToolbarItem, useExisting: AXToolbarMenuComponent }],
   encapsulation: ViewEncapsulation.None,
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
   constructor(private element: ElementRef, private zone: NgZone) {
@@ -31,7 +32,6 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
   showResponsiveMenu = false;
 
-  // @ViewChildren('NavItem') NavItem: QueryList<AXToolbarMenuComponent>;
   @Input()
   items: MenuItem[] = [];
 
@@ -39,20 +39,7 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
 
-  // cumulativeOffset(element) {
-  //   let top = 0;
-  //   let left = 0;
-  //   do {
-  //     top += element.offsetTop || 0;
-  //     left += element.offsetLeft || 0;
-  //     element = element.offsetParent;
-  //   } while (element);
 
-  //   return {
-  //     top: top,
-  //     left: left
-  //   };
-  // };
 
 
   onToolbarItemClick(item: MenuItem, event) {
@@ -74,10 +61,10 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     event.stopPropagation();
   }
 
-  bodyClick(event: MouseEvent) {
-    this.closeAll();
-    event.stopPropagation();
-  }
+  // private bodyClick(event: MouseEvent) {
+  //   this.closeAll();
+  //   event.stopPropagation();
+  // }
 
   private closeAll() {
     this.element.nativeElement
@@ -86,14 +73,32 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
   ngOnInit(): void {
-    this.zone.runOutsideAngular(() => {
-      window.document.addEventListener('click', this.bodyClick.bind(this));
+    // this.zone.runOutsideAngular(() => {
+    //   window.document.addEventListener('click', this.bodyClick.bind(this));
+    // });
+  }
+
+  ngAfterViewInit(): void {
+    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+      if (!$(this).next().hasClass('show')) {
+      $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+      }
+      var $subMenu = $(this).next(".dropdown-menu");
+      $subMenu.toggleClass('show');
+  
+      $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+      $('.dropdown-submenu .show').removeClass("show");
+      });
+  
+      return false;
     });
+    
   }
 
   ngOnDestroy(): void {
-    document.removeEventListener("click", this.bodyClick);
+    //document.removeEventListener("click", this.bodyClick);
   }
+
   onResponsiveMenuButtonClick() {
     this.showResponsiveMenu = !this.showResponsiveMenu;
   }
