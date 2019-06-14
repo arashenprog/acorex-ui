@@ -19,9 +19,9 @@ import { MenuItem } from '../../../../core/menu.class';
 declare var $: any;
 
 @Component({
-  selector: 'ax-toolbar-menu',
-  templateUrl: './toolbar-menu.component.html',
-  styleUrls: ['./toolbar-menu.component.scss'],
+  selector: "ax-toolbar-menu",
+  templateUrl: "./toolbar-menu.component.html",
+  styleUrls: ["./toolbar-menu.component.scss"],
   providers: [{ provide: AXToolbarItem, useExisting: AXToolbarMenuComponent }],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -40,24 +40,22 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-
-
-
+  menuItemMock = `menuItem${Math.floor(Math.random() * 5000)}`;
 
   onToolbarItemClick(item: MenuItem, event) {
     if (!(item.items && item.items.length)) {
       this.itemClick.emit(item);
       this.closeAll();
     }
-    const el = (event.target as HTMLElement).querySelector('ul');
+    const el = (event.target as HTMLElement).querySelector("ul");
     if (el) {
-      if (el.classList.contains('active')) {
-        el.classList.remove('active');
-        el.querySelectorAll('.active').forEach(c =>
-          c.classList.remove('active')
+      if (el.classList.contains("active")) {
+        el.classList.remove("active");
+        el.querySelectorAll(".active").forEach(c =>
+          c.classList.remove("active")
         );
       } else {
-        el.classList.add('active');
+        el.classList.add("active");
       }
     }
     event.stopPropagation();
@@ -70,8 +68,8 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
   private closeAll() {
     this.element.nativeElement
-      .querySelectorAll('.active')
-      .forEach(c => c.classList.remove('active'));
+      .querySelectorAll(".active")
+      .forEach(c => c.classList.remove("active"));
   }
 
   ngOnInit(): void {
@@ -81,27 +79,41 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
   ngAfterViewInit(): void {
-    $( '.dropdown-menu a.dropdown-toggle' ).on( 'click', function ( e ) {
-      var $el = $( this );
-      var $parent = $( this ).offsetParent( ".dropdown-menu" );
-      if ( !$( this ).next().hasClass( 'show' ) ) {
-          $( this ).parents( '.dropdown-menu' ).first().find( '.show' ).removeClass( "show" );
+    $(".dropdown-menu a.dropdown-toggle").on("click", function(e) {
+      var $el = $(this);
+      var $parent = $(this).offsetParent(".dropdown-menu");
+      if (
+        !$(this)
+          .next()
+          .hasClass("show")
+      ) {
+        $(this)
+          .parents(".dropdown-menu")
+          .first()
+          .find(".show")
+          .removeClass("show");
       }
-      var $subMenu = $( this ).next( ".dropdown-menu" );
-      $subMenu.toggleClass( 'show' );
-      
-      $( this ).parent( "li" ).toggleClass( 'show' );
+      var $subMenu = $(this).next(".dropdown-menu");
+      $subMenu.toggleClass("show");
 
-      $( this ).parents( 'li.nav-item.dropdown.show' ).on( 'hidden.bs.dropdown', function ( e ) {
-          $( '.dropdown-menu .show' ).removeClass( "show" );
-      } );
-      
-       if ( !$parent.parent().hasClass( 'navbar-nav' ) ) {
-          $el.next().css( { "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 } );
+      $(this)
+        .parent("li")
+        .toggleClass("show");
+
+      $(this)
+        .parents("li.nav-item.dropdown.show")
+        .on("hidden.bs.dropdown", function(e) {
+          $(".dropdown-menu .show").removeClass("show");
+        });
+
+      if (!$parent.parent().hasClass("navbar-nav")) {
+        $el
+          .next()
+          .css({ top: $el[0].offsetTop, left: $parent.outerWidth() - 4 });
       }
 
       return false;
-  } );
+    });
   }
 
   ngOnDestroy(): void {
@@ -111,6 +123,4 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   onResponsiveMenuButtonClick() {
     this.showResponsiveMenu = !this.showResponsiveMenu;
   }
-
-
 }

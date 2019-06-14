@@ -30,7 +30,7 @@
         <ul class="navbar-nav">
         <ng-template #recursiveList let-list>
             <li class="nav-item" [ngClass]="{'dropdown': item.items && item.items.length > 0 && item.visible}" *ngFor="let item of list">
-                <a class="nav-link" [ngClass]="{'dropdown-toggle': item.items && item.items.length > 0 && item.visible}">
+                <a class="nav-link" id="{{menuItemMock}}" [ngClass]="{'dropdown-toggle': item.items && item.items.length > 0 && item.visible}">
                     <i class="{{ item.icon }}"></i>
                     {{ item.text }}
                 </a>
