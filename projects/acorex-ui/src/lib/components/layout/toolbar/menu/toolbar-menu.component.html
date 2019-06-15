@@ -5,7 +5,7 @@
         <i class="{{item.icon}}" *ngIf="item.icon"></i>
         {{item.text}}
         <i class="fas fa-angle-down" *ngIf="item.items && item.items.length > 0"></i>
-        <ul *ngIf="item.items && item.items.length > 0" class="collapsed sub-menu" [attr.id]="item.parentId item.id">
+        <ul *ngIf="item.items && item.items.length > 0" class="collapsed sub-menu" >
           <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.items }"></ng-container>
         </ul>
       </li>
