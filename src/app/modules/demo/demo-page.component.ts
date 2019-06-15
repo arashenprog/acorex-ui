@@ -120,31 +120,25 @@ export class DemoPage extends AXBasePageComponent {
       id: "1",
       name: "edit",
       text: "Item",
-      style: "btn-primary",
+      style: "btn btn-success",
       icon: "fas fa-pen",
       items: [
         {
           parentId: "1",
           name: "edit",
           text: "Sub 1",
-          style: "btn-primary",
-          icon: "fas fa-pen",
           id: "1_1",
           items: [
             {
               parentId: "1",
               name: "edit",
               text: "Sub 2",
-              style: "btn-primary",
-              icon: "fas fa-pen",
               id: "1_2"
             },
             {
               parentId: "1_2",
               name: "add",
               text: "Sub Sub 1",
-              style: "btn-info",
-              icon: "fas fa-plus",
               visible: false,
             }
           ]

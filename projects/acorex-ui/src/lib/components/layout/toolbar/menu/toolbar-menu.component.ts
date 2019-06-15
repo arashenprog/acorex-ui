@@ -23,40 +23,45 @@ declare var $: any;
 export class AXToolbarMenuComponent extends AXToolbarItem {
   constructor(private element: ElementRef, private zone: NgZone) {
     super();
-    zone.runOutsideAngular(c => {
+    zone.runOutsideAngular(() => {
       window.document.addEventListener('click', this.clickOutside.bind(this));
     });
   }
+
+  @Output()
+  itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
   @Input()
   items: MenuItem[] = [];
 
   onItemClick(e: MouseEvent, item: MenuItem) {
-    let el = (e.target as HTMLElement);
-    let ul = el.querySelector("ul");
-    this.closeOnOut(el);
+    if (!item.items && !item.disable) {
+      this.itemClick.emit(item);
+    }
+    let li = (e.target as HTMLElement).closest("li");
+    let ul = li.querySelector("ul");
+    this.closeOnOut(li);
     if (ul) {
       if (ul.classList.contains("collapsed")) {
         if (!item.parentId)
           ul.classList.add("first");
         ul.classList.remove("collapsed");
-        let pos = el.getBoundingClientRect();
-        let top = 0;
-        let left = 0;
+        let pos = li.getBoundingClientRect();
+        let y = 0;
+        let x = 0;
         if (!ul.classList.contains("first")) {
-          top = (pos.top);
-          left = pos.left + el.clientWidth;
+          y = (pos.top);
+          x = pos.left + li.clientWidth;
         }
         else {
-          left = pos.left;
-          top = (pos.top + el.clientHeight);
+          x = pos.left;
+          y = (pos.top + li.clientHeight);
         }
-        ul.style.top = top + "px";
-        ul.style.left = left + "px";
+        ul.style.top = y + "px";
+        ul.style.left = x + "px";
       }
       else {
-        ul.classList.add("collapsed");
-        ul.querySelectorAll("ul").forEach(c => c.classList.add("collapsed"));
+        
       }
     }
     e.stopPropagation();

@@ -27,17 +27,19 @@
         -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
         border: 1px solid var(--border-color);
         min-width: 120px;
-        li {
-            cursor: pointer;
-            padding: 7px !important;
-
-        }
-    }
-
-    ul.sub-menu {
         position: fixed;
         list-style: none;
         padding: 0;
+        color: var(--black-color);
+        text-align: start;
+        li {
+            cursor: pointer;
+            padding: 7px !important;
+            &:hover{
+              background-color: var(--primary-lighter-color);
+            }
+
+        }
     }
 
 }

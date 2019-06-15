@@ -1,7 +1,7 @@
 <div class="ax-toolbar-menu-container">
   <ul class="root">
     <ng-template #recursiveList let-list>
-      <li *ngFor="let item of list;" (click)="onItemClick($event,item)">
+      <li *ngFor="let item of list;" (click)="onItemClick($event,item)" [ngClass]="item.style">
         <i class="{{item.icon}}" *ngIf="item.icon"></i>
         {{item.text}}
         <i class="fas fa-angle-down" *ngIf="item.items && item.items.length > 0"></i>
