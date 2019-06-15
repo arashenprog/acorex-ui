@@ -9,6 +9,7 @@ import {
   MenuItem
 } from "acorex-ui";
 import { Component } from "@angular/core";
+import { AliPage } from "./ali/ali.page";
 
 @Component({
   templateUrl: "./demo-page.component.html"
@@ -101,7 +102,7 @@ export class DemoPage extends AXBasePageComponent {
     });
   }
   openPopup() {
-    //this.popup.open(TestHttpComponent, "Title Popup Here");
+    this.popup.open(AliPage, "Title Popup Here");
   }
   openDrawer() {
     this.drawerOpen = true;
@@ -139,13 +140,11 @@ export class DemoPage extends AXBasePageComponent {
               parentId: "1_2",
               name: "add",
               text: "Sub Sub 1",
-              visible: false,
+              visible: false
             }
           ]
-
         }
       ]
     }
-
-  ]
+  ];
 }

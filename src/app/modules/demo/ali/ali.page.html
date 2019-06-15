@@ -1,39 +1,50 @@
 <ax-page>
-    <ax-toolbar></ax-toolbar>
-    <ax-page-content>
-        <ax-row>
-            <ax-col col-sm="6" col-xs="12">
-                <p>List Styled</p>
+  <ax-toolbar>
+    <ax-toolbar-group-button mode="single" [items]="listToolbarItems">
+    </ax-toolbar-group-button>
+  </ax-toolbar>
+  <ax-page-content>
+    <ax-row>
+      <ax-col col-sm="6" col-xs="12">
+        <p>List Styled</p>
         <ax-list title="List Title" [height]="'300px'">
           <ax-toolbar>
-            <ax-toolbar-list-view [horizontal-wrap]='false'></ax-toolbar-list-view>
+            <ax-toolbar-list-view
+              [horizontal-wrap]="false"
+            ></ax-toolbar-list-view>
             <ax-toolbar-title text="LEAD"></ax-toolbar-title>
             <ax-toolbar-search></ax-toolbar-search>
           </ax-toolbar>
           <ax-data-source>
-            <ax-callback-read [provideData]="provideListData"></ax-callback-read>
+            <ax-callback-read
+              [provideData]="provideListData"
+            ></ax-callback-read>
           </ax-data-source>
           <ng-template let-item>
             <div style="width: 200px;">{{ item.name }}</div>
           </ng-template>
         </ax-list>
-            </ax-col>
-            <ax-col col-sm="6" col-xs="12">
-                <p>List NoStyled</p>
-                <ax-list title="List Title" [height]="'300px'" theme="none">
-                  <ax-toolbar>
-                    <ax-toolbar-list-view [horizontal-wrap]='false'></ax-toolbar-list-view>
-                    <ax-toolbar-title text="LEAD"></ax-toolbar-title>
-                    <ax-toolbar-search></ax-toolbar-search>
-                  </ax-toolbar>
-                  <ax-data-source>
-                    <ax-callback-read [provideData]="provideListData"></ax-callback-read>
-                  </ax-data-source>
-                  <ng-template let-item>
-                    <div style="width: 200px;">{{ item.name }}</div>
-                  </ng-template>
-                </ax-list>
-            </ax-col>
-        </ax-row>
-    </ax-page-content>
+      </ax-col>
+      <ax-col col-sm="6" col-xs="12">
+        <p>List NoStyled</p>
+        <ax-list title="List Title" [height]="'300px'" theme="none">
+          <ax-toolbar>
+            <ax-toolbar-list-view
+              [horizontal-wrap]="false"
+            ></ax-toolbar-list-view>
+            <ax-toolbar-title text="LEAD"></ax-toolbar-title>
+            <ax-toolbar-search></ax-toolbar-search>
+          </ax-toolbar>
+          <ax-data-source>
+            <ax-callback-read
+              [provideData]="provideListData"
+            ></ax-callback-read>
+          </ax-data-source>
+          <ng-template let-item>
+            <div style="width: 200px;">{{ item.name }}</div>
+          </ng-template>
+        </ax-list>
+      </ax-col>
+    </ax-row>
+  </ax-page-content>
 </ax-page>

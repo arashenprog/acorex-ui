@@ -17,12 +17,13 @@ import { ClosingEventArgs } from "./popup.service";
 @Component({
   selector: "ax-popup",
   templateUrl: "./popup.component.html",
-  styleUrls:["./popup.component.scss"],
+  styleUrls: ["./popup.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {
   @ViewChild("popupBody", { read: ViewContainerRef })
   private popupBody: ViewContainerRef;
+
   @ViewChild("container")
   private container: ElementRef;
 
@@ -46,18 +47,21 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     }
     this.content = com;
     //
-    if(com.onReceiveData && this.data)
-    {
+    if (com.onReceiveData && this.data) {
       com.onReceiveData(this.data);
     }
   }
 
   ngAfterViewInit() {
     this.focus();
+    this.resizeBody();
   }
 
   close: EventEmitter<ClosingEventArgs> = new EventEmitter<ClosingEventArgs>();
-  constructor(private resolver: ComponentFactoryResolver) {}
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private element: ElementRef
+  ) {}
 
   @Input()
   width: number = 100;
@@ -95,7 +99,13 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   deactive() {
     this.isActivated = false;
   }
-  onFullScreen(){
-    
+  onFullScreen() {}
+
+  resizeBody() {
+    //console.log("this.popupBody", this.popupBody);
+    debugger;
+    if (this.element.nativeElement.querySelector(".ax-page-toolbar")) {
+      console.log("has toolbar");
+    }
   }
 }
