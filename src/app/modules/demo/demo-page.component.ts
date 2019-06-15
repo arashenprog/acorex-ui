@@ -67,7 +67,7 @@ export class DemoPage extends AXBasePageComponent {
       this.http
         .get("https://jsonplaceholder.typicode.com/users", {})
         .result(c => {
-          resolve((<any>c).slice(0,8));
+          resolve((<any>c).slice(0, 8));
           console.log(c);
         });
     });
@@ -115,16 +115,43 @@ export class DemoPage extends AXBasePageComponent {
     });
   }
 
-  commandItems: MenuItem[] = [
+  toolbarItems: MenuItem[] = [
     {
-      name: "01",
-      type: "success",
-      icon: "fas fa-check text-primary"
-    },
-    {
-      name: "02",
-      type: "danger",
-      icon: "fas fa-pen text-danger"
+      id: "1",
+      name: "edit",
+      text: "Item",
+      style: "btn-primary",
+      icon: "fas fa-pen",
+      items: [
+        {
+          parentId: "1",
+          name: "edit",
+          text: "Sub 1",
+          style: "btn-primary",
+          icon: "fas fa-pen",
+          id: "1_1",
+          items: [
+            {
+              parentId: "1",
+              name: "edit",
+              text: "Sub 2",
+              style: "btn-primary",
+              icon: "fas fa-pen",
+              id: "1_2"
+            },
+            {
+              parentId: "1_2",
+              name: "add",
+              text: "Sub Sub 1",
+              style: "btn-info",
+              icon: "fas fa-plus",
+              visible: false,
+            }
+          ]
+
+        }
+      ]
     }
-  ];
+
+  ]
 }

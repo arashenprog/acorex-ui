@@ -26,16 +26,19 @@ export class AXTopMenuLayoutComponent {
     this.headerBarMenuService.getItems().then(c => {
       this.headerItems = c;
     });
-    this.navMenuService.getItems().then(all => {
-      this.navMenuItems = all.filter(c => c.parentId == null); //.map(c => {  this.transformMenus(c, all); });
+    this.navMenuService.getItems().then((all:MenuItem[]) => {
+      this.navMenuItems = all.filter(c => c.parentId == null).slice(); //.map(c => {  this.transformMenus(c, all); });
       this.navMenuItems.forEach(i => {
-        this.transformMenus(i, all);
+        this.transformMenus(i, all.slice());
       });
     });
   }
 
   private transformMenus(item: MenuItem, items: MenuItem[]) {
     item.items = items.filter(c => c.parentId == item.id);
+    item.items.forEach(i => {
+      this.transformMenus(i, items.slice());
+    });
     return item;
   }
 

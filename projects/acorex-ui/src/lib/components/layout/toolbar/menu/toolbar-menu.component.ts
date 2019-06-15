@@ -1,16 +1,10 @@
 import {
   Component,
-  OnInit,
   Input,
   EventEmitter,
   Output,
-  ViewChild,
   ElementRef,
   ViewEncapsulation,
-  ViewChildren,
-  QueryList,
-  Host,
-  HostListener,
   ChangeDetectionStrategy,
   NgZone
 } from '@angular/core';
@@ -29,98 +23,55 @@ declare var $: any;
 export class AXToolbarMenuComponent extends AXToolbarItem {
   constructor(private element: ElementRef, private zone: NgZone) {
     super();
+    zone.runOutsideAngular(c => {
+      window.document.addEventListener('click', this.clickOutside.bind(this));
+    });
   }
-
-  //https://codepen.io/tauhidpro/pen/xpXrML
-  showResponsiveMenu = false;
 
   @Input()
   items: MenuItem[] = [];
 
-  @Output()
-  itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
-
-  menuItemMock = `menuItem${Math.floor(Math.random() * 5000)}`;
-
-  onToolbarItemClick(item: MenuItem, event) {
-    if (!(item.items && item.items.length)) {
-      this.itemClick.emit(item);
-      this.closeAll();
-    }
-    const el = (event.target as HTMLElement).querySelector("ul");
-    if (el) {
-      if (el.classList.contains("active")) {
-        el.classList.remove("active");
-        el.querySelectorAll(".active").forEach(c =>
-          c.classList.remove("active")
-        );
-      } else {
-        el.classList.add("active");
+  onItemClick(e: MouseEvent, item: MenuItem) {
+    let el = (e.target as HTMLElement);
+    let ul = el.querySelector("ul");
+    this.closeOnOut(el);
+    if (ul) {
+      if (ul.classList.contains("collapsed")) {
+        if (!item.parentId)
+          ul.classList.add("first");
+        ul.classList.remove("collapsed");
+        let pos = el.getBoundingClientRect();
+        let top = 0;
+        let left = 0;
+        if (!ul.classList.contains("first")) {
+          top = (pos.top);
+          left = pos.left + el.clientWidth;
+        }
+        else {
+          left = pos.left;
+          top = (pos.top + el.clientHeight);
+        }
+        ul.style.top = top + "px";
+        ul.style.left = left + "px";
+      }
+      else {
+        ul.classList.add("collapsed");
+        ul.querySelectorAll("ul").forEach(c => c.classList.add("collapsed"));
       }
     }
-    event.stopPropagation();
+    e.stopPropagation();
   }
 
-  // private bodyClick(event: MouseEvent) {
-  //   this.closeAll();
-  //   event.stopPropagation();
-  // }
-
-  private closeAll() {
-    this.element.nativeElement
-      .querySelectorAll(".active")
-      .forEach(c => c.classList.remove("active"));
-  }
-
-  ngOnInit(): void {
-    // this.zone.runOutsideAngular(() => {
-    //   window.document.addEventListener('click', this.bodyClick.bind(this));
-    // });
-  }
-
-  ngAfterViewInit(): void {
-    $(".dropdown-menu a.dropdown-toggle").on("click", function(e) {
-      var $el = $(this);
-      var $parent = $(this).offsetParent(".dropdown-menu");
-      if (
-        !$(this)
-          .next()
-          .hasClass("show")
-      ) {
-        $(this)
-          .parents(".dropdown-menu")
-          .first()
-          .find(".show")
-          .removeClass("show");
-      }
-      var $subMenu = $(this).next(".dropdown-menu");
-      $subMenu.toggleClass("show");
-
-      $(this)
-        .parent("li")
-        .toggleClass("show");
-
-      $(this)
-        .parents("li.nav-item.dropdown.show")
-        .on("hidden.bs.dropdown", function(e) {
-          $(".dropdown-menu .show").removeClass("show");
-        });
-
-      if (!$parent.parent().hasClass("navbar-nav")) {
-        $el
-          .next()
-          .css({ top: $el[0].offsetTop, left: $parent.outerWidth() - 4 });
-      }
-
-      return false;
+  private closeOnOut(el?: HTMLElement) {
+    let root = this.element.nativeElement as HTMLElement;
+    root.querySelectorAll("ul.sub-menu").forEach(c => {
+      if (!c.contains(el))
+        c.classList.add("collapsed");
     });
   }
 
-  ngOnDestroy(): void {
-    //document.removeEventListener("click", this.bodyClick);
+  private clickOutside() {
+    this.closeOnOut();
   }
 
-  onResponsiveMenuButtonClick() {
-    this.showResponsiveMenu = !this.showResponsiveMenu;
-  }
 }

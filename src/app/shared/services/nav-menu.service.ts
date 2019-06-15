@@ -45,7 +45,35 @@ export class NavMenuService extends AXNavMenuService {
       name: "quotes",
       text: "Quotes",
       id: "0_2",
-      parentId: "0",
+      parentId: "7_8",
+      visible: true
+    },
+    {
+      name: "sub-menu1",
+      text: "Sub-Menu 1",
+      id: "0_2_1",
+      parentId: "0_2",
+      visible: true
+    },
+    {
+      name: "sub-menu2",
+      text: "Sub-Menu 2",
+      id: "0_2_2",
+      parentId: "0_2",
+      visible: true
+    },
+    {
+      name: "sub-menu2",
+      text: "Sub-Menu 2",
+      id: "0_2_1_0",
+      parentId: "0_2_1",
+      visible: true
+    },
+    {
+      name: "sub-menu2",
+      text: "Sub-Menu Sub-Menu 2",
+      id: "0_2_1_0_0",
+      parentId: "0_2_1_0",
       visible: true
     },
     {
@@ -181,20 +209,20 @@ export class NavMenuService extends AXNavMenuService {
       parentId: "5",
       visible: true
     },
-    // {
-    //   name: "reports",
-    //   text: "Reports",
-    //   icon: "fas fa-file-alt",
-    //   id: "6",
-    //   visible: true
-    // },
-    // {
-    //   name: "settings",
-    //   text: "Settings",
-    //   icon: "fas fa-cog",
-    //   id: "7",
-    //   visible: true
-    // },
+    {
+      name: "reports",
+      text: "Reports",
+      icon: "fas fa-file-alt",
+      id: "6",
+      visible: true
+    },
+    {
+      name: "settings",
+      text: "Settings",
+      icon: "fas fa-cog",
+      id: "7",
+      visible: true
+    },
     {
       name: "automations",
       text: "Automations",
