@@ -42,26 +42,44 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     let ul = li.querySelector("ul");
     this.closeOnOut(li);
     if (ul) {
+      let r: boolean = false;
       if (ul.classList.contains("collapsed")) {
         if (!item.parentId)
           ul.classList.add("first");
         ul.classList.remove("collapsed");
-        let pos = li.getBoundingClientRect();
+        let posLi = li.getBoundingClientRect();
         let y = 0;
         let x = 0;
         if (!ul.classList.contains("first")) {
-          y = (pos.top);
-          x = pos.left + li.clientWidth;
+          y = (posLi.top);
+          x = posLi.left + li.clientWidth;
         }
         else {
-          x = pos.left;
-          y = (pos.top + li.clientHeight);
+          x = posLi.left;
+          y = (posLi.top + li.clientHeight);
         }
+
+        if (x + ul.clientWidth > window.innerWidth ||
+          (ul.parentElement.closest("ul.sub-menu") && ul.parentElement.closest("ul.sub-menu").classList.contains('revert'))
+        ) {
+          let parentPost = ul.parentElement.getBoundingClientRect();
+          if (ul.classList.contains('first'))
+            x = window.innerWidth - (parentPost.right);
+          else
+            x = window.innerWidth - (parentPost.right) + ul.parentElement.clientWidth;
+
+          r = true;
+          ul.classList.add('revert');
+        }
+
         ul.style.top = y + "px";
-        ul.style.left = x + "px";
+        if (r)
+          ul.style.right = x + "px";
+        else
+          ul.style.left = x + "px";
       }
       else {
-        
+
       }
     }
     e.stopPropagation();
