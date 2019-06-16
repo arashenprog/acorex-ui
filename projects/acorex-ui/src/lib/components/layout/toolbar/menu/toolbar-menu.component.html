@@ -11,7 +11,7 @@
       </li>
     </ng-template>
     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: items }"></ng-container>
-    <li class="more" (click)="onItemClick($event)">
+    <li class="more" #moreLI (click)="onItemClick($event)">
       <i class="fas fa-bars" ></i>
       <ul #moreUL class="collapsed sub-menu">
      

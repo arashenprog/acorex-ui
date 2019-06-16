@@ -25,7 +25,7 @@ declare var $: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
-  constructor(private element: ElementRef, private zone: NgZone) {
+  constructor(private element: ElementRef, private zone: NgZone, private cdr: ChangeDetectorRef) {
     super();
     zone.runOutsideAngular(() => {
       window.document.addEventListener('click', this.clickOutside.bind(this));
@@ -39,14 +39,25 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   private root: ElementRef<HTMLElement>;
   @ViewChild("moreUL")
   private moreUL: ElementRef<HTMLElement>;
+  @ViewChild("moreLI")
+  private moreLI: ElementRef<HTMLElement>;
 
   resizeChangeObserver: any;
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
+
+  private _items: MenuItem[];
   @Input()
-  items: MenuItem[] = [];
+  public get items(): MenuItem[] {
+    return this._items;
+  }
+  public set items(v: MenuItem[]) {
+    this._items = v;
+    this.cdr.detectChanges();
+  }
+
 
   onItemClick(e: MouseEvent, item?: MenuItem) {
     if (item && !item.items && !item.disable) {
@@ -58,9 +69,9 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     if (ul) {
       let r: boolean = false;
       if (ul.classList.contains("collapsed")) {
-        if (li.parentNode==this.root.nativeElement)
-           ul.classList.add("first");
-        
+        if (li.parentNode == this.root.nativeElement)
+          ul.classList.add("first");
+
         ul.classList.remove("collapsed");
         let posLi = li.getBoundingClientRect();
         let y = 0;
@@ -130,30 +141,42 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
   applyResponsive() {
-    let containerEl = this.container.nativeElement;
-    let ulEl = this.root.nativeElement;
-    let moreEl = this.moreUL.nativeElement;
-
-    let liArray = [].slice.call(ulEl.querySelectorAll("li")).filter(c => !c.classList.contains("more") && c.parentNode === ulEl).reverse() as Array<HTMLLIElement>;
-    //ulEl.querySelector<HTMLLIElement>(".more").style.display = "none";
-    if (containerEl.clientWidth < ulEl.scrollWidth) {
-      ulEl.querySelector<HTMLLIElement>(".more").style.display = "";
-      let space = ulEl.scrollWidth - containerEl.clientWidth + 200;
-      let sum = 0;
-      liArray.forEach(li => {
-        sum += li.clientWidth;
-        if (sum < space) {
-          moreEl.appendChild(li);
-        }
-      });
-    }
-
+    setTimeout(() => {
+      debugger;
+      let containerEl = this.container.nativeElement;
+      let rootEl = this.root.nativeElement;
+      let moreUiEl = this.moreUL.nativeElement;
+      let moreLiEl = this.moreLI.nativeElement;
+      let liArray = [].slice.call(rootEl.querySelectorAll("li")).filter(c => !c.classList.contains("more") && c.parentNode === rootEl).reverse() as Array<HTMLLIElement>;
+      rootEl.querySelector<HTMLLIElement>(".more").style.display = "none";
+      let diff = Math.abs(rootEl.scrollWidth - containerEl.clientWidth);
+      if (containerEl.clientWidth < rootEl.scrollWidth) {
+        rootEl.querySelector<HTMLLIElement>(".more").style.display = "";
+        let space = diff + 300;
+        let sum = 0;
+        liArray.forEach(li => {
+          sum += li.clientWidth;
+          if (sum < space) {
+            li.setAttribute("data-width", li.clientWidth.toString());
+            moreUiEl.prepend(li);
+          }
+        });
+      }
+      else if (moreUiEl.querySelectorAll("li").length) {
+        let liArray = [].slice.call(moreUiEl.querySelectorAll("li")).filter(c => c.parentNode === moreUiEl) as Array<HTMLLIElement>;
+        let sum = 0;
+        liArray.forEach(li => {
+          sum += Number(li.getAttribute("data-width"));
+          if (sum + rootEl.scrollWidth > containerEl.clientWidth) {
+            rootEl.insertBefore(li,moreLiEl);
+          }
+        });
+      }
+    }, 50);
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.applyResponsive();
-    }, 100);
+    this.applyResponsive();
   }
 
   ngOnDestroy(): void {
