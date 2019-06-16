@@ -1,11 +1,15 @@
 .ax-toolbar-menu-container {
+    overflow: hidden;
+
     ul.root {
-        display: flex;
-        flex-direction: row;
         margin: 0;
         padding: 0;
         height: 37px;
         list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
     }
 
 
@@ -15,9 +19,9 @@
 
     ul.root>li {
         position: relative;
-        padding: 7px;
         cursor: pointer;
-
+        flex: 0 0 auto; 
+        padding: 5px;
     }
 
     ul.sub-menu {
@@ -32,11 +36,13 @@
         padding: 0;
         color: var(--black-color);
         text-align: start;
+
         li {
             cursor: pointer;
             padding: 7px !important;
-            &:hover{
-              background-color: var(--primary-lighter-color);
+
+            &:hover {
+                background-color: var(--primary-lighter-color);
             }
 
         }

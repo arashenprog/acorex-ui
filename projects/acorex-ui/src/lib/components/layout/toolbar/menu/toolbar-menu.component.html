@@ -1,15 +1,21 @@
-<div class="ax-toolbar-menu-container">
-  <ul class="root">
+<div class="ax-toolbar-menu-container" #container>
+  <ul class="root" #root>
     <ng-template #recursiveList let-list>
       <li *ngFor="let item of list;" (click)="onItemClick($event,item)" [ngClass]="item.style">
         <i class="{{item.icon}}" *ngIf="item.icon"></i>
         {{item.text}}
         <i class="fas fa-angle-down" *ngIf="item.items && item.items.length > 0"></i>
-        <ul *ngIf="item.items && item.items.length > 0" class="collapsed sub-menu" >
+        <ul *ngIf="item.items && item.items.length > 0" class="collapsed sub-menu">
           <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.items }"></ng-container>
         </ul>
       </li>
     </ng-template>
     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: items }"></ng-container>
+    <li class="more" (click)="onItemClick($event)">
+      <i class="fas fa-bars" ></i>
+      <ul #moreUL class="collapsed sub-menu">
+     
+      </ul>
+    </li>
   </ul>
 </div>

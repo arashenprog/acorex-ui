@@ -6,10 +6,14 @@ import {
   ElementRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  NgZone
+  NgZone,
+  ViewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { AXToolbarItem } from '../toolbar-item';
 import { MenuItem } from '../../../../core/menu.class';
+import { Observable } from 'rxjs';
+import { distinctUntilChanged, debounceTime } from "rxjs/operators";
 declare var $: any;
 
 @Component({
@@ -25,8 +29,18 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     super();
     zone.runOutsideAngular(() => {
       window.document.addEventListener('click', this.clickOutside.bind(this));
+      window.addEventListener('resize', this.onResize.bind(this));
     });
   }
+
+  @ViewChild("container")
+  private container: ElementRef<HTMLElement>;
+  @ViewChild("root")
+  private root: ElementRef<HTMLElement>;
+  @ViewChild("moreUL")
+  private moreUL: ElementRef<HTMLElement>;
+
+  resizeChangeObserver: any;
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
@@ -34,8 +48,8 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   @Input()
   items: MenuItem[] = [];
 
-  onItemClick(e: MouseEvent, item: MenuItem) {
-    if (!item.items && !item.disable) {
+  onItemClick(e: MouseEvent, item?: MenuItem) {
+    if (item && !item.items && !item.disable) {
       this.itemClick.emit(item);
     }
     let li = (e.target as HTMLElement).closest("li");
@@ -44,8 +58,9 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     if (ul) {
       let r: boolean = false;
       if (ul.classList.contains("collapsed")) {
-        if (!item.parentId)
-          ul.classList.add("first");
+        if (li.parentNode==this.root.nativeElement)
+           ul.classList.add("first");
+        
         ul.classList.remove("collapsed");
         let posLi = li.getBoundingClientRect();
         let y = 0;
@@ -95,6 +110,57 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
   private clickOutside() {
     this.closeOnOut();
+  }
+
+  private onResize(e: UIEvent) {
+    this.closeOnOut();
+    if (!this.resizeChangeObserver) {
+      Observable.create(observer => {
+        this.resizeChangeObserver = observer;
+      })
+        .pipe(debounceTime(300))
+        .pipe(distinctUntilChanged())
+        .subscribe(c => {
+          this.applyResponsive();
+        });
+    }
+
+    this.resizeChangeObserver.next(e);
+
+  }
+
+  applyResponsive() {
+    let containerEl = this.container.nativeElement;
+    let ulEl = this.root.nativeElement;
+    let moreEl = this.moreUL.nativeElement;
+
+    let liArray = [].slice.call(ulEl.querySelectorAll("li")).filter(c => !c.classList.contains("more") && c.parentNode === ulEl).reverse() as Array<HTMLLIElement>;
+    //ulEl.querySelector<HTMLLIElement>(".more").style.display = "none";
+    if (containerEl.clientWidth < ulEl.scrollWidth) {
+      ulEl.querySelector<HTMLLIElement>(".more").style.display = "";
+      let space = ulEl.scrollWidth - containerEl.clientWidth + 200;
+      let sum = 0;
+      liArray.forEach(li => {
+        sum += li.clientWidth;
+        if (sum < space) {
+          moreEl.appendChild(li);
+        }
+      });
+    }
+
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.applyResponsive();
+    }, 100);
+  }
+
+  ngOnDestroy(): void {
+    this.zone.runOutsideAngular(() => {
+      window.document.removeEventListener('click', this.clickOutside);
+      window.removeEventListener('resize', this.onResize);
+    });
   }
 
 }
