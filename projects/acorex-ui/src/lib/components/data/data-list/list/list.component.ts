@@ -47,9 +47,11 @@ export class AXListComponent extends AXDataListComponent {
         this.setDirection(c);
       });
     }
+    this.setDirection(this.direction);
   }
 
   setDirection(e: AXListViewDirection) {
+    debugger;
     switch (e) {
       case "vertical": {
         this.style = "ax-flex-col";
