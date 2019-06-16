@@ -102,14 +102,21 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   onFullScreen() {}
 
   resizeBody() {
-    //console.log("this.popupBody", this.popupBody);
     debugger;
-    if (this.element.nativeElement.querySelector(".ax-page-toolbar")) {
-      console.log("has toolbar");
-      let innerContent = this.element.nativeElement.querySelector(".inner-content");
-      innerContent.style.height = innerContent.clientHeight - 30 + "px";
-      innerContent.style.marginTop = 30 + "px";
-      console.log(innerContent)
+    this.popupBody.element.nativeElement;
+    let toolbar = this.element.nativeElement.querySelector(".ax-page-toolbar");
+    let pageContent = this.element.nativeElement.querySelector(
+      ".ax-page-content"
+    );
+    let popupContent = this.element.nativeElement.querySelector(
+      ".page-content-wrap"
+    );
+    if (toolbar) {
+      popupContent.style.height =
+        pageContent.scrollHeight + toolbar.scrollHeight + "px";
+      pageContent.style.top = toolbar.scrollHeight + "px";
+    } else {
+      popupContent.style.height = pageContent.scrollHeight + "px";
     }
   }
 }

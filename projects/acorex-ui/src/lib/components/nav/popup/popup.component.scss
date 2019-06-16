@@ -53,13 +53,27 @@
       max-height: 93vh;
       overflow: auto;
       position: relative;
-      .ax-page-content {
-        background: var(--greyLight);
-        padding: 10px !important;
-      }
-      .ax-page-toolbar {
-        position: absolute;
-        width: 100%;
+      .page-content-wrap {
+        position: relative;
+        .ax-page-toolbar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          padding: 5px 10px;
+          z-index: 2;
+          box-shadow: 0 5px 4px -3px var(--shadow-color);
+          -webkit-box-shadow: 0 5px 4px -3px var(--shadow-color);
+          -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
+        }
+        .ax-page-content {
+          position: absolute;
+          width: 100%;
+          top: 0px;
+          padding: 0 2px;
+          overflow: auto;
+        }
       }
     }
     .popup-footer {
