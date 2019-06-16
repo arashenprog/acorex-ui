@@ -106,6 +106,10 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     debugger;
     if (this.element.nativeElement.querySelector(".ax-page-toolbar")) {
       console.log("has toolbar");
+      let innerContent = this.element.nativeElement.querySelector(".inner-content");
+      innerContent.style.height = innerContent.clientHeight - 30 + "px";
+      innerContent.style.marginTop = 30 + "px";
+      console.log(innerContent)
     }
   }
 }
