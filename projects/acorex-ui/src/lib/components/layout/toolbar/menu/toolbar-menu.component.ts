@@ -60,8 +60,10 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
 
   onItemClick(e: MouseEvent, item?: MenuItem) {
-    if (item && !item.items && !item.disable) {
+    if (item && (!item.items || !item.items.length) && !item.disable) {
       this.itemClick.emit(item);
+      this.closeOnOut();
+      return;
     }
     let li = (e.target as HTMLElement).closest("li");
     let ul = li.querySelector("ul");

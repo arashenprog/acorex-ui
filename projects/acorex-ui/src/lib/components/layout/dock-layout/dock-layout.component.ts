@@ -116,7 +116,8 @@ export class AXDockLayoutComponent {
       this.layout.destroy();
     this.layout = new GoldenLayout(this.config, $('#' + this.uid));
     this.layout.registerComponent('component', function (container, state) {
-      state.render(container.getElement());
+      if (state &&  state.render)
+        state.render(container.getElement());
     });
 
     this.layout.init();
