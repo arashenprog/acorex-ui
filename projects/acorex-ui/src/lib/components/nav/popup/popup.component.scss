@@ -72,6 +72,9 @@
           top: 0px;
           padding: 0 2px;
           overflow: auto;
+          .inner-content {
+            padding: 0px 15px;
+          }
         }
       }
     }
