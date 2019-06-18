@@ -144,7 +144,6 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
   applyResponsive() {
     setTimeout(() => {
-      debugger;
       let containerEl = this.container.nativeElement;
       let rootEl = this.root.nativeElement;
       let moreUiEl = this.moreUL.nativeElement;

@@ -48,10 +48,11 @@ export class AXDockLayoutComponent {
   ngAfterViewInit(): void {
     this.loadLayout();
     let that = this;
-    this.layout.on('stateChanged', function (e) {
-      if (that.autoSave)
-        that.saveLayout();
-    });
+    // this.layout.on('stateChanged', function (e) {
+    //   debugger;
+    //   if (that.autoSave)
+    //     that.saveLayout();
+    // });
   }
 
   saveLayout(): void {
@@ -62,10 +63,10 @@ export class AXDockLayoutComponent {
         return val;
       }
     };
-    if (this.layout.isInitialised) {
+    //if (this.layout.isInitialised) {
       let json = JSON.stringify(this.layout.toConfig(), replacer);
       this.onSave.emit({ storageKey: this.storageKey, json: json })
-    }
+    //}
   }
 
   loadLayout(json?: any) {
@@ -95,7 +96,7 @@ export class AXDockLayoutComponent {
               l2.removed = true;
             }
           });
-          this.clearRemoved(state);
+          this.clearRemoved(state.content);
           this.config = state;
         }
       } catch (error) {
@@ -105,7 +106,7 @@ export class AXDockLayoutComponent {
     this.render();
   }
 
-  private clearRemoved(state: any) {
+  private clearRemoved(state: any[]) {
     state.forEach(e => {
       // if (e.type == "component")
       //   output.push(e);

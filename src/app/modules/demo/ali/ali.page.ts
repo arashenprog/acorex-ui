@@ -71,12 +71,15 @@ export class AliPage extends AXBasePageComponent {
   };
 
   onLayoutSave(e) {
+    console.log("Layout saved:"+e.storageKey)
     localStorage.setItem(e.storageKey, e.json);
   }
 
-  ngAfterViewInit() {
-    this.loadLayout(this.layout.storageKey);
-  }
+ ngAfterViewInit(): void {
+  console.log("Layout loaded:"+this.layout.storageKey)
+  this.loadLayout(this.layout.storageKey);
+   
+ }
 
   private loadLayout(key: string) {
     let layoutJson = localStorage.getItem(key);
