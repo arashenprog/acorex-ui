@@ -1,52 +1,93 @@
-.ax-toolbar-menu-container {
-    overflow: hidden;
-
+@import "../../../../styles/mixins";
+.rtl {
+  .ax-toolbar-menu-container {
     ul.root {
-        margin: 0;
-        padding: 0;
-        height: 37px;
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-
-    }
-    
-
-
-    ul.collapsed {
-        display: none;
-    }
-
-    ul.root>li {
-        position: relative;
-        cursor: pointer;
-        flex: 0 0 auto; 
-        padding: 5px;
-    }
-
-    ul.sub-menu {
-        background-color: var(--white-color);
-        box-shadow: 0 5px 4px -3px var(--shadow-color);
-        -webkit-box-shadow: 0 0 5px 0 var(--shadow-color);
-        -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
-        border: 1px solid var(--border-color);
-        min-width: 120px;
-        position: fixed;
-        list-style: none;
-        padding: 0;
-        color: var(--black-color);
-        text-align: start;
-
-        li {
-            cursor: pointer;
-            padding: 7px !important;
-
-            &:hover {
-                background-color: var(--primary-lighter-color);
-            }
-
+      li.ax-toolbar-menu-item {
+        i.ax-menu-item-icon {
+          margin: 0 0 0 5px !important;
         }
+      }
     }
+    ul.root > li {
+      margin: 0 0 0 5px !important;
+    }
+  }
+}
+.ax-toolbar-menu-container {
+  overflow: hidden;
 
+  ul.root {
+    margin: 0;
+    padding: 0;
+    height: 37px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    li.ax-toolbar-menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--font-md-size);
+      height: var(--el-lg-size);
+      padding: 5px;
+      i.ax-menu-item-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px 0 0;
+      }
+      i.ax-menu-item-drop-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 2px;
+      }
+    }
+  }
+
+  ul.collapsed {
+    display: none;
+  }
+
+  ul.root > li {
+    position: relative;
+    cursor: pointer;
+    flex: 0 0 auto;
+    margin: 0 5px 0 0;
+    background: var(--gray-light-color);
+    @include border-radius(var(--border-radius-size));
+
+    &:hover {
+      background: var(--gray-dark-color);
+    }
+  }
+
+  ul.sub-menu {
+    background-color: var(--white-color);
+    box-shadow: 0 5px 4px -3px var(--shadow-color);
+    -webkit-box-shadow: 0 0 5px 0 var(--shadow-color);
+    -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    min-width: 120px;
+    position: fixed;
+    list-style: none;
+    padding: 0;
+    color: var(--black-color);
+    text-align: start;
+
+    li {
+      cursor: pointer;
+      padding: 7px !important;
+
+      &:hover {
+        background-color: var(--primary-lighter-color);
+      }
+    }
+  }
 }

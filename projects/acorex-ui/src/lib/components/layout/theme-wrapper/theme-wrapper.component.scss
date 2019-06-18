@@ -2,6 +2,7 @@ $color-suffix: color;
 $size-suffix: size;
 //
 $white: #fff;
+$black: #000;
 $primary: #3949ab;
 $secondary: #444444;
 $gray: #dbdbdb;
@@ -40,9 +41,9 @@ $colors: (
   ),
   gray: (
     "": $gray,
-    light: lighten($gray, 15%),
-    dark: darken($gray, 15%),
-    fore: $white
+    light: #f7f7f7,
+    dark: #e8e8e8,
+    fore: $black
   ),
   primary: (
     "": $primary,
@@ -65,6 +66,14 @@ $colors: (
 );
 
 $sizes: (
+  el: (
+    sm: 10px,
+    md: 20px,
+    lg: 30px,
+    xl: 40px,
+    xxl: 50px,
+    xxxl: 60px
+  ),
   sp: (
     sm: 5px,
     md: 10px,
@@ -73,13 +82,14 @@ $sizes: (
   ),
   font: (
     sm: 0.75em,
-    md: 1em,
+    md: 0.9em,
     lg: 1.25em,
     xl: 1.5em
   ),
   border: (
     width: 1px,
-    radius: 4px
+    radius: 4px,
+    circle: 50px
   ),
   media: (
     // smaller phone viewpoints,
@@ -229,6 +239,13 @@ body {
     -webkit-tap-highlight-color: transparent;
     outline-color: transparent;
   }
+  textarea {
+    border: none;
+    margin-top: 10px;
+    width: 100%;
+    outline-color: transparent;
+    padding: 15px 12px 7px 12px;
+  }
 
   .ax-field-set-button {
     position: absolute;
@@ -352,7 +369,7 @@ body {
   background-color: var(--white-color);
   border: 1px solid;
   border-color: inherit;
-  color: var(--border-color);
+  color: var(--secondary-light-color);
   width: 30px;
   height: 30px;
   font-size: 11px;
