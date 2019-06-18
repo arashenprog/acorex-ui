@@ -121,7 +121,7 @@ export class DemoPage extends AXBasePageComponent {
       id: "1",
       name: "edit",
       text: "Item",
-      icon: "fas fa-pen",
+      icon: "fas fa-save",
       items: [
         {
           parentId: "1",
@@ -149,31 +149,31 @@ export class DemoPage extends AXBasePageComponent {
       id: "1",
       name: "item",
       text: "Item 2",
-      icon: "fas fa-pen",
+      icon: "fas fa-pen"
     },
     {
       id: "1",
       name: "item",
       text: "Item 3",
-      icon: "fas fa-pen",
+      icon: "fas fa-pen"
     },
     {
       id: "1",
       name: "item",
       text: "Item 4",
-      icon: "fas fa-pen",
+      icon: "fas fa-pen"
     },
     {
       id: "1",
       name: "item",
       text: "Item 5",
-      icon: "fas fa-pen",
+      icon: "fas fa-pen"
     },
     {
       id: "1",
       name: "item",
       text: "Item 6",
-      icon: "fas fa-pen",
+      icon: "fas fa-pen"
     }
   ];
 }
