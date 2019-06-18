@@ -20,6 +20,7 @@ import { AXRadioButtonModule } from "./components/form/radio-button/radio-button
 import { AXSelectBoxModule } from "./components/form/select-box/select-box.module";
 import { AXSelectionListModule } from "./components/form/selection-list/selection-list.module";
 import { AXTextBoxModule } from "./components/form/text-box/text-box.module";
+import { AXTextAreaModule } from "./components/form/text-area/text-area.module";
 import { AXUploadFileModule } from "./components/form/upload-file/upload-file.module";
 import { AXValidationModule } from "./components/form/validation/validation.module";
 import { AXCoreModule } from "./core/core.module";
@@ -69,6 +70,7 @@ window["$"] = $;
     AXSelectBoxModule,
     AXSelectionListModule,
     AXTextBoxModule,
+    AXTextAreaModule,
     AXUploadFileModule,
     AXValidationModule,
     //AXTabViewModule,
@@ -106,6 +108,7 @@ window["$"] = $;
     AXSelectBoxModule,
     AXSelectionListModule,
     AXTextBoxModule,
+    AXTextAreaModule,
     AXUploadFileModule,
     AXValidationModule,
     //AXTabViewModule,
