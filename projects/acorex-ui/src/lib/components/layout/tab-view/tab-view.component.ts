@@ -19,7 +19,6 @@ import { DynamicTabsDirective } from "./dynamic-tabs.directive";
 @Component({
   selector: "ax-tab-view",
   templateUrl: "./tab-view.component.html",
-  styleUrls: ["./tab-view.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
 export class AXTabViewComponent implements AfterContentInit {

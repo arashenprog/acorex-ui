@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
   AXBasePageComponent,
   PromisResult,
   AXHttpService,
-  MenuItem
+  MenuItem,
+  AXDockLayoutComponent
 } from "acorex-ui";
 
 @Component({
@@ -12,6 +13,9 @@ import {
   styleUrls: ["./ali.page.scss"]
 })
 export class AliPage extends AXBasePageComponent {
+
+  @ViewChild("layout") layout: AXDockLayoutComponent;
+  
   constructor(private http: AXHttpService) {
     super();
   }
@@ -65,4 +69,17 @@ export class AliPage extends AXBasePageComponent {
         });
     });
   };
+
+  onLayoutSave(e) {
+    localStorage.setItem(e.storageKey, e.json);
+  }
+
+  ngAfterViewInit() {
+    this.loadLayout(this.layout.storageKey);
+  }
+
+  private loadLayout(key: string) {
+    let layoutJson = localStorage.getItem(key);
+    if (layoutJson) this.layout.loadLayout(layoutJson);
+  }
 }

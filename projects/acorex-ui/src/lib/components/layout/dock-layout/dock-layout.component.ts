@@ -91,7 +91,11 @@ export class AXDockLayoutComponent {
             if (l1 && l1.componentState) {
               l2.componentState = l1.componentState;
             }
+            else {
+              l2.removed = true;
+            }
           });
+          this.clearRemoved(state);
           this.config = state;
         }
       } catch (error) {
@@ -99,6 +103,16 @@ export class AXDockLayoutComponent {
       }
     }
     this.render();
+  }
+
+  private clearRemoved(state: any) {
+    state.forEach(e => {
+      // if (e.type == "component")
+      //   output.push(e);
+      // if (e.content) {
+      //   this.findComponents(e.content, output);
+      // }
+    });
   }
 
   private findComponents(input: any[], output: any[]) {
@@ -116,7 +130,7 @@ export class AXDockLayoutComponent {
       this.layout.destroy();
     this.layout = new GoldenLayout(this.config, $('#' + this.uid));
     this.layout.registerComponent('component', function (container, state) {
-      if (state &&  state.render)
+      if (state && state.render)
         state.render(container.getElement());
     });
 
@@ -126,7 +140,6 @@ export class AXDockLayoutComponent {
   private resizeChangeObserver: any;
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    console.log("resize");
     if (!this.resizeChangeObserver) {
       Observable.create(observer => {
         this.resizeChangeObserver = observer;
@@ -134,7 +147,6 @@ export class AXDockLayoutComponent {
         .pipe(debounceTime(500))
         .pipe(distinctUntilChanged())
         .subscribe(c => {
-          console.log("resize rx");
           this.layout.updateSize();
         });
     }

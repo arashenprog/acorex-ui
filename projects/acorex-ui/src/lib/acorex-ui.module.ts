@@ -25,6 +25,7 @@ import { AXValidationModule } from "./components/form/validation/validation.modu
 import { AXCoreModule } from "./core/core.module";
 import { AXToastModule } from "./components/layout/toast/toast.module";
 import { AXHttpModule } from "./core/http/http.module";
+import { AXTabViewModule } from "./components/layout/tab-view/api";
 import { AXTabPageModule } from "./components/nav/api";
 import { AXThemeWrapperComponent } from "./components/layout/theme-wrapper/theme-wrapper.component";
 import { AXDefaultHttpInterceptor } from "./config/default-http.interceptors";

@@ -3,7 +3,41 @@
     <ax-toolbar-group-button mode="single" [items]="listToolbarItems">
     </ax-toolbar-group-button>
   </ax-toolbar>
-  <ax-page-content>
-    <div style="height: 302px;background-color: blueviolet;"></div>
-  </ax-page-content>
+  < <ax-page-content>
+    <div style="width: 100%; height: calc(100vh - 135px);">
+      <ax-dock-layout #layout (onSave)="onLayoutSave($event)" autoSave="true" storageKey="Test">
+        <ax-dock-panel type="row">
+          <ax-dock-panel type="stack" [size]="20">
+            <ax-dock-content caption="Filters">
+              <ng-template>
+                F
+              </ng-template>
+            </ax-dock-content>
+            <!-- <ax-dock-content caption="Tasks">
+              <ng-template>
+                T
+              </ng-template>
+            </ax-dock-content> -->
+          </ax-dock-panel>
+          <ax-dock-panel type="stack" [size]="80">
+            <ax-dock-content caption="Leads">
+              <ng-template>
+                L
+              </ng-template>
+            </ax-dock-content>
+            <ax-dock-content caption="Calendar">
+              <ng-template>
+                C
+              </ng-template>
+            </ax-dock-content>
+            <ax-dock-content caption="Staff">
+              <ng-template>
+                S
+              </ng-template>
+            </ax-dock-content>
+          </ax-dock-panel>
+        </ax-dock-panel>
+      </ax-dock-layout>
+    </div>
+    </ax-page-content>>
 </ax-page>
