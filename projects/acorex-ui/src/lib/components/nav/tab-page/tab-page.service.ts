@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { ClosingEventArgs, ClosedEventArgs, ClosingAction } from "../popup/popup.service";
-import { TabbedLayout } from 'ag-grid-community';
 
 export interface AXTabPage {
     title: string;

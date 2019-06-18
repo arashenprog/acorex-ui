@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from "@angular/core";
-import { AXTabPageService } from "../../../../../../acorex-ui/src/lib/components/nav/api";
+import { AXTabPageService } from "acorex-ui";
 
 @Component({
   selector: "ax-tabs",
