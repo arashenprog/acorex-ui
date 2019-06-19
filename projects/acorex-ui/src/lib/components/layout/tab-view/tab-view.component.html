@@ -1,11 +1,32 @@
-<ul class="nav nav-pills flex-column flex-sm-row">
-    <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active" class="flex-sm-fill text-sm-center nav-link">
-      <i class="{{tab.icon}}"></i>&nbsp;<a>{{tab.title}}</a>
-    </li>
-    <!-- dynamic tabs -->
-    <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" class="flex-sm-fill text-sm-center nav-link" [class.active]="tab.active" >
-      <i class="{{tab.icon}}"></i>&nbsp;<a>{{tab.title}} <i *ngIf="tab.isCloseable" (click)="closeTab(tab)" class="fas fa-times-circle"></i></a>
-    </li>
-  </ul>
-  <ng-content></ng-content>
-  <ng-template dynamic-tabs #container></ng-template>
+<ul class="nav nav-tabs">
+  <li
+    *ngFor="let tab of tabs"
+    (click)="selectTab(tab)"
+    [class.active]="tab.active"
+    [class.flex-sm-fill]="fullWidth"
+    class="nav-item text-sm-center nav-link"
+  >
+    <i class="{{ tab.icon }}"></i>&nbsp;<a>{{ tab.title }}</a>
+  </li>
+  <!-- dynamic tabs -->
+  <li
+    *ngFor="let tab of dynamicTabs"
+    (click)="selectTab(tab)"
+    class="nav-item text-sm-center nav-link"
+    [class.active]="tab.active"
+    [class.flex-sm-fill]="fullWidth"
+  >
+    <i class="{{ tab.icon }}"></i>
+    <a>
+      {{ tab.title }}
+      <i
+        *ngIf="tab.isCloseable"
+        (click)="closeTab(tab)"
+        class="fas fa-times-circle"
+      >
+      </i>
+    </a>
+  </li>
+</ul>
+<ng-content></ng-content>
+<ng-template dynamic-tabs #container></ng-template>
