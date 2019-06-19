@@ -1,5 +1,5 @@
 <div class="popup-wrapper" >
-  <div class="popup-container" #container [style.width.vw]="width" tabindex="0" cdkTrapFocus cdkDrag>
+  <div class="popup-container" #container [style.width.vw]="width" tabindex="0"  cdkDrag>
     <div class="ppoup-header" cdkDragHandle>
       <span>
         {{title}}
@@ -11,7 +11,7 @@
 
     </div>
     <div class="popup-body" >
-      <ng-template #popupBody></ng-template>
+      <ng-template #popupBody cdkTrapFocus></ng-template>
     </div>
   </div>
 </div>
