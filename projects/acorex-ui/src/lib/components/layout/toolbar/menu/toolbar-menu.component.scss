@@ -32,14 +32,18 @@
       font-size: var(--font-md-size);
       height: var(--el-lg-size);
       padding: 5px;
-      i.ax-menu-item-icon {
-        width: 20px;
-        height: 20px;
+      span.ax-toolbar-menu-item-text {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 5px 0 0;
+        i.ax-menu-item-icon {
+          width: 20px;
+          height: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 5px 0 0;
+        }
       }
+
       i.ax-menu-item-drop-icon {
         width: 20px;
         height: 20px;
