@@ -1,7 +1,5 @@
 @import "../../styles/master";
 
-
-
 .wrapper-layout {
   background: var(--white-color);
   width: 100vw;
@@ -80,7 +78,7 @@
           -webkit-box-shadow: 0 5px 4px -3px var(--shadow-color);
           -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
           border-top: 1px solid var(--border-color);
-          padding: 4px 10px;
+          padding: 0 10px;
           z-index: 2;
           button {
             i {
