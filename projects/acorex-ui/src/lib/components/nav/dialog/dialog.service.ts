@@ -53,9 +53,8 @@ export class DialogConfirmResult {
 
 
 @Injectable({ providedIn: "root" })
-export class DialogService 
-{
-    
+export class DialogService {
+
     constructor(private popupService: AXPopupService) {
 
     }
@@ -65,7 +64,8 @@ export class DialogService
             let popup = this.popupService.open(AXDialogComponent, {
                 title: title,
                 size: "sm",
-                closable: false, data: {
+                closable: false,
+                data: {
                     message: message,
                     buttons: [
                         {
@@ -89,7 +89,8 @@ export class DialogService
             let popup = this.popupService.open(AXDialogComponent, {
                 title: title,
                 size: "sm",
-                closable: false, data: {
+                closable: false,
+                data: {
                     message: message,
                     buttons: [
                         {

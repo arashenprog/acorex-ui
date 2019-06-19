@@ -46,6 +46,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
       });
     }
     this.content = com;
+    Object.assign(this.content,this.data);
     //
     if (com.onReceiveData && this.data) {
       com.onReceiveData(this.data);
@@ -61,7 +62,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   constructor(
     private resolver: ComponentFactoryResolver,
     private element: ElementRef
-  ) {}
+  ) { }
 
   @Input()
   width: number = 100;
@@ -99,7 +100,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   deactive() {
     this.isActivated = false;
   }
-  onFullScreen() {}
+  onFullScreen() { }
 
   resizeBody() {
     debugger;
@@ -112,11 +113,14 @@ export class AXPopupComponent implements OnInit, OnDestroy {
       ".page-content-wrap"
     );
     if (toolbar) {
-      popupContent.style.height =
-        pageContent.scrollHeight + toolbar.scrollHeight + "px";
-      pageContent.style.top = toolbar.scrollHeight + "px";
+      if (popupContent)
+        popupContent.style.height =
+          pageContent.scrollHeight + toolbar.scrollHeight + "px";
+      if (pageContent)
+        pageContent.style.top = toolbar.scrollHeight + "px";
     } else {
-      popupContent.style.height = pageContent.scrollHeight + "px";
+      if (popupContent && pageContent)
+        popupContent.style.height = pageContent.scrollHeight + "px";
     }
   }
 }
