@@ -23,6 +23,7 @@ export * from "./lib/components/layout/dock-layout/api";
 export * from "./lib/components/layout/widget/api";
 export * from "./lib/components/layout/toast/api";
 export * from "./lib/components/layout/toolbar/api";
+export * from "./lib/components/layout/tab-view/api";
 
 
 export * from "./lib/components/data/data-grid/api";
