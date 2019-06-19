@@ -6,9 +6,10 @@ import { AXButtonModule } from "../../form/button/button.module";
 import { AXPopupService } from './popup.service';
 import { DialogService } from '../dialog/dialog.service';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {A11yModule} from '@angular/cdk/a11y';
 @NgModule({
   declarations: [AXPopupComponent, AXDialogComponent],
-  imports: [CommonModule, AXButtonModule,DragDropModule],
+  imports: [CommonModule, AXButtonModule,DragDropModule,A11yModule],
   exports: [AXPopupComponent, AXDialogComponent],
   entryComponents:[AXPopupComponent,AXDialogComponent],
   providers: [AXPopupService,DialogService]
