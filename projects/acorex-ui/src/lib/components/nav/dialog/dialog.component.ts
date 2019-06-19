@@ -9,7 +9,7 @@ import { ButtonItem } from "../../../core/menu.class";
 })
 export class AXDialogComponent implements OnInit {
   @Input()
-  message: string = "متن توضیحات";
+  message: string;
 
   @Input()
   buttons: ButtonItem[] = [];

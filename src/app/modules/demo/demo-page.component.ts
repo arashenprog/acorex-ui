@@ -102,7 +102,10 @@ export class DemoPage extends AXBasePageComponent {
     });
   }
   openPopup() {
-    this.popup.open(AliPage, "Title Popup Here");
+    this.popup.open(DemoPage,{
+      title: "Title Popup Here",
+      size: "lg"
+    });
   }
   openDrawer() {
     this.drawerOpen = true;
