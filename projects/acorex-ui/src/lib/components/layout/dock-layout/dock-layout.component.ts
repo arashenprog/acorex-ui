@@ -47,14 +47,16 @@ export class AXDockLayoutComponent {
 
   ngAfterViewInit(): void {
     this.loadLayout();
-    let that = this;
-    // this.layout.on('stateChanged', function (e) {
-    //   debugger;
-    //   if (that.autoSave)
-    //     that.saveLayout();
-    // });
   }
 
+  private bindEvent(): void {
+    let that = this;
+    this.layout.on('stateChanged', function (e) {
+      that.saveLayout();
+    });
+  }
+
+  private saveChangeObserver: any;
   saveLayout(): void {
     let replacer = (name, val) => {
       if (name === 'componentState') {
@@ -63,10 +65,20 @@ export class AXDockLayoutComponent {
         return val;
       }
     };
-    //if (this.layout.isInitialised) {
-      let json = JSON.stringify(this.layout.toConfig(), replacer);
-      this.onSave.emit({ storageKey: this.storageKey, json: json })
-    //}
+    if (this.layout.isInitialised) {
+      if (!this.saveChangeObserver) {
+        Observable.create(observer => {
+          this.saveChangeObserver = observer;
+        })
+          .pipe(debounceTime(1000))
+          .pipe(distinctUntilChanged())
+          .subscribe(c => {
+            let json = JSON.stringify(this.layout.toConfig(), replacer);
+            this.onSave.emit({ storageKey: this.storageKey, json: json })
+          });
+      }
+      this.saveChangeObserver.next(new Date().getTime());
+    }
   }
 
   loadLayout(json?: any) {
@@ -92,11 +104,8 @@ export class AXDockLayoutComponent {
             if (l1 && l1.componentState) {
               l2.componentState = l1.componentState;
             }
-            else {
-              l2.removed = true;
-            }
           });
-          this.clearRemoved(state.content);
+          state = this.dropRemoved(state)
           this.config = state;
         }
       } catch (error) {
@@ -106,14 +115,18 @@ export class AXDockLayoutComponent {
     this.render();
   }
 
-  private clearRemoved(state: any[]) {
-    state.forEach(e => {
-      // if (e.type == "component")
-      //   output.push(e);
-      // if (e.content) {
-      //   this.findComponents(e.content, output);
-      // }
+  private dropRemoved(input: any): any {
+    debugger;
+    input.content = input.content.filter(c => c.componentState || c.content);
+    if (input.activeItemIndex && input.activeItemIndex >= input.content.length) {
+      input.activeItemIndex = 0;
+    }
+    input.content.forEach(e => {
+      if (e.content) {
+        e = this.dropRemoved(e);
+      }
     });
+    return input;
   }
 
   private findComponents(input: any[], output: any[]) {
@@ -127,9 +140,11 @@ export class AXDockLayoutComponent {
   }
 
   private render() {
-    if (this.layout)
+    if (this.layout) {
       this.layout.destroy();
+    }
     this.layout = new GoldenLayout(this.config, $('#' + this.uid));
+    this.bindEvent();
     this.layout.registerComponent('component', function (container, state) {
       if (state && state.render)
         state.render(container.getElement());
