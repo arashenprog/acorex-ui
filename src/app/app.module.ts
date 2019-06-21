@@ -62,7 +62,7 @@ const routes: Routes = [
       provide: "startUpTab",
       useValue: {
           content: DemoPage,
-          title: "داشبورد",
+          title: "Dashboard",
           closable: false,
           uid: "dashboard"
       }

@@ -125,6 +125,7 @@ export class DemoPage extends AXBasePageComponent {
       name: "edit",
       text: "Item",
       icon: "fas fa-save",
+      style:"ax-success",
       items: [
         {
           parentId: "1",
