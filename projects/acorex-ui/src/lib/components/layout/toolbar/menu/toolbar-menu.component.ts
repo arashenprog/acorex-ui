@@ -25,7 +25,11 @@ declare var $: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarMenuComponent extends AXToolbarItem {
-  constructor(private element: ElementRef, private zone: NgZone, private cdr: ChangeDetectorRef) {
+  constructor(
+    private element: ElementRef,
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef
+  ) {
     super();
     zone.runOutsideAngular(() => {
       window.document.addEventListener('click', this.clickOutside.bind(this));
@@ -48,6 +52,10 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
 
+  @Input()
+  public selection: "none" | "single" | "multiple" = "none"
+
+
   private _items: MenuItem[];
   @Input()
   public get items(): MenuItem[] {
@@ -59,8 +67,11 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
 
+
+
   onItemClick(e: MouseEvent, item?: MenuItem) {
     if (item && (!item.items || !item.items.length) && !item.disable) {
+      this.setSelection(item);
       this.itemClick.emit(item);
       this.closeOnOut();
       return;
@@ -125,6 +136,29 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     this.closeOnOut();
   }
 
+  private setSelection(item: MenuItem) {
+    if (item.groupName) {
+      if (this.selection == "multiple") {
+        item.selected = !item.selected;
+      }
+      if (this.selection == "single") {
+        item.selected=true;
+        this.unSelect(item, this.items);
+      }
+    }
+  }
+
+  private unSelect(item: MenuItem, items: MenuItem[]) {
+    //debugger;
+    items.forEach(i => {
+      if (i.groupName == item.groupName && i.name != item.name) {
+        i.selected = false;
+      }
+      if (i.items)
+        this.unSelect(item, i.items);
+    });
+  }
+
   private onResize(e: UIEvent) {
     this.closeOnOut();
     if (!this.resizeChangeObserver) {
@@ -169,7 +203,7 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
         liArray.forEach(li => {
           sum += Number(li.getAttribute("data-width"));
           if (sum + rootEl.scrollWidth > containerEl.clientWidth) {
-            rootEl.insertBefore(li,moreLiEl);
+            rootEl.insertBefore(li, moreLiEl);
           }
         });
       }

@@ -25,7 +25,6 @@ export class AXListComponent extends AXDataListComponent {
   constructor() {
     super();
   }
-  @Input() title: string;
 
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
 

@@ -9,6 +9,7 @@ export class BaseMenuItem {
   disable?: boolean = false;
   selected?: boolean = false;
   type?: string = "primary";
+  groupName?:string;
   data?: any;
   style?:string;
 }
