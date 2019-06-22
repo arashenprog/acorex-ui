@@ -27,14 +27,15 @@
             </ax-dock-content>
             <ax-dock-content caption="Calendar">
               <ng-template>
-                C
+                <ax-scheduler>
+                  <ax-scheduler-views>
+                    <ax-scheduler-view view="day"></ax-scheduler-view>
+                    <ax-scheduler-view view="week"></ax-scheduler-view>
+                  </ax-scheduler-views>
+                </ax-scheduler>
               </ng-template>
             </ax-dock-content>
-            <!-- <ax-dock-content caption="Staff">
-              <ng-template>
-                S
-              </ng-template>
-            </ax-dock-content> -->
+           
           </ax-dock-panel>
         </ax-dock-panel>
       </ax-dock-layout>
