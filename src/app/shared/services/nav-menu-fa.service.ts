@@ -12,7 +12,7 @@ export class NavMenuServiceFa extends AXNavMenuService {
   private mockItems: MenuItem[] = [
     {
       name: "dashboard",
-      text: "داشبورد",
+      text: "Dashboard",
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true

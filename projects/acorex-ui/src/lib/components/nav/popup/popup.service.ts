@@ -71,7 +71,6 @@ export class AXPopupService {
   ): AXPopupResult;
 
   open(arg1, arg2): AXPopupResult {
-    debugger;
     const options: any = { closable: true, size: "md", maximizable: false };
     if (typeof arg2 == "string") {
       options.title = arg2;

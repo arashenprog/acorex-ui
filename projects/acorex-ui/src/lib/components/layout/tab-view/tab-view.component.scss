@@ -25,9 +25,7 @@ ax-tab-view {
     border-color: var(--primary-color) !important;
   }
   .nav-link {
-    border-top-left-radius: 10px !important;
-    border-top-right-radius: 10px !important;
-    padding: 5px 1rem !important;
+    padding: 1px 15px !important;
     &:hover {
       border-color: var(--primary-color) !important;
     }

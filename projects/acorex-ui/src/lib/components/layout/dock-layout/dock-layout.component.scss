@@ -23,6 +23,9 @@
   }
 }
 .lm_tab {
+  border-top-right-radius: 4px !important;
+  border-top-left-radius: 4px !important;
+  border: none !important;
   cursor: pointer;
   height: 18px !important;
   padding: 0 25px 0px 10px !important;
@@ -32,6 +35,8 @@
   border-color: var(--border-color) !important;
 }
 .lm_close_tab {
-  top: 4px!important;
-  right: 6px!important;
+  width: 8px !important;
+  height: 7px !important;
+  top: 6px !important;
+  right: 6px !important;
 }

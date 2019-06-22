@@ -116,7 +116,6 @@ export class AXDockLayoutComponent {
   }
 
   private dropRemoved(input: any): any {
-    debugger;
     input.content = input.content.filter(c => c.componentState || c.content);
     if (input.activeItemIndex && input.activeItemIndex >= input.content.length) {
       input.activeItemIndex = 0;
