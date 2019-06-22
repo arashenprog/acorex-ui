@@ -22,6 +22,6 @@ export class AXRowComponent {
   constructor(private element: ElementRef) {}
 
   ngAfterViewInit() {
-    this.setHeight();
+    setTimeout(_=> this.setHeight());
   }
 }

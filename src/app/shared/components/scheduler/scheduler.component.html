@@ -1,3 +1,6 @@
 <div class="ax-scheduler">
+    <div class="ax-scheduler-toolbar" *ngIf="toolbar">
+        <ng-content select="ax-toolbar"></ng-content>
+    </div>
     <ng-content select="ax-scheduler-views"></ng-content>
 </div>

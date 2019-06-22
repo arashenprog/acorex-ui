@@ -14,5 +14,18 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
     @Input()
     visibleDayCount: number = 1;
 
-    ngOnInit(): void { }
+    days: any[] = []
+
+    times: any[] = []
+
+    ngOnInit(): void {
+        let startDate = new Date();
+        for (let i = 0; i < this.visibleDayCount; i++) {
+            this.days.push(startDate);
+            startDate=new Date(startDate.setDate(startDate.getDate() + 1));
+        }
+        for (let i = 0; i < 24; i++) {
+            this.times.push(('0' + i).slice(-2) + ":00");
+        }
+    }
 }

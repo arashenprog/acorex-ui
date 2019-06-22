@@ -1,1 +1,16 @@
-{{timeSlot}} - {{visibleDayCount}}
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <th></th>
+            <th *ngFor="let d of days">{{d | date: 'dd MMM'}}</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of times">
+               <td>
+                {{t}}
+               </td>
+               <td *ngFor="let d of days"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
