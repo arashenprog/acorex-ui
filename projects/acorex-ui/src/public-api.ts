@@ -30,5 +30,7 @@ export * from "./lib/components/data/data-grid/api";
 export * from "./lib/components/data/data-list/api";
 export * from "./lib/components/data/data-source/api";
 
+export * from "./lib/components/calendar/scheduler/api";
+
 
 export * from "./lib/acorex-ui.module";

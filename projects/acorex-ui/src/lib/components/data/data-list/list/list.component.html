@@ -2,8 +2,8 @@
   <div class="ax-list-toolbar" *ngIf="toolbar">
     <ng-content select="ax-toolbar"></ng-content>
   </div>
-  <div class="ax-list-container" [ngClass]="style" cdkDropList [id]="dropId" [cdkDropListConnectedTo]="connectedList"  (cdkDropListDropped)="dragDrop($event)"
-    [cdkDropListData]="items">
+  <div class="ax-list-container" [ngClass]="style" cdkDropList [id]="dropId" [cdkDropListConnectedTo]="connectedList"
+    (cdkDropListDropped)="dragDrop($event)" [cdkDropListData]="items">
     <div class="ax-list-item" *ngFor="let item of items" cdkDrag [cdkDragData]="item">
       <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
       </ng-container>

@@ -5,7 +5,6 @@ import { DashboardPage } from './dashboard/dashboard.page';
 import { AcorexSpaModule } from 'acorex-spa';
 import { ACoreXUIModule } from 'acorex-ui';
 import { AliPage } from './ali/ali.page';
-import { AXSchedulerModule } from 'src/app/shared/components/scheduler/api';
 
 @NgModule({
     declarations: [
@@ -16,8 +15,7 @@ import { AXSchedulerModule } from 'src/app/shared/components/scheduler/api';
     imports: [
         CommonModule,
         ACoreXUIModule,
-        AcorexSpaModule,
-        AXSchedulerModule
+        AcorexSpaModule
     ],
     exports: [],
     providers: [],

@@ -1,0 +1,17 @@
+<div class="view">
+    <table class="header">
+        <thead>
+
+            <th *ngFor="let d of weekDays" class="header-cell">
+                {{d}}
+            </th>
+        </thead>
+    </table>
+    <table class="body">
+        <tbody>
+            <tr *ngFor="let t of times">
+                <td *ngFor="let d of weekDays" class="slot-cell"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

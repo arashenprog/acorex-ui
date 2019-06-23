@@ -17,7 +17,6 @@ import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service"
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { DemoPage } from './modules/demo/demo-page.component';
-import { AXSchedulerModule } from './shared/components/scheduler/api';
 
 const routes: Routes = [
   {
@@ -46,7 +45,6 @@ const routes: Routes = [
     FormsModule,
     ACoreXUIModule,
     AcorexSpaModule,
-    AXSchedulerModule,
     DemoModule,
     RouterModule.forRoot(routes),
     AngularSplitModule.forRoot(),

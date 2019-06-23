@@ -1,10 +1,10 @@
-import { Component, OnInit, Attribute, Input, ElementRef } from '@angular/core';
+import { Component, OnInit,  Input, ElementRef } from '@angular/core';
 
 @Component({
-    selector: 'ax-scheduler-day-time-view',
-    templateUrl: './scheduler-day-time-view.component.html'
+    selector: 'ax-scheduler-month-view',
+    templateUrl: './scheduler-month-view.component.html'
 })
-export class AXSchedulerDayTimeViewComponent implements OnInit {
+export class AXSchedulerMonthViewComponent implements OnInit {
     constructor(private elm: ElementRef<HTMLDivElement>) { }
 
     @Input()
@@ -14,12 +14,10 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
     @Input()
     interval: number = 1;
 
-    days: any[] = []
+    weekDays: any[] = ['Sunday','Moday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
     times: any[] = []
 
-    //private hScroll: HTMLElement;
-    private vScroll: HTMLElement;
     private container: HTMLElement;
     private view: HTMLElement;
     private header: HTMLElement;
@@ -27,25 +25,16 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
 
     ngOnInit(): void {
         let startDate = new Date();
-        for (let i = 0; i < this.interval; i++) {
-            this.days.push(startDate);
-            startDate = new Date(startDate.setDate(startDate.getDate() + 1));
-        }
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i < 5; i++) {
             this.times.push(('0' + i).slice(-2) + ":00");
         }
     }
 
     ngAfterViewInit(): void {
-        this.vScroll = this.elm.nativeElement.querySelector<HTMLElement>(".v-scroll");
-        //this.hScroll = this.elm.nativeElement.querySelector<HTMLElement>(".h-scroll");
         this.header = this.elm.nativeElement.querySelector<HTMLElement>(".header");
         this.body = this.elm.nativeElement.querySelector<HTMLElement>(".body");
         this.view = this.elm.nativeElement.querySelector<HTMLElement>(".view");
         this.container = this.elm.nativeElement.closest(".view-container") as HTMLElement;
-        // this.hScroll.addEventListener("scroll", () => {
-        //     this.updateSize();
-        // });
     }
 
     ngAfterViewChecked(): void {
@@ -59,8 +48,7 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
             let td = firstTr.children.item(index++) as HTMLElement;
             td.style.width = `${c.offsetWidth}px`;
         })
-        this.vScroll.style.height = `calc(100% - ${this.header.clientHeight}px)`;
-        //this.vScroll.style.width = `${this.hScroll.clientWidth + this.hScroll.scrollLeft}px`;
+        this.body.style.height = `calc(100% - ${this.header.clientHeight}px)`;
         this.view.style.height = `${this.container.clientHeight}px`;
     }
 }

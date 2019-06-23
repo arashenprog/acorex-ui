@@ -1,26 +1,29 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AXSchedulerComponent } from './scheduler.component';
 import { AXSchedulerViewsComponent } from './scheduler-views.components';
 import { AXSchedulerViewComponent } from './scheduler-view.component';
 import { AXSchedulerDayTimeViewComponent } from './views/scheduler-day-time-view.component';
 import { AXToolbarSchedulerViewsComponent } from './toolbars/scheduler-toolbar-views';
-import { AXToolbarModule } from 'acorex-ui';
+import { AXToolbarModule } from '../../layout/toolbar/toolbar.module';
+import { AXCoreModule } from '../../../core/core.module';
+import { AXSchedulerMonthViewComponent } from './views/scheduler-month-view.component';
 
 @NgModule({
     declarations: [
         AXSchedulerComponent,
-        AXSchedulerViewsComponent,
         AXSchedulerViewComponent,
+        AXSchedulerViewsComponent,
         AXSchedulerDayTimeViewComponent,
+        AXSchedulerMonthViewComponent,
         AXToolbarSchedulerViewsComponent
     ],
-    imports: [CommonModule,AXToolbarModule],
+    imports: [AXCoreModule,AXToolbarModule ],
     exports: [
         AXSchedulerComponent,
-        AXSchedulerViewsComponent,
         AXSchedulerViewComponent,
+        AXSchedulerViewsComponent,
         AXSchedulerDayTimeViewComponent,
+        AXSchedulerMonthViewComponent,
         AXToolbarSchedulerViewsComponent
     ],
     providers: [],

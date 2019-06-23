@@ -42,6 +42,9 @@ import { AXDockLayoutModule } from "./components/layout/dock-layout/dock-layout.
 import { AXTreeListModule } from "./components/data/tree-list/tree-list.module";
 
 import * as $ from "jquery";
+import { AXSchedulerModule } from "./components/calendar/scheduler/scheduler.module";
+
+
 // It is required to have JQuery as global in the window object.
 window["$"] = $;
 
@@ -83,7 +86,8 @@ window["$"] = $;
     AXDockLayoutModule,
     AXHttpModule,
     AXDataSourceModule,
-    AXTreeListModule
+    AXTreeListModule,
+    AXSchedulerModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -121,7 +125,8 @@ window["$"] = $;
     AXDockLayoutModule,
     AXHttpModule,
     AXDataSourceModule,
-    AXTreeListModule
+    AXTreeListModule,
+    AXSchedulerModule
   ],
   providers: [
     {

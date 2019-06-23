@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { AXToolbarItem, MenuItem } from 'acorex-ui';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { AXToolbarItem } from '../../../layout/toolbar/toolbar-item';
+import { MenuItem } from '../../../../core/menu.class';
 
 
 

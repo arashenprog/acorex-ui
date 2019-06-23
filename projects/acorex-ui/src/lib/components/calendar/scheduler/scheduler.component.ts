@@ -1,7 +1,8 @@
 import { Component, OnInit, ContentChild, Input, ViewEncapsulation, ElementRef } from '@angular/core';
 import { AXSchedulerViewsComponent } from './scheduler-views.components';
-import { AXToolbarComponent, MenuItem } from 'acorex-ui';
 import { AXToolbarSchedulerViewsComponent } from './toolbars/scheduler-toolbar-views';
+import { MenuItem } from '../../../core/menu.class';
+import { AXToolbarComponent } from '../../layout/toolbar/toolbar.component';
 
 @Component({
     selector: 'ax-scheduler',
@@ -56,12 +57,11 @@ export class AXSchedulerComponent implements OnInit {
                 this.viewItems.push({
                     groupName: "view",
                     name: v.name,
-                    text: v.title
+                    text: v.caption
                 })
             });
            
             this.toolbarView.onViewChanged.subscribe(c => {
-                debugger;
                 this.currentView = c;
             });
             this.toolbarView.items = this.viewItems;

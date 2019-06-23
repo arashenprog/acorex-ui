@@ -2,7 +2,7 @@
     <table class="header">
         <thead>
             <th class="time-column"></th>
-            <th *ngFor="let d of days">
+            <th *ngFor="let d of days" class="header-cell">
                 {{d | date: 'MMM'}}<br>
                 {{d | date: 'dd'}}
             </th>
@@ -15,7 +15,7 @@
                     <td>
                         {{t}}
                     </td>
-                    <td *ngFor="let d of days"></td>
+                    <td *ngFor="let d of days" class="slot-cell"></td>
                 </tr>
             </tbody>
         </table>
