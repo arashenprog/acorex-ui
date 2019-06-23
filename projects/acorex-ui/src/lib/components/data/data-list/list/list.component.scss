@@ -1,14 +1,31 @@
 .ax-list-container {
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 45px);
-  overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 45px);
+    min-height: 50px;
+    overflow-y: auto;
 }
 
 .ax-list-toolbar {
-  padding: 4px 5px;
-  background: #fff;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  margin-bottom: 10px;
+    padding: 4px 5px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+    transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);    
+}
+
+.drop-placeholder {
+    background: var(--gray-color);
+    border: dotted 1px var(--border-color);
+    min-height: 60px;
+    margin-bottom: 10px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
