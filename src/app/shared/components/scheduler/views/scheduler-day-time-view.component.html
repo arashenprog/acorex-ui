@@ -1,16 +1,23 @@
-<div>
-    <table class="table table-bordered">
+<div class="view">
+    <table class="header">
         <thead>
-            <th></th>
-            <th *ngFor="let d of days">{{d | date: 'dd MMM'}}</th>
+            <th class="time-column"></th>
+            <th *ngFor="let d of days">
+                {{d | date: 'MMM'}}<br>
+                {{d | date: 'dd'}}
+            </th>
         </thead>
-        <tbody>
-            <tr *ngFor="let t of times">
-               <td>
-                {{t}}
-               </td>
-               <td *ngFor="let d of days"></td>
-            </tr>
-        </tbody>
     </table>
+    <div class="v-scroll">
+        <table class="body">
+            <tbody>
+                <tr *ngFor="let t of times">
+                    <td>
+                        {{t}}
+                    </td>
+                    <td *ngFor="let d of days"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

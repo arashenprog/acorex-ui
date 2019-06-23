@@ -5,7 +5,7 @@
   </ax-toolbar>
   <ax-page-content>
 
-    <div style="width: 100%; height: calc(100vh - 135px);">
+    <div style="width: 100%; height: calc(100vh - 140px);">
       <ax-dock-layout #layout autoSave="true" storageKey="Test">
         <ax-dock-panel type="row">
           <ax-dock-panel type="stack" [size]="20">
@@ -30,12 +30,19 @@
               <ng-template>
                 <ax-scheduler [currentView]="view">
                   <ax-toolbar>
-                    <ax-toolbar-menu [items]="viewItems" selection="single" (itemClick)="viewOnlick($event)">
-                    </ax-toolbar-menu>
+                    <div></div>
+                    <div></div>
+                    <div style="display: flex">
+                      <ax-toolbar-scheduler-view>
+                      </ax-toolbar-scheduler-view>
+                      <ax-toolbar-search></ax-toolbar-search>
+                    </div>
                   </ax-toolbar>
                   <ax-scheduler-views>
-                    <ax-scheduler-view view="day"></ax-scheduler-view>
-                    <ax-scheduler-view view="week"></ax-scheduler-view>
+                    <ax-scheduler-view type="day" name="day" title="Day"></ax-scheduler-view>
+                    <ax-scheduler-view type="day" name="day3" title="3 Days" interval="3"></ax-scheduler-view>
+                    <ax-scheduler-view type="week" name="week" title="Week"></ax-scheduler-view>
+                    <ax-scheduler-view type="week" name="week2" title="2 Weeks" interval="2"></ax-scheduler-view>
                   </ax-scheduler-views>
                 </ax-scheduler>
               </ng-template>

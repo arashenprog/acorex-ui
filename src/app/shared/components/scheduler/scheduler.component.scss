@@ -1,12 +1,52 @@
-.ax-scheduler-toolbar {
-    padding: 4px 5px;
-    background: #fff;
-    border: 1px solid var(--border-color);
-    border-bottom: 0;
-    -webkit-border-top-left-radius: 4px;
-    -webkit-border-top-right-radius: 4px;
-    -moz-border-radius-topleft: 4px;
-    -moz-border-radius-topright: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
+.ax-scheduler {
+    height: 100%;
+    width: 100%;
+
+    .ax-scheduler-toolbar {
+        padding: 4px 5px;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-bottom: 0;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px;
+        -moz-border-radius-topleft: 4px;
+        -moz-border-radius-topright: 4px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px 16px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+  
+    .view-container {
+      height: 100%;
+    }
+
+    .time-column {
+        width: 80px;
+    }
+
+    .h-scroll {
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: 100%;
+    }
+
+    .v-scroll {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}

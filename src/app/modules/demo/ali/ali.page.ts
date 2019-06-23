@@ -42,26 +42,7 @@ export class AliPage extends AXBasePageComponent {
       groupName: "mode2",
     }
   ]
-  viewItems: MenuItem[] = [
-    {
-      icon: "fas fa-chart-line",
-      name: "day",
-      text: "Day",
-      groupName: "mode",
-    },
-    {
-      icon: "fas fa-chart-pie",
-      name: "week",
-      selected: true,
-      text: "Week",
-      groupName: "mode",
-    }
-  ]
 
 
-  viewOnlick(e: MenuItem) {
-    debugger;
-    this.view = e.name;
-  }
 
 }
