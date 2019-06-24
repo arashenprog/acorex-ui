@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "ng serve --port 4040 --open",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "@powershell .\\deploy.ps1",
+    "ui": "@powershell .\\ui.ps1",
+    "spa": "@powershell .\\spa.ps1"
   },
   "private": true,
   "dependencies": {
