@@ -65,7 +65,6 @@ export class AXSchedulerComponent implements OnInit {
                 this.currentView = c;
             });
             this.toolbarView.items = this.viewItems;
-            debugger;
             this.setView(this.currentView);
         });
     }
