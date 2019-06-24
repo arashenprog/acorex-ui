@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
 import { DemoPage } from "../../modules/demo/demo-page.component";
-import { AliPage } from 'src/app/modules/demo/ali/ali.page';
+import { AliPage } from "src/app/modules/demo/ali/ali.page";
+import { TestPage } from "src/app/modules/demo/test-page/test-page";
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -22,14 +23,23 @@ export class NavMenuService extends AXNavMenuService {
     {
       name: "ali",
       text: "Ali Work Page",
-      icon: "fas fa-tachometer-alt",
+      icon: "fab fa-artstation",
       id: "00",
       visible: true,
-      data:{page:AliPage}
+      data: { page: AliPage }
+    },
+    {
+      name: "test",
+      text: "Test Page",
+      icon: "fas fa-vial",
+      id: "00",
+      visible: true,
+      data: { page: TestPage }
     },
     {
       name: "components_demo",
       text: "Components Demo",
+      icon: "fas fa-smile-wink",
       id: "0_0",
       visible: true,
       data: { page: DemoPage }
@@ -39,7 +49,7 @@ export class NavMenuService extends AXNavMenuService {
       text: "Leads",
       id: "0_1",
       parentId: "0",
-      visible: true,
+      visible: true
     },
     {
       name: "quotes",
@@ -288,7 +298,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "0",
       visible: true
     }
-  ]
+  ];
   getItems(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(this.mockItems);
@@ -304,7 +314,6 @@ export class NavMenuService extends AXNavMenuService {
       }
     });
   }
-
 
   setFavorites(menu: MenuItem, value: boolean): PromisResult<boolean> {
     let favs: string[] = localStorage.getItem("favs")
@@ -324,8 +333,8 @@ export class NavMenuService extends AXNavMenuService {
   serach(search: string): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(
-        this.mockItems.filter(c =>
-          c.text.toLowerCase().includes(search.toLowerCase()) && c.parentId
+        this.mockItems.filter(
+          c => c.text.toLowerCase().includes(search.toLowerCase()) && c.parentId
         )
       );
     });

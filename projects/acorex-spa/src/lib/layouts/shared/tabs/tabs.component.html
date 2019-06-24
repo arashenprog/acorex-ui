@@ -1,16 +1,16 @@
-<div class="tabs" (wheel)="onMouseWheel($event)">
-    <div
-      class="tab-item"
-      [class.active]="tab.active"
-      *ngFor="let tab of tabService.tabs"
-      (click)="onTabClick(tab,$event)"
-    >
-      <span>{{ tab.title }}</span>
-      <i
-        *ngIf="tab.closable"
-        class="fas fa-times"
-        (click)="tabService.close(tab, {})"
-      ></i>
-      <!-- fa-circle |   fa-spinner fa-spin -->
-    </div>
+<div class="tabs">
+  <div
+    class="tab-item"
+    [class.active]="tab.active"
+    *ngFor="let tab of tabService.tabs"
+    (click)="onTabClick(tab, $event)"
+  >
+    <span>{{ tab.title }}</span>
+    <i
+      *ngIf="tab.closable"
+      class="fas fa-times"
+      (click)="tabService.close(tab, {})"
+    ></i>
+    <!-- fa-circle |   fa-spinner fa-spin -->
   </div>
+</div>

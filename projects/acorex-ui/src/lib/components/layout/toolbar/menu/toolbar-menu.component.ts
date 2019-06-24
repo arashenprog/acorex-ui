@@ -9,10 +9,10 @@ import {
   NgZone,
   ViewChild,
   ChangeDetectorRef
-} from '@angular/core';
-import { AXToolbarItem } from '../toolbar-item';
-import { MenuItem } from '../../../../core/menu.class';
-import { Observable } from 'rxjs';
+} from "@angular/core";
+import { AXToolbarItem } from "../toolbar-item";
+import { MenuItem } from "../../../../core/menu.class";
+import { Observable } from "rxjs";
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
 declare var $: any;
 
@@ -32,8 +32,8 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   ) {
     super();
     zone.runOutsideAngular(() => {
-      window.document.addEventListener('click', this.clickOutside.bind(this));
-      window.addEventListener('resize', this.onResize.bind(this));
+      window.document.addEventListener("click", this.clickOutside.bind(this));
+      window.addEventListener("resize", this.onResize.bind(this));
     });
   }
 
@@ -51,10 +51,8 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-
   @Input()
-  public selection: "none" | "single" | "multiple" = "none"
-
+  public selection: "none" | "single" | "multiple" = "none";
 
   private _items: MenuItem[];
   @Input()
@@ -65,9 +63,6 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     this._items = v;
     this.cdr.detectChanges();
   }
-
-
-
 
   onItemClick(e: MouseEvent, item?: MenuItem) {
     if (item && (!item.items || !item.items.length) && !item.disable) {
@@ -82,43 +77,44 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     if (ul) {
       let r: boolean = false;
       if (ul.classList.contains("collapsed")) {
-        if (li.parentNode == this.root.nativeElement)
-          ul.classList.add("first");
+        if (li.parentNode == this.root.nativeElement) ul.classList.add("first");
 
         ul.classList.remove("collapsed");
         let posLi = li.getBoundingClientRect();
         let y = 0;
         let x = 0;
         if (!ul.classList.contains("first")) {
-          y = (posLi.top);
+          y = posLi.top;
           x = posLi.left + li.clientWidth;
-        }
-        else {
+        } else {
           x = posLi.left;
-          y = (posLi.top + li.clientHeight);
+          y = posLi.top + li.clientHeight;
         }
 
-        if (x + ul.clientWidth > window.innerWidth ||
-          (ul.parentElement.closest("ul.sub-menu") && ul.parentElement.closest("ul.sub-menu").classList.contains('revert'))
+        if (
+          x + ul.clientWidth > window.innerWidth ||
+          (ul.parentElement.closest("ul.sub-menu") &&
+            ul.parentElement
+              .closest("ul.sub-menu")
+              .classList.contains("revert"))
         ) {
           let parentPost = ul.parentElement.getBoundingClientRect();
-          if (ul.classList.contains('first'))
-            x = window.innerWidth - (parentPost.right);
+          if (ul.classList.contains("first"))
+            x = window.innerWidth - parentPost.right;
           else
-            x = window.innerWidth - (parentPost.right) + ul.parentElement.clientWidth;
+            x =
+              window.innerWidth -
+              parentPost.right +
+              ul.parentElement.clientWidth;
 
           r = true;
-          ul.classList.add('revert');
+          ul.classList.add("revert");
         }
 
         ul.style.top = y + "px";
-        if (r)
-          ul.style.right = x + "px";
-        else
-          ul.style.left = x + "px";
-      }
-      else {
-
+        if (r) ul.style.right = x + "px";
+        else ul.style.left = x + "px";
+      } else {
       }
     }
     e.stopPropagation();
@@ -127,8 +123,7 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   private closeOnOut(el?: HTMLElement) {
     let root = this.element.nativeElement as HTMLElement;
     root.querySelectorAll("ul.sub-menu").forEach(c => {
-      if (!c.contains(el))
-        c.classList.add("collapsed");
+      if (!c.contains(el)) c.classList.add("collapsed");
     });
   }
 
@@ -142,20 +137,18 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
         item.selected = !item.selected;
       }
       if (this.selection == "single") {
-        item.selected=true;
+        item.selected = true;
         this.unSelect(item, this.items);
       }
     }
   }
 
   private unSelect(item: MenuItem, items: MenuItem[]) {
-    //debugger;
     items.forEach(i => {
       if (i.groupName == item.groupName && i.name != item.name) {
         i.selected = false;
       }
-      if (i.items)
-        this.unSelect(item, i.items);
+      if (i.items) this.unSelect(item, i.items);
     });
   }
 
@@ -173,7 +166,6 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     }
 
     this.resizeChangeObserver.next(e);
-
   }
 
   applyResponsive() {
@@ -182,7 +174,10 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
       let rootEl = this.root.nativeElement;
       let moreUiEl = this.moreUL.nativeElement;
       let moreLiEl = this.moreLI.nativeElement;
-      let liArray = [].slice.call(rootEl.querySelectorAll("li")).filter(c => !c.classList.contains("more") && c.parentNode === rootEl).reverse() as Array<HTMLLIElement>;
+      let liArray = [].slice
+        .call(rootEl.querySelectorAll("li"))
+        .filter(c => !c.classList.contains("more") && c.parentNode === rootEl)
+        .reverse() as Array<HTMLLIElement>;
       rootEl.querySelector<HTMLLIElement>(".more").style.display = "none";
       let diff = Math.abs(rootEl.scrollWidth - containerEl.clientWidth);
       if (containerEl.clientWidth < rootEl.scrollWidth) {
@@ -196,9 +191,10 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
             moreUiEl.prepend(li);
           }
         });
-      }
-      else if (moreUiEl.querySelectorAll("li").length) {
-        let liArray = [].slice.call(moreUiEl.querySelectorAll("li")).filter(c => c.parentNode === moreUiEl) as Array<HTMLLIElement>;
+      } else if (moreUiEl.querySelectorAll("li").length) {
+        let liArray = [].slice
+          .call(moreUiEl.querySelectorAll("li"))
+          .filter(c => c.parentNode === moreUiEl) as Array<HTMLLIElement>;
         let sum = 0;
         liArray.forEach(li => {
           sum += Number(li.getAttribute("data-width"));
@@ -216,9 +212,8 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
   ngOnDestroy(): void {
     this.zone.runOutsideAngular(() => {
-      window.document.removeEventListener('click', this.clickOutside);
-      window.removeEventListener('resize', this.onResize);
+      window.document.removeEventListener("click", this.clickOutside);
+      window.removeEventListener("resize", this.onResize);
     });
   }
-
 }

@@ -3,13 +3,13 @@ $size-suffix: size;
 //
 $white: #fff;
 $black: #000;
-$primary: #3949ab;
+$primary: rgb(0, 110, 255);
 $secondary: #444444;
 $gray: #dbdbdb;
 $danger: #db0f23;
 $success: #2e933c;
 $warning: #faa916;
-$info: #2774cc;
+$info: #2732cc;
 $shadow: rgba(0, 0, 0, 0.1);
 //
 $colors: (
@@ -307,14 +307,27 @@ body {
           color: var(--#{$name}-fore-#{$color-suffix});
           background-color: var(--#{$name}-#{$color-suffix});
           border-color: var(--#{$name}-#{$color-suffix});
+          &:hover {
+            background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+            border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
+          }
+          &:disabled {
+            background-color: var(--#{$name}-light-#{$color-suffix}) !important;
+            border-color: var(--#{$name}-light-#{$color-suffix}) !important;
+          }
         }
-        .btn-#{$name}:hover {
-          background-color: var(--#{$name}-dark-#{$color-suffix}) !important;
-          border-color: var(--#{$name}-dark-#{$color-suffix}) !important;
-        }
-        .btn-#{$name}:disabled {
-          background-color: var(--#{$name}-light-#{$color-suffix}) !important;
-          border-color: var(--#{$name}-light-#{$color-suffix}) !important;
+        .ax-#{$name} {
+          background-color: var(--#{$name}-color) !important;
+          color: var(--#{$name}-fore-color) !important;
+          &:hover {
+            background-color: var(--#{$name}-dark-color) !important;
+          }
+          &:focus {
+            background-color: var(--#{$name}-light-color) !important;
+          }
+          &:disabled {
+            background-color: var(--#{$name}-light-color) !important;
+          }
         }
       } @else {
         .#{$name}-#{$subname} {
@@ -479,13 +492,5 @@ body {
   }
   ax-col {
     margin-bottom: var(--sp-md-size);
-  }
-}
-
-.ax-success {
-  background-color: var(--success-color) !important;
-  color: var(--white-color) !important;
-  &:hover {
-    background-color: color-mod(var(--success-color) contrast(20%)) !important;
   }
 }

@@ -10,13 +10,14 @@ import {
   AXMobileLayoutComponent
 } from "acorex-spa";
 import { FormsModule } from "@angular/forms";
-import { AngularSplitModule } from 'angular-split';
+import { AngularSplitModule } from "angular-split";
 import { NavMenuService } from "./shared/services/nav-menu.service";
 import { AXHeaderBarMenuService } from "acorex-spa";
 import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service";
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
-import { DemoPage } from './modules/demo/demo-page.component';
+import { DemoPage } from "./modules/demo/demo-page.component";
+import { TestPage } from "./modules/demo/test-page/test-page";
 
 const routes: Routes = [
   {
@@ -33,8 +34,8 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo:"layout2",
-    pathMatch:"full"
+    redirectTo: "layout2",
+    pathMatch: "full"
   }
 ];
 
@@ -47,7 +48,7 @@ const routes: Routes = [
     AcorexSpaModule,
     DemoModule,
     RouterModule.forRoot(routes),
-    AngularSplitModule.forRoot(),
+    AngularSplitModule.forRoot()
   ],
   providers: [
     {
@@ -61,12 +62,12 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-          content: DemoPage,
-          title: "Dashboard",
-          closable: false,
-          uid: "dashboard"
+        content: DemoPage,
+        title: "Dashboard",
+        closable: false,
+        uid: "dashboard"
       }
-  }
+    }
   ],
   entryComponents: [],
   bootstrap: [AppComponent]

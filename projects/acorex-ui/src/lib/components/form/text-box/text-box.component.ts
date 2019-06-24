@@ -6,7 +6,14 @@ import {
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
-  encapsulation: ViewEncapsulation.None,
+  styles: [
+    `
+      .no-label {
+        padding-top: 6px !important;
+      }
+    `
+  ],
+
   providers: [
     { provide: AXValidatableComponent, useExisting: AXTextBoxComponent }
   ]
@@ -16,5 +23,4 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent {
   get maskInner() {
     return this.mask ? this.mask : false;
   }
-
 }

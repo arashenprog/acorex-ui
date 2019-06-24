@@ -1,8 +1,14 @@
-import { Input, Output, EventEmitter, ContentChild, ViewChild, ElementRef } from "@angular/core";
+import {
+  Input,
+  Output,
+  EventEmitter,
+  ContentChild,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { ButtonItem } from "./menu.class";
-import { AXValidationComponent } from '../components/form/validation/validation.component';
-import { IValidationRuleResult } from '../components/form/validation/validation.classs';
-
+import { AXValidationComponent } from "../components/form/validation/validation.component";
+import { IValidationRuleResult } from "../components/form/validation/validation.classs";
 
 export class PromisResult<T> {
   private _executor: (then: (e?: T) => void) => void;
@@ -21,9 +27,9 @@ export class PromisResult<T> {
   }
 
   static resolve<T>(value: T): PromisResult<T> {
-    const r = new PromisResult<T>((z => {
+    const r = new PromisResult<T>(z => {
       z(value);
-    })).then(c => { });
+    }).then(c => {});
     return r;
   }
 }
@@ -37,7 +43,7 @@ export class AXBaseComponent {
   @Input() rtlEnabled: boolean = true;
   @Input() readOnly: boolean = false;
 
-  focus(): void { }
+  focus(): void {}
 
   protected _isFocused: boolean = false;
 
@@ -51,12 +57,9 @@ export class AXBaseComponent {
 
   onFocus(e) {
     this._isFocused = true;
-    if (this.input)
-      this.input.nativeElement.focus();
+    if (this.input) this.input.nativeElement.focus();
   }
 }
-
-
 
 export class AXButtonBaseComponent extends AXBaseComponent {
   @Input() text: string;
@@ -71,11 +74,7 @@ export abstract class AXValidatableComponent extends AXBaseComponent {
   protected validator: AXValidationComponent;
 }
 
-
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
-
-
-
   @Output()
   textChange: EventEmitter<string> = new EventEmitter<string>();
 
@@ -89,22 +88,19 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
     this.textChange.emit(v);
   }
 
-
   @Input() label: string;
   @Input() autocomplete: boolean = false;
   @Input() placeholder: string = "";
   @Input() showClear: boolean = false;
 
   clearText(): void {
-    this.text = ""
+    this.text = "";
   }
 
   onBlur(e) {
     super.onBlur(e);
     this.validate();
   }
-
-
 
   validate(): Promise<IValidationRuleResult> {
     return new Promise<IValidationRuleResult>(resolve => {
@@ -130,7 +126,6 @@ export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
 }
 
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
-
   @Input() label: string = "";
   @Input() value: any = null;
 
@@ -151,12 +146,9 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   }
 }
 
-
-
 export abstract class AXLoadingBaseComponent extends AXBaseComponent {
   @Input() text: string;
   @Input() color: string = "#0062cc";
-
 }
 
 export abstract class AXCardBaseComponent extends AXBaseComponent {

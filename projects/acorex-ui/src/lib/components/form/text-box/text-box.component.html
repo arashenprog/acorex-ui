@@ -3,33 +3,28 @@
     <fieldset
       [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
     >
-      <legend>
+      <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
+
     <input
-      #input
-      [textMask]="{ mask: maskInner, guide: true }"
-      [(ngModel)]="text"
-      type="text"
-      class="ax-text-box"
-      [ngClass]="{ 'dir-ltr': !rtlEnabled }"
       [placeholder]="placeholder"
+      [(ngModel)]="text"
+      [textMask]="{ mask: maskInner, guide: true }"
+      [ngClass]="{ 'no-label': !label }"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"
+      class="ax-text-box"
+      type="text"
     />
-    <div class="ax-field-set-button">
-      <button
-        *ngIf="text && showClear"
-        type="button"
-        class="btn btn-light"
-        (click)="clearText()"
-      >
+
+    <div class="ax-field-set-button" *ngIf="text && showClear">
+      <button type="button" class="btn btn-light" (click)="clearText()">
         <i class="fas fa-times"></i>
       </button>
     </div>
   </div>
-  <ng-content></ng-content>
 </div>
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}

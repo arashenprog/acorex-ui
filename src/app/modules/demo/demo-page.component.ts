@@ -102,7 +102,7 @@ export class DemoPage extends AXBasePageComponent {
     });
   }
   openPopup() {
-    this.popup.open(DemoPage,{
+    this.popup.open(DemoPage, {
       title: "Title Popup Here",
       size: "lg"
     });
@@ -125,7 +125,7 @@ export class DemoPage extends AXBasePageComponent {
       name: "edit",
       text: "Item",
       icon: "fas fa-save",
-      style:"ax-success",
+      style: "ax-success",
       items: [
         {
           parentId: "1",
@@ -153,31 +153,36 @@ export class DemoPage extends AXBasePageComponent {
       id: "1",
       name: "item",
       text: "Item 2",
-      icon: "fas fa-pen"
+      icon: "fas fa-pen",
+      style: "ax-primary"
     },
     {
       id: "1",
       name: "item",
       text: "Item 3",
-      icon: "fas fa-pen"
+      icon: "fas fa-pen",
+      style: "ax-warning"
     },
     {
       id: "1",
       name: "item",
       text: "Item 4",
-      icon: "fas fa-pen"
+      icon: "fas fa-pen",
+      style: "ax-danger"
     },
     {
       id: "1",
       name: "item",
       text: "Item 5",
-      icon: "fas fa-pen"
+      icon: "fas fa-pen",
+      style: "ax-info"
     },
     {
       id: "1",
       name: "item",
       text: "Item 6",
-      icon: "fas fa-pen"
+      icon: "fas fa-pen",
+      style: "ax-secondary"
     }
   ];
 }
