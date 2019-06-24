@@ -7,6 +7,7 @@ import { ElementRef } from "@angular/core";
 export class AXHorizontalScrollDirective {
   constructor(private el: ElementRef<HTMLElement>) {}
   ngAfterViewInit(): void {
+    debugger;
     this.el.nativeElement.addEventListener(
       "wheel",
       this.onMouseWheel.bind(this)
