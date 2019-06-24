@@ -4,12 +4,20 @@ import {
   ContentChild,
   Input,
   ViewEncapsulation,
-  ElementRef
+  ElementRef,
+  ViewChild,
+  ViewContainerRef
 } from "@angular/core";
-import { AXSchedulerViewsComponent } from "./scheduler-views.components";
+import { AXSchedulerViewsProperty } from "./scheduler-views.property";
 import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-views";
 import { MenuItem } from "../../../core/menu.class";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
+
+import { AXSchedulerDayTimeViewComponent } from "./views/scheduler-day-time-view.component";
+import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
+import { InjectionService } from "../../../core/injection.service";
+
+
 
 @Component({
   selector: "ax-scheduler",
@@ -18,10 +26,13 @@ import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
   encapsulation: ViewEncapsulation.None
 })
 export class AXSchedulerComponent implements OnInit {
-  constructor(private elm: ElementRef<HTMLDivElement>) {}
+  constructor(private elm: ElementRef<HTMLDivElement>,
+    private injector: InjectionService
+  ) { }
 
-  @ContentChild(AXSchedulerViewsComponent)
-  viewManager: AXSchedulerViewsComponent;
+
+  @ContentChild(AXSchedulerViewsProperty)
+  viewManager: AXSchedulerViewsProperty;
 
   @ContentChild(AXToolbarComponent)
   toolbar: AXToolbarComponent;
@@ -29,7 +40,9 @@ export class AXSchedulerComponent implements OnInit {
   @ContentChild(AXToolbarSchedulerViewsComponent)
   toolbarView: AXToolbarSchedulerViewsComponent;
 
-  ngOnInit(): void {}
+  @ViewChild('viewContainer', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
+
+  ngOnInit(): void { }
 
   private _currentView: string;
   @Input()
@@ -49,9 +62,29 @@ export class AXSchedulerComponent implements OnInit {
         c.selected = false;
       });
       this.viewItems.find(c => c.name == name).selected = true;
-      this.viewManager.views.forEach(v => {
-        v.visible = v.name == name;
-      });
+      let selected = this.viewManager.views.find(c => c.name == name);
+
+      if (this.viewContainer) {
+        this.viewContainer.clear();
+        if (selected.type == "day") {
+          this.injector.appendComponent(AXSchedulerDayTimeViewComponent, {
+            timeSlot: 1,
+            interval: selected.interval
+          }, this.viewContainer.element.nativeElement);
+        }
+        if (selected.type == "week") {
+          this.injector.appendComponent(AXSchedulerDayTimeViewComponent, {
+            timeSlot: 1,
+            interval: selected.interval * 7
+          }, this.viewContainer.element.nativeElement);
+        }
+        if (selected.type == "month") {
+          this.injector.appendComponent(AXSchedulerMonthViewComponent, {
+            timeSlot: 1,
+            interval: selected.interval * 7
+          }, this.viewContainer.element.nativeElement);
+        }
+      }
     }
   }
 

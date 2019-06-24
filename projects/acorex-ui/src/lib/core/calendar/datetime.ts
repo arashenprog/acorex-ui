@@ -9,6 +9,8 @@ export class AXDateTime {
         return this._date;
     }
 
+
+
     readonly dayInMonth: number;
     readonly dayInWeek: number;
 
@@ -48,6 +50,8 @@ export class AXDateTime {
         var timeDiff = Math.abs(date2.getTime() - date1.getTime());
         return Math.ceil(timeDiff / (1000 * 3600 * 24));
     }
+
+
 }
 
 

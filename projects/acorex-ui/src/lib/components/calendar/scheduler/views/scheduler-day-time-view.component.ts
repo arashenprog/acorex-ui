@@ -1,18 +1,15 @@
-import { Component, OnInit,  Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { AXDateTime } from '../../../../core/calendar/datetime';
+import { AXSchedulerBaseViewComponent } from './scheduler-view.component';
 
 @Component({
     selector: 'ax-scheduler-day-time-view',
-    templateUrl: './scheduler-day-time-view.component.html'
+    templateUrl: './scheduler-day-time-view.component.html',
+    providers: [{ provide: AXSchedulerBaseViewComponent, useExisting: AXSchedulerDayTimeViewComponent }]
 })
-export class AXSchedulerDayTimeViewComponent implements OnInit {
-    constructor(private elm: ElementRef<HTMLDivElement>) { }
+export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponent {
+    constructor(private elm: ElementRef<HTMLDivElement>) { super(); }
 
-    @Input()
-    timeSlot: number = 1;
-
-
-    @Input()
-    interval: number = 1;
 
     days: any[] = []
 
@@ -26,14 +23,7 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
     private body: HTMLElement;
 
     ngOnInit(): void {
-        let startDate = new Date();
-        for (let i = 0; i < this.interval; i++) {
-            this.days.push(startDate);
-            startDate = new Date(startDate.setDate(startDate.getDate() + 1));
-        }
-        for (let i = 0; i < 24; i++) {
-            this.times.push(('0' + i).slice(-2) + ":00");
-        }
+        this.navigate();
     }
 
     ngAfterViewInit(): void {
@@ -42,6 +32,7 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
         this.header = this.elm.nativeElement.querySelector<HTMLElement>(".header");
         this.body = this.elm.nativeElement.querySelector<HTMLElement>(".body");
         this.view = this.elm.nativeElement.querySelector<HTMLElement>(".view");
+
         this.container = this.elm.nativeElement.closest(".view-container") as HTMLElement;
         // this.hScroll.addEventListener("scroll", () => {
         //     this.updateSize();
@@ -52,7 +43,7 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
         this.updateSize();
     }
 
-    private updateSize() {
+    updateSize(): void {
         let firstTr = this.body.querySelector('tr');
         let index = 0;
         this.header.querySelectorAll('th').forEach(c => {
@@ -61,6 +52,16 @@ export class AXSchedulerDayTimeViewComponent implements OnInit {
         })
         this.vScroll.style.height = `calc(100% - ${this.header.clientHeight}px)`;
         //this.vScroll.style.width = `${this.hScroll.clientWidth + this.hScroll.scrollLeft}px`;
-        this.view.style.height = `${this.container.clientHeight}px`;
+        if (this.container)
+            this.view.style.height = `${this.container.clientHeight}px`;
+    }
+
+    navigate(date: AXDateTime = new AXDateTime()) {
+        for (let i = 0; i < this.interval; i++) {
+            this.days.push(date.addDay(i).date);
+        }
+        for (let i = 0; i < 24; i++) {
+            this.times.push(('0' + i).slice(-2) + ":00");
+        }
     }
 }

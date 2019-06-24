@@ -67,7 +67,6 @@ export class InjectionService {
         componentRef.onDestroy(() => {
             appRef.detachView(componentRef.hostView);
         });
-
         location.appendChild(componentRootNode);
 
         return componentRef;
