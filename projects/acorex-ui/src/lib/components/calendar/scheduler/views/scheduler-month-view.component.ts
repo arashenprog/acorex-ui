@@ -1,4 +1,6 @@
-import { Component, OnInit,  Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import * as moment_ from "jalali-moment";
+const moment = moment_;
 
 @Component({
     selector: 'ax-scheduler-month-view',
@@ -14,9 +16,13 @@ export class AXSchedulerMonthViewComponent implements OnInit {
     @Input()
     interval: number = 1;
 
-    weekDays: any[] = ['Sunday','Moday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    weekDays: any[] = ['Sunday', 'Moday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    startDayOfWeek = "Moday";
+    startDate = new Date();
 
-    times: any[] = []
+    v = moment().startOf("month").format("jMM");
+
+    days: any[] = []
 
     private container: HTMLElement;
     private view: HTMLElement;
@@ -24,10 +30,15 @@ export class AXSchedulerMonthViewComponent implements OnInit {
     private body: HTMLElement;
 
     ngOnInit(): void {
-        let startDate = new Date();
-        for (let i = 0; i < 5; i++) {
-            this.times.push(('0' + i).slice(-2) + ":00");
+        debugger;
+        let md = moment(this.startDate);
+        let startDayInMonth = md.startOf("month").weekday();
+        let start = md.subtract(startDayInMonth + 1, 'days');
+        for (let i = 0; i < 35; i++) {
+            start.add(1, 'days');
+            this.days.push(start.toDate());
         }
+        this.days = this.matrixify(this.days, 5, 7);
     }
 
     ngAfterViewInit(): void {
@@ -51,4 +62,15 @@ export class AXSchedulerMonthViewComponent implements OnInit {
         this.body.style.height = `calc(100% - ${this.header.clientHeight}px)`;
         this.view.style.height = `${this.container.clientHeight}px`;
     }
+
+    matrixify(arr, rows, cols) {
+        let matrix = [];
+        if (rows * cols === arr.length) {
+            for (let i = 0; i < arr.length; i += cols) {
+                matrix.push(arr.slice(i, cols + i));
+            }
+        }
+        return matrix;
+    };
+
 }

@@ -30,7 +30,6 @@
               "node_modules/bootstrap-v4-rtl/dist/css/bootstrap-rtl.min.css"
             ],
             "scripts": [
-              "node_modules/zepto/dist/zepto.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap-v4-rtl/dist/js/bootstrap.min.js"
 
