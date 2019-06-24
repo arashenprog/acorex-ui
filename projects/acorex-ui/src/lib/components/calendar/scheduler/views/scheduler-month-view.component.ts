@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import * as moment_ from "jalali-moment";
+import { AXDateTime } from '../../../../core/calendar/datetime';
 const moment = moment_;
 
 @Component({
@@ -20,7 +21,6 @@ export class AXSchedulerMonthViewComponent implements OnInit {
     startDayOfWeek = "Moday";
     startDate = new Date();
 
-    v = moment().startOf("month").format("jMM");
 
     days: any[] = []
 
@@ -31,14 +31,16 @@ export class AXSchedulerMonthViewComponent implements OnInit {
 
     ngOnInit(): void {
         debugger;
-        let md = moment(this.startDate);
-        let startDayInMonth = md.startOf("month").weekday();
-        let start = md.subtract(startDayInMonth + 1, 'days');
-        for (let i = 0; i < 35; i++) {
-            start.add(1, 'days');
-            this.days.push(start.toDate());
+        let current= new AXDateTime(this.startDate);
+        let start = current.month.startDate.firstDayOfWeek;
+        let end = current.month.endDate.endDayOfWeek;
+        let dur = end.duration(start);
+        for (let i = 0; i < dur; i++) {
+            this.days.push(start.addDay(i));
         }
-        this.days = this.matrixify(this.days, 5, 7);
+        let dayInWeek = 7;
+        let rows = Math.floor(dur / dayInWeek);
+        this.days = this.matrixify(this.days, rows, dayInWeek);
     }
 
     ngAfterViewInit(): void {
