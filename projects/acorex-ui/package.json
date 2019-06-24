@@ -4,11 +4,7 @@
   "description": "acorex ui elements",
   "private": true,
   "scripts": {
-    "start": "ng build acorex-ui --watch",
-    "build": "ng build acorex-ui",
-    "copy": "xcopy /s \"../../dist/acorex-ui\" \"c:\\acorex\\acorex-ui\" /Y /i",
-    "pack": "@powershell .\\deploy.ps1",
-    "deploy": "npm run build && npm run copy && npm run pack"
+    "start": "ng build acorex-ui --watch"
   },
   "keywords": [
     "acorex"

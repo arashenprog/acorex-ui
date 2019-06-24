@@ -4,11 +4,7 @@
   "description": "acorex spa is layout manager",
   "private": true,
   "scripts": {
-    "start": "ng build acorex-spa --watch",
-    "build": "ng build acorex-spa",
-    "copy": "xcopy /s \"../../dist/acorex-spa\" \"c:\\acorex\\acorex-spa\" /Y /i",
-    "pack": "@powershell .\\deploy.ps1",
-    "deploy": "npm run build && npm run copy && npm run pack"
+    "start": "ng build acorex-spa --watch"
   },
   "keywords": [
     "acorex",
