@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, TemplateRef, ContentChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  TemplateRef,
+  ContentChild
+} from "@angular/core";
 
 @Component({
   selector: "ax-carousel",
@@ -8,18 +14,16 @@ import { Component, OnInit, Input, TemplateRef, ContentChild } from "@angular/co
 export class AXCarouselComponent implements OnInit {
   constructor() {}
 
+  @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
 
-  @ContentChild(TemplateRef) templateRef:TemplateRef<any>;
-  
-  private _items : any[];
+  private _items: any[];
   @Input()
-  public get items() : any[] {
-      return this._items;
+  public get items(): any[] {
+    return this._items;
   }
-  public set items(v : any[]) {
-      this._items = v;
+  public set items(v: any[]) {
+    this._items = v;
   }
-  
 
   seletedIndex: number = 0;
   get selectedItem() {
