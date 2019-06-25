@@ -7,7 +7,17 @@ export abstract class AXSchedulerBaseViewComponent
     
     interval: number = 1;
 
+    
+
     abstract updateSize():void;
+
+    abstract next():void;
+
+    abstract prev():void;
     
     abstract navigate(date:AXDateTime);
+
+    today: AXDateTime = new AXDateTime();
+    navigatorDate: AXDateTime =  new AXDateTime();
+    
 }

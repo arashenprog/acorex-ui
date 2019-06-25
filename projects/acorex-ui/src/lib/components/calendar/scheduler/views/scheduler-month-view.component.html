@@ -2,7 +2,7 @@
     <table class="header">
         <thead>
             <th *ngFor="let d of weekDays" class="header-cell">
-                {{d}}
+                <span [class.same-week-day]="d.index==today.dayInWeek"> {{d.title}}</span>
             </th>
         </thead>
     </table>
@@ -10,11 +10,11 @@
         <tbody>
             <tr *ngFor="let r of days">
                 <td *ngFor="let d of r" class="cell-slot">
-                    <div class="day-num" [class.first-day-month]="d.date.getDate()==1" [class.today]="d.date.getDate()==24">
-                        <ng-container *ngIf="d.date.getDate()==1">
-                            {{d.date | date: 'MMM'}}
+                    <div class="day-num" [class.first-day-month]="d.dayInMonth==1" [class.today]="d.equal(today)">
+                        <ng-container *ngIf="d.dayInMonth==1">
+                            {{d | dt: 'MMM'}}
                         </ng-container>
-                        {{d.date | date: 'dd'}}
+                        {{d | dt: 'DD'}}
                     </div>
                 </td>
             </tr>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { AXDateTime } from '../../../../core/calendar/datetime';
 import { AXSchedulerBaseViewComponent } from './scheduler-view.component';
 
@@ -8,7 +8,7 @@ import { AXSchedulerBaseViewComponent } from './scheduler-view.component';
     providers: [{ provide: AXSchedulerBaseViewComponent, useExisting: AXSchedulerDayTimeViewComponent }]
 })
 export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponent {
-    constructor(private elm: ElementRef<HTMLDivElement>) { super(); }
+    constructor(private elm: ElementRef<HTMLDivElement>, private cdr: ChangeDetectorRef) { super(); }
 
 
     days: any[] = []
@@ -23,7 +23,6 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
     private body: HTMLElement;
 
     ngOnInit(): void {
-        this.navigate();
     }
 
     ngAfterViewInit(): void {
@@ -45,23 +44,35 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
 
     updateSize(): void {
         let firstTr = this.body.querySelector('tr');
-        let index = 0;
-        this.header.querySelectorAll('th').forEach(c => {
-            let td = firstTr.children.item(index++) as HTMLElement;
-            td.style.width = `${c.offsetWidth}px`;
-        })
-        this.vScroll.style.height = `calc(100% - ${this.header.clientHeight}px)`;
-        //this.vScroll.style.width = `${this.hScroll.clientWidth + this.hScroll.scrollLeft}px`;
-        if (this.container)
-            this.view.style.height = `${this.container.clientHeight}px`;
+        if (firstTr) {
+            let index = 0;
+            this.header.querySelectorAll('th').forEach(c => {
+                let td = firstTr.children.item(index++) as HTMLElement;
+                td.style.width = `${c.offsetWidth}px`;
+            })
+            this.vScroll.style.height = `calc(100% - ${this.header.clientHeight}px)`;
+            //this.vScroll.style.width = `${this.hScroll.clientWidth + this.hScroll.scrollLeft}px`;
+            if (this.container)
+                this.view.style.height = `${this.container.clientHeight}px`;
+        }
     }
 
     navigate(date: AXDateTime = new AXDateTime()) {
+        this.navigatorDate = date;
+        this.days = [];
         for (let i = 0; i < this.interval; i++) {
-            this.days.push(date.addDay(i).date);
+            this.days.push(date.addDay(i));
         }
         for (let i = 0; i < 24; i++) {
             this.times.push(('0' + i).slice(-2) + ":00");
         }
+        this.cdr.detectChanges();
+    }
+
+    next(): void {
+        this.navigate(this.navigatorDate.addDay(this.interval));
+    }
+    prev(): void {
+        this.navigate(this.navigatorDate.addDay(-this.interval));
     }
 }

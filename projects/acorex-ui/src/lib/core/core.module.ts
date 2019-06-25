@@ -6,12 +6,13 @@ import { TranslateService, TranslatePipe } from './translate.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AXStorageService } from './storage.service';
+import { AXDateTimePipe } from './calendar/datatime.pipe';
 
 
 @NgModule({
-    declarations: [TranslatePipe],
+    declarations: [TranslatePipe, AXDateTimePipe],
     imports: [CommonModule, FormsModule, BrowserAnimationsModule],
-    exports: [ TranslatePipe, BrowserAnimationsModule],
-    providers: [EventService, InjectionService, TranslateService,AXStorageService],
+    exports: [TranslatePipe, BrowserAnimationsModule,AXDateTimePipe],
+    providers: [EventService, InjectionService, TranslateService, AXStorageService],
 })
 export class AXCoreModule { }

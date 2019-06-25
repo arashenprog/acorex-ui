@@ -40,7 +40,7 @@ export class AXDateTime {
     }
 
     addMonth(amount: number): AXDateTime {
-        return new AXDateTime(moment(this.date).add(amount, "M").toDate());
+        return new AXDateTime(moment(this.date).add(amount, "months").toDate());
     }
 
 
@@ -51,6 +51,17 @@ export class AXDateTime {
         return Math.ceil(timeDiff / (1000 * 3600 * 24));
     }
 
+    format(format: string): string {
+        return this._moment.format(format);
+    }
+
+    toString(): string {
+        return this.format("YYYY-mm-dd")
+    }
+
+    equal(value: AXDateTime, granularity: "day" | "month" | "year" = "day") {
+        return this._moment.isSame(value.date, granularity);
+    }
 
 }
 

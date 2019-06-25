@@ -6,6 +6,8 @@ import { AXToolbarSchedulerViewsComponent } from './toolbars/scheduler-toolbar-v
 import { AXToolbarModule } from '../../layout/toolbar/toolbar.module';
 import { AXCoreModule } from '../../../core/core.module';
 import { AXSchedulerMonthViewComponent } from './views/scheduler-month-view.component';
+import { PortalModule } from '@angular/cdk/portal';
+import { AXToolbarSchedulerNavigatorComponent } from './toolbars/scheduler-toolbar-navigator';
 
 @NgModule({
     declarations: [
@@ -14,16 +16,18 @@ import { AXSchedulerMonthViewComponent } from './views/scheduler-month-view.comp
         AXSchedulerViewProperty,
         AXSchedulerDayTimeViewComponent,
         AXSchedulerMonthViewComponent,
-        AXToolbarSchedulerViewsComponent
+        AXToolbarSchedulerViewsComponent,
+        AXToolbarSchedulerNavigatorComponent
     ],
-    imports: [AXCoreModule, AXToolbarModule],
+    imports: [AXCoreModule, AXToolbarModule,PortalModule],
     exports: [
         AXSchedulerComponent,
         AXSchedulerViewsProperty,
         AXSchedulerViewProperty,
         AXSchedulerDayTimeViewComponent,
         AXSchedulerMonthViewComponent,
-        AXToolbarSchedulerViewsComponent
+        AXToolbarSchedulerViewsComponent,
+        AXToolbarSchedulerNavigatorComponent
     ],
     entryComponents: [AXSchedulerMonthViewComponent, AXSchedulerDayTimeViewComponent],
     providers: [],

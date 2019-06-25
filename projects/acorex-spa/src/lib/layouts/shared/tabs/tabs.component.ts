@@ -11,15 +11,18 @@ export class AXLayoutTabsComponent implements OnInit {
   constructor(
     public tabService: AXTabPageService,
     @Inject("startUpTab") private startUpTab: any
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit() {
     if (this.startUpTab) this.tabService.open(this.startUpTab);
   }
 
-  onTabClick(tab, e) {
-    this.tabService.active(tab);
+  onTabClick(tab, e: MouseEvent) {
+    if (e.which == 2)
+      this.tabService.close(tab, {});
+    else
+      this.tabService.active(tab);
   }
 }

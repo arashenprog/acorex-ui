@@ -328,6 +328,7 @@ body {
           &:disabled {
             background-color: var(--#{$name}-light-color) !important;
           }
+         
         }
       } @else {
         .#{$name}-#{$subname} {

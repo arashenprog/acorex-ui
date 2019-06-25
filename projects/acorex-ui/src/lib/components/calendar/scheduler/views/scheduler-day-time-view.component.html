@@ -3,8 +3,10 @@
         <thead>
             <th class="time-column"></th>
             <th *ngFor="let d of days" class="header-cell">
-                {{d | date: 'MMM'}}<br>
-                {{d | date: 'dd'}}
+                <div [class.same-week-day]="d.equal(today)">
+                    {{d | dt: 'MMM'}}<br>
+                    {{d | dt: 'DD'}}
+                </div>
             </th>
         </thead>
     </table>

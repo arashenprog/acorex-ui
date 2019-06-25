@@ -6,16 +6,20 @@ import {
   ViewEncapsulation,
   ElementRef,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  ComponentRef
 } from "@angular/core";
 import { AXSchedulerViewsProperty } from "./scheduler-views.property";
 import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-views";
 import { MenuItem } from "../../../core/menu.class";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
-
 import { AXSchedulerDayTimeViewComponent } from "./views/scheduler-day-time-view.component";
-import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
 import { InjectionService } from "../../../core/injection.service";
+import { ComponentPortal, CdkPortalOutlet } from '@angular/cdk/portal';
+import { AXSchedulerBaseViewComponent } from "./views/scheduler-view.component";
+import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
+import { AXDateTime } from "../../../core/calendar/datetime";
+import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolbar-navigator";
 
 
 
@@ -26,10 +30,10 @@ import { InjectionService } from "../../../core/injection.service";
   encapsulation: ViewEncapsulation.None
 })
 export class AXSchedulerComponent implements OnInit {
-  constructor(private elm: ElementRef<HTMLDivElement>,
-    private injector: InjectionService
+  constructor(private elm: ElementRef<HTMLDivElement>
   ) { }
 
+  @ViewChild(CdkPortalOutlet) portalOutlet: CdkPortalOutlet
 
   @ContentChild(AXSchedulerViewsProperty)
   viewManager: AXSchedulerViewsProperty;
@@ -39,8 +43,10 @@ export class AXSchedulerComponent implements OnInit {
 
   @ContentChild(AXToolbarSchedulerViewsComponent)
   toolbarView: AXToolbarSchedulerViewsComponent;
+  @ContentChild(AXToolbarSchedulerNavigatorComponent)
+  toolbarNavigator: AXToolbarSchedulerNavigatorComponent;
 
-  @ViewChild('viewContainer', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
+  view: AXSchedulerBaseViewComponent;
 
   ngOnInit(): void { }
 
@@ -54,6 +60,7 @@ export class AXSchedulerComponent implements OnInit {
   }
 
   private viewItems: MenuItem[] = [];
+  private today = new AXDateTime();
 
   setView(name: string) {
     this._currentView = name;
@@ -64,31 +71,28 @@ export class AXSchedulerComponent implements OnInit {
       this.viewItems.find(c => c.name == name).selected = true;
       let selected = this.viewManager.views.find(c => c.name == name);
 
-      if (this.viewContainer) {
-        this.viewContainer.clear();
-        if (selected.type == "day") {
-          this.injector.appendComponent(AXSchedulerDayTimeViewComponent, {
-            timeSlot: 1,
-            interval: selected.interval
-          }, this.viewContainer.element.nativeElement);
-        }
-        if (selected.type == "week") {
-          this.injector.appendComponent(AXSchedulerDayTimeViewComponent, {
-            timeSlot: 1,
-            interval: selected.interval * 7
-          }, this.viewContainer.element.nativeElement);
-        }
-        if (selected.type == "month") {
-          this.injector.appendComponent(AXSchedulerMonthViewComponent, {
-            timeSlot: 1,
-            interval: selected.interval * 7
-          }, this.viewContainer.element.nativeElement);
-        }
+      let portal: ComponentPortal<AXSchedulerBaseViewComponent>;
+      this.portalOutlet.detach();
+      let interval = selected.interval;
+      if (selected.type == "day") {
+        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerDayTimeViewComponent);
       }
+      if (selected.type == "week") {
+        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerDayTimeViewComponent);
+        interval = selected.interval * 7
+      }
+      if (selected.type == "month") {
+        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerMonthViewComponent);
+      }
+      const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
+      this.view = compRef.instance;
+      this.view.interval = interval;
+      this.view.navigate(this.today);
     }
   }
 
   ngAfterViewInit(): void {
+
     setTimeout(_ => {
       this.viewManager.views.forEach(v => {
         this.viewItems.push({
@@ -98,11 +102,24 @@ export class AXSchedulerComponent implements OnInit {
         });
       });
 
-      this.toolbarView.onViewChanged.subscribe(c => {
-        this.currentView = c;
-      });
-      this.toolbarView.items = this.viewItems;
+      if (this.toolbarView) {
+        this.toolbarView.onViewChanged.subscribe(c => {
+          this.currentView = c;
+        });
+        this.toolbarView.items = this.viewItems;
+      }
+      if (this.toolbarNavigator) {
+        this.toolbarNavigator.onNavigate.subscribe(c => {
+          if (c == "next") {
+            this.view.next();
+          }
+          if (c == "prev") {
+            this.view.prev();
+          }
+        });
+      }
       this.setView(this.currentView);
+
     });
   }
 
@@ -120,5 +137,9 @@ export class AXSchedulerComponent implements OnInit {
     if (toolbar) {
       container.style.height = `calc(100% - ${toolbar.clientHeight}px)`;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.portalOutlet.detach();
   }
 }
