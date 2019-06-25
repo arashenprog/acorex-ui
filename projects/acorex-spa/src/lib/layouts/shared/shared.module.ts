@@ -3,11 +3,11 @@ import { CommonModule } from "@angular/common";
 import { AXLayoutTabsComponent } from "./tabs/tabs.component";
 import { AXPageModule } from "./page/page.module";
 import { AXSideMenuModule } from "./sidemenu/sidemenu.module";
-import { AXScrollModule } from "acorex-ui";
+import { AXCoreModule } from "acorex-ui";
 
 @NgModule({
   declarations: [AXLayoutTabsComponent],
-  imports: [CommonModule, AXPageModule, AXSideMenuModule, AXScrollModule],
+  imports: [CommonModule, AXCoreModule, AXPageModule, AXSideMenuModule],
   exports: [AXLayoutTabsComponent, AXSideMenuModule],
   providers: []
 })

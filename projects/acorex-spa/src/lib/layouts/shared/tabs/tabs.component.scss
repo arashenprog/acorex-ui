@@ -1,26 +1,25 @@
 @import "../../../styles/master";
 
 ax-tabs {
+  margin: 0 10px;
   display: flex;
-  flex: 1;
-  align-items: center;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  @include transition(0.5s);
-
-  &::-webkit-scrollbar {
-    width: 5px !important;
-    height: 5px !important;
-  }
-
-  &:hover {
-    overflow-x: overlay;
-  }
-
   .tabs {
     display: flex;
     flex: 1;
-    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 5px !important;
+      height: 5px !important;
+    }
+
+    &:hover {
+      overflow-x: overlay;
+    }
+    @include transition(0.5s);
     .tab-item {
       flex: 1;
       display: flex;
