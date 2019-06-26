@@ -8,13 +8,13 @@
     </table>
     <table class="body">
         <tbody>
-            <tr *ngFor="let r of days">
+            <tr *ngFor="let r of slots">
                 <td *ngFor="let d of r" class="cell-slot">
-                    <div class="day-num" [class.first-day-month]="d.dayInMonth==1" [class.today]="d.equal(today)">
-                        <ng-container *ngIf="d.dayInMonth==1">
-                            {{d | dt: 'MMM'}}
+                    <div class="day-num" [class.first-day-month]="d.startTime.dayInMonth==1" [class.today]="d.startTime.equal(today)">
+                        <ng-container *ngIf="d.startTime.dayInMonth==1">
+                            {{d.startTime | dt: 'MMM'}}
                         </ng-container>
-                        {{d | dt: 'DD'}}
+                        {{d.startTime | dt: 'DD'}}
                     </div>
                 </td>
             </tr>

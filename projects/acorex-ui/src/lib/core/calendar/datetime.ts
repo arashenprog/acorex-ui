@@ -45,10 +45,8 @@ export class AXDateTime {
 
 
     duration(end: AXDateTime): number {
-        var date1 = new Date(this.date);
-        var date2 = new Date(end.date);
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        return Math.ceil(timeDiff / (1000 * 3600 * 24));
+        let duration = moment.duration(this._moment.diff(end._moment));
+        return Math.round(Math.abs(duration.asDays()));
     }
 
     format(format: string): string {
@@ -92,3 +90,7 @@ export class AXCalendarMonth {
     }
 }
 
+export class AXDateTimeRange {
+    startTime: AXDateTime;
+    endTime: AXDateTime
+}

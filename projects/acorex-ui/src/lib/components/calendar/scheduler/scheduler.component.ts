@@ -20,6 +20,7 @@ import { AXSchedulerBaseViewComponent } from "./views/scheduler-view.component";
 import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
 import { AXDateTime } from "../../../core/calendar/datetime";
 import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolbar-navigator";
+import { AXSchedulerEvent } from "./scheduler.model";
 
 
 
@@ -87,6 +88,7 @@ export class AXSchedulerComponent implements OnInit {
       const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
       this.view = compRef.instance;
       this.view.interval = interval;
+      this.view.events = this.data;
       this.view.navigate(this.today);
     }
   }
@@ -142,4 +144,22 @@ export class AXSchedulerComponent implements OnInit {
   ngOnDestroy(): void {
     this.portalOutlet.detach();
   }
+
+
+  data: AXSchedulerEvent[] = [
+    {
+      range: {
+        startTime: new AXDateTime(),
+        endTime: new AXDateTime()
+      },
+      title: "Event#1"
+    },
+    {
+      range: {
+        startTime: new AXDateTime().addDay(2),
+        endTime: new AXDateTime().addDay(3)
+      },
+      title: "Event#1"
+    }
+  ]
 }

@@ -40,7 +40,7 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
         }]
     startDayOfWeek = "Moday";
 
-    days: any[] = []
+
 
     private container: HTMLElement;
     private view: HTMLElement;
@@ -90,19 +90,25 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
         let start = date.month.startDate.firstDayOfWeek;
         let end = date.month.endDate.endDayOfWeek;
         let dur = end.duration(start);
-        this.days = [];
+        this.slots = [];
         for (let i = 0; i < dur; i++) {
-            this.days.push(start.addDay(i));
+            let d = start.addDay(i);
+            this.slots.push({
+                range: {
+                    startTime: d,
+                    endTime: d,
+                },
+                events: this.getEvents(d, d)
+            });
         }
         let dayInWeek = 7;
         let rows = Math.floor(dur / dayInWeek);
-        this.days = this.matrixify(this.days, rows, dayInWeek);
+        this.slots = this.matrixify(this.slots, rows, dayInWeek);
         this.cdr.detectChanges();
     }
 
 
     next(): void {
-        debugger;
         this.navigate(this.navigatorDate.addMonth(this.interval));
     }
     prev(): void {
