@@ -1,0 +1,21 @@
+<div class="view ax-scheduler-agenda-view">
+    <table class="body">
+        <tbody>
+            <tr *ngFor="let slot of slots">
+                <td class="day-column">
+                    <div class="day-num">{{slot.range.startTime | dt:"DD"}}</div>
+                    <div class="day-name">{{slot.range.startTime | dt:"ddd"}}</div>
+                </td>
+                <td class="day-border">
+                    <ul *ngIf="slot.events.length">
+                        <li *ngFor="let e of slot.events" [style.border-color]="e.color">
+                            <div class="event-title">{{e.title}}</div>
+                            <div class="event-time">{{e.range.startTime | dt:"HH:mm"}} - {{e.range.endTime | dt:"HH:mm"}}</div>
+                        </li>
+                    </ul>
+                    <div *ngIf="!slot.events.length" class="event-empty">No events</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

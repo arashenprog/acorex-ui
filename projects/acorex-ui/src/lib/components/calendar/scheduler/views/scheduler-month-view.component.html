@@ -1,4 +1,4 @@
-<div class="view">
+<div class="view ax-sheduler-month-view">
     <table class="header">
         <thead>
             <th *ngFor="let d of weekDays" class="header-cell">
@@ -10,11 +10,19 @@
         <tbody>
             <tr *ngFor="let r of slots">
                 <td *ngFor="let d of r" class="cell-slot">
-                    <div class="day-num" [class.first-day-month]="d.startTime.dayInMonth==1" [class.today]="d.startTime.equal(today)">
-                        <ng-container *ngIf="d.startTime.dayInMonth==1">
-                            {{d.startTime | dt: 'MMM'}}
+                    <div class="day-num" [class.first-day-month]="d.range.startTime.dayInMonth==1"
+                        [class.today]="d.range.startTime.equal(today)">
+                        <ng-container *ngIf="d.range.startTime.dayInMonth==1">
+                            {{d.range.startTime | dt: 'MMM'}}
                         </ng-container>
-                        {{d.startTime | dt: 'DD'}}
+                        {{d.range.startTime | dt: 'DD'}}
+                    </div>
+                    <div class="event-wrapper">
+                        <ng-container *ngFor="let e of d.events" >
+                            <div class="event" [attr.data-uid]="e.uid" [style.background-color]="e.color">
+                                <span>{{e.range.startTime | dt: 'HH:mm'}}</span><span class="event-title">{{e.title}}</span><span>{{e.range.endTime | dt: 'HH:mm'}}</span>
+                            </div>
+                        </ng-container>
                     </div>
                 </td>
             </tr>

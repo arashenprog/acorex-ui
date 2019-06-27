@@ -1,5 +1,8 @@
 import * as moment_ from "jalali-moment";
+import { Type } from "@angular/core";
 const moment = moment_;
+
+export type TimeUnit = "second" | "minute" | "hour" | "day" | "month" | "year";
 
 export class AXDateTime {
     private _moment: moment_.Moment;
@@ -57,8 +60,17 @@ export class AXDateTime {
         return this.format("YYYY-mm-dd")
     }
 
-    equal(value: AXDateTime, granularity: "day" | "month" | "year" = "day") {
-        return this._moment.isSame(value.date, granularity);
+    equal(value: AXDateTime, unit: TimeUnit = "day") {
+        return this._moment.isSame(value.date, unit);
+    }
+
+    compaire(value: AXDateTime, unit: TimeUnit = "day") {
+        if (this._moment.isBefore(value.date, unit))
+            return -1;
+        else if (this._moment.isAfter(value.date, unit))
+            return 1;
+        else
+            return 0;
     }
 
 }
@@ -91,6 +103,13 @@ export class AXCalendarMonth {
 }
 
 export class AXDateTimeRange {
-    startTime: AXDateTime;
-    endTime: AXDateTime
+    constructor(public startTime: AXDateTime, public endTime: AXDateTime) {
+
+    }
+
+    duration(unit: TimeUnit = "day"): number {
+        let duration = moment.duration(moment(this.startTime.date).diff(moment(this.endTime.date)));
+        return Math.round(Math.abs(duration.asDays()));
+    }
+
 }

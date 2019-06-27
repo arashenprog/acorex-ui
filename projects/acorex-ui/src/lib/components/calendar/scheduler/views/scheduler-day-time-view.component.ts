@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { AXDateTime } from '../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent } from './scheduler-view.component';
+import { AXDateTime, AXDateTimeRange } from '../../../../core/calendar/datetime';
+import { AXSchedulerBaseViewComponent, AXSchedulerSlot } from './scheduler-view.component';
 
 @Component({
     selector: 'ax-scheduler-day-time-view',
@@ -11,7 +11,7 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
     constructor(private elm: ElementRef<HTMLDivElement>, private cdr: ChangeDetectorRef) { super(); }
 
 
-    days: any[] = []
+
 
     times: any[] = []
 
@@ -38,9 +38,6 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
         // });
     }
 
-    ngAfterViewChecked(): void {
-        this.updateSize();
-    }
 
     updateSize(): void {
         let firstTr = this.body.querySelector('tr');
@@ -59,12 +56,22 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
 
     navigate(date: AXDateTime = new AXDateTime()) {
         this.navigatorDate = date;
-        this.days = [];
+        this.times=[];
+        this.slots = [];
         for (let i = 0; i < this.interval; i++) {
-            this.days.push(date.addDay(i));
+            let d = date.addDay(i);
+            let range = new AXDateTimeRange(d, d);
+            let slot: AXSchedulerSlot = {
+                range: range,
+                events: this.getEvents(range, "day")
+            }
+            this.slots.push(slot);
         }
         for (let i = 0; i < 24; i++) {
-            this.times.push(('0' + i).slice(-2) + ":00");
+            this.times.push({
+                display:('0' + i).slice(-2) + ":00",
+                value:i
+            });
         }
         this.cdr.detectChanges();
     }
@@ -74,5 +81,10 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
     }
     prev(): void {
         this.navigate(this.navigatorDate.addDay(-this.interval));
+    }
+
+    arrangeEvents()
+    {
+        
     }
 }

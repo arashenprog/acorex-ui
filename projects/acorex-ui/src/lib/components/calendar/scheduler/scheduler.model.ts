@@ -4,6 +4,8 @@ export interface AXSchedulerEvent {
     range: AXDateTimeRange,
     title: string,
     description?: string;
+    uid:string;
+    color:string;
 }
 
 export interface AXSchedulerOccasion {

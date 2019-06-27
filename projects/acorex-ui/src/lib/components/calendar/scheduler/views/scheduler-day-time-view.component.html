@@ -1,11 +1,11 @@
-<div class="view">
+<div class="view ax-scheduler-day-time-view">
     <table class="header">
         <thead>
             <th class="time-column"></th>
-            <th *ngFor="let d of days" class="header-cell">
-                <div [class.same-week-day]="d.equal(today)">
-                    {{d | dt: 'MMM'}}<br>
-                    {{d | dt: 'DD'}}
+            <th *ngFor="let d of slots" class="header-cell">
+                <div [class.same-week-day]="d.range.startTime.equal(today)">
+                    {{d.range.startTime | dt: 'MMM'}}<br>
+                    {{d.range.startTime | dt: 'DD'}}
                 </div>
             </th>
         </thead>
@@ -15,9 +15,22 @@
             <tbody>
                 <tr *ngFor="let t of times">
                     <td>
-                        {{t}}
+                        {{t.display}}
                     </td>
-                    <td *ngFor="let d of days" class="slot-cell"></td>
+                    <td *ngFor="let d of slots" class="slot-cell">
+                        <div class="event-wrapper">
+                            <ng-container *ngFor="let e of d.events">
+                                <div *ngIf="e.range.startTime.date.getHours()==t.value" class="event"
+                                    [attr.data-uid]="e.uid" [style.background-color]="e.color">
+                                    <div class="event-title">{{e.title}}</div>
+                                    <div>
+                                        <span>{{e.range.startTime | dt: 'HH:mm'}}</span> -
+                                        <span>{{e.range.endTime | dt: 'HH:mm'}}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

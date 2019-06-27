@@ -18,9 +18,10 @@ import { InjectionService } from "../../../core/injection.service";
 import { ComponentPortal, CdkPortalOutlet } from '@angular/cdk/portal';
 import { AXSchedulerBaseViewComponent } from "./views/scheduler-view.component";
 import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
-import { AXDateTime } from "../../../core/calendar/datetime";
+import { AXDateTime, AXDateTimeRange } from "../../../core/calendar/datetime";
 import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolbar-navigator";
 import { AXSchedulerEvent } from "./scheduler.model";
+import { AXSchedulerAgendaViewComponent } from "./views/scheduler-agenda-view.component";
 
 
 
@@ -85,6 +86,9 @@ export class AXSchedulerComponent implements OnInit {
       if (selected.type == "month") {
         portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerMonthViewComponent);
       }
+      if (selected.type == "agenda") {
+        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerAgendaViewComponent);
+      }
       const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
       this.view = compRef.instance;
       this.view.interval = interval;
@@ -148,18 +152,46 @@ export class AXSchedulerComponent implements OnInit {
 
   data: AXSchedulerEvent[] = [
     {
-      range: {
-        startTime: new AXDateTime(),
-        endTime: new AXDateTime()
-      },
-      title: "Event#1"
+      range: new AXDateTimeRange(new AXDateTime().addDay(-3),new AXDateTime().addDay(-3)),
+      title: "Birds Of Pray",
+      uid: "e1",
+      color:"rgb(127, 169, 0)"
     },
     {
-      range: {
-        startTime: new AXDateTime().addDay(2),
-        endTime: new AXDateTime().addDay(3)
-      },
-      title: "Event#1"
-    }
+      range: new AXDateTimeRange(new AXDateTime().addDay(-15),new AXDateTime().addDay(-14)),
+      title: "Play Day",
+      uid: "e2",
+      color:"rgb(26, 170, 85)"
+    },
+    {
+      range: new AXDateTimeRange(new AXDateTime().addDay(5),new AXDateTime().addDay(5)),
+      title: "Halloween party",
+      uid: "e3",
+      color:"rgb(245, 127, 23)"
+    },
+    {      
+      range: new AXDateTimeRange(new AXDateTime().addDay(3),new AXDateTime().addDay(3)),
+      title: "Face Painting & Drawing events",
+      uid: "e4",
+      color:"rgb(53, 124, 210)"
+    },
+    {
+      range: new AXDateTimeRange(new AXDateTime().addDay(2),new AXDateTime().addDay(2)),
+      title: "Pony rides",
+      uid: "e5",
+      color:"rgb(53, 124, 108)"
+    },
+    {
+      range: new AXDateTimeRange(new AXDateTime().addDay(-10),new AXDateTime().addDay(-9)),
+      title: "Arash's Birthday",
+      uid: "e6",
+      color:"rgb(53, 124, 210)"
+    },
+    {      
+      range: new AXDateTimeRange(new AXDateTime().addDay(3),new AXDateTime().addDay(3)),
+      title: "Los Angeles to Barcelona",
+      uid: "e7",
+      color:"rgb(26, 170, 85)"
+    },
   ]
 }

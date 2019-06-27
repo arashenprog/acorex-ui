@@ -1,5 +1,5 @@
 import { Input, EventEmitter } from "@angular/core";
-import { AXDateTime, AXDateTimeRange } from "../../../../core/calendar/datetime";
+import { AXDateTime, AXDateTimeRange, TimeUnit } from "../../../../core/calendar/datetime";
 import { AXSchedulerEvent } from "../scheduler.model";
 
 export interface AXSchedulerRequestDataArge {
@@ -9,7 +9,7 @@ export interface AXSchedulerRequestDataArge {
 }
 
 export interface AXSchedulerSlot {
-    range:AXDateTimeRange;
+    range: AXDateTimeRange;
     events?: AXSchedulerEvent[];
 }
 
@@ -26,7 +26,8 @@ export abstract class AXSchedulerBaseViewComponent {
 
     abstract prev(): void;
 
-    abstract navigate(date: AXDateTime);
+    abstract navigate(date: AXDateTime):void;
+
 
     today: AXDateTime = new AXDateTime();
 
@@ -35,8 +36,11 @@ export abstract class AXSchedulerBaseViewComponent {
 
     slots: AXSchedulerSlot[] = []
 
-    getEvents(range:AXDateTimeRange)
-    {
-        //return this.slots.filter(c=>)
+    getEvents(range: AXDateTimeRange, unit: TimeUnit) {
+        return this.events.filter(c => c.range.startTime.equal(range.startTime, unit))
+    }
+
+    ngAfterViewChecked(): void {
+        this.updateSize();
     }
 }

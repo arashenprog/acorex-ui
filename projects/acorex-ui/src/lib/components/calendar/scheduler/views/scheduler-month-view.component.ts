@@ -1,6 +1,7 @@
 import { Component, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { AXDateTime } from '../../../../core/calendar/datetime';
+import { AXDateTime, AXDateTimeRange } from '../../../../core/calendar/datetime';
 import { AXSchedulerBaseViewComponent } from './scheduler-view.component';
+import { AXSchedulerEvent } from '../scheduler.model';
 
 @Component({
     selector: 'ax-scheduler-month-view',
@@ -57,9 +58,6 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
 
     }
 
-    ngAfterViewChecked(): void {
-        this.updateSize();
-    }
 
     updateSize(): void {
         let firstTr = this.body.querySelector('tr');
@@ -73,6 +71,7 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
             if (this.container)
                 this.view.style.height = `${this.container.clientHeight}px`;
         }
+        this.arrangeEvents();
     }
 
     matrixify(arr, rows, cols) {
@@ -93,12 +92,10 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
         this.slots = [];
         for (let i = 0; i < dur; i++) {
             let d = start.addDay(i);
+            let range: AXDateTimeRange = new AXDateTimeRange(d, d);
             this.slots.push({
-                range: {
-                    startTime: d,
-                    endTime: d,
-                },
-                events: this.getEvents(d, d)
+                range: range,
+                events: this.getEvents(range, "day")
             });
         }
         let dayInWeek = 7;
@@ -113,5 +110,28 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
     }
     prev(): void {
         this.navigate(this.navigatorDate.addMonth(-this.interval));
+    }
+
+    arrangeEvents() {
+        let events = this.elm.nativeElement.querySelectorAll<HTMLElement>('.event');
+        if (events.length) {
+            let width = events[0].closest('td').offsetWidth;
+            events.forEach(e => {
+                let uid = e.attributes.getNamedItem("data-uid").value;
+                let event = this.events.find(c => c.uid == uid);
+                e.style.width = ((event.range.duration() + 1) * width) + "px";
+                e.style.top = ((this.findEventIndex(event)) * 25) + "px";
+            })
+        }
+    }
+
+    findEventIndex(event: AXSchedulerEvent): number {
+        let a = this.events.filter(c =>
+            c.range.startTime.equal(event.range.startTime, "day")
+        ).sort((d1, d2) => {
+            return d1.range.startTime.compaire(d2.range.startTime);
+        });
+
+        return a.indexOf(event);
     }
 }
