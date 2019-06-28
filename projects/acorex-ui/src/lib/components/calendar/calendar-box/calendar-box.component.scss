@@ -9,14 +9,14 @@
   
   border-radius: var(--border-radius-size);
   .arrow {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     background: white;
     position: absolute;
     right: 50%;
     -webkit-transform: rotate(20deg);
     transform: rotate(45deg);
-    top: -13px;
+    top: -9px;
     border-left: 1px solid;
     border-top: 1px solid;
     border-color: var(--border-color);
