@@ -20,8 +20,9 @@
                     <td *ngFor="let d of slots" class="slot-cell">
                         <div class="event-wrapper">
                             <ng-container *ngFor="let e of d.events">
-                                <div *ngIf="e.range.startTime.date.getHours()==t.value" class="event"
-                                    [attr.data-uid]="e.uid" [style.background-color]="e.color">
+                                <div *ngIf="e.range.startTime.hour==t.value" class="event"
+                                    role="button" aria-readonly="false" aria-selected="true" aria-grabbed="false"
+                                    [attr.data-uid]="e.uid" [style.background-color]="e.color" [title]="e.title">
                                     <div class="event-title">{{e.title}}</div>
                                     <div>
                                         <span>{{e.range.startTime | dt: 'HH:mm'}}</span> -

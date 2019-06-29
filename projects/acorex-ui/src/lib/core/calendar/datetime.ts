@@ -16,12 +16,21 @@ export class AXDateTime {
 
     readonly dayInMonth: number;
     readonly dayInWeek: number;
+    readonly hour: number;
 
-    constructor(date: Date = new Date()) {
-        this._date = date;
-        this._moment = moment(date);
+    constructor(value: Date | string = new Date()) {
+        
+        if (value instanceof String)
+        {
+            this._date = new Date(value);
+        }
+        else
+            this._date = <Date>value;
+        //
+        this._moment = moment(this.date);
         this.dayInMonth = this._moment.date();
         this.dayInWeek = this._moment.day();
+        this.hour = this._moment.hour();
     }
 
 
@@ -109,7 +118,7 @@ export class AXDateTimeRange {
 
     duration(unit: TimeUnit = "day"): number {
         let duration = moment.duration(moment(this.startTime.date).diff(moment(this.endTime.date)));
-        return Math.round(Math.abs(duration.asDays()));
+        return Math.round(Math.abs(duration.as(unit)));
     }
 
 }

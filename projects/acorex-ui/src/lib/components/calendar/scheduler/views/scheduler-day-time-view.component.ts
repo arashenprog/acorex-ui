@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../core/calendar/datetime';
 import { AXSchedulerBaseViewComponent, AXSchedulerSlot } from './scheduler-view.component';
+import { AXSchedulerEvent } from '../scheduler.model';
 
 @Component({
     selector: 'ax-scheduler-day-time-view',
@@ -39,6 +40,8 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
     }
 
 
+
+
     updateSize(): void {
         let firstTr = this.body.querySelector('tr');
         if (firstTr) {
@@ -52,11 +55,12 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
             if (this.container)
                 this.view.style.height = `${this.container.clientHeight}px`;
         }
+        this.arrangeEvents();
     }
 
     navigate(date: AXDateTime = new AXDateTime()) {
         this.navigatorDate = date;
-        this.times=[];
+        this.times = [];
         this.slots = [];
         for (let i = 0; i < this.interval; i++) {
             let d = date.addDay(i);
@@ -69,8 +73,8 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
         }
         for (let i = 0; i < 24; i++) {
             this.times.push({
-                display:('0' + i).slice(-2) + ":00",
-                value:i
+                display: ('0' + i).slice(-2) + ":00",
+                value: i
             });
         }
         this.cdr.detectChanges();
@@ -83,8 +87,28 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
         this.navigate(this.navigatorDate.addDay(-this.interval));
     }
 
-    arrangeEvents()
-    {
-        
+    arrangeEvents() {
+        let events = this.elm.nativeElement.querySelectorAll<HTMLElement>('.event');
+        if (events.length) {
+            let height = events[0].closest('td').offsetHeight;
+            events.forEach(e => {
+                let uid = e.attributes.getNamedItem("data-uid").value;
+                let event = this.events.find(c => c.uid == uid);
+                let total = event.range.duration("hour") + 1;
+                if (event.range.startTime.hour + total > 23)
+                    total = 24 - event.range.startTime.hour;
+                e.style.height = (total * height) + "px";
+            })
+        }
+    }
+
+    findEventIndex(event: AXSchedulerEvent): number {
+        let a = this.events.filter(c =>
+            c.range.startTime.equal(event.range.startTime, "day")
+        ).sort((d1, d2) => {
+            return d1.range.startTime.compaire(d2.range.startTime);
+        });
+
+        return a.indexOf(event);
     }
 }

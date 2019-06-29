@@ -41,6 +41,7 @@
         border: 1px solid var(--border-color);
         text-overflow: ellipsis;
         white-space: nowrap;
+        position: relative;
     }
 
     th {
@@ -72,14 +73,19 @@
             position: absolute;
             top: 0px;
             left: 0px;
+            display: inline-flex;
+            flex: auto;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            width: 100%;
 
             .event {
                 background-color: var(--warning-color);
                 color: var(--primary-fore-color);
                 border: var(--gray-light-color);
-                display: flex;
+                flex: 1;
                 overflow: hidden;
-                position: absolute;
                 font-size: smaller;
                 justify-content: space-between;
                 padding: 1px 3px;
