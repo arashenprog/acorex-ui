@@ -1,23 +1,26 @@
-<div class="view ax-scheduler-day-time-view">
+<div class="view ax-scheduler-timeline-view">
     <table class="header">
-        <thead>
-            <tr>
-                <td *ngFor="let d of slots" class="header-cell" [attr.colspan]="times.length">
-                    <div [class.same-week-day]="d.range.startTime.equal(today)">
-                        {{d.range.startTime | dt: 'MMM DD, dddd'}}
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <ng-container *ngFor="let d of slots" class="header-cell">
-                    <td *ngFor="let t of times" class="time-column">
-                        <div >
+        <colgroup>
+            <col *ngFor="let t of times" class="time-column"/>
+        </colgroup>
+        <tbody>
+            <ng-container *ngFor="let d of slots">
+                <tr>
+                    <td class="header-cell" [attr.colspan]="times.length">
+                        <div [class.same-week-day]="d.range.startTime.equal(today)">
+                            {{d.range.startTime | dt: 'MMM DD, dddd'}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td *ngFor="let t of times">
+                        <div>
                             {{t.display}}
                         </div>
                     </td>
-                </ng-container> 
-            </tr>
-        </thead>
+                </tr>
+            </ng-container>
+        </tbody>
     </table>
     <!-- <div class="v-scroll">
         <table class="body">

@@ -4,6 +4,7 @@
 
 export * from "./lib/core/http/api";
 export * from "./lib/core/core.module";
+export * from "./lib/core/calendar/datetime";
 
 export * from "./lib/core/translate.service";
 export * from "./lib/core/storage.service";

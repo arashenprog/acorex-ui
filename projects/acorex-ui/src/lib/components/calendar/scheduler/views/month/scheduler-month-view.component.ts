@@ -1,11 +1,13 @@
-import { Component, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { AXDateTime, AXDateTimeRange } from '../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent } from './scheduler-view.component';
-import { AXSchedulerEvent } from '../scheduler.model';
+import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
+import { AXSchedulerBaseViewComponent } from '../scheduler-view.component';
+import { AXSchedulerEvent } from '../../scheduler.model';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
-    selector: 'ax-scheduler-month-view',
     templateUrl: './scheduler-month-view.component.html',
+    styleUrls: ['./scheduler-month-view.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [{ provide: AXSchedulerBaseViewComponent, useExisting: AXSchedulerMonthViewComponent }]
 })
 export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent {
@@ -133,5 +135,20 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
         });
 
         return a.indexOf(event);
+    }
+
+    onDragDrop(e) {
+        console.log(e);
+        if (e.previousContainer !== e.container) {
+            this.onEventChanged.emit({
+                event:  e.item.data,
+                oldSlot: e.previousContainer.data,
+                newSlot: e.container.data
+            });
+
+        }
+        setTimeout(() => {
+            this.arrangeEvents();    
+        }, 100);
     }
 }

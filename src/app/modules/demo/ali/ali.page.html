@@ -28,7 +28,7 @@
             </ax-dock-content>
             <ax-dock-content caption="Calendar">
               <ng-template>
-                <ax-scheduler [currentView]="view">
+                <ax-scheduler [currentView]="view" [events]="data" (onEventChanged)="onEventChanged($event)">
                   <ax-toolbar>
                     <ax-toolbar-scheduler-navigator>
                     </ax-toolbar-scheduler-navigator>

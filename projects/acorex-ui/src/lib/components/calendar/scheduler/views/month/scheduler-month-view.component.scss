@@ -1,0 +1,38 @@
+.ax-sheduler-month-view {
+    .day-num {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        font-size: smaller;
+        padding: 1px 5px;
+        display: flex;
+        border-radius: 10%;
+        align-items: center;
+        justify-content: center;
+
+        &.first-day-month {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        &.today {
+            background-color: var(--primary-light-color);
+            color: var(--danger-fore-color);
+        }
+    }
+
+    .event-wrapper {
+        position: absolute;
+        top: 30px;
+        left: 0px;
+
+        .event {
+            position: absolute;
+        }
+    }
+}

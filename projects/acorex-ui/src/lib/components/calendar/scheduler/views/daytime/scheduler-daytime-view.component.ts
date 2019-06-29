@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { AXDateTime, AXDateTimeRange } from '../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent, AXSchedulerSlot } from './scheduler-view.component';
-import { AXSchedulerEvent } from '../scheduler.model';
+import { Component, OnInit, Input, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
+import { AXSchedulerBaseViewComponent, AXSchedulerSlot } from '../scheduler-view.component';
+import { AXSchedulerEvent } from '../../scheduler.model';
 
 @Component({
-    selector: 'ax-scheduler-day-time-view',
-    templateUrl: './scheduler-day-time-view.component.html',
+    templateUrl: './scheduler-daytime-view.component.html',
+    styleUrls:['./scheduler-daytime-view.component.scss'],
+    encapsulation:ViewEncapsulation.None,
     providers: [{ provide: AXSchedulerBaseViewComponent, useExisting: AXSchedulerDayTimeViewComponent }]
 })
 export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponent {

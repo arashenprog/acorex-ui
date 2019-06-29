@@ -56,9 +56,9 @@ export class AXDateTime {
     }
 
 
-    duration(end: AXDateTime): number {
+    duration(end: AXDateTime,unit: TimeUnit = "day"): number {
         let duration = moment.duration(this._moment.diff(end._moment));
-        return Math.round(Math.abs(duration.asDays()));
+        return Math.round(Math.abs(duration.as(unit)));
     }
 
     format(format: string): string {

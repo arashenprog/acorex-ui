@@ -1,0 +1,19 @@
+.ax-scheduler-day-time-view {
+    .event-wrapper {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: inline-flex;
+        flex: auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        width: 100%;
+
+        .event {
+            display: block;
+            position: relative;
+            flex: 1;
+        }
+    }
+}

@@ -6,20 +6,22 @@ import {
   ViewEncapsulation,
   ElementRef,
   ViewChild,
-  ComponentRef
+  ComponentRef,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { AXSchedulerViewsProperty } from "./scheduler-views.property";
 import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-views";
 import { MenuItem } from "../../../core/menu.class";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
-import { AXSchedulerDayTimeViewComponent } from "./views/scheduler-day-time-view.component";
+import { AXSchedulerDayTimeViewComponent } from "./views/daytime/scheduler-daytime-view.component";
 import { ComponentPortal, CdkPortalOutlet } from '@angular/cdk/portal';
-import { AXSchedulerBaseViewComponent } from "./views/scheduler-view.component";
-import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
+import { AXSchedulerBaseViewComponent, AXSchedulerEventChangeArgs } from "./views/scheduler-view.component";
+import { AXSchedulerMonthViewComponent } from "./views/month/scheduler-month-view.component";
 import { AXDateTime, AXDateTimeRange } from "../../../core/calendar/datetime";
 import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolbar-navigator";
 import { AXSchedulerEvent } from "./scheduler.model";
-import { AXSchedulerAgendaViewComponent } from "./views/scheduler-agenda-view.component";
+import { AXSchedulerAgendaViewComponent } from "./views/agenda/scheduler-agenda-view.component";
 import { AXSchedulerTimelineViewComponent } from './views/timeline/scheduler-timeline-view.component';
 
 
@@ -63,12 +65,22 @@ export class AXSchedulerComponent implements OnInit {
   private viewItems: MenuItem[] = [];
   private today = new AXDateTime();
 
+  @Input()
+  events: AXSchedulerEvent[] = [];
+
+  @Output()
+  onEventChanged: EventEmitter<AXSchedulerEventChangeArgs> = new EventEmitter<AXSchedulerEventChangeArgs>();
+
   setView(name: string) {
     this._currentView = name;
     if (this.viewManager.views) {
       this.viewItems.forEach(c => {
         c.selected = false;
       });
+      //
+      if (this.view)
+        this.view.ngOnDestroy();
+      //
       this.viewItems.find(c => c.name == name).selected = true;
       let selected = this.viewManager.views.find(c => c.name == name);
 
@@ -94,8 +106,11 @@ export class AXSchedulerComponent implements OnInit {
       const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
       this.view = compRef.instance;
       this.view.interval = interval;
-      this.view.events = this.data;
+      this.view.events = this.events;
       this.view.navigate(this.today);
+      this.view.onEventChanged.subscribe(e => {
+        this.onEventChanged.emit(e);
+      });
     }
   }
 
@@ -151,49 +166,4 @@ export class AXSchedulerComponent implements OnInit {
     this.portalOutlet.detach();
   }
 
-
-  data: AXSchedulerEvent[] = [
-    {
-      range: new AXDateTimeRange(new AXDateTime("2019-06-05 19:30"),new AXDateTime("2019-06-05 22:30")),
-      title: "Birds Of Pray",
-      uid: "e1",
-      color:"rgb(127, 169, 0)"
-    },
-    {
-      range: new AXDateTimeRange(new AXDateTime("2019-06-13 08:30"),new AXDateTime("2019-06-14 12:30")),
-      title: "Play Day",
-      uid: "e2",
-      color:"rgb(26, 170, 85)"
-    },
-    {
-      range: new AXDateTimeRange(new AXDateTime("2019-06-18 12:30"),new AXDateTime("2019-06-19 14:00")),
-      title: "Halloween party",
-      uid: "e3",
-      color:"rgb(245, 127, 23)"
-    },
-    {      
-      range: new AXDateTimeRange(new AXDateTime("2019-06-29 08:30"),new AXDateTime("2019-06-29 09:30")),
-      title: "Face Painting & Drawing events",
-      uid: "e4",
-      color:"rgb(53, 124, 210)"
-    },
-    {
-      range: new AXDateTimeRange(new AXDateTime("2019-06-29 08:30"),new AXDateTime("2019-06-29 12:30")),
-      title: "Pony rides",
-      uid: "e5",
-      color:"rgb(53, 124, 108)"
-    },
-    {
-      range: new AXDateTimeRange(new AXDateTime("2019-07-05 08:30:00"),new AXDateTime("2019-07-05 15:00:00 ")),
-      title: "Arash's Birthday",
-      uid: "e6",
-      color:"rgb(53, 124, 210)"
-    },
-    {      
-      range: new AXDateTimeRange(new AXDateTime("2019-07-07 07:00:00"),new AXDateTime("2019-07-10 08:30:00")),
-      title: "Los Angeles to Barcelona",
-      uid: "e7",
-      color:"rgb(26, 170, 85)"
-    },
-  ]
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { AXSchedulerBaseViewComponent, AXSchedulerSlot } from '../scheduler-view.component';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
 
 @Component({
-    selector: 'ax-scheduler-timeline-view',
     templateUrl: './scheduler-timeline-view.component.html',
+    styleUrls:['./scheduler-timeline-view.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [{ provide: AXSchedulerBaseViewComponent, useExisting: AXSchedulerTimelineViewComponent }]
 })
 export class AXSchedulerTimelineViewComponent extends AXSchedulerBaseViewComponent {

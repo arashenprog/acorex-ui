@@ -15,6 +15,38 @@
         border-top-right-radius: 4px;
     }
 
+    .event-wrapper {
+        z-index: 100;
+
+        .event {
+            color: var(--primary-fore-color);
+            border: var(--gray-light-color);
+            display: flex;
+            overflow: hidden;
+            position: absolute;
+            font-size: smaller;
+            justify-content: space-between;
+            padding: 1px 3px;
+
+            .span {
+                padding: 1px 2px;
+                margin: 1px;
+            }
+
+            .event-title {
+                text-overflow: ellipsis;
+                font-weight: bold;
+                color: var(--primary-fore-color);
+            }
+
+            &:hover,
+            &:focus {
+                cursor: pointer;
+                box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+
     table {
         border-collapse: collapse;
         table-layout: fixed;
@@ -68,167 +100,21 @@
         overflow-x: hidden;
     }
 
-    .ax-scheduler-day-time-view{
-        .event-wrapper {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            display: inline-flex;
-            flex: auto;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-            width: 100%;
 
-            .event {
-                background-color: var(--warning-color);
-                color: var(--primary-fore-color);
-                border: var(--gray-light-color);
-                flex: 1;
-                overflow: hidden;
-                font-size: smaller;
-                justify-content: space-between;
-                padding: 1px 3px;
-
-                .span {
-                    padding: 1px 2px;
-                    margin: 1px;
-                }
-
-                .event-title {
-                    text-overflow: ellipsis;
-                    font-weight: bold;
-                }
-
-                &:hover,
-                &:focus {
-                    cursor: pointer;
-                    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-                }
-            }
-        }
-    }
-
-    .ax-sheduler-month-view {
-        .day-num {
-            position: absolute;
-            left: 5px;
-            top: 5px;
-            font-size: smaller;
-            padding: 1px 5px;
-            display: flex;
-            border-radius: 10%;
-            align-items: center;
-            justify-content: center;
-
-            &.first-day-month {
-                color: var(--primary-color);
-                font-weight: bold;
-            }
-
-            &:hover {
-                text-decoration: underline;
-                cursor: pointer;
-            }
-
-            &.today {
-                background-color: var(--primary-light-color);
-                color: var(--danger-fore-color);
-            }
-        }
-
-        .event-wrapper {
-            position: absolute;
-            top: 30px;
-            left: 0px;
-
-            .event {
-                background-color: var(--warning-color);
-                color: var(--primary-fore-color);
-                border: var(--gray-light-color);
-                display: flex;
-                overflow: hidden;
-                position: absolute;
-                font-size: smaller;
-                justify-content: space-between;
-                padding: 1px 3px;
-
-                .span {
-                    padding: 1px 2px;
-                    margin: 1px;
-                }
-
-                .event-title {
-                    text-overflow: ellipsis;
-                    font-weight: bold;
-                }
-
-                &:hover,
-                &:focus {
-                    cursor: pointer;
-                    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-                }
-            }
-        }
-    }
-
-    .ax-scheduler-agenda-view {
-        height: 100%;
-        overflow-y: auto;
-        table {
-            border-top: 1px solid var(--border-color);
-        }
-
-        td {
-            padding-top: 5px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            vertical-align: top;
-            border: none;
-
-            &.day-border {
-                border-bottom: 1px solid var(--border-color);
-                padding: 5px;
-                vertical-align: middle;
-            }
-        }
-
-        .day-column {
-            width: 80px;
-            text-align: center;
-            .day-num {
-                font-weight: 600;
-            }
-            .day-name {
-                font-size: smaller;
-            }
-        }
-
-        ul {
-            list-style: none;
-            padding: 0px;
-            margin: 0px;
-
-            li {
-                border-left: 4px solid var(--primary-color);
-                margin-bottom: 5px;
-                padding: 0px 8px;
-                &:hover
-                {
-                    background-color: var(--primary-lighter-color);
-                    cursor: pointer;
-                }
-
-                .event-time {
-                    color: rgba(0, 0, 0, 0.54);
-                    font-size: smaller;
-                }
-
-                .event-empty {
-                    color: rgba(0, 0, 0, 0.54);
-                    font-size: smaller;
-                }
-            }
-        }
+    
+    .cdk-drag-placeholder {
+        opacity: 0;
+        display: none;
     }
 }
+.event-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    padding: 5px 10px;
+    color: white;
+}
+
+

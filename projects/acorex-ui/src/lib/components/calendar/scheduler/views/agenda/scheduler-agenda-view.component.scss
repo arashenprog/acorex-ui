@@ -1,0 +1,66 @@
+.ax-scheduler-agenda-view {
+    height: 100%;
+    overflow-y: auto;
+
+    table {
+        border-top: 1px solid var(--border-color);
+    }
+
+    .event-title {
+        color: var(--gray-color);
+    }
+
+    td {
+        padding-top: 5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: top;
+        border: none;
+
+        &.day-border {
+            border-bottom: 1px solid var(--border-color);
+            padding: 5px;
+            vertical-align: middle;
+        }
+    }
+
+    .day-column {
+        width: 80px;
+        text-align: center;
+
+        .day-num {
+            font-weight: 600;
+        }
+
+        .day-name {
+            font-size: smaller;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+
+        li {
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 5px;
+            padding: 0px 8px;
+
+            &:hover {
+                background-color: var(--primary-lighter-color);
+                cursor: pointer;
+            }
+
+            .event-time {
+                color: rgba(0, 0, 0, 0.54);
+                font-size: smaller;
+            }
+
+            .event-empty {
+                color: rgba(0, 0, 0, 0.54);
+                font-size: smaller;
+            }
+        }
+    }
+}
