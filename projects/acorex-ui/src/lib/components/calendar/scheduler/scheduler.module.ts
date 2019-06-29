@@ -9,6 +9,7 @@ import { AXSchedulerMonthViewComponent } from './views/scheduler-month-view.comp
 import { PortalModule } from '@angular/cdk/portal';
 import { AXToolbarSchedulerNavigatorComponent } from './toolbars/scheduler-toolbar-navigator';
 import { AXSchedulerAgendaViewComponent } from './views/scheduler-agenda-view.component';
+import { AXSchedulerTimelineViewComponent } from './views/timeline/scheduler-timeline-view.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { AXSchedulerAgendaViewComponent } from './views/scheduler-agenda-view.co
         AXSchedulerDayTimeViewComponent,
         AXSchedulerMonthViewComponent,
         AXSchedulerAgendaViewComponent,
+        AXSchedulerTimelineViewComponent,
         AXToolbarSchedulerViewsComponent,
         AXToolbarSchedulerNavigatorComponent
     ],
@@ -29,13 +31,16 @@ import { AXSchedulerAgendaViewComponent } from './views/scheduler-agenda-view.co
         AXSchedulerDayTimeViewComponent,
         AXSchedulerMonthViewComponent,
         AXSchedulerAgendaViewComponent,
+        AXSchedulerTimelineViewComponent,
         AXToolbarSchedulerViewsComponent,
         AXToolbarSchedulerNavigatorComponent
     ],
     entryComponents: [
         AXSchedulerMonthViewComponent, 
         AXSchedulerDayTimeViewComponent,
-        AXSchedulerAgendaViewComponent],
+        AXSchedulerAgendaViewComponent,
+        AXSchedulerTimelineViewComponent
+    ],
     providers: [],
 })
 export class AXSchedulerModule { }   
