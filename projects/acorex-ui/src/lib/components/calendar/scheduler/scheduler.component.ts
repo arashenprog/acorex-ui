@@ -6,7 +6,6 @@ import {
   ViewEncapsulation,
   ElementRef,
   ViewChild,
-  ViewContainerRef,
   ComponentRef
 } from "@angular/core";
 import { AXSchedulerViewsProperty } from "./scheduler-views.property";
@@ -14,7 +13,6 @@ import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-v
 import { MenuItem } from "../../../core/menu.class";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
 import { AXSchedulerDayTimeViewComponent } from "./views/scheduler-day-time-view.component";
-import { InjectionService } from "../../../core/injection.service";
 import { ComponentPortal, CdkPortalOutlet } from '@angular/cdk/portal';
 import { AXSchedulerBaseViewComponent } from "./views/scheduler-view.component";
 import { AXSchedulerMonthViewComponent } from "./views/scheduler-month-view.component";
@@ -22,6 +20,7 @@ import { AXDateTime, AXDateTimeRange } from "../../../core/calendar/datetime";
 import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolbar-navigator";
 import { AXSchedulerEvent } from "./scheduler.model";
 import { AXSchedulerAgendaViewComponent } from "./views/scheduler-agenda-view.component";
+import { AXSchedulerTimelineViewComponent } from './views/timeline/scheduler-timeline-view.component';
 
 
 
@@ -88,6 +87,9 @@ export class AXSchedulerComponent implements OnInit {
       }
       if (selected.type == "agenda") {
         portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerAgendaViewComponent);
+      }
+      if (selected.type == "timeline") {
+        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerTimelineViewComponent);
       }
       const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
       this.view = compRef.instance;
