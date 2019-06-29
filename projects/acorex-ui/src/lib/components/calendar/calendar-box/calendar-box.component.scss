@@ -57,6 +57,9 @@
         border-left: unset !important;
       }
     }
+    .calendar-row {
+      display: flex;
+    }
     .calendar-item {
       flex: 1;
       display: flex;
@@ -73,13 +76,35 @@
         background: var(--primary-color);
         color: var(--white-color);
       }
-      &.item-large{
-          height: 80px;
+      &.item-large {
+        height: 80px;
+      }
+      &.next-month {
+        background: var(--white-color);
+        color: var(--border-color);
+        &:hover {
+          background: var(--white-color);
+          color: var(--border-color);
+        }
+      }
+      &.selected-day {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+      &.disabled-day {
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAm0lEQVRIx7XVwQnAIAwF0ExSdBF1a6Er9dIRqsVAazWJmh4+iuBT4YMQ4w4pWxk1clt5YlOOFKeAumJZXAgKOKIBb6yBv9AansU/aAsexZtoD5biXZSCOZxEObiHs6gErnERKoURP0uCZM9IpRB2WvDz+eIqzvRUhMNkT1mcQz1xsKfwWZTFV1ASX0W7uAbaxPOCUUBr3MBfn+kF3CNLT2/yky4AAAAASUVORK5CYII=")
+          center center no-repeat;
+        cursor: not-allowed;
+        &:hover {
+          color: var(--danger-color);
+        }
+      }
+      &.holiday {
+        color: var(--danger-color);
+        font-weight: bold;
       }
     }
-    .calendar-row {
-      display: flex;
-    }
+
     .days-name {
       display: flex;
       flex-direction: row;
@@ -90,33 +115,6 @@
       color: var(--primary-color);
       span {
         background-color: var(--white-color);
-      }
-    }
-    .days-num {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .next-month {
-        background: var(--white-color);
-        color: var(--border-color);
-        &:hover {
-          background: var(--white-color);
-          color: var(--border-color);
-        }
-      }
-      .selected-day {
-        background: var(--primary-color);
-        color: var(--white-color);
-      }
-      .disabled-day {
-        text-decoration: line-through;
-        background: var(--gray-dark-color);
-        font-weight: bold;
-        cursor: not-allowed;
-      }
-      .holiday {
-        color: var(--danger-color);
-        font-weight: bold;
       }
     }
   }
