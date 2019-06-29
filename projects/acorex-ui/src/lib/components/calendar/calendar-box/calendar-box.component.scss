@@ -1,13 +1,12 @@
 .calendar-box-container {
   position: fixed;
-  max-width: 300px;
+  min-width: 330px;
   min-height: 300px;
   background: var(--white-color);
-  border:1px solid;
+  border: 1px solid;
   border-color: var(--border-color);
-  padding: 10px;
-  
   border-radius: var(--border-radius-size);
+
   .arrow {
     width: 15px;
     height: 15px;
@@ -20,5 +19,105 @@
     border-left: 1px solid;
     border-top: 1px solid;
     border-color: var(--border-color);
+  }
+  .calendar-body {
+    padding: 10px;
+    .calendar-selector {
+      display: flex;
+      height: 35px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+      div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid;
+        height: 35px;
+        border-color: var(--border-color);
+      }
+      .arrows {
+        max-width: 35px !important;
+        cursor: pointer;
+        &:hover {
+          background-color: var(--border-color);
+        }
+      }
+      .selector-name {
+        &:hover {
+          background-color: var(--border-color);
+        }
+      }
+      .left-arrow {
+        border-right: unset !important;
+      }
+      .right-arrow {
+        border-left: unset !important;
+      }
+    }
+    .calendar-item {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      padding: 5px;
+      border: 1px solid;
+      border-color: var(--white-color);
+      min-height: 44px;
+      background-color: var(--gray-light-color);
+      cursor: pointer;
+      &:hover {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+      &.item-large{
+          height: 80px;
+      }
+    }
+    .calendar-row {
+      display: flex;
+    }
+    .days-name {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+      border-bottom: 1px solid;
+      color: var(--primary-color);
+      span {
+        background-color: var(--white-color);
+      }
+    }
+    .days-num {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .next-month {
+        background: var(--white-color);
+        color: var(--border-color);
+        &:hover {
+          background: var(--white-color);
+          color: var(--border-color);
+        }
+      }
+      .selected-day {
+        background: var(--primary-color);
+        color: var(--white-color);
+      }
+      .disabled-day {
+        text-decoration: line-through;
+        background: var(--gray-dark-color);
+        font-weight: bold;
+        cursor: not-allowed;
+      }
+      .holiday {
+        color: var(--danger-color);
+        font-weight: bold;
+      }
+    }
   }
 }
