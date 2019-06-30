@@ -92,11 +92,7 @@ export class AliPage extends AXBasePageComponent {
   ]
 
   onEventChanged(e) {
-    console.log("event", e);
-    let dur=e.newSlot.range.startTime.duration(e.event.range.startTime,"day");
-    e.newSlot.range.startTime.addDay(dur);
-    e.oldSlot.events = e.oldSlot.events.filter(c => c.uid != e.event.uid);
-    e.newSlot.events.push(e.event);
+    e.complete();
   }
 
 }

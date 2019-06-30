@@ -7,7 +7,7 @@
     }
 
     .event-title {
-        color: var(--gray-color);
+        color: var(--gray-fore-color);
     }
 
     td {
@@ -53,12 +53,12 @@
             }
 
             .event-time {
-                color: rgba(0, 0, 0, 0.54);
+                color: var(--gray-fore-color);
                 font-size: smaller;
             }
 
             .event-empty {
-                color: rgba(0, 0, 0, 0.54);
+                color: var(--gray-fore-color);
                 font-size: smaller;
             }
         }

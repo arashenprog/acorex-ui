@@ -1,8 +1,9 @@
 import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent } from '../scheduler-view.component';
+import { AXSchedulerBaseViewComponent, AXSchedulerEventChangeArgs } from '../scheduler-view.component';
 import { AXSchedulerEvent } from '../../scheduler.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { PromisResult } from '../../../../../core/base.class';
 
 @Component({
     templateUrl: './scheduler-month-view.component.html',
@@ -117,6 +118,7 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
     arrangeEvents() {
         let events = this.elm.nativeElement.querySelectorAll<HTMLElement>('.event');
         if (events.length) {
+           
             let width = events[0].closest('td').offsetWidth;
             events.forEach(e => {
                 let uid = e.attributes.getNamedItem("data-uid").value;
@@ -139,16 +141,30 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
 
     onDragDrop(e) {
         console.log(e);
+        let el=e.item.element.nativeElement as HTMLElement;
         if (e.previousContainer !== e.container) {
-            this.onEventChanged.emit({
-                event:  e.item.data,
-                oldSlot: e.previousContainer.data,
-                newSlot: e.container.data
-            });
-
+            el.style.opacity = "0";
+            let r: AXSchedulerEventChangeArgs = new AXSchedulerEventChangeArgs();
+            r.event = e.item.data;
+            r.oldSlot = e.previousContainer.data;
+            r.newSlot = e.container.data;
+            //
+            r.onComplete.subscribe((er: AXSchedulerEventChangeArgs) => {
+                el.style.opacity = "1";
+                if (!er.canceled) {
+                    let dur = er.newSlot.range.startTime.duration(er.event.range.startTime, "day");
+                    er.newSlot.range.startTime.addDay(dur);
+                    er.oldSlot.events = er.oldSlot.events.filter(c => c.uid != er.event.uid);
+                    er.newSlot.events.push(er.event);
+                    setTimeout(() => {
+                        debugger;
+                        this.arrangeEvents(); 
+                    }, 50);
+                }
+            })
+            this.onEventChanged.emit(r);
         }
-        setTimeout(() => {
-            this.arrangeEvents();    
-        }, 100);
     }
+
+
 }

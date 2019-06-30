@@ -2,6 +2,8 @@ import { Input, EventEmitter, OnDestroy } from "@angular/core";
 import { AXDateTime, AXDateTimeRange, TimeUnit } from "../../../../core/calendar/datetime";
 import { AXSchedulerEvent } from "../scheduler.model";
 import { Output } from "@angular/core";
+import { PromisResult } from "../../../../core/base.class";
+import { Observable } from "rxjs";
 
 export interface AXSchedulerRequestDataArge {
     startTime: AXDateTime;
@@ -9,10 +11,20 @@ export interface AXSchedulerRequestDataArge {
     events: AXSchedulerEvent[];
 }
 
-export interface AXSchedulerEventChangeArgs {
+export abstract class AXAsyncEventArgs {
+    onComplete: EventEmitter<any> = new EventEmitter<any>(true);
+    complete(): void {
+        if (this.onComplete) {
+            this.onComplete.emit(this);
+        }
+    }
+}
+
+export class AXSchedulerEventChangeArgs extends AXAsyncEventArgs {
+    canceled: boolean = false;
     event: AXSchedulerEvent;
     oldSlot: AXSchedulerSlot;
-    newSlot: AXSchedulerEvent;
+    newSlot: AXSchedulerSlot;
 }
 
 export interface AXSchedulerSlot {
@@ -53,7 +65,11 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
     }
 
     @Output()
-    onEventChanged: EventEmitter<AXSchedulerEventChangeArgs> = new EventEmitter<AXSchedulerEventChangeArgs>();
+    onEventChanged: EventEmitter<AXSchedulerEventChangeArgs> = new EventEmitter<AXSchedulerEventChangeArgs>(true);
+
+    ngOnInit(): void {
+
+    }
 
     ngOnDestroy(): void {
         if (this.onEventChanged)

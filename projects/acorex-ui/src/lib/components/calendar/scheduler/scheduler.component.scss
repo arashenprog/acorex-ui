@@ -101,12 +101,13 @@
     }
 
 
-    
+
     .cdk-drag-placeholder {
         opacity: 0;
         display: none;
     }
 }
+
 .event-drag-preview {
     box-sizing: border-box;
     border-radius: 4px;
@@ -116,5 +117,3 @@
     padding: 5px 10px;
     color: white;
 }
-
-
