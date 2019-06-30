@@ -115,6 +115,9 @@
       color: var(--primary-color);
       span {
         background-color: var(--white-color);
+        &:hover {
+          color: var(--primary-color);
+        }
       }
     }
   }
