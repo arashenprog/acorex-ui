@@ -37,6 +37,8 @@
                 text-overflow: ellipsis;
                 font-weight: bold;
                 color: var(--primary-fore-color);
+                white-space: nowrap;
+                overflow: hidden;
             }
 
             &:hover,

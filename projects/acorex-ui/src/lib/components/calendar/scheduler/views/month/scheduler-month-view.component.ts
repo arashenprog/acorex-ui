@@ -118,30 +118,35 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
     arrangeEvents() {
         let events = this.elm.nativeElement.querySelectorAll<HTMLElement>('.event');
         if (events.length) {
-           
-            let width = events[0].closest('td').offsetWidth;
+
             events.forEach(e => {
                 let uid = e.attributes.getNamedItem("data-uid").value;
                 let event = this.events.find(c => c.uid == uid);
+                let slotTd = e.closest("td");
+                let width = slotTd.offsetWidth;
+                e.style.visibility = "unset";
                 e.style.width = ((event.range.duration() + 1) * width) + "px";
                 e.style.top = ((this.findEventIndex(event)) * 25) + "px";
+                if (e.getBoundingClientRect().bottom >= slotTd.getBoundingClientRect().bottom) {
+                    e.style.visibility = "hidden";
+                }
             })
         }
     }
 
     findEventIndex(event: AXSchedulerEvent): number {
         let a = this.events.filter(c =>
-            c.range.startTime.equal(event.range.startTime, "day")
+            c.range.startTime.equal(event.range.startTime, "days")
         ).sort((d1, d2) => {
-            return d1.range.startTime.compaire(d2.range.startTime);
+            let v = d1.range.startTime.compaire(d2.range.startTime, "minute");
+            return v;
         });
-
+        //console.log(this.events,a);
         return a.indexOf(event);
     }
 
     onDragDrop(e) {
-        console.log(e);
-        let el=e.item.element.nativeElement as HTMLElement;
+        let el = e.item.element.nativeElement as HTMLElement;
         if (e.previousContainer !== e.container) {
             el.style.opacity = "0";
             let r: AXSchedulerEventChangeArgs = new AXSchedulerEventChangeArgs();
@@ -152,14 +157,26 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
             r.onComplete.subscribe((er: AXSchedulerEventChangeArgs) => {
                 el.style.opacity = "1";
                 if (!er.canceled) {
-                    let dur = er.newSlot.range.startTime.duration(er.event.range.startTime, "day");
-                    er.newSlot.range.startTime.addDay(dur);
+                    debugger;
+                    let slotTime = er.newSlot.range.startTime.startOf();
+                    let z = er.event.range.startTime.clone();
+                    let dur = slotTime.duration(z.startOf(), "day");
+                    console.log("event");
+                    console.log(z);
+                    console.log("slot");
+                    console.log(slotTime);
+                    console.log("before");
+                    console.log(er.event.range.startTime.clone());
+                    console.log(er.event.range.endTime.clone());
+                    er.event.range.startTime = er.event.range.startTime.add("day", dur);
+                    er.event.range.endTime = er.event.range.endTime.add("day", dur);
+                    console.log("duration", dur);
+                    console.log("after");
+                    console.log(er.event.range.startTime.clone());
+                    console.log(er.event.range.endTime.clone());
+
                     er.oldSlot.events = er.oldSlot.events.filter(c => c.uid != er.event.uid);
                     er.newSlot.events.push(er.event);
-                    setTimeout(() => {
-                        debugger;
-                        this.arrangeEvents(); 
-                    }, 50);
                 }
             })
             this.onEventChanged.emit(r);
