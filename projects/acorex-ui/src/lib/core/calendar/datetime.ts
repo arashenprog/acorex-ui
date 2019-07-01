@@ -2,10 +2,10 @@ import * as moment_ from "jalali-moment";
 import { Type } from "@angular/core";
 const moment = moment_;
 
-export type TimeUnit = "second" | "minute" | "hour" | "day" | "month" | "year";
+export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "day" | "days" | "month" | "year";
 
 export class AXDateTime {
-    private _moment: moment_.Moment;
+
 
     private _date: Date;
     get date(): Date {
@@ -13,24 +13,58 @@ export class AXDateTime {
     }
 
 
-
-    readonly dayInMonth: number;
-    readonly dayInWeek: number;
-    readonly hour: number;
+    private get _moment(): moment_.Moment {
+        return moment(this.date)
+    }
 
     constructor(value: Date | string = new Date()) {
-        
-        if (value instanceof String)
-        {
-            this._date = new Date(value);
+
+        if (value instanceof Date) {
+            this._date = (<Date>value);
         }
         else
-            this._date = <Date>value;
+            this._date = new Date(value);
         //
-        this._moment = moment(this.date);
-        this.dayInMonth = this._moment.date();
-        this.dayInWeek = this._moment.day();
-        this.hour = this._moment.hour();
+    }
+
+    clone(): AXDateTime {
+        return new AXDateTime(this.date);
+    }
+
+
+    get dayInMonth(): number {
+        return this._moment.date();
+    }
+
+    get dayOfYear(): number {
+        return this._moment.dayOfYear();
+    }
+
+    get dayInWeek(): number {
+        return this._moment.day();
+    }
+
+
+
+
+    get hour(): number {
+        return this._moment.hour();
+    }
+
+    get minute(): number {
+        return this._moment.minute();
+    }
+
+    get second(): number {
+        return this._moment.second();
+    }
+
+    get year(): number {
+        return this._moment.year();
+    }
+
+    get monthOfYear(): number {
+        return this._moment.month();
     }
 
 
@@ -46,6 +80,9 @@ export class AXDateTime {
         return new AXDateTime(moment(this.date).endOf('w').toDate());
     }
 
+    add(unit: TimeUnit = "day", amount: number): AXDateTime {
+        return new AXDateTime(moment(this.date).add(amount, unit).toDate());
+    }
 
     addDay(amount: number): AXDateTime {
         return new AXDateTime(moment(this.date).add(amount, "d").toDate());
@@ -55,10 +92,23 @@ export class AXDateTime {
         return new AXDateTime(moment(this.date).add(amount, "months").toDate());
     }
 
+    set(unit: TimeUnit = "day", value: number): AXDateTime {
+        this._date = this._moment.set(unit, value).toDate();
+        return this;
+    }
 
-    duration(end: AXDateTime,unit: TimeUnit = "day"): number {
+
+    duration(end: AXDateTime, unit: TimeUnit = "day"): number {
         let duration = moment.duration(this._moment.diff(end._moment));
-        return Math.round(Math.abs(duration.as(unit)));
+        return Math.round(duration.as(unit));
+    }
+
+    startOf(unit: TimeUnit = "day"): AXDateTime {
+        return new AXDateTime(moment(this.date).startOf(unit).toDate());
+    }
+
+    endOf(unit: TimeUnit = "day"): AXDateTime {
+        return new AXDateTime(moment(this.date).endOf(unit).toDate());
     }
 
     format(format: string): string {

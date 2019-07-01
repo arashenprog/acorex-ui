@@ -21,11 +21,13 @@ export class AXToolbarSchedulerNavigatorComponent {
         this.items = [
             {
                 name: "prev",
-                text: "Prev",
+                icon: "fas fa-angle-left",
+                tooltip:"Prev"
             },
             {
                 name: "next",
-                text: "Next",
+                icon: "fas fa-angle-right",
+                tooltip:"Next"
             }]
     }
 
