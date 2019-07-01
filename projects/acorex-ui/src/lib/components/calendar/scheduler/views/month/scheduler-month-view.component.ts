@@ -1,9 +1,7 @@
 import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent, AXSchedulerEventChangeArgs } from '../scheduler-view.component';
+import { AXSchedulerBaseViewComponent, AXSchedulerEventChangeArgs, AXSchedulerSlot } from '../scheduler-view.component';
 import { AXSchedulerEvent } from '../../scheduler.model';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { PromisResult } from '../../../../../core/base.class';
 
 @Component({
     templateUrl: './scheduler-month-view.component.html',
@@ -98,7 +96,8 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
             let range: AXDateTimeRange = new AXDateTimeRange(d, d);
             this.slots.push({
                 range: range,
-                events: this.getEvents(range, "day")
+                events: this.getEvents(range, "day"),
+                uid: range.startTime.date.getTime().toString()
             });
         }
         let dayInWeek = 7;
@@ -116,22 +115,29 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
     }
 
     arrangeEvents() {
-        let events = this.elm.nativeElement.querySelectorAll<HTMLElement>('.event');
-        if (events.length) {
-
-            events.forEach(e => {
-                let uid = e.attributes.getNamedItem("data-uid").value;
-                let event = this.events.find(c => c.uid == uid);
-                let slotTd = e.closest("td");
+        (<any>this.slots).forEach(r => {
+            r.forEach((slot: AXSchedulerSlot) => {
+                let slotTd = this.elm.nativeElement.querySelector<HTMLElement>("[data-uid='" + slot.uid + "']");
+                let viewMoreDiv = slotTd.querySelector<HTMLElement>('.view-more');
+                let viewMore = 0;
+                viewMoreDiv.style.display = "none";
                 let width = slotTd.offsetWidth;
-                e.style.visibility = "unset";
-                e.style.width = ((event.range.duration() + 1) * width) + "px";
-                e.style.top = ((this.findEventIndex(event)) * 25) + "px";
-                if (e.getBoundingClientRect().bottom >= slotTd.getBoundingClientRect().bottom) {
-                    e.style.visibility = "hidden";
-                }
-            })
-        }
+                slot.events.forEach(event => {
+                    let e = slotTd.querySelector<HTMLElement>("[data-uid='" + event.uid + "']");
+                    if (e) {
+                        e.style.visibility = "unset";
+                        e.style.width = ((event.range.duration() + 1) * width) + "px";
+                        e.style.top = ((this.findEventIndex(event)) * 25) + "px";
+                        if (e.getBoundingClientRect().bottom >= slotTd.getBoundingClientRect().bottom) {
+                            viewMore++;
+                            e.style.visibility = "hidden";
+                            viewMoreDiv.style.display = "unset";
+                            viewMoreDiv.innerHTML = `+${viewMore} more`;
+                        }
+                    }
+                })
+            });
+        });
     }
 
     findEventIndex(event: AXSchedulerEvent): number {

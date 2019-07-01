@@ -9,7 +9,8 @@
     <table class="body" cdkDropListGroup>
         <tbody>
             <tr *ngFor="let r of slots">
-                <td *ngFor="let d of r" class="cell-slot" cdkDropList [cdkDropListData]="d" (cdkDropListDropped)="onDragDrop($event)">
+                <td *ngFor="let d of r" class="cell-slot" cdkDropList [cdkDropListData]="d"
+                    (cdkDropListDropped)="onDragDrop($event)" [attr.data-uid]="d.uid">
                     <div class="day-num" [class.first-day-month]="d.range.startTime.dayInMonth==1"
                         [class.today]="d.range.startTime.equal(today)">
                         <ng-container *ngIf="d.range.startTime.dayInMonth==1">
@@ -19,15 +20,18 @@
                     </div>
                     <div class="event-wrapper">
                         <ng-container *ngFor="let e of d.events">
-                            <div class="event" cdkDrag [cdkDragData]="e" [attr.data-uid]="e.uid" [style.background-color]="e.color">
+                            <div class="event" cdkDrag [cdkDragData]="e" [attr.data-uid]="e.uid"
+                                [style.background-color]="e.color">
                                 <span>{{e.range.startTime | dt: 'HH:mm'}}</span><span
                                     class="event-title">{{e.title}}</span><span>{{e.range.endTime | dt: 'HH:mm'}}</span>
                                 <div *cdkDragPreview [style.background-color]="e.color" class="event-drag-preview">
                                     {{e.title}}
                                 </div>
                             </div>
+
                         </ng-container>
                     </div>
+                    <div class="view-more" ></div>
                 </td>
             </tr>
         </tbody>

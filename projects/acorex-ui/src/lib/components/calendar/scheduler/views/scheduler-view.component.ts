@@ -30,6 +30,7 @@ export class AXSchedulerEventChangeArgs extends AXAsyncEventArgs {
 export interface AXSchedulerSlot {
     range: AXDateTimeRange;
     events?: AXSchedulerEvent[];
+    uid?:string;
 }
 
 
@@ -54,7 +55,7 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
     navigatorDate: AXDateTime = new AXDateTime();
     events: AXSchedulerEvent[] = [];
 
-    slots: AXSchedulerSlot[] = []
+    slots: AXSchedulerSlot[] = [];
 
     getEvents(range: AXDateTimeRange, unit: TimeUnit) {
         return this.events.filter(c => c.range.startTime.equal(range.startTime, unit))
