@@ -22,13 +22,14 @@ export * from "./lib/components/layout/widget/api";
 export * from "./lib/components/layout/toast/api";
 export * from "./lib/components/layout/toolbar/api";
 export * from "./lib/components/layout/tab-view/api";
+export * from "./lib/components/layout/popover/api";
 
 export * from "./lib/components/data/data-grid/api";
 export * from "./lib/components/data/data-list/api";
 export * from "./lib/components/data/data-source/api";
 
 export * from "./lib/components/calendar/scheduler/api";
-export * from "./lib/components/calendar/calendar-box/api"
+export * from "./lib/components/calendar/calendar-box/api";
 export * from "./lib/core/utils/scroll/api";
 
 export * from "./lib/acorex-ui.module";

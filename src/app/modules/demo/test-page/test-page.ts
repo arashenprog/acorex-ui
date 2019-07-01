@@ -1,4 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  ViewContainerRef
+} from "@angular/core";
 import { AXBasePageComponent } from "acorex-ui";
 
 @Component({
@@ -7,9 +12,13 @@ import { AXBasePageComponent } from "acorex-ui";
   styleUrls: ["./test-page.scss"]
 })
 export class TestPage extends AXBasePageComponent {
-  constructor() {
+  @ViewChild("calendar", { read: ViewContainerRef })
+  calendar: ViewContainerRef;
+  showPopover: boolean = false;
+  constructor(private el: ElementRef<HTMLElement>) {
     super();
   }
-
-  ngOnInit(): void {}
+  onClick() {
+    this.showPopover = !this.showPopover;
+  }
 }
