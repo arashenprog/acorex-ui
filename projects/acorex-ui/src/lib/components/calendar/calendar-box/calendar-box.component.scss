@@ -1,123 +1,100 @@
-.calendar-box-container {
-  position: fixed;
-  min-width: 330px;
-  min-height: 300px;
-  background: var(--white-color);
-  border: 1px solid;
-  border-color: var(--border-color);
-  border-radius: var(--border-radius-size);
-
-  .arrow {
-    width: 15px;
-    height: 15px;
-    background: white;
-    position: absolute;
-    right: 50%;
-    -webkit-transform: rotate(20deg);
-    transform: rotate(45deg);
-    top: -9px;
-    border-left: 1px solid;
-    border-top: 1px solid;
-    border-color: var(--border-color);
-  }
-  .calendar-body {
-    padding: 10px;
-    .calendar-selector {
-      display: flex;
-      height: 35px;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 10px;
-      cursor: pointer;
-      div {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid;
-        height: 35px;
-        border-color: var(--border-color);
-      }
-      .arrows {
-        max-width: 35px !important;
-        cursor: pointer;
-        &:hover {
-          background-color: var(--border-color);
-        }
-      }
-      .selector-name {
-        &:hover {
-          background-color: var(--border-color);
-        }
-      }
-      .left-arrow {
-        border-right: unset !important;
-      }
-      .right-arrow {
-        border-left: unset !important;
-      }
-    }
-    .calendar-row {
-      display: flex;
-    }
-    .calendar-item {
+.calendar-body {
+  padding: 10px;
+  .calendar-selector {
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    div {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 12px;
-      padding: 5px;
       border: 1px solid;
-      border-color: var(--white-color);
-      min-height: 44px;
-      background-color: var(--gray-light-color);
+      height: 35px;
+      border-color: var(--border-color);
+    }
+    .arrows {
+      max-width: 35px !important;
       cursor: pointer;
       &:hover {
-        background: var(--primary-color);
-        color: var(--white-color);
-      }
-      &.item-large {
-        height: 80px;
-      }
-      &.next-month {
-        background: var(--white-color);
-        color: var(--border-color);
-        &:hover {
-          background: var(--white-color);
-          color: var(--border-color);
-        }
-      }
-      &.selected-day {
-        background: var(--primary-color);
-        color: var(--white-color);
-      }
-      &.disabled-day {
-        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAm0lEQVRIx7XVwQnAIAwF0ExSdBF1a6Er9dIRqsVAazWJmh4+iuBT4YMQ4w4pWxk1clt5YlOOFKeAumJZXAgKOKIBb6yBv9AansU/aAsexZtoD5biXZSCOZxEObiHs6gErnERKoURP0uCZM9IpRB2WvDz+eIqzvRUhMNkT1mcQz1xsKfwWZTFV1ASX0W7uAbaxPOCUUBr3MBfn+kF3CNLT2/yky4AAAAASUVORK5CYII=")
-          center center no-repeat;
-        cursor: not-allowed;
-        &:hover {
-          color: var(--danger-color);
-        }
-      }
-      &.holiday {
-        color: var(--danger-color);
-        font-weight: bold;
+        background-color: var(--border-color);
       }
     }
+    .selector-name {
+      &:hover {
+        background-color: var(--border-color);
+      }
+    }
+    .left-arrow {
+      border-right: unset !important;
+    }
+    .right-arrow {
+      border-left: unset !important;
+    }
+  }
+  .calendar-row {
+    display: flex;
+  }
+  .calendar-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 5px;
+    border: 1px solid;
+    border-color: var(--white-color);
+    min-height: 44px;
+    background-color: var(--gray-light-color);
+    cursor: pointer;
+    &:hover {
+      background: var(--primary-color);
+      color: var(--white-color);
+    }
+    &.item-large {
+      height: 80px;
+    }
+    &.next-month {
+      background: var(--white-color);
+      color: var(--border-color);
+      &:hover {
+        background: var(--white-color);
+        color: var(--border-color);
+      }
+    }
+    &.selected-day {
+      background: var(--primary-color);
+      color: var(--white-color);
+    }
+    &.disabled-day {
+      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAm0lEQVRIx7XVwQnAIAwF0ExSdBF1a6Er9dIRqsVAazWJmh4+iuBT4YMQ4w4pWxk1clt5YlOOFKeAumJZXAgKOKIBb6yBv9AansU/aAsexZtoD5biXZSCOZxEObiHs6gErnERKoURP0uCZM9IpRB2WvDz+eIqzvRUhMNkT1mcQz1xsKfwWZTFV1ASX0W7uAbaxPOCUUBr3MBfn+kF3CNLT2/yky4AAAAASUVORK5CYII=")
+        center center no-repeat;
+      cursor: not-allowed;
+      &:hover {
+        color: var(--danger-color);
+      }
+    }
+    &.holiday {
+      color: var(--danger-color);
+      font-weight: bold;
+    }
+  }
 
-    .days-name {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 5px;
-      border-bottom: 1px solid;
-      color: var(--primary-color);
-      span {
-        background-color: var(--white-color);
-        &:hover {
-          color: var(--primary-color);
-        }
+  .days-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid;
+    color: var(--primary-color);
+    span {
+      background-color: var(--white-color);
+      &:hover {
+        color: var(--primary-color);
       }
     }
   }

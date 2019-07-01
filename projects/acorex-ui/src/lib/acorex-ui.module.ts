@@ -44,7 +44,7 @@ import { AXTreeListModule } from "./components/data/tree-list/tree-list.module";
 import * as $ from "jquery";
 import { AXSchedulerModule } from "./components/calendar/scheduler/scheduler.module";
 import { AXCalendarBoxModule } from "./components/calendar/calendar-box/api";
-
+import { AXPopoverModule } from "./components/layout/popover/api";
 
 // It is required to have JQuery as global in the window object.
 window["$"] = $;
@@ -89,7 +89,8 @@ window["$"] = $;
     AXDataSourceModule,
     AXTreeListModule,
     AXSchedulerModule,
-    AXCalendarBoxModule
+    AXCalendarBoxModule,
+    AXPopoverModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -129,7 +130,8 @@ window["$"] = $;
     AXDataSourceModule,
     AXTreeListModule,
     AXSchedulerModule,
-    AXCalendarBoxModule
+    AXCalendarBoxModule,
+    AXPopoverModule
   ],
   providers: [
     {
