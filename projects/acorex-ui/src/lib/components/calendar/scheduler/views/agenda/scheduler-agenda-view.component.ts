@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent, AXSchedulerSlot } from '../scheduler-view.component';
+import { AXSchedulerBaseViewComponent, AXSchedulerSlot, AXSchedulerEventChangeArgs } from '../scheduler-view.component';
 
 @Component({
     templateUrl: './scheduler-agenda-view.component.html',
@@ -38,5 +38,7 @@ export class AXSchedulerAgendaViewComponent extends AXSchedulerBaseViewComponent
     prev(): void {
         this.navigate(this.navigatorDate.addDay(-this.interval));
     }
+
+
 
 }

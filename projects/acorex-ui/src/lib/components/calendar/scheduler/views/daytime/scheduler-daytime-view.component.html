@@ -4,30 +4,36 @@
             <th class="time-column"></th>
             <th *ngFor="let d of slots" class="header-cell">
                 <div [class.same-week-day]="d.range.startTime.equal(today)">
-                    {{d.range.startTime | dt: 'MMM'}}<br>
+                    {{d.range.startTime | dt: 'ddd'}}<br>
                     {{d.range.startTime | dt: 'DD'}}
                 </div>
             </th>
         </thead>
     </table>
     <div class="v-scroll">
-        <table class="body">
+        <table class="body" cdkDropListGroup>
             <tbody>
                 <tr *ngFor="let t of times">
                     <td>
                         {{t.display}}
                     </td>
-                    <td *ngFor="let d of slots" class="slot-cell">
+                    <td *ngFor="let d of slots" class="slot-cell" cdkDropList [cdkDropListData]="d"
+                    (cdkDropListDropped)="onDragDropOnDay($event,t.value)" [attr.data-uid]="d.uid">
                         <div class="event-wrapper">
                             <ng-container *ngFor="let e of d.events">
                                 <div *ngIf="e.range.startTime.hour==t.value" class="event"
                                     role="button" aria-readonly="false" aria-selected="true" aria-grabbed="false"
+                                    cdkDrag [cdkDragData]="e" 
                                     [attr.data-uid]="e.uid" [style.background-color]="e.color" [title]="e.title">
                                     <div class="event-title">{{e.title}}</div>
                                     <div>
                                         <span>{{e.range.startTime | dt: 'HH:mm'}}</span> -
                                         <span>{{e.range.endTime | dt: 'HH:mm'}}</span>
                                     </div>
+                                    <div *cdkDragPreview [style.background-color]="e.color" class="event-drag-preview">
+                                        {{e.title}}
+                                    </div>
+                                    <div class="event-drag-placeholder" *cdkDragPlaceholder></div>
                                 </div>
                             </ng-container>
                         </div>

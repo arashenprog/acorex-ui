@@ -8,9 +8,9 @@
     </table>
     <table class="body" cdkDropListGroup>
         <tbody>
-            <tr *ngFor="let r of slots">
+            <tr *ngFor="let r of matrixSlots">
                 <td *ngFor="let d of r" class="cell-slot" cdkDropList [cdkDropListData]="d"
-                    (cdkDropListDropped)="onDragDrop($event)" [attr.data-uid]="d.uid">
+                    (cdkDropListDropped)="onDragDropOnDay($event)" [attr.data-uid]="d.uid">
                     <div class="day-num" [class.first-day-month]="d.range.startTime.dayInMonth==1"
                         [class.today]="d.range.startTime.equal(today)">
                         <ng-container *ngIf="d.range.startTime.dayInMonth==1">

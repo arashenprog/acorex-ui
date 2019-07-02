@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AXToolbarItem } from '../../../layout/toolbar/toolbar-item';
 import { MenuItem } from '../../../../core/menu.class';
 
@@ -7,27 +7,34 @@ import { MenuItem } from '../../../../core/menu.class';
 @Component({
     selector: 'ax-toolbar-scheduler-navigator',
     template: `
-        <ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>
+        <div>
+            <ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>
+            <div>
+                {{display}}
+            </div>
+        </div>
     `,
-    providers: [{ provide: AXToolbarItem, useExisting: AXToolbarSchedulerNavigatorComponent }]
+    providers: [{ provide: AXToolbarItem, useExisting: AXToolbarSchedulerNavigatorComponent }],
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarSchedulerNavigatorComponent {
-    constructor() { }
+    constructor(private cdr:ChangeDetectorRef) { }
 
 
     items: MenuItem[] = [];
+    display: string = "";
 
     ngAfterViewInit(): void {
         this.items = [
             {
                 name: "prev",
                 icon: "fas fa-angle-left",
-                tooltip:"Prev"
+                tooltip: "Prev"
             },
             {
                 name: "next",
                 icon: "fas fa-angle-right",
-                tooltip:"Next"
+                tooltip: "Next"
             }]
     }
 
@@ -37,6 +44,10 @@ export class AXToolbarSchedulerNavigatorComponent {
 
     onItemClick(e: MenuItem) {
         this.onNavigate.emit(<any>e.name);
+    }
+
+    setDisplay(text: string) {
+        this.display = text;
     }
 
 }
