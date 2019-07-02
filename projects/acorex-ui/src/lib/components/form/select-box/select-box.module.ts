@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AXSelectBoxComponent } from "./select-box.component";
-import { NgSelectModule } from '@ng-select/ng-select';
+import { NgSelectModule } from "@ng-select/ng-select";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AXSelectBoxComponent],
-  imports: [CommonModule,NgSelectModule],
+  imports: [CommonModule, NgSelectModule, FormsModule],
   exports: [AXSelectBoxComponent],
   providers: []
 })

@@ -7,14 +7,16 @@
         {{ label }}
       </legend>
     </fieldset>
-    <ng-select
-      [items]="items"
+    <input
       [placeholder]="placeholder"
-      [notFoundText]="notFoundText"
+      [(ngModel)]="text"
+      [ngClass]="{ 'no-label': !label }"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"
-    >
-    </ng-select>
+      class="ax-text-box"
+      [attr.disabled]="!searchable ? '' : null"
+      type="text"
+    />
     <div class="ax-field-set-button">
       <button
         *ngIf="text && showClear"
@@ -29,7 +31,6 @@
       </button>
     </div>
   </div>
-  <ng-content></ng-content>
 </div>
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}

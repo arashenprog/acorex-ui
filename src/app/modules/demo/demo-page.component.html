@@ -26,7 +26,11 @@
         </ax-pass-box>
       </ax-col>
       <ax-col col-sm="3" col-xs="12">
-        <ax-select-box label="Select Box" [items]="selectBoxItems">
+        <ax-select-box
+          label="Select Box"
+          [searchable]="true"
+          [items]="selectBoxItems"
+        >
           <ax-validation>
             <ax-validation-rule
               type="required"
@@ -284,7 +288,12 @@
             ></ax-callback-read>
           </ax-data-source>
           <ng-template let-item>
-            <div class="ax-card-box ax-pad-md ax-full-width" style="margin-bottom: 10px">{{ item.name }}</div>
+            <div
+              class="ax-card-box ax-pad-md ax-full-width"
+              style="margin-bottom: 10px"
+            >
+              {{ item.name }}
+            </div>
           </ng-template>
         </ax-list>
       </ax-col>

@@ -88,11 +88,24 @@ export class AXPopoverComponent {
         pop.style.left = tp.left - pp.width + "px";
         break;
       case "start":
-        pop.style.top = tp.top + tp.height + distance + "px";
+        pop.style.top = tp.top + tp.height / 2 - pp.height / 2 + "px";
         pop.style.left = tp.left - pp.width + "px";
         break;
-
+      case "end-top":
+        pop.style.top = tp.top + distance + "px";
+        pop.style.left = tp.left + tp.width + "px";
+        break;
+      case "end-bottom":
+        pop.style.top = tp.top + tp.height + distance + "px";
+        pop.style.left = tp.left + tp.width + "px";
+        break;
+      case "end":
+        pop.style.top = tp.top + tp.height / 2 - pp.height / 2 + "px";
+        pop.style.left = tp.left + tp.width + "px";
+        break;
       default:
+        pop.style.top = tp.top + tp.height + distance + "px";
+        pop.style.left = tp.left - pp.width / 3 + "px";
         break;
     }
   }
