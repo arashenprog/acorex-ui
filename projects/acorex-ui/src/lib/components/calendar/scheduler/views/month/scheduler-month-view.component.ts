@@ -97,7 +97,7 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
     matrixSlots: any;
 
     navigate(date: AXDateTime = new AXDateTime()) {
-        this.navigatorDate = date;
+
         let start = date.month.startDate.firstDayOfWeek;
         let end = date.month.endDate.endDayOfWeek;
         let dur = end.duration(start);
@@ -114,6 +114,7 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
         let dayInWeek = 7;
         let rows = Math.floor(dur / dayInWeek);
         this.matrixSlots = this.matrixify(this.slots, rows, dayInWeek);
+        this.navigatorDate = date;
         this.cdr.detectChanges();
     }
 
@@ -135,8 +136,9 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
             slot.events.forEach(event => {
                 let e = slotTd.querySelector<HTMLElement>("[data-uid='" + event.uid + "']");
                 if (e) {
+                    let dur = Math.ceil(Math.abs(event.range.duration()));
                     e.style.visibility = "unset";
-                    e.style.width = ((event.range.duration() + 1) * width) + "px";
+                    e.style.width = (dur * width) + "px";
                     e.style.top = ((this.findEventIndex(event)) * 25) + "px";
                     if (e.getBoundingClientRect().bottom >= slotTd.getBoundingClientRect().bottom) {
                         viewMore++;

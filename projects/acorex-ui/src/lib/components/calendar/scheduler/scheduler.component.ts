@@ -8,7 +8,8 @@ import {
   ViewChild,
   ComponentRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  ChangeDetectorRef
 } from "@angular/core";
 import { AXSchedulerViewsProperty } from "./scheduler-views.property";
 import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-views";
@@ -33,7 +34,9 @@ import { AXSchedulerTimelineViewComponent } from './views/timeline/scheduler-tim
   encapsulation: ViewEncapsulation.None
 })
 export class AXSchedulerComponent implements OnInit {
-  constructor(private elm: ElementRef<HTMLDivElement>
+  constructor(
+    private elm: ElementRef<HTMLDivElement>,
+    private cdr: ChangeDetectorRef
   ) { }
 
   @ViewChild(CdkPortalOutlet) portalOutlet: CdkPortalOutlet
@@ -105,12 +108,45 @@ export class AXSchedulerComponent implements OnInit {
       }
       const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
       this.view = compRef.instance;
+      this.view.type = selected.type;
       this.view.interval = interval;
       this.view.events = this.events;
-      this.view.navigate(this.today);
       this.view.onEventChanged.subscribe(e => {
         this.onEventChanged.emit(e);
       });
+      this.view.onNavigatorDateChanged.subscribe((e) => {
+        this.setNavigatorText();
+      });
+      this.view.navigate(this.today);
+    }
+  }
+
+
+  private setNavigatorText() {
+    debugger;
+    if (this.toolbarNavigator) {
+      let range = this.view.dateRange;
+      let text: string = "";
+      if (range) {
+        let sameDay = range.startTime.compaire(range.endTime, "day") == 0;
+        let sameMonth = range.startTime.compaire(range.endTime, "month") == 0;
+        let sameYear = range.startTime.compaire(range.endTime, "year") == 0;
+        if (this.view.type != "month" && sameDay)
+          text = range.startTime.format("MMMM DD, YYYY");
+        //
+        else if (this.view.type != "month" && sameMonth && sameYear)
+          text = `${range.startTime.format("MMMM DD")} - ${range.endTime.format("DD, YYYY")}`;
+        //
+        else if (this.view.type != "month" && sameYear)
+          text = `${range.startTime.format("MMM DD")} - ${range.endTime.format("MMM DD, YYYY")}`;
+        //
+        else if (this.view.type != "month")
+          text = `${range.startTime.format("MMM DD, YYYY")} - ${range.endTime.format("MMM DD, YYYY")}`;
+        //
+        else if (this.view.type == "month")
+          text = range.startTime.format("MMMM YYYY");
+      }
+      this.toolbarNavigator.setDisplay(text);
     }
   }
 

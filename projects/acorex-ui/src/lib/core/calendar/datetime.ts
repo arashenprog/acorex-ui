@@ -4,6 +4,8 @@ const moment = moment_;
 
 export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "hours" | "day" | "days" | "month" | "year";
 
+export type TimeDuration = "seconds" |  "minutes"  | "hours" |  "days" | "weeks" |  "months" | "years";
+
 export class AXDateTime {
 
 
@@ -98,7 +100,7 @@ export class AXDateTime {
     }
 
 
-    duration(end: AXDateTime, unit: TimeUnit = "day"): number {
+    duration(end: AXDateTime, unit: TimeDuration = "days"): number {
         let duration = moment.duration(this._moment.diff(end._moment));
         return Math.round(duration.as(unit));
     }
@@ -166,9 +168,14 @@ export class AXDateTimeRange {
 
     }
 
-    duration(unit: TimeUnit = "day"): number {
+    duration(unit: TimeDuration = "days"): number {
         let duration = moment.duration(moment(this.startTime.date).diff(moment(this.endTime.date)));
-        return Math.round(Math.abs(duration.as(unit)));
+        return duration.as(unit);
+        //return Math.round(duration.as(unit));
     }
+
+    
+
+    
 
 }

@@ -35,6 +35,7 @@ export interface AXSchedulerSlot {
 
 export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
+    type:string;
     timeSlot: number = 1;
 
     interval: number = 1;
@@ -49,7 +50,10 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
     get dateRange():AXDateTimeRange
     {
-        return new AXDateTimeRange(this.slots[0].range.startTime,this.slots.reverse()[0].range.startTime);
+        if(this.slots && this.slots.length)
+            return new AXDateTimeRange(this.slots[0].range.startTime,this.slots[this.slots.length-1].range.startTime);
+        else
+            return null;
     }
 
 
@@ -58,7 +62,8 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
    
     
     @Output()
-    onNavigatorDateChanged: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>(true);
+    onNavigatorDateChanged: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
+
     private _navigatorDate : AXDateTime;
     public get navigatorDate() : AXDateTime {
         return this._navigatorDate;
@@ -111,7 +116,7 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
                 if (!er.canceled) {
                     let slotTime = er.newSlot.range.startTime.startOf();
                     let z = er.event.range.startTime.clone();
-                    let durDay = slotTime.duration(z.startOf(), "day");
+                    let durDay = slotTime.duration(z.startOf(), "days");
                     let durTime = slotTime.duration(z, "hours");
                     let eventRange = er.event.range;
                     //

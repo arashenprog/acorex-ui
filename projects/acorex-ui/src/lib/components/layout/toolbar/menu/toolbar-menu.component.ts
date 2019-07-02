@@ -216,4 +216,9 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
       window.removeEventListener("resize", this.onResize);
     });
   }
+
+  update() {
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
+  }
 }

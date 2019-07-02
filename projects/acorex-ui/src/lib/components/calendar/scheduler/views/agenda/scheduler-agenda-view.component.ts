@@ -18,7 +18,6 @@ export class AXSchedulerAgendaViewComponent extends AXSchedulerBaseViewComponent
 
 
     navigate(date: AXDateTime = new AXDateTime()) {
-        this.navigatorDate = date;
         this.slots = [];
         for (let i = 0; i < this.interval; i++) {
             let d = date.addDay(i);
@@ -29,6 +28,7 @@ export class AXSchedulerAgendaViewComponent extends AXSchedulerBaseViewComponent
             }
             this.slots.push(slot);
         }
+        this.navigatorDate = date;
         this.cdr.detectChanges();
     }
 

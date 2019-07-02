@@ -60,7 +60,7 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
     }
 
     navigate(date: AXDateTime = new AXDateTime()) {
-        this.navigatorDate = date;
+      
         this.times = [];
         this.slots = [];
         for (let i = 0; i < this.interval; i++) {
@@ -78,6 +78,7 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
                 value: i
             });
         }
+        this.navigatorDate = date;
         this.cdr.detectChanges();
     }
 
@@ -95,7 +96,8 @@ export class AXSchedulerDayTimeViewComponent extends AXSchedulerBaseViewComponen
             events.forEach(e => {
                 let uid = e.attributes.getNamedItem("data-uid").value;
                 let event = this.events.find(c => c.uid == uid);
-                let total = event.range.duration("hour") + 1;
+                let dur = Math.ceil(Math.abs(event.range.duration("hours")));
+                let total = dur + 1;
                 if (event.range.startTime.hour + total > 23)
                     total = 24 - event.range.startTime.hour;
                 e.style.height = (total * height) + "px";

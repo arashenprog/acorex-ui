@@ -10,7 +10,7 @@
                     <ul *ngIf="slot.events.length" >
                         <li *ngFor="let e of slot.events" [style.border-color]="e.color" cdkDrag [cdkDragData]="e" [attr.data-uid]="e.uid">
                             <div class="event-title">{{e.title}}</div>
-                            <div class="event-time">{{e.range.startTime | dt:"HH:mm"}} - <span *ngIf="e.range.duration('days')>0 then a else b"></span></div>
+                            <div class="event-time">{{e.range.startTime | dt:"HH:mm"}} - <span *ngIf="e.range.duration('days')!=0 then a else b"></span></div>
                             <ng-template #a>
                                 {{e.range.endTime | dt:"HH:mm"}}
                             </ng-template>
