@@ -2,7 +2,7 @@ import * as moment_ from "jalali-moment";
 import { Type } from "@angular/core";
 const moment = moment_;
 
-export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "day" | "days" | "month" | "year";
+export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "hours" | "day" | "days" | "month" | "year";
 
 export class AXDateTime {
 

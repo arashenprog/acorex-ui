@@ -1,16 +1,26 @@
 <div class="view ax-scheduler-agenda-view">
-    <table class="body">
+    <table class="body" cdkDropListGroup>
         <tbody>
-            <tr *ngFor="let slot of slots">
+            <tr *ngFor="let slot of slots" cdkDropList [cdkDropListData]="slot"  [attr.data-uid]="slot.uid" (cdkDropListDropped)="onDragDropOnDay($event)">
                 <td class="day-column">
                     <div class="day-num">{{slot.range.startTime | dt:"DD"}}</div>
                     <div class="day-name">{{slot.range.startTime | dt:"ddd"}}</div>
                 </td>
                 <td class="day-border">
-                    <ul *ngIf="slot.events.length">
-                        <li *ngFor="let e of slot.events" [style.border-color]="e.color">
+                    <ul *ngIf="slot.events.length" >
+                        <li *ngFor="let e of slot.events" [style.border-color]="e.color" cdkDrag [cdkDragData]="e" [attr.data-uid]="e.uid">
                             <div class="event-title">{{e.title}}</div>
-                            <div class="event-time">{{e.range.startTime | dt:"HH:mm"}} - {{e.range.endTime | dt:"HH:mm"}}</div>
+                            <div class="event-time">{{e.range.startTime | dt:"HH:mm"}} - <span *ngIf="e.range.duration('days')>0 then a else b"></span></div>
+                            <ng-template #a>
+                                {{e.range.endTime | dt:"HH:mm"}}
+                            </ng-template>
+                            <ng-template #b>
+                                {{e.range.endTime | dt:"YYYY-MM-DD HH:mm"}}
+                            </ng-template>
+                            
+                            <div *cdkDragPreview [style.background-color]="e.color" class="event-drag-preview">
+                                {{e.title}}
+                            </div>
                         </li>
                     </ul>
                     <div *ngIf="!slot.events.length" class="event-empty">No events</div>
