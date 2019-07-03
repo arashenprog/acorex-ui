@@ -1,23 +1,19 @@
 <ax-page>
   <ax-page-content>
-    <div style="margin-left: 300px">
+    <!-- <div style="margin-left: 300px">
       <button id="btn" class="btn btn-large btn-danger" (click)="pop1.toggle()">
         Click Me !
       </button>
-    </div>
+    </div> -->
     <div style="margin-top: 250px;margin-left: 500px">
-      <button
-        id="btn1"
-        class="btn btn-large btn-danger"
-        (click)="pop2.toggle()"
-      >
+      <button id="btn1" class="btn btn-large btn-danger" (click)="pop2.toggle()">
         Click Me !
       </button>
     </div>
-    <ax-popover target="#btn" position="end-top" #pop1>
+    <!-- <ax-popover target="#btn" placement="center-start" #pop1>
       <ax-calendar-box></ax-calendar-box>
-    </ax-popover>
-    <ax-popover target="#btn1" position="start-top" #pop2>
+    </ax-popover> -->
+    <ax-popover target="#btn1" placement="bottom-end" alignment="top-end" #pop2>
       <ax-calendar-box></ax-calendar-box>
     </ax-popover>
   </ax-page-content>

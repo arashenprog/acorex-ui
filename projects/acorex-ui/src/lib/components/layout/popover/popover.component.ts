@@ -1,27 +1,33 @@
 import { Component, Input } from "@angular/core";
 import { ElementRef } from "@angular/core";
 
+export type AXPlacement =
+  | "top-start"
+  | "top-middle"
+  | "top-end"
+  | "center-start"
+  | "center-end"
+  | "bottom-start"
+  | "bottom-middle"
+  | "bottom-end"
+
+export class AXPoint {
+
+  constructor(public x: number, public y: number) {
+
+  }
+}
+
 @Component({
   selector: "ax-popover",
   templateUrl: "./popover.component.html",
   styleUrls: ["./popover.component.scss"]
 })
 export class AXPopoverComponent {
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private el: ElementRef<HTMLElement>) { }
   @Input("target") target: string;
-  @Input("position") position:
-    | "end"
-    | "end-top"
-    | "end-bottom"
-    | "start"
-    | "start-top"
-    | "start-bottom"
-    | "top"
-    | "top-start"
-    | "top-end"
-    | "bottom"
-    | "bottom-start"
-    | "bottom-end" = "start";
+  @Input("placement") placement: AXPlacement = "bottom-middle";
+  @Input("alignment") alignment: AXPlacement = "top-middle";
 
   @Input() distance: number = 0;
   private _visible: boolean;
@@ -44,69 +50,81 @@ export class AXPopoverComponent {
   }
 
   setPosition() {
-    debugger;
-    let pop = <HTMLElement>(
-      this.el.nativeElement.querySelector(".popover-container")
-    );
-    let target = <HTMLElement>document.querySelector(this.target);
-    let tp = target.getBoundingClientRect();
-    let pp = pop.getBoundingClientRect();
-    let distance = this.distance;
 
-    switch (this.position) {
+    let pop = this.el.nativeElement.querySelector<HTMLElement>(".popover-container");
+    let target = document.querySelector<HTMLElement>(this.target);
+
+    let targetPos: AXPoint = this.getTargetPosition(target);
+    //let popPos: AXPoint = this.getTargetPosition(pop);
+    //
+    //
+    let top: number = 0;
+    let left: number = 0;
+    switch (this.alignment) {
       case "top-start":
-        debugger;
-        pop.style.top = tp.top - pop.clientHeight + distance + "px";
-        pop.style.left = tp.left + distance + "px";
+        top = targetPos.y;
+        left = targetPos.x;
+        break;
+      case "top-middle":
+        top = targetPos.y;
+        left = targetPos.x - pop.offsetWidth / 2;
         break;
       case "top-end":
-        pop.style.top = tp.top - pop.clientHeight + distance + "px";
-        pop.style.left = tp.left + target.clientWidth + distance + "px";
+        top = targetPos.y;
+        left = targetPos.x - pop.offsetWidth;
         break;
-      case "top":
-        pop.style.top = tp.top - pop.clientHeight + distance + "px";
-        pop.style.left = tp.left - pp.width / 3 + "px";
-
-      case "bottom-start":
-        pop.style.top = tp.top + tp.height + distance + "px";
-        pop.style.left = tp.left + distance + "px";
+      case "center-end":
+        top = targetPos.y - (pop.offsetHeight / 2);
+        left = targetPos.x - pop.offsetWidth;
         break;
       case "bottom-end":
-        pop.style.top = tp.top + tp.height + distance + "px";
-        pop.style.left = tp.left + tp.width + distance + "px";
+        top = targetPos.y - (pop.offsetHeight);
+        left = targetPos.x - pop.offsetWidth;
         break;
-      case "bottom":
-        pop.style.top = tp.top + tp.height + distance + "px";
-        pop.style.left = tp.left - pp.width / 3 + "px";
+      case "bottom-middle":
+        top = targetPos.y - (pop.offsetHeight);
+        left = targetPos.x - (pop.offsetWidth / 2);
         break;
-      case "start-top":
-        pop.style.top = tp.top + distance + "px";
-        pop.style.left = tp.left - pp.width + "px";
+      case "bottom-start":
+        top = targetPos.y - (pop.offsetHeight);
+        left = targetPos.x;
         break;
-      case "start-bottom":
-        pop.style.top = tp.top + tp.height + distance + "px";
-        pop.style.left = tp.left - pp.width + "px";
+      case "center-start":
+        top = targetPos.y - (pop.offsetHeight / 2);
+        left = targetPos.x;
         break;
-      case "start":
-        pop.style.top = tp.top + tp.height / 2 - pp.height / 2 + "px";
-        pop.style.left = tp.left - pp.width + "px";
-        break;
-      case "end-top":
-        pop.style.top = tp.top + distance + "px";
-        pop.style.left = tp.left + tp.width + "px";
-        break;
-      case "end-bottom":
-        pop.style.top = tp.top + tp.height + distance + "px";
-        pop.style.left = tp.left + tp.width + "px";
-        break;
-      case "end":
-        pop.style.top = tp.top + tp.height / 2 - pp.height / 2 + "px";
-        pop.style.left = tp.left + tp.width + "px";
-        break;
+
+    }
+
+    pop.style.top = top + "px";
+    pop.style.left = left + "px";
+  }
+
+
+  getTargetPosition(el: HTMLElement): AXPoint {
+    let rec = el.getBoundingClientRect();
+    let width = el.offsetWidth;
+    let height = el.offsetHeight;
+    switch (this.placement) {
+      case "top-start":
+        return new AXPoint(rec.left, rec.top);
+      case "top-middle":
+        return new AXPoint(rec.left + (width / 2), rec.top);
+      case "top-end":
+        return new AXPoint(rec.left + (width), rec.top);
+      case "center-end":
+        return new AXPoint(rec.left + (width), rec.top + (height / 2));
+      case "bottom-end":
+        return new AXPoint(rec.left + (width), rec.top + (height));
+      case "bottom-middle":
+        return new AXPoint(rec.left + (width / 2), rec.top + (height));
+      case "bottom-start":
+        return new AXPoint(rec.left, rec.top + (height));
+      case "center-start":
+        return new AXPoint(rec.left, rec.top + (height / 2));
       default:
-        pop.style.top = tp.top + tp.height + distance + "px";
-        pop.style.left = tp.left - pp.width / 3 + "px";
-        break;
+        return new AXPoint(rec.left + (width / 2), rec.top + (height));
     }
   }
+
 }
