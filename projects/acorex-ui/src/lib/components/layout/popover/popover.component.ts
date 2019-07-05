@@ -24,10 +24,12 @@ export class AXPoint {
   styleUrls: ["./popover.component.scss"]
 })
 export class AXPopoverComponent {
-  constructor(private el: ElementRef<HTMLElement>) { }
+  constructor(private el: ElementRef<HTMLElement>) {}
   @Input("target") target: string;
   @Input("placement") placement: AXPlacement = "bottom-middle";
   @Input("alignment") alignment: AXPlacement = "top-middle";
+  @Input("width") width: number;
+  @Input("height") height: number;
 
   @Input() distance: number = 0;
   private _visible: boolean;
@@ -48,16 +50,13 @@ export class AXPopoverComponent {
   toggle() {
     this.visible = !this.visible;
   }
-
   setPosition() {
-
-    let pop = this.el.nativeElement.querySelector<HTMLElement>(".popover-container");
+    let pop = this.el.nativeElement.querySelector<HTMLElement>(
+      ".popover-container"
+    );
     let target = document.querySelector<HTMLElement>(this.target);
-
     let targetPos: AXPoint = this.getTargetPosition(target);
-    //let popPos: AXPoint = this.getTargetPosition(pop);
-    //
-    //
+
     let top: number = 0;
     let left: number = 0;
     switch (this.alignment) {
@@ -74,32 +73,33 @@ export class AXPopoverComponent {
         left = targetPos.x - pop.offsetWidth;
         break;
       case "center-end":
-        top = targetPos.y - (pop.offsetHeight / 2);
+        top = targetPos.y - pop.offsetHeight / 2;
         left = targetPos.x - pop.offsetWidth;
         break;
       case "bottom-end":
-        top = targetPos.y - (pop.offsetHeight);
+        top = targetPos.y - pop.offsetHeight;
         left = targetPos.x - pop.offsetWidth;
         break;
       case "bottom-middle":
-        top = targetPos.y - (pop.offsetHeight);
-        left = targetPos.x - (pop.offsetWidth / 2);
+        top = targetPos.y - pop.offsetHeight;
+        left = targetPos.x - pop.offsetWidth / 2;
         break;
       case "bottom-start":
-        top = targetPos.y - (pop.offsetHeight);
+        top = targetPos.y - pop.offsetHeight;
         left = targetPos.x;
         break;
       case "center-start":
-        top = targetPos.y - (pop.offsetHeight / 2);
+        top = targetPos.y - pop.offsetHeight / 2;
         left = targetPos.x;
         break;
-
     }
 
     pop.style.top = top + "px";
     pop.style.left = left + "px";
-  }
 
+    pop.style.width = this.width + "px";
+    pop.style.height = this.height + "px";
+  }
 
   getTargetPosition(el: HTMLElement): AXPoint {
     let rec = el.getBoundingClientRect();
@@ -109,22 +109,21 @@ export class AXPopoverComponent {
       case "top-start":
         return new AXPoint(rec.left, rec.top);
       case "top-middle":
-        return new AXPoint(rec.left + (width / 2), rec.top);
+        return new AXPoint(rec.left + width / 2, rec.top);
       case "top-end":
-        return new AXPoint(rec.left + (width), rec.top);
+        return new AXPoint(rec.left + width, rec.top);
       case "center-end":
-        return new AXPoint(rec.left + (width), rec.top + (height / 2));
+        return new AXPoint(rec.left + width, rec.top + height / 2);
       case "bottom-end":
-        return new AXPoint(rec.left + (width), rec.top + (height));
+        return new AXPoint(rec.left + width, rec.top + height);
       case "bottom-middle":
-        return new AXPoint(rec.left + (width / 2), rec.top + (height));
+        return new AXPoint(rec.left + width / 2, rec.top + height);
       case "bottom-start":
-        return new AXPoint(rec.left, rec.top + (height));
+        return new AXPoint(rec.left, rec.top + height);
       case "center-start":
-        return new AXPoint(rec.left, rec.top + (height / 2));
+        return new AXPoint(rec.left, rec.top + height / 2);
       default:
-        return new AXPoint(rec.left + (width / 2), rec.top + (height));
+        return new AXPoint(rec.left + width / 2, rec.top + height);
     }
   }
-
 }
