@@ -21,7 +21,7 @@ export class AXCalendarBoxComponent implements OnInit {
     }
     public set value(v: AXDateTime) {
         this._value = v;
-        this.viewRange = new AXDateTimeRange(v.startOf("month"), v.endOf("month"))
+        this.viewRange = new AXDateTimeRange(v.startOf("month").startOf('week'), v.endOf("month").endOf("week"));
     }
 
 
@@ -38,15 +38,20 @@ export class AXCalendarBoxComponent implements OnInit {
     }
 
     navigate(value: number) {
+        debugger;
         let start: AXDateTime;
         let end: AXDateTime;
         if (this.view == "day") {
-            start = this.viewRange.startTime.add("month", value).startOf("month");
-            end = this.viewRange.endTime.add("month", value).endOf("month");
+            start = this.viewRange.startTime.startOf("month").add("month", value);
+            end = start.endOf("month");
         }
         else if (this.view == "month") {
-            start = this.viewRange.startTime.add("year", value).startOf("year");
-            end = this.viewRange.endTime.add("year", value).endOf("year");
+            start = this.viewRange.startTime.startOf("year").add("year", value);
+            end = start.endOf("year");
+        }
+        else if (this.view == "year") {
+            start = this.viewRange.startTime.startOf("year").add("year", value * 10);
+            end = start.add("year", 10);
         }
         this.viewRange = new AXDateTimeRange(start, end)
     }
@@ -56,5 +61,7 @@ export class AXCalendarBoxComponent implements OnInit {
             this.view = "month";
         else if (this.view == "month")
             this.view = "year";
+        //
+        this.navigate(0);
     }
 }

@@ -1,7 +1,7 @@
 <div class="calendar-body">
   <div class="calendar-selector">
-    <div class="arrows left-arrow">
-      <i class="fas fa-chevron-left" (click)="prev()"></i>
+    <div class="arrows left-arrow" (click)="prev()">
+      <i class="fas fa-chevron-left"></i>
     </div>
     <div class="selector-name" (click)="changeView()" [ngSwitch]="view">
       <ng-container *ngSwitchCase="'day'">
@@ -30,86 +30,22 @@
         <span class="calendar-item">SAT</span>
       </div>
       <div class="calendar-row">
-        <span class="calendar-item">1</span>
-        <span class="calendar-item">2</span>
-        <span class="calendar-item">3</span>
-        <span class="calendar-item">4</span>
-        <span class="calendar-item selected-day">5</span>
-        <span class="calendar-item">6</span>
-        <span class="calendar-item">7</span>
-      </div>
-      <div class="calendar-row">
-        <span class="calendar-item">8</span>
-        <span class="calendar-item">9</span>
-        <span class="calendar-item">10</span>
-        <span class="calendar-item">11</span>
-        <span class="calendar-item">12</span>
-        <span class="calendar-item">13</span>
-        <span class="calendar-item">14</span>
-      </div>
-      <div class="calendar-row">
-        <span class="calendar-item">15</span>
-        <span class="calendar-item">16</span>
-        <span class="calendar-item">17</span>
-        <span class="calendar-item">18</span>
-        <span class="calendar-item">19</span>
-        <span class="calendar-item">20</span>
-        <span class="calendar-item">21</span>
-      </div>
-      <div class="calendar-row">
-        <span class="calendar-item disabled-day">22</span>
-        <span class="calendar-item">23</span>
-        <span class="calendar-item">24</span>
-        <span class="calendar-item">25</span>
-        <span class="calendar-item">26</span>
-        <span class="calendar-item">27</span>
-        <span class="calendar-item">28</span>
-      </div>
-      <div class="calendar-row">
-        <span class="calendar-item holiday">29</span>
-        <span class="calendar-item">30</span>
-        <span class="calendar-item">31</span>
-        <span class="calendar-item next-month">1</span>
-        <span class="calendar-item next-month">3</span>
-        <span class="calendar-item next-month">4</span>
-        <span class="calendar-item next-month">5</span>
+        <div class="calendar-item" *ngFor="let i of viewRange.enumurate()" [class.selected]="i.compaire(value,'day')==0">
+          {{i.dayInMonth}}
+        </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'month'">
-      <div class="selector-container">
-        <div class="calendar-row">
-          <span class="calendar-item item-large">Jun</span>
-          <span class="calendar-item item-large">Feb</span>
-          <span class="calendar-item item-large">March</span>
-        </div>
-        <div class="calendar-row">
-          <span class="calendar-item item-large">2003</span>
-          <span class="calendar-item item-large">2004</span>
-          <span class="calendar-item item-large">2005</span>
-        </div>
-        <div class="calendar-row">
-          <span class="calendar-item item-large">2006</span>
-          <span class="calendar-item item-large">2007</span>
-          <span class="calendar-item item-large">2008</span>
+      <div class="calendar-row">
+        <div class="calendar-item item-large" *ngFor="let i of viewRange.enumurate('month')" [class.selected]="i.compaire(value,'month')==0">
+          {{i | dt:"MMM"}}
         </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'year'">
-      <div class="selector-container">
-        <div class="calendar-row">
-          <span class="calendar-item item-large">2000</span>
-          <span class="calendar-item item-large">2001</span>
-          <span class="calendar-item item-large">2002</span>
-        </div>
-        <div class="calendar-row">
-          <span class="calendar-item item-large">2003</span>
-          <span class="calendar-item item-large">2004</span>
-          <span class="calendar-item item-large">2005</span>
-        </div>
-        <div class="calendar-row">
-          <span class="calendar-item item-large">2006</span>
-          <span class="calendar-item item-large">2007</span>
-          <span class="calendar-item item-large">2008</span>
+      <div class="calendar-row">
+        <div class="calendar-item item-large" *ngFor="let i of viewRange.enumurate('year')" [class.selected]="i.compaire(value,'year')==0">
+          {{i | dt:"YYYY"}}
         </div>
       </div>
     </ng-container>

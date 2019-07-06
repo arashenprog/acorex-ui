@@ -91,9 +91,5 @@ export class AXPopoverComponent {
     }
     pop.style.top = top + "px";
     pop.style.left = left + "px";
-
-
   }
-
-  
 }

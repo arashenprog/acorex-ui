@@ -2,9 +2,9 @@ import * as moment_ from "jalali-moment";
 import { Type } from "@angular/core";
 const moment = moment_;
 
-export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "hours" | "day" | "days" | "month" | "year";
+export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "hours" | "day" | "days" | "month" | "year" | "week";
 
-export type TimeDuration = "seconds" |  "minutes"  | "hours" |  "days" | "weeks" |  "months" | "years";
+export type TimeDuration = "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" | "years";
 
 export class AXDateTime {
 
@@ -174,8 +174,14 @@ export class AXDateTimeRange {
         //return Math.round(duration.as(unit));
     }
 
-    
+    enumurate(unit: TimeUnit = "day"): AXDateTime[] {
+        let result: AXDateTime[] = [];
+        for (let index = 0; this.startTime.add(unit, index).compaire(this.endTime) < 0; index++) {
+            result.push(this.startTime.add(unit, index))
+        }
+        return result;
+    }
 
-    
+
 
 }
