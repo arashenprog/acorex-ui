@@ -1,32 +1,17 @@
-<div class="ax-field-set">
+<div class="ax-field-set" id="dropSelectBox">
   <div class="ax-field-set-wrapper">
-    <fieldset
-      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
-    >
+    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
-    <input
-      [placeholder]="placeholder"
-      [(ngModel)]="text"
-      [ngClass]="{ 'no-label': !label }"
-      (blur)="onBlur($event)"
-      (focus)="onFocus($event)"
-      class="ax-text-box"
-      [attr.disabled]="!searchable ? '' : null"
-      type="text"
-    />
+    <input [placeholder]="placeholder" [(ngModel)]="text" [ngClass]="{ 'no-label': !label }" (blur)="onBlur($event)"
+      (focus)="onFocus($event)" class="ax-text-box" [attr.disabled]="!searchable ? '' : null" type="text" />
     <div class="ax-field-set-button">
-      <button
-        *ngIf="text && showClear"
-        type="button"
-        class="btn btn-light"
-        (click)="clearText()"
-      >
+      <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">
         <i class="fas fa-times"></i>
       </button>
-      <button type="button" class=" btn btn-primary" id="dropSelectBox" (click)="popSelectBox.toggle()">
+      <button type="button" class=" btn btn-primary" (click)="popSelectBox.toggle()">
         <i class="fas fa-angle-down"></i>
       </button>
     </div>
@@ -35,5 +20,9 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<ax-popover width="400" target="#dropSelectBox" placement="bottom-end" alignment="top-end"  #popSelectBox>
+<ax-popover [fitParent]="true" height="auto" target="#dropSelectBox" placement="bottom-end" alignment="top-end"
+  #popSelectBox>
+  <div class="ax-select-item" *ngFor="let item of items">
+    {{item.text}}
+  </div>
 </ax-popover>

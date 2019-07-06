@@ -1,6 +1,7 @@
 export class SelectItem {
   id: string;
-  name: string;
+  name?: string;
   text: string;
-  visible: boolean;
+  visible?: boolean;
+  disable?: boolean;
 }
