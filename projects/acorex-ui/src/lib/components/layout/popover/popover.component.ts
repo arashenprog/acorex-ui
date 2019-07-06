@@ -1,22 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { ElementRef } from "@angular/core";
+import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-util.class";
 
-export type AXPlacement =
-  | "top-start"
-  | "top-middle"
-  | "top-end"
-  | "center-start"
-  | "center-end"
-  | "bottom-start"
-  | "bottom-middle"
-  | "bottom-end"
 
-export class AXPoint {
-
-  constructor(public x: number, public y: number) {
-
-  }
-}
 
 @Component({
   selector: "ax-popover",
@@ -54,9 +40,7 @@ export class AXPopoverComponent {
     let pop = this.el.nativeElement.querySelector<HTMLElement>(".popover-container");
     let target = document.querySelector<HTMLElement>(this.target);
 
-    let targetPos: AXPoint = this.getTargetPosition(target);
-    //let popPos: AXPoint = this.getTargetPosition(pop);
-    //
+    let targetPos: AXPoint = AXHtmlUtil.getBoundingRectPoint(target, this.placement);
     //
     let top: number = 0;
     let left: number = 0;
@@ -95,36 +79,7 @@ export class AXPopoverComponent {
         break;
 
     }
-
     pop.style.top = top + "px";
     pop.style.left = left + "px";
   }
-
-
-  getTargetPosition(el: HTMLElement): AXPoint {
-    let rec = el.getBoundingClientRect();
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
-    switch (this.placement) {
-      case "top-start":
-        return new AXPoint(rec.left, rec.top);
-      case "top-middle":
-        return new AXPoint(rec.left + (width / 2), rec.top);
-      case "top-end":
-        return new AXPoint(rec.left + (width), rec.top);
-      case "center-end":
-        return new AXPoint(rec.left + (width), rec.top + (height / 2));
-      case "bottom-end":
-        return new AXPoint(rec.left + (width), rec.top + (height));
-      case "bottom-middle":
-        return new AXPoint(rec.left + (width / 2), rec.top + (height));
-      case "bottom-start":
-        return new AXPoint(rec.left, rec.top + (height));
-      case "center-start":
-        return new AXPoint(rec.left, rec.top + (height / 2));
-      default:
-        return new AXPoint(rec.left + (width / 2), rec.top + (height));
-    }
-  }
-
 }

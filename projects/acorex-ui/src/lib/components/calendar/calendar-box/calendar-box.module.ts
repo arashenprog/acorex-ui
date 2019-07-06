@@ -9,4 +9,11 @@ import { AXPopoverModule } from "../../layout/popover/popover.module";
   exports: [AXCalendarBoxComponent],
   providers: []
 })
-export class AXCalendarBoxModule {}
+export class AXCalendarBoxModule {
+/**
+ *
+ */
+  constructor() {
+  }
+
+}
