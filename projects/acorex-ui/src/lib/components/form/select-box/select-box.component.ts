@@ -23,7 +23,7 @@ export class AXSelectBoxComponent extends AXSelectBaseComponent {
     super();
   }
 
-  @Input() items: any[] = [];
+  @Input() items: SelectItem[] = [];
   @Input() searchable: boolean = false;
   onClickInner() {
     if (this.ngSelect.isOpen) {

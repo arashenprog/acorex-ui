@@ -12,7 +12,6 @@ export type AXPlacement =
   | "bottom-end"
 
 export class AXPoint {
-
   constructor(public x: number, public y: number) {
 
   }
@@ -24,12 +23,13 @@ export class AXPoint {
   styleUrls: ["./popover.component.scss"]
 })
 export class AXPopoverComponent {
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private el: ElementRef<HTMLElement>) { }
   @Input("target") target: string;
   @Input("placement") placement: AXPlacement = "bottom-middle";
   @Input("alignment") alignment: AXPlacement = "top-middle";
   @Input("width") width: number;
   @Input("height") height: number;
+  @Input("fitParent") fitParent: boolean = false
 
   @Input() distance: number = 0;
   private _visible: boolean;
@@ -51,11 +51,18 @@ export class AXPopoverComponent {
     this.visible = !this.visible;
   }
   setPosition() {
+
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
       ".popover-container"
     );
     let target = document.querySelector<HTMLElement>(this.target);
     let targetPos: AXPoint = this.getTargetPosition(target);
+    pop.style.width = this.width + "px";
+    pop.style.height = this.height + "px";
+
+    if (this.fitParent) {
+      pop.style.width = target.getBoundingClientRect().width + "px"
+    }
 
     let top: number = 0;
     let left: number = 0;
@@ -97,8 +104,7 @@ export class AXPopoverComponent {
     pop.style.top = top + "px";
     pop.style.left = left + "px";
 
-    pop.style.width = this.width + "px";
-    pop.style.height = this.height + "px";
+
   }
 
   getTargetPosition(el: HTMLElement): AXPoint {

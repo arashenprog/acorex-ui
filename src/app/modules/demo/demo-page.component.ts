@@ -6,7 +6,8 @@ import {
   AXToastService,
   DialogService,
   AXPopupService,
-  MenuItem
+  MenuItem,
+  SelectItem
 } from "acorex-ui";
 import { Component } from "@angular/core";
 import { AliPage } from "./ali/ali.page";
@@ -25,10 +26,12 @@ export class DemoPage extends AXBasePageComponent {
   }
   drawerOpen: boolean = false;
   //TODO : data structure select box
-  selectBoxItems: any[] = [
-    { value: 1, label: "New York" },
-    { value: 2, label: "London" },
-    { value: 3, label: "Paris", disabled: true }
+  selectBoxItems: SelectItem[] = [
+    { id: "1", text: "Select Option 1" },
+    { id: "2", text: "Select Option 2" },
+    { id: "3", text: "Select Option 3" },
+    { id: "4", text: "Select Option 4" },
+    { id: "5", text: "Select Option 5" }
   ];
   sectionList: CheckItem[] = [
     {
