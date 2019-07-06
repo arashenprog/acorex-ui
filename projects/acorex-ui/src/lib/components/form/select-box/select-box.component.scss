@@ -4,3 +4,13 @@
     padding: 15px 0 7px 12px !important;
   }
 }
+.ax-select-item {
+  min-height: 35px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid;
+  border-color: var(--border-color);
+  &:hover {
+    background: var(--border-color);
+  }
+}
