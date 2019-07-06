@@ -20,8 +20,8 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<ax-popover [fitParent]="true" height="auto" target="#dropSelectBox" placement="bottom-end" alignment="top-end"
-  #popSelectBox>
+<ax-popover [fitParent]="true" distance="10" height="auto" target="#dropSelectBox" placement="bottom-end"
+  alignment="top-end" #popSelectBox>
   <div class="ax-select-item" *ngFor="let item of items">
     {{item.text}}
   </div>
