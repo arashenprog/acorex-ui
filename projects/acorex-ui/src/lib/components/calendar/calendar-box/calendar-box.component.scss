@@ -37,6 +37,7 @@
   }
   .calendar-row {
     display: flex;
+    width: 330px;
     flex-wrap: wrap;
   }
   .calendar-item {
@@ -48,16 +49,15 @@
     padding: 5px;
     border: 1px solid;
     border-color: var(--white-color);
-    min-height: 44px;
-    background-color: var(--gray-light-color);
+    height: 44px;
+    width: 44px;
+    background-color: var(--gray-color);
     cursor: pointer;
     &:hover {
       background: var(--primary-color);
       color: var(--white-color);
     }
-    &.item-large {
-      height: 80px;
-    }
+    
     &.next-month {
       background: var(--white-color);
       color: var(--border-color);

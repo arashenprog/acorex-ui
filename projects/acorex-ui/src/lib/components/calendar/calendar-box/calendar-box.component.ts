@@ -42,8 +42,8 @@ export class AXCalendarBoxComponent implements OnInit {
         let start: AXDateTime;
         let end: AXDateTime;
         if (this.view == "day") {
-            start = this.viewRange.startTime.startOf("month").add("month", value);
-            end = start.endOf("month");
+            start = this.viewRange.startTime.add("month", value).startOf("month").firstDayOfWeek;
+            end = start.endOf("month").endDayOfWeek;
         }
         else if (this.view == "month") {
             start = this.viewRange.startTime.startOf("year").add("year", value);
@@ -64,4 +64,18 @@ export class AXCalendarBoxComponent implements OnInit {
         //
         this.navigate(0);
     }
+
+    matrixify(arr: any[], cols) {
+        debugger;
+        let rows = Math.ceil(arr.length / cols);
+        let matrix = [];
+        if (rows * cols === arr.length) {
+            for (let i = 0; i < arr.length; i += cols) {
+                matrix.push(arr.slice(i, cols + i));
+            }
+        }
+        return matrix;
+    };
+
+   
 }

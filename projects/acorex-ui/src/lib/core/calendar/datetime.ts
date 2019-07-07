@@ -176,7 +176,7 @@ export class AXDateTimeRange {
 
     enumurate(unit: TimeUnit = "day"): AXDateTime[] {
         let result: AXDateTime[] = [];
-        for (let index = 0; this.startTime.add(unit, index).compaire(this.endTime) < 0; index++) {
+        for (let index = 0; this.startTime.add(unit, index).compaire(this.endTime,unit) <= 0; index++) {
             result.push(this.startTime.add(unit, index))
         }
         return result;

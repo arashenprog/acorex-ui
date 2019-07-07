@@ -20,7 +20,7 @@
   </div>
   <ng-container [ngSwitch]="view">
     <ng-container *ngSwitchCase="'day'">
-      <div class="days-name calendar-row">
+      <!-- <div class="days-name calendar-row">
         <span class="calendar-item">SUN</span>
         <span class="calendar-item">MON</span>
         <span class="calendar-item">THE</span>
@@ -30,21 +30,44 @@
         <span class="calendar-item">SAT</span>
       </div>
       <div class="calendar-row">
-        <div class="calendar-item" *ngFor="let i of viewRange.enumurate()" [class.selected]="i.compaire(value,'day')==0">
+        <div class="calendar-item" *ngFor="let i of viewRange.enumurate()" [class.selected]="i.compaire(value,'day')==0" [class.disabled-day]="i.compaire(value,'month')!=0">
           {{i.dayInMonth}}
         </div>
-      </div>
+      </div> -->
+      <table>
+        <thead>
+          <tr class="days-name calendar-row">
+            <th class="calendar-item">SUN</th>
+            <th class="calendar-item">MON</th>
+            <th class="calendar-item">THE</th>
+            <th class="calendar-item">WED</th>
+            <th class="calendar-item">THU</th>
+            <th class="calendar-item">FRI</th>
+            <th class="calendar-item">SAT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="calendar-row" *ngFor="let r of matrixify(viewRange.enumurate('day'),7)">
+            <td class="calendar-item" *ngFor="let d of r"
+              [class.selected]="d.compaire(value,'day')==0" [class.next-month]="d.compaire(value,'month')!=0">
+              {{d.dayInMonth}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </ng-container>
     <ng-container *ngSwitchCase="'month'">
       <div class="calendar-row">
-        <div class="calendar-item item-large" *ngFor="let i of viewRange.enumurate('month')" [class.selected]="i.compaire(value,'month')==0">
+        <div class="calendar-item item-large" *ngFor="let i of viewRange.enumurate('month')"
+          [class.selected]="i.compaire(value,'month')==0">
           {{i | dt:"MMM"}}
         </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'year'">
       <div class="calendar-row">
-        <div class="calendar-item item-large" *ngFor="let i of viewRange.enumurate('year')" [class.selected]="i.compaire(value,'year')==0">
+        <div class="calendar-item item-large" *ngFor="let i of viewRange.enumurate('year')"
+          [class.selected]="i.compaire(value,'year')==0">
           {{i | dt:"YYYY"}}
         </div>
       </div>
