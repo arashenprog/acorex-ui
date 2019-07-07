@@ -51,13 +51,13 @@
     border-color: var(--white-color);
     height: 44px;
     width: 44px;
-    background-color: var(--gray-color);
+    background-color: var(--gray-dark-color);
     cursor: pointer;
     &:hover {
       background: var(--primary-color);
       color: var(--white-color);
     }
-    
+
     &.next-month {
       background: var(--white-color);
       color: var(--border-color);
@@ -92,8 +92,8 @@
     margin-bottom: 5px;
     border-bottom: 1px solid;
     color: var(--primary-color);
-    span {
-      background-color: var(--white-color);
+    .calendar-item {
+      background: var(--white-color);
       &:hover {
         color: var(--primary-color);
       }
