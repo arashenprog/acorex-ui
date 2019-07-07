@@ -1,102 +1,119 @@
 .calendar-body {
-  padding: 10px;
-  .calendar-selector {
-    display: flex;
-    height: 35px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-    div {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid;
-      height: 35px;
-      border-color: var(--border-color);
-    }
-    .arrows {
-      max-width: 35px !important;
-      cursor: pointer;
-      &:hover {
-        background-color: var(--border-color);
-      }
-    }
-    .selector-name {
-      &:hover {
-        background-color: var(--border-color);
-      }
-    }
-    .left-arrow {
-      border-right: unset !important;
-    }
-    .right-arrow {
-      border-left: unset !important;
-    }
-  }
-  .calendar-row {
-    display: flex;
-    width: 330px;
-    flex-wrap: wrap;
-  }
-  .calendar-item {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    padding: 5px;
-    border: 1px solid;
-    border-color: var(--white-color);
-    height: 44px;
-    width: 44px;
-    background-color: var(--gray-dark-color);
-    cursor: pointer;
-    &:hover {
-      background: var(--primary-color);
-      color: var(--white-color);
+    padding: 10px;
+
+    view {
+        display: flex;
+        align-items: center;
+
+        table {
+            flex: 1px;
+        }
     }
 
-    &.next-month {
-      background: var(--white-color);
-      color: var(--border-color);
-      &:hover {
-        background: var(--white-color);
-        color: var(--border-color);
-      }
-    }
-    &.selected {
-      background: var(--primary-color);
-      color: var(--white-color);
-    }
-    &.disabled-day {
-      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAm0lEQVRIx7XVwQnAIAwF0ExSdBF1a6Er9dIRqsVAazWJmh4+iuBT4YMQ4w4pWxk1clt5YlOOFKeAumJZXAgKOKIBb6yBv9AansU/aAsexZtoD5biXZSCOZxEObiHs6gErnERKoURP0uCZM9IpRB2WvDz+eIqzvRUhMNkT1mcQz1xsKfwWZTFV1ASX0W7uAbaxPOCUUBr3MBfn+kF3CNLT2/yky4AAAAASUVORK5CYII=")
-        center center no-repeat;
-      cursor: not-allowed;
-      &:hover {
-        color: var(--danger-color);
-      }
-    }
-    &.holiday {
-      color: var(--danger-color);
-      font-weight: bold;
-    }
-  }
+    .calendar-selector {
+        display: flex;
+        height: 35px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        cursor: pointer;
 
-  .days-name {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-    border-bottom: 1px solid;
-    color: var(--primary-color);
+        div {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid;
+            height: 35px;
+            border-color: var(--border-color);
+        }
+
+        .arrows {
+            max-width: 35px !important;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--border-color);
+            }
+        }
+
+        .selector-name {
+            &:hover {
+                background-color: var(--border-color);
+            }
+        }
+
+        .left-arrow {
+            border-right: unset !important;
+        }
+
+        .right-arrow {
+            border-left: unset !important;
+        }
+    }
+
     .calendar-item {
-      background: var(--white-color);
-      &:hover {
-        color: var(--primary-color);
-      }
+        font-size: 12px;
+        padding: 5px;
+        border: 1px solid;
+        border-color: var(--white-color);
+        background-color: var(--gray-dark-color);
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        vertical-align: middle;
+
+        &:hover,
+        &.focused {
+            background: var(--gray-color);
+            cursor: pointer;
+        }
+
+        &.next-month {
+            background: var(--white-color);
+            color: var(--border-color);
+
+            &:hover {
+                background: var(--white-color);
+                color: var(--border-color);
+            }
+        }
+
+        &.selected {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        &.today {
+            border-color: var(--primary-color);
+        }
+
+        &.disabled {
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAm0lEQVRIx7XVwQnAIAwF0ExSdBF1a6Er9dIRqsVAazWJmh4+iuBT4YMQ4w4pWxk1clt5YlOOFKeAumJZXAgKOKIBb6yBv9AansU/aAsexZtoD5biXZSCOZxEObiHs6gErnERKoURP0uCZM9IpRB2WvDz+eIqzvRUhMNkT1mcQz1xsKfwWZTFV1ASX0W7uAbaxPOCUUBr3MBfn+kF3CNLT2/yky4AAAAASUVORK5CYII=") center center no-repeat;
+            cursor: not-allowed;
+
+            &:hover {
+                color: var(--danger-color);
+            }
+        }
+
+        &.holiday {
+            color: var(--danger-color);
+            font-weight: bold;
+        }
     }
-  }
+
+    .days-name {
+        margin-bottom: 5px;
+        border-bottom: 1px solid;
+        color: var(--primary-color);
+
+        .calendar-item {
+            background: var(--white-color);
+
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+    }
 }
