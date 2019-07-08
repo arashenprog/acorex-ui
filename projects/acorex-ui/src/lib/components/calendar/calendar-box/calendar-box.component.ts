@@ -6,9 +6,9 @@ import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
     templateUrl: './calendar-box.component.html',
     styleUrls: ['./calendar-box.component.scss']
 })
-export class AXCalendarBoxComponent implements OnInit {
+export class AXCalendarBoxComponent {
     constructor() {
-        this.value = new AXDateTime()
+        this.value = this.focusedValue = new AXDateTime()
     }
 
     view: "year" | "month" | "day" = "day";
@@ -25,9 +25,18 @@ export class AXCalendarBoxComponent implements OnInit {
     }
 
 
-    ngOnInit(): void {
-
+    private _focusedValue: AXDateTime;
+    public get focusedValue(): AXDateTime {
+        return this._focusedValue;
     }
+    public set focusedValue(v: AXDateTime) {
+        this._focusedValue = v;
+        this.viewRange = new AXDateTimeRange(v.startOf("month").startOf('week'), v.endOf("month").endOf("week"));
+    }
+
+    today: AXDateTime = new AXDateTime();
+
+
 
     prev() {
         this.navigate(-1)
@@ -42,16 +51,17 @@ export class AXCalendarBoxComponent implements OnInit {
         let start: AXDateTime;
         let end: AXDateTime;
         if (this.view == "day") {
-            start = this.viewRange.startTime.add("month", value).startOf("month").firstDayOfWeek;
-            end = start.endOf("month").endDayOfWeek;
+            start = this.viewRange.startTime.add("day", 15).add("month", value).startOf("month").firstDayOfWeek;
+            end = start.add("day", 15).endOf("month").endDayOfWeek;
         }
         else if (this.view == "month") {
             start = this.viewRange.startTime.startOf("year").add("year", value);
             end = start.endOf("year");
         }
         else if (this.view == "year") {
-            start = this.viewRange.startTime.startOf("year").add("year", value * 10);
-            end = start.add("year", 10);
+            start = this.viewRange.startTime.startOf("year").add("year", value);
+            start = start.add("year", -4);
+            end = start.add("year", 8);
         }
         this.viewRange = new AXDateTimeRange(start, end)
     }
@@ -66,7 +76,6 @@ export class AXCalendarBoxComponent implements OnInit {
     }
 
     matrixify(arr: any[], cols) {
-        debugger;
         let rows = Math.ceil(arr.length / cols);
         let matrix = [];
         if (rows * cols === arr.length) {
@@ -77,5 +86,23 @@ export class AXCalendarBoxComponent implements OnInit {
         return matrix;
     };
 
-   
+    setDay(date: AXDateTime) {
+        this.value = this.focusedValue = date;
+        this.view = "day";
+    }
+
+    setMonth(date: AXDateTime) {
+        this.focusedValue = this.value.clone();
+        this.focusedValue = this.focusedValue.set("year", date.year).set("month", date.monthOfYear);
+        this.view = "day";
+    }
+
+    setYear(date: AXDateTime) {
+        this.focusedValue = this.value.clone();
+        this.focusedValue = this.focusedValue.set("year", date.year);
+        this.view = "month";
+        this.navigate(0);
+    }
+
+
 }
