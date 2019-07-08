@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, NgZone } from "@angular/core";
 import { ElementRef } from "@angular/core";
 import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-util.class";
 
@@ -10,7 +10,17 @@ import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-
   styleUrls: ["./popover.component.scss"]
 })
 export class AXPopoverComponent {
-  constructor(private el: ElementRef<HTMLElement>) { }
+
+
+  constructor(
+    private el: ElementRef<HTMLElement>,
+    private zone: NgZone
+  ) {
+    this.zone.runOutsideAngular(() => {
+      window.document.addEventListener("click", this.clickOutside.bind(this));
+    });
+  }
+
   @Input("target") target: string;
   @Input("placement") placement: AXPlacement = "bottom-middle";
   @Input("alignment") alignment: AXPlacement = "top-middle";
@@ -29,6 +39,7 @@ export class AXPopoverComponent {
     this._visible = v;
     if (this._visible) {
       setTimeout(() => {
+
         this.setPosition();
       });
     }
@@ -37,6 +48,15 @@ export class AXPopoverComponent {
   toggle() {
     this.visible = !this.visible;
   }
+
+  close() {
+    this.visible = false;
+  }
+
+  open() {
+    this.visible = true;
+  }
+
   setPosition() {
 
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
@@ -91,5 +111,19 @@ export class AXPopoverComponent {
     }
     pop.style.top = top + "px";
     pop.style.left = left + "px";
+  }
+
+  ngOnDestroy(): void {
+    this.zone.runOutsideAngular(() => {
+      window.document.removeEventListener("click", this.clickOutside.bind(this));
+    });
+  }
+
+  private clickOutside(event: MouseEvent) {
+    // console.log(event);
+    // let target = document.querySelector<HTMLElement>(this.target);
+    // if (event.srcElement as HTMLElement == target)
+    //   return;
+    //this.visible = false;
   }
 }

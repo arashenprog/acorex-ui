@@ -3,19 +3,31 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { AXToolbarItem } from '../../../layout/toolbar/toolbar-item';
 import { MenuItem } from '../../../../core/menu.class';
 import { AXToolbarMenuComponent } from '../../../layout/toolbar/menu/toolbar-menu.component';
+import { AXPopoverComponent } from '../../../layout/popover/popover.component';
+import { AXDateTime, AXDateTimeRange } from "../../../../core/calendar/datetime";
 
 
 @Component({
     selector: 'ax-toolbar-scheduler-navigator',
-    template: `<ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>`,
+    template: `
+    <div #nav>
+        <ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>
+        <ax-popover target="#nav" placement="bottom-end" alignment="top-end" #pop>
+            <ax-calendar-box (onChanged)="onDateChange($event)"></ax-calendar-box>
+        </ax-popover>
+    </div>      
+    `,
     providers: [{ provide: AXToolbarItem, useExisting: AXToolbarSchedulerNavigatorComponent }],
-    changeDetection:ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXToolbarSchedulerNavigatorComponent {
-    constructor(private cdr:ChangeDetectorRef) { }
+    constructor(private cdr: ChangeDetectorRef) { }
 
     @ViewChild(AXToolbarMenuComponent)
-    toolbar:AXToolbarMenuComponent;
+    toolbar: AXToolbarMenuComponent;
+
+    @ViewChild('pop')
+    pop: AXPopoverComponent;
 
 
     items: MenuItem[] = [];
@@ -34,20 +46,30 @@ export class AXToolbarSchedulerNavigatorComponent {
             },
             {
                 name: "current",
+
             }]
     }
 
 
     @Output()
-    onNavigate: EventEmitter<"next" | "back"> = new EventEmitter<"next" | "back">();
+    onNavigate: EventEmitter<"next" | "back" | AXDateTime> = new EventEmitter<"next" | "back" | AXDateTime>();
 
     onItemClick(e: MenuItem) {
-        this.onNavigate.emit(<any>e.name);
+        if (e.name == "current")
+            this.pop.toggle();
+        else
+            this.onNavigate.emit(<any>e.name);
     }
 
     setDisplay(text: string) {
         this.items[2].text = text;
         this.toolbar.update();
+    }
+
+
+    onDateChange(e: AXDateTime) {
+        this.onNavigate.emit(e);
+        this.pop.close();
     }
 
 }

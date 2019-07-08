@@ -144,7 +144,7 @@ export class AXSchedulerComponent implements OnInit {
           text = `${range.startTime.format("MMM DD, YYYY")} - ${range.endTime.format("MMM DD, YYYY")}`;
         //
         else if (this.view.type == "month")
-          text = range.startTime.format("MMMM YYYY");
+          text = range.startTime.add("day",15).format("MMMM YYYY");
       }
       this.toolbarNavigator.setDisplay(text);
     }
@@ -172,8 +172,11 @@ export class AXSchedulerComponent implements OnInit {
           if (c == "next") {
             this.view.next();
           }
-          if (c == "prev") {
+          else if (c == "prev") {
             this.view.prev();
+          }
+          else {
+            this.view.navigate(c);
           }
         });
       }

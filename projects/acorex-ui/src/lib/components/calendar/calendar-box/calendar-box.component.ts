@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
 
 @Component({
@@ -8,32 +8,29 @@ import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
 })
 export class AXCalendarBoxComponent {
     constructor() {
-        this.value = this.focusedValue = new AXDateTime()
+        this.value =  new AXDateTime()
     }
 
     view: "year" | "month" | "day" = "day";
 
     viewRange: AXDateTimeRange;
 
+    @Output()
+    onChanged:EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
+
     private _value: AXDateTime;
+    @Input()
     public get value(): AXDateTime {
         return this._value;
     }
     public set value(v: AXDateTime) {
         this._value = v;
-        this.viewRange = new AXDateTimeRange(v.startOf("month").startOf('week'), v.endOf("month").endOf("week"));
+        this.setFocus(v);
+        this.onChanged.emit(v);
     }
 
 
-    private _focusedValue: AXDateTime;
-    public get focusedValue(): AXDateTime {
-        return this._focusedValue;
-    }
-    public set focusedValue(v: AXDateTime) {
-        this._focusedValue = v;
-        this.viewRange = new AXDateTimeRange(v.startOf("month").startOf('week'), v.endOf("month").endOf("week"));
-    }
-
+    focusedValue: AXDateTime;
     today: AXDateTime = new AXDateTime();
 
 
@@ -87,21 +84,24 @@ export class AXCalendarBoxComponent {
     };
 
     setDay(date: AXDateTime) {
-        this.value = this.focusedValue = date;
+        this.value =  date;
         this.view = "day";
     }
 
     setMonth(date: AXDateTime) {
-        this.focusedValue = this.value.clone();
-        this.focusedValue = this.focusedValue.set("year", date.year).set("month", date.monthOfYear);
+        this.setFocus(this.value.clone().set("year", date.year).set("month", date.monthOfYear));
         this.view = "day";
     }
 
     setYear(date: AXDateTime) {
-        this.focusedValue = this.value.clone();
-        this.focusedValue = this.focusedValue.set("year", date.year);
+        this.setFocus(this.value.clone().set("year", date.year));
         this.view = "month";
         this.navigate(0);
+    }
+
+    setFocus(date: AXDateTime) {
+        this.focusedValue = date;
+        this.viewRange = new AXDateTimeRange(date.startOf("month").startOf('week'), date.endOf("month").endOf("week"));
     }
 
 
