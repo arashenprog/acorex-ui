@@ -1,3 +1,5 @@
+import * as $ from "jquery";
+
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AXButtonModule } from "./components/form/button/button.module";
@@ -40,15 +42,12 @@ import { AXWidgetModule } from "./components/layout/widget/widget.module";
 import { AXToolbarModule } from "./components/layout/toolbar/api";
 import { AXDockLayoutModule } from "./components/layout/dock-layout/dock-layout.module";
 import { AXTreeListModule } from "./components/data/tree-list/tree-list.module";
-
-import * as $ from "jquery";
 import { AXSchedulerModule } from "./components/calendar/scheduler/scheduler.module";
 import { AXCalendarBoxModule } from "./components/calendar/calendar-box/api";
 import { AXPopoverModule } from "./components/layout/popover/api";
+import { AXDropDownModule } from "./components/form/drop-down/drop-down.module";
 
-// It is required to have JQuery as global in the window object.
 window["$"] = $;
-
 @NgModule({
   declarations: [AXThemeWrapperComponent],
   imports: [
@@ -90,7 +89,8 @@ window["$"] = $;
     AXTreeListModule,
     AXSchedulerModule,
     AXCalendarBoxModule,
-    AXPopoverModule
+    AXPopoverModule,
+    AXDropDownModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -144,4 +144,4 @@ window["$"] = $;
     }
   ]
 })
-export class ACoreXUIModule {}
+export class ACoreXUIModule { }
