@@ -1,12 +1,15 @@
 .calendar-body {
     padding: 10px;
+    min-width: 250px;
 
-    view {
+
+    .view {
         display: flex;
         align-items: center;
 
         table {
-            flex: 1px;
+            flex: 1;
+            width: 100%;
         }
     }
 
@@ -59,7 +62,6 @@
         border-color: var(--white-color);
         background-color: var(--gray-dark-color);
         height: 40px;
-        width: 40px;
         text-align: center;
         vertical-align: middle;
 
