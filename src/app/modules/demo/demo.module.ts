@@ -6,12 +6,13 @@ import { AcorexSpaModule } from "acorex-spa";
 import { ACoreXUIModule } from "acorex-ui";
 import { AliPage } from "./ali/ali.page";
 import { TestPage } from "./test-page/test-page";
+import { WidgetsPage } from './widgets/widgets.page';
 
 @NgModule({
-  declarations: [DemoPage, DashboardPage, AliPage, TestPage],
+  declarations: [DemoPage, DashboardPage, AliPage, TestPage,WidgetsPage],
   imports: [CommonModule, ACoreXUIModule, AcorexSpaModule],
   exports: [],
   providers: [],
-  entryComponents: [DemoPage, DashboardPage, AliPage, TestPage]
+  entryComponents: [DemoPage, DashboardPage, AliPage, TestPage,WidgetsPage]
 })
 export class DemoModule {}
