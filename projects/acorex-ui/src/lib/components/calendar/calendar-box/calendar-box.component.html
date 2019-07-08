@@ -38,7 +38,7 @@
               <td class="calendar-item" *ngFor="let d of r" [class.selected]="d.compaire(value,'day')==0"
                 [class.today]="d.compaire(today,'day')==0" [class.focused]="d.compaire(focusedValue,'day')==0"
                 [class.next-month]="d.compaire(viewRange.startTime.add('day',10),'month')!=0" (click)="setDay(d)">
-                {{d.dayInMonth}}
+                <span>{{d.dayInMonth}}</span>
               </td>
             </tr>
           </tbody>
@@ -48,7 +48,7 @@
         <table>
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrixify(viewRange.enumurate('month'),3)">
-              <td class="calendar-item" *ngFor="let d of r" [class.selected]="d.compaire(value,'month')==0"
+              <td class="calendar-item month-item" *ngFor="let d of r" [class.selected]="d.compaire(value,'month')==0"
                 [class.focused]="d.compaire(focusedValue,'month')==0" [class.today]="d.compaire(today,'month')==0"
                 (click)="setMonth(d)">
                 {{d| dt:"MMM"}}
@@ -61,7 +61,7 @@
         <table>
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrixify(viewRange.enumurate('year'),3)">
-              <td class="calendar-item" *ngFor="let d of r" [class.selected]="d.compaire(value,'year')==0"
+              <td class="calendar-item year-item" *ngFor="let d of r" [class.selected]="d.compaire(value,'year')==0"
                 [class.focused]="d.compaire(focusedValue,'year')==0" [class.today]="d.compaire(today,'year')==0"
                 (click)="setYear(d)">
                 {{d | dt:"YYYY"}}
