@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
 
+export type AXCalendarViewType = "year" | "month" | "day";
+
 @Component({
     selector: 'ax-calendar-box',
     templateUrl: './calendar-box.component.html',
@@ -8,15 +10,38 @@ import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
 })
 export class AXCalendarBoxComponent {
     constructor() {
-        this.value =  new AXDateTime()
+        this.viewRange = new AXDateTimeRange(this.today, this.today);
+        this.value = new AXDateTime();
     }
 
-    view: "year" | "month" | "day" = "day";
+
+    private _view: AXCalendarViewType = "day";
+    @Input()
+    public get view(): AXCalendarViewType {
+        return this._view;
+    }
+    public set view(v: AXCalendarViewType) {
+        this._view = v;
+    }
+
+
+
+
+    private _depth: AXCalendarViewType;
+
+    @Input()
+    public get depth(): AXCalendarViewType {
+        return this._depth;
+    }
+    public set depth(v: AXCalendarViewType) {
+        this._depth = v;
+        this.view = v;
+    }
 
     viewRange: AXDateTimeRange;
 
     @Output()
-    onChanged:EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
+    onChanged: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
 
     private _value: AXDateTime;
     @Input()
@@ -43,33 +68,52 @@ export class AXCalendarBoxComponent {
         this.navigate(1)
     }
 
-    navigate(value: number) {
+    navigate(value: number | AXDateTime) {
         debugger;
         let start: AXDateTime;
         let end: AXDateTime;
         if (this.view == "day") {
-            start = this.viewRange.startTime.add("day", 15).add("month", value).startOf("month").firstDayOfWeek;
-            end = start.add("day", 15).endOf("month").endDayOfWeek;
+            let fd: AXDateTime;
+            if (value instanceof AXDateTime)
+                fd = value.startOf("month");
+            else
+                fd = this.viewRange.startTime.add("day", 15).add("month", value).startOf("month")
+            //
+            start = fd.firstDayOfWeek;
+            end = fd.endOf("month").endDayOfWeek;
         }
         else if (this.view == "month") {
-            start = this.viewRange.startTime.startOf("year").add("year", value);
-            end = start.endOf("year");
+            let fd: AXDateTime;
+            if (value instanceof AXDateTime)
+                fd = value.startOf("year");
+            else
+                fd = this.viewRange.startTime.add("day", 15).add("year", value).startOf("year");
+            //
+            start = fd;
+            end = fd.endOf("year");
         }
         else if (this.view == "year") {
-            start = this.viewRange.startTime.startOf("year").add("year", value);
-            start = start.add("year", -4);
-            end = start.add("year", 8);
+            let fd: AXDateTime;
+            if (value instanceof AXDateTime)
+                fd = value.startOf("year");
+            else
+                fd = this.viewRange.startTime.add("day", 15).add("year", value * 10).startOf("year");
+            //
+            start = fd.add("year", -4);
+            end = start.add("year", 8).endOf("year");
         }
         this.viewRange = new AXDateTimeRange(start, end)
     }
 
     changeView() {
-        if (this.view == "day")
+        if (this.view == "day") {
             this.view = "month";
-        else if (this.view == "month")
+            this.navigate(0);
+        }
+        else if (this.view == "month") {
             this.view = "year";
-        //
-        this.navigate(0);
+            this.navigate(0);
+        }
     }
 
     matrixify(arr: any[], cols) {
@@ -84,24 +128,34 @@ export class AXCalendarBoxComponent {
     };
 
     setDay(date: AXDateTime) {
-        this.value =  date;
+        this.value = date;
         this.view = "day";
     }
 
     setMonth(date: AXDateTime) {
-        this.setFocus(this.value.clone().set("year", date.year).set("month", date.monthOfYear));
-        this.view = "day";
+        if (this.depth == "month") {
+            this.value = date;
+        }
+        else {
+            debugger;
+            this.view = "day";
+            this.setFocus(this.value.clone().set("year", date.year).set("month", date.monthOfYear));
+        }
     }
 
     setYear(date: AXDateTime) {
-        this.setFocus(this.value.clone().set("year", date.year));
-        this.view = "month";
-        this.navigate(0);
+        if (this.depth == "year") {
+            this.value = date;
+        }
+        else {
+            this.view = "month";
+            this.setFocus(this.value.clone().set("year", date.year));
+        }
     }
 
     setFocus(date: AXDateTime) {
         this.focusedValue = date;
-        this.viewRange = new AXDateTimeRange(date.startOf("month").startOf('week'), date.endOf("month").endOf("week"));
+        this.navigate(this.focusedValue);
     }
 
 

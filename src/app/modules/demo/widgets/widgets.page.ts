@@ -54,7 +54,6 @@ export class WidgetsPage extends AXBasePageComponent {
             this.manager.allowEdit(!this.manager.isInEditing);
             e.text = this.manager.isInEditing ? "Apply" : "Edit";
             e.icon = this.manager.isInEditing ? "fas fa-check" : "fas fa-pen";
-            e.style = this.manager.isInEditing ? "btn-success" : "btn-primary";
             this.toolbarItems[1].visible = this.manager.isInEditing;
         }
         if (e.name == "add") {

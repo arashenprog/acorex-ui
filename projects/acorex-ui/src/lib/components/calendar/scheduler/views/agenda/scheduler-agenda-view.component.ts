@@ -1,17 +1,23 @@
 import { Component, OnInit, Input, ElementRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent, AXSchedulerSlot, AXSchedulerEventChangeArgs } from '../scheduler-view.component';
+import { AXSchedulerBaseViewComponent } from '../scheduler-view.component';
+import { AXSchedulerSlot } from '../../scheduler.class';
 
 @Component({
     templateUrl: './scheduler-agenda-view.component.html',
-    styleUrls:['./scheduler-agenda-view.component.scss'],
-    encapsulation:ViewEncapsulation.None,
+    styleUrls: ['./scheduler-agenda-view.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [{ provide: AXSchedulerBaseViewComponent, useExisting: AXSchedulerAgendaViewComponent }]
 })
 export class AXSchedulerAgendaViewComponent extends AXSchedulerBaseViewComponent {
-    constructor(private elm: ElementRef<HTMLDivElement>, private cdr: ChangeDetectorRef) { super(); }
+    constructor(
+        private elm: ElementRef<HTMLDivElement>,
+        private cdr: ChangeDetectorRef
+    ) {
+        super();
+    }
 
-
+    hideEmptyDays: boolean = true;
 
     updateSize() {
     }
@@ -26,6 +32,8 @@ export class AXSchedulerAgendaViewComponent extends AXSchedulerBaseViewComponent
                 range: range,
                 events: this.getEvents(range, "day")
             }
+            if (this.hideEmptyDays && slot.events.length == 0)
+                continue;
             this.slots.push(slot);
         }
         this.navigatorDate = date;

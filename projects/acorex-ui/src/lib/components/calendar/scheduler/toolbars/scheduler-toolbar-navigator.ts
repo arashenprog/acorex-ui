@@ -5,6 +5,7 @@ import { MenuItem } from '../../../../core/menu.class';
 import { AXToolbarMenuComponent } from '../../../layout/toolbar/menu/toolbar-menu.component';
 import { AXPopoverComponent } from '../../../layout/popover/popover.component';
 import { AXDateTime, AXDateTimeRange } from "../../../../core/calendar/datetime";
+import { AXSchedulerViewType } from '../scheduler.class';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { AXDateTime, AXDateTimeRange } from "../../../../core/calendar/datetime"
     <div #nav>
         <ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>
         <ax-popover target="#nav" placement="bottom-end" alignment="top-end" #pop>
-            <ax-calendar-box (onChanged)="onDateChange($event)"></ax-calendar-box>
+            <ax-calendar-box (onChanged)="onDateChange($event)" [depth]="viewDepth"></ax-calendar-box>
         </ax-popover>
     </div>      
     `,
@@ -29,6 +30,8 @@ export class AXToolbarSchedulerNavigatorComponent {
     @ViewChild('pop')
     pop: AXPopoverComponent;
 
+    viewDepth: string = "day";
+
 
     items: MenuItem[] = [];
 
@@ -38,6 +41,11 @@ export class AXToolbarSchedulerNavigatorComponent {
                 name: "prev",
                 icon: "fas fa-angle-left",
                 tooltip: "Prev"
+            },
+            {
+                name: "today",
+                text: "Today",
+                tooltip: "Today"
             },
             {
                 name: "next",
@@ -57,19 +65,52 @@ export class AXToolbarSchedulerNavigatorComponent {
     onItemClick(e: MenuItem) {
         if (e.name == "current")
             this.pop.toggle();
-        else
+        else if (e.name == "today") {
+            this.onDateChange(new AXDateTime());
+        }
+        else {
             this.onNavigate.emit(<any>e.name);
-    }
-
-    setDisplay(text: string) {
-        this.items[2].text = text;
-        this.toolbar.update();
+            this.pop.close();
+        }
     }
 
 
     onDateChange(e: AXDateTime) {
         this.onNavigate.emit(e);
         this.pop.close();
+    }
+
+
+    set(range: AXDateTimeRange, type: AXSchedulerViewType) {
+        if (range) {
+            let text: string = "";
+            let sameDay = range.startTime.compaire(range.endTime, "day") == 0;
+            let sameMonth = range.startTime.compaire(range.endTime, "month") == 0;
+            let sameYear = range.startTime.compaire(range.endTime, "year") == 0;
+            if (type != "month" && sameDay)
+                text = range.startTime.format("MMMM DD, YYYY");
+            //
+            else if (type != "month" && sameMonth && sameYear)
+                text = `${range.startTime.format("MMMM DD")} - ${range.endTime.format("DD, YYYY")}`;
+            //
+            else if (type != "month" && sameYear)
+                text = `${range.startTime.format("MMM DD")} - ${range.endTime.format("MMM DD, YYYY")}`;
+            //
+            else if (type != "month")
+                text = `${range.startTime.format("MMM DD, YYYY")} - ${range.endTime.format("MMM DD, YYYY")}`;
+            //
+            else if (type == "month")
+                text = range.startTime.add("day", 15).format("MMMM YYYY");
+            //
+            this.items[3].text = text;
+            //
+            if (type == "month")
+                this.viewDepth = "month";
+            else
+                this.viewDepth = "day";
+            //
+            this.toolbar.update();
+        }
     }
 
 }

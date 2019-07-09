@@ -17,13 +17,13 @@ import { MenuItem } from "../../../core/menu.class";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
 import { AXSchedulerDayTimeViewComponent } from "./views/daytime/scheduler-daytime-view.component";
 import { ComponentPortal, CdkPortalOutlet } from '@angular/cdk/portal';
-import { AXSchedulerBaseViewComponent, AXSchedulerEventChangeArgs } from "./views/scheduler-view.component";
+import { AXSchedulerBaseViewComponent } from "./views/scheduler-view.component";
 import { AXSchedulerMonthViewComponent } from "./views/month/scheduler-month-view.component";
 import { AXDateTime, AXDateTimeRange } from "../../../core/calendar/datetime";
 import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolbar-navigator";
-import { AXSchedulerEvent } from "./scheduler.model";
 import { AXSchedulerAgendaViewComponent } from "./views/agenda/scheduler-agenda-view.component";
 import { AXSchedulerTimelineViewComponent } from './views/timeline/scheduler-timeline-view.component';
+import { AXSchedulerEventChangeArgs, AXSchedulerEvent } from "./scheduler.class";
 
 
 
@@ -125,28 +125,7 @@ export class AXSchedulerComponent implements OnInit {
   private setNavigatorText() {
     debugger;
     if (this.toolbarNavigator) {
-      let range = this.view.dateRange;
-      let text: string = "";
-      if (range) {
-        let sameDay = range.startTime.compaire(range.endTime, "day") == 0;
-        let sameMonth = range.startTime.compaire(range.endTime, "month") == 0;
-        let sameYear = range.startTime.compaire(range.endTime, "year") == 0;
-        if (this.view.type != "month" && sameDay)
-          text = range.startTime.format("MMMM DD, YYYY");
-        //
-        else if (this.view.type != "month" && sameMonth && sameYear)
-          text = `${range.startTime.format("MMMM DD")} - ${range.endTime.format("DD, YYYY")}`;
-        //
-        else if (this.view.type != "month" && sameYear)
-          text = `${range.startTime.format("MMM DD")} - ${range.endTime.format("MMM DD, YYYY")}`;
-        //
-        else if (this.view.type != "month")
-          text = `${range.startTime.format("MMM DD, YYYY")} - ${range.endTime.format("MMM DD, YYYY")}`;
-        //
-        else if (this.view.type == "month")
-          text = range.startTime.add("day",15).format("MMMM YYYY");
-      }
-      this.toolbarNavigator.setDisplay(text);
+      this.toolbarNavigator.set(this.view.dateRange, this.view.type);
     }
   }
 

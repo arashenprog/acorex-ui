@@ -1,7 +1,7 @@
 import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation, HostListener } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
-import { AXSchedulerBaseViewComponent, AXSchedulerEventChangeArgs, AXSchedulerSlot } from '../scheduler-view.component';
-import { AXSchedulerEvent } from '../../scheduler.model';
+import { AXSchedulerBaseViewComponent } from '../scheduler-view.component';
+import { AXSchedulerEvent } from '../../scheduler.class';
 
 @Component({
     templateUrl: './scheduler-month-view.component.html',
