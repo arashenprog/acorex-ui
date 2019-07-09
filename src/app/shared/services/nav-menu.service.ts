@@ -5,6 +5,7 @@ import { AXNavMenuService } from "acorex-spa";
 import { DemoPage } from "../../modules/demo/demo-page.component";
 import { AliPage } from "src/app/modules/demo/ali/ali.page";
 import { TestPage } from "src/app/modules/demo/test-page/test-page";
+import { WidgetsPage } from 'src/app/modules/demo/widgets/widgets.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -37,258 +38,56 @@ export class NavMenuService extends AXNavMenuService {
       data: { page: TestPage }
     },
     {
-      name: "components_demo",
-      text: "Components Demo",
-      icon: "fas fa-smile-wink",
-      id: "0_0",
+      name: "components",
+      text: "Components",
+      icon: "fas fa-vial",
+      id: "003",
       visible: true,
-      data: { page: DemoPage }
-    },
-    {
-      name: "leads",
-      text: "Leads",
-      id: "0_1",
-      parentId: "0",
-      visible: true
-    },
-    {
-      name: "quotes",
-      text: "Quotes",
-      id: "0_2",
-      parentId: "7_8",
-      visible: true
-    },
-    {
-      name: "sub-menu1",
-      text: "Sub-Menu 1",
-      id: "0_2_1",
-      parentId: "0_2",
-      visible: true
-    },
-    {
-      name: "sub-menu2",
-      text: "Sub-Menu 2",
-      id: "0_2_2",
-      parentId: "0_2",
-      visible: true
-    },
-    {
-      name: "sub-menu2",
-      text: "Sub-Menu 2",
-      id: "0_2_1_0",
-      parentId: "0_2_1",
-      visible: true
-    },
-    {
-      name: "sub-menu2",
-      text: "Sub-Menu Sub-Menu 2",
-      id: "0_2_1_0_0",
-      parentId: "0_2_1_0",
-      visible: true
-    },
-    {
-      name: "jobs",
-      text: "Jobs",
-      id: "0_3",
-      parentId: "0",
-      visible: true
-    },
-    {
-      name: "tasks",
-      text: "Tasks",
-      id: "3_4",
-      parentId: "3",
-      visible: true
-    },
-    {
-      name: "partners",
-      text: "Partners",
-      icon: "fas fa-users",
-      id: "1",
-      visible: true
-    },
-    // {
-    //   name: "customers",
-    //   text: "Customers",
-    //   id: "1_1",
-    //   parentId: "1",
-    //   visible: true
-    // },
-    // {
-    //   name: "suppliers",
-    //   text: "Suppliers",
-    //   id: "1_2",
-    //   parentId: "1",
-    //   visible: true
-    // },
-    // {
-    //   name: "subcontractors",
-    //   text: "Subcontractors",
-    //   id: "1_3",
-    //   parentId: "1",
-    //   visible: true
-    // },
-    // {
-    //   name: "staff",
-    //   text: "Staff",
-    //   id: "1_4",
-    //   parentId: "1",
-    //   visible: true
-    // },
-    {
-      name: "things_to_sell",
-      text: "Things To Sell",
-      icon: "fas fa-comment-dollar",
-      id: "2",
-      visible: true
-    },
-    {
-      name: "products",
-      text: "Products",
-      id: "2_1",
-      parentId: "2",
-      visible: true
-    },
-    {
-      name: "services",
-      text: "Services",
-      id: "2_2",
-      parentId: "2",
-      visible: true
-    },
-    {
-      name: "service A",
-      text: "Service A",
-      id: "2_2_1",
-      parentId: "2_2",
-      visible: true
-    },
-    {
-      name: "service B",
-      text: "Service B",
-      id: "2_2_2",
-      parentId: "2_2",
-      visible: true
-    },
-    {
-      name: "accounts",
-      text: "Accounts",
-      icon: "fas fa-user-circle",
-      id: "4",
-      visible: true
-    },
-    {
-      name: "orders",
-      text: "Orders",
-      id: "4_1",
-      parentId: "4",
-      visible: true
-    },
-    {
-      name: "invoices",
-      text: "Invoices",
-      id: "4_2",
-      parentId: "4",
-      visible: true
-    },
-    {
-      name: "monitor_things",
-      text: "Monitor Things",
-      icon: "fas fa-tv",
-      id: "5",
-      visible: true
-    },
-    {
-      name: "calendar",
-      text: "Calendar",
-      id: "5_1",
-      parentId: "5",
-      visible: true
-    },
-    {
-      name: "schedules",
-      text: "Schedules",
-      id: "5_2",
-      parentId: "5",
-      visible: true
-    },
-    {
-      name: "map",
-      text: "Map",
-      id: "5_3",
-      parentId: "5",
-      visible: true
-    },
-    {
-      name: "reports",
-      text: "Reports",
-      icon: "fas fa-file-alt",
-      id: "6",
-      visible: true
-    },
-    {
-      name: "settings",
-      text: "Settings",
-      icon: "fas fa-cog",
-      id: "7",
-      visible: true
-    },
-    {
-      name: "automations",
-      text: "Automations",
-      id: "7_1",
-      parentId: "7",
-      visible: true
-    },
-    {
-      name: "email_templates",
-      text: "Email Templates",
-      id: "7_2",
-      parentId: "7",
-      visible: true
-    },
-    {
-      name: "job_templates",
-      text: "Job Templates",
-      id: "7_3",
-      parentId: "7",
-      visible: true
-    },
-    {
-      name: "sms_templates",
-      text: "SMS Templates",
-      id: "7_4",
-      parentId: "7",
-      visible: true
-    },
-    {
-      name: "document_templates",
-      text: "Document Templates",
-      id: "7_5",
-      parentId: "7",
-      visible: true
-    },
-    {
-      name: "preferences",
-      text: "Preferences",
-      id: "7_6",
-      parentId: "7",
-      visible: true
-    },
-    {
-      name: "users",
-      text: "Users",
-      id: "7_7",
-      parentId: "7",
-      visible: true
     },
     {
       name: "forms",
       text: "Forms",
-      id: "7_8",
-      parentId: "7",
+      id: "003-002",
+      parentId:"003",
+      visible: true,
+    },
+    {
+      name: "data",
+      text: "Data",
+      id: "003-003",
+      parentId:"003",
+      visible: true,
+    },
+    {
+      name: "layout",
+      text: "Layouts",
+      id: "003-001",
+      parentId:"003",
+      visible: true,
+    },
+    {
+      name: "widgets",
+      text: "Widgets",
+      id: "003-001-001",
+      parentId:"003-001",
+      visible: true,
+      data: { page: WidgetsPage }
+    },
+    {
+      name: "dock",
+      text: "Docks",
+      id: "003-001-002",
+      parentId:"003-001",
       visible: true
-    }
+    },
+    {
+      name: "dock",
+      text: "Drawer",
+      id: "003-001-003",
+      parentId:"003-001",
+      visible: true
+    },
+
   ];
   private mockItemFarsi: MenuItem[] = [
     {
