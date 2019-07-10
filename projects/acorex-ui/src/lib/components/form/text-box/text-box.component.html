@@ -1,5 +1,5 @@
 <div class="ax-field-set">
-  <div class="ax-field-set-wrapper">
+  <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
     <fieldset
       [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
     >
@@ -7,12 +7,10 @@
         {{ label }}
       </legend>
     </fieldset>
-
     <input
       [placeholder]="placeholder"
       [(ngModel)]="text"
       [textMask]="{ mask: maskInner, guide: true }"
-      [ngClass]="{ 'no-label': !label }"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"
       class="ax-text-box"

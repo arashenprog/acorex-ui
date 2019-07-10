@@ -6,14 +6,6 @@ import {
 @Component({
   selector: "ax-text-box",
   templateUrl: "./text-box.component.html",
-  styles: [
-    `
-      .no-label {
-        padding-top: 6px !important;
-      }
-    `
-  ],
-
   providers: [
     { provide: AXValidatableComponent, useExisting: AXTextBoxComponent }
   ]

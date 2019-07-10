@@ -190,7 +190,14 @@ body {
   min-width: 0;
   flex-direction: column;
   vertical-align: top;
-
+  .no-label {
+    input {
+      padding-top: 6px !important;
+    }
+    .ax-field-set-button {
+      margin: 0 5px !important;
+    }
+  }
   .ax-field-set-wrapper {
     color: var(--secondary-light-color);
     cursor: text;
@@ -328,7 +335,6 @@ body {
           &:disabled {
             background-color: var(--#{$name}-light-color) !important;
           }
-         
         }
       } @else {
         .#{$name}-#{$subname} {
@@ -415,10 +421,24 @@ body {
 .ax-flex-col-rev {
   flex-direction: column-reverse !important;
 }
+.ax-align-center {
+  align-items: center !important;
+}
+.ax-justify-center {
+  justify-content: center !important;
+}
 .ax-flex-center {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+.ax-flex-space-between {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.ax-flex-space-around {
+  display: flex !important;
+  justify-content: space-around !important;
 }
 .ax-flex-wrap {
   flex-wrap: wrap !important;
@@ -426,7 +446,6 @@ body {
 .ax-flex-wrap-rev {
   flex-wrap: wrap-reverse !important;
 }
-
 .ax-flex-no-wrap {
   flex-wrap: nowrap !important;
 }
