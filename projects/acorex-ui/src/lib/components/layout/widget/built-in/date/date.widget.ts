@@ -1,49 +1,36 @@
-import { Component, AfterViewInit } from '@angular/core';
-import * as _moment from "jalali-moment";
+import { Component, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AXWidgetComponent } from '../../widget.component';
-import { registerWidget, IWidget } from '../../widget.service';
+import { IWidget } from '../../widget.service';
+import { AXDateTime } from '../../../../../core/calendar/datetime';
 
-const moment = _moment;
 
 
 @Component({
     templateUrl: "./date.widget.html",
-    styleUrls: ["./date.widget.scss"]
+    styleUrls: ["./date.widget.scss"],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AXDateWidgetComponent extends AXWidgetComponent implements AfterViewInit {
-
-    time: string;
-    dayNum: string;
-    dayText: string;
-    monthText: string;
-    yearNum: string;
+export class AXDateWidgetComponent extends AXWidgetComponent {
 
 
-    constructor() {
+    date: AXDateTime = new AXDateTime();
+
+    private intv;
+
+    constructor(cdr: ChangeDetectorRef) {
         super();
         this.showTitle = false;
+        this.intv = setInterval(() => {
+            cdr.markForCheck();
+        }, 5000);
     }
 
-    ngAfterViewInit(): void {
-        this.setText();
-    }
-
-    setText(): void {
-        this.isLoading = false;
-        let date: Date = new Date();
-        let mom = moment(date.toLocaleString()).locale('fa');
-        this.time = mom.format('hh:mm');
-        this.dayNum = mom.format('DD');
-        this.monthText = mom.format('MMMM');
-        this.dayText = mom.format('dddd');
-        this.yearNum = mom.format('YYYY');
-        setTimeout(() => {
-            this.setText();
-        }, 10000);
+    ngAfterViewChecked(): void {
+        this.date = new AXDateTime();
     }
 
     ngOnDestroy(): void {
-
+        clearInterval(this.intv);
     }
 
     get options() {
@@ -57,11 +44,3 @@ export class AXDateWidgetComponent extends AXWidgetComponent implements AfterVie
         rows: 5,
     }
 }
-
-
-// registerWidget({
-//     type: AXDateWidgetComponent,
-//     title: "Date-Widget",
-//     cols:5,
-//     rows:5,
-// });

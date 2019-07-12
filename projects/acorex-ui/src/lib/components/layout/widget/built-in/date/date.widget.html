@@ -1,12 +1,12 @@
 <ax-widget>
   <div class="bordred">
     <div class="widget-body">
-      <div class="time-number">{{ time }}</div>
+      <div class="time-number">{{ date | dt:"HH:mm" }}</div>
       <div class="date-number-container">
-        <span class="date-number">{{ dayNum }}</span>
+        <span class="date-number">{{ date | dt:"DD" }}</span>
         <span class="date-text">
-          <span>{{ dayText }}</span>
-          <span> {{ monthText }} / {{ yearNum }} </span>
+          <span>{{ date | dt:"dddd" }}</span>
+          <span> {{ date | dt:"MMMM" }} / {{ date | dt:"YYYY" }} </span>
         </span>
       </div>
     </div>

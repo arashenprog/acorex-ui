@@ -28,7 +28,7 @@ export class AXPopoverComponent {
   @Input("height") height: number;
   @Input("fitParent") fitParent: boolean = false
 
-  @Input() distance: number = 0;
+  @Input() distance: number = 3;
   private _visible: boolean;
 
   @Input()
@@ -109,8 +109,8 @@ export class AXPopoverComponent {
         left = targetPos.x;
         break;
     }
-    pop.style.top = top + "px";
-    pop.style.left = left + "px";
+    pop.style.top = top + this.distance + "px";
+    pop.style.left = left + this.distance + "px";
   }
 
   ngOnDestroy(): void {
