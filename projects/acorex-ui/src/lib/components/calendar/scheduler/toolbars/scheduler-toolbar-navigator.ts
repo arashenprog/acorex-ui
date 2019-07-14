@@ -6,6 +6,7 @@ import { AXToolbarMenuComponent } from '../../../layout/toolbar/menu/toolbar-men
 import { AXPopoverComponent } from '../../../layout/popover/popover.component';
 import { AXDateTime, AXDateTimeRange } from "../../../../core/calendar/datetime";
 import { AXSchedulerViewType } from '../scheduler.class';
+import { AXCalendarBoxComponent } from '../../calendar-box/calendar-box.component';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AXSchedulerViewType } from '../scheduler.class';
     <div #nav>
         <ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>
         <ax-popover target="#nav" placement="bottom-end" alignment="top-end" #pop>
-            <ax-calendar-box (onChanged)="onDateChange($event)" [depth]="viewDepth"></ax-calendar-box>
+            <ax-calendar-box (onChanged)="onDateChange($event)" [depth]="viewDepth" #cal></ax-calendar-box>
         </ax-popover>
     </div>      
     `,
@@ -29,6 +30,9 @@ export class AXToolbarSchedulerNavigatorComponent {
 
     @ViewChild('pop')
     pop: AXPopoverComponent;
+
+    @ViewChild('cal')
+    cal: AXCalendarBoxComponent;
 
     viewDepth: string = "day";
 
@@ -84,6 +88,7 @@ export class AXToolbarSchedulerNavigatorComponent {
     set(range: AXDateTimeRange, type: AXSchedulerViewType) {
         if (range) {
             let text: string = "";
+            let calDate: AXDateTime = range.startTime;
             let sameDay = range.startTime.compaire(range.endTime, "day") == 0;
             let sameMonth = range.startTime.compaire(range.endTime, "month") == 0;
             let sameYear = range.startTime.compaire(range.endTime, "year") == 0;
@@ -108,6 +113,10 @@ export class AXToolbarSchedulerNavigatorComponent {
                 this.viewDepth = "month";
             else
                 this.viewDepth = "day";
+            //
+            this.cal.focusedValue=calDate;
+            this.cal.navigate(calDate);
+            this.pop.close();
             //
             this.toolbar.update();
         }

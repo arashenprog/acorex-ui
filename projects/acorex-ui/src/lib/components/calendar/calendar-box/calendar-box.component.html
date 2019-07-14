@@ -34,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="calendar-row" *ngFor="let r of matrixify(viewRange.enumurate('day'),7)">
+            <tr class="calendar-row" *ngFor="let r of matrix">
               <td class="calendar-item" *ngFor="let d of r"
                 [ngClass]="{'selected': d.compaire(value,'day')==0,'focused':d.compaire(focusedValue,'day')==0,'today':d.compaire(today,'day')==0,'next-month':d.compaire(viewRange.startTime.add('day',10),'month')!=0}"
                 (click)="setDay(d)">
@@ -49,7 +49,7 @@
       <ng-container *ngSwitchCase="'month'">
         <table>
           <tbody>
-            <tr class="calendar-row" *ngFor="let r of matrixify(viewRange.enumurate('month'),3)">
+            <tr class="calendar-row" *ngFor="let r of matrix">
               <td class="calendar-item month-item" *ngFor="let d of r"
                 [ngClass]="{'selected': d.compaire(value,'month')==0,'focused':d.compaire(focusedValue,'month')==0,'today':d.compaire(today,'month')==0}"
                 (click)="setMonth(d)">
@@ -64,7 +64,7 @@
       <ng-container *ngSwitchCase="'year'">
         <table>
           <tbody>
-            <tr class="calendar-row" *ngFor="let r of matrixify(viewRange.enumurate('year'),3)">
+            <tr class="calendar-row" *ngFor="let r of matrix">
               <td class="calendar-item year-item" *ngFor="let d of r"
                 [ngClass]="{'selected': d.compaire(value,'year')==0,'focused':d.compaire(focusedValue,'year')==0,'today':d.compaire(today,'year')==0}"
                 (click)="setYear(d)">
@@ -77,5 +77,9 @@
         </table>
       </ng-container>
     </ng-container>
+  </div>
+  <div class="footer">
+    <ax-button text="Today" (onClick)="setToday()" *ngIf="showTodayButton" size="sm" type="primary-light">
+    </ax-button>
   </div>
 </div>

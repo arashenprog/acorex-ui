@@ -9,11 +9,17 @@ export type AXCalendarViewType = "year" | "month" | "day";
     styleUrls: ['./calendar-box.component.scss']
 })
 export class AXCalendarBoxComponent {
+
     constructor() {
-        this.viewRange = new AXDateTimeRange(this.today, this.today);
+
+        this.viewRange = new AXDateTimeRange(this.today.month.startDate, this.today.month.endDate);
         this.value = new AXDateTime();
+        this.view = "day";
     }
 
+    showTodayButton: boolean = false;
+
+    matrix: any = [];
 
     private _view: AXCalendarViewType = "day";
     @Input()
@@ -22,10 +28,9 @@ export class AXCalendarBoxComponent {
     }
     public set view(v: AXCalendarViewType) {
         this._view = v;
+
+        this.navigate(0);
     }
-
-
-
 
     private _depth: AXCalendarViewType;
 
@@ -58,7 +63,9 @@ export class AXCalendarBoxComponent {
     focusedValue: AXDateTime;
     today: AXDateTime = new AXDateTime();
 
-
+    ngAfterViewInit(): void {
+        this.navigate(0);
+    }
 
     prev() {
         this.navigate(-1)
@@ -102,17 +109,25 @@ export class AXCalendarBoxComponent {
             start = fd.add("year", -4);
             end = start.add("year", 8).endOf("year");
         }
-        this.viewRange = new AXDateTimeRange(start, end)
+        this.viewRange = new AXDateTimeRange(start, end);
+        if (this.view == "day") {
+            this.matrix = this.matrixify(this.viewRange.enumurate('day'), 7);
+        }
+        else if (this.view == "month") {
+            this.matrix = this.matrixify(this.viewRange.enumurate('month'), 3);
+        }
+        else if (this.view == "year") {
+            this.matrix = this.matrixify(this.viewRange.enumurate('year'), 3);
+        }
     }
 
     changeView() {
         if (this.view == "day") {
             this.view = "month";
-            this.navigate(0);
+
         }
         else if (this.view == "month") {
             this.view = "year";
-            this.navigate(0);
         }
     }
 
@@ -159,4 +174,7 @@ export class AXCalendarBoxComponent {
     }
 
 
+    setToday() {
+        this.value = this.today;
+    }
 }
