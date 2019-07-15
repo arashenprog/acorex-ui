@@ -35,9 +35,9 @@
           </thead>
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrix">
-              <td class="calendar-item" *ngFor="let d of r"
+              <td class="calendar-item" *ngFor="let d of r;trackBy:trackByFn"
                 [ngClass]="{'selected': d.compaire(value,'day')==0,'focused':d.compaire(focusedValue,'day')==0,'today':d.compaire(today,'day')==0,'next-month':d.compaire(viewRange.startTime.add('day',10),'month')!=0}"
-                (click)="setDay(d)">
+                (click)="setDayClick($event,d)">
                 <div>
                   {{d.dayInMonth}}
                 </div>
@@ -50,9 +50,9 @@
         <table>
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrix">
-              <td class="calendar-item month-item" *ngFor="let d of r"
+              <td class="calendar-item month-item" *ngFor="let d of r;trackBy:trackByFn"
                 [ngClass]="{'selected': d.compaire(value,'month')==0,'focused':d.compaire(focusedValue,'month')==0,'today':d.compaire(today,'month')==0}"
-                (click)="setMonth(d)">
+                (click)="setMonthClick($event,d)">
                 <div>
                   {{d| dt:"MMM"}}
                 </div>
@@ -65,9 +65,9 @@
         <table>
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrix">
-              <td class="calendar-item year-item" *ngFor="let d of r"
+              <td class="calendar-item year-item" *ngFor="let d of r;trackBy:trackByFn"
                 [ngClass]="{'selected': d.compaire(value,'year')==0,'focused':d.compaire(focusedValue,'year')==0,'today':d.compaire(today,'year')==0}"
-                (click)="setYear(d)">
+                (click)="setYearClick($event,d)">
                 <div>
                   {{d | dt:"YYYY"}}
                 </div>
