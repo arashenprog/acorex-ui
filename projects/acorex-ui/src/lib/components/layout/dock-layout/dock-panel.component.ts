@@ -1,28 +1,27 @@
-import { Component, OnInit, Input, ContentChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, ContentChildren, QueryList, Attribute, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AXDockPanelContentComponent } from './dock-panel-content.component';
 
 @Component({
     selector: 'ax-dock-panel',
-    template: `
-    <ng-content></ng-content>
-`,
+    template: `<ng-content></ng-content>`,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AXDockPanelComponent implements OnInit {
-    constructor() { }
+export class AXDockPanelComponent {
+    constructor(private cdr: ChangeDetectorRef
+    ) {
 
-    private uid: string = "panel-" + Math.floor(Math.random()*100000000);
+    }
+
+    private uid: string = "panel-" + Math.floor(Math.random() * 100000000);
+
+    @Input("type") public type: "row" | "column" | "stack" = "column";
+    @Input("size") public size: number;
 
     @ContentChildren(AXDockPanelComponent)
     private panels: QueryList<AXDockPanelComponent>;
 
     @ContentChildren(AXDockPanelContentComponent)
     private contents: QueryList<AXDockPanelContentComponent>;
-
-    @Input()
-    type: "row" | "column" | "stack" = "column";
-
-    @Input()
-    size: number;
 
     config(): any {
         let conf: any = {}
@@ -43,5 +42,8 @@ export class AXDockPanelComponent implements OnInit {
         return conf;
     }
 
-    ngOnInit(): void { }
+    ngAfterViewInit(): void {
+        this.cdr.detach();
+    }
+
 }

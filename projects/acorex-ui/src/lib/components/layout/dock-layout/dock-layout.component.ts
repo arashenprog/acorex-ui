@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener, Input, Output, EventEmitter, Attribute } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewEncapsulation, Host, HostListener, Input, Output, EventEmitter, Attribute, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import * as GoldenLayout from 'golden-layout';
 import { AXDockPanelComponent } from './dock-panel.component';
 import { Observable } from 'rxjs';
@@ -14,7 +14,8 @@ export class AXDockLayoutState {
   selector: 'ax-dock-layout',
   template: '<div id="{{uid}}" class="layoutContainer"></div>',
   styleUrls: ['./dock-layout.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AXDockLayoutComponent {
   @ContentChildren(AXDockPanelComponent)
@@ -26,13 +27,11 @@ export class AXDockLayoutComponent {
   @Output()
   onSave: EventEmitter<AXDockLayoutState> = new EventEmitter<AXDockLayoutState>();
 
-
-
-
   constructor(
     @Attribute("storageKey") public storageKey: string,
     @Attribute("autoSave") public autoSave: boolean = true,
-  ) {
+    private cdr:ChangeDetectorRef
+  ) {    
     this.config = {
       settings: {
         hasHeaders: true,
@@ -42,11 +41,11 @@ export class AXDockLayoutComponent {
       },
       content: []
     };
-
   }
 
   ngAfterViewInit(): void {
     this.loadLayout();
+    this.cdr.detach();
   }
 
   private bindEvent(): void {
