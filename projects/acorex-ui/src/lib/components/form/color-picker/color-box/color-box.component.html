@@ -1,0 +1,6 @@
+<div class="color-box">
+    <div class="color-item" *ngFor="let item of colors" [style.background-color]="item.color"
+        (click)="onColorClick(item)">
+        <i class="fas fa-check-circle color-active" *ngIf="item.active"></i>
+    </div>
+</div>
