@@ -1,4 +1,9 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { AXCheckedBaseComponent } from "../../../core/base.class";
 
 @Component({
@@ -8,14 +13,11 @@ import { AXCheckedBaseComponent } from "../../../core/base.class";
   encapsulation: ViewEncapsulation.None
 })
 export class AXCheckBoxComponent extends AXCheckedBaseComponent {
-  validate(): Promise<
-    import("../validation/validation.classs").IValidationRuleResult
-  > {
-    throw new Error("Method not implemented.");
-  }
-
   onClick(e) {
-    if (this.readOnly)
+    if (this.readOnly) {
       return false;
+    } else {
+      this.value = !this.value;
+    }
   }
 }

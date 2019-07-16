@@ -127,22 +127,23 @@ export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
 
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   @Input() label: string = "";
-  @Input() value: any = null;
 
   // Value
   @Output()
-  checkedChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  onValueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   //
-  _checked: boolean = null;
+  _value: boolean = false;
   //
-  set checked(val: boolean) {
-    this._checked = val;
-    this.checkedChanged.emit(val);
+  set value(val: boolean) {
+    if (this._value !== val) {
+      this._value = val;
+      this.onValueChange.emit(val);
+    }
   }
   //
   @Input()
-  get checked() {
-    return this._checked;
+  get value() {
+    return this._value;
   }
 }
 

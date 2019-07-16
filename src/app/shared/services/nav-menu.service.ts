@@ -6,6 +6,7 @@ import { DemoPage } from "../../modules/demo/demo-page.component";
 import { AliPage } from "src/app/modules/demo/ali/ali.page";
 import { TestPage } from "src/app/modules/demo/test-page/test-page";
 import { WidgetsPage } from 'src/app/modules/demo/widgets/widgets.page';
+import { ColorPickerPage } from 'src/app/modules/demo/colorpicker/colorpicker.component';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -48,28 +49,28 @@ export class NavMenuService extends AXNavMenuService {
       name: "forms",
       text: "Forms",
       id: "003-002",
-      parentId:"003",
+      parentId: "003",
       visible: true,
     },
     {
       name: "data",
       text: "Data",
       id: "003-003",
-      parentId:"003",
+      parentId: "003",
       visible: true,
     },
     {
       name: "layout",
       text: "Layouts",
       id: "003-001",
-      parentId:"003",
+      parentId: "003",
       visible: true,
     },
     {
       name: "widgets",
       text: "Widgets",
       id: "003-001-001",
-      parentId:"003-001",
+      parentId: "003-001",
       visible: true,
       data: { page: WidgetsPage }
     },
@@ -77,17 +78,25 @@ export class NavMenuService extends AXNavMenuService {
       name: "dock",
       text: "Docks",
       id: "003-001-002",
-      parentId:"003-001",
+      parentId: "003-001",
       visible: true
     },
     {
       name: "dock",
       text: "Drawer",
       id: "003-001-003",
-      parentId:"003-001",
+      parentId: "003-001",
       visible: true
     },
+    {
+      name: "color-picker",
+      text: "Color Picker",
+      id: "003-003",
+      parentId: "003",
+      visible: true,
+      data: { page: ColorPickerPage }
 
+    }
   ];
   private mockItemFarsi: MenuItem[] = [
     {
@@ -140,6 +149,7 @@ export class NavMenuService extends AXNavMenuService {
   }
 
   clickItem(item: MenuItem): PromisResult<boolean> {
+    debugger
     if (item.data.page) {
       // if(item.data.uid)
       // {
