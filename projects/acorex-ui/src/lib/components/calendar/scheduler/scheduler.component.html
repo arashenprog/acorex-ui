@@ -1,9 +1,9 @@
 <ng-content select="ax-scheduler-views"></ng-content>
 <div class="ax-scheduler">
-    <div class="ax-scheduler-toolbar" *ngIf="toolbar">
+    <div class="ax-scheduler-toolbar" >
         <ng-content select="ax-toolbar"></ng-content>
     </div>
-    <div class="view-container">
+    <div class="view-container" #container>
         <ng-template cdkPortalOutlet></ng-template>
     </div>
 </div>

@@ -9,7 +9,9 @@ import {
   ComponentRef,
   Output,
   EventEmitter,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  NgZone,
+  ViewContainerRef
 } from "@angular/core";
 import { AXSchedulerViewsProperty } from "./scheduler-views.property";
 import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-views";
@@ -33,28 +35,30 @@ import { AXSchedulerEventChangeArgs, AXSchedulerEvent } from "./scheduler.class"
   styleUrls: ["./scheduler.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AXSchedulerComponent implements OnInit {
+export class AXSchedulerComponent {
   constructor(
     private elm: ElementRef<HTMLDivElement>,
+    private zone: NgZone,
     private cdr: ChangeDetectorRef
   ) { }
 
-  @ViewChild(CdkPortalOutlet) portalOutlet: CdkPortalOutlet
+  @ViewChild(CdkPortalOutlet)
+  private portalOutlet: CdkPortalOutlet
+
+
+  @ViewChild("container")
+  private container: ElementRef<HTMLElement>;
 
   @ContentChild(AXSchedulerViewsProperty)
-  viewManager: AXSchedulerViewsProperty;
-
-  @ContentChild(AXToolbarComponent)
-  toolbar: AXToolbarComponent;
+  private viewManager: AXSchedulerViewsProperty;
 
   @ContentChild(AXToolbarSchedulerViewsComponent)
-  toolbarView: AXToolbarSchedulerViewsComponent;
+  private toolbarView: AXToolbarSchedulerViewsComponent;
   @ContentChild(AXToolbarSchedulerNavigatorComponent)
-  toolbarNavigator: AXToolbarSchedulerNavigatorComponent;
+  private toolbarNavigator: AXToolbarSchedulerNavigatorComponent;
 
   view: AXSchedulerBaseViewComponent;
 
-  ngOnInit(): void { }
 
   private _currentView: string;
   @Input()
@@ -67,6 +71,7 @@ export class AXSchedulerComponent implements OnInit {
 
   private viewItems: MenuItem[] = [];
   private today = new AXDateTime();
+  private navigatorDate = new AXDateTime();
 
   @Input()
   events: AXSchedulerEvent[] = [];
@@ -77,6 +82,8 @@ export class AXSchedulerComponent implements OnInit {
   setView(name: string) {
     this._currentView = name;
     if (this.viewManager.views) {
+      this.container.nativeElement.classList.remove('ax-anim-fade-in-fwd');
+      this.container.nativeElement.style.opacity="0";
       this.viewItems.forEach(c => {
         c.selected = false;
       });
@@ -111,26 +118,33 @@ export class AXSchedulerComponent implements OnInit {
       this.view.type = selected.type;
       this.view.interval = interval;
       this.view.events = this.events;
+      //
+      setTimeout(() => {
+        this.container.nativeElement.classList.add('ax-anim-fade-in-fwd');
+      }, 50);
+      //
       this.view.onEventChanged.subscribe(e => {
         this.onEventChanged.emit(e);
       });
       this.view.onNavigatorDateChanged.subscribe((e) => {
+        this.navigatorDate = e;
         this.setNavigatorText();
       });
-      this.view.navigate(this.today);
+      if (this.navigatorDate)
+        this.view.navigate(this.navigatorDate);
+      else
+        this.view.navigate(this.today);
     }
   }
 
 
   private setNavigatorText() {
-    debugger;
     if (this.toolbarNavigator) {
       this.toolbarNavigator.set(this.view.dateRange, this.view.type);
     }
   }
 
   ngAfterViewInit(): void {
-
     setTimeout(_ => {
       this.viewManager.views.forEach(v => {
         this.viewItems.push({
@@ -142,7 +156,7 @@ export class AXSchedulerComponent implements OnInit {
 
       if (this.toolbarView) {
         this.toolbarView.onViewChanged.subscribe(c => {
-          this.currentView = c;
+            this.currentView = c;  
         });
         this.toolbarView.items = this.viewItems;
       }
@@ -160,7 +174,6 @@ export class AXSchedulerComponent implements OnInit {
         });
       }
       this.setView(this.currentView);
-
     });
   }
 
@@ -169,15 +182,14 @@ export class AXSchedulerComponent implements OnInit {
   }
 
   private updateSize() {
-    let toolbar = this.elm.nativeElement.querySelector<HTMLElement>(
-      ".ax-scheduler-toolbar"
-    );
-    let container = this.elm.nativeElement.querySelector<HTMLElement>(
-      ".view-container"
-    );
-    if (toolbar) {
-      container.style.height = `calc(100% - ${toolbar.clientHeight}px)`;
-    }
+    this.zone.runOutsideAngular(() => {
+      let toolbar = this.elm.nativeElement.querySelector<HTMLElement>(
+        ".ax-scheduler-toolbar"
+      );
+      if (toolbar) {
+        this.container.nativeElement.style.height = `calc(100% - ${toolbar.clientHeight}px)`;
+      }
+    });
   }
 
   ngOnDestroy(): void {

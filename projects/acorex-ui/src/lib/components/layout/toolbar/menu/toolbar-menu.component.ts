@@ -61,12 +61,17 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
   public set items(v: MenuItem[]) {
     this._items = v;
-    this._items.map(this.fixItemMap);
+    this.fixItemMap(this._items);
     this.update();
   }
 
-  private fixItemMap(x: MenuItem) {
-
+  private fixItemMap(items: MenuItem[]) {
+    items.forEach(item => {
+      (<any>item).hasChildren = item.items && (item.items.length > 0);
+      item.uid = Math.floor(Math.random() * 1000000).toString();
+      if (item.items)
+        this.fixItemMap(item.items);
+    })
   }
 
   onItemClick(e: MouseEvent, item?: MenuItem) {
@@ -191,35 +196,37 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
       let rootEl = this.root.nativeElement;
       let moreUiEl = this.moreUL.nativeElement;
       let moreLiEl = this.moreLI.nativeElement;
-      let liArray = [].slice
-        .call(rootEl.querySelectorAll("li"))
-        .filter(c => !c.classList.contains("more") && c.parentNode === rootEl)
-        .reverse() as Array<HTMLLIElement>;
-      rootEl.querySelector<HTMLLIElement>(".more").style.display = "none";
-      let diff = Math.abs(rootEl.scrollWidth - containerEl.clientWidth);
-      if (containerEl.clientWidth < rootEl.scrollWidth) {
-        rootEl.querySelector<HTMLLIElement>(".more").style.display = "";
-        let space = diff + 300;
-        let sum = 0;
-        liArray.forEach(li => {
-          sum += li.clientWidth;
-          if (sum < space) {
-            li.setAttribute("data-width", li.clientWidth.toString());
-            moreUiEl.prepend(li);
-          }
-        });
-      } else if (moreUiEl.querySelectorAll("li").length) {
+      this.zone.runOutsideAngular(() => {
         let liArray = [].slice
-          .call(moreUiEl.querySelectorAll("li"))
-          .filter(c => c.parentNode === moreUiEl) as Array<HTMLLIElement>;
-        let sum = 0;
-        liArray.forEach(li => {
-          sum += Number(li.getAttribute("data-width"));
-          if (sum + rootEl.scrollWidth > containerEl.clientWidth) {
-            rootEl.insertBefore(li, moreLiEl);
-          }
-        });
-      }
+          .call(rootEl.querySelectorAll("li"))
+          .filter(c => !c.classList.contains("more") && c.parentNode === rootEl)
+          .reverse() as Array<HTMLLIElement>;
+        rootEl.querySelector<HTMLLIElement>(".more").style.display = "none";
+        let diff = Math.abs(rootEl.scrollWidth - containerEl.clientWidth);
+        if (containerEl.clientWidth < rootEl.scrollWidth) {
+          rootEl.querySelector<HTMLLIElement>(".more").style.display = "";
+          let space = diff + 300;
+          let sum = 0;
+          liArray.forEach(li => {
+            sum += li.clientWidth;
+            if (sum < space) {
+              li.setAttribute("data-width", li.clientWidth.toString());
+              moreUiEl.prepend(li);
+            }
+          });
+        } else if (moreUiEl.querySelectorAll("li").length) {
+          let liArray = [].slice
+            .call(moreUiEl.querySelectorAll("li"))
+            .filter(c => c.parentNode === moreUiEl) as Array<HTMLLIElement>;
+          let sum = 0;
+          liArray.forEach(li => {
+            sum += Number(li.getAttribute("data-width"));
+            if (sum + rootEl.scrollWidth > containerEl.clientWidth) {
+              rootEl.insertBefore(li, moreLiEl);
+            }
+          });
+        }
+      });
     }, 50);
   }
 
@@ -241,7 +248,6 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
   trackByItem(index: number, item: MenuItem) {
-    console.log("track menu", item.uid);
     return item.uid;
   }
 }

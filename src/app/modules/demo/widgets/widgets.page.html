@@ -1,6 +1,6 @@
 <ax-page>
     <ax-toolbar>
-        <ax-toolbar-menu [items]="toolbarItems" (itemClick)="onToolbarItemClick($event)"></ax-toolbar-menu>
+        <ax-toolbar-menu #toolbar [items]="toolbarItems" (itemClick)="onToolbarItemClick($event)"></ax-toolbar-menu>
     </ax-toolbar>
     <ax-page-content>
         <div style="width: 100%; height: calc(100vh - 140px);">
