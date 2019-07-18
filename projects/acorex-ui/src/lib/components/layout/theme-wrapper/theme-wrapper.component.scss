@@ -406,6 +406,9 @@ body {
     color: var(--white-color);
   }
 }
+.ax-line-through{
+  text-decoration: line-through !important;
+}
 .ax-flex {
   display: flex !important;
 }
