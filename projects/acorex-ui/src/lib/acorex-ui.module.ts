@@ -46,6 +46,7 @@ import { AXSchedulerModule } from "./components/calendar/scheduler/scheduler.mod
 import { AXCalendarBoxModule } from "./components/calendar/calendar-box/api";
 import { AXPopoverModule } from "./components/layout/popover/api";
 import { AXDropDownModule } from "./components/form/drop-down/drop-down.module";
+import { AXColorPickerModule } from "./components/form/color-picker/color-picker.module";
 
 window["$"] = $;
 @NgModule({
@@ -90,7 +91,8 @@ window["$"] = $;
     AXSchedulerModule,
     AXCalendarBoxModule,
     AXPopoverModule,
-    AXDropDownModule
+    AXDropDownModule,
+    AXColorPickerModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -131,7 +133,9 @@ window["$"] = $;
     AXTreeListModule,
     AXSchedulerModule,
     AXCalendarBoxModule,
-    AXPopoverModule
+    AXPopoverModule,
+    AXDropDownModule,
+    AXColorPickerModule
   ],
   providers: [
     {

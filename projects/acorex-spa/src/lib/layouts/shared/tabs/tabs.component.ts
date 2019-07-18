@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, Inject, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
 import { AXTabPageService } from "acorex-ui";
 
 @Component({
@@ -11,12 +11,16 @@ export class AXLayoutTabsComponent implements OnInit {
   constructor(
     public tabService: AXTabPageService,
     @Inject("startUpTab") private startUpTab: any
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void { }
 
   ngAfterViewInit() {
-    if (this.startUpTab) this.tabService.open(this.startUpTab);
+    if (this.startUpTab) {
+      this.tabService.open(this.startUpTab);
+      
+    }
   }
 
   onTabClick(tab, e: MouseEvent) {

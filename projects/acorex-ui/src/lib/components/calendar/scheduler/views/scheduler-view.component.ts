@@ -62,9 +62,6 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
     @Output()
     onEventChanged: EventEmitter<AXSchedulerEventChangeArgs> = new EventEmitter<AXSchedulerEventChangeArgs>(true);
 
-    ngOnInit(): void {
-
-    }
 
     ngOnDestroy(): void {
         if (this.onEventChanged)

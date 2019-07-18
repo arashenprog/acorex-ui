@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, Attribute } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
 
 export type AXCalendarViewType = "year" | "month" | "day";
@@ -6,14 +6,25 @@ export type AXCalendarViewType = "year" | "month" | "day";
 @Component({
     selector: 'ax-calendar-box',
     templateUrl: './calendar-box.component.html',
-    styleUrls: ['./calendar-box.component.scss']
+    styleUrls: ['./calendar-box.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXCalendarBoxComponent {
-    constructor() {
-        this.viewRange = new AXDateTimeRange(this.today, this.today);
+
+    constructor(
+        private cdr: ChangeDetectorRef,
+        @Attribute("showTodayButton") public showTodayButton: boolean = false
+    ) {
+
+        this.viewRange = new AXDateTimeRange(this.today.month.startDate, this.today.month.endDate);
         this.value = new AXDateTime();
+        this.view = "day";
     }
 
+
+
+
+    matrix: any = [];
 
     private _view: AXCalendarViewType = "day";
     @Input()
@@ -22,12 +33,10 @@ export class AXCalendarBoxComponent {
     }
     public set view(v: AXCalendarViewType) {
         this._view = v;
+        this.navigate(0);
     }
 
-
-
-
-    private _depth: AXCalendarViewType;
+    private _depth: AXCalendarViewType = "day";
 
     @Input()
     public get depth(): AXCalendarViewType {
@@ -58,7 +67,9 @@ export class AXCalendarBoxComponent {
     focusedValue: AXDateTime;
     today: AXDateTime = new AXDateTime();
 
-
+    ngAfterViewInit(): void {
+        this.navigate(0);
+    }
 
     prev() {
         this.navigate(-1)
@@ -102,17 +113,26 @@ export class AXCalendarBoxComponent {
             start = fd.add("year", -4);
             end = start.add("year", 8).endOf("year");
         }
-        this.viewRange = new AXDateTimeRange(start, end)
+        this.viewRange = new AXDateTimeRange(start, end);
+        if (this.view == "day") {
+            this.matrix = this.matrixify(this.viewRange.enumurate('day'), 7);
+        }
+        else if (this.view == "month") {
+            this.matrix = this.matrixify(this.viewRange.enumurate('month'), 3);
+        }
+        else if (this.view == "year") {
+            this.matrix = this.matrixify(this.viewRange.enumurate('year'), 3);
+        }
+        this.cdr.markForCheck();
     }
 
     changeView() {
         if (this.view == "day") {
             this.view = "month";
-            this.navigate(0);
+
         }
         else if (this.view == "month") {
             this.view = "year";
-            this.navigate(0);
         }
     }
 
@@ -127,23 +147,24 @@ export class AXCalendarBoxComponent {
         return matrix;
     };
 
-    setDay(date: AXDateTime) {
+    setDayClick(event:MouseEvent,date: AXDateTime) {
         this.value = date;
         this.view = "day";
+        event.stopPropagation();
     }
 
-    setMonth(date: AXDateTime) {
+    setMonthClick(event:MouseEvent,date: AXDateTime) {
         if (this.depth == "month") {
             this.value = date;
         }
         else {
-            debugger;
             this.view = "day";
             this.setFocus(this.value.clone().set("year", date.year).set("month", date.monthOfYear));
         }
+        event.stopPropagation();
     }
 
-    setYear(date: AXDateTime) {
+    setYearClick(event:MouseEvent,date: AXDateTime) {
         if (this.depth == "year") {
             this.value = date;
         }
@@ -151,12 +172,22 @@ export class AXCalendarBoxComponent {
             this.view = "month";
             this.setFocus(this.value.clone().set("year", date.year));
         }
+        event.stopPropagation();
     }
 
-    setFocus(date: AXDateTime) {
+    setFocus( date: AXDateTime) {
         this.focusedValue = date;
         this.navigate(this.focusedValue);
+        
     }
 
 
+    setToday() {
+        this.value = this.today;
+    }
+
+    trackByFn(index, date:AXDateTime) {
+        return date.date.getTime();
+
+    }
 }

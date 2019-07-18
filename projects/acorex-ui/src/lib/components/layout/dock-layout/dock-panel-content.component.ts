@@ -1,15 +1,18 @@
-import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { SelectorFlags } from '@angular/core/src/render3/interfaces/projection';
+import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewChild, ViewContainerRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'ax-dock-content',
     template: `<ng-content></ng-content>`,
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class AXDockPanelContentComponent implements OnInit {
+export class AXDockPanelContentComponent  {
 
     @ContentChild(TemplateRef) template: TemplateRef<any>;
 
-    constructor(public viewContainerRef: ViewContainerRef) { }
+    constructor(
+        public viewContainerRef: ViewContainerRef,
+        private cdr:ChangeDetectorRef
+        ) { }
 
     @Input()
     caption: string;
@@ -43,6 +46,8 @@ export class AXDockPanelContentComponent implements OnInit {
         return conf;
     }
 
-    ngOnInit(): void { }
+    ngAfterViewInit(): void {
+        this.cdr.detach();
+    }
 
 }

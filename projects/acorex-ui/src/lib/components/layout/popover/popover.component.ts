@@ -16,9 +16,9 @@ export class AXPopoverComponent {
     private el: ElementRef<HTMLElement>,
     private zone: NgZone
   ) {
-    this.zone.runOutsideAngular(() => {
-      window.document.addEventListener("click", this.clickOutside.bind(this));
-    });
+    // this.zone.runOutsideAngular(() => {
+    //   window.document.addEventListener("click", this.clickOutside.bind(this));
+    // });
   }
 
   @Input("target") target: string;
@@ -28,7 +28,7 @@ export class AXPopoverComponent {
   @Input("height") height: number;
   @Input("fitParent") fitParent: boolean = false
 
-  @Input() distance: number = 0;
+  @Input() distance: number = 5;
   private _visible: boolean;
 
   @Input()
@@ -63,7 +63,8 @@ export class AXPopoverComponent {
       ".popover-container"
     );
     let target = document.querySelector<HTMLElement>(this.target);
-
+    if (!target || !pop)
+      return;
     let targetPos: AXPoint = AXHtmlUtil.getBoundingRectPoint(target, this.placement);
     //
     pop.style.width = this.width + "px";

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation, HostListener, NgZone } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
 import { AXSchedulerBaseViewComponent } from '../scheduler-view.component';
 import { AXSchedulerEvent } from '../../scheduler.class';
@@ -12,7 +12,10 @@ import { AXSchedulerEvent } from '../../scheduler.class';
 export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent {
 
 
-    constructor(private elm: ElementRef<HTMLDivElement>, private cdr: ChangeDetectorRef) {
+    constructor(
+        private elm: ElementRef<HTMLDivElement>,
+        private zone: NgZone,
+        private cdr: ChangeDetectorRef) {
         super();
     }
 
@@ -160,4 +163,34 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
         });
         return a.indexOf(event);
     }
+
+    private dragEnterSlot: HTMLElement;
+    private dragPreview: HTMLElement;
+    onDragStarted(event) {
+        this.zone.runOutsideAngular(() => {
+            this.elm.nativeElement.addEventListener("mousemove", this.drageMouseMove.bind(this));
+        })
+    }
+    onDragEntered(event) {
+        this.dragPreview = document.querySelector<HTMLElement>('.cdk-drag-preview');
+        this.dragEnterSlot = event.container.element.nativeElement;
+    }
+    onDragEnded(event) {
+        this.dragEnterSlot = null;
+        this.dragPreview = null;
+        this.zone.runOutsideAngular(() => {
+            this.elm.nativeElement.removeEventListener("mousemove", this.drageMouseMove.bind(this));
+        })
+    }
+
+    private drageMouseMove(e: MouseEvent) {
+        this.zone.runOutsideAngular(() => {
+            if (this.dragEnterSlot) {
+                let diff = this.dragPreview.getBoundingClientRect().top - this.dragEnterSlot.getBoundingClientRect().top;
+                let hour = Math.round((diff / this.dragEnterSlot.getBoundingClientRect().height) * 24);
+                this.dragPreview.querySelector('.ax-sch-str').innerHTML = `${hour > 0 ? hour : 0}:00`;
+            }
+        });
+    }
+
 }

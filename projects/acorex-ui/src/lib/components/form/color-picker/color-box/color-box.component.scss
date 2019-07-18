@@ -1,0 +1,24 @@
+.color-box {
+  display: flex;
+  width: 260px;
+  height: 235px;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-color);
+  justify-content: center;
+  align-items: center;
+  div {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    margin: 1px;
+  }
+  .color-active {
+    color: #fff;
+    box-shadow: 1px 1px 4px 0px #5a5a5a;
+    border-radius: 50%;
+  }
+}
