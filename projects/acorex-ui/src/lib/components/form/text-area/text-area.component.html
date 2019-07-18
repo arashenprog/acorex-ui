@@ -12,7 +12,6 @@
       [(ngModel)]="text"
       type="text"
       class="ax-text-area"
-      [ngClass]="{ 'dir-ltr': !rtlEnabled }"
       [placeholder]="placeholder"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"

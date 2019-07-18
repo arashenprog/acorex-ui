@@ -40,7 +40,6 @@ export class AXBaseComponent {
   @Input()
   width: string = "";
   @Input() height: string = "auto";
-  @Input() rtlEnabled: boolean = true;
   @Input() readOnly: boolean = false;
 
   focus(): void {}
