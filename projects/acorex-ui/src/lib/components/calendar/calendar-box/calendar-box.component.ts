@@ -149,7 +149,7 @@ export class AXCalendarBoxComponent {
 
     setDayClick(event:MouseEvent,date: AXDateTime) {
         this.value = date;
-        this.view = "day";
+        //this.view = "day";
         event.stopPropagation();
     }
 

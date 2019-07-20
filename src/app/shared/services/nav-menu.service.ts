@@ -20,7 +20,8 @@ export class NavMenuService extends AXNavMenuService {
       text: "Dashboard",
       icon: "fas fa-tachometer-alt",
       id: "0",
-      visible: true
+      visible: true,
+      data: { page: DemoPage, singleton: true }
     },
     {
       name: "ali",
@@ -28,7 +29,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fab fa-artstation",
       id: "00",
       visible: true,
-      data: { page: AliPage }
+      data: { page: AliPage , singleton: true }
     },
     {
       name: "test",
@@ -166,7 +167,8 @@ export class NavMenuService extends AXNavMenuService {
       this.tab.open({
         title: item.text,
         content: item.data.page,
-        uid: item.data.uid
+        uid: item.data.uid,
+        singleton: item.data.singleton
       });
     }
     return PromisResult.resolve(true);

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, ViewRef, ComponentRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AXTabPageService, AXTabPage, AXTabPageMessage } from './tab-page.service';
 import { ClosingEventArgs } from '../popup/popup.service';
@@ -21,25 +21,30 @@ export class AXTabPageRendererComponent {
         titleService: Title) {
         tabService.opened.subscribe((tab: AXTabPage) => {
             this.isBusy = tab.isBusy;
-            this.childs.forEach(v => {
-                v.hostView.rootNodes[0].hidden = true;
+            this.childs.forEach((v: ComponentRef<HTMLElement>) => {
+                v.changeDetectorRef.detach();
+                v.location.nativeElement.hidden = true;
             });
-            let v = this.childs.find(t => t.id == tab.id);
+            let v = this.childs.find(t => t.id == tab.id) as ComponentRef<HTMLElement>;
             if (v) {
-                v.hostView.rootNodes[0].hidden = false;
+                v.location.nativeElement.hidden = false;
+                v.changeDetectorRef.reattach();
             }
             else {
                 const factory = this.resolver.resolveComponentFactory(tab.content);
                 let componentRef = this.container.createComponent(factory);
                 componentRef.id = tab.id;
                 if (!componentRef.instance.closeEvent) {
-                   throw Error("The Component must be inherited from AXBasePageComponent!")
+                    throw Error("The Component must be inherited from AXBasePageComponent!")
                 }
                 componentRef.instance.closeEvent.subscribe((e: ClosingEventArgs) => {
                     tabService.close(tab, e);
                 });
+
                 //
+                (<any>tab).component = tab.content;
                 tab.content = componentRef.instance;
+
                 this.childs.push(componentRef);
             }
             titleService.setTitle(tab.title);

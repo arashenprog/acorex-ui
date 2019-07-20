@@ -10,6 +10,7 @@ export interface AXTabPage {
     uid?: string;
     isBusy?: false;
     active: boolean;
+    singleton?: boolean;
     closed?: Function;
     closing?: (x: ClosingAction) => void;
     send?: Function;
@@ -70,7 +71,7 @@ export class AXTabPageService {
 
     open(content: any, title: string): AXTabPageResult;
     open(content: any, title: string, data?: any): AXTabPageResult;
-    open(options: { content: any, title: string, closable?: boolean, data?: any, uid?: string }): AXTabPageResult;
+    open(options: { content: any, title: string, closable?: boolean, data?: any, uid?: string,singleton?:boolean }): AXTabPageResult;
 
     open(arg1, arg2?, arg3?) {
         let newTab: AXTabPage;
@@ -84,7 +85,8 @@ export class AXTabPageService {
                 content: options.content,
                 data: options.data,
                 uid: options.uid,
-                active: true
+                active: true,
+                singleton :options.singleton
             };
         }
         else {
@@ -103,8 +105,14 @@ export class AXTabPageService {
         }
         return new AXTabPageResult(newTab, (closing, closed) => {
             let existTab = this.tabs.find(c => newTab.uid && c.uid == newTab.uid);
+            debugger
+            let singletonTab = this.tabs.find(c => newTab.singleton && (<any>c).component==newTab.content);
             if (existTab) {
                 this.active(existTab)
+            }
+            else if(singletonTab)
+            {
+                this.active(singletonTab)
             }
             else {
                 newTab.closed = (e) => {
