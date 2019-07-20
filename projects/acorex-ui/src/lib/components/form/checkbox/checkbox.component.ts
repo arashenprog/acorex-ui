@@ -2,7 +2,8 @@ import {
   Component,
   ViewEncapsulation,
   Output,
-  EventEmitter
+  EventEmitter,
+  Input
 } from "@angular/core";
 import { AXCheckedBaseComponent } from "../../../core/base.class";
 
@@ -10,14 +11,16 @@ import { AXCheckedBaseComponent } from "../../../core/base.class";
   selector: "ax-check-box",
   templateUrl: "./checkbox.component.html",
   styleUrls: ["./checkbox.component.scss"],
-  encapsulation: ViewEncapsulation.None
 })
 export class AXCheckBoxComponent extends AXCheckedBaseComponent {
-  onClick(e) {
+  @Input() checked : boolean = false;
+
+  onClick() {
     if (this.readOnly) {
       return false;
     } else {
       this.value = !this.value;
     }
   }
+
 }

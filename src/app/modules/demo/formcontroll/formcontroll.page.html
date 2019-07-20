@@ -1,0 +1,8 @@
+<ax-check-box [(value)]="check" label="Check Me" (onValueChange)="valueChange($event)"></ax-check-box>
+
+<ng-container *ngIf="check; else elseTemplate">
+    TRUE
+</ng-container>
+<ng-template #elseTemplate>
+    Flase
+</ng-template>
