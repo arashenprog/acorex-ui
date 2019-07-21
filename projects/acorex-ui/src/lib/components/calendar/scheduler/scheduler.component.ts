@@ -82,8 +82,7 @@ export class AXSchedulerComponent {
   setView(name: string) {
     this._currentView = name;
     if (this.viewManager.views) {
-      this.container.nativeElement.classList.remove('ax-anim-fade-in-fwd');
-      this.container.nativeElement.style.opacity="0";
+      this.startAnim();
       this.viewItems.forEach(c => {
         c.selected = false;
       });
@@ -119,9 +118,7 @@ export class AXSchedulerComponent {
       this.view.interval = interval;
       this.view.events = this.events;
       //
-      setTimeout(() => {
-        this.container.nativeElement.classList.add('ax-anim-fade-in-fwd');
-      }, 50);
+
       //
       this.view.onEventChanged.subscribe(e => {
         this.onEventChanged.emit(e);
@@ -129,6 +126,7 @@ export class AXSchedulerComponent {
       this.view.onNavigatorDateChanged.subscribe((e) => {
         this.navigatorDate = e;
         this.setNavigatorText();
+        this.startAnim();
       });
       if (this.navigatorDate)
         this.view.navigate(this.navigatorDate);
@@ -144,6 +142,14 @@ export class AXSchedulerComponent {
     }
   }
 
+  private startAnim() {
+    this.container.nativeElement.classList.remove('ax-anim-fade-in-fwd');
+    this.container.nativeElement.style.opacity = "0";
+    setTimeout(() => {
+      this.container.nativeElement.classList.add('ax-anim-fade-in-fwd');
+    }, 250);
+  }
+
   ngAfterViewInit(): void {
     setTimeout(_ => {
       this.viewManager.views.forEach(v => {
@@ -156,7 +162,7 @@ export class AXSchedulerComponent {
 
       if (this.toolbarView) {
         this.toolbarView.onViewChanged.subscribe(c => {
-            this.currentView = c;  
+          this.currentView = c;
         });
         this.toolbarView.items = this.viewItems;
       }

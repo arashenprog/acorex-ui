@@ -1,7 +1,7 @@
 import { Component, ElementRef, ChangeDetectorRef, ViewEncapsulation, HostListener, NgZone } from '@angular/core';
 import { AXDateTime, AXDateTimeRange } from '../../../../../core/calendar/datetime';
 import { AXSchedulerBaseViewComponent } from '../scheduler-view.component';
-import { AXSchedulerEvent } from '../../scheduler.class';
+import { AXSchedulerEvent, AXSchedulerEventChangeArgs } from '../../scheduler.class';
 
 @Component({
     templateUrl: './scheduler-month-view.component.html',
@@ -166,8 +166,10 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
 
     private dragEnterSlot: HTMLElement;
     private dragPreview: HTMLElement;
+    private dragHour: number = null;
     onDragStarted(event) {
         this.zone.runOutsideAngular(() => {
+            this.dragEnterSlot = event.source.dropContainer.element.nativeElement;
             this.elm.nativeElement.addEventListener("mousemove", this.drageMouseMove.bind(this));
         })
     }
@@ -185,12 +187,46 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
 
     private drageMouseMove(e: MouseEvent) {
         this.zone.runOutsideAngular(() => {
-            if (this.dragEnterSlot) {
+            if (!this.dragPreview)
+                this.dragPreview = document.querySelector<HTMLElement>('.cdk-drag-preview');
+            if (this.dragEnterSlot && this.dragPreview) {
                 let diff = this.dragPreview.getBoundingClientRect().top - this.dragEnterSlot.getBoundingClientRect().top;
                 let hour = Math.round((diff / this.dragEnterSlot.getBoundingClientRect().height) * 24);
                 this.dragPreview.querySelector('.ax-sch-str').innerHTML = `${hour > 0 ? hour : 0}:00`;
+                this.dragHour = hour;
             }
         });
+    }
+
+    onDragDropOnDay(e) {
+        let el = e.item.element.nativeElement as HTMLElement;
+        if (e.previousContainer !== e.container) {
+            el.style.opacity = "0";
+            let r: AXSchedulerEventChangeArgs = new AXSchedulerEventChangeArgs();
+            r.event = e.item.data;
+            r.oldSlot = e.previousContainer.data;
+            r.newSlot = e.container.data;
+            //
+            r.onComplete.subscribe((er: AXSchedulerEventChangeArgs) => {
+                el.style.opacity = "1";
+                if (!er.canceled) {
+                    let slotTime = er.newSlot.range.startTime.startOf();
+                    let z = er.event.range.startTime.clone();
+                    let durDay = slotTime.duration(z.startOf(), "days");
+                    er.event.range.startTime = er.event.range.startTime.add("day", durDay);
+                    if (this.dragHour != null)
+                    {
+                        er.event.range.startTime.set("hour", this.dragHour);
+                        er.event.range.startTime.set("minute", 0);
+                    }
+                    er.event.range.endTime = er.event.range.endTime.add("day", durDay);
+                    er.oldSlot.events = er.oldSlot.events.filter(c => c.uid != er.event.uid);
+                    er.newSlot.events.push(er.event);
+                }
+            })
+            this.onEventChanged.emit(r);
+        }
+        
     }
 
 }

@@ -29,6 +29,7 @@ export class AXCalendarBoxComponent {
     private _view: AXCalendarViewType = "day";
     @Input()
     public get view(): AXCalendarViewType {
+        debugger;
         return this._view;
     }
     public set view(v: AXCalendarViewType) {
@@ -58,14 +59,18 @@ export class AXCalendarBoxComponent {
         return this._value;
     }
     public set value(v: AXDateTime) {
-        this._value = v;
-        this.setFocus(v);
-        this.onChanged.emit(v);
+        if (!v.equal(this._value)) {
+            this._value = v;
+            this.setFocus(v);
+            this.onChanged.emit(v);
+        }
     }
 
 
     focusedValue: AXDateTime;
     today: AXDateTime = new AXDateTime();
+
+
 
     ngAfterViewInit(): void {
         this.navigate(0);
@@ -115,15 +120,30 @@ export class AXCalendarBoxComponent {
         }
         this.viewRange = new AXDateTimeRange(start, end);
         if (this.view == "day") {
-            this.matrix = this.matrixify(this.viewRange.enumurate('day'), 7);
+            this.matrix = this.matrixify(this.applyStyle(this.viewRange.enumurate('day')), 7);
         }
         else if (this.view == "month") {
-            this.matrix = this.matrixify(this.viewRange.enumurate('month'), 3);
+            this.matrix = this.matrixify(this.applyStyle(this.viewRange.enumurate('month')), 3);
         }
         else if (this.view == "year") {
-            this.matrix = this.matrixify(this.viewRange.enumurate('year'), 3);
+            this.matrix = this.matrixify(this.applyStyle(this.viewRange.enumurate('year')), 3);
         }
         this.cdr.markForCheck();
+    }
+
+    private applyStyle(dates: AXDateTime[]): any[] {
+        let items: any[]=[];
+        dates.forEach(d => {
+            let item: any = {};
+            item.date = d;
+            item.selected = d.compaire(this.value, this.view) == 0;
+            item.focused = d.compaire(this.focusedValue, this.view) == 0;
+            item.today = d.compaire(this.today, this.view) == 0;
+            if (this.view == "day")
+                item.nextMonth = d.compaire(this.viewRange.startTime.add('day', 10), 'month') != 0
+            items.push(item);
+        });
+        return items;
     }
 
     changeView() {
@@ -147,13 +167,12 @@ export class AXCalendarBoxComponent {
         return matrix;
     };
 
-    setDayClick(event:MouseEvent,date: AXDateTime) {
+    setDayClick(event: MouseEvent, date: AXDateTime) {
         this.value = date;
-        //this.view = "day";
         event.stopPropagation();
     }
 
-    setMonthClick(event:MouseEvent,date: AXDateTime) {
+    setMonthClick(event: MouseEvent, date: AXDateTime) {
         if (this.depth == "month") {
             this.value = date;
         }
@@ -164,7 +183,7 @@ export class AXCalendarBoxComponent {
         event.stopPropagation();
     }
 
-    setYearClick(event:MouseEvent,date: AXDateTime) {
+    setYearClick(event: MouseEvent, date: AXDateTime) {
         if (this.depth == "year") {
             this.value = date;
         }
@@ -175,10 +194,10 @@ export class AXCalendarBoxComponent {
         event.stopPropagation();
     }
 
-    setFocus( date: AXDateTime) {
+    setFocus(date: AXDateTime) {
         this.focusedValue = date;
         this.navigate(this.focusedValue);
-        
+
     }
 
 
@@ -186,8 +205,8 @@ export class AXCalendarBoxComponent {
         this.value = this.today;
     }
 
-    trackByFn(index, date:AXDateTime) {
-        return date.date.getTime();
+    trackByFn(index, item: any) {
+        return item.date.date.getTime();
 
     }
 }

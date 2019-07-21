@@ -10,9 +10,11 @@ import {
   HostListener,
   ElementRef,
   ComponentRef,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectorRef,
+  NgZone
 } from "@angular/core";
-import { ClosingEventArgs } from "./popup.service";
+import { ClosingEventArgs } from "./events.class";
 
 @Component({
   selector: "ax-popup",
@@ -21,6 +23,9 @@ import { ClosingEventArgs } from "./popup.service";
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {
+
+
+
   @ViewChild("popupBody", { read: ViewContainerRef })
   private popupBody: ViewContainerRef;
 
@@ -35,6 +40,16 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   private comRef: ComponentRef<any>;
   private isActivated: boolean = false;
 
+
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private element: ElementRef,
+    private zone: NgZone
+  ) { }
+
+
+
+
   ngOnInit(): void {
     const factory = this.resolver.resolveComponentFactory(this.content);
     this.comRef = this.popupBody.createComponent(factory);
@@ -46,7 +61,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
       });
     }
     this.content = com;
-    Object.assign(this.content,this.data);
+    Object.assign(this.content, this.data);
     //
     if (com.onReceiveData && this.data) {
       com.onReceiveData(this.data);
@@ -59,30 +74,22 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   }
 
   close: EventEmitter<ClosingEventArgs> = new EventEmitter<ClosingEventArgs>();
-  constructor(
-    private resolver: ComponentFactoryResolver,
-    private element: ElementRef
-  ) { }
 
-  @Input()
+
   width: number = 100;
 
-  @Input()
   data: any = {};
 
-  @Input()
   maximizable: boolean = false;
 
-  @Input()
   closable: boolean = true;
 
-  @Input()
+  
   content: any;
   onCloseClick() {
     this.close.emit({ cancel: false });
   }
 
-  @Input()
   title: string;
 
   ngOnDestroy() {
@@ -103,23 +110,25 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   onFullScreen() { }
 
   resizeBody() {
-    this.popupBody.element.nativeElement;
-    let toolbar = this.element.nativeElement.querySelector(".ax-page-toolbar");
-    let pageContent = this.element.nativeElement.querySelector(
-      ".ax-page-content"
-    );
-    let popupContent = this.element.nativeElement.querySelector(
-      ".page-content-wrap"
-    );
-    if (toolbar) {
-      if (popupContent)
-        popupContent.style.height =
-          pageContent.scrollHeight + toolbar.scrollHeight + "px";
-      if (pageContent)
-        pageContent.style.top = toolbar.scrollHeight + "px";
-    } else {
-      if (popupContent && pageContent)
-        popupContent.style.height = pageContent.scrollHeight + "px";
-    }
+    //this.zone.runOutsideAngular(() => {
+      this.popupBody.element.nativeElement;
+      let toolbar = this.element.nativeElement.querySelector(".ax-page-toolbar");
+      let pageContent = this.element.nativeElement.querySelector(
+        ".ax-page-content"
+      );
+      let popupContent = this.element.nativeElement.querySelector(
+        ".page-content-wrap"
+      );
+      if (toolbar) {
+        if (popupContent)
+          popupContent.style.height =
+            pageContent.scrollHeight + toolbar.scrollHeight + "px";
+        if (pageContent)
+          pageContent.style.top = toolbar.scrollHeight + "px";
+      } else {
+        if (popupContent && pageContent)
+          popupContent.style.height = pageContent.scrollHeight + "px";
+      }
+    //});
   }
 }

@@ -9,7 +9,7 @@ import { AXSchedulerSlot, AXSchedulerEventChangeArgs, AXSchedulerEvent, AXSchedu
 
 export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
-    type:AXSchedulerViewType;
+    type: AXSchedulerViewType;
     timeSlot: number = 1;
 
     interval: number = 1;
@@ -22,10 +22,9 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
     abstract navigate(date: AXDateTime): void;
 
-    get dateRange():AXDateTimeRange
-    {
-        if(this.slots && this.slots.length)
-            return new AXDateTimeRange(this.slots[0].range.startTime,this.slots[this.slots.length-1].range.startTime);
+    get dateRange(): AXDateTimeRange {
+        if (this.slots && this.slots.length)
+            return new AXDateTimeRange(this.slots[0].range.startTime, this.slots[this.slots.length - 1].range.startTime);
         else
             return null;
     }
@@ -33,16 +32,16 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
     today: AXDateTime = new AXDateTime();
 
-   
-    
+
+
     @Output()
     onNavigatorDateChanged: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
 
-    private _navigatorDate : AXDateTime;
-    public get navigatorDate() : AXDateTime {
+    private _navigatorDate: AXDateTime;
+    public get navigatorDate(): AXDateTime {
         return this._navigatorDate;
     }
-    public set navigatorDate(v : AXDateTime) {
+    public set navigatorDate(v: AXDateTime) {
         this._navigatorDate = v;
         this.onNavigatorDateChanged.emit(v);
     }
@@ -65,7 +64,10 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         if (this.onEventChanged)
-            this.onEventChanged.unsubscribe()
+            this.onEventChanged.unsubscribe();
+
+        if (this.onNavigatorDateChanged)
+            this.onEventChanged.unsubscribe();
         if (this.slots)
             this.slots = null;
         if (this.events)

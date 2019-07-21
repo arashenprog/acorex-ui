@@ -13,14 +13,4 @@ import { AXCheckedBaseComponent } from "../../../core/base.class";
   styleUrls: ["./checkbox.component.scss"],
 })
 export class AXCheckBoxComponent extends AXCheckedBaseComponent {
-  @Input() checked : boolean = false;
-
-  onClick() {
-    if (this.readOnly) {
-      return false;
-    } else {
-      this.value = !this.value;
-    }
-  }
-
 }

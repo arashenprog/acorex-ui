@@ -36,10 +36,10 @@
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrix">
               <td class="calendar-item" *ngFor="let d of r;trackBy:trackByFn"
-                [ngClass]="{'selected': d.compaire(value,'day')==0,'focused':d.compaire(focusedValue,'day')==0,'today':d.compaire(today,'day')==0,'next-month':d.compaire(viewRange.startTime.add('day',10),'month')!=0}"
-                (click)="setDayClick($event,d)">
+                [ngClass]="{'selected': d.selected,'focused':d.focused,'today':d.today,'next-month':d.nextMonth}"
+                (click)="setDayClick($event,d.date)">
                 <div>
-                  {{d.dayInMonth}}
+                  {{d.date.dayInMonth}}
                 </div>
               </td>
             </tr>
@@ -51,10 +51,10 @@
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrix">
               <td class="calendar-item month-item" *ngFor="let d of r;trackBy:trackByFn"
-                [ngClass]="{'selected': d.compaire(value,'month')==0,'focused':d.compaire(focusedValue,'month')==0,'today':d.compaire(today,'month')==0}"
-                (click)="setMonthClick($event,d)">
+                [ngClass]="{'selected': d.selected,'focused':d.focused,'today':d.today}"
+                (click)="setMonthClick($event,d.date)">
                 <div>
-                  {{d| dt:"MMM"}}
+                  {{d.date| dt:"MMM"}}
                 </div>
               </td>
             </tr>
@@ -66,10 +66,10 @@
           <tbody>
             <tr class="calendar-row" *ngFor="let r of matrix">
               <td class="calendar-item year-item" *ngFor="let d of r;trackBy:trackByFn"
-                [ngClass]="{'selected': d.compaire(value,'year')==0,'focused':d.compaire(focusedValue,'year')==0,'today':d.compaire(today,'year')==0}"
-                (click)="setYearClick($event,d)">
+                [ngClass]="{'selected': d.selected,'focused':d.focused,'today':d.today}"
+                (click)="setYearClick($event,d.date)">
                 <div>
-                  {{d | dt:"YYYY"}}
+                  {{d.date | dt:"YYYY"}}
                 </div>
               </td>
             </tr>

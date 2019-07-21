@@ -134,11 +134,11 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
   private closeOnOut(el?: HTMLElement) {
-
-
-    let root = this.element.nativeElement as HTMLElement;
-    root.querySelectorAll("ul.sub-menu").forEach(c => {
-      if (!c.contains(el)) c.classList.add("collapsed");
+    this.zone.runOutsideAngular(() => {
+      let root = this.element.nativeElement as HTMLElement;
+      root.querySelectorAll("ul.sub-menu").forEach(c => {
+        if (!c.contains(el)) c.classList.add("collapsed");
+      });
     });
   }
 

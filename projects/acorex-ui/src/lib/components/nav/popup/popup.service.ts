@@ -1,21 +1,7 @@
 import { Injectable,  ComponentRef } from "@angular/core";
 import { InjectionService } from "../../../core/injection.service";
 import { AXPopupComponent } from "./popup.component";
-
-export interface ClosingEventArgs {
-  cancel?: boolean;
-  data?: any;
-}
-
-export interface ClosingAction {
-  cancel?: boolean;
-  data?: any;
-  resolve: () => void;
-}
-
-export interface ClosedEventArgs {
-  data?: any;
-}
+import { ClosingAction, ClosedEventArgs, ClosingEventArgs } from "./events.class";
 
 export class AXPopupResult {
   private _executor: (
