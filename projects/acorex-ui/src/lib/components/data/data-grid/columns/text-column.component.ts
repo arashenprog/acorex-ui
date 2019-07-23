@@ -13,6 +13,8 @@ import {
 } from "ag-grid-community";
 import { IFilterAngularComp } from 'ag-grid-angular';
 
+import { AXTextBoxComponent } from '../../../form/text-box/text-box.component'
+
 @Component({
   selector: "ax-text-column",
   template: "",
@@ -34,17 +36,18 @@ export class AXGridTextColumn extends AXGridDataColumn {
 @Component({
   template: `
     <ax-data-grid-filter>
-      <ax-text-box label="Filter" showClear="true">
+      <ax-text-box label="Filter" showClear="true" (textChange)="onChange($event)">
       </ax-text-box>
     </ax-data-grid-filter>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextFilterRenderer implements IFilterAngularComp {
-  public value?: boolean = null;
+  public value?: string = null;
   private params: IFilterParams;
   private valueGetter: (rowNode: RowNode) => any;
-  @ViewChild("input", { read: ViewContainerRef }) public input;
+  @ViewChild(AXTextBoxComponent)
+  private input: AXTextBoxComponent;
 
   agInit(params: IFilterParams): void {
     this.params = params;
@@ -69,13 +72,17 @@ export class TextFilterRenderer implements IFilterAngularComp {
 
   ngAfterViewInit(params: IAfterGuiAttachedParams): void {
     window.setTimeout(() => {
-      this.input.element.nativeElement.focus();
+      debugger
+      this.input.focus();
     });
   }
 
   onChange(newValue): void {
+    debugger;
     if (this.value !== newValue) {
       this.value = newValue;
+      if (this.value == "")
+        this.value = null;
       this.params.filterChangedCallback();
     }
   }

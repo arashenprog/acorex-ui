@@ -15,8 +15,9 @@
     "@angular/cdk": "^7.2.0",
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
-    "ag-grid-angular": "^20.2.0",
-    "ag-grid-community": "^20.2.0",
+    "ag-grid-angular": "^21.0.0",
+    "ag-grid-community": "^21.0.0",
+    "ag-grid-enterprise": "^21.0.0",
     "angular-gridster2": "^7.2.0",
     "angular2-text-mask": "^9.0.0",
     "golden-layout": "^1.5.9",
@@ -29,8 +30,9 @@
     "@angular/core": "^7.2.0",
     "angular-gridster2": "^7.2.0",
     "@angular/animations": "^7.2.14",
-    "ag-grid-angular": "^20.2.0",
-    "ag-grid-community": "^20.2.0",
+    "ag-grid-angular": "^21.0.0",
+    "ag-grid-community": "^21.0.0",
+    "ag-grid-enterprise": "^21.0.0",
     "angular2-text-mask": "^9.0.0"
   },
   "devDependencies": {

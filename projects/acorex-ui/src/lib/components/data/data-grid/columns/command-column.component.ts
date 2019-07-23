@@ -24,9 +24,7 @@ export class AXGridCommandColumn extends AXGridDataColumn {
   items: MenuItem[] = [];
 
   @Output()
-  itemClick: EventEmitter<AXGridRowCommandEvent> = new EventEmitter<
-    AXGridRowCommandEvent
-  >();
+  itemClick: EventEmitter<AXGridRowCommandEvent> = new EventEmitter<AXGridRowCommandEvent>();
 
   render() {
     let col = super.render();
@@ -72,7 +70,7 @@ export class CommandRenderer implements ICellRendererAngularComp {
   node: any;
   private clickCallback: Function;
 
-  constructor() {}
+  constructor() { }
 
   agInit(params: ICellRendererParams): void {
     this.mapParams(params);

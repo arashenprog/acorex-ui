@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { AXDataGridComponent } from "./datagrid.component";
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
 import { AXDataSourceModule } from '../data-source/datasource.module';
 import { AXGridTextColumn, TextFilterRenderer } from './columns/text-column.component';
 import { AXGridCheckColumn, BooleanRenderer, BooleanFilterRenderer } from './columns/check-column.component';
@@ -14,6 +15,7 @@ import { AXTextBoxModule } from '../../form/text-box/text-box.module';
 import { AXCheckBoxModule } from '../../form/checkbox/checkbox.module';
 import { AXSelectBoxModule } from '../../form/select-box/select-box.module';
 import { AXButtonModule } from '../../form/button/button.module';
+import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from "./templates/row-template.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AXButtonModule } from '../../form/button/button.module';
     BooleanFilterRenderer,
     TextFilterRenderer,
     AXDataGridFilterComponent,
+    AXDataGridRowTemplateComponent,
+    AXDataGridRowTemplateRenderer,
     CommandRenderer],
   imports: [
     CommonModule,
@@ -41,6 +45,7 @@ import { AXButtonModule } from '../../form/button/button.module';
   exports: [
     AXDataGridComponent,
     AXDataGridFilterComponent,
+    AXDataGridRowTemplateComponent,
     AXGridTextColumn,
     AXGridCheckColumn,
     AXGridSelectionColumn,
@@ -53,7 +58,8 @@ import { AXButtonModule } from '../../form/button/button.module';
     BooleanRenderer,
     BooleanFilterRenderer,
     CommandRenderer,
-    TextFilterRenderer
+    TextFilterRenderer,
+    AXDataGridRowTemplateRenderer
   ],
   providers: []
 })

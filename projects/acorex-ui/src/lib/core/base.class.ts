@@ -29,7 +29,7 @@ export class PromisResult<T> {
   static resolve<T>(value: T): PromisResult<T> {
     const r = new PromisResult<T>(z => {
       z(value);
-    }).then(c => {});
+    }).then(c => { });
     return r;
   }
 }
@@ -42,7 +42,7 @@ export class AXBaseComponent {
   @Input() height: string = "auto";
   @Input() readOnly: boolean = false;
 
-  focus(): void {}
+  focus(): void { }
 
   protected _isFocused: boolean = false;
 
@@ -83,8 +83,10 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
     return this._text;
   }
   public set text(v: string) {
-    this._text = v;
-    this.textChange.emit(v);
+    if (v.trim() != this._text) {
+      this._text = v;
+      this.textChange.emit(v);
+    }
   }
 
   @Input() label: string;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ContentChild, Input, ContentChildren, QueryList, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, ContentChild, Input, ContentChildren, QueryList, EventEmitter, Output, TemplateRef } from "@angular/core";
 import { AXDataSourceComponent } from '../data-source/datasource.component';
 import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../data-source/read-param';
@@ -7,6 +7,8 @@ import { ViewEncapsulation } from '@angular/core';
 import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent } from './events.class';
 import { AXToolbarSearchComponent } from "../../layout/toolbar/search/toolbar-search.component";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
+import { AXDataGridRowTemplateComponent } from "./templates/row-template.component";
+
 
 
 @Component({
@@ -15,7 +17,7 @@ import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
   styleUrls: ["./datagrid.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AXDataGridComponent implements OnInit {
+export class AXDataGridComponent {
 
 
   @Output()
@@ -33,7 +35,12 @@ export class AXDataGridComponent implements OnInit {
   selectionChanged: EventEmitter<AXGridRowSelectionEvent> = new EventEmitter<AXGridRowSelectionEvent>();
 
 
-  constructor() { }
+
+
+
+  constructor() {
+
+  }
 
   private gridApi;
   private dataSourceSuccessCallback;
@@ -47,6 +54,10 @@ export class AXDataGridComponent implements OnInit {
 
   @ContentChild(AXToolbarComponent)
   toolbar: AXToolbarComponent;
+
+  @ContentChild(AXDataGridRowTemplateComponent)
+  rowTemplate: AXDataGridRowTemplateComponent;
+
 
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;
@@ -118,10 +129,24 @@ export class AXDataGridComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
 
+  fullWidthCellRendererFramework: any;
+  fullWidthCellRendererParams: any;
+  frameworkComponents: any = {};
+  isFullWidthCell: Function;
+
+  ngAfterContentInit(): void {
+    if (this.rowTemplate) {
+      this.fullWidthCellRendererFramework = this.rowTemplate.renderer;
+      this.fullWidthCellRendererParams = this.rowTemplate.params;
+    }
+    let that = this;
+    this.isFullWidthCell = function () {
+      return that.rowTemplate != null;
+    }
 
   }
+
 
   ngAfterViewInit(): void {
     this.remoteOperation = (<any>this.dataSource.read).remoteOperation;
