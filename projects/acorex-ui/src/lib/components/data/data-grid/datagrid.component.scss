@@ -75,8 +75,8 @@ ag-grid-angular {
 }
 .ax-grid-command-button {
   border: none;
-  width: 20px;
-  height: 20px;
+  width: var(--el-md-size);
+  height: var(--el-md-size);
   text-align: center;
   display: inline-flex;
   justify-content: center;
