@@ -6,12 +6,13 @@ import { AXPanelBoxModule } from '../../layout/panel-box/panel-box.module';
 import { AXCheckBoxModule } from '../../form/checkbox/checkbox.module';
 import { AXTextBoxModule } from '../../form/text-box/text-box.module';
 import { AXToolbarModule } from '../../layout/toolbar/toolbar.module';
+import { AXFilterColumnString } from './columns/filter-column-string';
 
 
 @NgModule({
-    declarations: [AXFilterPanelComponent],
+    declarations: [AXFilterPanelComponent,AXFilterColumnString],
     imports: [ CommonModule,AXCoreModule,AXPanelBoxModule,AXCheckBoxModule,AXTextBoxModule,AXToolbarModule ],
-    exports: [AXFilterPanelComponent],
+    exports: [AXFilterPanelComponent,AXFilterColumnString],
     providers: [],
 })
 export class AXFilterModule {}
