@@ -10,12 +10,24 @@ import { WidgetsPage } from './widgets/widgets.page';
 import { ColorPickerPage } from './colorpicker/colorpicker.component';
 import { FormControllPage } from './formcontroll/formcontroll.page';
 import { FormsModule } from '@angular/forms';
+import { FilterPanelDemoPage } from './data/filter-panel.page';
+
+const pages = [
+  DemoPage,
+  DashboardPage,
+  AliPage,
+  TestPage,
+  WidgetsPage,
+  ColorPickerPage,
+  FormControllPage,
+  FilterPanelDemoPage
+]
 
 @NgModule({
-  declarations: [DemoPage, DashboardPage, AliPage, TestPage, WidgetsPage, ColorPickerPage,FormControllPage],
-  imports: [CommonModule, ACoreXUIModule, AcorexSpaModule,FormsModule],
+  declarations: [...pages],
+  imports: [CommonModule, ACoreXUIModule, AcorexSpaModule, FormsModule],
   exports: [],
   providers: [],
-  entryComponents: [DemoPage, DashboardPage, AliPage, TestPage, WidgetsPage, ColorPickerPage,FormControllPage]
+  entryComponents: [...pages]
 })
 export class DemoModule { }

@@ -133,7 +133,7 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   @Output()
   onValueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   //
-  _value: boolean = false;
+  protected _value: boolean = false;
   //
   set value(val: boolean) {
     if (this._value !== val) {

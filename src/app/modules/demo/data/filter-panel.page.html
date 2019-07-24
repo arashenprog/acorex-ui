@@ -1,0 +1,30 @@
+<ax-page>
+    <ax-toolbar>
+      <ax-toolbar-menu ></ax-toolbar-menu>
+    </ax-toolbar>
+    <ax-page-content>
+        <div style="width: 100%; height: calc(100vh - 140px);">
+          <ax-dock-layout #layout>
+            <ax-dock-panel type="row">
+              <ax-dock-panel type="stack" [size]="20">
+                <ax-dock-content caption="Filters">
+                  <ng-template>
+                    <ax-filter-panel [groups]="filterGroups">
+
+                    </ax-filter-panel>
+                  </ng-template>
+                </ax-dock-content>
+             
+              </ax-dock-panel>
+              <ax-dock-panel type="stack" [size]="80">
+                <ax-dock-content caption="Leads">
+                  <ng-template>
+                  
+                  </ng-template>
+                </ax-dock-content>
+              </ax-dock-panel>
+            </ax-dock-panel>
+          </ax-dock-layout>
+        </div>
+    </ax-page-content>
+  </ax-page>

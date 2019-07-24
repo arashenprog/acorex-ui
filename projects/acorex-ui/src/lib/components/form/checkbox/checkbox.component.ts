@@ -3,14 +3,43 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
-  Input
+  Input,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from "@angular/core";
-import { AXCheckedBaseComponent } from "../../../core/base.class";
+import { AXBaseComponent } from "../../../core/base.class";
 
 @Component({
   selector: "ax-check-box",
   templateUrl: "./checkbox.component.html",
   styleUrls: ["./checkbox.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AXCheckBoxComponent extends AXCheckedBaseComponent {
+export class AXCheckBoxComponent extends AXBaseComponent {
+
+  constructor(private cdr: ChangeDetectorRef) {
+    super();
+  }
+
+  @Input() label: string = "";
+
+  // Value
+  @Output()
+  onValueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  //
+  protected _value: boolean = false;
+  //
+  set value(val: boolean) {
+    if (this._value !== val) {
+      this._value = val;
+      this.onValueChange.emit(val);
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    }
+  }
+  //
+  @Input()
+  get value() {
+    return this._value;
+  }
 }

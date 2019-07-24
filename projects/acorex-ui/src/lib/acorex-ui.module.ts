@@ -47,6 +47,7 @@ import { AXCalendarBoxModule } from "./components/calendar/calendar-box/api";
 import { AXPopoverModule } from "./components/layout/popover/api";
 import { AXDropDownModule } from "./components/form/drop-down/drop-down.module";
 import { AXColorPickerModule } from "./components/form/color-picker/color-picker.module";
+import { AXFilterModule } from "./components/data/filter/filter.module";
 
 window["$"] = $;
 @NgModule({
@@ -92,7 +93,8 @@ window["$"] = $;
     AXCalendarBoxModule,
     AXPopoverModule,
     AXDropDownModule,
-    AXColorPickerModule
+    AXColorPickerModule,
+    AXFilterModule
   ],
   exports: [
     AXThemeWrapperComponent,
@@ -135,7 +137,8 @@ window["$"] = $;
     AXCalendarBoxModule,
     AXPopoverModule,
     AXDropDownModule,
-    AXColorPickerModule
+    AXColorPickerModule,
+    AXFilterModule
   ],
   providers: [
     {

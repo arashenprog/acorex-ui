@@ -8,6 +8,7 @@ import { TestPage } from "src/app/modules/demo/test-page/test-page";
 import { WidgetsPage } from 'src/app/modules/demo/widgets/widgets.page';
 import { ColorPickerPage } from 'src/app/modules/demo/colorpicker/colorpicker.component';
 import { FormControllPage } from 'src/app/modules/demo/formcontroll/formcontroll.page';
+import { FilterPanelDemoPage } from 'src/app/modules/demo/data/filter-panel.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -62,6 +63,14 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003",
       parentId: "003",
       visible: true,
+    },
+    {
+      name: "filter",
+      text: "Filter",
+      id: "003-003-001",
+      parentId: "003-003",
+      visible: true,
+      data: { page: FilterPanelDemoPage }
     },
     {
       name: "layout",
