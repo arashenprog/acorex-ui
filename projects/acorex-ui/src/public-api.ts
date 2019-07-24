@@ -24,9 +24,11 @@ export * from "./lib/components/layout/toolbar/api";
 export * from "./lib/components/layout/tab-view/api";
 export * from "./lib/components/layout/popover/api";
 
+
 export * from "./lib/components/data/data-grid/api";
 export * from "./lib/components/data/data-list/api";
 export * from "./lib/components/data/data-source/api";
+export * from "./lib/components/data/filter/api";
 
 export * from "./lib/components/form/checkbox/checkbox.module";
 
