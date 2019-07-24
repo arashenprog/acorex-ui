@@ -1,21 +1,12 @@
 <div class="ax-field-set">
   <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
-    <fieldset
-      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
-    >
+    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
-    <input
-      [placeholder]="placeholder"
-      [(ngModel)]="text"
-      [textMask]="{ mask: maskInner, guide: true }"
-      (blur)="onBlur($event)"
-      (focus)="onFocus($event)"
-      class="ax-text-box"
-      type="text"
-    />
+    <input [placeholder]="placeholder" [(ngModel)]="text" [textMask]="{ mask: maskInner, guide: true }"
+      (blur)="onBlur($event)" (focus)="onFocus($event)" class="ax-text-box" type="text" />
 
     <div class="ax-field-set-button" *ngIf="text && showClear">
       <button type="button" class="btn btn-light" (click)="clearText()">

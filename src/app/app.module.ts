@@ -18,6 +18,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { DemoPage } from "./modules/demo/demo-page.component";
 import { TestPage } from "./modules/demo/test-page/test-page";
+import { FormControllPage } from './modules/demo/formcontroll/formcontroll.page';
 
 const routes: Routes = [
   {
@@ -62,7 +63,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-        content: DemoPage,
+        content: FormControllPage,
         title: "Dashboard",
         closable: false,
         uid: "dashboard"
@@ -72,4 +73,4 @@ const routes: Routes = [
   entryComponents: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

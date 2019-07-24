@@ -192,10 +192,10 @@ body {
   vertical-align: top;
   .no-label {
     input {
-      padding-top: 6px !important;
+      margin-top: 0 !important;
     }
     .ax-field-set-button {
-      margin: 0 5px !important;
+      margin: 0 var(--sp-sm-size) !important;
     }
   }
   .ax-field-set-wrapper {
@@ -237,12 +237,10 @@ body {
     width: 100%;
     border: 0;
     margin: 0;
-    padding: 15px 12px 7px 12px;
+    padding: var(--sp-sm-size) var(--sp-lg-size);
+    margin-top: var(--sp-lg-size);
     display: block;
-    min-width: 0;
-    height: 100%;
-    box-sizing: content-box;
-    background: none;
+    background: 0 0;
     -webkit-tap-highlight-color: transparent;
     outline-color: transparent;
   }
@@ -260,7 +258,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px;
+    margin: var(--sp-sm-size);
     border: none;
     &:first-child {
       margin-right: 10px;
@@ -390,23 +388,23 @@ body {
   border: 1px solid;
   border-color: inherit;
   color: var(--secondary-light-color);
-  width: 30px;
-  height: 30px;
-  font-size: 11px;
+  width: var(--el-lg-size);
+  height: var(--el-lg-size);
+  font-size: var(--font-sm-size);
   cursor: pointer;
   outline-color: transparent !important;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  margin-left: var(--sp-md-size);
 
   &:hover {
     background-color: var(--primary-color);
     color: var(--white-color);
   }
 }
-.ax-line-through{
+.ax-line-through {
   text-decoration: line-through !important;
 }
 .ax-flex {
@@ -520,91 +518,90 @@ body {
   }
 }
 
-
-
 .ax-anim-fade-in-fwd {
-	-webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 @-webkit-keyframes fade-in-fwd {
   0% {
     -webkit-transform: translateZ(-80px);
-            transform: translateZ(-80px);
+    transform: translateZ(-80px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
     opacity: 1;
   }
 }
 @keyframes fade-in-fwd {
   0% {
     -webkit-transform: translateZ(-80px);
-            transform: translateZ(-80px);
+    transform: translateZ(-80px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
     opacity: 1;
   }
 }
 
 .ax-fade-out-bck {
-	-webkit-animation: fade-out-bck 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: fade-out-bck 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: fade-out-bck 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fade-out-bck 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 @-webkit-keyframes fade-out-bck {
   0% {
     -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
     opacity: 1;
   }
   100% {
     -webkit-transform: translateZ(-80px);
-            transform: translateZ(-80px);
+    transform: translateZ(-80px);
     opacity: 0;
   }
 }
 @keyframes fade-out-bck {
   0% {
     -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+    transform: translateZ(0);
     opacity: 1;
   }
   100% {
     -webkit-transform: translateZ(-80px);
-            transform: translateZ(-80px);
+    transform: translateZ(-80px);
     opacity: 0;
   }
 }
 
 .ax-anim-scale-in-center {
-	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
- @-webkit-keyframes scale-in-center {
+@-webkit-keyframes scale-in-center {
   0% {
     -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 1;
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 }
 @keyframes scale-in-center {
   0% {
     -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
     opacity: 1;
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 }

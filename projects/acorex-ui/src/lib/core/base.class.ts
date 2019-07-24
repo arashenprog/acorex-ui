@@ -93,7 +93,7 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @Input() autocomplete: boolean = false;
   @Input() placeholder: string = "";
   @Input() showClear: boolean = false;
-
+  @Input() size: "xs" | "md" | "lg" = "md"
   clearText(): void {
     this.text = "";
   }

@@ -1,66 +1,67 @@
 .ax-scheduler-agenda-view {
-    height: 100%;
-    overflow-y: auto;
+  height: 100%;
+  overflow-y: auto;
 
-    table {
-        border-top: 1px solid var(--border-color);
+  table {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .event-title {
+    color: var(--gray-fore-color);
+  }
+
+  td {
+    /*kiri khodet bebein chi neveshti*/
+    padding-top: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+    border: none;
+
+    &.day-border {
+      border-bottom: 1px solid var(--border-color);
+      padding: 5px;
+      vertical-align: middle;
+    }
+  }
+
+  .day-column {
+    width: 80px;
+    text-align: center;
+
+    .day-num {
+      font-weight: 600;
     }
 
-    .event-title {
+    .day-name {
+      font-size: smaller;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+
+    li {
+      border-left: 4px solid var(--primary-color);
+      margin-bottom: var(--sp-sm-size);
+      padding: 0px 8px;
+
+      &:hover {
+        background-color: var(--primary-lighter-color);
+        cursor: pointer;
+      }
+
+      .event-time {
         color: var(--gray-fore-color);
+        font-size: smaller;
+      }
+
+      .event-empty {
+        color: var(--gray-fore-color);
+        font-size: smaller;
+      }
     }
-
-    td {
-        padding-top: 5px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        vertical-align: top;
-        border: none;
-
-        &.day-border {
-            border-bottom: 1px solid var(--border-color);
-            padding: 5px;
-            vertical-align: middle;
-        }
-    }
-
-    .day-column {
-        width: 80px;
-        text-align: center;
-
-        .day-num {
-            font-weight: 600;
-        }
-
-        .day-name {
-            font-size: smaller;
-        }
-    }
-
-    ul {
-        list-style: none;
-        padding: 0px;
-        margin: 0px;
-
-        li {
-            border-left: 4px solid var(--primary-color);
-            margin-bottom: 5px;
-            padding: 0px 8px;
-
-            &:hover {
-                background-color: var(--primary-lighter-color);
-                cursor: pointer;
-            }
-
-            .event-time {
-                color: var(--gray-fore-color);
-                font-size: smaller;
-            }
-
-            .event-empty {
-                color: var(--gray-fore-color);
-                font-size: smaller;
-            }
-        }
-    }
+  }
 }
