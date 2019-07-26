@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: var(--sp-md-size) 0;
   border-width: var(--border-width-size);
   border-style: solid;
   border-color: var(--white-color);
@@ -34,7 +34,7 @@
       font-size: 30px;
     }
     p {
-      padding-top: 5px;
+      padding-top: var(--sp-md-size);
     }
   }
   .preview {

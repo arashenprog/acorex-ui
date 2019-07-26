@@ -16,7 +16,7 @@ ul.side-menu {
     }
     a {
       color: var(--secondary-color);
-      padding: 7px 10px;
+      padding: var(--sp-sm-size) var(--sp-md-size);
       display: flex;
       align-items: center;
       border-bottom: 1px solid #ebebeb;
@@ -26,7 +26,7 @@ ul.side-menu {
       }
       span {
         flex: 1;
-        padding: 0 10px;
+        padding: 0 var(--sp-md-size);
       }
     }
   }

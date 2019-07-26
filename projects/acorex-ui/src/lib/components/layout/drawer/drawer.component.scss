@@ -36,8 +36,8 @@
 }
 .close-drawer {
   position: absolute;
-  right: 5px !important;
+  right: var(--sp-sm-size) !important;
   cursor: pointer;
-  top: 5px;
+  top: var(--sp-sm-size);
   z-index: 1;
 }
