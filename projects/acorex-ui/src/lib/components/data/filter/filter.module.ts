@@ -7,11 +7,12 @@ import { AXCheckBoxModule } from '../../form/checkbox/checkbox.module';
 import { AXTextBoxModule } from '../../form/text-box/text-box.module';
 import { AXToolbarModule } from '../../layout/toolbar/toolbar.module';
 import { AXFilterColumnString } from './columns/filter-column-string';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
     declarations: [AXFilterPanelComponent,AXFilterColumnString],
-    imports: [ CommonModule,AXCoreModule,AXPanelBoxModule,AXCheckBoxModule,AXTextBoxModule,AXToolbarModule ],
+    imports: [ CommonModule,FormsModule,AXCoreModule,AXPanelBoxModule,AXCheckBoxModule,AXTextBoxModule,AXToolbarModule ],
     exports: [AXFilterPanelComponent,AXFilterColumnString],
     providers: [],
 })
