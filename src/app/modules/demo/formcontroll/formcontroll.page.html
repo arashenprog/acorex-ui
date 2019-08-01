@@ -1,20 +1,25 @@
 <ax-check-box [(value)]="check" label="Check Me" (onValueChange)="valueChange($event)"></ax-check-box>
-
 <ng-container *ngIf="check; else elseTemplate">
     TRUE
 </ng-container>
 <ng-template #elseTemplate>
     Flase
 </ng-template>
+<ax-radio-button label="Label"></ax-radio-button>
+<ax-button type="warning"> Medium Button</ax-button>
+<ax-button type="success" size="lg">Large Button</ax-button>
 
 
 <div class="container">
     <div class="row">
         <div class="col">
             <ax-text-box placeholder="without label"></ax-text-box>
+<ax-button type="danger" size="sm">Small Button</ax-button>
+
         </div>
         <div class="col">
             <ax-text-box size="sm" label="Input Label" placeholder="with label"></ax-text-box>
+
         </div>
         <div class="col">
             <ax-text-box label="Input Label" placeholder="with label"></ax-text-box>
