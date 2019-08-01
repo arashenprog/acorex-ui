@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AXFilterColumnGroup } from '../filter.class';
+import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 
 @Component({
@@ -9,20 +9,37 @@ import { MenuItem } from '../../../../core/menu.class';
 })
 export class AXFilterPanelComponent implements OnInit {
 
+
+    @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
+
+    // modeItems: MenuItem[] = [
+    //     {
+    //         icon: "fas fa-filter",
+    //         name: "simple",
+    //         text: "Simple",
+    //         selected:true,
+    //         groupName: "mode",
+
+    //     },
+    //     {
+    //         icon: "fas fa-filter",
+    //         name: "advance",
+    //         text: "Advance",
+    //         groupName: "mode",
+    //     }
+    // ]
+
     modeItems: MenuItem[] = [
         {
             icon: "fas fa-filter",
-            name: "simple",
-            text: "Simple",
-            selected:true,
-            groupName: "mode",
+            style: "ax-btn-primary",
+            name: "apply",
+            text: "Apply",
 
         },
         {
-            icon: "fas fa-filter",
-            name: "advance",
-            text: "Advance",
-            groupName: "mode",
+            name: "reset",
+            text: "Reset"
         }
     ]
 
@@ -32,4 +49,24 @@ export class AXFilterPanelComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void { }
+
+
+    onItemClick(e: MenuItem) {
+        if (e.name == "apply") {
+            let con: any[] = [];
+            this.filters.forEach(e => {
+                if (e.active) {
+                    con.push(e.condition);
+                    con.push("AND");
+                }
+            });
+            con.pop();
+            console.log(con);
+        }
+        if (e.name == "reset") {
+            this.filters.forEach(e => {
+                e.clear();
+            });
+        }
+    }
 }

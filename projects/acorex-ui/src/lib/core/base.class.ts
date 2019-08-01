@@ -83,7 +83,7 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
     return this._text;
   }
   public set text(v: string) {
-    if (v.trim() != this._text) {
+    if (v != this._text) {
       this._text = v;
       this.textChange.emit(v);
     }
