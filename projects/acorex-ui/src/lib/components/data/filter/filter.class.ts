@@ -1,5 +1,7 @@
 import { Input } from "@angular/core";
 
+//export type AXFilterConditionEnum = "is" | "is-not" | "contains" | "not-contains" | "start-width" | "end-width" | "is-empty" | "is-not-empty";
+
 export class AXFilterColumn
 {
     field:string;
