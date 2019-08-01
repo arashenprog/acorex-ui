@@ -1,6 +1,6 @@
 ax-tab-view {
   display: block;
-  margin-top: 10px;
+  margin-top: var(--sp-md-size);
   .nav-tabs {
     li {
       cursor: pointer !important;
@@ -13,7 +13,7 @@ ax-tab-view {
     cursor: pointer;
   }
   .tab-pane {
-    padding: 5px;
+    padding: var(--sp-sm-size);
     background: var(--white-color);
     border: 1px solid;
     border-top: none;
@@ -25,7 +25,7 @@ ax-tab-view {
     border-color: var(--primary-color) !important;
   }
   .nav-link {
-    padding: 1px 15px !important;
+    padding: 0px var(--sp-lg-size) !important;
     &:hover {
       border-color: var(--primary-color) !important;
     }

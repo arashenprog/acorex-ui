@@ -1,6 +1,6 @@
 <div class="ax-filter-panel">
     <ax-toolbar>
-        <ax-toolbar-menu [items]="modeItems" selection="single">
+        <ax-toolbar-menu [items]="modeItems" selection="single" (itemClick)="onItemClick($event)">
 
         </ax-toolbar-menu>
     </ax-toolbar>
@@ -9,11 +9,11 @@
             <ax-panel-box [title]="g.caption">
                 <ng-container *ngFor="let c of g.columns">
                     <div>
-                        <ax-check-box [label]="c.caption" #f [(value)]="c.active">
+                        <ax-check-box [label]="c.caption" #f >
                         </ax-check-box>
                     </div>
                     <div [hidden]="!f.value" style="padding-inline-start: 20px">
-                        <ax-filter-column-string>
+                        <ax-filter-column-string [field]="c.field" [active]="f.value">
                         </ax-filter-column-string>
                     </div>
                 </ng-container>

@@ -508,6 +508,10 @@ body {
   background-color: var(--primary-color);
   border-color: var(--primary-light-color);
 }
+.btn:not(.btn-lg) {
+  padding: 0.1rem 0.5rem;
+  font-size: 14px;
+}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   ax-row {

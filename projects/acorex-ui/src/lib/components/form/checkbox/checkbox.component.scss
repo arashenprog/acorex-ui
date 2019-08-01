@@ -16,21 +16,21 @@
 .checkbox-container {
   display: inline-block;
   position: relative;
-  padding-left: 25px;
+  padding-left: 20px;
   cursor: pointer;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 20px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin-right: 10px;
+  margin: 0;
   .checkmark {
     position: absolute;
     top: 3px;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     background-color: var(--white-color);
     border: 1px solid;
     border-color: var(--border-color);
@@ -59,8 +59,8 @@
   display: block;
 }
 .checkbox-container .checkmark:after {
-  left: 7px;
-  top: 3px;
+  left: 4px;
+  top: 0px;
   width: 5px;
   height: 10px;
   border: solid var(--white);

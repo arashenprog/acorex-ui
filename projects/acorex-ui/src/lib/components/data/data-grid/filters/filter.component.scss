@@ -4,7 +4,7 @@
 }
 .ax-grid-filter-container {
   min-width: 140px;
-  margin: 5px;
+  margin: var(--sp-sm-size);
   min-height: 100px;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   }
   .btn-group {
     width: 100%;
-    margin: 10px 0 0 0;
+    margin: var(--sp-md-size) 0 0 0;
   }
 
   .ax-field-set {
