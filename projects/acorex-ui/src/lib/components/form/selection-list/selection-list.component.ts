@@ -11,4 +11,12 @@ export class AXSelectionListComponent extends AXBaseComponent {
   @Input() direction: string = "horizontal";
   @Input() items: Array<CheckItem> = [];
   @Input() mode: string = "single";
+
+  onRadioValueChange(item: CheckItem) {
+    debugger;
+    this.items.forEach(c => {
+      if (c.value != item.value)
+        c.selected = false;
+    });
+  }
 }

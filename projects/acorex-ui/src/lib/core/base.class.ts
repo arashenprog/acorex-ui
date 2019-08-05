@@ -4,7 +4,8 @@ import {
   EventEmitter,
   ContentChild,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ChangeDetectorRef
 } from "@angular/core";
 import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
@@ -129,6 +130,10 @@ export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   @Input() label: string = "";
 
+  constructor(protected cdr: ChangeDetectorRef) {
+    super();
+  }
+
   // Value
   @Output()
   valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -136,14 +141,16 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   protected _value: boolean = false;
   //
   set value(val: boolean) {
-    if (this._value !== val) {
-      this._value = val;
-      this.valueChange.emit(val);
-    }
+    //if (this._value !== val) {
+    this._value = val;
+    this.valueChange.emit(val);
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
+    //}
   }
   //
   @Input()
-  get value() {
+  get value():boolean {
     return this._value;
   }
 }

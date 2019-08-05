@@ -1,5 +1,6 @@
 <label class="radio-container">
   {{ label }}
-  <input type="radio"  [(checked)]="value"  [name]="group" />
+  <input type="radio" [checked]="value==true" 
+                      (click)="value=true"  [name]="group" />
   <span class="checkmark"></span>
 </label>

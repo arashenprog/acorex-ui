@@ -2,5 +2,5 @@
     <ax-check-box label="{{item.text}}" *ngFor="let item of items" [(value)]="item.selected" [style.display]="direction=='vertical'?'block':'inline'"></ax-check-box>
 </div>
 <div *ngIf=" mode == 'single' ">
-    <ax-radio-button label="{{item.text}}" *ngFor="let item of items" [group]="_uid" [(value)]="item.selected" [style.display]="direction=='vertical'?'block':'inline'"></ax-radio-button>
+    <ax-radio-button label="{{item.text}}" *ngFor="let item of items" [group]="_uid" [value]="item.selected" (valueChange)="onRadioValueChange(item)" [style.display]="direction=='vertical'?'block':'inline'"></ax-radio-button>
 </div>
