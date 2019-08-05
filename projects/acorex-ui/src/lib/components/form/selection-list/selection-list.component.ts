@@ -11,5 +11,4 @@ export class AXSelectionListComponent extends AXBaseComponent {
   @Input() direction: string = "horizontal";
   @Input() items: Array<CheckItem> = [];
   @Input() mode: string = "single";
-  @Input() selection: Array<CheckItem> = [];
 }

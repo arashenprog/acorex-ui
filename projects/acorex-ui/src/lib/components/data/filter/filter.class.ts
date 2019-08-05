@@ -7,6 +7,8 @@ export class AXFilterColumn
     field:string;
     caption:string;
     dataType:"string"|"date"|"datetime"|"time"|"number";
+    type?:"text"|"selection";
+    options?:any;
 }
 
 export class AXFilterColumnGroup

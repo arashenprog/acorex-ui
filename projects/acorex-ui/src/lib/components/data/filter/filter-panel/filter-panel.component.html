@@ -9,12 +9,20 @@
             <ax-panel-box [title]="g.caption">
                 <ng-container *ngFor="let c of g.columns">
                     <div>
-                        <ax-check-box [label]="c.caption" #f >
+                        <ax-check-box [label]="c.caption" #f>
                         </ax-check-box>
                     </div>
                     <div [hidden]="!f.value" style="padding-inline-start: 20px">
-                        <ax-filter-column-string [field]="c.field" [active]="f.value">
-                        </ax-filter-column-string>
+                        <ng-container [ngSwitch]="c.type">
+                            <ng-container *ngSwitchCase="'selection'">
+                                <ax-filter-column-selection [field]="c.field" [active]="f.value" [mode]="c.options.mode" [items]="c.options.items">
+                                </ax-filter-column-selection>
+                            </ng-container>
+                            <ng-container *ngSwitchDefault>
+                                <ax-filter-column-string [field]="c.field" [active]="f.value">
+                                </ax-filter-column-string>
+                            </ng-container>
+                        </ng-container>
                     </div>
                 </ng-container>
             </ax-panel-box>

@@ -25,14 +25,14 @@ export class AXCheckBoxComponent extends AXBaseComponent {
 
   // Value
   @Output()
-  onValueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   //
   protected _value: boolean = false;
   //
   set value(val: boolean) {
     if (this._value !== val) {
       this._value = val;
-      this.onValueChange.emit(val);
+      this.valueChange.emit(val);
       this.cdr.markForCheck();
       this.cdr.detectChanges();
     }

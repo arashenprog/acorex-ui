@@ -37,11 +37,25 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                 {
                     caption: "Apply Date",
                     dataType: "date",
-                    field: "applyDate"
+                    field: "applyDate",
                 },
                 {
                     caption: "Staff",
                     dataType: "number",
+                    type:"selection",
+                    options:{
+                        mode:"single",
+                        items:[
+                            {
+                                text:"Ali",
+                                value:1
+                            },
+                            {
+                                text:"Arash",
+                                value:2
+                            },
+                        ]
+                    },
                     field: "staff"
                 }
             ]

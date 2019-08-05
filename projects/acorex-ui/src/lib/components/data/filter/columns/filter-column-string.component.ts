@@ -10,7 +10,7 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
                     {{o.title}}
                 </option>
             </select>
-            <ax-text-box placeholder="Type here" [(text)]="value">
+            <ax-text-box placeholder="Type here" [(text)]="value" *ngIf="operator!='is-not-empty' && operator!='is-empty'">
             </ax-text-box>
         </div>
     `,
@@ -31,11 +31,11 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
         },
         {
             title: "contains",
-            value: "like"
+            value: "contains"
         },
         {
             title: "not contains",
-            value: "not-like"
+            value: "not-contains"
         },
         {
             title: "start with",
@@ -47,6 +47,10 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
         },
         {
             title: "is empty",
+            value: "is-empty"
+        },
+        {
+            title: "isn't empty",
             value: "is-not-empty"
         }
     ];

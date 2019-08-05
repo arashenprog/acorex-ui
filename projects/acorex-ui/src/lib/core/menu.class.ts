@@ -27,5 +27,6 @@ export class ButtonItem extends BaseMenuItem {
 }
 export class CheckItem {
   text?: string;
-  value?: boolean;
+  value?: any;
+  selected?:boolean;
 }
