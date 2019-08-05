@@ -97,7 +97,7 @@
 
         li {
             cursor: pointer;
-            padding: 5px !important;
+            padding: var(--sp-sm-size) !important;
 
             &:hover {
                 background-color: var(--primary-lighter-color);

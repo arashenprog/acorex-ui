@@ -3,6 +3,8 @@
 ax-tabs {
   display: flex;
   flex: 1;
+  height: var(--el-base-size);
+
   .tabs {
     display: flex;
     flex: 1;
@@ -28,10 +30,10 @@ ax-tabs {
       font-size: 14px;
       margin: 5px -2px 0;
       background: var(--white-color);
-      height: 35px;
+      height: 25px;
       padding: 0 10px 0 10px;
       min-width: 130px;
-      max-width: 200px;
+      max-width: 150px;
       cursor: pointer;
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;

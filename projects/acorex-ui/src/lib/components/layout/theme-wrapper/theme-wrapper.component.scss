@@ -67,22 +67,25 @@ $colors: (
 
 $sizes: (
   el: (
-    sm: 10px,
-    md: 20px,
-    lg: 30px,
-    xl: 40px,
-    xxl: 50px,
-    xxxl: 60px
+    base: 35px,
+    sm: 15px,
+    md: 25px,
+    lg: 35px,
+    xl: 45px,
+    xxl: 55px,
+    xxxl: 65px
   ),
   sp: (
+    xs: 2.5px,
     sm: 5px,
     md: 10px,
     lg: 15px,
     xl: 20px
   ),
   font: (
+    xs: 0.65em,
     sm: 0.75em,
-    md: 0.9em,
+    md: 0.875rem,
     lg: 1.25em,
     xl: 1.5em
   ),
@@ -237,8 +240,8 @@ body {
     width: 100%;
     border: 0;
     margin: 0;
-    padding: var(--sp-sm-size) var(--sp-lg-size);
-    margin-top: var(--sp-lg-size);
+    padding:5px 12px;
+    margin-top: 8px;
     display: block;
     background: 0 0;
     -webkit-tap-highlight-color: transparent;
@@ -388,9 +391,9 @@ body {
   border: 1px solid;
   border-color: inherit;
   color: var(--secondary-light-color);
-  width: var(--el-lg-size);
-  height: var(--el-lg-size);
-  font-size: var(--font-sm-size);
+  width: var(--el-md-size);
+  height: var(--el-md-size);
+  font-size: var(--font-xs-size);
   cursor: pointer;
   outline-color: transparent !important;
   border-radius: 20px;
