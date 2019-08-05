@@ -15,8 +15,7 @@ export class AXSelectionListComponent extends AXBaseComponent {
   onRadioValueChange(item: CheckItem) {
     debugger;
     this.items.forEach(c => {
-      if (c.value != item.value)
-        c.selected = false;
+      c.selected = c.value == item.value;
     });
   }
 }
