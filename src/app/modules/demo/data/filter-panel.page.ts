@@ -38,7 +38,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                     caption: "Apply Date",
                     dataType: "date",
                     field: "applyDate",
-                    type:"date"
+                    type:"text"
                 },
                 {
                     caption: "Staff",
