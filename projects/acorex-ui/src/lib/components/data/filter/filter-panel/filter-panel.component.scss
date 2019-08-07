@@ -1,12 +1,20 @@
-.ax-filter-panel
-{
+.ax-filter-panel {
     padding: 2px;
-    .ax-filter-panel-body
-    {
-        margin-top: 5px;
-        .form-inline{
+    position: relative;
+    height: 100%;
+
+    .ax-filter-panel-body {
+        .form-inline {
             justify-content: space-between
         }
     }
 
+    .filter-footer {
+        border-top: 1px var(--border-color)  solid;
+        display:flex;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        padding: var(--sp-sm-size);
+    }
 }

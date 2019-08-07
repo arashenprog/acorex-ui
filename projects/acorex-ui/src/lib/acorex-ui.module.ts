@@ -10,7 +10,7 @@ import { AXCheckBoxModule } from "./components/form/checkbox/checkbox.module";
 import { AXContainerModule } from "./components/layout/container/container.module";
 import { AXDataGridModule } from "./components/data/data-grid/datagrid.module";
 import { AXDatePickerModule } from "./components/form/date-picker/date-picker.module";
-import { AXGridLayoutModule } from "./components/layout/grid-layout/grid.layout.module";
+
 import { AXImageViewModule } from "./components/layout/image-view/image-view.module";
 import { AXLoadingModule } from "./components/layout/loading/loading.module";
 import { AXMenuModule } from "./components/layout/menu/menu.module";
@@ -64,7 +64,6 @@ window["$"] = $;
     AXContainerModule,
     AXDataGridModule,
     AXDatePickerModule,
-    AXGridLayoutModule,
     AXImageViewModule,
     AXLoadingModule,
     AXMenuModule,
@@ -108,7 +107,6 @@ window["$"] = $;
     AXContainerModule,
     AXDataGridModule,
     AXDatePickerModule,
-    AXGridLayoutModule,
     AXImageViewModule,
     AXLoadingModule,
     AXMenuModule,

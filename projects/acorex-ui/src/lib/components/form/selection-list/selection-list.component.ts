@@ -1,6 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { CheckItem } from "../../../core/menu.class";
 import { AXBaseComponent } from "../../../core/base.class";
+import { Observable } from "rxjs";
+import { distinctUntilChanged, debounceTime } from "rxjs/operators";
 
 @Component({
   selector: "ax-selection-list",
@@ -12,10 +14,22 @@ export class AXSelectionListComponent extends AXBaseComponent {
   @Input() items: Array<CheckItem> = [];
   @Input() mode: string = "single";
 
+
+  private itemChangeObserver:any;
   onRadioValueChange(item: CheckItem) {
-    debugger;
-    this.items.forEach(c => {
-      c.selected = c.value == item.value;
-    });
+
+    // if (!this.itemChangeObserver) {
+    //   Observable.create(observer => {
+    //     this.itemChangeObserver = observer;
+    //   })
+    //     .pipe(debounceTime(100))
+    //     .pipe(distinctUntilChanged())
+    //     .subscribe(z => {
+          this.items.forEach(c => {
+            c.selected = c.value == item.value;
+          });
+    //     });
+    // }
+    // this.itemChangeObserver.next(item);
   }
 }
