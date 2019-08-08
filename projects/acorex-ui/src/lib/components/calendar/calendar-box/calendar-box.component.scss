@@ -15,7 +15,7 @@
 
   .calendar-selector {
     display: flex;
-    height: 35px;
+    height: var(--el-base-size);
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
@@ -27,12 +27,12 @@
       justify-content: center;
       align-items: center;
       border: 1px solid;
-      height: 35px;
+      height: var(--el-base-size);
       border-color: var(--border-color);
     }
 
     .arrows {
-      max-width: 35px !important;
+      max-width: var(--el-base-size) !important;
       cursor: pointer;
 
       &:hover {
@@ -59,8 +59,8 @@
     font-size: 12px;
     padding: 0;
     background-color: var(--white-color);
-    height: var(--el-lg-size);
-    min-width: var(--el-lg-size);
+    height: var(--el-base-size);
+    min-width: var(--el-base-size);
     text-align: center;
     border: 1px solid var(--white-color);
 
@@ -110,11 +110,11 @@
   }
 
   .month-item {
-    height: 53px !important;
+    height: var(--el-base-size);
   }
 
   .year-item {
-    height: 72px !important;
+    height: var(--el-base-size);
   }
 
   .days-name {

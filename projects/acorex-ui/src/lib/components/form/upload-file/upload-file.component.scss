@@ -16,6 +16,7 @@
   @include border-radius(var(--border-radius-size));
   border: var(--border-width-size) solid;
   border-color: var(--border-color);
+  font-size: var(--font-md-size);
   &:hover {
     border-color: var(--primary-color);
     border-style: solid;
@@ -35,6 +36,7 @@
     }
     p {
       padding-top: var(--sp-md-size);
+ 
     }
   }
   .preview {

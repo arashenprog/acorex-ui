@@ -270,8 +270,8 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: calc(var(--baseObjectsHeight) / 2);
-      height: calc(var(--baseObjectsHeight) / 2);
+      width: var(--el-md-size);
+      height: var(--el-md-size);
       i {
         font-size: var(--font-sm-size);
       }
