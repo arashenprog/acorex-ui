@@ -34,7 +34,7 @@
     background-color: var(--white-color);
     border: 1px solid;
     border-color: var(--border-color);
-    @include border-radius(var(--border-radius-size));
+    @include border-radius(2px);
   }
   input {
     position: absolute;
@@ -47,7 +47,7 @@
   background-color: var(--border-color);
 }
 .checkbox-container input:checked ~ .checkmark {
-  background-color: var(--primary-color);
+  background-color: var(--white-color);
   border-color: var(--primary-color);
 }
 .checkmark:after {
@@ -60,12 +60,10 @@
 }
 .checkbox-container .checkmark:after {
   left: 4px;
-  top: 0px;
+  top: 0;
   width: 5px;
   height: 10px;
-  border: solid var(--white);
-  border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
+  border: solid var(--primary-color);
+  border-width: 0 1px 1px 0;
   transform: rotate(45deg);
 }

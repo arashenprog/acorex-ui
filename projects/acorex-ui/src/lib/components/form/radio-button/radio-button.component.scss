@@ -50,7 +50,7 @@
 
 /* When the radio button is checked, add a blue background */
 .radio-container input:checked ~ .checkmark {
-  background-color: var(--primary-color);
+  background-color: var(--white-color);
   border-color: var(--primary-color);
 }
 
@@ -73,5 +73,5 @@
   width: 5px;
   height: 5px;
   @include border-radius(50%);
-  background: var(--white-color);
+  background: var(--primary-color);
 }
