@@ -6,8 +6,8 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
 @Component({
     selector: 'ax-filter-column-date',
     template: `
-        <div >
-           <ax-selection-list  [items]="items" mode="single" direction="vertical">
+        <div class="ax-filter-section">
+           <ax-selection-list [items]="items" mode="single" direction="vertical">
            </ax-selection-list>
         </div>
     `,

@@ -4,20 +4,19 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
 @Component({
     selector: 'ax-filter-column-string',
     template: `
-        <div class="form-inline">
-           <div class="row">
-                <div class="col-5">
-                    <select class="form-control form-control-sm"  [(ngModel)]="operator">
-                        <option *ngFor="let o of operators" [attr.value]="o.value">
-                            {{o.title}}
-                        </option>
-                    </select>
-                </div>
-                <div class="col-7">
-                    <ax-text-box placeholder="Type here" [(text)]="value" *ngIf="operator!='is-not-empty' && operator!='is-empty'">
-                    </ax-text-box>
-                </div>
-           </div>
+        <div class="ax-filter-section">
+            <div>
+                <select class="form-control form-control-sm"  [(ngModel)]="operator">
+                    <option *ngFor="let o of operators" [attr.value]="o.value">
+                        {{o.title}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <ax-text-box placeholder="Type here" [(text)]="value" *ngIf="operator!='is-not-empty' && operator!='is-empty'">
+                </ax-text-box>
+            </div>
+           
         </div>
     `,
     providers: [

@@ -10,11 +10,21 @@
     }
 
     .filter-footer {
-        border-top: 1px var(--border-color)  solid;
-        display:flex;
-        bottom: 0;
-        position: absolute;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
         padding: var(--sp-sm-size);
+        border-top: 1px solid var(--border-color);
     }
+}
+.ax-filter-section {
+    padding: var(--sp-md-size);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
 }

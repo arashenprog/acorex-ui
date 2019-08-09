@@ -6,7 +6,7 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
 @Component({
     selector: 'ax-filter-column-selection',
     template: `
-        <div >
+        <div class="ax-filter-section">
            <ax-selection-list  [items]="items" [mode]="mode" direction="vertical">
            </ax-selection-list>
         </div>

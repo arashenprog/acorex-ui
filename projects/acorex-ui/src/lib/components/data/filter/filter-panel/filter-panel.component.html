@@ -12,7 +12,7 @@
                         <ax-check-box [label]="c.caption" #f>
                         </ax-check-box>
                     </div>
-                    <div [hidden]="!f.value" style="padding-inline-start: 20px">
+                    <div [hidden]="!f.value">
                         <ng-container [ngSwitch]="c.type">
                             <ng-container *ngSwitchCase="'selection'">
                                 <ax-filter-column-selection [field]="c.field" [active]="f.value" [mode]="c.options.mode"
@@ -33,8 +33,14 @@
             </ax-panel-box>
         </ng-container>
         <div class="filter-footer">
-            <ax-button text="Apply Filter" type="success"></ax-button>
-            <ax-button text="Clear" type="clear"></ax-button>
+            <ax-button type="success">
+                <i class="fas fa-filter"></i>
+                Apply Filter
+            </ax-button>
+            <ax-button type="light">
+                <i class="fas fa-eraser"></i>
+                Clear
+            </ax-button>
         </div>
     </div>
 </div>
