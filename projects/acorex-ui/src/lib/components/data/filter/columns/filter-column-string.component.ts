@@ -16,7 +16,6 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
                 <ax-text-box placeholder="Type here" [(text)]="value" *ngIf="operator!='is-not-empty' && operator!='is-empty'">
                 </ax-text-box>
             </div>
-           
         </div>
     `,
     providers: [
@@ -25,6 +24,7 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
 })
 export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
 
+    operator: string = "contains";
     operators: any[] = [
         {
             title: "is",

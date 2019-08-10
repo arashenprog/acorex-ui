@@ -2,11 +2,15 @@
     padding: 2px;
     position: relative;
     height: 100%;
+    
 
     .ax-filter-panel-body {
         .form-inline {
             justify-content: space-between
         }
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: calc(100% - 50px);
     }
 
     .filter-footer {
@@ -15,16 +19,40 @@
         justify-content: space-between;
         align-items: center;
         position: absolute;
+        background-color: var(--white-color);
         bottom: 0;
         padding: var(--sp-sm-size);
         border-top: 1px solid var(--border-color);
     }
 }
+
 .ax-filter-section {
-    padding: var(--sp-md-size);
+    padding: var(--sp-md-size) var(--sp-lg-size);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
+}
+
+.ax-filter-panel-group-header {
+    min-height: var(--el-md-size);
+    background: var(--white-color);
+    display: flex;
+    align-items: center;
+    padding: var(--sp-sm-size);
+    font-size: var(--font-md-size);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--sp-sm-size);
+    background: var(--gray-dark-color);
+    color: var(--gray-dark);
+
+    i {
+        margin-right: var(--sp-sm-size)
+    }
+}
+
+.ax-filter-item-header {
+    height: var(--el-md-size);
+    padding: 0 var(--sp-sm-size);
+    display: flex;
+    
 }

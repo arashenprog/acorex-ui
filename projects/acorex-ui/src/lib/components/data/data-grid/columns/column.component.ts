@@ -19,6 +19,16 @@ export abstract class AXGridDataColumn {
     sortable: boolean = true;
 
     @Input()
+    rowGroupIndex: number = -1;
+
+    @Input()
+    enableRowGroup: boolean = true;
+    
+
+
+
+
+    @Input()
     sort: "asc" | "desc" | null = null;
 
     @Input()
@@ -46,6 +56,13 @@ export abstract class AXGridDataColumn {
             col.sortable = this.sortable;
         if (this.sort)
             col.sort = this.sort;
+        if (this.enableRowGroup)
+            col.enableRowGroup = this.enableRowGroup;
+        if (this.rowGroupIndex >= 0)
+        {
+            col.rowGroupIndex = this.rowGroupIndex;
+            col.rowGroup = true;
+        }
         return col;
     }
 }
