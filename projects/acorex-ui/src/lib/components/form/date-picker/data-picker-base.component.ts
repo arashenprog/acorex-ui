@@ -56,4 +56,7 @@ export abstract class AXDatePicker extends AXValidatableComponent implements AXI
             }
         });
     }
+    onDateChange(date){
+        console.log("date",date)
+    }
 }

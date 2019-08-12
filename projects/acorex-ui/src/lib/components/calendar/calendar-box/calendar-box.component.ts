@@ -29,7 +29,6 @@ export class AXCalendarBoxComponent {
     private _view: AXCalendarViewType = "day";
     @Input()
     public get view(): AXCalendarViewType {
-        debugger;
         return this._view;
     }
     public set view(v: AXCalendarViewType) {
@@ -85,7 +84,6 @@ export class AXCalendarBoxComponent {
     }
 
     navigate(value: number | AXDateTime) {
-        debugger;
         let start: AXDateTime;
         let end: AXDateTime;
         if (this.view == "day") {

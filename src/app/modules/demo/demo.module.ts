@@ -11,6 +11,7 @@ import { ColorPickerPage } from './colorpicker/colorpicker.component';
 import { FormControllPage } from './formcontroll/formcontroll.page';
 import { FormsModule } from '@angular/forms';
 import { FilterPanelDemoPage } from './data/filter-panel.page';
+import { PickerPage } from './picker/picker.page';
 
 const pages = [
   DemoPage,
@@ -20,7 +21,8 @@ const pages = [
   WidgetsPage,
   ColorPickerPage,
   FormControllPage,
-  FilterPanelDemoPage
+  FilterPanelDemoPage,
+  PickerPage
 ]
 
 @NgModule({

@@ -73,14 +73,12 @@ ax-tabs {
       }
 
       i {
-        color: var(--border-color);
-        width: 20px;
-        height: 20px;
+        width: var(--el-sm-size);
+        height: var(--el-sm-size);
         text-align: center;
-        line-height: 20px;
+        line-height: var(--el-sm-size);
         @include transition(0.3s);
-        font-size: 12px;
-
+        font-size: var(--font-xs-size);
         &:hover {
           background: rgba(255, 255, 255, 0.5);
           border-radius: 50%;

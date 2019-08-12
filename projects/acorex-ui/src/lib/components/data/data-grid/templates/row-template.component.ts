@@ -34,7 +34,6 @@ export class AXDataGridRowTemplateRenderer {
     data: any;
 
     agInit(params: any): void {
-        debugger;
         this.data = params.node.data;
         this.templateRef = params.templateRef;
     }

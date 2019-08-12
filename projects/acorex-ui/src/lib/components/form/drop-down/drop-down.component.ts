@@ -10,4 +10,5 @@ import { AXSelectBaseComponent } from '../../../core/base.class';
 export class AXDropDownComponent extends AXSelectBaseComponent {
     @Input() items: SelectItem[] = [];
     @Input() searchable: boolean = false;
+    @Input() icon: string = "fas fa-angle-down"
 }

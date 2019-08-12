@@ -9,6 +9,7 @@ import { WidgetsPage } from 'src/app/modules/demo/widgets/widgets.page';
 import { ColorPickerPage } from 'src/app/modules/demo/colorpicker/colorpicker.component';
 import { FormControllPage } from 'src/app/modules/demo/formcontroll/formcontroll.page';
 import { FilterPanelDemoPage } from 'src/app/modules/demo/data/filter-panel.page';
+import { PickerPage } from 'src/app/modules/demo/picker/picker.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -57,6 +58,7 @@ export class NavMenuService extends AXNavMenuService {
       data: { page: FormControllPage }
 
     },
+   
     {
       name: "data",
       text: "Data",
@@ -109,7 +111,16 @@ export class NavMenuService extends AXNavMenuService {
       visible: true,
       data: { page: ColorPickerPage }
 
-    }
+    },
+    {
+      name: "pickers",
+      text: "Pickers",
+      id: "003-004",
+      parentId: "003",
+      visible: true,
+      data: { page: PickerPage }
+
+    },
   ];
   private mockItemFarsi: MenuItem[] = [
     {
@@ -162,7 +173,6 @@ export class NavMenuService extends AXNavMenuService {
   }
 
   clickItem(item: MenuItem): PromisResult<boolean> {
-    debugger
     if (item.data.page) {
       // if(item.data.uid)
       // {

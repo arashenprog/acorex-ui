@@ -1,6 +1,6 @@
 .calendar-body {
   padding: 10px;
-  width: 290px;
+  min-width: 290px;
 
   .view {
     display: flex;
@@ -15,7 +15,7 @@
 
   .calendar-selector {
     display: flex;
-    height: var(--el-base-size);
+    height: var(--el-md-size);
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
@@ -27,12 +27,13 @@
       justify-content: center;
       align-items: center;
       border: 1px solid;
-      height: var(--el-base-size);
+      height: var(--el-md-size);
       border-color: var(--border-color);
+      font-size:var(--font-md-size)
     }
 
     .arrows {
-      max-width: var(--el-base-size) !important;
+      max-width: var(--el-md-size) !important;
       cursor: pointer;
 
       &:hover {
@@ -59,7 +60,7 @@
     font-size: 12px;
     padding: 0;
     background-color: var(--white-color);
-    height: var(--el-base-size);
+    height: var(--el-md-size);
     min-width: var(--el-base-size);
     text-align: center;
     border: 1px solid var(--white-color);
@@ -110,11 +111,11 @@
   }
 
   .month-item {
-    height: var(--el-base-size);
+    height: var(--el-md-size);
   }
 
   .year-item {
-    height: var(--el-base-size);
+    height: var(--el-md-size);
   }
 
   .days-name {
@@ -125,7 +126,7 @@
     .calendar-item {
       &:hover {
         background: var(--white-color);
-        border: none;
+        border: 1px solid transparent;
       }
     }
   }

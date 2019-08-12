@@ -50,7 +50,6 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     }
 
     get condition(): AXFilterCondition {
-        debugger;
         let values = this.items.filter(c => c.selected).map(c => c.value);
         return {
             condition: "between",
