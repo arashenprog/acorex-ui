@@ -18,7 +18,6 @@ import { AXPanelBoxModule } from "./components/layout/panel-box/panel-box.module
 import { AXPasswordBoxModule } from "./components/form/password-box/password-box.module";
 import { AXPopupModule } from "./components/nav/popup/popup.module";
 import { AXProgressBarModule } from "./components/layout/progress-bar/progress-bar.module";
-import { AXRadioButtonModule } from "./components/form/radio-button/radio-button.module";
 import { AXSelectBoxModule } from "./components/form/select-box/select-box.module";
 import { AXSelectionListModule } from "./components/form/selection-list/selection-list.module";
 import { AXTextBoxModule } from "./components/form/text-box/text-box.module";
@@ -71,7 +70,6 @@ window["$"] = $;
     AXPasswordBoxModule,
     AXPopupModule,
     AXProgressBarModule,
-    AXRadioButtonModule,
     AXSelectBoxModule,
     AXSelectionListModule,
     AXTextBoxModule,
@@ -114,7 +112,6 @@ window["$"] = $;
     AXPasswordBoxModule,
     AXPopupModule,
     AXProgressBarModule,
-    AXRadioButtonModule,
     AXSelectBoxModule,
     AXSelectionListModule,
     AXTextBoxModule,

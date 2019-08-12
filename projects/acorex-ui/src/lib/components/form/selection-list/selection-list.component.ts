@@ -1,35 +1,59 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, IterableDiffers } from "@angular/core";
 import { CheckItem } from "../../../core/menu.class";
 import { AXBaseComponent } from "../../../core/base.class";
-import { Observable } from "rxjs";
-import { distinctUntilChanged, debounceTime } from "rxjs/operators";
 
 @Component({
   selector: "ax-selection-list",
-  templateUrl: "./selection-list.component.html"
+  templateUrl: "./selection-list.component.html",
+  styleUrls: ["./selection-list.component.scss"],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXSelectionListComponent extends AXBaseComponent {
   _uid: string = "M" + Math.ceil(Math.random() * 10000);
   @Input() direction: string = "horizontal";
-  @Input() items: Array<CheckItem> = [];
+  @Input() items: Array<any> = [];
   @Input() mode: string = "single";
+  @Input() textField: string = "text";
 
 
-  private itemChangeObserver:any;
-  onRadioValueChange(item: CheckItem) {
 
-    // if (!this.itemChangeObserver) {
-    //   Observable.create(observer => {
-    //     this.itemChangeObserver = observer;
-    //   })
-    //     .pipe(debounceTime(100))
-    //     .pipe(distinctUntilChanged())
-    //     .subscribe(z => {
-          this.items.forEach(c => {
-            c.selected = c.value == item.value;
-          });
-    //     });
-    // }
-    // this.itemChangeObserver.next(item);
+  private _selectedItems: any[] = [];
+  @Input()
+  public get selectedItems(): any[] {
+    return this._selectedItems || [];
   }
+  public set selectedItems(v: any[]) {
+    this._selectedItems = v;
+  }
+
+  ngOnInit(): void {
+  }
+
+  constructor(private cdr: ChangeDetectorRef, private differs: IterableDiffers) {
+    super();
+  }
+
+  onCheckValueChange(item: any, checked: boolean) {
+    if (this.mode == "single") {
+      this._selectedItems = [...item];
+    }
+    else {
+      this._selectedItems = this._selectedItems.filter(c => c != item);
+      if (checked)
+        this._selectedItems.push(item);
+      else {
+        this._selectedItems = this._selectedItems.filter(c => c != item);
+      }
+    }
+    this.cdr.detectChanges();
+  }
+
+  ngDoCheck() {
+    const changes = this.differs.find(this.selectedItems);
+    if (changes) {
+      this.cdr.detectChanges();
+    }
+  }
+
 }

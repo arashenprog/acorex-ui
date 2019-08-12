@@ -105,7 +105,6 @@ export class AXTabPageService {
         }
         return new AXTabPageResult(newTab, (closing, closed) => {
             let existTab = this.tabs.find(c => newTab.uid && c.uid == newTab.uid);
-            debugger
             let singletonTab = this.tabs.find(c => newTab.singleton && (<any>c).component==newTab.content);
             if (existTab) {
                 this.active(existTab)

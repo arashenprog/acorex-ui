@@ -36,7 +36,7 @@ export class PromisResult<T> {
 }
 
 export class AXBaseComponent {
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input") input: ElementRef<HTMLInputElement>;
   _uid: string = "M" + Math.ceil(Math.random() * 10000);
   @Input()
   width: string = "";
@@ -141,16 +141,16 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   protected _value: boolean = false;
   //
   set value(val: boolean) {
-    //if (this._value !== val) {
-    this._value = val;
-    this.valueChange.emit(val);
-    this.cdr.markForCheck();
-    this.cdr.detectChanges();
-    //}
+    if (this._value !== val) {
+      this._value = val;
+      this.valueChange.emit(val);
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    }
   }
   //
   @Input()
-  get value():boolean {
+  get value(): boolean {
     return this._value;
   }
 }
