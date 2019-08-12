@@ -261,7 +261,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: var(--sp-sm-size);
+    margin: var(--sp-sm-size) var(--sp-xs-size);
     border: none;
     &:first-child {
       margin-right: 10px;

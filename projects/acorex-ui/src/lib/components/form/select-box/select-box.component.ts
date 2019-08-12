@@ -1,14 +1,8 @@
-import {
-  Component,
-  Input,
-  EventEmitter,
-  Output,
-  ViewEncapsulation,
-  ViewChild
-} from "@angular/core";
+import { Component, Input, ViewChild, ElementRef } from "@angular/core";
 import { SelectItem } from "../../../core/select.class";
 import { AXSelectBaseComponent } from "../../../core/base.class";
-import { NgSelectComponent } from "@ng-select/ng-select";
+import { AXPopoverComponent } from "../../layout/popover/popover.component";
+import { AXDropDownComponent } from "../drop-down/drop-down.component";
 
 @Component({
   selector: "ax-select-box",
@@ -16,20 +10,21 @@ import { NgSelectComponent } from "@ng-select/ng-select";
   styleUrls: ["./select-box.component.scss"]
 })
 export class AXSelectBoxComponent extends AXSelectBaseComponent {
-  @ViewChild(NgSelectComponent) ngSelect: NgSelectComponent;
+  _value: string = ""
 
   constructor() {
     super();
   }
+  @ViewChild("d") dropdown: AXDropDownComponent
 
   @Input() items: SelectItem[] = [];
   @Input() searchable: boolean = false;
   @Input() label: string;
-  onClickInner() {
-    if (this.ngSelect.isOpen) {
-      this.ngSelect.close();
-    } else {
-      this.ngSelect.open();
-    }
+
+
+  onItemClick(item: SelectItem) {
+    debugger
+    console.log(item)
+    this._value = item.text;
   }
 }

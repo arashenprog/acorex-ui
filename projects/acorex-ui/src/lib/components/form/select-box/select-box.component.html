@@ -1,5 +1,5 @@
-<ax-drop-down label="{{ label }}">
-  <div class="ax-select-item" *ngFor="let item of items">
+<ax-drop-down [(text)]="_value" label="{{ label }}" #d>
+  <div class="ax-select-item" *ngFor="let item of items" (click)="onItemClick(item)">
     {{ item.text }}
   </div>
 </ax-drop-down>
