@@ -21,7 +21,7 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div> -->
-<ax-drop-down text="date" label="{{ label }}" icon="fas fa-calendar-alt">
+<ax-drop-down [(text)]="_text" label="{{ label }}" icon="fas fa-calendar-alt">
   <ax-calendar-box (onChanged)="onDateChange($event)"></ax-calendar-box>
 </ax-drop-down>
 <div class="validation-text" *ngIf="errorText">

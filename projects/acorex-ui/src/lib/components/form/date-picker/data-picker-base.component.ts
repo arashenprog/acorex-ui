@@ -1,7 +1,8 @@
 import { AXValidatableComponent } from "../../../core/base.class";
 import { Input, Injector, Inject } from "@angular/core";
 import { IValidationRuleResult } from "../validation/validation.classs";
-
+import moment from 'jalali-moment'
+import { AXDateTime } from "../../../core/calendar/datetime";
 export interface AXIDatePicker{
     validate(): Promise<IValidationRuleResult>;
     selectToday():void;
@@ -20,7 +21,7 @@ export abstract class AXDatePicker extends AXValidatableComponent implements AXI
     @Input() label: string = "Date";
 
     model:any=null;
-
+    _text:string=""
     constructor(injector:Injector ) {
         super();
     }
@@ -56,7 +57,7 @@ export abstract class AXDatePicker extends AXValidatableComponent implements AXI
             }
         });
     }
-    onDateChange(date){
-        console.log("date",date)
+    onDateChange(date:AXDateTime){
+        this._text = date.format("MM/DD/YY")
     }
 }
