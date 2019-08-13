@@ -1,6 +1,7 @@
-import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, IterableDiffers } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, IterableDiffers, EventEmitter } from "@angular/core";
 import { CheckItem } from "../../../core/menu.class";
 import { AXBaseComponent } from "../../../core/base.class";
+import { Output } from "@angular/core";
 
 @Component({
   selector: "ax-selection-list",
@@ -17,6 +18,8 @@ export class AXSelectionListComponent extends AXBaseComponent {
   @Input() textField: string = "text";
 
 
+  @Output()
+  onSelectedChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   private _selectedItems: any[] = [];
   @Input()
@@ -46,13 +49,14 @@ export class AXSelectionListComponent extends AXBaseComponent {
         this._selectedItems = this._selectedItems.filter(c => c != item);
       }
     }
-    this.cdr.detectChanges();
+    //this.cdr.detectChanges();
   }
 
   ngDoCheck() {
     const changes = this.differs.find(this.selectedItems);
     if (changes) {
       this.cdr.detectChanges();
+      this.onSelectedChanged.emit(this.selectedItems);
     }
   }
 

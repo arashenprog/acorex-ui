@@ -7,8 +7,12 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
     selector: 'ax-filter-column-date',
     template: `
         <div class="ax-filter-section">
-           <ax-selection-list [items]="items" mode="single" direction="vertical">
-           </ax-selection-list>
+            <ax-selection-list [items]="items" [selectedItems]="selectedItems" mode="single" direction="vertical" (onSelectedChanged)="onSelectedChanged($event)">
+            </ax-selection-list>
+        </div>
+        <div class="ax-filter-section" [hidden]="!showCustom">
+            <ax-date-picker label="From"></ax-date-picker>
+            <ax-date-picker label="To"></ax-date-picker>
         </div>
     `,
     providers: [
@@ -19,9 +23,8 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
 
 
-    items: CheckItem[] = [
+    items: any = [
         {
-            selected: true,
             text: "Today",
             value: "today"
         },
@@ -43,10 +46,20 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         }
     ];
 
+    selectedItems: any[] = [];
 
+    showCustom: boolean = false;
 
     constructor() {
         super();
+    }
+
+    ngAfterViewInit(): void {
+        this.selectedItems.push(this.items[0]);
+    }
+
+    onSelectedChanged(items: any[]) {
+        this.showCustom = items[0] && items[0].value == "custom";
     }
 
     get condition(): AXFilterCondition {
