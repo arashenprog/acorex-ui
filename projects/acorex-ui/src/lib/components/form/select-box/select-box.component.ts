@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { SelectItem } from "../../../core/select.class";
 import { AXSelectBaseComponent } from "../../../core/base.class";
-import { NgSelectComponent } from "@ng-select/ng-select";
 
 @Component({
   selector: "ax-select-box",
@@ -16,7 +15,6 @@ import { NgSelectComponent } from "@ng-select/ng-select";
   styleUrls: ["./select-box.component.scss"]
 })
 export class AXSelectBoxComponent extends AXSelectBaseComponent {
-  @ViewChild(NgSelectComponent) ngSelect: NgSelectComponent;
 
   constructor() {
     super();
@@ -25,11 +23,5 @@ export class AXSelectBoxComponent extends AXSelectBaseComponent {
   @Input() items: SelectItem[] = [];
   @Input() searchable: boolean = false;
   @Input() label: string;
-  onClickInner() {
-    if (this.ngSelect.isOpen) {
-      this.ngSelect.close();
-    } else {
-      this.ngSelect.open();
-    }
-  }
+
 }
