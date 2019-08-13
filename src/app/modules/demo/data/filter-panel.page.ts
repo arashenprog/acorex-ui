@@ -94,7 +94,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                         mode: "multiple",
                         items: STATUS
                     },
-                    field: "nextAction"
+                    field: "currentStatus"
                 },
                 {
                     caption: "Next Action",

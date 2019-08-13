@@ -11,23 +11,23 @@
                 <span>{{g.caption}}</span>
             </div>
             <ng-container *ngFor="let c of g.columns">
-                <div class="ax-filter-item-header" [style.margin-bottom.px]="f.value ? 0 : 2">
-                    <ax-check-box [label]="c.caption" #f>
+                <div class="ax-filter-item-header" [style.margin-bottom.px]="c.active ? 0 : 2">
+                    <ax-check-box [label]="c.caption" [(value)]="c.active">
                     </ax-check-box>
                 </div>
-                <div [hidden]="!f.value">
+                <div [hidden]="!c.active">
                     <ng-container [ngSwitch]="c.type">
                         <ng-container *ngSwitchCase="'selection'">
-                            <ax-filter-column-selection [field]="c.field" [active]="f.value" [mode]="c.options.mode"
+                            <ax-filter-column-selection [field]="c.field" [active]="c.active" [mode]="c.options.mode"
                                 [items]="c.options.items">
                             </ax-filter-column-selection>
                         </ng-container>
                         <ng-container *ngSwitchCase="'date'">
-                            <ax-filter-column-date [field]="c.field" [active]="f.value">
+                            <ax-filter-column-date [field]="c.field" [active]="c.active">
                             </ax-filter-column-date>
                         </ng-container>
                         <ng-container *ngSwitchDefault>
-                            <ax-filter-column-string [field]="c.field" [active]="f.value">
+                            <ax-filter-column-string [field]="c.field" [active]="c.active">
                             </ax-filter-column-string>
                         </ng-container>
                     </ng-container>
@@ -37,11 +37,11 @@
        
     </div>
     <div class="filter-footer">
-            <ax-button type="success">
+            <ax-button  (onClick)="onItemClick(modeItems[0])" type="success">
                 <i class="fas fa-filter"></i>
                 Apply Filter
             </ax-button>
-            <ax-button type="light">
+            <ax-button (onClick)="onItemClick(modeItems[1])" type="light">
                 <i class="fas fa-eraser"></i>
                 Clear
             </ax-button>

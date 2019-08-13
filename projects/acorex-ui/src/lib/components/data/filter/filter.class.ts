@@ -9,6 +9,7 @@ export class AXFilterColumn
     dataType:"string"|"date"|"datetime"|"time"|"number";
     type?:"text"|"selection" | "date";
     options?:any;
+    active?:boolean;
 }
 
 export class AXFilterColumnGroup

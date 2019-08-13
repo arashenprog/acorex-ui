@@ -7,7 +7,7 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
     selector: 'ax-filter-column-selection',
     template: `
         <div class="ax-filter-section">
-           <ax-selection-list  [items]="items" [mode]="mode" direction="vertical">
+           <ax-selection-list  [items]="items" [mode]="mode" direction="vertical" [(selectedItems)]="selectedItems">
            </ax-selection-list>
         </div>
     `,
@@ -18,6 +18,7 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
 export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
 
 
+    selectedItems:any[] = [];
 
     @Input()
     items: CheckItem[] = [];
@@ -30,12 +31,19 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
     }
 
     get condition(): AXFilterCondition {
-        let values = this.items.filter(c => c.selected).map(c => c.value);
+        debugger
+        let values = this.selectedItems.map(c=>c.value);
         return {
             condition: this.mode == "single" ? "equal" : "contains",
             field: this.field,
             value: this.mode == "single" ? values[0] : values
         }
+    }
+    clear(){
+        this.field = "";
+        this.selectedItems = [];
+        this.value = null;
+        this.active = false;
     }
 
 }

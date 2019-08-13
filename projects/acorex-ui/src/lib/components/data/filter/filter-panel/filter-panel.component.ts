@@ -6,7 +6,7 @@ import { MenuItem } from '../../../../core/menu.class';
     selector: 'ax-filter-panel',
     templateUrl: './filter-panel.component.html',
     styleUrls: ['./filter-panel.component.scss'],
-    encapsulation:ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None
 })
 export class AXFilterPanelComponent implements OnInit {
 
@@ -65,6 +65,12 @@ export class AXFilterPanelComponent implements OnInit {
             console.log(con);
         }
         if (e.name == "reset") {
+            this.groups.forEach(g => {
+                g.columns.forEach(c => {
+                    c.active = false;
+                })
+            })
+
             this.filters.forEach(e => {
                 e.clear();
             });
