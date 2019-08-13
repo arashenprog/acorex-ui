@@ -19,7 +19,7 @@ export class AXSelectionListComponent extends AXBaseComponent {
 
 
   @Output()
-  onSelectedChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
+  selectedItemsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   private _selectedItems: any[] = [];
   @Input()
@@ -28,6 +28,7 @@ export class AXSelectionListComponent extends AXBaseComponent {
   }
   public set selectedItems(v: any[]) {
     this._selectedItems = v;
+    this.selectedItemsChange.emit(this.selectedItems);
   }
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class AXSelectionListComponent extends AXBaseComponent {
     const changes = this.differs.find(this.selectedItems);
     if (changes) {
       this.cdr.detectChanges();
-      this.onSelectedChanged.emit(this.selectedItems);
+      this.selectedItemsChange.emit(this.selectedItems);
     }
   }
 

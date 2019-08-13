@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { SelectItem } from "../../../core/select.class";
 import { AXSelectBaseComponent } from '../../../core/base.class';
+import { AXPopoverComponent } from '../../layout/popover/popover.component';
 
 @Component({
     selector: 'ax-drop-down',
@@ -8,7 +9,15 @@ import { AXSelectBaseComponent } from '../../../core/base.class';
     styleUrls: ['./drop-down.component.scss']
 })
 export class AXDropDownComponent extends AXSelectBaseComponent {
+    
+    @ViewChild("popSelectBox")
+    popSelectBox:AXPopoverComponent
+
     @Input() items: SelectItem[] = [];
     @Input() searchable: boolean = false;
     @Input() icon: string = "fas fa-angle-down"
+
+    close(){
+        this.popSelectBox.close();
+    }
 }

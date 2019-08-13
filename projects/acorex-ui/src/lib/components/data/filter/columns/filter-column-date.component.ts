@@ -7,7 +7,7 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
     selector: 'ax-filter-column-date',
     template: `
         <div class="ax-filter-section">
-            <ax-selection-list [items]="items" [selectedItems]="selectedItems" mode="single" direction="vertical" (onSelectedChanged)="onSelectedChanged($event)">
+            <ax-selection-list [items]="items" [(selectedItems)]="selectedItems" mode="single" direction="vertical" (selectedItemsChanged)="onSelectedChanged($event)">
             </ax-selection-list>
         </div>
         <div class="ax-filter-section" [hidden]="!showCustom">
@@ -69,6 +69,12 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
             field: this.field,
             value: [new AXDateTime(), new AXDateTime().addDay(10)]
         }
+    }
+
+    clear(){
+        this.selectedItems = [];
+        this.value = null;
+        this.items = [];
     }
 
 }

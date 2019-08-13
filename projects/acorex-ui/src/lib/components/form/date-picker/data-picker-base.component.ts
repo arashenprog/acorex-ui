@@ -1,8 +1,9 @@
 import { AXValidatableComponent } from "../../../core/base.class";
-import { Input, Injector, Inject } from "@angular/core";
+import { Input, Injector, Inject, ViewChild } from "@angular/core";
 import { IValidationRuleResult } from "../validation/validation.classs";
 import moment from 'jalali-moment'
 import { AXDateTime } from "../../../core/calendar/datetime";
+import { AXDropDownComponent } from "../drop-down/drop-down.component";
 export interface AXIDatePicker{
     validate(): Promise<IValidationRuleResult>;
     selectToday():void;
@@ -14,6 +15,9 @@ export interface AXIDatePicker{
 
 export abstract class AXDatePicker extends AXValidatableComponent implements AXIDatePicker{
 
+
+    @ViewChild("dropdown")
+    dropdown:AXDropDownComponent;
     @Input() placeholder: string = "";
     @Input() showClear: boolean = false;
 
@@ -58,6 +62,7 @@ export abstract class AXDatePicker extends AXValidatableComponent implements AXI
         });
     }
     onDateChange(date:AXDateTime){
+        this.dropdown.close();
         this._text = date.format("MM/DD/YY")
     }
 }
