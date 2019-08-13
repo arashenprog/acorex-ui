@@ -1,55 +1,83 @@
-import { Component, Injector } from "@angular/core";
-
-import { AXValidatableComponent } from '../../../core/base.class';
-import { AXDatePicker, AXIDatePicker } from "./data-picker-base.component";
-import { ViewChild } from "@angular/core";
+import { AXValidatableComponent } from "../../../core/base.class";
+import { Input, ViewChild, Output, EventEmitter, ViewEncapsulation, Component } from "@angular/core";
 import { IValidationRuleResult } from "../validation/validation.classs";
-import { Input } from "@angular/core";
-
+import { AXDateTime } from "../../../core/calendar/datetime";
+import { AXDropDownComponent } from "../drop-down/drop-down.component";
 
 
 @Component({
-  selector: "ax-date-picker",
-  template: `
-    <div [ngSwitch]="calendar">
-      <ng-container *ngSwitchCase="'persian'">
-        <ax-date-picker-persian [placeholder]="placeholder" [label]="label" [showClear]="showClear"></ax-date-picker-persian>
-      </ng-container>
-      <ng-container *ngSwitchCase="'gregorian'">
-        <ax-date-picker-gregorian [placeholder]="placeholder" [label]="label" [showClear]="showClear"></ax-date-picker-gregorian>
-      </ng-container>
-      <p *ngSwitchDefault>
-        Invalid Calendar
-      </p>
-    </div>
-  `,
-  providers: [
-    { provide: AXValidatableComponent, useExisting: AXDatePickerComponent },
-  ]
+    selector: "ax-date-picker",
+    templateUrl: "./date-picker.component.html",
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ["./date-picker.component.scss"],
+    providers: [
+        { provide: AXValidatableComponent, useExisting: AXDatePickerComponent },
+    ]
 })
-export class AXDatePickerComponent extends AXValidatableComponent implements AXIDatePicker {
+export class AXDatePickerComponent extends AXValidatableComponent{
 
-  @ViewChild(AXDatePicker) picker: AXDatePicker;
 
-  validate(): Promise<IValidationRuleResult> {
-    return this.picker.validate();
-  }
-  selectToday(): void {
-    this.picker.selectToday();
-  }
-  clear(): void {
-    this.picker.clear();
-  }
+    @ViewChild("dropdown")
+    dropdown:AXDropDownComponent;
+    @Input() placeholder: string = "";
+    @Input() showClear: boolean = false;
 
-  @Input() placeholder: string = "";
-  @Input() showClear: boolean = false;
-  @Input() label: string = "Date";
+    @Input() label: string = "Date";
 
-  @Input()
-  calendar: "persian" | "gregorian" = "gregorian"
+    model:any=null;
+    _text:string=""
+    constructor() {
+        super();
+    }
 
-  constructor() {
-    super();
-  }
+    selectToday() {
+    }
 
+    clear(): void {
+    }
+
+    ngAfterViewInit(): void {
+        this.selectToday();
+    }
+
+    @Output()
+    valueChange: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
+
+    private _value: AXDateTime;
+    @Input()
+    public get value(): AXDateTime {
+        return this._value;
+    }
+    public set value(v: AXDateTime) {
+        if (!v.equal(this._value)) {
+            this._value = v;
+            this.valueChange.emit(v);
+        }
+    }
+
+
+    validate(): Promise<IValidationRuleResult> {
+
+        return new Promise<IValidationRuleResult>(resolve => {
+            if (!this.validator) {
+                resolve({ result: true });
+            } else {
+                // this.validator.validate(this.model).then(r => {
+                //     r.target = this;
+                //     if (r.result) {
+                //         this.errorText = null;
+                //     } else {
+                //         this.errorText = r.message;
+                //     }
+                //     resolve(r);
+                // });
+
+                resolve()
+            }
+        });
+    }
+    onDateChange(date:AXDateTime){
+        this.dropdown.close();
+        this._text = date.format("MM/DD/YY")
+    }
 }

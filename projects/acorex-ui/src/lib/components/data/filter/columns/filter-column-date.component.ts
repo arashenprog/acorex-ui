@@ -1,18 +1,17 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../filter.class';
-import { CheckItem, BaseMenuItem } from '../../../../core/menu.class';
+import { Component } from '@angular/core';
+import { AXFilterCondition, AXFilterColumnComponent } from '../filter.class';
 import { AXDateTime } from '../../../../core/calendar/datetime';
 
 @Component({
     selector: 'ax-filter-column-date',
     template: `
         <div class="ax-filter-section">
-            <ax-selection-list [items]="items" [(selectedItems)]="selectedItems" mode="single" direction="vertical" (selectedItemsChanged)="onSelectedChanged($event)">
+            <ax-selection-list [items]="items" [(selectedItems)]="selectedItems" mode="single" direction="vertical" (selectedItemsChange)="onSelectedChanged($event)">
             </ax-selection-list>
         </div>
         <div class="ax-filter-section" [hidden]="!showCustom">
-            <ax-date-picker label="From"></ax-date-picker>
-            <ax-date-picker label="To"></ax-date-picker>
+            <ax-date-picker label="From" [(value)]="fromDate"></ax-date-picker>
+            <ax-date-picker label="To" [(value)]="toDate"></ax-date-picker>
         </div>
     `,
     providers: [
@@ -20,8 +19,6 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
     ]
 })
 export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
-
-
 
     items: any = [
         {
@@ -46,6 +43,9 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         }
     ];
 
+    fromDate: AXDateTime;
+    toDate: AXDateTime;
+
     selectedItems: any[] = [];
 
     showCustom: boolean = false;
@@ -59,22 +59,40 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     }
 
     onSelectedChanged(items: any[]) {
+        debugger;
         this.showCustom = items[0] && items[0].value == "custom";
     }
 
     get condition(): AXFilterCondition {
-        let values = this.items.filter(c => c.selected).map(c => c.value);
+        let selectedItem = this.selectedItems[0];
+        switch (selectedItem.value) {
+            case "today":
+                this.fromDate = this.toDate = new AXDateTime();
+                break;
+            case "this-week":
+                this.toDate = new AXDateTime();
+                this.fromDate = this.toDate.startOf("week");
+                break;
+            case "this-month":
+                this.toDate = new AXDateTime();
+                this.fromDate = this.toDate.startOf("month");
+                break;
+            case "this-year":
+                this.toDate = new AXDateTime();
+                this.fromDate = this.toDate.startOf("year");
+                break;
+        }
+
         return {
             condition: "between",
             field: this.field,
-            value: [new AXDateTime(), new AXDateTime().addDay(10)]
+            value: [this.fromDate.date, this.toDate.date]
         }
     }
 
-    clear(){
+    clear() {
         this.selectedItems = [];
         this.value = null;
-        this.items = [];
     }
 
 }

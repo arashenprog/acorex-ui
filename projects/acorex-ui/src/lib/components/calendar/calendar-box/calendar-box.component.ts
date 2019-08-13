@@ -50,7 +50,7 @@ export class AXCalendarBoxComponent {
     viewRange: AXDateTimeRange;
 
     @Output()
-    onChanged: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
+    valueChange: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
 
     private _value: AXDateTime;
     @Input()
@@ -61,7 +61,7 @@ export class AXCalendarBoxComponent {
         if (!v.equal(this._value)) {
             this._value = v;
             this.setFocus(v);
-            this.onChanged.emit(v);
+            this.valueChange.emit(v);
         }
     }
 
