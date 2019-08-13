@@ -11,7 +11,7 @@ import { AXDropDownComponent } from "../drop-down/drop-down.component";
 })
 export class AXSelectBoxComponent extends AXSelectBaseComponent {
   _value: string = ""
-
+  
   constructor() {
     super();
   }
@@ -26,5 +26,6 @@ export class AXSelectBoxComponent extends AXSelectBaseComponent {
     debugger
     console.log(item)
     this._value = item.text;
+    this.dropdown.close()
   }
 }

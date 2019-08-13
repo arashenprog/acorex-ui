@@ -42,6 +42,8 @@ export class AXBaseComponent {
   width: string = "";
   @Input() height: string = "auto";
   @Input() readOnly: boolean = false;
+  @Input() disabled: boolean = false;
+
 
   focus(): void { }
 

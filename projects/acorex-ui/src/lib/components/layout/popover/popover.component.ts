@@ -58,7 +58,7 @@ export class AXPopoverComponent {
   }
 
   setPosition() {
-
+    debugger
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
       ".popover-container"
     );
