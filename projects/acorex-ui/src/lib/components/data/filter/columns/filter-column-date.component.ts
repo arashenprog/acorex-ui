@@ -43,8 +43,8 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         }
     ];
 
-    fromDate: AXDateTime;
-    toDate: AXDateTime;
+    fromDate: AXDateTime = new AXDateTime();
+    toDate: AXDateTime = new AXDateTime();
 
     selectedItems: any[] = [];
 
@@ -86,7 +86,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         return {
             condition: "between",
             field: this.field,
-            value: [this.fromDate.date, this.toDate.date]
+            value: [this.fromDate.date.toUTCString(), this.toDate.date.toUTCString()]
         }
     }
 
