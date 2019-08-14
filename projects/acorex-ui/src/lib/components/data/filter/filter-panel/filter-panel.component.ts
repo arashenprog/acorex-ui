@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 
@@ -6,54 +6,21 @@ import { MenuItem } from '../../../../core/menu.class';
     selector: 'ax-filter-panel',
     templateUrl: './filter-panel.component.html',
     styleUrls: ['./filter-panel.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class AXFilterPanelComponent implements OnInit {
+export class AXFilterPanelComponent  {
 
 
     @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
-
-    // modeItems: MenuItem[] = [
-    //     {
-    //         icon: "fas fa-filter",
-    //         name: "simple",
-    //         text: "Simple",
-    //         selected:true,
-    //         groupName: "mode",
-
-    //     },
-    //     {
-    //         icon: "fas fa-filter",
-    //         name: "advance",
-    //         text: "Advance",
-    //         groupName: "mode",
-    //     }
-    // ]
-
-    modeItems: MenuItem[] = [
-        {
-            icon: "fas fa-filter",
-            style: "ax-btn-primary",
-            name: "apply",
-            text: "Apply",
-
-        },
-        {
-            name: "reset",
-            text: "Reset"
-        }
-    ]
 
     @Input()
     groups: AXFilterColumnGroup[] = [];
 
     constructor() { }
 
-    ngOnInit(): void { }
-
-
-    onItemClick(e: MenuItem) {
-        if (e.name == "apply") {
+    onItemClick(e) {
+        if (e) {
             let con: any[] = [];
             this.filters.forEach(e => {
                 if (e.active) {
@@ -64,7 +31,7 @@ export class AXFilterPanelComponent implements OnInit {
             con.pop();
             console.log(con);
         }
-        if (e.name == "reset") {
+        else {
             this.groups.forEach(g => {
                 g.columns.forEach(c => {
                     c.active = false;

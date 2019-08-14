@@ -34,16 +34,15 @@
                 </div>
             </ng-container>
         </ng-container>
-       
     </div>
     <div class="filter-footer">
-            <ax-button  (onClick)="onItemClick(modeItems[0])" type="success">
-                <i class="fas fa-filter"></i>
-                Apply Filter
-            </ax-button>
-            <ax-button (onClick)="onItemClick(modeItems[1])" type="light">
-                <i class="fas fa-eraser"></i>
-                Clear
-            </ax-button>
-        </div>
+        <ax-button (onClick)="onItemClick(1)" type="success">
+            <i class="fas fa-filter"></i>
+            Apply Filter
+        </ax-button>
+        <ax-button (onClick)="onItemClick(0)" type="light">
+            <i class="fas fa-eraser"></i>
+            Clear
+        </ax-button>
+    </div>
 </div>

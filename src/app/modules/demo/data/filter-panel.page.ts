@@ -5,10 +5,12 @@ import {
     DialogService,
     AXPopupService,
     AXBasePageComponent,
-    AXFilterColumnGroup
+    AXFilterColumnGroup,
+    PromisResult,
+    AXDateTime
 } from 'acorex-ui';
 
-const STATUS =[
+const STATUS = [
     {
         text: "Reply Email",
         value: 1
@@ -94,7 +96,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                         mode: "multiple",
                         items: STATUS
                     },
-                    field: "currentStatus"
+                    field: "statu"
                 },
                 {
                     caption: "Next Action",
@@ -110,7 +112,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             ]
         },
         {
-            caption : "TASK",
+            caption: "TASK",
             columns: [
                 {
                     caption: "Staff",
@@ -156,31 +158,47 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             ]
         },
         {
-            caption:"CONTACT",
-            columns:[
+            caption: "CONTACT",
+            columns: [
                 {
-                    caption:"Firstname",
-                    dataType:"string",
-                    type:"text",
-                    field:"firstname"
+                    caption: "Firstname",
+                    dataType: "string",
+                    type: "text",
+                    field: "firstname"
                 },
                 {
-                    caption:"Lastname",
-                    dataType:"string",
-                    type:"text",
-                    field:"lastname"
+                    caption: "Lastname",
+                    dataType: "string",
+                    type: "text",
+                    field: "lastname"
                 },
                 {
-                    caption:"Email",
-                    dataType:"string",
-                    type:"text",
-                    field:"email"
+                    caption: "Email",
+                    dataType: "string",
+                    type: "text",
+                    field: "email"
                 }
             ]
-            
+
         }
 
     ];
+
+
+    provideGridData = () => {
+        return new PromisResult(resolve => {
+            let list: any[] = [];
+            for (let i = 0; i < 100; i++) {
+                let lead: any = {};
+                lead.firstname = "arash";
+                lead.lastname = "En";
+                lead.source = "Chat";
+                lead.registerDate = new AXDateTime().add("day", i);
+                list.push(lead);
+            }
+            resolve(list);
+        });
+    };
 
     constructor(
         private http: AXHttpService,

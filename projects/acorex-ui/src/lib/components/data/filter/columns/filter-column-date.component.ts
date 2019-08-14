@@ -68,6 +68,11 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         switch (selectedItem.value) {
             case "today":
                 this.fromDate = this.toDate = new AXDateTime();
+                return {
+                    condition: "equal",
+                    field: this.field,
+                    value: [this.fromDate]
+                }
                 break;
             case "this-week":
                 this.toDate = new AXDateTime();
@@ -86,7 +91,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         return {
             condition: "between",
             field: this.field,
-            value: [this.fromDate.date.toUTCString(), this.toDate.date.toUTCString()]
+            value: [this.fromDate, this.toDate]
         }
     }
 
