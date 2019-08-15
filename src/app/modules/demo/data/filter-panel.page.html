@@ -9,7 +9,7 @@
           <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
               <ng-template>
-                <ax-filter-panel [groups]="filterGroups">
+                <ax-filter-panel [groups]="filterGroups" (filterChange)="onFilterChange($event)">
 
                 </ax-filter-panel>
               </ng-template>
@@ -20,7 +20,7 @@
             <ax-dock-content caption="Leads">
               <ng-template>
                 <div style="height: 500px">
-                  <ax-data-grid title="Test remote data">
+                  <ax-data-grid title="Test remote data" [filter]="gridFilter">
                     <ax-data-source>
                       <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
                     </ax-data-source>

@@ -34,5 +34,5 @@ export * from "./lib/components/form/checkbox/checkbox.module";
 
 export * from "./lib/components/calendar/scheduler/api";
 export * from "./lib/components/calendar/calendar-box/api";
-export * from "./lib/core/utils/scroll/api";
+export * from "./lib/core/utils/api";
 export * from "./lib/acorex-ui.module";

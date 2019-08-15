@@ -188,11 +188,11 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     provideGridData = () => {
         return new PromisResult(resolve => {
             let list: any[] = [];
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 300; i++) {
                 let lead: any = {};
-                lead.firstname = "arash";
-                lead.lastname = "En";
-                lead.source = "Chat";
+                lead.firstname = ["arash", "reza", "ali", "kit", "Rod", "Sam"].pickRandom();
+                lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
+                lead.source = ["Chat", "Website", "Social", "Ads"].pickRandom();
                 lead.registerDate = new AXDateTime().add("day", i);
                 list.push(lead);
             }
@@ -207,5 +207,45 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         private popup: AXPopupService
     ) {
         super();
+    }
+
+    gridFilter: any = null;
+    onFilterChange(filter) {
+        // var hardcodedFilter = {
+        //     country: ["Ireland", "United States"],
+        //     age: {
+        //         type: "lessThan",
+        //         filter: "30"
+        //     },
+        //     athlete: {
+        //         type: "startsWith",
+        //         filter: "Mich"
+        //     },
+        //     date: {
+        //         type: "lessThan",
+        //         dateFrom: "2010-01-01"
+        //     }
+        // };
+        // debugger;
+        // this.gridFilter = {};
+        // for (const key in filter) {
+        //     if (filter.hasOwnProperty(key)) {
+        //         const f = filter[key];
+        //         this.gridFilter[f.field] = {
+        //             filter: f.value,
+        //             type: 'startWith'
+        //         }
+        //     }
+        // }
+
+        this.gridFilter=filter;
+        
+        // this.gridFilter = {
+        //     firstname: {
+        //         type: "startWith",
+        //         filter: "ali"
+
+        //     }
+        // };
     }
 }

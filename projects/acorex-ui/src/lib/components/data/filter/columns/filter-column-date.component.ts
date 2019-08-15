@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AXFilterCondition, AXFilterColumnComponent } from '../filter.class';
 import { AXDateTime } from '../../../../core/calendar/datetime';
 
@@ -16,7 +16,8 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
     `,
     providers: [
         { provide: AXFilterColumnComponent, useExisting: AXFilterColumnDateComponent }
-    ]
+    ],
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
@@ -50,7 +51,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
     showCustom: boolean = false;
 
-    constructor() {
+    constructor(private cdr:ChangeDetectorRef) {
         super();
     }
 
@@ -59,8 +60,8 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     }
 
     onSelectedChanged(items: any[]) {
-        debugger;
         this.showCustom = items[0] && items[0].value == "custom";
+        this.cdr.markForCheck();
     }
 
     get condition(): AXFilterCondition {
@@ -98,6 +99,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     clear() {
         this.selectedItems = [];
         this.value = null;
+        this.cdr.markForCheck();
     }
 
 }

@@ -84,6 +84,30 @@ export class AXDataGridComponent {
 
 
 
+  private _filter: any[];
+  @Input()
+  public get filter(): any[] {
+    return this._filter;
+  }
+  public set filter(v: any[]) {
+    if (v != this._filter) {
+      this._filter = v;
+      //this.gridApi.setFilterModel(this._filter);
+      //this.gridApi.onFilterChanged();
+      this._filter.forEach(f => {
+        debugger;
+        let fc = this.gridApi.getFilterInstance(f.field);
+        if (fc) {
+          let ff = fc.getFrameworkComponentInstance();
+          ff.setModel(f);
+        }
+      });
+    }
+  }
+
+
+
+
   rowModelType = "clientSide";
   rowGroupPanelShow = "always";
 
