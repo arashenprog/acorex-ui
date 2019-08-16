@@ -10,6 +10,7 @@ import { ColorPickerPage } from 'src/app/modules/demo/colorpicker/colorpicker.co
 import { FormControllPage } from 'src/app/modules/demo/formcontroll/formcontroll.page';
 import { FilterPanelDemoPage } from 'src/app/modules/demo/data/filter-panel.page';
 import { PickerPage } from 'src/app/modules/demo/picker/picker.page';
+import { ToolbarPage } from 'src/app/modules/demo/toolbar/toolbar.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -119,6 +120,15 @@ export class NavMenuService extends AXNavMenuService {
       parentId: "003",
       visible: true,
       data: { page: PickerPage }
+
+    },
+    {
+      name: "toolbar",
+      text: "Toolbar",
+      id: "003-005",
+      parentId: "003",
+      visible: true,
+      data: { page: ToolbarPage }
 
     },
   ];
