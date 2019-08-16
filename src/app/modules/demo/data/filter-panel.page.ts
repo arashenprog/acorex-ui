@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
     AXHttpService,
     AXToastService,
     DialogService,
     AXPopupService,
     AXBasePageComponent,
-    AXFilterColumnGroup
+    AXFilterColumnGroup,
+    PromisResult,
+    AXDateTime,
+    AXDataGridComponent
 } from 'acorex-ui';
 
-const STATUS =[
+const STATUS = [
     {
         text: "Reply Email",
         value: 1
@@ -94,7 +97,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                         mode: "multiple",
                         items: STATUS
                     },
-                    field: "currentStatus"
+                    field: "statu"
                 },
                 {
                     caption: "Next Action",
@@ -110,7 +113,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             ]
         },
         {
-            caption : "TASK",
+            caption: "TASK",
             columns: [
                 {
                     caption: "Staff",
@@ -156,31 +159,59 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             ]
         },
         {
-            caption:"CONTACT",
-            columns:[
+            caption: "CONTACT",
+            columns: [
                 {
-                    caption:"Firstname",
-                    dataType:"string",
-                    type:"text",
-                    field:"firstname"
+                    caption: "Firstname",
+                    dataType: "string",
+                    type: "text",
+                    field: "firstname"
                 },
                 {
-                    caption:"Lastname",
-                    dataType:"string",
-                    type:"text",
-                    field:"lastname"
+                    caption: "Lastname",
+                    dataType: "string",
+                    type: "text",
+                    field: "lastname"
                 },
                 {
-                    caption:"Email",
-                    dataType:"string",
-                    type:"text",
-                    field:"email"
+                    caption: "Email",
+                    dataType: "string",
+                    type: "text",
+                    field: "email"
                 }
             ]
-            
+
         }
 
     ];
+
+    @ViewChild('grid') grid: AXDataGridComponent;
+
+
+    provideGridData = () => {
+        return new PromisResult(resolve => {
+            debugger;
+            let list = this.leads.slice(0);
+
+            let lamda = (e) => {
+                let result: boolean = true;
+                for (const i in this.gridFilter) {
+                    const f = this.gridFilter[i];
+                    if (f != "AND") {
+                        if (e[f.field] != f.value) {
+                            result = false;
+                            break;
+                        }
+                    }
+                }
+                return result;
+            }
+            if (this.gridFilter) {
+                list = list.filter(lamda);
+            }
+            resolve(list);
+        });
+    };
 
     constructor(
         private http: AXHttpService,
@@ -189,5 +220,21 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         private popup: AXPopupService
     ) {
         super();
+        for (let i = 0; i < 300; i++) {
+            let lead: any = {};
+            lead.firstname = ["arash", "reza", "ali", "kit", "Rod", "Sam"].pickRandom();
+            lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
+            lead.source = ["Chat", "Website", "Social", "Ads"].pickRandom();
+            lead.registerDate = new AXDateTime().add("day", i);
+            this.leads.push(lead);
+        }
+    }
+
+    leads: any[] = [];
+
+    gridFilter: any = null;
+    onFilterChange(filter) {
+        this.gridFilter = filter;
+        this.grid.refresh();
     }
 }

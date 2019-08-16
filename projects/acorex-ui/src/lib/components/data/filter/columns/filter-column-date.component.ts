@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AXFilterCondition, AXFilterColumnComponent } from '../filter.class';
 import { AXDateTime } from '../../../../core/calendar/datetime';
 
@@ -16,7 +16,8 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
     `,
     providers: [
         { provide: AXFilterColumnComponent, useExisting: AXFilterColumnDateComponent }
-    ]
+    ],
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
@@ -50,7 +51,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
     showCustom: boolean = false;
 
-    constructor() {
+    constructor(private cdr:ChangeDetectorRef) {
         super();
     }
 
@@ -59,8 +60,8 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     }
 
     onSelectedChanged(items: any[]) {
-        debugger;
         this.showCustom = items[0] && items[0].value == "custom";
+        this.cdr.markForCheck();
     }
 
     get condition(): AXFilterCondition {
@@ -68,7 +69,11 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         switch (selectedItem.value) {
             case "today":
                 this.fromDate = this.toDate = new AXDateTime();
-                break;
+                return {
+                    condition: "equal",
+                    field: this.field,
+                    value: [this.fromDate]
+                }
             case "this-week":
                 this.toDate = new AXDateTime();
                 this.fromDate = this.toDate.startOf("week");
@@ -86,13 +91,14 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         return {
             condition: "between",
             field: this.field,
-            value: [this.fromDate.date.toUTCString(), this.toDate.date.toUTCString()]
+            value: [this.fromDate, this.toDate]
         }
     }
 
     clear() {
         this.selectedItems = [];
         this.value = null;
+        this.cdr.markForCheck();
     }
 
 }

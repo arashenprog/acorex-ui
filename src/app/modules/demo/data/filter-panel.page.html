@@ -1,30 +1,48 @@
 <ax-page>
-    <ax-toolbar>
-      <ax-toolbar-menu ></ax-toolbar-menu>
-    </ax-toolbar>
-    <ax-page-content>
-        <div style="width: 100%; height: calc(100vh - 140px);">
-          <ax-dock-layout #layout>
-            <ax-dock-panel type="row">
-              <ax-dock-panel type="stack" [size]="20">
-                <ax-dock-content caption="Filters">
-                  <ng-template>
-                    <ax-filter-panel [groups]="filterGroups">
+  <ax-toolbar>
+    <ax-toolbar-menu></ax-toolbar-menu>
+  </ax-toolbar>
+  <ax-page-content>
+    <div style="width: 100%; height: calc(100vh - 140px);">
+      <ax-dock-layout #layout>
+        <ax-dock-panel type="row">
+          <ax-dock-panel type="stack" [size]="20">
+            <ax-dock-content caption="Filters">
+              <ng-template>
+                <ax-filter-panel [groups]="filterGroups" (filterChange)="onFilterChange($event)">
 
-                    </ax-filter-panel>
-                  </ng-template>
-                </ax-dock-content>
-             
-              </ax-dock-panel>
-              <ax-dock-panel type="stack" [size]="80">
-                <ax-dock-content caption="Leads">
-                  <ng-template>
-                  
-                  </ng-template>
-                </ax-dock-content>
-              </ax-dock-panel>
-            </ax-dock-panel>
-          </ax-dock-layout>
-        </div>
-    </ax-page-content>
-  </ax-page>
+                </ax-filter-panel>
+              </ng-template>
+            </ax-dock-content>
+
+          </ax-dock-panel>
+          <ax-dock-panel type="stack" [size]="80">
+            <ax-dock-content caption="Leads">
+              <ng-template>
+                <div style="height: 100%">
+                  <ax-data-grid #grid>
+                    <ax-data-source>
+                      <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
+                    </ax-data-source>
+                    <ax-selection-column></ax-selection-column>
+                    <ax-text-column field="firstname" caption="Firstname" [width]="100"></ax-text-column>
+                    <ax-text-column field="lastname" caption="Lastname" [width]="100"></ax-text-column>
+                    <ax-text-column field="source" caption="Source" [width]="100"></ax-text-column>
+                    <ax-date-column field="registerDate" caption="Registered" [width]="100"></ax-date-column>
+                    <!-- <ax-row-template>
+                          <ng-template let-data>
+                            <div style="text-align: center">
+                             {{data.title}}
+                            </div>
+                          </ng-template>
+                        </ax-row-template> -->
+                  </ax-data-grid>
+                </div>
+              </ng-template>
+            </ax-dock-content>
+          </ax-dock-panel>
+        </ax-dock-panel>
+      </ax-dock-layout>
+    </div>
+  </ax-page-content>
+</ax-page>

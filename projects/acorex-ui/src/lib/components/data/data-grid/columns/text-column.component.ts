@@ -67,7 +67,8 @@ export class TextFilterRenderer implements IFilterAngularComp {
   }
 
   setModel(model: any): void {
-    this.value = model ? model.value : null;
+    debugger;
+    this.onChange(model ? model.value : null);
   }
 
   ngAfterViewInit(params: IAfterGuiAttachedParams): void {

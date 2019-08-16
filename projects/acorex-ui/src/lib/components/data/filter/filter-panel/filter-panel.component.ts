@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 
@@ -6,74 +6,53 @@ import { MenuItem } from '../../../../core/menu.class';
     selector: 'ax-filter-panel',
     templateUrl: './filter-panel.component.html',
     styleUrls: ['./filter-panel.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class AXFilterPanelComponent implements OnInit {
+export class AXFilterPanelComponent  {
 
 
     @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
 
-    // modeItems: MenuItem[] = [
-    //     {
-    //         icon: "fas fa-filter",
-    //         name: "simple",
-    //         text: "Simple",
-    //         selected:true,
-    //         groupName: "mode",
-
-    //     },
-    //     {
-    //         icon: "fas fa-filter",
-    //         name: "advance",
-    //         text: "Advance",
-    //         groupName: "mode",
-    //     }
-    // ]
-
-    modeItems: MenuItem[] = [
-        {
-            icon: "fas fa-filter",
-            style: "ax-btn-primary",
-            name: "apply",
-            text: "Apply",
-
-        },
-        {
-            name: "reset",
-            text: "Reset"
-        }
-    ]
-
     @Input()
     groups: AXFilterColumnGroup[] = [];
 
+
+    @Output()
+    filterChange:EventEmitter<any>=new EventEmitter();
+
     constructor() { }
 
-    ngOnInit(): void { }
-
-
-    onItemClick(e: MenuItem) {
-        if (e.name == "apply") {
-            let con: any[] = [];
-            this.filters.forEach(e => {
-                if (e.active) {
-                    con.push(e.condition);
-                    con.push("AND");
-                }
-            });
-            con.pop();
-            console.log(con);
+    onItemClick(e) {
+        if (e) {
+            this.generateFilter();
+            
         }
-        if (e.name == "reset") {
-            this.groups.forEach(g => {
-                g.columns.forEach(c => {
-                    c.active = false;
-                })
-            })
-
-            this.filters.forEach(e => {
-                e.clear();
-            });
+        else {
+            this.clear();
         }
+    }
+
+    public clear() {
+        this.groups.forEach(g => {
+            g.columns.forEach(c => {
+                c.active = false;
+            });
+        });
+        this.filters.forEach(e => {
+            e.clear();
+        });
+    }
+
+    private generateFilter() {
+        let con: any[] = [];
+        this.filters.forEach(e => {
+            if (e.active) {
+                con.push(e.condition);
+                con.push("AND");
+            }
+        });
+        con.pop();
+        this.filterChange.emit(con);
     }
 }

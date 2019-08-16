@@ -62,8 +62,6 @@ export class AXDataGridComponent {
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;
 
-  @Input()
-  title: string;
 
   columnDefs: any[] = [];
 
@@ -81,6 +79,30 @@ export class AXDataGridComponent {
         this.gridApi.setQuickFilter(this.searchText);
     }
   }
+
+
+
+  private _filter: any[];
+  @Input()
+  public get filter(): any[] {
+    return this._filter;
+  }
+  public set filter(v: any[]) {
+    if (v != this._filter) {
+      this._filter = v;
+      //this.gridApi.setFilterModel(this._filter);
+      //this.gridApi.onFilterChanged();
+      this._filter.forEach(f => {
+        debugger;
+        let fc = this.gridApi.getFilterInstance(f.field);
+        if (fc) {
+          let ff = fc.getFrameworkComponentInstance();
+          ff.setModel(f);
+        }
+      });
+    }
+  }
+
 
 
 
