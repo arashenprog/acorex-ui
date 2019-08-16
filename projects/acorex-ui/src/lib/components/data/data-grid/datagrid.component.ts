@@ -62,8 +62,6 @@ export class AXDataGridComponent {
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;
 
-  @Input()
-  title: string;
 
   columnDefs: any[] = [];
 

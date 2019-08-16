@@ -1,3 +1,4 @@
+
 declare global {
     export interface Array<T> {
         pickRandom(): T;
@@ -6,5 +7,7 @@ declare global {
 Array.prototype.pickRandom = function (): any {
     return this[Math.floor(Math.random() * this.length)]
 }
+
+
 
 export {};

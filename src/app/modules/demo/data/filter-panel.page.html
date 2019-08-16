@@ -19,8 +19,8 @@
           <ax-dock-panel type="stack" [size]="80">
             <ax-dock-content caption="Leads">
               <ng-template>
-                <div style="height: 500px">
-                  <ax-data-grid title="Test remote data" [filter]="gridFilter">
+                <div style="height: 100%">
+                  <ax-data-grid #grid>
                     <ax-data-source>
                       <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
                     </ax-data-source>

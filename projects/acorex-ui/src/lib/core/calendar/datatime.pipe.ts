@@ -7,7 +7,7 @@ export class AXDateTimePipe implements PipeTransform {
 
     transform(value: AXDateTime | Date, format: string): string {
         if (value == null)
-            return 'Invalid date value!'
+            return "";
         if (!format)
             value.toString();
         if (value instanceof Date)

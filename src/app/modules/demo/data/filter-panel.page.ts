@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
     AXHttpService,
     AXToastService,
@@ -7,7 +7,8 @@ import {
     AXBasePageComponent,
     AXFilterColumnGroup,
     PromisResult,
-    AXDateTime
+    AXDateTime,
+    AXDataGridComponent
 } from 'acorex-ui';
 
 const STATUS = [
@@ -184,17 +185,29 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
     ];
 
+    @ViewChild('grid') grid: AXDataGridComponent;
+
 
     provideGridData = () => {
         return new PromisResult(resolve => {
-            let list: any[] = [];
-            for (let i = 0; i < 300; i++) {
-                let lead: any = {};
-                lead.firstname = ["arash", "reza", "ali", "kit", "Rod", "Sam"].pickRandom();
-                lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
-                lead.source = ["Chat", "Website", "Social", "Ads"].pickRandom();
-                lead.registerDate = new AXDateTime().add("day", i);
-                list.push(lead);
+            debugger;
+            let list = this.leads.slice(0);
+
+            let lamda = (e) => {
+                let result: boolean = true;
+                for (const i in this.gridFilter) {
+                    const f = this.gridFilter[i];
+                    if (f != "AND") {
+                        if (e[f.field] != f.value) {
+                            result = false;
+                            break;
+                        }
+                    }
+                }
+                return result;
+            }
+            if (this.gridFilter) {
+                list = list.filter(lamda);
             }
             resolve(list);
         });
@@ -207,45 +220,21 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         private popup: AXPopupService
     ) {
         super();
+        for (let i = 0; i < 300; i++) {
+            let lead: any = {};
+            lead.firstname = ["arash", "reza", "ali", "kit", "Rod", "Sam"].pickRandom();
+            lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
+            lead.source = ["Chat", "Website", "Social", "Ads"].pickRandom();
+            lead.registerDate = new AXDateTime().add("day", i);
+            this.leads.push(lead);
+        }
     }
+
+    leads: any[] = [];
 
     gridFilter: any = null;
     onFilterChange(filter) {
-        // var hardcodedFilter = {
-        //     country: ["Ireland", "United States"],
-        //     age: {
-        //         type: "lessThan",
-        //         filter: "30"
-        //     },
-        //     athlete: {
-        //         type: "startsWith",
-        //         filter: "Mich"
-        //     },
-        //     date: {
-        //         type: "lessThan",
-        //         dateFrom: "2010-01-01"
-        //     }
-        // };
-        // debugger;
-        // this.gridFilter = {};
-        // for (const key in filter) {
-        //     if (filter.hasOwnProperty(key)) {
-        //         const f = filter[key];
-        //         this.gridFilter[f.field] = {
-        //             filter: f.value,
-        //             type: 'startWith'
-        //         }
-        //     }
-        // }
-
-        this.gridFilter=filter;
-        
-        // this.gridFilter = {
-        //     firstname: {
-        //         type: "startWith",
-        //         filter: "ali"
-
-        //     }
-        // };
+        this.gridFilter = filter;
+        this.grid.refresh();
     }
 }

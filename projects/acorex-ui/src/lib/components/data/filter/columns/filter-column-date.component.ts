@@ -74,7 +74,6 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
                     field: this.field,
                     value: [this.fromDate]
                 }
-                break;
             case "this-week":
                 this.toDate = new AXDateTime();
                 this.fromDate = this.toDate.startOf("week");

@@ -37,7 +37,7 @@ export class AXGridDateColumn extends AXGridDataColumn {
 
 @Component({
   template: `
-    {{ value | dt:"YYYY-MM-dd"}}
+    {{ value | dt:"YYYY-MM-DD"}}
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
