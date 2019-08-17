@@ -1,4 +1,4 @@
-<div class="ax-field-set">
+<div class="ax-field-set" [ngClass]="{'ax-disabled': disabled}">
   <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
     <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
@@ -6,7 +6,7 @@
       </legend>
     </fieldset>
     <input [placeholder]="placeholder" [(ngModel)]="text" [textMask]="{ mask: maskInner, guide: true }"
-      (blur)="onBlur($event)" (focus)="onFocus($event)" class="ax-text-box" type="text" />
+      (blur)="onBlur($event)" (focus)="onFocus($event)" class="ax-text-box" type="text" [attr.disabled] = "disabled  ? 'disabled' : null" />
 
     <div class="ax-field-set-button" *ngIf="text && showClear">
       <button type="button" class="btn btn-light" (click)="clearText()">

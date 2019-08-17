@@ -3,16 +3,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    margin: var(--sp-xl-size);
     .ax-carousel-container {
         img {
             width: 200px; 
         }
     }
     .circle-ctrl {
-        width: 40px;
-        height: 40px;
-        border-radius: 50px;
+        width: var(--el-xl-size);
+        height: var(--el-xl-size);
+        border-radius: var(--border-circle-size);
         display: flex;
         justify-content: center;
         align-items: center;

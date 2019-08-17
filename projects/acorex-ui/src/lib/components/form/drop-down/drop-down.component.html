@@ -12,7 +12,7 @@
         <i class="fas fa-times"></i>
       </button>
       <button type="button" class=" btn btn-primary" (click)="popSelectBox.toggle()">
-        <i class="fas fa-angle-down"></i>
+        <i class="{{icon}}"></i>
       </button>
     </div>
   </div>
@@ -20,7 +20,7 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<ax-popover [fitParent]="true" distance="10" height="auto" target="#dropSelectBox" placement="bottom-end"
-  alignment="top-end" #popSelectBox>
+<ax-popover [fitParent]="true" distance="10" height="'200px'" target="#dropSelectBox" placement="bottom-start"
+  alignment="top-start" #popSelectBox>
   <ng-content> </ng-content>
 </ax-popover>

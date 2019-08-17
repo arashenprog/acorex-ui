@@ -16,16 +16,15 @@
 .radio-container {
   display: inline-block;
   position: relative;
-  padding-left: 25px;
+  padding-left: 20px;
   cursor: pointer;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 20px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: 30px;
-  margin-right: 10px;
+  margin: 0 var(--sp-md-size) 0 0;
   input {
     position: absolute;
     opacity: 0;
@@ -33,10 +32,10 @@
   }
   .checkmark {
     position: absolute;
-    top: 5px;
+    top: 3px;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     background-color: var(--white-color);
     border: 1px solid;
     border-color: var(--border-color);
@@ -51,7 +50,7 @@
 
 /* When the radio button is checked, add a blue background */
 .radio-container input:checked ~ .checkmark {
-  background-color: var(--primary-color);
+  background-color: var(--white-color);
   border-color: var(--primary-color);
 }
 
@@ -69,10 +68,10 @@
 
 /* Style the indicator (dot/circle) */
 .radio-container .checkmark:after {
-  top: 6px;
-  left: 6px;
-  width: 6px;
-  height: 6px;
+  top: 4px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
   @include border-radius(50%);
-  background: var(--white-color);
+  background: var(--primary-color);
 }

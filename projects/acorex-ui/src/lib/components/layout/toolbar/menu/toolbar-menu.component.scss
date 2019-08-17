@@ -33,8 +33,7 @@
             justify-content: space-between;
             align-items: center;
             font-size: var(--font-md-size);
-            height: var(--el-lg-size);
-            padding: 5px;
+            padding: 2px 5px;
 
             span.ax-toolbar-menu-item-text {
                 display: flex;
@@ -98,7 +97,7 @@
 
         li {
             cursor: pointer;
-            padding: 7px !important;
+            padding: var(--sp-sm-size) !important;
 
             &:hover {
                 background-color: var(--primary-lighter-color);

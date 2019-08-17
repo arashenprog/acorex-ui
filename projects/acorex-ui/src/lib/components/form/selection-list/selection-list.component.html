@@ -1,6 +1,14 @@
 <div *ngIf=" mode == 'multiple' ">
-    <ax-check-box label="{{item.text}}" *ngFor="let item of items" [(value)]="item.value"></ax-check-box>
+    <ax-check-box label="{{item[textField]}}" *ngFor="let item of items" [value]="selectedItems.indexOf(item)>-1" (valueChange)="onCheckValueChange(item,$event)"
+        [style.display]="direction=='vertical'?'block':'inline'">
+    </ax-check-box>
 </div>
 <div *ngIf=" mode == 'single' ">
-    <ax-radio-button label="{{item.text}}" *ngFor="let item of items" [group]="_uid" [(value)]="item.value"></ax-radio-button>
+    <div *ngFor="let item of items" [style.display]="direction=='vertical'?'block':'inline'">
+        <label class="radio-container">
+            {{ item[textField] }}
+            <input type="radio" (change)="onCheckValueChange(item,true)" [checked]="selectedItems[0]==item" [name]="_uid" />
+            <span class="checkmark"></span>
+        </label>
+    </div>
 </div>

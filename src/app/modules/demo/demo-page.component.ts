@@ -36,23 +36,23 @@ export class DemoPage extends AXBasePageComponent {
   sectionList: CheckItem[] = [
     {
       text: "First",
-      value: false
+      selected: false
     },
     {
       text: "Second",
-      value: false
+      selected: false
     },
     {
       text: "Third",
-      value: false
+      selected: false
     },
     {
       text: "Fourth",
-      value: false
+      selected: false
     },
     {
       text: "Fifth",
-      value: false
+      selected: false
     }
   ];
 

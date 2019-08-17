@@ -58,7 +58,7 @@ export class AXPopoverComponent {
   }
 
   setPosition() {
-
+    debugger
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
       ".popover-container"
     );
@@ -70,7 +70,8 @@ export class AXPopoverComponent {
     pop.style.width = this.width + "px";
     pop.style.height = this.height + "px";
 
-    if (this.fitParent) {
+    if (this.fitParent === true) {
+
       pop.style.width = target.getBoundingClientRect().width + "px"
     }
 

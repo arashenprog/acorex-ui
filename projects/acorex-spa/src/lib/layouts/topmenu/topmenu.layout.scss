@@ -2,7 +2,7 @@
   header {
     .menu-container {
       display: flex;
-      height: 40px;
+      height: var(--el-base-size);
       background: var(--white-color);
       position: fixed;
       top: 0;
@@ -37,34 +37,38 @@
   }
   .tabs-container {
     position: fixed;
-    top: 40px;
+    top: var(--el-base-size);
+    height: var(--el-base-size);
     background: var(--primary-lighter-color);
     width: 100%;
     border-bottom: 2px solid var(--primary-color);
   }
   .top-menu-wrapper {
     position: fixed;
-    top: 80px;
+    top: 105px;
     width: 100%;
     padding: 10px 2px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 107px);
     .page-content-wrap {
       position: relative;
       .ax-page-toolbar {
         position: fixed;
-        top: 80px;
         left: 0;
         right: 0;
         width: 100%;
-        padding: 5px 10px;
+        top: 70px;
+        height: var(--el-base-size);
+        padding: 0 10px;
         z-index: 2;
+        display: flex;
+        align-items: center;
         box-shadow: 0 5px 4px -3px var(--shadow-color);
         -webkit-box-shadow: 0 5px 4px -3px var(--shadow-color);
         -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
       }
       .ax-page-content {
         position: absolute;
-        top: 40px;
+        top: 0;
         width: 100%;
         height: calc(100vh - 130px) !important;
         padding: 5px 2px;

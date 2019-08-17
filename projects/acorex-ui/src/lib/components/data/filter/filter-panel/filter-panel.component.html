@@ -1,31 +1,48 @@
 <div class="ax-filter-panel">
-    <ax-toolbar>
-        <ax-toolbar-menu [items]="modeItems" selection="single">
+    <!-- <ax-toolbar>
+        <ax-toolbar-menu [items]="modeItems" selection="single" (itemClick)="onItemClick($event)">
 
         </ax-toolbar-menu>
-    </ax-toolbar>
+    </ax-toolbar> -->
     <div class="ax-filter-panel-body">
         <ng-container *ngFor="let g of groups">
-            <ax-panel-box [title]="g.caption">
-                <ng-container *ngFor="let c of g.columns">
-                    <div>
-                        <ax-check-box [label]="c.caption" #f [(value)]="c.active">
-                        </ax-check-box>
-                    </div>
-                    <div [hidden]="!f.value" style="padding-inline-start: 20px">
-                        <select>
-                            <option>
-                                is
-                            </option>
-                            <option>
-                                is not
-                            </option>
-                        </select>
-                        <ax-text-box placeholder="Type here">
-                        </ax-text-box>
-                    </div>
-                </ng-container>
-            </ax-panel-box>
+            <div class="ax-filter-panel-group-header" *ngIf="g.caption">
+                <i class="fas fa-caret-square-right"></i>
+                <span>{{g.caption}}</span>
+            </div>
+            <ng-container *ngFor="let c of g.columns">
+                <div class="ax-filter-item-header" [style.margin-bottom.px]="c.active ? 0 : 2">
+                    <ax-check-box [label]="c.caption" [(value)]="c.active">
+                    </ax-check-box>
+                </div>
+                <div [hidden]="!c.active">
+                    <ng-container [ngSwitch]="c.type">
+                        <ng-container *ngSwitchCase="'selection'">
+                            <ax-filter-column-selection [field]="c.field" [active]="c.active" [mode]="c.options.mode"
+                                [items]="c.options.items">
+                            </ax-filter-column-selection>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'date'">
+                            <ax-filter-column-date [field]="c.field" [active]="c.active">
+                            </ax-filter-column-date>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            <ax-filter-column-string [field]="c.field" [active]="c.active">
+                            </ax-filter-column-string>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
         </ng-container>
+    </div>
+    <div class="filter-footer">
+        <ax-button (onClick)="onItemClick(1)" type="success">
+            <i class="fas fa-filter"></i>
+            Apply Filter
+        </ax-button>
+        <ax-button (onClick)="onItemClick(0)" type="light">
+            <i class="fas fa-eraser"></i>
+            Clear
+        </ax-button>
     </div>
 </div>

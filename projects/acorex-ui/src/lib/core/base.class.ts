@@ -4,7 +4,8 @@ import {
   EventEmitter,
   ContentChild,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ChangeDetectorRef
 } from "@angular/core";
 import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
@@ -35,12 +36,14 @@ export class PromisResult<T> {
 }
 
 export class AXBaseComponent {
-  @ViewChild("input") input: ElementRef;
+  @ViewChild("input") input: ElementRef<HTMLInputElement>;
   _uid: string = "M" + Math.ceil(Math.random() * 10000);
   @Input()
   width: string = "";
   @Input() height: string = "auto";
   @Input() readOnly: boolean = false;
+  @Input() disabled: boolean = false;
+
 
   focus(): void { }
 
@@ -83,7 +86,7 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
     return this._text;
   }
   public set text(v: string) {
-    if (v.trim() != this._text) {
+    if (v != this._text) {
       this._text = v;
       this.textChange.emit(v);
     }
@@ -129,21 +132,27 @@ export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   @Input() label: string = "";
 
+  constructor(protected cdr: ChangeDetectorRef) {
+    super();
+  }
+
   // Value
   @Output()
-  onValueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   //
   protected _value: boolean = false;
   //
   set value(val: boolean) {
     if (this._value !== val) {
       this._value = val;
-      this.onValueChange.emit(val);
+      this.valueChange.emit(val);
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
     }
   }
   //
   @Input()
-  get value() {
+  get value(): boolean {
     return this._value;
   }
 }

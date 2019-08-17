@@ -1,32 +1,14 @@
-<ax-check-box [(value)]="check" label="Check Me" (onValueChange)="valueChange($event)"></ax-check-box>
+<ax-selection-list mode="single" [items]="items" #f1 [selectedItems]="radioSelectedItems">
 
-<ng-container *ngIf="check; else elseTemplate">
-    TRUE
-</ng-container>
-<ng-template #elseTemplate>
-    Flase
-</ng-template>
+</ax-selection-list>
 
+<div>{{f1.selectedItems.length}}</div>
+<br>
+<br>
+<br>
+<br>
+<ax-selection-list mode="multiple"  [items]="items2" #f2 [selectedItems]="checkSelectedItems">
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <ax-text-box placeholder="without label"></ax-text-box>
-        </div>
-        <div class="col">
-            <ax-text-box size="sm" label="Input Label" placeholder="with label"></ax-text-box>
-        </div>
-        <div class="col">
-            <ax-text-box label="Input Label" placeholder="with label"></ax-text-box>
-        </div>
-        <div class="col">
-            <ax-text-box label="Input Label" placeholder="with label"></ax-text-box>
-        </div>
-        <div class="col">
-            <ax-text-box label="Input Label" placeholder="with label"></ax-text-box>
-        </div>
-        <div class="col">
-            <ax-text-box label="Input Label" placeholder="with label"></ax-text-box>
-        </div>
-    </div>
-</div>
+</ax-selection-list>
+
+<div>{{f2.selectedItems.length}}</div>

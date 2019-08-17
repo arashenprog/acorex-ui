@@ -78,12 +78,13 @@
     display: flex;
     flex: 1;
     justify-content: space-between;
-    height: 30px;
+    height: var(--el-md-size);
     align-items: center;
     border-bottom: 1px solid var(--border-color);
-    padding: 0 var(--sp-md-size);
+    padding: 0 var(--sp-sm-size);
     background-color: var(--primary-color);
     color: var(--white-color);
+    font-size: var(--font-md-size);
   }
   .ax-panel-box-content {
     padding: var(--sp-sm-size);

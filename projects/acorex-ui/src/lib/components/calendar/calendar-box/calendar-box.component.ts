@@ -29,7 +29,6 @@ export class AXCalendarBoxComponent {
     private _view: AXCalendarViewType = "day";
     @Input()
     public get view(): AXCalendarViewType {
-        debugger;
         return this._view;
     }
     public set view(v: AXCalendarViewType) {
@@ -51,7 +50,7 @@ export class AXCalendarBoxComponent {
     viewRange: AXDateTimeRange;
 
     @Output()
-    onChanged: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
+    valueChange: EventEmitter<AXDateTime> = new EventEmitter<AXDateTime>();
 
     private _value: AXDateTime;
     @Input()
@@ -62,7 +61,7 @@ export class AXCalendarBoxComponent {
         if (!v.equal(this._value)) {
             this._value = v;
             this.setFocus(v);
-            this.onChanged.emit(v);
+            this.valueChange.emit(v);
         }
     }
 
@@ -85,7 +84,6 @@ export class AXCalendarBoxComponent {
     }
 
     navigate(value: number | AXDateTime) {
-        debugger;
         let start: AXDateTime;
         let end: AXDateTime;
         if (this.view == "day") {

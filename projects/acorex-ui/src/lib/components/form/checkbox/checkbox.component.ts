@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from "@angular/core";
-import { AXBaseComponent } from "../../../core/base.class";
+import { AXBaseComponent, AXCheckedBaseComponent } from "../../../core/base.class";
 
 @Component({
   selector: "ax-check-box",
@@ -15,31 +15,31 @@ import { AXBaseComponent } from "../../../core/base.class";
   styleUrls: ["./checkbox.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AXCheckBoxComponent extends AXBaseComponent {
+export class AXCheckBoxComponent extends AXCheckedBaseComponent {
 
-  constructor(private cdr: ChangeDetectorRef) {
-    super();
+  constructor(protected cdr: ChangeDetectorRef) {
+    super(cdr);
   }
 
-  @Input() label: string = "";
+  // @Input() label: string = "";
 
-  // Value
-  @Output()
-  onValueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  //
-  protected _value: boolean = false;
-  //
-  set value(val: boolean) {
-    if (this._value !== val) {
-      this._value = val;
-      this.onValueChange.emit(val);
-      this.cdr.markForCheck();
-      this.cdr.detectChanges();
-    }
-  }
-  //
-  @Input()
-  get value() {
-    return this._value;
-  }
+  // // Value
+  // @Output()
+  // valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  // //
+  // protected _value: boolean = false;
+  // //
+  // set value(val: boolean) {
+  //   if (this._value !== val) {
+  //     this._value = val;
+  //     this.valueChange.emit(val);
+  //     this.cdr.markForCheck();
+  //     this.cdr.detectChanges();
+  //   }
+  // }
+  // //
+  // @Input()
+  // get value() {
+  //   return this._value;
+  // }
 }

@@ -67,18 +67,17 @@ export class TextFilterRenderer implements IFilterAngularComp {
   }
 
   setModel(model: any): void {
-    this.value = model ? model.value : null;
+    debugger;
+    this.onChange(model ? model.value : null);
   }
 
   ngAfterViewInit(params: IAfterGuiAttachedParams): void {
     window.setTimeout(() => {
-      debugger
       this.input.focus();
     });
   }
 
   onChange(newValue): void {
-    debugger;
     if (this.value !== newValue) {
       this.value = newValue;
       if (this.value == "")

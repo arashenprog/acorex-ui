@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: var(--sp-md-size) 0;
   border-width: var(--border-width-size);
   border-style: solid;
   border-color: var(--white-color);
@@ -16,6 +16,7 @@
   @include border-radius(var(--border-radius-size));
   border: var(--border-width-size) solid;
   border-color: var(--border-color);
+  font-size: var(--font-md-size);
   &:hover {
     border-color: var(--primary-color);
     border-style: solid;
@@ -34,7 +35,8 @@
       font-size: 30px;
     }
     p {
-      padding-top: 5px;
+      padding-top: var(--sp-md-size);
+ 
     }
   }
   .preview {

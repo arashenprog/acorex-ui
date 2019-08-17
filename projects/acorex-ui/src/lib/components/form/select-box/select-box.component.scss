@@ -1,16 +1,11 @@
-@import "~@ng-select/ng-select/themes/default.theme.css";
-.rtl {
-  .ng-value {
-    padding: 15px 0 7px 12px !important;
-  }
-}
 .ax-select-item {
-  min-height: 35px;
-  padding: 5px 10px;
+  height: var(--el-md-size);
+  padding: 0 var(--sp-md-size);
   cursor: pointer;
   border-bottom: 1px solid;
   border-color: var(--border-color);
+  font-size: var(--font-md-size);
   &:hover {
-    background: var(--border-color);
+    background: var(--gray-light-color);
   }
 }

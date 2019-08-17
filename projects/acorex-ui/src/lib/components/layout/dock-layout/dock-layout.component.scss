@@ -23,11 +23,11 @@
   }
 }
 .lm_tab {
-  border-top-right-radius: 4px !important;
-  border-top-left-radius: 4px !important;
+  border-top-right-radius: var(--border-radius-size) !important;
+  border-top-left-radius: var(--border-radius-size) !important;
   border: none !important;
   cursor: pointer;
-  height: 18px !important;
+  height: 20px !important;
   padding: 0 25px 0px 10px !important;
 }
 .lm_content {

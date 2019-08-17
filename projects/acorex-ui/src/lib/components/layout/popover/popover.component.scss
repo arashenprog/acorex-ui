@@ -6,8 +6,8 @@
   border-radius: var(--border-radius-size);
   z-index: 200;
   .arrow {
-    width: 15px;
-    height: 15px;
+    width: var(--el-md-size);
+    height: var(--el-md-size);
     background: white;
     position: absolute;
     right: 50%;

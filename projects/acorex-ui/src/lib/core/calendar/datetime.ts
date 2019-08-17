@@ -118,7 +118,7 @@ export class AXDateTime {
     }
 
     toString(): string {
-        return this.format("YYYY-mm-dd")
+        return this.format("YYYY-MM-DD")
     }
 
     equal(value: AXDateTime, unit: TimeUnit = "day") {

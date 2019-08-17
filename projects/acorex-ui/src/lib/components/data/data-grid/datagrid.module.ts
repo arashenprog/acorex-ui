@@ -16,6 +16,7 @@ import { AXCheckBoxModule } from '../../form/checkbox/checkbox.module';
 import { AXSelectBoxModule } from '../../form/select-box/select-box.module';
 import { AXButtonModule } from '../../form/button/button.module';
 import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from "./templates/row-template.component";
+import { DateRenderer, AXGridDateColumn } from "./columns/date-column.component";
 
 @NgModule({
   declarations: [
@@ -23,9 +24,11 @@ import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from ".
     AXGridTextColumn,
     AXGridCheckColumn,
     AXGridSelectionColumn,
+    AXGridDateColumn,
     AXGridCommandColumn,
     BooleanRenderer,
     BooleanFilterRenderer,
+    DateRenderer,
     TextFilterRenderer,
     AXDataGridFilterComponent,
     AXDataGridRowTemplateComponent,
@@ -48,14 +51,17 @@ import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from ".
     AXDataGridRowTemplateComponent,
     AXGridTextColumn,
     AXGridCheckColumn,
+    AXGridDateColumn,
     AXGridSelectionColumn,
     AXGridCommandColumn,
     BooleanRenderer,
     BooleanFilterRenderer,
+    DateRenderer,
     CommandRenderer
   ],
   entryComponents: [
     BooleanRenderer,
+    DateRenderer,
     BooleanFilterRenderer,
     CommandRenderer,
     TextFilterRenderer,

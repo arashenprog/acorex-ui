@@ -15,7 +15,7 @@ import { AXCalendarBoxComponent } from '../../calendar-box/calendar-box.componen
     <div #nav>
         <ax-toolbar-menu [items]="items"  (itemClick)="onItemClick($event)"></ax-toolbar-menu>
         <ax-popover target="#nav" placement="bottom-end" alignment="top-end" #pop>
-            <ax-calendar-box (onChanged)="onDateChange($event)" [depth]="viewDepth" #cal></ax-calendar-box>
+            <ax-calendar-box (valueChange)="onDateChange($event)" [depth]="viewDepth" #cal></ax-calendar-box>
         </ax-popover>
     </div>      
     `,
