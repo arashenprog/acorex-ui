@@ -41,10 +41,8 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
         }
     }
     clear() {
-        this.field = "";
         this.selectedItems = [];
         this.value = null;
-        this.active = false;
     }
 
 }

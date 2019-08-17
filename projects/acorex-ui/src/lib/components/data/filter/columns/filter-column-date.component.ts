@@ -104,7 +104,6 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     }
 
     clear() {
-        this.selectedItem = null;
         this.value = null;
         this.cdr.markForCheck();
     }

@@ -45,7 +45,6 @@ export class AXFilterColumnComponent {
     }
 
     clear() {
-        this.operator = "equal";
         this.value = null;
     }
 }
