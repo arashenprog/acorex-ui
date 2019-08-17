@@ -18,7 +18,7 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
 export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
 
 
-    selectedItems:any[] = [];
+    selectedItems: any[] = [];
 
     @Input()
     items: CheckItem[] = [];
@@ -32,14 +32,15 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
 
     get condition(): AXFilterCondition {
         debugger
-        let values = this.selectedItems.map(c=>c.value);
+        let values = this.selectedItems.map(c => c.value);
         return {
             condition: this.mode == "single" ? "equal" : "contains",
             field: this.field,
+            dataType: this.dataType,
             value: this.mode == "single" ? values[0] : values
         }
     }
-    clear(){
+    clear() {
         this.field = "";
         this.selectedItems = [];
         this.value = null;

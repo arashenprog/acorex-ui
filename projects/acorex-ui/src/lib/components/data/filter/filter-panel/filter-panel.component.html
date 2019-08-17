@@ -19,7 +19,7 @@
                     <ng-container [ngSwitch]="c.type">
                         <ng-container *ngSwitchCase="'selection'">
                             <ax-filter-column-selection [field]="c.field" [active]="c.active" [mode]="c.options.mode"
-                                [items]="c.options.items">
+                                [items]="c.options.items" [dataType]="c.dataType">
                             </ax-filter-column-selection>
                         </ng-container>
                         <ng-container *ngSwitchCase="'date'">

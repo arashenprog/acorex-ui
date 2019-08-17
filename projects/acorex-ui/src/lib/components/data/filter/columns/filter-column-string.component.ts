@@ -44,11 +44,11 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
         },
         {
             title: "start with",
-            value: "start-width"
+            value: "start-with"
         },
         {
             title: "end with",
-            value: "end-width"
+            value: "end-with"
         },
         {
             title: "is empty",

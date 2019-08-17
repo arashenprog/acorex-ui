@@ -184,6 +184,10 @@ export class AXDateTimeRange {
         return result;
     }
 
+    includes(value: AXDateTime, unit: TimeUnit = "day"): boolean {
+        return value.compaire(this.startTime, unit) >= 0 && value.compaire(this.endTime, unit) <= 0;
+    }
+
 
 
 }

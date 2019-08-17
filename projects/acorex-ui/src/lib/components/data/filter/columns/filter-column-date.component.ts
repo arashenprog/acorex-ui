@@ -1,12 +1,13 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AXFilterCondition, AXFilterColumnComponent } from '../filter.class';
 import { AXDateTime } from '../../../../core/calendar/datetime';
+import { AXSelectionListComponent } from '../../../form/selection-list/selection-list.component';
 
 @Component({
     selector: 'ax-filter-column-date',
     template: `
         <div class="ax-filter-section">
-            <ax-selection-list [items]="items" [(selectedItems)]="selectedItems" mode="single" direction="vertical" (selectedItemsChange)="onSelectedChanged($event)">
+            <ax-selection-list [items]="items"  mode="single"  direction="vertical" (selectedItemsChange)="onSelectedChanged($event)">
             </ax-selection-list>
         </div>
         <div class="ax-filter-section" [hidden]="!showCustom">
@@ -17,9 +18,11 @@ import { AXDateTime } from '../../../../core/calendar/datetime';
     providers: [
         { provide: AXFilterColumnComponent, useExisting: AXFilterColumnDateComponent }
     ],
-    changeDetection:ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
+
+    @ViewChild(AXSelectionListComponent) selection: AXSelectionListComponent;
 
     items: any = [
         {
@@ -47,56 +50,61 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     fromDate: AXDateTime = new AXDateTime();
     toDate: AXDateTime = new AXDateTime();
 
-    selectedItems: any[] = [];
+    selectedItem: any = null;
 
     showCustom: boolean = false;
 
-    constructor(private cdr:ChangeDetectorRef) {
+    constructor(private cdr: ChangeDetectorRef) {
         super();
+        this.dataType = "date";
     }
 
     ngAfterViewInit(): void {
-        this.selectedItems.push(this.items[0]);
+        this.selection.selectedItems = [this.items[0]];
     }
 
     onSelectedChanged(items: any[]) {
-        this.showCustom = items[0] && items[0].value == "custom";
+        this.selectedItem = items[0];
+        this.showCustom = this.selectedItem.value == "custom";
         this.cdr.markForCheck();
     }
 
     get condition(): AXFilterCondition {
-        let selectedItem = this.selectedItems[0];
-        switch (selectedItem.value) {
+        debugger;
+        let today = new AXDateTime();
+        switch (this.selectedItem.value) {
             case "today":
-                this.fromDate = this.toDate = new AXDateTime();
+                this.fromDate = this.toDate = today;
                 return {
                     condition: "equal",
                     field: this.field,
-                    value: [this.fromDate]
+                    dataType: this.dataType,
+                    value: this.fromDate
                 }
             case "this-week":
-                this.toDate = new AXDateTime();
-                this.fromDate = this.toDate.startOf("week");
+                this.toDate = today.endOf("week");
+                this.fromDate = today.startOf("week");
                 break;
             case "this-month":
-                this.toDate = new AXDateTime();
-                this.fromDate = this.toDate.startOf("month");
+                this.toDate = today.endOf("month")
+                this.fromDate = today.startOf("month");
                 break;
             case "this-year":
-                this.toDate = new AXDateTime();
-                this.fromDate = this.toDate.startOf("year");
+                this.toDate = today.endOf("year")
+                this.fromDate = today.startOf("year");
                 break;
         }
 
         return {
             condition: "between",
             field: this.field,
+            dataType: this.dataType,
             value: [this.fromDate, this.toDate]
         }
     }
 
     clear() {
-        this.selectedItems = [];
+        this.selectedItem = null;
         this.value = null;
         this.cdr.markForCheck();
     }

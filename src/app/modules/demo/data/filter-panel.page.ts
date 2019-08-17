@@ -97,17 +97,17 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                         mode: "multiple",
                         items: STATUS
                     },
-                    field: "statu"
+                    field: "statusId"
                 },
                 {
                     caption: "Next Action",
                     dataType: "number",
                     type: "selection",
                     options: {
-                        mode: "multiple",
+                        mode: "single",
                         items: STATUS
                     },
-                    field: "nextAction"
+                    field: "nextActionId"
                 },
 
             ]
@@ -151,10 +151,10 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                     field: "staff"
                 },
                 {
-                    caption: "Due Date",
+                    caption: "Register Date",
                     dataType: "date",
                     type: "date",
-                    field: "date"
+                    field: "registerDate"
                 }
             ]
         },
@@ -190,26 +190,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
     provideGridData = () => {
         return new PromisResult(resolve => {
-            debugger;
-            let list = this.leads.slice(0);
-
-            let lamda = (e) => {
-                let result: boolean = true;
-                for (const i in this.gridFilter) {
-                    const f = this.gridFilter[i];
-                    if (f != "AND") {
-                        if (e[f.field] != f.value) {
-                            result = false;
-                            break;
-                        }
-                    }
-                }
-                return result;
-            }
-            if (this.gridFilter) {
-                list = list.filter(lamda);
-            }
-            resolve(list);
+            resolve(this.leads.query(this.gridFilter));
         });
     };
 
@@ -222,10 +203,16 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         super();
         for (let i = 0; i < 300; i++) {
             let lead: any = {};
-            lead.firstname = ["arash", "reza", "ali", "kit", "Rod", "Sam"].pickRandom();
+            lead.firstname = ["Arash", "Reza", "Ali","Alireza", "Kit", "Rod", "Sam"].pickRandom();
             lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
-            lead.source = ["Chat", "Website", "Social", "Ads"].pickRandom();
-            lead.registerDate = new AXDateTime().add("day", i);
+            lead.source = ["Chat", "Website", "Social", "Ads", null].pickRandom();
+            let status = STATUS.pickRandom();
+            let nextAction = STATUS.pickRandom();
+            lead.status=status.text;
+            lead.statusId=status.value;
+            lead.nextAction=nextAction.text;
+            lead.nextActionId=nextAction.value;
+            lead.registerDate = new AXDateTime().add("day", i-[10, 0, 23, 37, 98].pickRandom());
             this.leads.push(lead);
         }
     }
