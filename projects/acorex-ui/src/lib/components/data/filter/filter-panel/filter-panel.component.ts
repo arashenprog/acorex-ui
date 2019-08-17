@@ -7,9 +7,9 @@ import { MenuItem } from '../../../../core/menu.class';
     templateUrl: './filter-panel.component.html',
     styleUrls: ['./filter-panel.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection:ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AXFilterPanelComponent  {
+export class AXFilterPanelComponent {
 
 
     @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
@@ -19,17 +19,17 @@ export class AXFilterPanelComponent  {
 
 
     @Output()
-    filterChange:EventEmitter<any>=new EventEmitter();
+    filterChange: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
     onItemClick(e) {
         if (e) {
             this.generateFilter();
-            
         }
         else {
             this.clear();
+            this.generateFilter();
         }
     }
 
