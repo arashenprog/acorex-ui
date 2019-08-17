@@ -39,11 +39,12 @@
                       <ax-toolbar-search></ax-toolbar-search>
                     </div>
                   </ax-toolbar>
+                  <ax-data-source>
+                    <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
+                  </ax-data-source>
                   <ax-scheduler-views>
                     <ax-scheduler-view type="day" name="day" caption="Day"></ax-scheduler-view>
-                    <!-- <ax-scheduler-view type="day" name="day3" caption="3 Days" interval="3"></ax-scheduler-view> -->
                     <ax-scheduler-view type="week" name="week" caption="Week"></ax-scheduler-view>
-                    <!-- <ax-scheduler-view type="week" name="week2" caption="2 Weeks" interval="2"></ax-scheduler-view> -->
                     <ax-scheduler-view type="month" name="month" caption="Month"></ax-scheduler-view>
                     <ax-scheduler-view type="agenda" name="agenda" caption="Agenda" interval="14"></ax-scheduler-view>
                     <ax-scheduler-view type="timeline" name="timeline" caption="Timeline"></ax-scheduler-view>

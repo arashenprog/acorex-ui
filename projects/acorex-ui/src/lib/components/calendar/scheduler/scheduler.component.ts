@@ -13,7 +13,7 @@ import {
   NgZone,
   ViewContainerRef
 } from "@angular/core";
-import { AXSchedulerViewsProperty } from "./scheduler-views.property";
+import { AXSchedulerViewsProperty, AXSchedulerViewProperty } from "./scheduler-views.property";
 import { AXToolbarSchedulerViewsComponent } from "./toolbars/scheduler-toolbar-views";
 import { MenuItem } from "../../../core/menu.class";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
@@ -26,6 +26,8 @@ import { AXToolbarSchedulerNavigatorComponent } from "./toolbars/scheduler-toolb
 import { AXSchedulerAgendaViewComponent } from "./views/agenda/scheduler-agenda-view.component";
 import { AXSchedulerTimelineViewComponent } from './views/timeline/scheduler-timeline-view.component';
 import { AXSchedulerEventChangeArgs, AXSchedulerEvent } from "./scheduler.class";
+import { AXToolbarSearchComponent } from "../../layout/toolbar/search/toolbar-search.component";
+import { AXDataSourceComponent } from "../../data/data-source/datasource.component";
 
 
 
@@ -57,6 +59,12 @@ export class AXSchedulerComponent {
   @ContentChild(AXToolbarSchedulerNavigatorComponent)
   private toolbarNavigator: AXToolbarSchedulerNavigatorComponent;
 
+  @ContentChild(AXToolbarSearchComponent)
+  searchInput: AXToolbarSearchComponent;
+
+  @ContentChild(AXDataSourceComponent)
+  private dataSource: AXDataSourceComponent;
+
   view: AXSchedulerBaseViewComponent;
 
 
@@ -72,6 +80,7 @@ export class AXSchedulerComponent {
   private viewItems: MenuItem[] = [];
   private today = new AXDateTime();
   private navigatorDate = new AXDateTime();
+  searchText: string;
 
   @Input()
   events: AXSchedulerEvent[] = [];
@@ -82,57 +91,54 @@ export class AXSchedulerComponent {
   setView(name: string) {
     this._currentView = name;
     if (this.viewManager.views) {
-      this.startAnim();
       this.viewItems.forEach(c => {
         c.selected = false;
       });
-      //
-      if (this.view)
-        this.view.ngOnDestroy();
-      //
       this.viewItems.find(c => c.name == name).selected = true;
       let selected = this.viewManager.views.find(c => c.name == name);
-
-      let portal: ComponentPortal<AXSchedulerBaseViewComponent>;
-      this.portalOutlet.detach();
-      let interval = selected.interval;
-      if (selected.type == "day") {
-        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerDayTimeViewComponent);
-      }
-      if (selected.type == "week") {
-        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerDayTimeViewComponent);
-        interval = selected.interval * 7
-      }
-      if (selected.type == "month") {
-        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerMonthViewComponent);
-      }
-      if (selected.type == "agenda") {
-        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerAgendaViewComponent);
-      }
-      if (selected.type == "timeline") {
-        portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerTimelineViewComponent);
-      }
-      const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
-      this.view = compRef.instance;
-      this.view.type = selected.type;
-      this.view.interval = interval;
-      this.view.events = this.events;
-      //
-
-      //
-      this.view.onEventChanged.subscribe(e => {
-        this.onEventChanged.emit(e);
-      });
-      this.view.onNavigatorDateChanged.subscribe((e) => {
-        this.navigatorDate = e;
-        this.setNavigatorText();
-        this.startAnim();
-      });
-      if (this.navigatorDate)
-        this.view.navigate(this.navigatorDate);
-      else
-        this.view.navigate(this.today);
+      this.createView(selected);
     }
+  }
+
+
+  private createView(selected: AXSchedulerViewProperty) {
+    this.startAnim();
+    if (this.view)
+      this.view.ngOnDestroy();
+    //
+    let portal: ComponentPortal<AXSchedulerBaseViewComponent>;
+    this.portalOutlet.detach();
+    let interval = selected.interval;
+    if (selected.type == "day") {
+      portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerDayTimeViewComponent);
+    }
+    if (selected.type == "week") {
+      portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerDayTimeViewComponent);
+      interval = selected.interval * 7
+    }
+    if (selected.type == "month") {
+      portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerMonthViewComponent);
+    }
+    if (selected.type == "agenda") {
+      portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerAgendaViewComponent);
+    }
+    if (selected.type == "timeline") {
+      portal = new ComponentPortal<AXSchedulerBaseViewComponent>(AXSchedulerTimelineViewComponent);
+    }
+    const compRef: ComponentRef<AXSchedulerBaseViewComponent> = this.portalOutlet.attach(portal);
+    this.view = compRef.instance;
+    this.view.type = selected.type;
+    this.view.interval = interval;
+    //
+    this.view.onEventChanged.subscribe(e => {
+      this.onEventChanged.emit(e);
+    });
+    this.view.onNavigatorDateChanged.subscribe((e) => {
+      this.navigatorDate = e;
+      this.setNavigatorText();
+      this.startAnim();
+    });
+    this.refresh();
   }
 
 
@@ -159,13 +165,26 @@ export class AXSchedulerComponent {
           text: v.caption
         });
       });
-
+      //
+      this.dataSource.onDataReceived.subscribe(e => {
+        this.events = e;
+        this.view.events = this.events;
+        if (this.searchText && this.view.events && this.view.events.length) {
+          this.navigatorDate = this.view.events[0].range.startTime;
+        }
+        if (this.navigatorDate)
+          this.view.navigate(this.navigatorDate);
+        else
+          this.view.navigate(this.today);
+      })
+      //
       if (this.toolbarView) {
         this.toolbarView.onViewChanged.subscribe(c => {
           this.currentView = c;
         });
         this.toolbarView.items = this.viewItems;
       }
+      //
       if (this.toolbarNavigator) {
         this.toolbarNavigator.onNavigate.subscribe(c => {
           if (c == "next") {
@@ -179,7 +198,27 @@ export class AXSchedulerComponent {
           }
         });
       }
+      //
+      if (this.searchInput) {
+        this.searchInput.onTextChanged.subscribe(c => {
+          this.searchText = c;
+          if (c) {
+            this.viewItems.forEach(c => { c.visible = false; })
+            const x: AXSchedulerViewProperty = new AXSchedulerViewProperty("agenda", "Search", "VIEW_SEARCH");
+            x.interval = 100;
+            this.createView(x);
+            this.refresh();
+          }
+          else {
+            this.viewItems.forEach(c => { c.visible = true; });
+            this.setView(this._currentView);
+          }
+          this.toolbarView.update();
+        })
+      }
+      //
       this.setView(this.currentView);
+      this.refresh();
     });
   }
 
@@ -200,6 +239,12 @@ export class AXSchedulerComponent {
 
   ngOnDestroy(): void {
     this.portalOutlet.detach();
+  }
+
+  refresh() {
+    this.dataSource.fetch({
+      searchText: this.searchText,
+    });
   }
 
 }

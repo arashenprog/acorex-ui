@@ -78,6 +78,6 @@ export class AXDatePickerComponent extends AXValidatableComponent{
     }
     onDateChange(date:AXDateTime){
         this.dropdown.close();
-        this._text = date.format("MM/DD/YY")
+        this._text = date.format("DD/MM/YYYY")
     }
 }

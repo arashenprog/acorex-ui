@@ -65,7 +65,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
     onSelectedChanged(items: any[]) {
         this.selectedItem = items[0];
-        this.showCustom = this.selectedItem.value == "custom";
+        this.showCustom =  this.selectedItem && this.selectedItem.value == "custom";
         this.cdr.markForCheck();
     }
 

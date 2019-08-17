@@ -95,4 +95,17 @@ export class AliPage extends AXBasePageComponent {
     e.complete();
   }
 
+  provideGridData = (e) => {
+    debugger;
+    return new PromisResult(resolve => {
+      if (e && e.searchText) {
+        let rs=this.data.filter(c => c.title.toLowerCase().includes(e.searchText));
+        resolve(rs);
+      }
+      else {
+        resolve(this.data);
+      }
+    });
+  };
+
 }

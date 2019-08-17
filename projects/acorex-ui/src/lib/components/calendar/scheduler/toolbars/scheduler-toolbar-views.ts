@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { AXToolbarItem } from '../../../layout/toolbar/toolbar-item';
 import { MenuItem } from '../../../../core/menu.class';
+import { AXToolbarMenuComponent } from '../../../layout/toolbar/menu/toolbar-menu.component';
 
 
 
@@ -14,12 +15,12 @@ import { MenuItem } from '../../../../core/menu.class';
 export class AXToolbarSchedulerViewsComponent {
     constructor() { }
 
-
+    @ViewChild(AXToolbarMenuComponent) menu: AXToolbarMenuComponent;
     items: MenuItem[] = [];
 
-    ngAfterViewInit(): void {
+    update(): void {
+        this.menu.update();
     }
-
 
     @Output()
     onViewChanged: EventEmitter<string> = new EventEmitter<string>();
