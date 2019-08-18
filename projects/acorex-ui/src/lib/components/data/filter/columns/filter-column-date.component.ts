@@ -54,8 +54,8 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
     showCustom: boolean = false;
 
-    constructor(private cdr: ChangeDetectorRef) {
-        super();
+    constructor(protected cdr: ChangeDetectorRef) {
+        super(cdr);
         this.dataType = "date";
     }
 
@@ -70,7 +70,6 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     }
 
     get condition(): AXFilterCondition {
-        debugger;
         let today = new AXDateTime();
         switch (this.selectedItem.value) {
             case "today":
@@ -102,10 +101,4 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
             value: [this.fromDate, this.toDate]
         }
     }
-
-    clear() {
-        this.value = null;
-        this.cdr.markForCheck();
-    }
-
 }

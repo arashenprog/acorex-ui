@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../filter.class';
 
 @Component({
@@ -20,7 +20,7 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
     `,
     providers: [
         { provide: AXFilterColumnComponent, useExisting: AXFilterColumnStringComponent }
-      ]
+    ]
 })
 export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
 
@@ -59,11 +59,11 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
             value: "is-not-empty"
         }
     ];
-    constructor() {
-        super();
-     }
+    constructor(protected cdr: ChangeDetectorRef) {
+        super(cdr);
+    }
 
 
-    
+
 
 }

@@ -47,12 +47,13 @@ export class AXFilterPanelComponent {
     private generateFilter() {
         let con: any[] = [];
         this.filters.forEach(e => {
-            if (e.active) {
+            if (e.active && e.condition) {
                 con.push(e.condition);
                 con.push("AND");
             }
         });
         con.pop();
+        console.log(con);
         this.filterChange.emit(con);
     }
 }

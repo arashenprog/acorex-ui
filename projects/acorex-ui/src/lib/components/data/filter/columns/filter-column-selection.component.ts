@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../filter.class';
 import { CheckItem, BaseMenuItem } from '../../../../core/menu.class';
 import { AXSelectionListComponent } from '../../../form/selection-list/selection-list.component';
@@ -13,7 +13,8 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
     `,
     providers: [
         { provide: AXFilterColumnComponent, useExisting: AXFilterColumnSelectionComponent }
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
 
@@ -26,13 +27,14 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
     @Input()
     mode = "single";
 
-    constructor() {
-        super();
+    constructor(protected cdr: ChangeDetectorRef) {
+        super(cdr);
     }
 
     get condition(): AXFilterCondition {
-        debugger
         let values = this.selectedItems.map(c => c.value);
+        if (values.length == 0)
+            return null;
         return {
             condition: this.mode == "single" ? "equal" : "contains",
             field: this.field,
@@ -42,7 +44,7 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
     }
     clear() {
         this.selectedItems = [];
-        this.value = null;
+        super.clear();
     }
 
 }

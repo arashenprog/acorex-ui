@@ -1,4 +1,4 @@
-import { Input } from "@angular/core";
+import { Input, ChangeDetectorRef } from "@angular/core";
 
 //export type AXFilterConditionEnum = "is" | "is-not" | "contains" | "not-contains" | "start-width" | "end-width" | "is-empty" | "is-not-empty";
 
@@ -23,7 +23,12 @@ export class AXFilterCondition {
     value: any;
 }
 
-export class AXFilterColumnComponent {
+export abstract class AXFilterColumnComponent {
+
+    constructor(protected cdr:ChangeDetectorRef)
+    {
+
+    }
     operator: string = "equal";
     value: any = null;
     @Input()
@@ -45,7 +50,9 @@ export class AXFilterColumnComponent {
     }
 
     clear() {
+        this.active=false;
         this.value = null;
+        this.cdr.markForCheck();
     }
 }
 

@@ -14,18 +14,18 @@ import { AXDropDownComponent } from "../drop-down/drop-down.component";
         { provide: AXValidatableComponent, useExisting: AXDatePickerComponent },
     ]
 })
-export class AXDatePickerComponent extends AXValidatableComponent{
+export class AXDatePickerComponent extends AXValidatableComponent {
 
 
     @ViewChild("dropdown")
-    dropdown:AXDropDownComponent;
+    dropdown: AXDropDownComponent;
     @Input() placeholder: string = "";
     @Input() showClear: boolean = false;
 
     @Input() label: string = "Date";
 
-    model:any=null;
-    _text:string=""
+    model: any = null;
+    _text: string = ""
     constructor() {
         super();
     }
@@ -52,6 +52,7 @@ export class AXDatePickerComponent extends AXValidatableComponent{
         if (!v.equal(this._value)) {
             this._value = v;
             this.valueChange.emit(v);
+            this._text = v.format("DD/MM/YYYY")
         }
     }
 
@@ -76,8 +77,7 @@ export class AXDatePickerComponent extends AXValidatableComponent{
             }
         });
     }
-    onDateChange(date:AXDateTime){
+    onDateChange(date: AXDateTime) {
         this.dropdown.close();
-        this._text = date.format("DD/MM/YYYY")
     }
 }
