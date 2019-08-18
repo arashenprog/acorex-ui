@@ -238,9 +238,24 @@ body {
     font-size: var(--font-md-size);
     color: currentColor;
     width: 100%;
+    height: var(--el-base-size);
     border: 0;
     margin: 0;
     padding:5px 12px;
+    margin-top: 8px;
+    display: block;
+    background: 0 0;
+    -webkit-tap-highlight-color: transparent;
+    outline-color: transparent;
+  }
+  .edit-box-value{
+    font-size: var(--font-md-size);
+    color: currentColor;
+    width: 100%;
+    height: var(--el-base-size);
+    border: 0;
+    margin: 0;
+    padding:7px 12px;
     margin-top: 8px;
     display: block;
     background: 0 0;
@@ -255,28 +270,16 @@ body {
     padding: 15px 12px 7px 12px;
   }
 
-  .ax-field-set-button {
-    position: absolute;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: var(--sp-sm-size) var(--sp-xs-size);
-    border: none;
-    &:first-child {
-      margin-right: 10px;
-    }
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: var(--el-md-size);
-      height: var(--el-md-size);
-      i {
-        font-size: var(--font-sm-size);
-      }
-    }
-  }
+  
+}
+.edit-box{
+  position: relative;
+ &:hover{
+   .ax-field-set-button{
+     display: flex !important;
+   }
+ }
+
 }
 .ax-disabled{
   input {
@@ -285,6 +288,29 @@ body {
 }
 .ax-readonly{
 
+}
+.ax-field-set-button {
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--sp-sm-size) var(--sp-xs-size);
+  border: none;
+  &:first-child {
+    margin-right: 10px;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--el-md-size);
+    height: var(--el-md-size);
+    margin-left: var(--sp-sm-size);
+    i {
+      font-size: var(--font-sm-size);
+    }
+  }
 }
 .input-focused {
   border-color: var(--primary-color) !important;

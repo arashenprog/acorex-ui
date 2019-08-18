@@ -1,0 +1,36 @@
+<div class="edit-box">
+    <div class="ax-field-set" [ngClass]="{'ax-disabled': disabled}" *ngIf="!showEdit">
+        <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
+            <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+                <legend *ngIf="label">
+                    {{ label }}
+                </legend>
+            </fieldset>
+            <div class="edit-box-value">
+                {{data}}
+            </div>
+
+            <div class="ax-field-set-button" style="display: none">
+                <button type="button" class="btn btn-primary" (click)="onEditClick()">
+                    <i class="fas fa-pen"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="validation-text" *ngIf="errorText">
+        {{ errorText }}
+    </div>
+    <ng-container *ngIf="showEdit">
+
+        <ng-content></ng-content>
+        <div class="ax-field-set-button">
+            <button type="button" class="btn btn-success" (click)="onSaveClick()">
+                <i class="fas fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-danger" (click)="onCancelClick()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </ng-container>
+
+</div>
