@@ -16,6 +16,7 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
     @Input() items: SelectItem[] = [];
     @Input() searchable: boolean = false;
     @Input() icon: string = "fas fa-angle-down"
+    @Input() fitParent: boolean = true;
 
     close(){
         this.popSelectBox.close();

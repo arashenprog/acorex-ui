@@ -19,8 +19,7 @@
           <ax-dock-panel type="stack" [size]="80">
             <ax-dock-content caption="Leads">
               <ng-template>
-                <div style="height: 100%">
-                  <ax-data-grid #grid>
+                  <ax-data-grid #grid height="100%">
                     <ax-data-source>
                       <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
                     </ax-data-source>
@@ -39,7 +38,6 @@
                           </ng-template>
                         </ax-row-template> -->
                   </ax-data-grid>
-                </div>
               </ng-template>
             </ax-dock-content>
           </ax-dock-panel>

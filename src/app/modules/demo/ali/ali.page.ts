@@ -78,7 +78,7 @@ export class AliPage extends AXBasePageComponent {
       color: "rgb(53, 124, 108)"
     },
     {
-      range: new AXDateTimeRange(new AXDateTime("2019-07-05 08:30:00"), new AXDateTime("2019-07-05 15:00:00 ")),
+      range: new AXDateTimeRange(new AXDateTime("2019-07-05 08:30:00"), new AXDateTime("2019-07-05 15:00:00")),
       title: "Arash's Birthday",
       uid: "e6",
       color: "rgb(53, 124, 210)"

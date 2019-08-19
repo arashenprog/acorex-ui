@@ -37,7 +37,7 @@ export class PromisResult<T> {
 
 export class AXBaseComponent {
   @ViewChild("input") input: ElementRef<HTMLInputElement>;
-  _uid: string = "M" + Math.ceil(Math.random() * 10000);
+  _uid: string = "M" + Math.ceil(Math.random() * 100000000);
   @Input()
   width: string = "";
   @Input() height: string = "auto";

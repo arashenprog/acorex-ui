@@ -1,6 +1,6 @@
 import { Component, Input, NgZone } from "@angular/core";
 import { ElementRef } from "@angular/core";
-import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-util.class";
+import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-util";
 
 
 
@@ -16,9 +16,9 @@ export class AXPopoverComponent {
     private el: ElementRef<HTMLElement>,
     private zone: NgZone
   ) {
-    // this.zone.runOutsideAngular(() => {
-    //   window.document.addEventListener("click", this.clickOutside.bind(this));
-    // });
+    this.zone.runOutsideAngular(() => {
+      window.document.addEventListener("click", this.clickOutside.bind(this));
+    });
   }
 
   @Input("target") target: string;
@@ -26,7 +26,7 @@ export class AXPopoverComponent {
   @Input("alignment") alignment: AXPlacement = "top-middle";
   @Input("width") width: number;
   @Input("height") height: number;
-  @Input("fitParent") fitParent: boolean = false
+  @Input("fitParent") fitParent: boolean = false;
 
   @Input() distance: number = 5;
   private _visible: boolean;
@@ -58,7 +58,6 @@ export class AXPopoverComponent {
   }
 
   setPosition() {
-    debugger
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
       ".popover-container"
     );
@@ -71,8 +70,7 @@ export class AXPopoverComponent {
     pop.style.height = this.height + "px";
 
     if (this.fitParent === true) {
-
-      pop.style.width = target.getBoundingClientRect().width + "px"
+      pop.style.minWidth = target.getBoundingClientRect().width + "px"
     }
 
     let top: number = 0;
@@ -121,11 +119,24 @@ export class AXPopoverComponent {
     });
   }
 
+
+
   private clickOutside(event: MouseEvent) {
-    // console.log(event);
-    // let target = document.querySelector<HTMLElement>(this.target);
-    // if (event.srcElement as HTMLElement == target)
-    //   return;
-    //this.visible = false;
+    debugger;
+    let target = document.querySelector<HTMLElement>(this.target);
+    if (target) {
+      let bound = target.getBoundingClientRect();
+      if (AXHtmlUtil.isInRecPoint({
+        x: event.clientX,
+        y: event.clientY
+      }, {
+          left: bound.left,
+          right: bound.right,
+          top: bound.top,
+          bottom: bound.bottom
+        }))
+        return;
+      this.visible = false;
+    }
   }
 }

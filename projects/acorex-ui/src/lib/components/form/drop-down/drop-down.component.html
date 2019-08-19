@@ -1,4 +1,4 @@
-<div class="ax-field-set" #dropSelectBox>
+<div class="ax-field-set" #dropSelectBox [attr.id]="_uid">
   <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
     <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
@@ -20,7 +20,7 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<ax-popover [fitParent]="true" distance="10" height="'200px'" target="#dropSelectBox" placement="bottom-start"
+<ax-popover [fitParent]="fitParent" distance="10" height="'200px'" target="#{{_uid}}" placement="bottom-start"
   alignment="top-start" #popSelectBox>
   <ng-content> </ng-content>
 </ax-popover>
