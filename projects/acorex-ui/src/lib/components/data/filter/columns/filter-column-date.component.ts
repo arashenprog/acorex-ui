@@ -10,10 +10,14 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
             <ax-selection-list [items]="items"  mode="single"  direction="vertical" (selectedItemsChange)="onSelectedChanged($event)">
             </ax-selection-list>
         </div>
-        <div class="ax-filter-section" [hidden]="!showCustom">
+        <div class="ax-filter-section-value" [hidden]="!showCustom">
             <ax-date-picker label="From" [(value)]="fromDate"></ax-date-picker>
             <ax-date-picker label="To" [(value)]="toDate"></ax-date-picker>
         </div>
+        <div class="ax-filter-section-value" [hidden]="!showSpecific">
+            <ax-date-picker label="Date" [(value)]="fromDate"></ax-date-picker>            
+        </div>
+        
     `,
     providers: [
         { provide: AXFilterColumnComponent, useExisting: AXFilterColumnDateComponent }
@@ -42,8 +46,12 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
             value: "this-year"
         },
         {
-            text: "Custom",
-            value: "custom"
+            text: "Specific",
+            value: "specific"
+        },
+        {
+            text: "Range",
+            value: "range"
         }
     ];
 
@@ -53,6 +61,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     selectedItem: any = null;
 
     showCustom: boolean = false;
+    showSpecific: boolean = false;
 
     constructor(protected cdr: ChangeDetectorRef) {
         super(cdr);
@@ -65,7 +74,8 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
     onSelectedChanged(items: any[]) {
         this.selectedItem = items[0];
-        this.showCustom =  this.selectedItem && this.selectedItem.value == "custom";
+        this.showCustom = this.selectedItem && this.selectedItem.value == "range";
+        this.showSpecific = this.selectedItem && this.selectedItem.value == "specific";
         this.cdr.markForCheck();
     }
 
@@ -74,6 +84,13 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         switch (this.selectedItem.value) {
             case "today":
                 this.fromDate = this.toDate = today;
+                return {
+                    condition: "equal",
+                    field: this.field,
+                    dataType: this.dataType,
+                    value: this.fromDate
+                }
+            case "specific":
                 return {
                     condition: "equal",
                     field: this.field,

@@ -20,12 +20,12 @@ export class AXPoint implements AXIPoint {
 
 export interface AXIClientRec {
   left: number;
-  right: number;
   top: number;
-  bottom: number
+  width: number;
+  height: number;
 }
-export class AXClientRec implements AXIClientRec{
-  constructor(public left: number, public top: number, public right: number, public bottom: number) {
+export class AXClientRec implements AXIClientRec {
+  constructor(public left: number, public top: number, public width: number, public height: number) {
 
   }
 }
@@ -58,6 +58,6 @@ export class AXHtmlUtil {
   }
 
   static isInRecPoint(pos: AXIPoint, rec: AXIClientRec): boolean {
-    return pos.x >= rec.left && pos.x <= (rec.right) && pos.y >= rec.top && (pos.y <= (rec.right));
+    return pos.x >= rec.left && pos.x <= (rec.left + rec.width) && pos.y >= rec.top && (pos.y <= (rec.top + rec.height));
   }
 }

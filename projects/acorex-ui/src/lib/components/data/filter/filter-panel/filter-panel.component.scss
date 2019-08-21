@@ -2,12 +2,13 @@
     padding: 2px;
     position: relative;
     height: 100%;
-    
+
 
     .ax-filter-panel-body {
         .form-inline {
             justify-content: space-between
         }
+
         overflow-y: auto;
         overflow-x: hidden;
         height: calc(100% - 50px);
@@ -24,14 +25,28 @@
         padding: var(--sp-sm-size);
         border-top: 1px solid var(--border-color);
     }
+
+    .ax-filter-section {
+        padding: var(--sp-md-size) var(--sp-lg-size);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+       
+    }
+
+    .ax-filter-section-value {
+        padding: 0px var(--sp-md-size) var(--sp-md-size) var(--sp-md-size);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &>* {
+            margin: 0px 3px;
+        }
+    }
 }
 
-.ax-filter-section {
-    padding: var(--sp-md-size) var(--sp-lg-size);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .ax-filter-panel-group-header {
     min-height: var(--el-md-size);
@@ -54,5 +69,5 @@
     height: var(--el-md-size);
     padding: 0 var(--sp-sm-size);
     display: flex;
-    
+
 }

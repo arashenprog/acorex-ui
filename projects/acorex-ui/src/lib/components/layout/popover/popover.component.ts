@@ -1,4 +1,4 @@
-import { Component, Input, NgZone } from "@angular/core";
+import { Component, Input, NgZone, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
 import { ElementRef } from "@angular/core";
 import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-util";
 
@@ -7,17 +7,20 @@ import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-
 @Component({
   selector: "ax-popover",
   templateUrl: "./popover.component.html",
-  styleUrls: ["./popover.component.scss"]
+  styleUrls: ["./popover.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXPopoverComponent {
 
 
   constructor(
     private el: ElementRef<HTMLElement>,
-    private zone: NgZone
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {
     this.zone.runOutsideAngular(() => {
-      window.document.addEventListener("click", this.clickOutside.bind(this));
+      window.document.addEventListener("click", this.clickOutListener.bind(this));
+      window.document.addEventListener("scroll", this.onScollListener.bind(this));
     });
   }
 
@@ -38,11 +41,12 @@ export class AXPopoverComponent {
   public set visible(v: boolean) {
     this._visible = v;
     if (this._visible) {
-      setTimeout(() => {
 
+      setTimeout(() => {
         this.setPosition();
       });
     }
+    this.cdr.markForCheck();
   }
 
   toggle() {
@@ -50,7 +54,9 @@ export class AXPopoverComponent {
   }
 
   close() {
-    this.visible = false;
+    this.zone.run(() => {
+      this.visible = false;
+    })
   }
 
   open() {
@@ -115,28 +121,39 @@ export class AXPopoverComponent {
 
   ngOnDestroy(): void {
     this.zone.runOutsideAngular(() => {
-      window.document.removeEventListener("click", this.clickOutside.bind(this));
+      window.document.removeEventListener("click", this.clickOutListener.bind(this));
+      window.document.removeEventListener("scroll", this.onScollListener.bind(this));
     });
   }
 
+  private onScollListener(event: UIEvent) {
+    console.log("scroll", event);
+    this.close();
+  }
 
-
-  private clickOutside(event: MouseEvent) {
+  private clickOutListener(event: MouseEvent) {
     debugger;
     let target = document.querySelector<HTMLElement>(this.target);
-    if (target) {
-      let bound = target.getBoundingClientRect();
-      if (AXHtmlUtil.isInRecPoint({
-        x: event.clientX,
-        y: event.clientY
-      }, {
-          left: bound.left,
-          right: bound.right,
-          top: bound.top,
-          bottom: bound.bottom
-        }))
+    let pop = this.el.nativeElement.querySelector('.popover-container');
+    if (target && pop) {
+      let targetBound = target.getBoundingClientRect();
+      let elBound = pop.getBoundingClientRect();
+      let pos = { x: event.clientX, y: event.clientY };
+      let inTarget = AXHtmlUtil.isInRecPoint(pos, {
+        left: targetBound.left,
+        width: targetBound.width,
+        top: targetBound.top,
+        height: targetBound.height
+      });
+      let inEl = AXHtmlUtil.isInRecPoint(pos, {
+        left: elBound.left,
+        width: elBound.width,
+        top: elBound.top,
+        height: elBound.height
+      });
+      if (inTarget || inEl)
         return;
-      this.visible = false;
+      this.close();
     }
   }
 }
