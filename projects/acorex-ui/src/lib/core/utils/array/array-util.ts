@@ -22,7 +22,7 @@ Array.prototype.query = function (filters: any[]): any[] {
                     debugger;
                     let vals = [];
                     let mt = f.field.match(/\[\:(.*?)\]/)
-                    if (mt.length > 1) {
+                    if (mt && mt.length > 1) {
                         let p1 = f.field.replace(mt[0], "");
                         let p2 = mt[1];
                         let prop = fetchProp(item, p1);
