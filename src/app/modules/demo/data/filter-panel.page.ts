@@ -113,6 +113,17 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             ]
         },
         {
+            caption: "JOBS",
+            columns: [
+                {
+                    caption: "Number",
+                    dataType: "number",
+                    type: "text",
+                    field: "jobs[:id]"
+                }
+            ]
+        },
+        {
             caption: "TASK",
             columns: [
                 {
@@ -148,7 +159,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                             },
                         ]
                     },
-                    field: "staff"
+                    field: "staff.id"
                 },
                 {
                     caption: "Register Date",
@@ -203,16 +214,28 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         super();
         for (let i = 0; i < 300; i++) {
             let lead: any = {};
-            lead.firstname = ["Arash", "Reza", "Ali","Alireza", "Kit", "Rod", "Sam"].pickRandom();
+            lead.firstname = ["Arash", "Reza", "Ali", "Alireza", "Kit", "Rod", "Sam"].pickRandom();
             lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
             lead.source = ["Chat", "Website", "Social", "Ads", null].pickRandom();
             let status = STATUS.pickRandom();
             let nextAction = STATUS.pickRandom();
-            lead.status=status.text;
-            lead.statusId=status.value;
-            lead.nextAction=nextAction.text;
-            lead.nextActionId=nextAction.value;
-            lead.registerDate = new AXDateTime().add("day", i-[10, 0, 23, 37, 98].pickRandom());
+            lead.status = status.text;
+            lead.statusId = status.value;
+            lead.nextAction = nextAction.text;
+            lead.nextActionId = nextAction.value;
+            lead.registerDate = new AXDateTime().add("day", i - [10, 0, 23, 37, 98].pickRandom());
+            lead.staff = {
+                id: [1, 2, 3, 4].pickRandom(),
+                firstname: ["Sam", "Fred", "Kia", "Alex", "Bahar"].pickRandom(),
+                lastname: ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom()
+            }
+            lead.jobs = [];
+            for (let j = 0; j < [0, 1, 2, 3].pickRandom(); j++) {
+                lead.jobs.push({
+                    id: (i+j) * [120, 18, 39, 12].pickRandom(),
+                    title: "Job #" + i + j
+                })
+            }
             this.leads.push(lead);
         }
     }
@@ -223,5 +246,9 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     onFilterChange(filter) {
         this.gridFilter = filter;
         this.grid.refresh();
+    }
+
+    onRowClick(e) {
+        console.log(e);
     }
 }
