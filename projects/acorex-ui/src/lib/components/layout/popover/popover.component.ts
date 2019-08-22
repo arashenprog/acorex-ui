@@ -18,10 +18,7 @@ export class AXPopoverComponent {
     private zone: NgZone,
     private cdr: ChangeDetectorRef
   ) {
-    this.zone.runOutsideAngular(() => {
-      window.document.addEventListener("click", this.clickOutListener.bind(this));
-      window.document.addEventListener("scroll", this.onScollListener.bind(this));
-    });
+
   }
 
   @Input("target") target: string;
@@ -41,10 +38,13 @@ export class AXPopoverComponent {
   public set visible(v: boolean) {
     this._visible = v;
     if (this._visible) {
-
       setTimeout(() => {
         this.setPosition();
       });
+      this.addClickOutsideListener();
+    }
+    else {
+      this.removeClickOutsideListener()
     }
     this.cdr.markForCheck();
   }
@@ -120,40 +120,47 @@ export class AXPopoverComponent {
   }
 
   ngOnDestroy(): void {
+    this.removeClickOutsideListener();
+  }
+
+
+  private addClickOutsideListener() {
+    this.zone.runOutsideAngular(() => {
+      window.document.addEventListener("click", this.clickOutListener.bind(this));
+    });
+  }
+  private removeClickOutsideListener() {
     this.zone.runOutsideAngular(() => {
       window.document.removeEventListener("click", this.clickOutListener.bind(this));
-      window.document.removeEventListener("scroll", this.onScollListener.bind(this));
     });
   }
 
-  private onScollListener(event: UIEvent) {
-    console.log("scroll", event);
-    this.close();
-  }
+
 
   private clickOutListener(event: MouseEvent) {
-    debugger;
-    let target = document.querySelector<HTMLElement>(this.target);
-    let pop = this.el.nativeElement.querySelector('.popover-container');
-    if (target && pop) {
-      let targetBound = target.getBoundingClientRect();
-      let elBound = pop.getBoundingClientRect();
-      let pos = { x: event.clientX, y: event.clientY };
-      let inTarget = AXHtmlUtil.isInRecPoint(pos, {
-        left: targetBound.left,
-        width: targetBound.width,
-        top: targetBound.top,
-        height: targetBound.height
-      });
-      let inEl = AXHtmlUtil.isInRecPoint(pos, {
-        left: elBound.left,
-        width: elBound.width,
-        top: elBound.top,
-        height: elBound.height
-      });
-      if (inTarget || inEl)
-        return;
-      this.close();
+    if (this.visible) {
+      let target = document.querySelector<HTMLElement>(this.target);
+      let pop = this.el.nativeElement.querySelector('.popover-container');
+      if (target && pop) {
+        let targetBound = target.getBoundingClientRect();
+        let elBound = pop.getBoundingClientRect();
+        let pos = { x: event.clientX, y: event.clientY };
+        let inTarget = AXHtmlUtil.isInRecPoint(pos, {
+          left: targetBound.left,
+          width: targetBound.width,
+          top: targetBound.top,
+          height: targetBound.height
+        });
+        let inEl = AXHtmlUtil.isInRecPoint(pos, {
+          left: elBound.left,
+          width: elBound.width,
+          top: elBound.top,
+          height: elBound.height
+        });
+        if (inTarget || inEl)
+          return;
+        this.close();
+      }
     }
   }
 }

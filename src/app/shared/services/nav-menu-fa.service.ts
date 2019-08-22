@@ -5,6 +5,9 @@ import { AXNavMenuService } from "acorex-spa";
 
 @Injectable()
 export class NavMenuServiceFa extends AXNavMenuService {
+  register(items: MenuItem[]): void {
+    throw new Error("Method not implemented.");
+  }
   constructor(private tab: AXTabPageService) {
     super();
   }
@@ -59,7 +62,7 @@ export class NavMenuServiceFa extends AXNavMenuService {
     return PromisResult.resolve(true);
   }
 
-  serach(search: string): PromisResult<MenuItem[]> {
+  search(search: string): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(
         this.mockItems.filter(c =>

@@ -40,7 +40,7 @@ export class AXSideMenuComponent {
 
   private refresh() {
     if (this.searchText) {
-      this.navMenuService.serach(this.searchText).then(c => {
+      this.navMenuService.search(this.searchText).then(c => {
         this.displayItems = c.map(c => this.mapToDisplay(c));
         this.changeDetectorRef.markForCheck();
       });

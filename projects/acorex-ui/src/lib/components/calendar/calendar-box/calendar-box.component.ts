@@ -58,7 +58,7 @@ export class AXCalendarBoxComponent {
         return this._value;
     }
     public set value(v: AXDateTime) {
-        if (!v.equal(this._value)) {
+        if (v && !v.equal(this._value)) {
             this._value = v;
             this.setFocus(v);
             this.valueChange.emit(v);

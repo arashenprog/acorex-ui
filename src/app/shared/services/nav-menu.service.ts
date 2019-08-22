@@ -14,6 +14,9 @@ import { ToolbarPage } from 'src/app/modules/demo/toolbar/toolbar.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
+  register(items: MenuItem[]): void {
+    throw new Error("Method not implemented.");
+  }
   constructor(private tab: AXTabPageService) {
     super();
   }
@@ -172,7 +175,7 @@ export class NavMenuService extends AXNavMenuService {
     return PromisResult.resolve(true);
   }
 
-  serach(search: string): PromisResult<MenuItem[]> {
+  search(search: string): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(
         this.mockItems.filter(
