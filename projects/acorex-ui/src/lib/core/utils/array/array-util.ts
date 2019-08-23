@@ -5,10 +5,16 @@ declare global {
     export interface Array<T> {
         pickRandom(): T;
         query(filters: any[]): T[];
+        range(min: number,max:number): number[];
     }
 }
 Array.prototype.pickRandom = function (): any {
     return this[Math.floor(Math.random() * this.length)]
+}
+
+
+Array.prototype.range = function (min: number,max:number):number[] {
+    return new Array(max - min).fill(1).map((d, i) => i )
 }
 Array.prototype.query = function (filters: any[]): any[] {
     if (filters == null || filters.length == 0)
