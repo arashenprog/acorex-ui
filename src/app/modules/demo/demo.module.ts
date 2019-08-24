@@ -13,10 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { FilterPanelDemoPage } from './data/filter-panel.page';
 import { PickerPage } from './picker/picker.page';
 import { ToolbarPage } from './toolbar/toolbar.page';
+import { PopoverDemoPage } from './popover/popover-demo.page';
 
 const pages = [
   DemoPage,
   DashboardPage,
+  PopoverDemoPage,
   AliPage,
   TestPage,
   WidgetsPage,

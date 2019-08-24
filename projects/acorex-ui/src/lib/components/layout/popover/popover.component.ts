@@ -21,12 +21,14 @@ export class AXPopoverComponent {
 
   }
 
+  private targetEl: HTMLElement;
+
   @Input("target") target: string;
   @Input("placement") placement: AXPlacement = "bottom-middle";
   @Input("alignment") alignment: AXPlacement = "top-middle";
-  @Input("width") width: number;
-  @Input("height") height: number;
   @Input("fitParent") fitParent: boolean = false;
+  @Input("openMode") openMode: "manual" | "click" | "hover" = "manual";
+  @Input("closeMode") closeMode: "manual" | "clickout" | "mouseout" = "clickout";
 
   @Input() distance: number = 5;
   private _visible: boolean;
@@ -41,10 +43,10 @@ export class AXPopoverComponent {
       setTimeout(() => {
         this.setPosition();
       });
-      this.addClickOutsideListener();
+      this.addCloseRemoveOpenListeners();
     }
     else {
-      this.removeClickOutsideListener()
+      this.addOpenRemoveCloseListener()
     }
     this.cdr.markForCheck();
   }
@@ -60,7 +62,9 @@ export class AXPopoverComponent {
   }
 
   open() {
-    this.visible = true;
+    this.zone.run(() => {
+      this.visible = true;
+    })
   }
 
   setPosition() {
@@ -72,8 +76,8 @@ export class AXPopoverComponent {
       return;
     let targetPos: AXPoint = AXHtmlUtil.getBoundingRectPoint(target, this.placement);
     //
-    pop.style.width = this.width + "px";
-    pop.style.height = this.height + "px";
+    // pop.style.width = this.width + "px";
+    // pop.style.height = this.height + "px";
 
     if (this.fitParent === true) {
       pop.style.minWidth = target.getBoundingClientRect().width + "px"
@@ -119,31 +123,99 @@ export class AXPopoverComponent {
     pop.style.left = left + "px";
   }
 
+  ngAfterViewInit(): void {
+    this.addOpenRemoveCloseListener();
+    //
+    this.targetEl = document.querySelector<HTMLElement>(this.target);
+  }
+
   ngOnDestroy(): void {
-    this.removeClickOutsideListener();
+    this.removeOpenListeners();
+    this.removeCloseListeners();
   }
 
 
-  private addClickOutsideListener() {
+  private addCloseRemoveOpenListeners() {
     this.zone.runOutsideAngular(() => {
-      window.document.addEventListener("click", this.clickOutListener.bind(this));
+      //add close listeners
+      if (this.closeMode == "clickout") {
+        window.document.addEventListener("click", this.clickOutListener.bind(this));
+      }
+      //
+      if (this.closeMode == "mouseout") {
+        window.document.addEventListener("mousemove", this.clickOutListener.bind(this));
+      }
+      //
+      //remove open listeners
+      this.removeOpenListeners();
     });
   }
-  private removeClickOutsideListener() {
+
+
+  private addOpenRemoveCloseListener() {
     this.zone.runOutsideAngular(() => {
-      window.document.removeEventListener("click", this.clickOutListener.bind(this));
+      debugger;
+      //add open listeners
+      if (this.openMode == "hover") {
+        window.document.addEventListener("mousemove", this.handleOpenOnHover.bind(this));
+      }
+      //
+      if (this.openMode == "click") {
+        let target = document.querySelector<HTMLElement>(this.target);
+        if (target)
+          target.addEventListener("click", this.open.bind(this));
+      }
+      //remove close listeners
+      this.removeCloseListeners();
     });
+  }
+
+  private removeOpenListeners() {
+    if (this.targetEl)
+      this.targetEl.removeEventListener("click", this.open.bind(this));
+    //
+    window.document.removeEventListener("mousemove", this.handleOpenOnHover.bind(this));
+  }
+
+  private removeCloseListeners() {
+    window.document.removeEventListener("click", this.clickOutListener.bind(this));
+    window.document.removeEventListener("mousemove", this.clickOutListener.bind(this));
   }
 
 
 
   private clickOutListener(event: MouseEvent) {
     if (this.visible) {
-      let target = document.querySelector<HTMLElement>(this.target);
-      let pop = this.el.nativeElement.querySelector('.popover-container');
-      if (target && pop) {
-        let targetBound = target.getBoundingClientRect();
-        let elBound = pop.getBoundingClientRect();
+      this.zone.runOutsideAngular(() => {
+        let pop = this.el.nativeElement.querySelector('.popover-container');
+        if (this.targetEl && pop) {
+          let targetBound = this.targetEl.getBoundingClientRect();
+          let elBound = pop.getBoundingClientRect();
+          let pos = { x: event.clientX, y: event.clientY };
+          let inTarget = AXHtmlUtil.isInRecPoint(pos, {
+            left: targetBound.left,
+            width: targetBound.width,
+            top: targetBound.top,
+            height: targetBound.height
+          });
+          let inEl = AXHtmlUtil.isInRecPoint(pos, {
+            left: elBound.left,
+            width: elBound.width,
+            top: elBound.top,
+            height: elBound.height
+          });
+          if (inTarget || inEl)
+            return;
+          this.close();
+        }
+      });
+    }
+  }
+
+  private handleOpenOnHover(event: MouseEvent) {
+    this.zone.runOutsideAngular(() => {
+      if (this.targetEl) {
+        let targetBound = this.targetEl.getBoundingClientRect();
         let pos = { x: event.clientX, y: event.clientY };
         let inTarget = AXHtmlUtil.isInRecPoint(pos, {
           left: targetBound.left,
@@ -151,16 +223,9 @@ export class AXPopoverComponent {
           top: targetBound.top,
           height: targetBound.height
         });
-        let inEl = AXHtmlUtil.isInRecPoint(pos, {
-          left: elBound.left,
-          width: elBound.width,
-          top: elBound.top,
-          height: elBound.height
-        });
-        if (inTarget || inEl)
-          return;
-        this.close();
+        if (inTarget)
+          this.open();
       }
-    }
+    });
   }
 }

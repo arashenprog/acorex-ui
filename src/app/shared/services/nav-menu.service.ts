@@ -11,6 +11,7 @@ import { FormControllPage } from 'src/app/modules/demo/formcontroll/formcontroll
 import { FilterPanelDemoPage } from 'src/app/modules/demo/data/filter-panel.page';
 import { PickerPage } from 'src/app/modules/demo/picker/picker.page';
 import { ToolbarPage } from 'src/app/modules/demo/toolbar/toolbar.page';
+import { PopoverDemoPage } from 'src/app/modules/demo/popover/popover-demo.page';
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
@@ -106,6 +107,14 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-003",
       parentId: "003-001",
       visible: true
+    },
+    {
+      name: "popover",
+      text: "Popover",
+      id: "003-001-004",
+      parentId: "003-001",
+      visible: true,
+      data: { page: PopoverDemoPage }
     },
     {
       name: "color-picker",
