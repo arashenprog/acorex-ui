@@ -23,9 +23,6 @@ import { ClosingEventArgs } from "./events.class";
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {
-
-
-
   @ViewChild("popupBody", { read: ViewContainerRef })
   private popupBody: ViewContainerRef;
 
@@ -40,15 +37,11 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   private comRef: ComponentRef<any>;
   private isActivated: boolean = false;
 
-
   constructor(
     private resolver: ComponentFactoryResolver,
     private element: ElementRef,
     private zone: NgZone
-  ) { }
-
-
-
+  ) {}
 
   ngOnInit(): void {
     const factory = this.resolver.resolveComponentFactory(this.content);
@@ -75,7 +68,6 @@ export class AXPopupComponent implements OnInit, OnDestroy {
 
   close: EventEmitter<ClosingEventArgs> = new EventEmitter<ClosingEventArgs>();
 
-
   width: number = 100;
 
   data: any = {};
@@ -84,7 +76,6 @@ export class AXPopupComponent implements OnInit, OnDestroy {
 
   closable: boolean = true;
 
-  
   content: any;
   onCloseClick() {
     this.close.emit({ cancel: false });
@@ -107,28 +98,29 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   deactive() {
     this.isActivated = false;
   }
-  onFullScreen() { }
+  onFullScreen() {}
 
   resizeBody() {
     //this.zone.runOutsideAngular(() => {
-      this.popupBody.element.nativeElement;
-      let toolbar = this.element.nativeElement.querySelector(".ax-page-toolbar");
-      let pageContent = this.element.nativeElement.querySelector(
-        ".ax-page-content"
-      );
-      let popupContent = this.element.nativeElement.querySelector(
-        ".page-content-wrap"
-      );
-      if (toolbar) {
-        if (popupContent)
-          popupContent.style.height =
-            pageContent.scrollHeight + toolbar.scrollHeight + "px";
-        if (pageContent)
-          pageContent.style.top = toolbar.scrollHeight + "px";
-      } else {
-        if (popupContent && pageContent)
-          popupContent.style.height = pageContent.scrollHeight + "px";
-      }
+    //TODO
+    // this.popupBody.element.nativeElement;
+    // let toolbar = this.element.nativeElement.querySelector(".ax-page-toolbar");
+    // let pageContent = this.element.nativeElement.querySelector(
+    //   ".ax-page-content"
+    // );
+    // let popupContent = this.element.nativeElement.querySelector(
+    //   ".page-content-wrap"
+    // );
+    // if (toolbar) {
+    //   if (popupContent)
+    //     popupContent.style.height =
+    //       pageContent.scrollHeight + toolbar.scrollHeight + "px";
+    //   if (pageContent)
+    //     pageContent.style.top = toolbar.scrollHeight + "px";
+    // } else {
+    //   if (popupContent && pageContent)
+    //     popupContent.style.height = pageContent.scrollHeight + "px";
+    // }
     //});
   }
 }

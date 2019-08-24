@@ -52,12 +52,11 @@
     .page-content-wrap {
       position: relative;
       .ax-page-toolbar {
-        position: fixed;
-        left: 0;
-        right: 0;
         width: 100%;
-        top: 70px;
         height: var(--el-base-size);
+        position: fixed;
+        top: 70px;
+        left: 0;
         padding: 0 10px;
         z-index: 2;
         display: flex;

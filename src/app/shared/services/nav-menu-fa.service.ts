@@ -29,7 +29,7 @@ export class NavMenuServiceFa extends AXNavMenuService {
     //   visible: true,
     //   data: { page: DesignerPage }
     // }
-  ]
+  ];
   getItems(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(this.mockItems);
@@ -45,7 +45,6 @@ export class NavMenuServiceFa extends AXNavMenuService {
       }
     });
   }
-
 
   setFavorites(menu: MenuItem, value: boolean): PromisResult<boolean> {
     let favs: string[] = localStorage.getItem("favs")
@@ -65,8 +64,8 @@ export class NavMenuServiceFa extends AXNavMenuService {
   search(search: string): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
       resolve(
-        this.mockItems.filter(c =>
-          c.text.toLowerCase().includes(search.toLowerCase()) && c.parentId
+        this.mockItems.filter(
+          c => c.text.toLowerCase().includes(search.toLowerCase()) && c.parentId
         )
       );
     });
