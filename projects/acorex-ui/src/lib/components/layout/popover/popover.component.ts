@@ -71,16 +71,15 @@ export class AXPopoverComponent {
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
       ".popover-container"
     );
-    let target = document.querySelector<HTMLElement>(this.target);
-    if (!target || !pop)
+    if (!this.targetEl || !pop)
       return;
-    let targetPos: AXPoint = AXHtmlUtil.getBoundingRectPoint(target, this.placement);
+    let targetPos: AXPoint = AXHtmlUtil.getBoundingRectPoint(this.targetEl, this.placement);
     //
     // pop.style.width = this.width + "px";
     // pop.style.height = this.height + "px";
 
     if (this.fitParent === true) {
-      pop.style.minWidth = target.getBoundingClientRect().width + "px"
+      pop.style.minWidth = this.targetEl.getBoundingClientRect().width + "px"
     }
 
     let top: number = 0;
@@ -124,9 +123,8 @@ export class AXPopoverComponent {
   }
 
   ngAfterViewInit(): void {
-    this.addOpenRemoveCloseListener();
-    //
     this.targetEl = document.querySelector<HTMLElement>(this.target);
+    this.addOpenRemoveCloseListener();
   }
 
   ngOnDestroy(): void {
@@ -156,9 +154,10 @@ export class AXPopoverComponent {
     this.zone.runOutsideAngular(() => {
       debugger;
       //add open listeners
-      if (this.openMode == "hover") {
-        window.document.addEventListener("mousemove", this.handleOpenOnHover.bind(this));
+      if (this.openMode == "hover" && this.targetEl) {
+        this.targetEl.addEventListener("mouseover", this.handleMouseOver.bind(this));
       }
+
       //
       if (this.openMode == "click") {
         let target = document.querySelector<HTMLElement>(this.target);
@@ -172,9 +171,12 @@ export class AXPopoverComponent {
 
   private removeOpenListeners() {
     if (this.targetEl)
+    {
       this.targetEl.removeEventListener("click", this.open.bind(this));
+      window.document.removeEventListener("mouseover", this.handleMouseOver.bind(this));
+    }
     //
-    window.document.removeEventListener("mousemove", this.handleOpenOnHover.bind(this));
+    
   }
 
   private removeCloseListeners() {
@@ -182,6 +184,10 @@ export class AXPopoverComponent {
     window.document.removeEventListener("mousemove", this.clickOutListener.bind(this));
   }
 
+
+  private handleMouseOver() {
+    this.open();
+  }
 
 
   private clickOutListener(event: MouseEvent) {
@@ -206,26 +212,12 @@ export class AXPopoverComponent {
           });
           if (inTarget || inEl)
             return;
+
           this.close();
         }
       });
     }
   }
 
-  private handleOpenOnHover(event: MouseEvent) {
-    this.zone.runOutsideAngular(() => {
-      if (this.targetEl) {
-        let targetBound = this.targetEl.getBoundingClientRect();
-        let pos = { x: event.clientX, y: event.clientY };
-        let inTarget = AXHtmlUtil.isInRecPoint(pos, {
-          left: targetBound.left,
-          width: targetBound.width,
-          top: targetBound.top,
-          height: targetBound.height
-        });
-        if (inTarget)
-          this.open();
-      }
-    });
-  }
+  
 }

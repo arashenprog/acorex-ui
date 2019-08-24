@@ -12,6 +12,16 @@ import { AXBasePageComponent } from 'acorex-ui';
             Content 1
         </div>
     </ax-popover>
+    <br>
+    <ax-button text="Open On Hover 2" id="btn2" ></ax-button>
+    <ax-popover target="#btn2" closeMode="mouseout" openMode="hover"  
+        placement="bottom-start"
+        alignment="top-start"
+        >
+        <div style="width:200px;height:200px;">
+            Content 2
+        </div>
+    </ax-popover>
     `,
 })
 export class PopoverDemoPage extends AXBasePageComponent {

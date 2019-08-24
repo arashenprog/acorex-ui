@@ -1,6 +1,9 @@
-.ax-toolbar {
-    display: flex;
+ax-toolbar {
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    .ax-toolbar {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
