@@ -25,7 +25,6 @@ Array.prototype.query = function (filters: any[]): any[] {
             if (filters.hasOwnProperty(key)) {
                 const f = filters[key];
                 if (f != "AND") {
-                    debugger;
                     let vals = [];
                     let mt = f.field.match(/\[\:(.*?)\]/)
                     if (mt && mt.length > 1) {
@@ -109,6 +108,7 @@ Array.prototype.query = function (filters: any[]): any[] {
                             }
                             else if (f.dataType == "number") {
                                 v1 = Number(v1);
+                                debugger;
                                 switch (f.condition) {
                                     case "equal":
                                         {

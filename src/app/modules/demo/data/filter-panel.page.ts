@@ -282,7 +282,6 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
     gridFilter: any = null;
     onFilterChange(filter) {
-        debugger;
         this.gridFilter = filter;
         this.grid.refresh();
     }

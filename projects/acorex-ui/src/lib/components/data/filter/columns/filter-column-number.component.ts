@@ -24,7 +24,7 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
 })
 export class AXFilterColumnNumberComponent extends AXFilterColumnComponent {
 
-    operator: string = "contains";
+    operator: string = "equal";
     operators: any[] = [
         {
             title: "is",
@@ -63,6 +63,7 @@ export class AXFilterColumnNumberComponent extends AXFilterColumnComponent {
     constructor(protected cdr: ChangeDetectorRef) {
         super(cdr);
     }
+    
 
 
 
