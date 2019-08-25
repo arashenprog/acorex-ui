@@ -5,7 +5,7 @@ declare global {
     export interface Array<T> {
         pickRandom(): T;
         query(filters: any[]): T[];
-        range(min: number,max:number): number[];
+        range(min: number, max: number): number[];
     }
 }
 Array.prototype.pickRandom = function (): any {
@@ -13,8 +13,8 @@ Array.prototype.pickRandom = function (): any {
 }
 
 
-Array.prototype.range = function (min: number,max:number):number[] {
-    return new Array(max - min).fill(1).map((d, i) => i )
+Array.prototype.range = function (min: number, max: number): number[] {
+    return new Array(max - min).fill(1).map((d, i) => i)
 }
 Array.prototype.query = function (filters: any[]): any[] {
     if (filters == null || filters.length == 0)
@@ -123,6 +123,36 @@ Array.prototype.query = function (filters: any[]): any[] {
                                     case "contains":
                                         {
                                             result = v2 && v2 instanceof Array && v2.includes(v1);
+                                            break;
+                                        }
+                                    case "less-than":
+                                        {
+                                            result = v1 < v2;
+                                            break;
+                                        }
+                                    case "less-than-equal":
+                                        {
+                                            result = v1 <= v2;
+                                            break;
+                                        }
+                                    case "greater-than":
+                                        {
+                                            result = v1 > v2;
+                                            break;
+                                        }
+                                    case "greater-than-equal":
+                                        {
+                                            result = v1 >= v2;
+                                            break;
+                                        }
+                                    case "is-empty":
+                                        {
+                                            result = v1 == null || v1 == undefined;
+                                            break;
+                                        }
+                                    case "is-not-empty":
+                                        {
+                                            result = !(v1 == null || v1 == undefined);
                                             break;
                                         }
                                     default:

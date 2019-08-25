@@ -26,6 +26,10 @@
                             <ax-filter-column-date [field]="c.field" [(active)]="c.active">
                             </ax-filter-column-date>
                         </ng-container>
+                        <ng-container *ngSwitchCase="'number'">
+                            <ax-filter-column-number [field]="c.field" [(active)]="c.active">
+                            </ax-filter-column-number>
+                        </ng-container>
                         <ng-container *ngSwitchDefault>
                             <ax-filter-column-string [field]="c.field" [(active)]="c.active">
                             </ax-filter-column-string>

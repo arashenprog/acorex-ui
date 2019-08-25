@@ -13,12 +13,13 @@ import { AXFilterColumnStringComponent } from './columns/filter-column-string.co
 import { FormsModule } from '@angular/forms';
 import { AXFilterColumnSelectionComponent } from './columns/filter-column-selection.component';
 import { AXFilterColumnDateComponent } from './columns/filter-column-date.component';
+import { AXFilterColumnNumberComponent } from './columns/filter-column-number.component';
 
 
 @NgModule({
-    declarations: [AXFilterPanelComponent,AXFilterColumnStringComponent,AXFilterColumnSelectionComponent,AXFilterColumnDateComponent],
+    declarations: [AXFilterPanelComponent,AXFilterColumnStringComponent,AXFilterColumnSelectionComponent,AXFilterColumnDateComponent,AXFilterColumnNumberComponent],
     imports: [ CommonModule,FormsModule,AXCoreModule,AXPanelBoxModule,AXDatePickerModule,AXCheckBoxModule,AXTextBoxModule,AXToolbarModule,AXSelectionListModule,AXButtonModule ],
-    exports: [AXFilterPanelComponent,AXFilterColumnStringComponent,AXFilterColumnSelectionComponent,AXFilterColumnDateComponent],
+    exports: [AXFilterPanelComponent,AXFilterColumnStringComponent,AXFilterColumnSelectionComponent,AXFilterColumnDateComponent,AXFilterColumnNumberComponent],
     providers: [],
 })
 export class AXFilterModule {}

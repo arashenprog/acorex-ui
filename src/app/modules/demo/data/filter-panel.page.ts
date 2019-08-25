@@ -9,7 +9,8 @@ import {
     PromisResult,
     AXDateTime,
     AXDataGridComponent,
-    AXFilterPanelComponent
+    AXFilterPanelComponent,
+    randomRange
 } from 'acorex-ui';
 
 const STATUS = [
@@ -173,6 +174,13 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         {
             caption: "CONTACT",
             columns: [
+
+                {
+                    caption: "Number",
+                    dataType: "number",
+                    type: "number",
+                    field: "number"
+                },
                 {
                     caption: "Firstname",
                     dataType: "string",
@@ -252,6 +260,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             lead.statusId = status.value;
             lead.nextAction = nextAction.text;
             lead.nextActionId = nextAction.value;
+            lead.number = randomRange(1000,1000000);
             lead.registerDate = new AXDateTime().add("day", i - [10, 0, 23, 37, 98].pickRandom());
             lead.staff = {
                 id: [1, 2, 3, 4].pickRandom(),
