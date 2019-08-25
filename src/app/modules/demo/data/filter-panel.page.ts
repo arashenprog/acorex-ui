@@ -8,7 +8,8 @@ import {
     AXFilterColumnGroup,
     PromisResult,
     AXDateTime,
-    AXDataGridComponent
+    AXDataGridComponent,
+    AXFilterPanelComponent
 } from 'acorex-ui';
 
 const STATUS = [
@@ -151,11 +152,11 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                             },
                             {
                                 text: "Bahar",
-                                value: 4
+                                value: 5
                             },
                             {
                                 text: "Alireza",
-                                value: 4
+                                value: 6
                             },
                         ]
                     },
@@ -197,7 +198,29 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     ];
 
     @ViewChild('grid') grid: AXDataGridComponent;
+    @ViewChild('filterPanel') filterPanel: AXFilterPanelComponent;
 
+    ngAfterViewInit(): void {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        setTimeout(() => {
+            //Add 'implements AfterViewInit' to the class.
+            this.filterPanel.load(
+                [
+                    {
+                        condition: "contains",
+                        dataType: "string",
+                        field: "firstname",
+                        value: "arash"
+                    },
+                    {
+                        condition: "contains",
+                        dataType: "string",
+                        field: "statusId",
+                        value: [1, 7,3]
+                    }
+                ])
+        }, 500);
+    }
 
     provideGridData = () => {
         return new PromisResult(resolve => {
@@ -232,7 +255,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             lead.jobs = [];
             for (let j = 0; j < [0, 1, 2, 3].pickRandom(); j++) {
                 lead.jobs.push({
-                    id: (i+j) * [120, 18, 39, 12].pickRandom(),
+                    id: (i + j) * [120, 18, 39, 12].pickRandom(),
                     title: "Job #" + i + j
                 })
             }
@@ -244,6 +267,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
     gridFilter: any = null;
     onFilterChange(filter) {
+        debugger;
         this.gridFilter = filter;
         this.grid.refresh();
     }

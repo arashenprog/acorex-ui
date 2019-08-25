@@ -47,4 +47,16 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
         super.clear();
     }
 
+
+    setFilter(value: any, operator: string) {
+        debugger;
+        if (value instanceof Array) {
+            this.selectedItems = value;
+
+        }
+        else {
+            this.selectedItems = [value];
+        }
+        super.setFilter(value, operator);
+    }
 }

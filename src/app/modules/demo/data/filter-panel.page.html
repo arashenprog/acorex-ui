@@ -9,8 +9,7 @@
           <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
               <ng-template>
-                <ax-filter-panel [groups]="filterGroups" (filterChange)="onFilterChange($event)">
-
+                <ax-filter-panel [groups]="filterGroups" #filterPanel (filterChange)="onFilterChange($event)">
                 </ax-filter-panel>
               </ng-template>
             </ax-dock-content>

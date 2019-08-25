@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition } from '../filter.class';
+import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition, AXFilterColumn } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 
 @Component({
@@ -19,9 +19,9 @@ export class AXFilterPanelComponent {
 
 
     @Output()
-    filterChange: EventEmitter<any> = new EventEmitter();
+    filterChange: EventEmitter<AXFilterCondition[]> = new EventEmitter<AXFilterCondition[]>();
 
-    constructor() { }
+    constructor(private cdr: ChangeDetectorRef) { }
 
     onItemClick(e) {
         if (e) {
@@ -34,26 +34,27 @@ export class AXFilterPanelComponent {
     }
 
     public clear() {
-        this.groups.forEach(g => {
-            g.columns.forEach(c => {
-                c.active = false;
-            });
-        });
         this.filters.forEach(e => {
             e.clear();
         });
     }
 
     private generateFilter() {
-        let con: any[] = [];
+        let con: AXFilterCondition[] = [];
         this.filters.forEach(e => {
             if (e.active && e.condition) {
                 con.push(e.condition);
-                con.push("AND");
             }
         });
-        con.pop();
-        console.log(con);
         this.filterChange.emit(con);
+    }
+
+    public load(filters: AXFilterCondition[]): void {
+        filters.forEach(f => {
+            let col = this.filters.find(c => c.field == f.field);
+            if (col)
+                col.setFilter(f.value, f.condition);
+        });
+        this.generateFilter();
     }
 }

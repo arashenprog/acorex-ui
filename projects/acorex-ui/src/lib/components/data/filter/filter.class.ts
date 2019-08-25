@@ -1,4 +1,4 @@
-import { Input, ChangeDetectorRef } from "@angular/core";
+import { Input, ChangeDetectorRef, EventEmitter, Output } from "@angular/core";
 
 //export type AXFilterConditionEnum = "is" | "is-not" | "contains" | "not-contains" | "start-width" | "end-width" | "is-empty" | "is-not-empty";
 
@@ -8,7 +8,6 @@ export class AXFilterColumn {
     dataType: "string" | "date" | "datetime" | "time" | "number";
     type?: "text" | "selection" | "date";
     options?: any;
-    active?: boolean;
 }
 
 export class AXFilterColumnGroup {
@@ -25,8 +24,7 @@ export class AXFilterCondition {
 
 export abstract class AXFilterColumnComponent {
 
-    constructor(protected cdr:ChangeDetectorRef)
-    {
+    constructor(protected cdr: ChangeDetectorRef) {
 
     }
     operator: string = "equal";
@@ -37,8 +35,20 @@ export abstract class AXFilterColumnComponent {
     @Input()
     dataType: "string" | "date" | "datetime" | "time" | "number" = "string";
 
+
+    @Output()
+    activeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    private _active: boolean;
     @Input()
-    active: boolean = false;
+    public get active(): boolean {
+        return this._active;
+    }
+    public set active(v: boolean) {
+        this._active = v;
+        this.activeChange.emit(v);
+    }
+
 
     get condition(): AXFilterCondition {
         return {
@@ -50,8 +60,15 @@ export abstract class AXFilterColumnComponent {
     }
 
     clear() {
-        this.active=false;
+        this.active = false;
         this.value = null;
+        this.cdr.markForCheck();
+    }
+
+    setFilter(value: any, operator: string) {
+        this.active = true;
+        this.operator = operator;
+        this.value = value;
         this.cdr.markForCheck();
     }
 }
