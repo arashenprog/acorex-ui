@@ -18,7 +18,7 @@
           <ax-dock-panel type="stack" [size]="80">
             <ax-dock-content caption="Leads">
               <ng-template>
-                  <ax-data-grid #grid height="100%" (rowClick)="onRowClick($event)">
+                  <ax-data-grid #grid height="100%" (rowClick)="onRowClick($event)" [loadOnInit]="false">
                     <ax-data-source>
                       <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
                     </ax-data-source>

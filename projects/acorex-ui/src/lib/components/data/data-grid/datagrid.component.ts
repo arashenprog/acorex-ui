@@ -35,6 +35,8 @@ export class AXDataGridComponent {
   selectionChanged: EventEmitter<AXGridRowSelectionEvent> = new EventEmitter<AXGridRowSelectionEvent>();
 
 
+  @Input()
+  loadOnInit: boolean = true;
 
 
 
@@ -116,8 +118,10 @@ export class AXDataGridComponent {
 
   onGridReady(gridOptions: GridOptions) {
     this.gridApi = gridOptions.api;
+    debugger;
+    if(!this.loadOnInit)
+      return;
     const that = this;
-
     //
     if (that.remoteOperation) {
       let dataSource = {
@@ -178,6 +182,7 @@ export class AXDataGridComponent {
     this.mapColumns();
     //
     this.dataSource.onDataReceived.subscribe(c => {
+      debugger;
       if (this.remoteOperation && this.dataSourceSuccessCallback) {
         this.dataSourceSuccessCallback(c, c.length);
       }
@@ -199,6 +204,7 @@ export class AXDataGridComponent {
 
 
   refresh() {
+    this.loadOnInit = true;
     if (this.remoteOperation) {
       this.gridApi.refreshView();
     }
