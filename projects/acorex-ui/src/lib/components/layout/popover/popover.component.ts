@@ -152,7 +152,6 @@ export class AXPopoverComponent {
 
   private addOpenRemoveCloseListener() {
     this.zone.runOutsideAngular(() => {
-      debugger;
       //add open listeners
       if (this.openMode == "hover" && this.targetEl) {
         this.targetEl.addEventListener("mouseover", this.handleMouseOver.bind(this));

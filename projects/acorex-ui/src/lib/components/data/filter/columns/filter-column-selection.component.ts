@@ -51,11 +51,10 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
     setFilter(value: any, operator: string) {
         debugger;
         if (value instanceof Array) {
-            this.selectedItems = value;
-
+            this.selectedItems = this.items.filter(c => value.some(z => z == c.value));
         }
         else {
-            this.selectedItems = [value];
+            this.selectedItems = [this.items.find(c => c.value == value)];
         }
         super.setFilter(value, operator);
     }

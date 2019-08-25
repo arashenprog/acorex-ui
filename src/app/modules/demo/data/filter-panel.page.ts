@@ -217,6 +217,12 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                         dataType: "string",
                         field: "statusId",
                         value: [1, 7,3]
+                    },
+                    {
+                        condition: "contains",
+                        dataType: "string",
+                        field: "nextActionId",
+                        value: 8
                     }
                 ])
         }, 500);
