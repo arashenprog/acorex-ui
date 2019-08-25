@@ -5,7 +5,6 @@ import { Input, ChangeDetectorRef, EventEmitter, Output } from "@angular/core";
 export class AXFilterColumn {
     field: string;
     caption: string;
-    dataType: "string" | "date" | "datetime" | "time" | "number";
     type?: "text" | "selection" | "date" | "number";
     options?: any;
 }
@@ -32,8 +31,7 @@ export abstract class AXFilterColumnComponent {
     @Input()
     field: string = null;
 
-    @Input()
-    dataType: "string" | "date" | "datetime" | "time" | "number" = "string";
+   
 
 
     @Output()
@@ -50,14 +48,7 @@ export abstract class AXFilterColumnComponent {
     }
 
 
-    get condition(): AXFilterCondition {
-        return {
-            condition: this.operator,
-            field: this.field,
-            value: this.value,
-            dataType: this.dataType
-        }
-    }
+    abstract get  condition(): AXFilterCondition ;
 
     clear() {
         this.active = false;

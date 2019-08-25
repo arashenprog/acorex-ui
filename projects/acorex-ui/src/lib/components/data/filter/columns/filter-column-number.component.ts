@@ -64,6 +64,14 @@ export class AXFilterColumnNumberComponent extends AXFilterColumnComponent {
         super(cdr);
     }
     
+    get condition(): AXFilterCondition {
+        return {
+            condition: this.operator,
+            field: this.field,
+            dataType: "number",
+            value: this.value
+        }
+    }
 
 
 

@@ -27,6 +27,9 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
     @Input()
     mode = "single";
 
+    @Input()
+    dataType: any = "number";
+
     constructor(protected cdr: ChangeDetectorRef) {
         super(cdr);
     }

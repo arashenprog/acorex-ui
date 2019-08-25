@@ -93,21 +93,21 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             columns: [
                 {
                     caption: "Current Status",
-                    dataType: "number",
                     type: "selection",
                     options: {
                         mode: "multiple",
-                        items: STATUS
+                        items: STATUS,
+                        dataType:"number"
                     },
                     field: "statusId"
                 },
                 {
                     caption: "Next Action",
-                    dataType: "number",
                     type: "selection",
                     options: {
                         mode: "single",
-                        items: STATUS
+                        items: STATUS,
+                        dataType:"number"
                     },
                     field: "nextActionId"
                 },
@@ -119,7 +119,6 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             columns: [
                 {
                     caption: "Number",
-                    dataType: "number",
                     type: "text",
                     field: "jobs[:id]"
                 }
@@ -130,10 +129,10 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             columns: [
                 {
                     caption: "Staff",
-                    dataType: "number",
                     type: "selection",
                     options: {
                         mode: "multiple",
+                        dataType: "number",
                         items: [
                             {
                                 text: "Sam",
@@ -165,7 +164,6 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                 },
                 {
                     caption: "Register Date",
-                    dataType: "date",
                     type: "date",
                     field: "registerDate"
                 }
@@ -177,25 +175,21 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
                 {
                     caption: "Number",
-                    dataType: "number",
                     type: "number",
                     field: "number"
                 },
                 {
                     caption: "Firstname",
-                    dataType: "string",
                     type: "text",
                     field: "firstname"
                 },
                 {
                     caption: "Lastname",
-                    dataType: "string",
                     type: "text",
                     field: "lastname"
                 },
                 {
                     caption: "Email",
-                    dataType: "string",
                     type: "text",
                     field: "email"
                 }

@@ -63,6 +63,15 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
         super(cdr);
     }
 
+    get condition(): AXFilterCondition {
+        return {
+            condition: this.operator,
+            field: this.field,
+            dataType: "string",
+            value: this.value
+        }
+    }
+
 
 
 

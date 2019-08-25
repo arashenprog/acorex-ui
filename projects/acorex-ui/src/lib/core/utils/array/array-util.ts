@@ -24,6 +24,7 @@ Array.prototype.query = function (filters: any[]): any[] {
         for (const key in filters) {
             if (filters.hasOwnProperty(key)) {
                 const f = filters[key];
+                debugger;
                 if (f != "AND") {
                     let vals = [];
                     let mt = f.field.match(/\[\:(.*?)\]/)

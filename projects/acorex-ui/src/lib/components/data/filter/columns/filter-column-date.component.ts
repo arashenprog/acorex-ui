@@ -65,7 +65,6 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
     constructor(protected cdr: ChangeDetectorRef) {
         super(cdr);
-        this.dataType = "date";
     }
 
     ngAfterViewInit(): void {
@@ -87,14 +86,14 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
                 return {
                     condition: "equal",
                     field: this.field,
-                    dataType: this.dataType,
+                    dataType: "date",
                     value: this.fromDate
                 }
             case "specific":
                 return {
                     condition: "equal",
                     field: this.field,
-                    dataType: this.dataType,
+                    dataType: "date",
                     value: this.fromDate
                 }
             case "this-week":
@@ -114,7 +113,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         return {
             condition: "between",
             field: this.field,
-            dataType: this.dataType,
+            dataType: "date",
             value: [this.fromDate, this.toDate]
         }
     }
