@@ -19,55 +19,23 @@ import { AXDataGridRowTemplateComponent } from "./templates/row-template.compone
 })
 export class AXDataGridComponent {
 
+  private gridApi;
+  private dataSourceSuccessCallback;
+  columnDefs: any[] = [];
+  rowModelType = "clientSide";
+  rowGroupPanelShow = "always";
+  private remoteOperation: boolean = false;
+  fullWidthCellRendererFramework: any;
+  fullWidthCellRendererParams: any;
+  frameworkComponents: any = {};
+  isFullWidthCell: Function;
 
-  @Output()
-  cellClick: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>();
-  @Output()
-  cellDbClick: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>();
-  @Output()
-  cellFocuse: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>()
-  @Output()
-  rowClick: EventEmitter<AXGridRowEvent> = new EventEmitter<AXGridRowEvent>();;
+  internalHeight: string = "100%";
 
-  @Output()
-  rowDbClick: EventEmitter<AXGridRowEvent> = new EventEmitter<AXGridRowEvent>();
-  @Output()
-  selectionChanged: EventEmitter<AXGridRowSelectionEvent> = new EventEmitter<AXGridRowSelectionEvent>();
 
 
   @Input()
   loadOnInit: boolean = true;
-
-
-
-  constructor() {
-
-  }
-
-  private gridApi;
-  private dataSourceSuccessCallback;
-
-  @ContentChildren(AXGridDataColumn)
-  private _columns: QueryList<AXGridDataColumn>;
-
-
-  @ContentChild(AXToolbarSearchComponent)
-  searchInput: AXToolbarSearchComponent;
-
-  @ContentChild(AXToolbarComponent)
-  toolbar: AXToolbarComponent;
-
-  @ContentChild(AXDataGridRowTemplateComponent)
-  rowTemplate: AXDataGridRowTemplateComponent;
-
-
-  @ContentChild(AXDataSourceComponent)
-  private dataSource: AXDataSourceComponent;
-
-
-  columnDefs: any[] = [];
-
-
 
   private _searchText: string;
   @Input()
@@ -105,21 +73,76 @@ export class AXDataGridComponent {
     }
   }
 
+  @ContentChildren(AXGridDataColumn)
+  private _columns: QueryList<AXGridDataColumn>;
+
+
+  @ContentChild(AXToolbarSearchComponent)
+  searchInput: AXToolbarSearchComponent;
+
+  @ContentChild(AXToolbarComponent)
+  toolbar: AXToolbarComponent;
+
+  @ContentChild(AXDataGridRowTemplateComponent)
+  rowTemplate: AXDataGridRowTemplateComponent;
+
+
+  @ContentChild(AXDataSourceComponent)
+  private dataSource: AXDataSourceComponent;
+
+
+  @Output()
+  cellClick: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>();
+  @Output()
+  cellDbClick: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>();
+  @Output()
+  cellFocuse: EventEmitter<AXGridCellEvent> = new EventEmitter<AXGridCellEvent>()
+  @Output()
+  rowClick: EventEmitter<AXGridRowEvent> = new EventEmitter<AXGridRowEvent>();;
+
+  @Output()
+  rowDbClick: EventEmitter<AXGridRowEvent> = new EventEmitter<AXGridRowEvent>();
+  @Output()
+  selectionChanged: EventEmitter<AXGridRowSelectionEvent> = new EventEmitter<AXGridRowSelectionEvent>();
 
 
 
-  rowModelType = "clientSide";
-  rowGroupPanelShow = "always";
 
 
-  private remoteOperation: boolean = false;
+
+  constructor() {
+
+  }
+
+
+
+
+
+
+
+
+  private calcHeight():void {
+    if (this.toolbar)
+      this.internalHeight = `calc(100% - ${40}px)`;
+    else
+      this.internalHeight = '100%';
+  }
+
+
+
+
+
+
+
+
+
 
 
 
   onGridReady(gridOptions: GridOptions) {
     this.gridApi = gridOptions.api;
     debugger;
-    if(!this.loadOnInit)
+    if (!this.loadOnInit)
       return;
     const that = this;
     //
@@ -156,10 +179,7 @@ export class AXDataGridComponent {
   }
 
 
-  fullWidthCellRendererFramework: any;
-  fullWidthCellRendererParams: any;
-  frameworkComponents: any = {};
-  isFullWidthCell: Function;
+
 
   ngAfterContentInit(): void {
     if (this.rowTemplate) {
@@ -196,6 +216,8 @@ export class AXDataGridComponent {
         this.searchText = c;
       })
     }
+    //
+    this.calcHeight();
   }
 
   mapColumns() {

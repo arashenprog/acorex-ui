@@ -1,7 +1,7 @@
 <div class="ax-grid-toolbar" *ngIf="toolbar">
   <ng-content select="ax-toolbar"></ng-content>
 </div>
-<ag-grid-angular class="ag-theme-balham" [columnDefs]="columnDefs" [enableRtl]="false" [pagination]="true"
+<ag-grid-angular class="ag-theme-balham" [style.height]="internalHeight" [columnDefs]="columnDefs" [enableRtl]="false" [pagination]="true"
   [rowGroupPanelShow]="rowGroupPanelShow" [enableFilter]="true" [rowModelType]="rowModelType" [enableSorting]="true"
   [enableColResize]="true" [suppressMenuHide]="true" [frameworkComponents]="frameworkComponents"
   [isFullWidthCell]="isFullWidthCell" [fullWidthCellRendererFramework]="fullWidthCellRendererFramework"
