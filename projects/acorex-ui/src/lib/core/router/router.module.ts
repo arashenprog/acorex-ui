@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AXRouterService } from './router.service';
-import { Routes } from './router.class';
+import { AXRouterService, AXRouterConfigService } from './router.service';
+import { AXRoutes } from './router.class';
 
 @NgModule({
     declarations: [],
@@ -10,11 +10,10 @@ import { Routes } from './router.class';
     providers: [AXRouterService],
 })
 export class AXRouterModule {
-    static forRoot(routes:Routes): ModuleWithProviders {
-
+    static forRoot(routes?: AXRoutes): ModuleWithProviders {
         return {
             ngModule: AXRouterModule,
-            providers: [ {provide: AXRouterService, useValue: routes }]
+            providers: [{ provide: AXRouterConfigService, useValue: routes }]
         };
     }
 }

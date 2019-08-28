@@ -5,14 +5,14 @@ import {
   ViewEncapsulation
 } from "@angular/core";
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
-import { AXNavMenuService } from "../services/nav-menu.service";
+import { AXNavMenuService } from "../../services/nav-menu.service";
 import { Observable } from "rxjs";
 import { AXStorageService, MenuItem } from "acorex-ui";
 
 @Component({
   selector: "ax-side-menu",
-  templateUrl: "./sidemenu.layout.html",
-  styleUrls: ["./sidemenu.layout.scss"],
+  templateUrl: "./sidemenu.component.html",
+  styleUrls: ["./sidemenu.component.scss"],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

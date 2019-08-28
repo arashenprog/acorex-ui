@@ -12,7 +12,13 @@ import { AXGridLayoutModule } from "./../components/layout/grid-layout/grid.layo
 
 @NgModule({
   declarations: [TranslatePipe,AXDateTimePipe],
-  imports: [CommonModule, FormsModule, BrowserAnimationsModule, AXScrollModule,AXGridLayoutModule],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    BrowserAnimationsModule, 
+    AXScrollModule,
+    AXGridLayoutModule
+  ],
   exports: [TranslatePipe, BrowserAnimationsModule, AXScrollModule,AXDateTimePipe,AXGridLayoutModule],
   providers: [
     EventService,

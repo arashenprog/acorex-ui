@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./shared/app.component";
 import { ACoreXUIModule, IHttpError } from "acorex-ui";
 import {
-  AcorexSpaModule,
+  ACoreXSPAModule,
   AXNavMenuService,
   AXTabularLayoutComponent,
   AXTopMenuLayoutComponent,
@@ -46,7 +46,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     ACoreXUIModule,
-    AcorexSpaModule,
+    ACoreXSPAModule,
     DemoModule,
     RouterModule.forRoot(routes),
     AngularSplitModule.forRoot()

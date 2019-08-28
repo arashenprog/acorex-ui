@@ -7,4 +7,4 @@ export interface AXRoute
     routes:AXRoute[],
 
 }
-export declare type Routes = AXRoute[];
+export declare type AXRoutes = AXRoute[];

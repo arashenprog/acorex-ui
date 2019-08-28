@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DemoPage } from "./demo-page.component";
 import { DashboardPage } from "./dashboard/dashboard.page";
-import { AcorexSpaModule } from "acorex-spa";
-import { ACoreXUIModule } from "acorex-ui";
+import { ACoreXSPAModule } from "acorex-spa";
+import { ACoreXUIModule, AXRouterModule, AXRoutes } from "acorex-ui";
 import { AliPage } from "./ali/ali.page";
 import { TestPage } from "./test-page/test-page";
 import { WidgetsPage } from './widgets/widgets.page';
@@ -29,9 +29,25 @@ const pages = [
   ToolbarPage
 ]
 
+const ROUTES: AXRoutes = [
+  {
+    path: "/components/Data/filter",
+    component: FilterPanelDemoPage
+  },
+  {
+    path: "/AliPage",
+    component: AliPage
+  }
+];
+
 @NgModule({
   declarations: [...pages],
-  imports: [CommonModule, ACoreXUIModule, AcorexSpaModule, FormsModule],
+  imports: [
+    CommonModule,
+    ACoreXUIModule,
+    ACoreXSPAModule,
+    AXRouterModule.forRoot(ROUTES),
+    FormsModule],
   exports: [],
   providers: [],
   entryComponents: [...pages]

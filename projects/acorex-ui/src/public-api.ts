@@ -9,6 +9,9 @@ export * from "./lib/core/calendar/datetime";
 export * from "./lib/core/translate.service";
 export * from "./lib/core/storage.service";
 export * from "./lib/core/event.service";
+export * from "./lib/core/router/api";
+export * from "./lib/core/navigator/api";
+export * from "./lib/core/utils/api";
 
 export * from "./lib/core/base.class";
 export * from "./lib/core/menu.class";
@@ -34,5 +37,5 @@ export * from "./lib/components/form/checkbox/checkbox.module";
 
 export * from "./lib/components/calendar/scheduler/api";
 export * from "./lib/components/calendar/calendar-box/api";
-export * from "./lib/core/utils/api";
+
 export * from "./lib/acorex-ui.module";

@@ -3,11 +3,9 @@ import { AXTabularLayoutComponent } from "./tabular.layout";
 import { ACoreXUIModule } from 'acorex-ui';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {
-  AXPageFooterComponent, AXPageContentComponent, AXPageComponent,AXLayoutSharedModule
-} from '../shared/api';
 import { AXPageModule } from "../shared/page/page.module";
-import { AXSideMenuModule } from "../shared/sidemenu/sidemenu.module";
+import { AXSideMenuModule } from "../shared/components/sidemenu/sidemenu.module";
+import { AXLayoutTabsModule } from "../shared/components/tabs/tabs.module";
 
 
 
@@ -20,8 +18,8 @@ import { AXSideMenuModule } from "../shared/sidemenu/sidemenu.module";
     FormsModule,
     ACoreXUIModule,
     AXPageModule,
-    AXLayoutSharedModule,
-    AXSideMenuModule
+    AXSideMenuModule,
+    AXLayoutTabsModule
   ],
   exports: [
     AXTabularLayoutComponent

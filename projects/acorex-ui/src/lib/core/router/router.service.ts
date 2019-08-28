@@ -1,15 +1,30 @@
-import { Injectable } from '@angular/core';
-import { AXRoute } from './router.class';
+import { Injectable, InjectionToken, Inject } from '@angular/core';
+import { AXRoute, AXRoutes } from './router.class';
 
-@Injectable()
+
+
+export const AXRouterConfigService = new InjectionToken<AXRoutes>("AXRouterConfig")
+
+@Injectable({ providedIn: "root" })
 export class AXRouterService {
-    routes: AXRoute[] = [];
+    private static ROUTES: AXRoutes = [];
 
-    register(routes: AXRoute[]) {
-        this.routes.push(...routes);
+
+    constructor(@Inject(AXRouterConfigService) private routes) {
+        debugger;
+        this.register(routes);
+    }
+
+    register(routes: AXRoutes) {
+        if (routes)
+            AXRouterService.ROUTES.push(...routes);
     }
 
     resolve(path: string): AXRoute {
-        return this.routes.find(c => path == path);
+        return AXRouterService.ROUTES.find(c => c.path == path);
+    }
+
+    getAll(): AXRoutes {
+        return AXRouterService.ROUTES;
     }
 }

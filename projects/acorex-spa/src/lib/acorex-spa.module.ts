@@ -31,4 +31,4 @@ import { AXPageModule } from "./layouts/shared/page/page.module";
     useValue: null
   }]
 })
-export class AcorexSpaModule { }
+export class ACoreXSPAModule { }

@@ -1,24 +1,15 @@
 import { Injectable } from "@angular/core";
 
-import { PromisResult, MenuItem, AXTabPageService } from "acorex-ui";
+import { PromisResult, MenuItem , AXNavigator} from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
-import { DemoPage } from "../../modules/demo/demo-page.component";
-import { AliPage } from "src/app/modules/demo/ali/ali.page";
-import { TestPage } from "src/app/modules/demo/test-page/test-page";
-import { WidgetsPage } from 'src/app/modules/demo/widgets/widgets.page';
-import { ColorPickerPage } from 'src/app/modules/demo/colorpicker/colorpicker.component';
-import { FormControllPage } from 'src/app/modules/demo/formcontroll/formcontroll.page';
-import { FilterPanelDemoPage } from 'src/app/modules/demo/data/filter-panel.page';
-import { PickerPage } from 'src/app/modules/demo/picker/picker.page';
-import { ToolbarPage } from 'src/app/modules/demo/toolbar/toolbar.page';
-import { PopoverDemoPage } from 'src/app/modules/demo/popover/popover-demo.page';
+
 
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
   register(items: MenuItem[]): void {
     throw new Error("Method not implemented.");
   }
-  constructor(private tab: AXTabPageService) {
+  constructor(private nav: AXNavigator) {
     super();
   }
 
@@ -29,7 +20,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true,
-      data: { page: DemoPage, singleton: true }
+      data: { path: '/DemoPage' }
     },
     {
       name: "ali",
@@ -37,7 +28,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fab fa-artstation",
       id: "00",
       visible: true,
-      data: { page: AliPage , singleton: true }
+      data: { path: '/AliPage'  }
     },
     {
       name: "test",
@@ -45,7 +36,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-vial",
       id: "00",
       visible: true,
-      data: { page: TestPage }
+      data: { path:  '/TestPage' }
     },
     {
       name: "components",
@@ -60,7 +51,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-002",
       parentId: "003",
       visible: true,
-      data: { page: FormControllPage }
+      data: {  }
 
     },
    
@@ -77,7 +68,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003-001",
       parentId: "003-003",
       visible: true,
-      data: { page: FilterPanelDemoPage }
+      data: { path: '/components/Data/filter' }
     },
     {
       name: "layout",
@@ -92,7 +83,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-001",
       parentId: "003-001",
       visible: true,
-      data: { page: WidgetsPage }
+      data: { path: '/components/layout/widgets' }
     },
     {
       name: "dock",
@@ -114,7 +105,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-004",
       parentId: "003-001",
       visible: true,
-      data: { page: PopoverDemoPage }
+      data: { path: '/components/layout/popover' }
     },
     {
       name: "color-picker",
@@ -122,7 +113,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003",
       parentId: "003",
       visible: true,
-      data: { page: ColorPickerPage }
+      data: { path: '/components/forms/colorpicker' }
 
     },
     {
@@ -131,7 +122,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-004",
       parentId: "003",
       visible: true,
-      data: { page: PickerPage }
+      data: { path:  '/components/forms/pickers' }
 
     },
     {
@@ -140,18 +131,9 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-005",
       parentId: "003",
       visible: true,
-      data: { page: ToolbarPage }
+      data: { path: '/components/components/pickers' }
 
     },
-  ];
-  private mockItemFarsi: MenuItem[] = [
-    {
-      name: "dashboard",
-      text: "Dashboard",
-      icon: "fas fa-tachometer-alt",
-      id: "0",
-      visible: true
-    }
   ];
   getItems(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
@@ -195,25 +177,11 @@ export class NavMenuService extends AXNavMenuService {
   }
 
   clickItem(item: MenuItem): PromisResult<boolean> {
-    if (item.data.page) {
-      // if(item.data.uid)
-      // {
-      //   this.tab.active(item.data.uid);
-      // }
-      // else
-      // {
-      //   this.tab.open({
-      //     title: item.text,
-      //     content: item.data.page,
-      //     uid: item.data.uid
-      //   });
-      // }
-      this.tab.open({
+    if (item.data.path) {
+      this.nav.navigate({
         title: item.text,
-        content: item.data.page,
-        uid: item.data.uid,
-        singleton: item.data.singleton
-      });
+        path : item.data.path
+      })
     }
     return PromisResult.resolve(true);
   }
