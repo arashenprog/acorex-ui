@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AXTabNavService } from './navigator.service';
-import { AXRouterModule,AXTabPageModule,AXNavigator} from 'acorex-ui';
+import { AXTabPageModule, AXNavigator } from 'acorex-ui';
 
 @NgModule({
     declarations: [],
-    imports: [ 
+    imports: [
         CommonModule,
-        AXRouterModule.forRoot(),
-        AXTabPageModule ],
+        AXTabPageModule
+    ],
     exports: [],
     providers: [
         {
@@ -17,4 +17,4 @@ import { AXRouterModule,AXTabPageModule,AXNavigator} from 'acorex-ui';
         }
     ],
 })
-export class AXTabNavigatorModule {}
+export class AXTabNavigatorModule { }

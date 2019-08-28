@@ -7,23 +7,21 @@ import {
   AXNavMenuService,
   AXTabularLayoutComponent,
   AXTopMenuLayoutComponent,
-  AXMobileLayoutComponent
+  AXMobileLayoutComponent,
+  AXHeaderBarMenuService
 } from "acorex-spa";
 import { FormsModule } from "@angular/forms";
-import { AngularSplitModule } from "angular-split";
 import { NavMenuService } from "./shared/services/nav-menu.service";
-import { AXHeaderBarMenuService } from "acorex-spa";
 import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service";
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
-import { DemoPage } from "./modules/demo/demo-page.component";
-import { TestPage } from "./modules/demo/test-page/test-page";
 import { FormControllPage } from './modules/demo/formcontroll/formcontroll.page';
 
 const routes: Routes = [
   {
     path: "layout1",
-    component: AXTabularLayoutComponent
+    component: AXTabularLayoutComponent,    
+    loadChildren : "./modules/demo.module#DemoModule"
   },
   {
     path: "layout2",
@@ -49,7 +47,6 @@ const routes: Routes = [
     ACoreXSPAModule,
     DemoModule,
     RouterModule.forRoot(routes),
-    AngularSplitModule.forRoot()
   ],
   providers: [
     {

@@ -20,7 +20,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true,
-      data: { path: '/DemoPage' }
+      data: { path: 'DemoPage' }
     },
     {
       name: "ali",
@@ -28,7 +28,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fab fa-artstation",
       id: "00",
       visible: true,
-      data: { path: '/AliPage'  }
+      data: { path: 'AliPage'  }
     },
     {
       name: "test",
@@ -36,7 +36,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-vial",
       id: "00",
       visible: true,
-      data: { path:  '/TestPage' }
+      data: { path:  'TestPage' }
     },
     {
       name: "components",
@@ -68,7 +68,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003-001",
       parentId: "003-003",
       visible: true,
-      data: { path: '/components/Data/filter' }
+      data: { path: 'components/Data/filter' }
     },
     {
       name: "layout",
@@ -83,7 +83,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-001",
       parentId: "003-001",
       visible: true,
-      data: { path: '/components/layout/widgets' }
+      data: { path: 'components/layout/widgets' }
     },
     {
       name: "dock",
@@ -105,7 +105,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-004",
       parentId: "003-001",
       visible: true,
-      data: { path: '/components/layout/popover' }
+      data: { path: 'components/layout/popover' }
     },
     {
       name: "color-picker",
@@ -113,7 +113,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003",
       parentId: "003",
       visible: true,
-      data: { path: '/components/forms/colorpicker' }
+      data: { path: 'components/forms/colorpicker' }
 
     },
     {
@@ -122,7 +122,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-004",
       parentId: "003",
       visible: true,
-      data: { path:  '/components/forms/pickers' }
+      data: { path:  'components/forms/pickers' }
 
     },
     {
@@ -131,7 +131,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-005",
       parentId: "003",
       visible: true,
-      data: { path: '/components/components/pickers' }
+      data: { path: 'components/components/pickers' }
 
     },
   ];

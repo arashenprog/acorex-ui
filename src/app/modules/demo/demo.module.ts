@@ -3,17 +3,18 @@ import { CommonModule } from "@angular/common";
 import { DemoPage } from "./demo-page.component";
 import { DashboardPage } from "./dashboard/dashboard.page";
 import { ACoreXSPAModule } from "acorex-spa";
-import { ACoreXUIModule, AXRouterModule, AXRoutes } from "acorex-ui";
+import { ACoreXUIModule } from "acorex-ui";
 import { AliPage } from "./ali/ali.page";
 import { TestPage } from "./test-page/test-page";
 import { WidgetsPage } from './widgets/widgets.page';
 import { ColorPickerPage } from './colorpicker/colorpicker.component';
 import { FormControllPage } from './formcontroll/formcontroll.page';
 import { FormsModule } from '@angular/forms';
-import { FilterPanelDemoPage } from './data/filter-panel.page';
 import { PickerPage } from './picker/picker.page';
 import { ToolbarPage } from './toolbar/toolbar.page';
 import { PopoverDemoPage } from './popover/popover-demo.page';
+import { DemoDataModule } from './data/demo-data.module';
+import { Routes, RouterModule } from '@angular/router';
 
 const pages = [
   DemoPage,
@@ -24,18 +25,17 @@ const pages = [
   WidgetsPage,
   ColorPickerPage,
   FormControllPage,
-  FilterPanelDemoPage,
   PickerPage,
   ToolbarPage
 ]
 
-const ROUTES: AXRoutes = [
+const ROUTES: Routes = [
   {
-    path: "/components/Data/filter",
-    component: FilterPanelDemoPage
+    path:"data",
+    loadChildren : "./data/demo-data.module#DemoDataModule" 
   },
   {
-    path: "/AliPage",
+    path: "AliPage",
     component: AliPage
   }
 ];
@@ -46,10 +46,14 @@ const ROUTES: AXRoutes = [
     CommonModule,
     ACoreXUIModule,
     ACoreXSPAModule,
-    AXRouterModule.forRoot(ROUTES),
-    FormsModule],
+    DemoDataModule,
+    RouterModule.forRoot(ROUTES),
+    FormsModule
+  ],
   exports: [],
   providers: [],
   entryComponents: [...pages]
 })
-export class DemoModule { }
+export class DemoModule {
+  
+}

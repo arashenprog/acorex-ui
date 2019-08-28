@@ -1,5 +1,5 @@
 export class BaseMenuItem {
-  uid?:string=new Date().getTime().toString();
+  uid?: string = new Date().getTime().toString();
   id?: string;
   name?: string;
   text?: string;
@@ -9,15 +9,16 @@ export class BaseMenuItem {
   disable?: boolean = false;
   selected?: boolean = false;
   type?: string = "primary";
-  groupName?:string;
+  groupName?: string;
   data?: any;
-  style?:string;
+  style?: string;
+  orderIndex?: number = 0;
 }
 
 export class MenuItem extends BaseMenuItem {
   items?: MenuItem[];
   parentId?: string;
-  split?:boolean;
+  split?: boolean;
 }
 
 export class ButtonItem extends BaseMenuItem {
@@ -28,5 +29,5 @@ export class ButtonItem extends BaseMenuItem {
 export class CheckItem {
   text?: string;
   value?: any;
-  selected?:boolean;
+  selected?: boolean;
 }

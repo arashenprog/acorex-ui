@@ -9,7 +9,6 @@ export * from "./lib/core/calendar/datetime";
 export * from "./lib/core/translate.service";
 export * from "./lib/core/storage.service";
 export * from "./lib/core/event.service";
-export * from "./lib/core/router/api";
 export * from "./lib/core/navigator/api";
 export * from "./lib/core/utils/api";
 

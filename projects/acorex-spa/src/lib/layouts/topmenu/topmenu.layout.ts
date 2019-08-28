@@ -53,6 +53,8 @@ export class AXTopMenuLayoutComponent {
   navMenuItems: MenuItem[] = [{}];
 
   onItemClick(e: MenuItem) {
-    this.navMenuService.clickItem(e);
+    this.navMenuService.clickItem(e).then(c => {
+      //
+    });
   }
 }
