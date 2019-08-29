@@ -9,7 +9,7 @@ import { AXToolbarDropdownComponent } from '../../../layout/toolbar/dropdown/too
     template: `
         <ax-toolbar-dropdown text="Select Me" icon="fas fa-filter" #dropdown>
             <div>
-                <
+                
             </div>
         </ax-toolbar-dropdown>
     `,
