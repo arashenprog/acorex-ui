@@ -6,7 +6,9 @@
           [class.selected]="item.selected" [attr.title]="item.tooltip ? item.tooltip : null">
           <span class="ax-toolbar-menu-item-text">
             <i class="{{ item.icon }} ax-menu-item-icon" *ngIf="item.icon"></i>
+            <i class="{{ item.startIcon }} ax-menu-item-icon" *ngIf="item.startIcon"></i>
             <span *ngIf="item.text">{{ item.text }}</span>
+            <i class="{{ item.endIcon }} ax-menu-item-icon" *ngIf="item.endIcon"></i>
           </span>
           <i class="fas fa-angle-down ax-menu-item-drop-icon" *ngIf="item.hasChildren"></i>
           <ul *ngIf="item.hasChildren" class="collapsed sub-menu">

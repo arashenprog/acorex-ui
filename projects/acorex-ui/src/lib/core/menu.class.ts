@@ -13,6 +13,8 @@ export class BaseMenuItem {
   data?: any;
   style?: string;
   orderIndex?: number = 0;
+  endIcon?:string;
+  startIcon?:string;
 }
 
 export class MenuItem extends BaseMenuItem {

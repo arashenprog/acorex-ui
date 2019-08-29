@@ -14,12 +14,33 @@ import { FormsModule } from '@angular/forms';
 import { AXFilterColumnSelectionComponent } from './columns/filter-column-selection.component';
 import { AXFilterColumnDateComponent } from './columns/filter-column-date.component';
 import { AXFilterColumnNumberComponent } from './columns/filter-column-number.component';
+import { AXToolbarFilterViewComponent } from './toolbar/filter-toolbar';
 
+
+const COMPONENTS = [
+    AXFilterPanelComponent,
+    AXFilterColumnStringComponent,
+    AXFilterColumnSelectionComponent,
+    AXFilterColumnDateComponent,
+    AXFilterColumnNumberComponent,
+    AXToolbarFilterViewComponent,
+]
 
 @NgModule({
-    declarations: [AXFilterPanelComponent,AXFilterColumnStringComponent,AXFilterColumnSelectionComponent,AXFilterColumnDateComponent,AXFilterColumnNumberComponent],
-    imports: [ CommonModule,FormsModule,AXCoreModule,AXPanelBoxModule,AXDatePickerModule,AXCheckBoxModule,AXTextBoxModule,AXToolbarModule,AXSelectionListModule,AXButtonModule ],
-    exports: [AXFilterPanelComponent,AXFilterColumnStringComponent,AXFilterColumnSelectionComponent,AXFilterColumnDateComponent,AXFilterColumnNumberComponent],
+    declarations: [COMPONENTS],
+    imports: [
+        CommonModule,
+        FormsModule,
+        AXCoreModule,
+        AXPanelBoxModule,
+        AXDatePickerModule,
+        AXCheckBoxModule,
+        AXTextBoxModule,
+        AXToolbarModule,
+        AXSelectionListModule,
+        AXButtonModule
+    ],
+    exports: [COMPONENTS],
     providers: [],
 })
-export class AXFilterModule {}
+export class AXFilterModule { }

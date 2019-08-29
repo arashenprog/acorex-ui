@@ -5,11 +5,23 @@ import { AXToolbarMenuComponent } from './menu/toolbar-menu.component';
 import { AXToolbarSearchComponent } from './search/toolbar-search.component';
 import { AXToolbarTitleComponent } from './title/toolbar-title.component';
 import { AXToolbarButtonGroupComponent } from './group-button/toolbar-group-button.component';
+import { AXToolbarDropdownComponent } from './dropdown/toolbar-dropdown.component';
+import { AXPopoverModule } from '../popover/popover.module';
+
+
+const COMPONENTS= [
+    AXToolbarComponent, 
+    AXToolbarMenuComponent,
+    AXToolbarSearchComponent,
+    AXToolbarTitleComponent,
+    AXToolbarButtonGroupComponent,
+    AXToolbarDropdownComponent
+]
 
 @NgModule({
-    declarations: [AXToolbarComponent, AXToolbarMenuComponent,AXToolbarSearchComponent,AXToolbarTitleComponent,AXToolbarButtonGroupComponent],
-    imports: [CommonModule],
-    exports: [AXToolbarComponent, AXToolbarMenuComponent,AXToolbarSearchComponent,AXToolbarTitleComponent,AXToolbarButtonGroupComponent],
+    declarations: [COMPONENTS],
+    imports: [CommonModule,AXPopoverModule],
+    exports: [COMPONENTS],
     providers: [],
 })
 export class AXToolbarModule { }

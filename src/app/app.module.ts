@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: "layout1",
     component: AXTabularLayoutComponent,    
-    loadChildren : "./modules/demo.module#DemoModule"
+   
   },
   {
     path: "layout2",

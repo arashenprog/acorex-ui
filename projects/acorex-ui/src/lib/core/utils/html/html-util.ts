@@ -60,4 +60,8 @@ export class AXHtmlUtil {
   static isInRecPoint(pos: AXIPoint, rec: AXIClientRec): boolean {
     return pos.x >= rec.left && pos.x <= (rec.left + rec.width) && pos.y >= rec.top && (pos.y <= (rec.top + rec.height));
   }
+
+  static getUID(): string {
+    return "el-" + new Date().getDate().toString();
+  }
 }
