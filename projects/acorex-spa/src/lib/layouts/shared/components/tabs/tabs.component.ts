@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
 import { AXTabPageService } from "acorex-ui";
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "ax-tabs",
@@ -19,7 +20,6 @@ export class AXLayoutTabsComponent implements OnInit {
   ngAfterViewInit() {
     if (this.startUpTab) {
       this.tabService.open(this.startUpTab);
-      
     }
   }
 
@@ -27,6 +27,14 @@ export class AXLayoutTabsComponent implements OnInit {
     if (e.which == 2)
       this.tabService.close(tab, {});
     else
+      this.tabService.active(tab);
+  }
+
+  dragDrop(event: CdkDragDrop<any[]>) {
+    debugger;
+    let tab = this.tabService.tabs[event.previousIndex];
+    moveItemInArray(this.tabService.tabs, event.previousIndex, event.currentIndex);
+    if (tab)
       this.tabService.active(tab);
   }
 }
