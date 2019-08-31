@@ -44,7 +44,7 @@ ax-tabs {
       transition: 0.3s;
       position: relative;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-
+      user-select: none !important;
       span {
         text-overflow: ellipsis;
         white-space: nowrap;
