@@ -8,12 +8,23 @@ export interface AXTabPage {
     data?: any;
     id: number;
     uid?: string;
-    isBusy?: false;
+    isBusy?: boolean;
     active: boolean;
     singleton?: boolean;
     closed?: Function;
     closing?: (x: ClosingAction) => void;
     send?: Function;
+    pinned?: boolean;
+}
+
+export interface AXTabPageOptions {
+    content: any,
+    title: string,
+    closable?: boolean,
+    data?: any,
+    uid?: string,
+    pinned?: boolean,
+    singleton?: boolean
 }
 
 export interface AXTabPageMessage {
@@ -71,7 +82,7 @@ export class AXTabPageService {
 
     open(content: any, title: string): AXTabPageResult;
     open(content: any, title: string, data?: any): AXTabPageResult;
-    open(options: { content: any, title: string, closable?: boolean, data?: any, uid?: string,singleton?:boolean }): AXTabPageResult;
+    open(options: AXTabPageOptions): AXTabPageResult;
 
     open(arg1, arg2?, arg3?) {
         let newTab: AXTabPage;
@@ -86,7 +97,8 @@ export class AXTabPageService {
                 data: options.data,
                 uid: options.uid,
                 active: true,
-                singleton :options.singleton
+                singleton: options.singleton,
+                pinned : options.pinned
             };
         }
         else {
@@ -105,12 +117,11 @@ export class AXTabPageService {
         }
         return new AXTabPageResult(newTab, (closing, closed) => {
             let existTab = this.tabs.find(c => newTab.uid && c.uid == newTab.uid);
-            let singletonTab = this.tabs.find(c => newTab.singleton && (<any>c).component==newTab.content);
+            let singletonTab = this.tabs.find(c => newTab.singleton && (<any>c).component == newTab.content);
             if (existTab) {
                 this.active(existTab)
             }
-            else if(singletonTab)
-            {
+            else if (singletonTab) {
                 this.active(singletonTab)
             }
             else {
@@ -126,8 +137,7 @@ export class AXTabPageService {
                     t.active = false;
                 });
                 this.opened.emit(newTab);
-                if(newTab.data)
-                {
+                if (newTab.data) {
                     newTab.send(newTab.data);
                 }
             }

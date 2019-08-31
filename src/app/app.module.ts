@@ -62,7 +62,7 @@ const routes: Routes = [
       useValue: {
         content: FormControllPage,
         title: "Dashboard",
-        closable: false,
+        closable: true,
         uid: "dashboard"
       }
     }

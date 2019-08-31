@@ -1,32 +1,22 @@
-<ax-theme-wrapper>
-  <div class="ax-mobile-layout">
-    <div class="header">
-      <div class="buttons-container">
-        <ng-template ngFor let-tab [ngForOf]="tabService.tabs">
-          <i
-            class="fas fa-arrow-alt-circle-left"
-            *ngIf="tab.closable"
-            (click)="tabService.close(tab, {})"
-          ></i>
-        </ng-template>
-      </div>
-      <div class="logo-container">
-        <span>
-          CQFlooring
-        </span>
-      </div>
-      <div class="buttons-container" (click)="openDrawerMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
+<div class="ax-mobile-layout">
+  <div class="header">
+    <div class="buttons-container">
+      <ng-template ngFor let-tab [ngForOf]="tabService.tabs">
+        <i class="fas fa-arrow-alt-circle-left" *ngIf="tab.closable" (click)="tabService.close(tab, {})"></i>
+      </ng-template>
     </div>
-    <div class="ax-mobile-content-wrapper">
-      <ax-tab-page-renderer></ax-tab-page-renderer>
+    <div class="logo-container">
+      <span>
+        CQFlooring
+      </span>
+    </div>
+    <div class="buttons-container" (click)="openDrawerMenu()">
+      <i class="fas fa-bars"></i>
     </div>
   </div>
+  <div class="ax-mobile-content-wrapper">
+    <ax-tab-page-renderer></ax-tab-page-renderer>
+  </div>
+</div>
 
-  <ax-responsive-menu
-    [show]="showDrawerMenu"
-    direction="right"
-    [overlay]="true"
-  ></ax-responsive-menu>
-</ax-theme-wrapper>
+<ax-responsive-menu [show]="showDrawerMenu" direction="right" [overlay]="true"></ax-responsive-menu>

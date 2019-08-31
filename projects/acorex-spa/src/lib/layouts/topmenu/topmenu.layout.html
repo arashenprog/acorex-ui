@@ -1,38 +1,29 @@
-<ax-theme-wrapper>
-  <div class="top-menu-layout">
-    <header>
-      <div class="menu-container">
-        <div class="logo-container">CQ Flooring</div>
-        <div class="toolbar-container">
-          <ax-toolbar>
-            <ax-toolbar-menu
-              [items]="navMenuItems"
-              (itemClick)="onItemClick($event)"
-            ></ax-toolbar-menu>
-          </ax-toolbar>
-        </div>
-        <div class="commands-container">
-          <ng-container *ngFor="let b of headerItems">
-            <button
-              type="button"
-              class="circle-button {{ b.style }}"
-              [attr.title]="b.tooltip"
-              (click)="onHeaderClick(b)"
-            >
-              <i [class]="b.icon"></i>
-            </button>
-          </ng-container>
-        </div>
+<div class="top-menu-layout">
+  <header>
+    <div class="menu-container">
+      <div class="logo-container">CQ Flooring</div>
+      <div class="toolbar-container">
+        <ax-toolbar>
+          <ax-toolbar-menu [items]="navMenuItems" (itemClick)="onItemClick($event)"></ax-toolbar-menu>
+        </ax-toolbar>
       </div>
-      <div class="tabs-container">
-        <ax-tabs></ax-tabs>
+      <div class="commands-container">
+        <ng-container *ngFor="let b of headerItems">
+          <button type="button" class="circle-button {{ b.style }}" [attr.title]="b.tooltip" (click)="onHeaderClick(b)">
+            <i [class]="b.icon"></i>
+          </button>
+        </ng-container>
       </div>
-    </header>
-    <div class="top-menu-wrapper">
-      <ax-tab-page-renderer></ax-tab-page-renderer>
     </div>
+    <div class="tabs-container">
+      <ax-tabs></ax-tabs>
+    </div>
+  </header>
+  <div class="top-menu-wrapper">
+    <ax-tab-page-renderer></ax-tab-page-renderer>
   </div>
-  <!-- <div class="top-menu-layout">
+</div>
+<!-- <div class="top-menu-layout">
 
   </div>
   <div class="top-menu-header">
@@ -59,4 +50,3 @@
       <ax-tab-page-renderer></ax-tab-page-renderer>
   </div>
   <ax-tabs></ax-tabs> -->
-</ax-theme-wrapper>
