@@ -2,7 +2,7 @@ import { Component, Input, ElementRef } from "@angular/core";
 @Component({
   selector: "ax-row",
   template:
-    '<div [style.height]=[height] style="display:flex;flex-wrap: wrap;margin-bottom:10px"><ng-content></ng-content></div>'
+    '<div [style.height]=[height] style="display:flex;flex-wrap: wrap;margin-bottom:5px"><ng-content></ng-content></div>'
 })
 export class AXRowComponent {
   @Input()
@@ -22,6 +22,6 @@ export class AXRowComponent {
   constructor(private element: ElementRef) {}
 
   ngAfterViewInit() {
-    setTimeout(_=> this.setHeight());
+    setTimeout(_ => this.setHeight());
   }
 }
