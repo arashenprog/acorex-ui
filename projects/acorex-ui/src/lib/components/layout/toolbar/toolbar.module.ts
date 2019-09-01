@@ -7,6 +7,7 @@ import { AXToolbarTitleComponent } from './title/toolbar-title.component';
 import { AXToolbarButtonGroupComponent } from './group-button/toolbar-group-button.component';
 import { AXToolbarDropdownComponent } from './dropdown/toolbar-dropdown.component';
 import { AXPopoverModule } from '../popover/popover.module';
+import { AXMenuModule } from '../menu/menu.module';
 
 
 const COMPONENTS= [
@@ -20,7 +21,7 @@ const COMPONENTS= [
 
 @NgModule({
     declarations: [COMPONENTS],
-    imports: [CommonModule,AXPopoverModule],
+    imports: [CommonModule,AXPopoverModule,AXMenuModule],
     exports: [COMPONENTS],
     providers: [],
 })
