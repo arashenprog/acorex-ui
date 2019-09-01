@@ -10,7 +10,8 @@
           <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
               <ng-template>
-                F
+                <ax-menu [items]="verMenuItems"  direction="vertical">
+                </ax-menu>
               </ng-template>
             </ax-dock-content>
             <!-- <ax-dock-content caption="Tasks">

@@ -24,39 +24,79 @@
         padding: 0;
         list-style: none;
         display: flex;
-        flex-direction: row;
         flex-wrap: nowrap;
-        align-items: center;
-
-        li.ax-toolbar-menu-item {
-            display: flex;
-            justify-content: space-between;
+        &.hor{
+            flex-direction: row;
             align-items: center;
-            font-size: var(--font-md-size);
-            padding: 2px 5px;
-
-            span.ax-toolbar-menu-item-text {
+    
+            li.ax-toolbar-menu-item {
                 display: flex;
-
-                i.ax-menu-item-icon {
+                justify-content: space-between;
+                align-items: center;
+                font-size: var(--font-md-size);
+                padding: 2px 5px;
+    
+                span.ax-toolbar-menu-item-text {
+                    display: flex;
+    
+                    i.ax-menu-item-icon {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0 0px 0 0;
+                    }
+                }
+    
+                i.ax-menu-item-drop-icon {
                     width: 20px;
                     height: 20px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin: 0 0px 0 0;
+                    margin: 0 2px;
                 }
             }
+        }
 
-            i.ax-menu-item-drop-icon {
-                width: 20px;
-                height: 20px;
+        &.ver{
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+    
+            li.ax-toolbar-menu-item {
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                margin: 0 2px;
+                font-size: var(--font-md-size);
+                padding: 2px 5px;
+                width: 100%;
+    
+                span.ax-toolbar-menu-item-text {
+                    display: flex;
+    
+                    i.ax-menu-item-icon {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0 0px 0 0;
+                    }
+                }
+    
+                i.ax-menu-item-drop-icon {
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 2px;
+                }
             }
         }
+        
     }
 
     ul.collapsed {

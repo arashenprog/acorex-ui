@@ -50,6 +50,9 @@ export class AXMenuComponent {
   @Input()
   public selection: "none" | "single" | "multiple" = "none";
 
+  @Input()
+  public direction: "vertical" | "horizontal" = "horizontal";
+
   private _items: MenuItem[];
   @Input()
   public get items(): MenuItem[] {
@@ -85,7 +88,8 @@ export class AXMenuComponent {
       if (ul) {
         let r: boolean = false;
         if (ul.classList.contains("collapsed")) {
-          if (li.parentNode == this.root.nativeElement) ul.classList.add("first");
+          if (li.parentNode == this.root.nativeElement)
+            ul.classList.add("first");
 
           ul.classList.remove("collapsed");
           let posLi = li.getBoundingClientRect();
@@ -95,8 +99,14 @@ export class AXMenuComponent {
             y = posLi.top;
             x = posLi.left + li.clientWidth;
           } else {
-            x = posLi.left;
-            y = posLi.top + li.clientHeight;
+            if (this.direction == "horizontal") {
+              x = posLi.left;
+              y = posLi.top + li.clientHeight;
+            }
+            else {
+              x = posLi.right;
+              y = posLi.top ;
+            }
           }
 
           if (

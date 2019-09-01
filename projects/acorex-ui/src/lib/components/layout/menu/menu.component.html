@@ -1,5 +1,5 @@
 <div class="ax-menu-container" #container>
-  <ul class="root" #root>
+  <ul class="root" [class.hor]="direction=='horizontal'" [class.ver]="direction=='vertical'" #root>
     <ng-template #recursiveList let-list>
       <ng-container *ngFor="let item of list;trackBy:trackByItem">
         <li class="ax-toolbar-menu-item" *ngIf="item.visible!=false" (click)="onItemClick($event, item)" [ngClass]="item.style"

@@ -46,6 +46,39 @@ export class AliPage extends AXBasePageComponent {
     }
   ]
 
+  verMenuItems: MenuItem[] = [
+    {
+      icon: "fas fa-chart-line",
+      name: "item1",
+      text: "Line Chart",
+    },
+    {
+      icon: "fas fa-chart-pie",
+      name: "item2",
+      text: "Pie CHart",
+      items: [
+        {
+          name: "item3",
+          text: "Item 3",
+        },
+        {
+          name: "item4",
+          text: "Item 4",
+          items: [
+            {
+              name: "item5",
+              text: "Item 5",
+            },
+            {
+              name: "item6",
+              text: "Item 6",
+            }
+          ]
+        }
+      ]
+    }
+  ]
+
   data: AXSchedulerEvent[] = [
     {
       range: new AXDateTimeRange(new AXDateTime("2019-06-05 19:30"), new AXDateTime("2019-06-05 22:30")),
@@ -99,7 +132,7 @@ export class AliPage extends AXBasePageComponent {
     debugger;
     return new PromisResult(resolve => {
       if (e && e.searchText) {
-        let rs=this.data.filter(c => c.title.toLowerCase().includes(e.searchText));
+        let rs = this.data.filter(c => c.title.toLowerCase().includes(e.searchText));
         resolve(rs);
       }
       else {
