@@ -129,7 +129,7 @@ export class AliPage extends AXBasePageComponent {
   }
 
   provideGridData = (e) => {
-    debugger;
+    //debugger;
     return new PromisResult(resolve => {
       if (e && e.searchText) {
         let rs = this.data.filter(c => c.title.toLowerCase().includes(e.searchText));

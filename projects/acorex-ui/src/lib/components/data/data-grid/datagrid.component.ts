@@ -63,7 +63,7 @@ export class AXDataGridComponent {
       //this.gridApi.setFilterModel(this._filter);
       //this.gridApi.onFilterChanged();
       this._filter.forEach(f => {
-        debugger;
+        //debugger;
         let fc = this.gridApi.getFilterInstance(f.field);
         if (fc) {
           let ff = fc.getFrameworkComponentInstance();
@@ -141,7 +141,7 @@ export class AXDataGridComponent {
 
   onGridReady(gridOptions: GridOptions) {
     this.gridApi = gridOptions.api;
-    debugger;
+    //debugger;
     if (!this.loadOnInit)
       return;
     const that = this;
@@ -202,7 +202,7 @@ export class AXDataGridComponent {
     this.mapColumns();
     //
     this.dataSource.onDataReceived.subscribe(c => {
-      debugger;
+      //debugger;
       if (this.remoteOperation && this.dataSourceSuccessCallback) {
         this.dataSourceSuccessCallback(c, c.length);
       }

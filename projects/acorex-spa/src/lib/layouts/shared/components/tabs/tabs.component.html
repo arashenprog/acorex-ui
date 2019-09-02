@@ -1,11 +1,11 @@
 <div class="tabs" [horizontalScroll]="80" cdkDropList (cdkDropListDropped)="dragDrop($event)" cdkDropListOrientation="horizontal" >
-  <div class="tab-item" *ngFor="let tab of tabService.tabs" [class.active]="tab.active" [cdkDragDisabled]="tab.closable != true" cdkDrag 
+  <div class="tab-item" [attr.data-tab-id]="tab.id" *ngFor="let tab of tabService.tabs" [class.active]="tab.active" [cdkDragDisabled]="tab.closable != true" cdkDrag 
     (click)="onTabClick(tab, $event)">
     <span>{{ tab.title }}</span>
     <i *ngIf="tab.closable" class="fas fa-times" (click)="tabService.close(tab, {})"></i>
     <!-- fa-circle |   fa-spinner fa-spin -->
     <div  *cdkDragPreview > </div>
   </div>
-  <ax-menu #menu [items]="tabMenuItems" target=".tab-item"  direction="vertical">
+  <ax-menu #menu [items]="tabMenuItems" (itemClick)="onContextItemClick($event)" target=".tab-item"  direction="vertical">
   </ax-menu>
 </div>

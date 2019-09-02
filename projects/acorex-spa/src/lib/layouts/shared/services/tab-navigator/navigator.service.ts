@@ -11,7 +11,7 @@ export class AXTabNavService extends AXNavigator {
     }
 
     navigate(params: AXNavigatorParam) {
-        debugger;
+        //debugger;
         let route = this.router.config.find(c => c.path == params.path);
         if (route) {
             this.tab.open({

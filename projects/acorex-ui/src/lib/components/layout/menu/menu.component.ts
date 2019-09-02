@@ -13,6 +13,7 @@ import {
 import { MenuItem } from "../../../core/menu.class";
 import { Observable } from "rxjs";
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
+import { AXHtmlUtil } from "../../../core/utils/html/html-util";
 
 @Component({
   selector: "ax-menu",
@@ -252,7 +253,7 @@ export class AXMenuComponent {
   applyContextMenu() {
     if (this.target) {
       this.zone.runOutsideAngular(() => {
-        debugger;
+        //debugger;
         let root = this.container.nativeElement as HTMLElement;
         if (!root.classList.contains("contextMenu"))
           root.classList.add("contextMenu");
@@ -266,6 +267,8 @@ export class AXMenuComponent {
 
   private onContextHandler(e: MouseEvent) {
     let root = this.container.nativeElement as HTMLElement;
+    console.log(e);
+    
     e.preventDefault();
     this.closeOnOut();
     root.style.top = `${e.pageY}px`;

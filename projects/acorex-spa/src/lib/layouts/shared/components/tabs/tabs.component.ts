@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewEncapsulation, ViewChild } from "@angular/core";
 import { AXTabPageService, MenuItem, AXMenuComponent } from "acorex-ui";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MenuItem } from "../../../../../../../acorex-ui/src/lib/core/menu.class";
 
 @Component({
   selector: "ax-tabs",
@@ -67,4 +68,9 @@ export class AXLayoutTabsComponent implements OnInit {
       text: "Maximize"
     }
   ]
+
+  onContextItemClick(e:MenuItem)
+  {
+    e
+  }
 }

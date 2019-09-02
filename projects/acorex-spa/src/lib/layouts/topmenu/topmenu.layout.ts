@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, Inject, ViewEncapsulation, ViewChild, ElementRef } from "@angular/core";
 import { BaseMenuItem, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXHeaderBarMenuService, AXNavMenuService } from "../shared/api";
 
@@ -10,23 +10,38 @@ import { AXHeaderBarMenuService, AXNavMenuService } from "../shared/api";
 })
 export class AXTopMenuLayoutComponent {
   hasToolbar: boolean = false;
+  headerItems: BaseMenuItem[]=[];
+  navMenuItems: MenuItem[] = [];
+
+  @ViewChild('topMenuWrapper')
+  topMenuWrapper: ElementRef<HTMLElement>;
+
+  @ViewChild('header')
+  header: ElementRef<HTMLElement>;
+
   constructor(
     public tabService: AXTabPageService,
     public headerBarMenuService: AXHeaderBarMenuService,
     private navMenuService: AXNavMenuService
-  ) {}
+  ) { }
 
-  ngDoCheck() {}
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.applySize();
+  }
 
-  headerItems: BaseMenuItem[];
+
+  applySize() {
+    this.topMenuWrapper.nativeElement.style.height = `calc(100% - ${this.header.nativeElement.clientHeight}px)`
+  }
+
+  
 
   ngOnInit(): void {
     this.headerBarMenuService.getItems().then(c => {
       this.headerItems = c;
     });
-    this.navMenuService.getItems().then((all:MenuItem[]) => {
+    this.navMenuService.getItems().then((all: MenuItem[]) => {
       this.navMenuItems = all.filter(c => c.parentId == null).slice(); //.map(c => {  this.transformMenus(c, all); });
       this.navMenuItems.forEach(i => {
         this.transformMenus(i, all.slice());
@@ -43,14 +58,8 @@ export class AXTopMenuLayoutComponent {
   }
 
   onHeaderClick(e: BaseMenuItem) {
-    this.headerBarMenuService.clickItem(e).then(c => {});
+    this.headerBarMenuService.clickItem(e).then(c => { });
   }
-  onMouseWheel(e) {
-    let delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
-    document.getElementsByClassName("tabs")[0].scrollLeft -= delta * 40;
-  }
-
-  navMenuItems: MenuItem[] = [{}];
 
   onItemClick(e: MenuItem) {
     this.navMenuService.clickItem(e).then(c => {

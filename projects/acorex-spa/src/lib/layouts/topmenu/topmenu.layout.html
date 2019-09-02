@@ -1,5 +1,5 @@
 <div class="top-menu-layout">
-  <header>
+  <header #header>
     <div class="menu-container">
       <div class="logo-container">CQ Flooring</div>
       <div class="toolbar-container">
@@ -19,34 +19,7 @@
       <ax-tabs></ax-tabs>
     </div>
   </header>
-  <div class="top-menu-wrapper">
+  <div class="top-menu-wrapper" #topMenuWrapper>
     <ax-tab-page-renderer></ax-tab-page-renderer>
   </div>
 </div>
-<!-- <div class="top-menu-layout">
-
-  </div>
-  <div class="top-menu-header">
-    <div class="brand">
-      <strong>CQFlooring</strong>
-    </div>
-    <div class="menu">
-        <ax-toolbar></ax-toolbar>
-    </div>
-    <div class="commands">
-      <ng-container *ngFor="let b of headerItems">
-        <button
-          type="button"
-          class="circle-button {{ b.style }}"
-          [attr.title]="b.tooltip"
-          (click)="onHeaderClick(b)"
-        >
-          <i [class]="b.icon"></i>
-        </button>
-      </ng-container>
-    </div>
-  </div>
-  <div class="top-menu-wrapper">
-      <ax-tab-page-renderer></ax-tab-page-renderer>
-  </div>
-  <ax-tabs></ax-tabs> -->

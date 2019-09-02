@@ -4,7 +4,6 @@
     </ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
-    <!-- <div style="width: 100%; height: calc(100vh - 140px);"> -->
       <ax-dock-layout #layout autoSave="true" storageKey="Test">
         <ax-dock-panel type="row">
           <ax-dock-panel type="stack" [size]="20">
@@ -15,11 +14,6 @@
                 <div id="target">Right click / Touch hold to open the ContextMenu</div>
               </ng-template>
             </ax-dock-content>
-            <!-- <ax-dock-content caption="Tasks">
-              <ng-template>
-                T
-              </ng-template>
-            </ax-dock-content>  -->
           </ax-dock-panel>
           <ax-dock-panel type="stack" [size]="80">
             <ax-dock-content caption="Leads">
@@ -57,6 +51,5 @@
           </ax-dock-panel>
         </ax-dock-panel>
       </ax-dock-layout>
-    <!-- </div> -->
   </ax-page-content>
 </ax-page>

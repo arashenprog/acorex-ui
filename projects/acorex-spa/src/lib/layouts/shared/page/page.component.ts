@@ -22,16 +22,16 @@ import { Component, ElementRef } from "@angular/core";
 export class AXPageComponent {
   constructor(private el: ElementRef<HTMLElement>) {}
   ngAfterViewInit(): void {
-    debugger;
-    let contentWrap = this.el.nativeElement.querySelector(
-      ".page-content-wrap"
-    ) as HTMLElement;
-    let toolbar = this.el.nativeElement.querySelector(
-      ".ax-page-toolbar"
-    ) as HTMLElement;
-    let content = this.el.nativeElement.querySelector(
-      ".ax-page-content"
-    ) as HTMLElement;
-    content.style.height = content.clientHeight - toolbar.clientHeight + "px";
+    // //debugger;
+    // let contentWrap = this.el.nativeElement.querySelector(
+    //   ".page-content-wrap"
+    // ) as HTMLElement;
+    // let toolbar = this.el.nativeElement.querySelector(
+    //   ".ax-page-toolbar"
+    // ) as HTMLElement;
+    // let content = this.el.nativeElement.querySelector(
+    //   ".ax-page-content"
+    // ) as HTMLElement;
+    // content.style.height = content.clientHeight - toolbar.clientHeight + "px";
   }
 }

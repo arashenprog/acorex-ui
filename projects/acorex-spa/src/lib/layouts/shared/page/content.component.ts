@@ -11,32 +11,41 @@ import { Component, ElementRef } from "@angular/core";
   `
 })
 export class AXPageContentComponent {
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) { }
 
   ngAfterViewInit(): void {
+    debugger;
+    setTimeout(() => {
+      this.applyResize();
+    }, 500);
+  }
+
+  private applyResize() {
     let page = this.closest(this.el.nativeElement, ".page-content-wrap");
     if (page) {
-      let pageHeight = 30;
+      let pageHeight = 0;
       let footer = page.querySelector(".ax-page-footer");
       if (footer) {
-        pageHeight += 50;
+        pageHeight += footer.clientHeight;
       }
-      let toolbar = page.querySelector(".ax-toolbar");
+      let toolbar = page.querySelector(".ax-page-toolbar");
       if (toolbar) {
-        pageHeight += 50;
+        pageHeight += toolbar.clientHeight;
       }
       this.el.nativeElement.querySelector(
         ".ax-page-content"
-      ).style.height = `calc(100vh - ${pageHeight}px)`;
+      ).style.height = `calc(100% - ${pageHeight}px)`;
+      //
+      //window.dispatchEvent(new Event('resize'));
     }
   }
 
-  closest(el, selector) {
+  private closest(el, selector) {
     var matches = el.webkitMatchesSelector
       ? "webkitMatchesSelector"
       : el.msMatchesSelector
-      ? "msMatchesSelector"
-      : "matches";
+        ? "msMatchesSelector"
+        : "matches";
 
     while (el.parentElement) {
       if (el[matches](selector)) return el;

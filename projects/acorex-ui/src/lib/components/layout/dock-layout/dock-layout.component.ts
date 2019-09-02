@@ -3,6 +3,7 @@ import * as GoldenLayout from 'golden-layout';
 import { AXDockPanelComponent } from './dock-panel.component';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { NgZone } from '@angular/core';
 declare var $: any;
 
 export class AXDockLayoutState {
@@ -15,7 +16,7 @@ export class AXDockLayoutState {
   template: '<div id="{{uid}}" class="layoutContainer"></div>',
   styleUrls: ['./dock-layout.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXDockLayoutComponent {
   @ContentChildren(AXDockPanelComponent)
@@ -30,8 +31,9 @@ export class AXDockLayoutComponent {
   constructor(
     @Attribute("storageKey") public storageKey: string,
     @Attribute("autoSave") public autoSave: boolean = true,
-    private cdr:ChangeDetectorRef
-  ) {    
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone
+  ) {
     this.config = {
       settings: {
         hasHeaders: true,
@@ -161,9 +163,22 @@ export class AXDockLayoutComponent {
         .pipe(debounceTime(500))
         .pipe(distinctUntilChanged())
         .subscribe(c => {
-          this.layout.updateSize();
+          this.applyResize();
         });
     }
     this.resizeChangeObserver.next(event);
+  }
+
+
+  applyResize() {
+    this.zone.runOutsideAngular(() => {
+      if (this.layout) {
+        this.layout.updateSize();
+      }
+    })
+  }
+
+  ngDoCheck(): void {
+    this.applyResize();
   }
 }
