@@ -54,6 +54,8 @@ export class AXMenuComponent {
   @Input()
   public target: string;
 
+  public currentTarget:HTMLElement;
+
   @Input()
   public direction: "vertical" | "horizontal" = "horizontal";
 
@@ -258,17 +260,16 @@ export class AXMenuComponent {
         if (!root.classList.contains("contextMenu"))
           root.classList.add("contextMenu");
         document.querySelectorAll(this.target).forEach(t => {
-          t.removeEventListener("contextmenu", this.onContextHandler.bind(this));
-          t.addEventListener("contextmenu", this.onContextHandler.bind(this));
+          t.removeEventListener("contextmenu", this.onContextHandler.bind(this,t));
+          t.addEventListener("contextmenu", this.onContextHandler.bind(this,t));
         });
       });
     }
   }
 
-  private onContextHandler(e: MouseEvent) {
+  private onContextHandler(target:HTMLElement,e: MouseEvent) {
     let root = this.container.nativeElement as HTMLElement;
-    console.log(e);
-    
+    this.currentTarget=target;
     e.preventDefault();
     this.closeOnOut();
     root.style.top = `${e.pageY}px`;
