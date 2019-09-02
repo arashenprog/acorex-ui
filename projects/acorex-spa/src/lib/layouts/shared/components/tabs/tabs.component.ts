@@ -71,6 +71,6 @@ export class AXLayoutTabsComponent implements OnInit {
 
   onContextItemClick(e:MenuItem)
   {
-    e
+    
   }
 }
