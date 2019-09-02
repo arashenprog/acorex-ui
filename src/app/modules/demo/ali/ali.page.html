@@ -10,8 +10,9 @@
           <ax-dock-panel type="stack" [size]="20">
             <ax-dock-content caption="Filters">
               <ng-template>
-                <ax-menu [items]="verMenuItems"  direction="vertical">
+                <ax-menu [items]="verMenuItems" target="#target"  direction="vertical">
                 </ax-menu>
+                <div id="target">Right click / Touch hold to open the ContextMenu</div>
               </ng-template>
             </ax-dock-content>
             <!-- <ax-dock-content caption="Tasks">

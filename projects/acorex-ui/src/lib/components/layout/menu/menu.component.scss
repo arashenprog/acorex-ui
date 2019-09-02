@@ -18,6 +18,16 @@
 
 .ax-menu-container {
     overflow: hidden;
+    &.contextMenu
+    {
+        background-color: var(--white-color);
+        padding: 1px;
+        border: 1px solid var(--border-color);
+        z-index: 99999999;
+        position: fixed;
+        visibility: hidden;
+
+    }
 
     ul.root {
         margin: 0;

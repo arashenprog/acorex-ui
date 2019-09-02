@@ -51,6 +51,9 @@ export class AXMenuComponent {
   public selection: "none" | "single" | "multiple" = "none";
 
   @Input()
+  public target: string;
+
+  @Input()
   public direction: "vertical" | "horizontal" = "horizontal";
 
   private _items: MenuItem[];
@@ -105,7 +108,7 @@ export class AXMenuComponent {
             }
             else {
               x = posLi.right;
-              y = posLi.top ;
+              y = posLi.top;
             }
           }
 
@@ -142,9 +145,13 @@ export class AXMenuComponent {
   private closeOnOut(el?: HTMLElement) {
     this.zone.runOutsideAngular(() => {
       let root = this.element.nativeElement as HTMLElement;
+      if (this.target && !el) {
+        this.container.nativeElement.style.visibility = "hidden";
+      }
       root.querySelectorAll("ul.sub-menu").forEach(c => {
         if (!c.contains(el)) c.classList.add("collapsed");
       });
+
     });
   }
 
@@ -239,12 +246,40 @@ export class AXMenuComponent {
   ngAfterViewInit(): void {
     this.cdr.detach();
     this.applyResponsive();
+    this.applyContextMenu();
+  }
+
+  applyContextMenu() {
+    if (this.target) {
+      this.zone.runOutsideAngular(() => {
+        debugger;
+        let root = this.container.nativeElement as HTMLElement;
+        if (!root.classList.contains("contextMenu"))
+          root.classList.add("contextMenu");
+        document.querySelectorAll(this.target).forEach(t => {
+          t.removeEventListener("contextmenu", this.onContextHandler.bind(this));
+          t.addEventListener("contextmenu", this.onContextHandler.bind(this));
+        });
+      });
+    }
+  }
+
+  private onContextHandler(e: MouseEvent) {
+    let root = this.container.nativeElement as HTMLElement;
+    e.preventDefault();
+    this.closeOnOut();
+    root.style.top = `${e.pageY}px`;
+    root.style.left = `${e.pageX}px`;
+    root.style.visibility = "unset";
   }
 
   ngOnDestroy(): void {
     this.zone.runOutsideAngular(() => {
       window.document.removeEventListener("click", this.clickOutsideHandler.bind(this));
       window.removeEventListener("resize", this.onResize);
+      document.querySelectorAll(this.target).forEach(t => {
+        t.removeEventListener("contextmenu", this.onContextHandler.bind(this));
+      });
     });
   }
 

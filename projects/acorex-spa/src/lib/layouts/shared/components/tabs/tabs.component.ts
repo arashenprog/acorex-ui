@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
-import { AXTabPageService } from "acorex-ui";
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnInit, Inject, ViewEncapsulation, ViewChild } from "@angular/core";
+import { AXTabPageService, MenuItem, AXMenuComponent } from "acorex-ui";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "ax-tabs",
@@ -9,10 +9,22 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   encapsulation: ViewEncapsulation.None
 })
 export class AXLayoutTabsComponent implements OnInit {
+
+  @ViewChild(AXMenuComponent) menu: AXMenuComponent;
   constructor(
     public tabService: AXTabPageService,
     @Inject("startUpTab") private startUpTab: any
   ) {
+    this.tabService.opened.subscribe(t => {
+      setTimeout(() => {
+        this.menu.applyContextMenu();
+      }, 50);
+    });
+    this.tabService.closed.subscribe(t => {
+      setTimeout(() => {
+        this.menu.applyContextMenu();
+      }, 50);
+    });
   }
 
   ngOnInit(): void { }
@@ -31,10 +43,28 @@ export class AXLayoutTabsComponent implements OnInit {
   }
 
   dragDrop(event: CdkDragDrop<any[]>) {
-    debugger;
     let tab = this.tabService.tabs[event.previousIndex];
     moveItemInArray(this.tabService.tabs, event.previousIndex, event.currentIndex);
     if (tab)
       this.tabService.active(tab);
   }
+
+
+  tabMenuItems: MenuItem[] = [
+    {
+      name: "close",
+      icon:"fas fa-times",
+      text: "Close tab"
+    },
+    {
+      name: "openInNew",
+      icon:"fas fa-external-link-alt",
+      text: "Open in new browser tab"
+    },
+    {
+      name: "maximize",
+      icon:"fas fa-window-maximize",
+      text: "Maximize"
+    }
+  ]
 }
