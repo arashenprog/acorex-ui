@@ -53,23 +53,32 @@ export class AXLayoutTabsComponent implements OnInit {
   tabMenuItems: MenuItem[] = [
     {
       name: "close",
-      icon:"fas fa-times",
+      icon: "fas fa-times",
       text: "Close tab"
     },
     {
       name: "openInNew",
-      icon:"fas fa-external-link-alt",
+      icon: "fas fa-external-link-alt",
       text: "Open in new browser tab"
     },
     {
       name: "maximize",
-      icon:"fas fa-window-maximize",
+      icon: "fas fa-window-maximize",
       text: "Maximize"
     }
   ]
 
-  onContextItemClick(e:MenuItem)
-  {
-    console.log(this.menu.currentTarget);
+  onContextItemClick(e: MenuItem) {
+    let target = this.menu.currentTarget as HTMLElement;
+    let tabId = Number(target.getAttribute("data-tab-id"));
+    let tab = this.tabService.tabs.find(t => t.id == tabId);
+    console.log(tab);
+    if (e.name == "close") {
+      this.tabService.close(tab, {});
+    }
+    if (e.name == "openInNew") {
+    }
+    if (e.name == "maximize") {
+    }
   }
 }
