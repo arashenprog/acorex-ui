@@ -77,6 +77,9 @@ export class AXLayoutTabsComponent implements OnInit {
       this.tabService.close(tab, {});
     }
     if (e.name == "openInNew") {
+      if (tab.data && tab.data.route) {
+        window.open("/" + tab.data.route, "_blank");
+      }
     }
     if (e.name == "maximize") {
     }

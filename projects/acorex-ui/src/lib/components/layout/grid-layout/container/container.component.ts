@@ -4,6 +4,6 @@ import { Component, Input } from "@angular/core";
   templateUrl: "./container.component.html"
 })
 export class AXContainerComponent {
-  @Input() value: string = "container";
+  
   constructor() {}
 }

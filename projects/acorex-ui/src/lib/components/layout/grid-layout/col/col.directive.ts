@@ -9,7 +9,7 @@ export class AXColSmDirective implements OnInit {
   ngOnInit() {
     this.renderer.addClass(
       this.hostElement.nativeElement,
-      "col-sm-" + this.value
+      "col-sm-" + this.value + " gutter"
     );
   }
 }

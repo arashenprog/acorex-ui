@@ -98,7 +98,7 @@ export class AXTabPageService {
                 uid: options.uid,
                 active: true,
                 singleton: options.singleton,
-                pinned : options.pinned
+                pinned : options.pinned,
             };
         }
         else {

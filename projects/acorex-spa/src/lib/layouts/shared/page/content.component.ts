@@ -23,6 +23,10 @@ export class AXPageContentComponent {
   private applyResize() {
     let page = this.closest(this.el.nativeElement, ".page-content-wrap");
     if (page) {
+      debugger;
+      if (page.clientHeight <= 100) {
+        page.style.height = "100vh";
+      }
       let pageHeight = 0;
       let footer = page.querySelector(".ax-page-footer");
       if (footer) {
@@ -40,7 +44,7 @@ export class AXPageContentComponent {
     }
   }
 
-  private closest(el, selector) {
+  private closest(el, selector): HTMLElement {
     var matches = el.webkitMatchesSelector
       ? "webkitMatchesSelector"
       : el.msMatchesSelector
