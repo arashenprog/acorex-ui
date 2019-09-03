@@ -2,7 +2,7 @@ import { Component, Input, ElementRef } from "@angular/core";
 @Component({
   selector: "ax-row",
   template:
-    '<div [style.height]=[height] style="display:flex;flex-wrap: wrap;margin-bottom:5px"><ng-content></ng-content></div>'
+    '<div [style.height]=[height] class="row gutter"><ng-content></ng-content></div>'
 })
 export class AXRowComponent {
   @Input()
