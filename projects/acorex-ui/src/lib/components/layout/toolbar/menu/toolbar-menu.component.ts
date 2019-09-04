@@ -8,7 +8,9 @@ import {
   ChangeDetectionStrategy,
   NgZone,
   ViewChild,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ContentChild,
+  TemplateRef
 } from "@angular/core";
 import { AXToolbarItem } from "../toolbar-item";
 import { MenuItem } from "../../../../core/menu.class";
@@ -29,10 +31,14 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     super();
   }
 
-  @ViewChild('menu') menu:AXMenuComponent
+  @ViewChild('menu') menu: AXMenuComponent
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
+
+  @Input()
+  @ContentChild(TemplateRef) 
+  menuTemplate: TemplateRef<any>;
 
   @Input()
   public selection: "none" | "single" | "multiple" = "none";
@@ -57,7 +63,7 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   }
 
   ngOnDestroy(): void {
-   
+
   }
 
   update() {
@@ -66,5 +72,5 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     this.cdr.detectChanges();
   }
 
-  
+
 }

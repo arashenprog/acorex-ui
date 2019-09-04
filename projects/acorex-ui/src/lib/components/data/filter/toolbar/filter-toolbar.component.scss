@@ -1,0 +1,17 @@
+.ax-toolbar-menu-item
+{
+    .icon-remove
+    {
+        visibility:hidden;
+        color:var(--danger-color);
+        margin-inline-start: 25px;
+        font-size: var(--font-sm-size);
+    }
+
+    &:hover{
+        & > .icon-remove
+        {
+            visibility:unset;
+        }
+    }
+}

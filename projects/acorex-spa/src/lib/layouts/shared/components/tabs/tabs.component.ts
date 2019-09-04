@@ -53,8 +53,13 @@ export class AXLayoutTabsComponent implements OnInit {
   tabMenuItems: MenuItem[] = [
     {
       name: "close",
-      icon: "fas fa-times",
+      icon: "fas",
       text: "Close tab"
+    },
+    {
+      name: "closeOthers",
+      icon: "fas",
+      text: "Close other tabs"
     },
     {
       name: "openInNew",
@@ -76,9 +81,14 @@ export class AXLayoutTabsComponent implements OnInit {
     if (e.name == "close") {
       this.tabService.close(tab, {});
     }
+    if (e.name == "closeOthers") {
+      this.tabService.tabs.filter(c => c.id != tabId).forEach(t => {
+        this.tabService.close(t, {});
+      });
+    }
     if (e.name == "openInNew") {
       if (tab.data && tab.data.route) {
-        window.open("/" + tab.data.route, "_blank");
+        window.open("/" + tab.data.route, "_blank"); 
       }
     }
     if (e.name == "maximize") {

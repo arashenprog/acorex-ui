@@ -10,6 +10,9 @@
             <ax-dock-content caption="Filters">
               <ng-template>
                 <ax-menu [items]="verMenuItems" target="#target"  direction="vertical">
+                  <ng-template let-item>
+                      <span>{{item.text}}</span>
+                  </ng-template>
                 </ax-menu>
                 <div id="target">Right click / Touch hold to open the ContextMenu</div>
               </ng-template>

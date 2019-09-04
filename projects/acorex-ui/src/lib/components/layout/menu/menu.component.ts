@@ -8,7 +8,9 @@ import {
   ChangeDetectionStrategy,
   NgZone,
   ViewChild,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  TemplateRef,
+  ContentChild
 } from "@angular/core";
 import { MenuItem } from "../../../core/menu.class";
 import { Observable } from "rxjs";
@@ -42,6 +44,11 @@ export class AXMenuComponent {
   private moreUL: ElementRef<HTMLElement>;
   @ViewChild("moreLI")
   private moreLI: ElementRef<HTMLElement>;
+
+  
+  @Input()
+  @ContentChild(TemplateRef) 
+  menuTemplate: TemplateRef<any>;
 
   resizeChangeObserver: any;
 
@@ -248,6 +255,7 @@ export class AXMenuComponent {
 
   ngAfterViewInit(): void {
     this.cdr.detach();
+    debugger;
     this.applyResponsive();
     this.applyContextMenu();
   }

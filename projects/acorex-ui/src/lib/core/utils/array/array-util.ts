@@ -6,11 +6,18 @@ declare global {
         pickRandom(): T;
         query(filters: any[]): T[];
         range(min: number, max: number): number[];
+        insert(index: number, ...rest:T[]):T[]
     }
 }
 Array.prototype.pickRandom = function (): any {
     return this[Math.floor(Math.random() * this.length)]
 }
+
+Array.prototype.insert = function(index,...rest) {
+    this.splice.apply(this, [index, 0].concat(
+        Array.prototype.slice.call(rest, 1)));
+    return this;
+};
 
 
 Array.prototype.range = function (min: number, max: number): number[] {

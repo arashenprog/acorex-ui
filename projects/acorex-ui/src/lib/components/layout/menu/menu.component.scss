@@ -46,13 +46,16 @@
                 font-size: var(--font-md-size);
                 padding: 2px 5px;
     
-                span.ax-toolbar-menu-item-text {
+                .ax-toolbar-menu-item-text {
                     display: flex;
+                    flex: 1;
+                    align-items: center;
+                    justify-content: space-between;
     
                     i.ax-menu-item-icon {
                         width: 20px;
                         height: 20px;
-                        display: flex;
+                        display: inline-flex;
                         justify-content: center;
                         align-items: center;
                         margin: 0 0px 0 0;
@@ -89,7 +92,7 @@
                     i.ax-menu-item-icon {
                         width: 20px;
                         height: 20px;
-                        display: flex;
+                        display: inline-flex;
                         justify-content: center;
                         align-items: center;
                         margin: 0 0px 0 0;
@@ -151,6 +154,9 @@
 
             &:hover {
                 background-color: var(--primary-lighter-color);
+            }
+            &.split {
+                border-top: 1px solid var(--border-color);
             }
         }
     }

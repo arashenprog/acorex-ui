@@ -204,30 +204,30 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-        setTimeout(() => {
-            //Add 'implements AfterViewInit' to the class.
-            this.filterPanel.load(
-                [
-                    {
-                        condition: "contains",
-                        dataType: "string",
-                        field: "firstname",
-                        value: "arash"
-                    },
-                    {
-                        condition: "contains",
-                        dataType: "string",
-                        field: "statusId",
-                        value: [1, 7,3]
-                    },
-                    {
-                        condition: "contains",
-                        dataType: "string",
-                        field: "nextActionId",
-                        value: 8
-                    }
-                ])
-        }, 500);
+        // setTimeout(() => {
+        //     //Add 'implements AfterViewInit' to the class.
+        //     this.filterPanel.load(
+        //         [
+        //             {
+        //                 condition: "contains",
+        //                 dataType: "string",
+        //                 field: "firstname",
+        //                 value: "arash"
+        //             },
+        //             {
+        //                 condition: "contains",
+        //                 dataType: "string",
+        //                 field: "statusId",
+        //                 value: [1, 7,3]
+        //             },
+        //             {
+        //                 condition: "contains",
+        //                 dataType: "string",
+        //                 field: "nextActionId",
+        //                 value: 8
+        //             }
+        //         ])
+        // }, 500);
     }
 
     provideGridData = () => {

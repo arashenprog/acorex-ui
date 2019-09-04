@@ -25,11 +25,11 @@ export class AXFilterPanelComponent {
 
     onItemClick(e) {
         if (e) {
-            this.generateFilter();
+            this.filterChange.emit(this.value);
         }
         else {
             this.clear();
-            this.generateFilter();
+            this.filterChange.emit(this.value);
         }
     }
 
@@ -39,14 +39,18 @@ export class AXFilterPanelComponent {
         });
     }
 
-    private generateFilter() {
+
+
+
+    get value():AXFilterCondition[]
+    {
         let con: AXFilterCondition[] = [];
         this.filters.forEach(e => {
             if (e.active && e.condition) {
                 con.push(e.condition);
             }
         });
-        this.filterChange.emit(con);
+        return con;
     }
 
     public load(filters: AXFilterCondition[]): void {
@@ -55,6 +59,6 @@ export class AXFilterPanelComponent {
             if (col)
                 col.setFilter(f.value, f.condition);
         });
-        this.generateFilter();
+        this.filterChange.emit(this.value);
     }
 }
