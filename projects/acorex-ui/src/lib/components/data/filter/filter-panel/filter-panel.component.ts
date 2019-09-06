@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition, AXFilterColumn } from '../filter.class';
+import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition, AXFilterColumn, AXFilterPredefined } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 
 @Component({
@@ -17,6 +17,9 @@ export class AXFilterPanelComponent {
     @Input()
     groups: AXFilterColumnGroup[] = [];
 
+    @Input()
+    predefinedFilters: AXFilterPredefined[] = [];
+
 
     @Output()
     filterChange: EventEmitter<AXFilterCondition[]> = new EventEmitter<AXFilterCondition[]>();
@@ -29,7 +32,6 @@ export class AXFilterPanelComponent {
         }
         else {
             this.clear();
-            this.filterChange.emit(this.value);
         }
     }
 
@@ -37,13 +39,13 @@ export class AXFilterPanelComponent {
         this.filters.forEach(e => {
             e.clear();
         });
+        this.filterChange.emit(this.value);
     }
 
 
 
 
-    get value():AXFilterCondition[]
-    {
+    get value(): AXFilterCondition[] {
         let con: AXFilterCondition[] = [];
         this.filters.forEach(e => {
             if (e.active && e.condition) {

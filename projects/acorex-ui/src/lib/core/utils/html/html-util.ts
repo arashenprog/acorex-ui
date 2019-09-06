@@ -62,6 +62,6 @@ export class AXHtmlUtil {
   }
 
   static getUID(): string {
-    return "el-" + new Date().getDate().toString();
+    return "el-" + new Date().getTime().toString();
   }
 }

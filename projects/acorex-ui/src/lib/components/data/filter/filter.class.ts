@@ -2,23 +2,30 @@ import { Input, ChangeDetectorRef, EventEmitter, Output } from "@angular/core";
 
 //export type AXFilterConditionEnum = "is" | "is-not" | "contains" | "not-contains" | "start-width" | "end-width" | "is-empty" | "is-not-empty";
 
-export class AXFilterColumn {
+export interface AXFilterColumn {
     field: string;
     caption: string;
     type?: "text" | "selection" | "date" | "number";
     options?: any;
 }
 
-export class AXFilterColumnGroup {
+export interface AXFilterColumnGroup {
     caption?: string;
     columns: AXFilterColumn[];
 }
 
-export class AXFilterCondition {
+export interface AXFilterCondition {
     field: string;
     condition: string;
     dataType: "string" | "date" | "datetime" | "time" | "number";
     value: any;
+}
+
+export interface AXFilterPredefined
+{
+    name:string;
+    title:string,
+    value:AXFilterCondition[];
 }
 
 export abstract class AXFilterColumnComponent {

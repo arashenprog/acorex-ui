@@ -37,7 +37,7 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
   @Input()
-  @ContentChild(TemplateRef) 
+  @ContentChild(TemplateRef)
   menuTemplate: TemplateRef<any>;
 
   @Input()
@@ -64,6 +64,10 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
 
   ngOnDestroy(): void {
 
+  }
+
+  public close(): void {
+    this.menu.close();
   }
 
   update() {

@@ -11,6 +11,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class AXLayoutTabsComponent implements OnInit {
 
   @ViewChild(AXMenuComponent) menu: AXMenuComponent;
+
+  
   constructor(
     public tabService: AXTabPageService,
     @Inject("startUpTab") private startUpTab: any

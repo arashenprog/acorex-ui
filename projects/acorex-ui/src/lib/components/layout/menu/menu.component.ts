@@ -80,7 +80,7 @@ export class AXMenuComponent {
   private fixItemMap(items: MenuItem[]) {
     items.forEach(item => {
       (<any>item).hasChildren = item.items && (item.items.length > 0);
-      item.uid = Math.floor(Math.random() * 1000000).toString();
+      item.uid = AXHtmlUtil.getUID();
       if (item.items)
         this.fixItemMap(item.items);
     })
@@ -150,6 +150,10 @@ export class AXMenuComponent {
       }
     });
 
+  }
+
+  public close():void{
+    this.closeOnOut();
   }
 
   private closeOnOut(el?: HTMLElement) {
@@ -298,6 +302,7 @@ export class AXMenuComponent {
   update() {
     this.cdr.markForCheck();
     this.cdr.detectChanges();
+    this.applyContextMenu();
   }
 
   trackByItem(index: number, item: MenuItem) {

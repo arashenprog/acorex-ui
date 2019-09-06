@@ -10,7 +10,8 @@ import {
     AXDateTime,
     AXDataGridComponent,
     AXFilterPanelComponent,
-    randomRange
+    randomRange,
+    AXFilterPredefined
 } from 'acorex-ui';
 
 const STATUS = [
@@ -87,6 +88,34 @@ const STATUS = [
 export class FilterPanelDemoPage extends AXBasePageComponent {
 
 
+    savedList: AXFilterPredefined[] = [
+        {
+            name: "arash",
+            title: "Arash",
+            value: [
+                {
+                    condition: "contains",
+                    dataType: "string",
+                    field: "firstname",
+                    value: "arash"
+                },
+                {
+                    condition: "contains",
+                    dataType: "string",
+                    field: "statusId",
+                    value: [1, 7, 3]
+                },
+                {
+                    condition: "contains",
+                    dataType: "string",
+                    field: "nextActionId",
+                    value: 8
+                }
+            ]
+        }
+    ]
+
+
     filterGroups: AXFilterColumnGroup[] = [
         {
             caption: "STATUS",
@@ -97,7 +126,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                     options: {
                         mode: "multiple",
                         items: STATUS,
-                        dataType:"number"
+                        dataType: "number"
                     },
                     field: "statusId"
                 },
@@ -107,7 +136,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                     options: {
                         mode: "single",
                         items: STATUS,
-                        dataType:"number"
+                        dataType: "number"
                     },
                     field: "nextActionId"
                 },
@@ -207,26 +236,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         // setTimeout(() => {
         //     //Add 'implements AfterViewInit' to the class.
         //     this.filterPanel.load(
-        //         [
-        //             {
-        //                 condition: "contains",
-        //                 dataType: "string",
-        //                 field: "firstname",
-        //                 value: "arash"
-        //             },
-        //             {
-        //                 condition: "contains",
-        //                 dataType: "string",
-        //                 field: "statusId",
-        //                 value: [1, 7,3]
-        //             },
-        //             {
-        //                 condition: "contains",
-        //                 dataType: "string",
-        //                 field: "nextActionId",
-        //                 value: 8
-        //             }
-        //         ])
+        //         )
         // }, 500);
     }
 
@@ -254,7 +264,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             lead.statusId = status.value;
             lead.nextAction = nextAction.text;
             lead.nextActionId = nextAction.value;
-            lead.number = randomRange(1000,1000000);
+            lead.number = randomRange(1000, 1000000);
             lead.registerDate = new AXDateTime().add("day", i - [10, 0, 23, 37, 98].pickRandom());
             lead.staff = {
                 id: [1, 2, 3, 4].pickRandom(),

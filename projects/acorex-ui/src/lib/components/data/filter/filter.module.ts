@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AXFilterColumnSelectionComponent } from './columns/filter-column-selection.component';
 import { AXFilterColumnDateComponent } from './columns/filter-column-date.component';
 import { AXFilterColumnNumberComponent } from './columns/filter-column-number.component';
-import { AXToolbarFilterViewComponent } from './toolbar/filter-toolbar';
+import { AXToolbarFilterViewComponent } from './toolbar/filter-toolbar.component';
 import { AXMenuModule } from '../../layout/menu/menu.module';
 
 
