@@ -88,6 +88,7 @@ export class AXToolbarFilterViewComponent {
                 text: c.title,
                 type: "f",
                 data: c.value,
+                style:this._uid,
                 uid:AXHtmlUtil.getUID()
             };
             this.root.items.splice(1, 0, item);
@@ -121,6 +122,7 @@ export class AXToolbarFilterViewComponent {
                     let item = {
                         text: name,
                         type: "f",
+                        style:this._uid,
                         data: this.filterPanel.value,
                         uid:AXHtmlUtil.getUID()
                     };
@@ -169,7 +171,7 @@ export class AXToolbarFilterViewComponent {
     onCtxClick(e: MenuItem) {
         debugger;
         let target = this.contextMenu.currentTarget as HTMLElement;
-        let menuId = target.getAttribute("data-menu-id");
+        let menuId = target.querySelector('.ax-toolbar-menu-item-text').getAttribute('data-menu-id');
         if (e.name == "remove" && menuId) {
             this.root.items = this.root.items.filter(c => c.uid != menuId);
             this.selectAll();

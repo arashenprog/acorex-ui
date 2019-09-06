@@ -1,6 +1,6 @@
 <ax-toolbar-menu [items]="menuItems" (itemClick)="itemClick($event)" #menu [menuTemplate]="t1">
     <ng-template let-item #t1>
-        <div class="ax-toolbar-menu-item-text  {{ item.type=='f' ? _uid : ''}}"  [attr.data-menu-id]="item.uid">
+        <div class="ax-toolbar-menu-item-text"  [attr.data-menu-id]="item.uid">
             <span>
                 <i class="{{ item.startIcon }} ax-menu-item-icon"></i>&nbsp;
                 {{ item.text }}
