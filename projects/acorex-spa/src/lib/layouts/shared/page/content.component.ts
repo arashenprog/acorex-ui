@@ -14,7 +14,7 @@ export class AXPageContentComponent {
   constructor(private el: ElementRef) { }
 
   ngAfterViewInit(): void {
-    debugger;
+    ;
     setTimeout(() => {
       this.applyResize();
     }, 500);
@@ -23,7 +23,7 @@ export class AXPageContentComponent {
   private applyResize() {
     let page = this.closest(this.el.nativeElement, ".page-content-wrap");
     if (page) {
-      debugger;
+      ;
       if (page.clientHeight <= 100) {
         page.style.height = "100vh";
       }

@@ -4,19 +4,20 @@
       <ng-container *ngFor="let item of list;trackBy:trackByItem">
         <li class="ax-toolbar-menu-item" *ngIf="item.visible!=false" (click)="onItemClick($event, item)"
           [ngClass]="item.style" [class.selected]="item.selected" [attr.title]="item.tooltip ? item.tooltip : null"
+          [attr.data-uid]="item.uid"
           [class.split]="item.split">
           <div class="content-side">
             <ng-container *ngIf="menuTemplate; else menuBody">
-                <ng-container *ngTemplateOutlet="menuTemplate; context: { $implicit: item }">
-                  </ng-container>
+              <ng-container *ngTemplateOutlet="menuTemplate; context: { $implicit: item }">
+              </ng-container>
             </ng-container>
             <ng-template #menuBody>
-                <span class="ax-toolbar-menu-item-text" *ngIf="!menuTemplate">
-                    <i class="{{ item.icon }} ax-menu-item-icon" *ngIf="item.icon"></i>
-                    <i class="{{ item.startIcon }} ax-menu-item-icon" *ngIf="item.startIcon"></i>
-                    <span *ngIf="item.text">{{ item.text }}</span>
-                    <i class="{{ item.endIcon }} ax-menu-item-icon" *ngIf="item.endIcon"></i>
-                  </span>
+              <span class="ax-toolbar-menu-item-text" >
+                <i class="{{ item.icon }} ax-menu-item-icon" *ngIf="item.icon"></i>
+                <i class="{{ item.startIcon }} ax-menu-item-icon" *ngIf="item.startIcon"></i>
+                <span *ngIf="item.text">{{ item.text }}</span>
+                <i class="{{ item.endIcon }} ax-menu-item-icon" *ngIf="item.endIcon"></i>
+              </span>
             </ng-template>
           </div>
           <div class="sub-icon-side">

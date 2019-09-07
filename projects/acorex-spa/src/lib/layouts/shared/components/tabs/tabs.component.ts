@@ -66,7 +66,7 @@ export class AXLayoutTabsComponent implements OnInit {
     {
       name: "openInNew",
       icon: "fas fa-external-link-alt",
-      text: "Open in new browser tab"
+      text: "Open in new window"
     },
     {
       name: "maximize",
@@ -79,7 +79,6 @@ export class AXLayoutTabsComponent implements OnInit {
     let target = this.menu.currentTarget as HTMLElement;
     let tabId = Number(target.getAttribute("data-tab-id"));
     let tab = this.tabService.tabs.find(t => t.id == tabId);
-    console.log(tab);
     if (e.name == "close") {
       this.tabService.close(tab, {});
     }

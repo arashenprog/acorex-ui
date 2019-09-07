@@ -52,7 +52,7 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
 
 
     setFilter(value: any, operator: string) {
-        //debugger;
+        ;
         if (value instanceof Array) {
             this.selectedItems = this.items.filter(c => value.some(z => z == c.value));
         }

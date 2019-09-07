@@ -1,3 +1,5 @@
+import { AXMathUtil } from '../math/math-util';
+
 export type AXPlacement =
   | "top-start"
   | "top-middle"
@@ -62,6 +64,6 @@ export class AXHtmlUtil {
   }
 
   static getUID(): string {
-    return "el-" + new Date().getTime().toString();
+    return "el-" + AXMathUtil.randomRange(1000000000, 9999999999).toString();
   }
 }

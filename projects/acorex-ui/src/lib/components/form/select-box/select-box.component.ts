@@ -23,7 +23,7 @@ export class AXSelectBoxComponent extends AXSelectBaseComponent {
 
 
   onItemClick(item: SelectItem) {
-    //debugger
+    
     console.log(item)
     this._value = item.text;
     this.dropdown.close()

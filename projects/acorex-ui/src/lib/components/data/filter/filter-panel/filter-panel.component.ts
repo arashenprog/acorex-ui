@@ -56,6 +56,9 @@ export class AXFilterPanelComponent {
     }
 
     public load(filters: AXFilterCondition[]): void {
+        this.filters.forEach(e => {
+            e.clear();
+        });
         filters.forEach(f => {
             let col = this.filters.find(c => c.field == f.field);
             if (col)

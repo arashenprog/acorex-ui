@@ -127,6 +127,9 @@
         &:hover {
             background: var(--gray-dark-color);
         }
+        &.split {
+            border-top: 1px solid var(--border-color);
+        }
 
         &.selected {
             background: var(--primary-color);

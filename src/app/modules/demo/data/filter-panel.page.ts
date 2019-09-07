@@ -10,8 +10,8 @@ import {
     AXDateTime,
     AXDataGridComponent,
     AXFilterPanelComponent,
-    randomRange,
-    AXFilterPredefined
+    AXFilterPredefined,
+    AXMathUtil
 } from 'acorex-ui';
 
 const STATUS = [
@@ -110,6 +110,18 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
                     dataType: "string",
                     field: "nextActionId",
                     value: 8
+                }
+            ]
+        },
+        {
+            name: "arash2",
+            title: "Arash 2",
+            value: [
+                {
+                    condition: "contains",
+                    dataType: "string",
+                    field: "firstname",
+                    value: "arash"
                 }
             ]
         }
@@ -264,7 +276,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             lead.statusId = status.value;
             lead.nextAction = nextAction.text;
             lead.nextActionId = nextAction.value;
-            lead.number = randomRange(1000, 1000000);
+            lead.number = AXMathUtil.randomRange(1000, 1000000);
             lead.registerDate = new AXDateTime().add("day", i - [10, 0, 23, 37, 98].pickRandom());
             lead.staff = {
                 id: [1, 2, 3, 4].pickRandom(),

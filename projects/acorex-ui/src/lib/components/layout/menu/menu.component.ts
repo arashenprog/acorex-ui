@@ -45,9 +45,9 @@ export class AXMenuComponent {
   @ViewChild("moreLI")
   private moreLI: ElementRef<HTMLElement>;
 
-  
+
   @Input()
-  @ContentChild(TemplateRef) 
+  @ContentChild(TemplateRef)
   menuTemplate: TemplateRef<any>;
 
   resizeChangeObserver: any;
@@ -61,7 +61,7 @@ export class AXMenuComponent {
   @Input()
   public target: string;
 
-  public currentTarget:HTMLElement;
+  public currentTarget: HTMLElement;
 
   @Input()
   public direction: "vertical" | "horizontal" = "horizontal";
@@ -152,7 +152,7 @@ export class AXMenuComponent {
 
   }
 
-  public close():void{
+  public close(): void {
     this.closeOnOut();
   }
 
@@ -259,7 +259,7 @@ export class AXMenuComponent {
 
   ngAfterViewInit(): void {
     this.cdr.detach();
-    debugger;
+    ;
     this.applyResponsive();
     this.applyContextMenu();
   }
@@ -267,22 +267,24 @@ export class AXMenuComponent {
   applyContextMenu() {
     if (this.target) {
       this.zone.runOutsideAngular(() => {
-        //debugger;
+        ;
         let root = this.container.nativeElement as HTMLElement;
         if (!root.classList.contains("contextMenu"))
           root.classList.add("contextMenu");
         document.querySelectorAll(this.target).forEach(t => {
-          t.removeEventListener("contextmenu", this.onContextHandler.bind(this,t));
-          t.addEventListener("contextmenu", this.onContextHandler.bind(this,t));
+          t.removeEventListener("contextmenu", this.onContextHandler.bind(this, t));
+          t.addEventListener("contextmenu", this.onContextHandler.bind(this, t));
         });
       });
     }
   }
 
-  private onContextHandler(target:HTMLElement,e: MouseEvent) {
+  private onContextHandler(target: HTMLElement, e: MouseEvent) {
+    console.log(target);
     let root = this.container.nativeElement as HTMLElement;
-    this.currentTarget=target;
+    this.currentTarget = target;
     e.preventDefault();
+    e.stopPropagation();
     this.closeOnOut();
     root.style.top = `${e.pageY}px`;
     root.style.left = `${e.pageX}px`;

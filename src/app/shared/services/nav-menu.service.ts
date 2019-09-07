@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { PromisResult, MenuItem , AXNavigator} from "acorex-ui";
+import { PromisResult, MenuItem, AXNavigator } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
 
 
@@ -28,7 +28,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fab fa-artstation",
       id: "00",
       visible: true,
-      data: { path: 'AliPage'  }
+      data: { path: 'AliPage' }
     },
     {
       name: "test",
@@ -36,7 +36,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-vial",
       id: "00",
       visible: true,
-      data: { path:  'TestPage' }
+      data: { path: 'TestPage' }
     },
     {
       name: "components",
@@ -51,10 +51,10 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-002",
       parentId: "003",
       visible: true,
-      data: {  }
+      data: {}
 
     },
-   
+
     {
       name: "data",
       text: "Data",
@@ -122,7 +122,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-004",
       parentId: "003",
       visible: true,
-      data: { path:  'components/forms/pickers' }
+      data: { path: 'components/forms/pickers' }
 
     },
     {
@@ -158,6 +158,11 @@ export class NavMenuService extends AXNavMenuService {
     if (value) {
       if (!favs.some(c => c == menu.id)) {
         favs.push(menu.id);
+        if (menu.items) {
+          menu.items.forEach(i => {
+            this.setFavorites(i, value);
+          });
+        }
       }
     } else {
       favs = favs.filter(c => c != menu.id);
@@ -180,7 +185,7 @@ export class NavMenuService extends AXNavMenuService {
     if (item.data.path) {
       this.nav.navigate({
         title: item.text,
-        path : item.data.path
+        path: item.data.path
       })
     }
     return PromisResult.resolve(true);
