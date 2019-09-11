@@ -66,4 +66,52 @@ export class AXHtmlUtil {
   static getUID(): string {
     return "el-" + AXMathUtil.randomRange(1000000000, 9999999999).toString();
   }
+
+
+  static getRelatedPosition(source: HTMLElement, placement: AXPlacement, target: HTMLElement, alignment: AXPlacement): AXIPoint {
+    let result: AXIPoint = { x: 0, y: 0 };
+
+    let sourcePos: AXPoint = AXHtmlUtil.getBoundingRectPoint(source, placement);
+
+
+    let top: number = 0;
+    let left: number = 0;
+    switch (alignment) {
+      case "top-start":
+        top = sourcePos.y;
+        left = sourcePos.x;
+        break;
+      case "top-middle":
+        top = sourcePos.y;
+        left = sourcePos.x - target.offsetWidth / 2;
+        break;
+      case "top-end":
+        top = sourcePos.y;
+        left = sourcePos.x - target.offsetWidth;
+        break;
+      case "center-end":
+        top = sourcePos.y - target.offsetHeight / 2;
+        left = sourcePos.x - target.offsetWidth;
+        break;
+      case "bottom-end":
+        top = sourcePos.y - target.offsetHeight;
+        left = sourcePos.x - target.offsetWidth;
+        break;
+      case "bottom-middle":
+        top = sourcePos.y - target.offsetHeight;
+        left = sourcePos.x - target.offsetWidth / 2;
+        break;
+      case "bottom-start":
+        top = sourcePos.y - target.offsetHeight;
+        left = sourcePos.x;
+        break;
+      case "center-start":
+        top = sourcePos.y - target.offsetHeight / 2;
+        left = sourcePos.x;
+        break;
+    }
+    result.y = top;
+    result.x = left;
+    return result;
+  }
 }

@@ -1,12 +1,20 @@
 <div class="ax-filter-panel">
-    <!-- <ax-toolbar>
-        <ax-toolbar-menu [items]="modeItems" selection="single" (itemClick)="onItemClick($event)">
-
-        </ax-toolbar-menu>
-    </ax-toolbar> -->
-    <div class="ax-filter-panel-body">
+    <div class="saved-list" *ngIf="predefinedFilters && predefinedFilters.length" #savedList>
+        <div class="group-header">
+            <i class="fas fa-filter"></i>
+            <span>SAVED FILTERS</span>
+        </div>
+        <div class="list">
+            <ul>
+                <li *ngFor="let f of predefinedFilters" [class.selected]="f.selected" (click)="setFilterByName(f.name)">
+                    <span><i class="fas fa-check" ></i> {{f.title}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="body" #body>
         <ng-container *ngFor="let g of groups">
-            <div class="ax-filter-panel-group-header" *ngIf="g.caption">
+            <div class="group-header" *ngIf="g.caption">
                 <i class="fas fa-caret-square-right"></i>
                 <span>{{g.caption}}</span>
             </div>
@@ -23,11 +31,11 @@
                             </ax-filter-column-selection>
                         </ng-container>
                         <ng-container *ngSwitchCase="'date'">
-                            <ax-filter-column-date [field]="c.field"  [(active)]="c.active">
+                            <ax-filter-column-date [field]="c.field" [(active)]="c.active">
                             </ax-filter-column-date>
                         </ng-container>
                         <ng-container *ngSwitchCase="'number'">
-                            <ax-filter-column-number [field]="c.field"  [(active)]="c.active">
+                            <ax-filter-column-number [field]="c.field" [(active)]="c.active">
                             </ax-filter-column-number>
                         </ng-container>
                         <ng-container *ngSwitchDefault>
@@ -39,14 +47,21 @@
             </ng-container>
         </ng-container>
     </div>
-    <div class="filter-footer">
-        <ax-button (onClick)="onItemClick(1)" type="success">
+    <div class="footer" #footer>
+        <ax-button (onClick)="apply()" type="success">
             <i class="fas fa-filter"></i>
             Apply Filter
         </ax-button>
-        <ax-button (onClick)="onItemClick(0)" type="light">
+        <ax-button type="light text-primary" *ngIf="allowSave"  id="btnSave">
+            <i class="fas fa-save"></i>
+            Save
+        </ax-button>
+        <ax-button (onClick)="clear();" type="light text-gray">
             <i class="fas fa-eraser"></i>
             Clear
         </ax-button>
+        <ax-menu #menu [items]="saveItems" target="#btnSave" direction="vertical" mode="click" floatPlacemnet="top-start" floatAlignment="bottom-start">
+
+        </ax-menu>
     </div>
 </div>

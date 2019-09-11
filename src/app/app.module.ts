@@ -16,6 +16,7 @@ import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service"
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { FormControllPage } from './modules/demo/formcontroll/formcontroll.page';
+import { FilterPanelDemoPage } from './modules/demo/data/filter-panel.page';
 
 const routes: Routes = [
   {
@@ -60,7 +61,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-        content: FormControllPage,
+        content: FilterPanelDemoPage,
         title: "Dashboard",
         closable: true,
         uid: "dashboard"
