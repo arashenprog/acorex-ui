@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy, Output, EventEmitter, ChangeDetectorRef, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncapsulation, ChangeDetectionStrategy, Output, EventEmitter, ChangeDetectorRef, ElementRef, ViewContainerRef } from '@angular/core';
 import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition, AXFilterColumn, AXFilterPredefined } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 import { AXMenuComponent } from '../../../layout/menu/menu.component';
 import { AXHtmlUtil } from '../../../../core/utils/html/html-util';
 import { AXToastService } from '../../../layout/toast/toast.service';
+import { AXKeyboardEvent } from '../../../../core/events/keyboard';
+import { AXTextBoxComponent } from '../../../../components/form/text-box/text-box.component';
 
 @Component({
     selector: 'ax-filter-panel',
@@ -18,6 +20,7 @@ export class AXFilterPanelComponent {
     @ViewChild('savedList') savedList: ElementRef<HTMLDivElement>;
     @ViewChild('body') body: ElementRef<HTMLDivElement>;
     @ViewChild('menu') menu: AXMenuComponent;
+    @ViewChild('tbxName') tbxName: AXTextBoxComponent;
 
     @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
 
@@ -131,29 +134,7 @@ export class AXFilterPanelComponent {
         }
     }
 
-    applySaveFilter() {
-        let f = this.currentFilter;
-        if (f) {
-            f.value = this.value;
-            (<any>f).isInEdit = false;
-            (<any>f).isNew = false;
-        }
-        this.toast.success("Filter saved successfully.");
-        this.updateMenu();
-    }
-
-    cancelSaveFilter() {
-        let f = this.currentFilter;
-        if (f) {
-            if ((<any>f).isNew) {
-                this.removeFilter(f);
-            }
-            else {
-                (<any>f).isInEdit = false;
-            }
-        }
-        this.updateMenu();
-    }
+   
 
     removeFilter(f: AXFilterPredefined) {
         this.predefinedFilters = this.predefinedFilters.filter(c => c.name != f.name);
@@ -173,6 +154,8 @@ export class AXFilterPanelComponent {
         this.body.nativeElement.style.height = `calc(100% - ${h}px)`;
     }
 
+    // SAVE FILTERS
+
     private updateMenu(): void {
         setTimeout(() => {
             this.saveItems[0].items[0].visible = this.currentFilter != null;
@@ -181,8 +164,36 @@ export class AXFilterPanelComponent {
         }, 100);
     }
 
+    applySaveFilter() {
+        let f = this.currentFilter;
+        if (f) {
+            this.tbxName.validate().then(c => {
+                if (c.result) {
+                    f.value = this.value;
+                    (<any>f).isInEdit = false;
+                    (<any>f).isNew = false;
+                    f.title = this.tbxName.text;
+                    this.toast.success("Filter saved successfully.");
+                    this.updateMenu();
+                }
+            });
+        }
+    }
+
+    cancelSaveFilter() {
+        let f = this.currentFilter;
+        if (f) {
+            if ((<any>f).isNew) {
+                this.removeFilter(f);
+            }
+            else {
+                (<any>f).isInEdit = false;
+            }
+        }
+        this.updateMenu();
+    }
+
     onMenuItemClick(e: MenuItem) {
-        //debugger;
         if (e.name == "save") {
             this.applySaveFilter();
         }
@@ -193,9 +204,27 @@ export class AXFilterPanelComponent {
                 value: this.value
             };
             this.predefinedFilters.push(f);
-            (<any>f).isInEdit = true;
             (<any>f).isNew = true;
             this.setFilterByName(f.name);
+            this.handleRenameClick(f)
         }
+    }
+
+    tbxNameOnKey(e: AXKeyboardEvent) {
+        if (e.type == "keyup" && e.key == 'Enter') {
+            this.applySaveFilter();
+        }
+        if (e.type == "keyup" && e.key == 'Escape') {
+            this.cancelSaveFilter();
+        }
+    }
+
+    handleRenameClick(f: AXFilterPredefined) {
+        (<any>f).isInEdit = true;
+        this.cdr.detectChanges();
+        setTimeout(() => {
+            this.tbxName.text = f.title;
+            this.tbxName.focus()
+        }, 50);
     }
 }

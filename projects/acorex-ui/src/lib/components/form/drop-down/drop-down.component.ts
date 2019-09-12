@@ -21,4 +21,8 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
     close(){
         this.popSelectBox.close();
     }
+
+    focus():void{
+        
+    }
 }

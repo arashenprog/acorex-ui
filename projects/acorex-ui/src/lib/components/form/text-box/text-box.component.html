@@ -6,7 +6,7 @@
       </legend>
     </fieldset>
     <input [placeholder]="placeholder" #input [(ngModel)]="text" [textMask]="{ mask: maskInner, guide: true }"
-      (blur)="onBlur($event)" (focus)="onFocus($event)" class="ax-text-box" type="text"
+      (blur)="handleBlurEvent($event)" (focus)="handleFocusEvent($event)" (keyup)="handleKeyEvent($event)"  class="ax-text-box" type="text"
       [attr.disabled]="disabled  ? 'disabled' : null" />
     <div class="ax-field-set-button">
       <button type="button" class="btn btn-light" (click)="clearText()" *ngIf="text && showClear">

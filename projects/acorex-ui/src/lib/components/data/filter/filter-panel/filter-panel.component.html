@@ -18,20 +18,25 @@
                                 <div class="item-line" [class.selected]="f.selected">
                                     <span class="title"><i class="fas fa-check"></i> {{f.title}}</span>
                                     <span class="tools"><i class="fas fa-pen text-primary" title="Rename"
-                                            (click)="f.isInEdit=true"></i>&nbsp;<i class="fas fa-times text-danger"
+                                            (click)="handleRenameClick(f)"></i>&nbsp;<i class="fas fa-times text-danger"
                                             title="Remove" (click)="removeFilter(f)"></i></span>
                                 </div>
                             </li>
                         </ng-container>
                         <ng-template #editMode>
                             <li>
-                                <ax-text-box [(text)]="f.title" placeholder="Enter filter's title here">
+                                <ax-text-box #tbxName placeholder="Enter filter's title here"
+                                    (onKey)="tbxNameOnKey($event)">
                                     <ax-button title="Save" type="primary" (onClick)="applySaveFilter()">
                                         <i class="fas fa-check"></i>
                                     </ax-button>
                                     <ax-button title="Cancel" type="danger" (onClick)="cancelSaveFilter()">
                                         <i class="fas fa-times"></i>
                                     </ax-button>
+                                    <ax-validation>
+                                        <ax-validation-rule type="required" message="this field is required">
+                                        </ax-validation-rule>
+                                    </ax-validation>
                                 </ax-text-box>
                             </li>
                         </ng-template>

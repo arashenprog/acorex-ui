@@ -5,8 +5,11 @@
         {{ label }}
       </legend>
     </fieldset>
-    <input [placeholder]="placeholder" [(ngModel)]="text" [ngClass]="{ 'no-label': !label }" (blur)="onBlur($event)"
-      (focus)="onFocus($event)" class="ax-text-box" [attr.disabled]="!searchable ? '' : null" type="text" />
+    <input [placeholder]="placeholder" [(ngModel)]="text" [ngClass]="{ 'no-label': !label }" 
+      (blur)="handleBlurEvent($event)"
+      (focus)="handleFocusEvent($event)" 
+      (keyup)="handleKeyEvent($event)"
+      class="ax-text-box" [attr.disabled]="!searchable ? '' : null" type="text" />
     <div class="ax-field-set-button">
       <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">
         <i class="fas fa-times"></i>

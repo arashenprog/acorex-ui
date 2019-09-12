@@ -10,6 +10,7 @@ import {
 import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
 import { IValidationRuleResult } from "../components/form/validation/validation.classs";
+import { AXKeyboardEvent } from "./events/keyboard";
 
 export class PromisResult<T> {
   private _executor: (then: (e?: T) => void) => void;
@@ -35,40 +36,41 @@ export class PromisResult<T> {
   }
 }
 
-export class AXBaseComponent {
-  @ViewChild("input") input: ElementRef<HTMLInputElement>;
+export abstract class AXBaseComponent {
   _uid: string = "M" + Math.ceil(Math.random() * 100000000);
-  @Input()
-  width: string = "";
-  @Input() height: string = "auto";
+}
+
+export abstract class AXEditableBaseComponent extends AXBaseComponent {
   @Input() readOnly: boolean = false;
-  @Input() disabled: boolean = false;
-
-
-  focus(): void { }
-
   protected _isFocused: boolean = false;
+  @Input() disabled: boolean = false;
 
   get isFocused(): boolean {
     return this._isFocused;
   }
 
-  onBlur(e) {
+  handleBlurEvent(e: UIEvent) {
     this._isFocused = false;
   }
 
-  onFocus(e) {
+  handleFocusEvent(e: UIEvent) {
     this._isFocused = true;
-    if (this.input) this.input.nativeElement.focus();
   }
+
+
+
+  abstract focus();
 }
 
 export class AXButtonBaseComponent extends AXBaseComponent {
   @Input() text: string;
   @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
+  @Input() disabled: boolean = false;
+  @Input() width: string = "";
+  @Input() height: string = "auto";
 }
 
-export abstract class AXValidatableComponent extends AXBaseComponent {
+export abstract class AXValidatableComponent extends AXEditableBaseComponent {
   abstract validate(): Promise<IValidationRuleResult>;
   errorText: string = null;
 
@@ -77,8 +79,12 @@ export abstract class AXValidatableComponent extends AXBaseComponent {
 }
 
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
+  @ViewChild("input") input: ElementRef<HTMLInputElement>;
   @Output()
   textChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  onKey: EventEmitter<AXKeyboardEvent> = new EventEmitter<AXKeyboardEvent>();
 
   private _text: string;
   @Input()
@@ -98,15 +104,25 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @Input() autocomplete: boolean = false;
   @Input() placeholder: string = "";
   @Input() showClear: boolean = false;
-  @Input() size: "xs" | "md" | "lg" = "md"
+
   clearText(): void {
     this.text = "";
   }
 
-  onBlur(e) {
-    super.onBlur(e);
+  handleBlurEvent(e) {
+    super.handleBlurEvent(e);
     if (this.validator && this.validator.validateOn == "blur")
       this.validate();
+  }
+
+  handleKeyEvent(e: KeyboardEvent) {
+    let ev = <AXKeyboardEvent>e;
+    if (this.onKey)
+      this.onKey.emit(ev);
+  }
+
+  focus() {
+    this.input.nativeElement.focus();
   }
 
   validate(): Promise<IValidationRuleResult> {

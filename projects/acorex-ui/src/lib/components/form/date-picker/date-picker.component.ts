@@ -36,6 +36,10 @@ export class AXDatePickerComponent extends AXValidatableComponent {
     clear(): void {
     }
 
+    focus():void{
+        this.dropdown.focus();
+    }
+
     ngAfterViewInit(): void {
         this.selectToday();
     }

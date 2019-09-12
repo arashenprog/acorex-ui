@@ -13,8 +13,9 @@
       type="text"
       class="ax-text-area"
       [placeholder]="placeholder"
-      (blur)="onBlur($event)"
-      (focus)="onFocus($event)"
+      (blur)="handleBlurEvent($event)"
+      (keyup)="handleKeyEvent($event)"
+      (focus)="handleFocusEvent($event)"
     >
     </textarea>
     <div class="ax-field-set-button">

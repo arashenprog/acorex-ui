@@ -1,4 +1,4 @@
-import { ContentChild } from "@angular/core";
+import { ContentChild, Input } from "@angular/core";
 import { AXDataSourceComponent, AXDataSourceReadParams } from "../../data-source/api";
 import { AXBaseComponent } from "../../../../core/base.class";
 
@@ -7,6 +7,10 @@ export abstract class AXDataListComponent extends AXBaseComponent {
 
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;
+
+
+  @Input() width: string = "";
+  @Input() height: string = "auto";
 
   ngOnInit(): void {
 
