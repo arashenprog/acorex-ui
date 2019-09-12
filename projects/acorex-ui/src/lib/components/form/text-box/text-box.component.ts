@@ -15,4 +15,10 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent {
   get maskInner() {
     return this.mask ? this.mask : false;
   }
+
+
+  focus(): void {
+    if (this.input)
+      this.input.nativeElement.focus();
+  }
 }

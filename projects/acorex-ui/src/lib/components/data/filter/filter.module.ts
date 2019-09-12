@@ -16,6 +16,8 @@ import { AXFilterColumnDateComponent } from './columns/filter-column-date.compon
 import { AXFilterColumnNumberComponent } from './columns/filter-column-number.component';
 import { AXToolbarFilterViewComponent } from './toolbar/filter-toolbar.component';
 import { AXMenuModule } from '../../layout/menu/menu.module';
+import { AXValidationModule } from '../../form/validation/validation.module';
+import { AXToastModule } from '../../layout/toast/toast.module';
 
 
 const COMPONENTS = [
@@ -36,6 +38,9 @@ const COMPONENTS = [
         AXPanelBoxModule,
         AXDatePickerModule,
         AXCheckBoxModule,
+        AXTextBoxModule,
+        AXValidationModule,
+        AXToastModule,
         AXTextBoxModule,
         AXToolbarModule,
         AXMenuModule,

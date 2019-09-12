@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList } from "@angular/core";
+import { Component, ContentChildren, QueryList, Input } from "@angular/core";
 import { AXValidationRule } from "./validation-rule.widget";
 import { IValidationRuleResult } from "./validation.classs";
 
@@ -8,6 +8,9 @@ import { IValidationRuleResult } from "./validation.classs";
 })
 export class AXValidationComponent {
   @ContentChildren(AXValidationRule) items: QueryList<AXValidationRule>;
+
+  @Input()
+  validateOn: "blur" | "change" | 'submit' = null;
 
   validate(value: any): Promise<IValidationRuleResult> {
     return new Promise<IValidationRuleResult>(resolve => {

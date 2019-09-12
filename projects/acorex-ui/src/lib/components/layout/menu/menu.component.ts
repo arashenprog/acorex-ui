@@ -15,7 +15,7 @@ import {
 import { MenuItem } from "../../../core/menu.class";
 import { Observable } from "rxjs";
 import { distinctUntilChanged, debounceTime } from "rxjs/operators";
-import { AXHtmlUtil, AXPlacement } from "../../../core/utils/html/html-util";
+import { AXHtmlUtil, AXPlacement, AXIPoint } from "../../../core/utils/html/html-util";
 
 @Component({
   selector: "ax-menu",
@@ -59,13 +59,13 @@ export class AXMenuComponent {
   public selection: "none" | "single" | "multiple" = "none";
 
   @Input()
-  public mode: "click" | "context" | "visible" = "visible";
+  public mode: "click" | "context" | "visible" | "manual" = "visible";
 
   @Input()
   public target: string;
 
   @Input()
-  public floatAlignmnet: AXPlacement;
+  public floatAlignment: AXPlacement;
 
   @Input()
   public floatPlacemnet: AXPlacement;
@@ -82,13 +82,15 @@ export class AXMenuComponent {
   }
   public set items(v: MenuItem[]) {
     this._items = v;
-    this.fixItemMap(this._items);
+
     this.update();
   }
 
   private fixItemMap(items: MenuItem[]) {
+    if (!items)
+      return;
     items.forEach(item => {
-      (<any>item).hasChildren = item.items && (item.items.length > 0);
+      (<any>item).hasChildren = item.items && (item.items.filter(c => c.visible != false).length > 0);
       item.uid = AXHtmlUtil.getUID();
       if (item.items)
         this.fixItemMap(item.items);
@@ -97,7 +99,7 @@ export class AXMenuComponent {
 
   onItemClick(e: MouseEvent, item?: MenuItem) {
     e.stopPropagation();
-    if (item && (!item.items || !item.items.length) && !item.disable) {
+    if (item && (!item.items || !item.items.filter(c => c.visible != false).length) && !item.disable) {
       this.setSelection(item);
       this.itemClick.emit(item);
       this.closeOnOut();
@@ -169,7 +171,7 @@ export class AXMenuComponent {
     this.zone.runOutsideAngular(() => {
       let root = this.element.nativeElement as HTMLElement;
       if (this.target && !el) {
-        this.container.nativeElement.style.visibility = "hidden";
+        this.container.nativeElement.style.display = "none";
       }
       root.querySelectorAll("ul.sub-menu").forEach(c => {
         if (!c.contains(el)) c.classList.add("collapsed");
@@ -278,42 +280,52 @@ export class AXMenuComponent {
   }
 
   applyContextMenu() {
-    if (this.target && (this.mode == "click" || this.mode == "context")) {
+    if (this.target && (this.mode != "visible")) {
       this.zone.runOutsideAngular(() => {
         let root = this.container.nativeElement as HTMLElement;
         if (!root.classList.contains("contextMenu"))
           root.classList.add("contextMenu");
-        let eventType: string = this.mode == "click" ? "click" : "contextmenu";
-        document.querySelectorAll(this.target).forEach(t => {
-          t.removeEventListener(eventType, this.onContextHandler.bind(this, t));
-          t.addEventListener(eventType, this.onContextHandler.bind(this, t));
-        });
+        if (this.mode != "manual") {
+          let eventType: string = this.mode == "click" ? "click" : "contextmenu";
+          document.querySelectorAll(this.target).forEach(t => {
+            t.removeEventListener(eventType, this.onContextHandler.bind(this, t));
+            t.addEventListener(eventType, this.onContextHandler.bind(this, t));
+          });
+        }
       });
     }
   }
 
-  private onContextHandler(target: HTMLElement, e: MouseEvent) {
-    console.log(target);
+
+
+  show(pos?: AXIPoint) {
+    this.closeOnOut();
+    if (!this.currentTarget)
+      this.currentTarget = document.querySelector(this.target);
+    if (!this.currentTarget)
+      return;
+
     let root = this.container.nativeElement as HTMLElement;
-    this.currentTarget = target;
+    if (pos == null) {
+      if (this.floatPlacemnet == null)
+        this.floatPlacemnet = "center-start";
+      if (this.floatAlignment == null)
+        this.floatAlignment = "center-start";
+      //
+      pos = AXHtmlUtil.getRelatedPosition(this.currentTarget, this.floatPlacemnet, root, this.floatAlignment);
+    }
+    root.style.top = `${pos.y}px`;
+    root.style.left = `${pos.x}px`;
+    setTimeout(() => {
+      root.style.display = "block";
+    }, 100);
+  }
+
+  private onContextHandler(target: HTMLElement, e: MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    this.closeOnOut();
-    if (this.floatAlignmnet == null && this.floatPlacemnet == null) {
-      root.style.top = `${e.pageY}px`;
-      root.style.left = `${e.pageX}px`;
-    }
-    else {
-      if (this.floatAlignmnet != null)
-        this.floatPlacemnet = "center-start";
-      else if (this.floatPlacemnet != null)
-        this.floatAlignmnet = "center-start";
-      //
-      let pos = AXHtmlUtil.getRelatedPosition(target, this.floatPlacemnet, root, this.floatAlignmnet);
-      root.style.top = `${pos.y}px`;
-      root.style.left = `${pos.x}px`;
-    }
-    root.style.visibility = "unset";
+    this.currentTarget = target;
+    this.show({ x: e.pageX, y: e.pageY });
   }
 
   ngOnDestroy(): void {
@@ -328,6 +340,7 @@ export class AXMenuComponent {
   }
 
   update() {
+    this.fixItemMap(this._items);
     this.cdr.markForCheck();
     this.cdr.detectChanges();
     this.applyContextMenu();

@@ -3,6 +3,12 @@
     position: relative;
     height: 100%;
     font-size: var(--font-md-size);
+    .empty-list
+    {
+        text-align: center;
+        padding: var(--sp-sm-size);
+        color:var(--gray)
+    }
 
     .saved-list {
         border-bottom: 1px solid var(--border-color);
@@ -17,16 +23,47 @@
                 flex-direction: column;
                 padding: 0px;
                 margin-bottom: var(--sp-md-size);
+
                 li {
-                    cursor: pointer;
-                    &.selected {
-                        font-weight: bold;
-                        i{
-                            opacity: 1;
+
+
+                    .item-line {
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .title {
+                            i {
+                                opacity: 0.1;
+                            }
                         }
-                    }
-                    i {
-                        opacity: 0.1;
+
+                        &.selected {
+                            font-weight: bold;
+
+                            .title {
+                                i {
+                                    opacity: 1;
+                                }
+                            }
+
+                            .tools {
+                                display: inline;
+                                cursor: pointer;
+                                i {
+                                    opacity: 0.2;
+                                    &:hover {
+                                        opacity: 1;
+                                        
+                                    }
+                                }
+                            }
+                        }
+
+                        .tools {
+                            display: none;
+                        }
                     }
                 }
             }
@@ -68,16 +105,23 @@
 
     .footer {
         width: 100%;
-        display: flex;
-        align-items: center;
+
         position: absolute;
         background-color: var(--white-color);
         bottom: 0;
         padding: var(--sp-sm-size);
         border-top: 1px solid var(--border-color);
-        ax-button{
-            margin: 0 2px;
+
+        .filter-panel {
+            display: flex;
+            align-items: center;
+
+            ax-button {
+                margin: 0 2px;
+            }
         }
+
+        .save-panel {}
     }
 
     .ax-filter-section {

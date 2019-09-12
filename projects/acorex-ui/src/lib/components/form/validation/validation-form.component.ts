@@ -2,7 +2,8 @@ import {
   Component,
   OnInit,
   QueryList,
-  ContentChildren
+  ContentChildren,
+  Input
 } from "@angular/core";
 import { IValidationResult } from './validation.classs';
 import { AXValidatableComponent } from '../../../core/base.class';
@@ -16,6 +17,19 @@ export class AXValidationFormComponent implements OnInit {
 
   @ContentChildren(AXValidatableComponent, { descendants: true })
   widgets: QueryList<AXValidatableComponent>;
+
+  @Input()
+  validateOn: "blur" | "change" | 'submit' = 'submit';
+
+  ngAfterViewInit(): void {
+    this.widgets.forEach(w => {
+      if (w.validator && w.validator.validateOn == null) {
+        w.validator.validateOn = this.validateOn;
+      }
+    });
+
+  }
+
 
   ngOnInit(): void { }
 

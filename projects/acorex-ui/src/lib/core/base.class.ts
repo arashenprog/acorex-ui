@@ -73,7 +73,7 @@ export abstract class AXValidatableComponent extends AXBaseComponent {
   errorText: string = null;
 
   @ContentChild(AXValidationComponent)
-  protected validator: AXValidationComponent;
+  public validator: AXValidationComponent;
 }
 
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
@@ -89,6 +89,8 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
     if (v != this._text) {
       this._text = v;
       this.textChange.emit(v);
+      if (this.validator && this.validator.validateOn == "change")
+        this.validate();
     }
   }
 
@@ -103,7 +105,8 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
 
   onBlur(e) {
     super.onBlur(e);
-    this.validate();
+    if (this.validator && this.validator.validateOn == "blur")
+      this.validate();
   }
 
   validate(): Promise<IValidationRuleResult> {

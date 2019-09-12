@@ -170,7 +170,7 @@ body {
 
 .rtl {
   .ax-field-set-button {
-    left: 0;
+    left: 2px;
     right: initial !important;
   }
 }
@@ -243,7 +243,7 @@ body {
     font-size: var(--font-md-size);
     color: currentColor;
     width: 100%;
-    height: var(--el-base-size);
+    
     border: 0;
     margin: 0;
     padding: 5px 12px;
@@ -258,7 +258,6 @@ body {
     font-size: var(--font-md-size);
     color: currentColor;
     width: 100%;
-    height: var(--el-base-size);
     border: 0;
     margin: 0;
     padding: 7px 12px;
@@ -301,13 +300,12 @@ body {
 
 .ax-field-set-button {
   position: absolute;
-  right: 0;
+  right: var(--sp-xs-size);
   display: flex;
   justify-content: center;
   align-items: center;
   margin: var(--sp-sm-size) var(--sp-xs-size);
   border: none;
-
   &:first-child {
     margin-right: 10px;
   }
@@ -318,7 +316,7 @@ body {
     align-items: center;
     width: var(--el-md-size);
     height: var(--el-md-size);
-    margin-left: var(--sp-sm-size);
+    margin-left: var(--sp-xs-size);
 
     i {
       font-size: var(--font-sm-size);

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewChild, ViewChildren, QueryList, ViewEncap
 import { AXFilterColumnGroup, AXFilterColumnComponent, AXFilterCondition, AXFilterColumn, AXFilterPredefined } from '../filter.class';
 import { MenuItem } from '../../../../core/menu.class';
 import { AXMenuComponent } from '../../../layout/menu/menu.component';
+import { AXHtmlUtil } from '../../../../core/utils/html/html-util';
+import { AXToastService } from '../../../layout/toast/toast.service';
 
 @Component({
     selector: 'ax-filter-panel',
@@ -25,34 +27,36 @@ export class AXFilterPanelComponent {
     @Input()
     predefinedFilters: AXFilterPredefined[] = [];
 
-    allowSave: boolean = false;
-
-
-    saveItems:MenuItem[]=[
+    saveItems: MenuItem[] = [
         {
-            name:"save",
-            text:"Save",
-            icon:"fas fa-save"
+            name: "saveAs",
+            text: "Save",
+            icon: "fas fa-save",
+            items: [
+                {
+                    name: "save",
+                    text: "Save current",
+                },
+                {
+                    name: "saveAs",
+                    text: "Save as New",
+                },
+            ]
         },
-        {
-            name:"saveAs",
-            text:"Save as New",
-            icon:"fas fa-save"
-        },
+
     ];
+
+
 
 
     @Output()
     filterChange: EventEmitter<AXFilterCondition[]> = new EventEmitter<AXFilterCondition[]>();
 
-    constructor(private cdr: ChangeDetectorRef) { }
+    constructor(private cdr: ChangeDetectorRef, private toast: AXToastService) { }
 
     apply() {
         this.filterChange.emit(this.value);
-        this.allowSave = true;
-        setTimeout(() => {
-            this.menu.update();
-        }, 500); 
+        this.updateMenu();
     }
 
     public clear() {
@@ -62,12 +66,10 @@ export class AXFilterPanelComponent {
         this.predefinedFilters.forEach(c => {
             (<any>c).selected = false;
         });
-        this.allowSave = false;
-        setTimeout(() => {
-            this.menu.update();
-        }, 500); 
         this.filterChange.emit(this.value);
+        this.updateMenu();
     }
+
 
 
 
@@ -88,12 +90,15 @@ export class AXFilterPanelComponent {
         this.filters.forEach(e => {
             e.clear();
         });
+        this.cancelSaveFilter();
         filters.forEach(f => {
             let col = this.filters.find(c => c.field == f.field);
             if (col)
                 col.setFilter(f.value, f.condition);
         });
         this.filterChange.emit(this.value);
+        //
+        this.updateMenu();
     }
 
     ngAfterViewInit(): void {
@@ -126,11 +131,37 @@ export class AXFilterPanelComponent {
         }
     }
 
-    saveFilter() {
-        let f = this.predefinedFilters.find(c => (<any>c).selected);
+    applySaveFilter() {
+        let f = this.currentFilter;
         if (f) {
             f.value = this.value;
+            (<any>f).isInEdit = false;
+            (<any>f).isNew = false;
         }
+        this.toast.success("Filter saved successfully.");
+        this.updateMenu();
+    }
+
+    cancelSaveFilter() {
+        let f = this.currentFilter;
+        if (f) {
+            if ((<any>f).isNew) {
+                this.removeFilter(f);
+            }
+            else {
+                (<any>f).isInEdit = false;
+            }
+        }
+        this.updateMenu();
+    }
+
+    removeFilter(f: AXFilterPredefined) {
+        this.predefinedFilters = this.predefinedFilters.filter(c => c.name != f.name);
+        this.updateMenu();
+    }
+
+    private get currentFilter(): AXFilterPredefined {
+        return this.predefinedFilters.find(c => (<any>c).selected);
     }
 
 
@@ -140,5 +171,31 @@ export class AXFilterPanelComponent {
         if (this.predefinedFilters && this.predefinedFilters.length)
             h += this.savedList.nativeElement.getBoundingClientRect().height;
         this.body.nativeElement.style.height = `calc(100% - ${h}px)`;
+    }
+
+    private updateMenu(): void {
+        setTimeout(() => {
+            this.saveItems[0].items[0].visible = this.currentFilter != null;
+            this.saveItems[0].items[1].visible = this.currentFilter != null;
+            this.menu.update();
+        }, 100);
+    }
+
+    onMenuItemClick(e: MenuItem) {
+        //debugger;
+        if (e.name == "save") {
+            this.applySaveFilter();
+        }
+        if (e.name == "saveAs") {
+            let f = {
+                name: AXHtmlUtil.getUID(),
+                title: '',
+                value: this.value
+            };
+            this.predefinedFilters.push(f);
+            (<any>f).isInEdit = true;
+            (<any>f).isNew = true;
+            this.setFilterByName(f.name);
+        }
     }
 }

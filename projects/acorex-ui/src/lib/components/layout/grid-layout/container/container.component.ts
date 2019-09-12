@@ -1,7 +1,11 @@
 import { Component, Input } from "@angular/core";
 @Component({
   selector: "ax-container",
-  templateUrl: "./container.component.html"
+  template: `
+  <div class="container-fluid">
+      <ng-content></ng-content>
+  </div>
+  `
 })
 export class AXContainerComponent {
   

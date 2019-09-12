@@ -1,13 +1,10 @@
-<!-- <div class="ax-button"> -->
-<button #container class="btn btn-{{type}} btn-{{size}}" [ngClass]="{'btn-block': block}" [disabled]="loading"
-    (click)="onClickInner()">
-    <div *ngIf="!loading">
-        <ng-content *ngIf="!text"></ng-content>
-        <span *ngIf="text">{{text}}</span>
-    </div>
-    <div *ngIf="loading">
+<button #container class="btn btn-{{type}} btn-{{size}}" [disabled]="loading || disabled" (click)="onClickInner()">
+    <ng-container *ngIf="loading; else elseTemplate">
         <i class="fas fa-spinner fa-spin"></i>
         {{ loadingText ? loadingText : text  }}
-    </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <ng-content *ngIf="!text"></ng-content>
+        <span *ngIf="text">{{text}}</span>
+    </ng-template>
 </button>
-<!-- </div> -->

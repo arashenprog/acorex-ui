@@ -17,6 +17,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { FormControllPage } from './modules/demo/formcontroll/formcontroll.page';
 import { FilterPanelDemoPage } from './modules/demo/data/filter-panel.page';
+import { TextBoxPage } from './modules/demo/formcontroll/text-box.page';
 
 const routes: Routes = [
   {

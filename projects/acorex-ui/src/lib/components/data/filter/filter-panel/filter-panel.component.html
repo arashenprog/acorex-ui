@@ -1,15 +1,48 @@
 <div class="ax-filter-panel">
-    <div class="saved-list" *ngIf="predefinedFilters && predefinedFilters.length" #savedList>
+    <div class="saved-list" #savedList>
         <div class="group-header">
-            <i class="fas fa-filter"></i>
-            <span>SAVED FILTERS</span>
+            <ax-toolbar>
+                <ax-toolbar-title>
+                    <i class="fas fa-filter"></i>
+                    <span>SAVED FILTERS</span>
+                </ax-toolbar-title>
+                <ax-toolbar-menu #menu [items]="saveItems" (itemClick)="onMenuItemClick($event)"></ax-toolbar-menu>
+            </ax-toolbar>
         </div>
         <div class="list">
-            <ul>
-                <li *ngFor="let f of predefinedFilters" [class.selected]="f.selected" (click)="setFilterByName(f.name)">
-                    <span><i class="fas fa-check" ></i> {{f.title}}</span>
-                </li>
-            </ul>
+            <ng-container *ngIf="predefinedFilters && predefinedFilters.length; else emptyList">
+                <ul>
+                    <ng-container *ngFor="let f of predefinedFilters">
+                        <ng-container *ngIf="!f.isInEdit; else editMode">
+                            <li (click)="setFilterByName(f.name)">
+                                <div class="item-line" [class.selected]="f.selected">
+                                    <span class="title"><i class="fas fa-check"></i> {{f.title}}</span>
+                                    <span class="tools"><i class="fas fa-pen text-primary" title="Rename"
+                                            (click)="f.isInEdit=true"></i>&nbsp;<i class="fas fa-times text-danger"
+                                            title="Remove" (click)="removeFilter(f)"></i></span>
+                                </div>
+                            </li>
+                        </ng-container>
+                        <ng-template #editMode>
+                            <li>
+                                <ax-text-box [(text)]="f.title" placeholder="Enter filter's title here">
+                                    <ax-button title="Save" type="primary" (onClick)="applySaveFilter()">
+                                        <i class="fas fa-check"></i>
+                                    </ax-button>
+                                    <ax-button title="Cancel" type="danger" (onClick)="cancelSaveFilter()">
+                                        <i class="fas fa-times"></i>
+                                    </ax-button>
+                                </ax-text-box>
+                            </li>
+                        </ng-template>
+                    </ng-container>
+                </ul>
+            </ng-container>
+            <ng-template #emptyList>
+                <div class="empty-list">
+                    Empty
+                </div>
+            </ng-template>
         </div>
     </div>
     <div class="body" #body>
@@ -48,20 +81,14 @@
         </ng-container>
     </div>
     <div class="footer" #footer>
-        <ax-button (onClick)="apply()" type="success">
-            <i class="fas fa-filter"></i>
-            Apply Filter
-        </ax-button>
-        <ax-button type="light text-primary" *ngIf="allowSave"  id="btnSave">
-            <i class="fas fa-save"></i>
-            Save
-        </ax-button>
-        <ax-button (onClick)="clear();" type="light text-gray">
-            <i class="fas fa-eraser"></i>
-            Clear
-        </ax-button>
-        <ax-menu #menu [items]="saveItems" target="#btnSave" direction="vertical" mode="click" floatPlacemnet="top-start" floatAlignment="bottom-start">
-
-        </ax-menu>
+        <div class="filter-panel">
+            <ax-button (onClick)="apply()" type="success">
+                <i class="fas fa-filter"></i>
+                Apply Filter
+            </ax-button>
+            <ax-button (onClick)="clear();" type="light text-gray">
+                <i class="fas fa-eraser"></i>
+                Clear
+            </ax-button>
+        </div>
     </div>
-</div>

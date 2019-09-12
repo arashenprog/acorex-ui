@@ -3,8 +3,14 @@ import { AXToolbarItem } from '../toolbar-item';
 
 @Component({
     selector: 'ax-toolbar-title',
-    template: '<div class="title">{{text}}</div>',
-    styles:[`
+    template: `
+        <ng-container *ngIf="text; else elseTemplate">
+        <div class="title"> {{text}}</div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <ng-content></ng-content>
+        </ng-template>`,
+    styles: [`
         .title{
             font-weight:bold;
         }

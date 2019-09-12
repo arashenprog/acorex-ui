@@ -15,11 +15,13 @@ import { ToolbarPage } from './toolbar/toolbar.page';
 import { PopoverDemoPage } from './popover/popover-demo.page';
 import { DemoDataModule } from './data/demo-data.module';
 import { Routes, RouterModule } from '@angular/router';
+import { TextBoxPage } from './formcontroll/text-box.page';
 
 const pages = [
   DemoPage,
   DashboardPage,
   PopoverDemoPage,
+  TextBoxPage,
   AliPage,
   TestPage,
   WidgetsPage,
