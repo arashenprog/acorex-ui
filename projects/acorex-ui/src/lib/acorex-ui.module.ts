@@ -15,6 +15,7 @@ import { AXImageViewModule } from "./components/layout/image-view/image-view.mod
 import { AXLoadingModule } from "./components/layout/loading/loading.module";
 import { AXMenuModule } from "./components/layout/menu/menu.module";
 import { AXPanelBoxModule } from "./components/layout/panel-box/panel-box.module";
+import { AXToggleBoxModule } from "./components/layout/toggle-box/toggle-box.module";
 import { AXPasswordBoxModule } from "./components/form/password-box/password-box.module";
 import { AXPopupModule } from "./components/nav/popup/popup.module";
 import { AXProgressBarModule } from "./components/layout/progress-bar/progress-bar.module";
@@ -66,6 +67,7 @@ let modules = [
   AXLoadingModule,
   AXMenuModule,
   AXPanelBoxModule,
+  AXToggleBoxModule,
   AXPasswordBoxModule,
   AXPopupModule,
   AXProgressBarModule,
