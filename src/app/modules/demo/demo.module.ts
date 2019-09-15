@@ -37,6 +37,10 @@ const ROUTES: Routes = [
     loadChildren : "./data/demo-data.module#DemoDataModule" 
   },
   {
+    path:"DemoPage",
+    component:DemoPage
+  },
+  {
     path: "AliPage",
     component: AliPage
   }

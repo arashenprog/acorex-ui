@@ -4,214 +4,216 @@
     <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
-    <ax-row>
-      <ax-col col-sm="3" col-xs="12">
-        <ax-text-box disabled="true" label="Textbox">
-          <ax-validation>
-            <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
-          </ax-validation>
-        </ax-text-box>
-      </ax-col>
-      <ax-col col-sm="3" col-xs="12">
-        <ax-pass-box label="Password Box">
-          <ax-validation>
-            <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
-          </ax-validation>
-        </ax-pass-box>
-      </ax-col>
-      <ax-col col-sm="3" col-xs="12">
-        <ax-select-box label="Selectbox" [searchable]="true" [items]="selectBoxItems">
-          <ax-validation>
-            <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
-          </ax-validation>
-        </ax-select-box>
-      </ax-col>
-      <ax-col col-sm="3" col-xs="12">
-        <ax-date-picker label="Date Picker" calendar="persian" placeholder="Enter Date here">
-          <ax-validation>
-            <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
-          </ax-validation>
-        </ax-date-picker>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="3" col-xs="12">
-        <ax-text-area label="Text Area"> </ax-text-area>
-      </ax-col>
-    </ax-row>
+    <ax-container>
+      <ax-row>
+        <ax-col col-sm="3" col-xs="12">
+          <ax-text-box disabled="true" label="Textbox">
+            <ax-validation>
+              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+            </ax-validation>
+          </ax-text-box>
+        </ax-col>
+        <ax-col col-sm="3" col-xs="12">
+          <ax-pass-box label="Password Box">
+            <ax-validation>
+              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+            </ax-validation>
+          </ax-pass-box>
+        </ax-col>
+        <ax-col col-sm="3" col-xs="12">
+          <ax-select-box label="Selectbox" [searchable]="true" [items]="selectBoxItems">
+            <ax-validation>
+              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+            </ax-validation>
+          </ax-select-box>
+        </ax-col>
+        <ax-col col-sm="3" col-xs="12">
+          <ax-date-picker label="Date Picker" calendar="persian" placeholder="Enter Date here">
+            <ax-validation>
+              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+            </ax-validation>
+          </ax-date-picker>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="3" col-xs="12">
+          <ax-text-area label="Text Area"> </ax-text-area>
+        </ax-col>
+      </ax-row>
 
-    <ax-row>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button [block]="true" size="lg" (onClick)="infoToast()">Primary</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="secondary" [block]="true" size="lg" (onClick)="infoToast()">Secondary</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="success" [block]="true" size="lg" (onClick)="successToast()">Success</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="danger" [block]="true" size="lg" (onClick)="errorToast()">Danger</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="info" [block]="true" size="lg" (onClick)="infoToast()">Info</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="warning" [block]="true" size="lg" (onClick)="warningToast()">Warning</ax-button>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button [block]="true" (onClick)="infoToast()">Primary</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="secondary" [block]="true" (onClick)="infoToast()">Secondary</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="success" [block]="true" (onClick)="successToast()">Success</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="danger" [block]="true" (onClick)="errorToast()">Danger</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="info" [block]="true" (onClick)="infoToast()">Info</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="warning" [block]="true" (onClick)="warningToast()">Warning</ax-button>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button [block]="true" size="sm" (onClick)="infoToast()">Primary</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="secondary" [block]="true" size="sm" (onClick)="infoToast()">Secondary</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="success" [block]="true" size="sm" (onClick)="successToast()">Success</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="danger" [block]="true" size="sm" (onClick)="errorToast()">Danger</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="info" [block]="true" size="sm" (onClick)="infoToast()">Info</ax-button>
-      </ax-col>
-      <ax-col col-sm="2" col-xs="12">
-        <ax-button type="warning" [block]="true" size="sm" (onClick)="warningToast()">Warning</ax-button>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="12">
-        <ax-tab-view>
-          <ax-tab title="First Tab">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </ax-tab>
-          <ax-tab title="Second Tab">
-            <ax-selection-list [items]="sectionList"> </ax-selection-list>
-          </ax-tab>
-          <ax-tab title="Fourth Tab">
-            <ax-image src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"></ax-image>
-          </ax-tab>
-          <ax-tab title="Fifth Tab">Empty</ax-tab>
-        </ax-tab-view>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="6">
-        <p>Radio Section</p>
-        <ax-selection-list [items]="sectionList"> </ax-selection-list>
-      </ax-col>
-      <ax-col col-sm="6">
-        <p>Checkbox Section</p>
-        <ax-selection-list mode="multiple" [items]="sectionList">
-        </ax-selection-list>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="4">
-        <p>Popup Section</p>
-        <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
-        <div class="ax-pad-sm"></div>
-        <ax-button [block]="true" type="danger" (onClick)="openAlert()">Open Alert</ax-button>
-        <div class="ax-pad-sm"></div>
-        <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()">Open Confirm</ax-button>
-      </ax-col>
-      <ax-col col-sm="4">
-        <p>Drawer Section</p>
-        <ax-button type="secondary" [block]="true" (onClick)="openDrawer()">Open Drawer</ax-button>
-        <ax-drawer [show]="drawerOpen" [overlay]="true" mode="outer" onBlur="onBlur" close="button">
-          <h5>Content can be here</h5>
-        </ax-drawer>
-        <br />
-        <p>Loading Section</p>
-        <ax-loading></ax-loading>
-        <p>Progressbar Section</p>
-        <ax-progress-bar progress="58"></ax-progress-bar>
-      </ax-col>
-      <ax-col col-sm="4">
-        <p>Upload Section</p>
-        <ax-upload-file></ax-upload-file>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="4">
-        <p>Image Section</p>
-        <ax-image src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"></ax-image>
-      </ax-col>
-      <ax-col col-sm="4"> </ax-col>
-      <ax-col col-sm="4"> </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="12">
-        <p>List Section</p>
-        <ax-list title="List Title" [height]="'300px'">
-          <ax-toolbar>
-            <ax-toolbar-list-view [horizontal-wrap]="false"></ax-toolbar-list-view>
-            <ax-toolbar-title text="LEAD"></ax-toolbar-title>
-            <ax-toolbar-search></ax-toolbar-search>
-          </ax-toolbar>
-          <ax-data-source>
-            <ax-callback-read [provideData]="provideListData"></ax-callback-read>
-          </ax-data-source>
-          <ng-template let-item>
-            <div class="ax-card-box ax-pad-md ax-full-width" style="margin-bottom: 10px">
-              {{ item.name }}
-            </div>
-          </ng-template>
-        </ax-list>
-      </ax-col>
-    </ax-row>
-    <ax-row>
-      <ax-col col-sm="12">
-        <p>Grid Section</p>
-        <div style="height: 500px">
-          <ax-data-grid title="Test remote data">
+      <ax-row>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button [block]="true" size="lg" (onClick)="infoToast()">Primary</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="secondary" [block]="true" size="lg" (onClick)="infoToast()">Secondary</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="success" [block]="true" size="lg" (onClick)="successToast()">Success</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="danger" [block]="true" size="lg" (onClick)="errorToast()">Danger</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="info" [block]="true" size="lg" (onClick)="infoToast()">Info</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="warning" [block]="true" size="lg" (onClick)="warningToast()">Warning</ax-button>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button [block]="true" (onClick)="infoToast()">Primary</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="secondary btn-sm btn-block" [block]="true" (onClick)="infoToast()">Secondary</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="success" [block]="true" (onClick)="successToast()">Success</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="danger" [block]="true" (onClick)="errorToast()">Danger</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="info" [block]="true" (onClick)="infoToast()">Info</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="warning" [block]="true" (onClick)="warningToast()">Warning</ax-button>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button [block]="true" size="sm" (onClick)="infoToast()">Primary</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="secondary" [block]="true" size="sm" (onClick)="infoToast()">Secondary</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="success" [block]="true" size="sm" (onClick)="successToast()">Success</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="danger" [block]="true" size="sm" (onClick)="errorToast()">Danger</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="info" [block]="true" size="sm" (onClick)="infoToast()">Info</ax-button>
+        </ax-col>
+        <ax-col col-sm="2" col-xs="12">
+          <ax-button type="warning" [block]="true" size="sm" (onClick)="warningToast()">Warning</ax-button>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="12">
+          <ax-tab-view>
+            <ax-tab title="First Tab">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </ax-tab>
+            <ax-tab title="Second Tab">
+              <ax-selection-list [items]="sectionList"> </ax-selection-list>
+            </ax-tab>
+            <ax-tab title="Fourth Tab">
+              <ax-image src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"></ax-image>
+            </ax-tab>
+            <ax-tab title="Fifth Tab">Empty</ax-tab>
+          </ax-tab-view>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="6">
+          <p>Radio Section</p>
+          <ax-selection-list [items]="sectionList"> </ax-selection-list>
+        </ax-col>
+        <ax-col col-sm="6">
+          <p>Checkbox Section</p>
+          <ax-selection-list mode="multiple" [items]="sectionList">
+          </ax-selection-list>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="4">
+          <p>Popup Section</p>
+          <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
+          <div class="ax-pad-sm"></div>
+          <ax-button [block]="true" type="danger" (onClick)="openAlert()">Open Alert</ax-button>
+          <div class="ax-pad-sm"></div>
+          <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()">Open Confirm</ax-button>
+        </ax-col>
+        <ax-col col-sm="4">
+          <p>Drawer Section</p>
+          <ax-button type="secondary" [block]="true" (onClick)="openDrawer()">Open Drawer</ax-button>
+          <ax-drawer [show]="drawerOpen" [overlay]="true" mode="outer" onBlur="onBlur" close="button">
+            <h5>Content can be here</h5>
+          </ax-drawer>
+          <br />
+          <p>Loading Section</p>
+          <ax-loading></ax-loading>
+          <p>Progressbar Section</p>
+          <ax-progress-bar progress="58"></ax-progress-bar>
+        </ax-col>
+        <ax-col col-sm="4">
+          <p>Upload Section</p>
+          <ax-upload-file></ax-upload-file>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="4">
+          <p>Image Section</p>
+          <ax-image src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"></ax-image>
+        </ax-col>
+        <ax-col col-sm="4"> </ax-col>
+        <ax-col col-sm="4"> </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="12">
+          <p>List Section</p>
+          <ax-list title="List Title" [height]="'300px'">
+            <ax-toolbar>
+              <ax-toolbar-list-view [horizontal-wrap]="false"></ax-toolbar-list-view>
+              <ax-toolbar-title text="LEAD"></ax-toolbar-title>
+              <ax-toolbar-search></ax-toolbar-search>
+            </ax-toolbar>
             <ax-data-source>
-              <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
+              <ax-callback-read [provideData]="provideListData"></ax-callback-read>
             </ax-data-source>
-            <ax-selection-column></ax-selection-column>
-            <ax-text-column field="id" caption="ID" [width]="100"></ax-text-column>
-            <ax-text-column field="userId" caption="UserId" [width]="100"></ax-text-column>
-            <ax-text-column field="title" caption="Title" [width]="300"></ax-text-column>
-            <ax-check-column field="completed" caption="Completed" [width]="100"></ax-check-column>
-            <!-- <ax-row-template>
-              <ng-template let-data>
-                <div style="text-align: center">
-                 {{data.title}}
-                </div>
-              </ng-template>
-            </ax-row-template> -->
-          </ax-data-grid>
-        </div>
-      </ax-col>
-    </ax-row>
+            <ng-template let-item>
+              <div class="ax-card-box ax-pad-md ax-full-width" style="margin-bottom: 10px">
+                {{ item.name }}
+              </div>
+            </ng-template>
+          </ax-list>
+        </ax-col>
+      </ax-row>
+      <ax-row>
+        <ax-col col-sm="12">
+          <p>Grid Section</p>
+          <div style="height: 500px">
+            <ax-data-grid title="Test remote data">
+              <ax-data-source>
+                <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
+              </ax-data-source>
+              <ax-selection-column></ax-selection-column>
+              <ax-text-column field="id" caption="ID" [width]="100"></ax-text-column>
+              <ax-text-column field="userId" caption="UserId" [width]="100"></ax-text-column>
+              <ax-text-column field="title" caption="Title" [width]="300"></ax-text-column>
+              <ax-check-column field="completed" caption="Completed" [width]="100"></ax-check-column>
+              <!-- <ax-row-template>
+                  <ng-template let-data>
+                    <div style="text-align: center">
+                     {{data.title}}
+                    </div>
+                  </ng-template>
+                </ax-row-template> -->
+            </ax-data-grid>
+          </div>
+        </ax-col>
+      </ax-row>
+    </ax-container>
   </ax-page-content>
 </ax-page>

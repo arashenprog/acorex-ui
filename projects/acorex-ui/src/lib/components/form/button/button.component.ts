@@ -29,8 +29,8 @@ export class AXButtonComponent extends AXButtonBaseComponent implements OnInit {
     ngOnInit(): void { }
 
     @Input() text: string;
-    @Input() type: "primary" | "secondary" | "danger" | "warning" = "primary"
-    @Input() size: "sm" | "md" | "lg" = "md"
+    @Input() type: "primary" | "secondary" | "danger" | "warning" | "light" | "dark" = "primary"
+    @Input() size: "xs" | "sm" | "md" | "lg"  | "xl" = "md"
     @Input() icon: string;
     @Input() block: boolean = false;
     @Input() submitBehavior: boolean = false;

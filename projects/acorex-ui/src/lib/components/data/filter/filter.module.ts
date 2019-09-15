@@ -45,6 +45,7 @@ const COMPONENTS = [
         AXToolbarModule,
         AXMenuModule,
         AXSelectionListModule,
+        AXPanelBoxModule,
         AXButtonModule
     ],
     exports: [COMPONENTS],

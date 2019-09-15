@@ -609,11 +609,6 @@ $color in $colors {
   border-color: var(--primary-light-color);
 }
 
-.btn:not(.btn-lg) {
-  padding: var(--sp-sm-size);
-  font-size: var(--font-md-size);
-}
-
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   ax-row {
     margin-bottom: var(--sp-md-size);

@@ -7,7 +7,6 @@ import { AXBadgeModule } from "./components/layout/badge/badge.module";
 import { AXCardModule } from "./components/layout/cards/card.module";
 import { AXCarouselModule } from "./components/layout/carousel/carousel.module";
 import { AXCheckBoxModule } from "./components/form/checkbox/checkbox.module";
-import { AXContainerModule } from "./components/layout/container/container.module";
 import { AXDataGridModule } from "./components/data/data-grid/datagrid.module";
 import { AXDatePickerModule } from "./components/form/date-picker/date-picker.module";
 
@@ -15,7 +14,6 @@ import { AXImageViewModule } from "./components/layout/image-view/image-view.mod
 import { AXLoadingModule } from "./components/layout/loading/loading.module";
 import { AXMenuModule } from "./components/layout/menu/menu.module";
 import { AXPanelBoxModule } from "./components/layout/panel-box/panel-box.module";
-import { AXToggleBoxModule } from "./components/layout/toggle-box/toggle-box.module";
 import { AXPasswordBoxModule } from "./components/form/password-box/password-box.module";
 import { AXPopupModule } from "./components/nav/popup/popup.module";
 import { AXProgressBarModule } from "./components/layout/progress-bar/progress-bar.module";
@@ -60,14 +58,12 @@ let modules = [
   AXCardModule,
   AXCarouselModule,
   AXCheckBoxModule,
-  AXContainerModule,
   AXDataGridModule,
   AXDatePickerModule,
   AXImageViewModule,
   AXLoadingModule,
   AXMenuModule,
   AXPanelBoxModule,
-  AXToggleBoxModule,
   AXPasswordBoxModule,
   AXPopupModule,
   AXProgressBarModule,

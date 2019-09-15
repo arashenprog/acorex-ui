@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ContentChild, TemplateRef } from "@angular/core";
 import {
   trigger,
   state,
@@ -7,7 +7,6 @@ import {
   transition
 } from "@angular/animations";
 import { AXButtonBaseComponent } from "../../../core/base.class";
-import { ButtonItem } from "../../../core/menu.class";
 
 @Component({
   selector: "ax-panel-box",
@@ -15,86 +14,51 @@ import { ButtonItem } from "../../../core/menu.class";
   styleUrls: ["./panel-box.component.scss"],
   animations: [
     trigger("visibilityChanged", [
-      state("shown", style({ opacity: 1, height: "*" })),
+      state(
+        "shown",
+        style({
+          height: "*",
+          opacity: 1,
+        })
+      ),
       state(
         "hidden",
         style({
-          opacity: 0,
           height: "0px",
-          overflow: "hidden",
-          display: "none"
+          opacity: 0
         })
       ),
-      transition("shown => hidden", animate("200ms")),
-      transition("hidden => shown", animate("300ms"))
+      transition("* => *", animate("200ms"))
     ])
   ]
 })
 export class AXPanelBoxComponent extends AXButtonBaseComponent {
-  // _inlineButtons: Array<ButtonItem> = [];
-  // _dropdownButtons: Array<ButtonItem> = [];
-  // private _buttons: Array<ButtonItem> = [];
 
-  // @Input()
-  // get buttons() {
-  //   return this._buttons;
-  // }
 
-  // set buttons(val: Array<ButtonItem>) {
-  //   this._buttons = val || [];
-  //   this._inlineButtons = this._buttons.filter(c => !c.dropdown);
-  //   this._dropdownButtons = this._buttons.filter(c => c.dropdown);
-  // }
+  @ContentChild('header') headerTemplate: TemplateRef<any>;
 
-  // onClickInner() {
-  //   this.onClick.emit("test");
-  // }
+  @Input()
+  caption: string = "Caption"
 
-  // visiblityState: string = "shown";
+  @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  private _collapsed: boolean = false;
+  @Input()
+  get collapsed(): boolean {
+    return this._collapsed;
+  }
+  set collapsed(val: boolean) {
+    if (val != this._collapsed) {
+      this._collapsed = val;
+      this.collapsedChange.emit(this._collapsed);
+    }
+  }
 
-  // @Output() captionChange: EventEmitter<string> = new EventEmitter<string>();
-  // private _caption: string;
-  // @Input()
-  // get caption(): string {
-  //   return this._caption;
-  // }
-  // set caption(val: string) {
-  //   this._caption = val || "caption";
-  //   this.captionChange.emit(this._caption);
-  // }
+  @Input()
+  allowCollapse: boolean = true;
 
-  // @Output() collapsedChange: EventEmitter<boolean> = new EventEmitter<
-  //   boolean
-  // >();
-  // private _collapsed: boolean = false;
-
-  // @Input()
-  // get collapsed(): boolean {
-  //   return this._collapsed;
-  // }
-  // set collapsed(val: boolean) {
-  //   if (val != this._collapsed) {
-  //     this._collapsed = val;
-  //     this.visiblityState = val ? "hidden" : "shown";
-  //     this.collapsedChange.emit(this._collapsed);
-  //   }
-  // }
-
-  // @Input()
-  // isParent: boolean = false;
-
-  // @Input()
-  // allowCollapse: boolean = true;
-
-  // @Input()
-  // dockParrent: boolean = false;
-
-  // toggle() {
-  //   this.collapsed = !this.collapsed;
-  // }
-  @Input() title: string;
-  show: boolean = true;
-  togglePanel(){
-    this.show = !this.show;
+  toggle() {
+    if (this.allowCollapse) {
+      this.collapsed = !this.collapsed;
+    }
   }
 }
