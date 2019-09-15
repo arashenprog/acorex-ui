@@ -14,8 +14,6 @@
         border-bottom: 1px solid var(--border-color);
 
         .list {
-            padding: 0 var(--sp-md-size);
-
             ul {
 
                 list-style-type: none;
@@ -81,13 +79,11 @@
     }
 
     .group-header {
-        min-height: var(--el-md-size);
         background: var(--white-color);
         display: flex;
         align-items: center;
-        padding: var(--sp-sm-size);
+        padding: var(--sp-sm-size) var(--sp-md-size);
         border-bottom: 1px solid var(--border-color);
-        margin-bottom: var(--sp-sm-size);
         background: var(--gray-dark-color);
         color: var(--gray-dark);
 
@@ -98,9 +94,8 @@
 
     .ax-filter-item-header {
         height: var(--el-md-size);
-        padding: 0 var(--sp-sm-size);
         display: flex;
-
+        align-items: center;
     }
 
     .footer {
@@ -129,6 +124,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        >div{
+            flex: 1
+        }
     }
 
     .ax-filter-section-value {

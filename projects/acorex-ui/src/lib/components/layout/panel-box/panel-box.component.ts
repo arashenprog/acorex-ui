@@ -18,14 +18,15 @@ import { AXButtonBaseComponent } from "../../../core/base.class";
         "shown",
         style({
           height: "*",
-          opacity: 1,
+          opacity: 1
         })
       ),
       state(
         "hidden",
         style({
           height: "0px",
-          opacity: 0
+          opacity: 0,
+          padding:0
         })
       ),
       transition("* => *", animate("200ms"))
