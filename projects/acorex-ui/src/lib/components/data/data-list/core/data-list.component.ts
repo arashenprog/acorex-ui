@@ -3,6 +3,7 @@ import { AXDataSourceComponent, AXDataSourceReadParams } from "../../data-source
 import { AXBaseComponent } from "../../../../core/base.class";
 
 export abstract class AXDataListComponent extends AXBaseComponent {
+  @Input()
   items: any[] = [];
 
   @ContentChild(AXDataSourceComponent)

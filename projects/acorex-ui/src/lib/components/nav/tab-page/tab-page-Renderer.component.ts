@@ -40,7 +40,15 @@ export class AXTabPageRendererComponent {
                 componentRef.instance.closeEvent.subscribe((e: ClosingEventArgs) => {
                     tabService.close(tab, e);
                 });
-
+                //
+                let com = componentRef.instance as any;
+                //
+                if (tab.data)
+                    Object.assign(com, tab.data);
+                //
+                if (com.onReceiveData && tab.data) {
+                    com.onReceiveData(tab.data);
+                }
                 //
                 (<any>tab).component = tab.content;
                 tab.content = componentRef.instance;

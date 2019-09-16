@@ -11,15 +11,16 @@ export class AXTabNavService extends AXNavigator {
     }
 
     navigate(params: AXNavigatorParam) {
-        ;
         let route = this.router.config.find(c => c.path == params.path);
         if (route) {
+            let data = {
+                route: params.path,
+            };
+            Object.assign(data, params.data);
             this.tab.open({
                 title: params.title ? params.title : (route.data ? route.data.title : null),
                 content: route.component,
-                data: {
-                    route:params.path
-                }
+                data: data
             });
         }
     }
