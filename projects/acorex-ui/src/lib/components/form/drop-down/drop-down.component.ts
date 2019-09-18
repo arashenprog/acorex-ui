@@ -14,7 +14,7 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
     popSelectBox:AXPopoverComponent
 
     @Input() items: SelectItem[] = [];
-    @Input() searchable: boolean = false;
+    @Input() allowSearch: boolean = false;
     @Input() icon: string = "fas fa-angle-down"
     @Input() fitParent: boolean = true;
 

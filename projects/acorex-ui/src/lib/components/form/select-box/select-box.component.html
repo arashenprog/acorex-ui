@@ -1,5 +1,23 @@
-<ax-drop-down [(text)]="_value" label="{{ label }}" #d>
-  <div class="ax-select-item" *ngFor="let item of items" (click)="onItemClick(item)">
-    {{ item.text }}
-  </div>
-</ax-drop-down>
+<div class="ax-select-box">
+  <ax-drop-down [text]="text" label="{{ label }}" #d>
+    <div class="list-container">
+      <div *ngIf="allowSearch" class="search">
+        <ax-search-box [(text)]="searchText" (onTextChanged)="handleSearchChanged($event)"></ax-search-box>
+      </div>
+      <div>
+        <ng-container *ngIf="items && items.length; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+          <div class="text-item" [class.selected]="item.selected" *ngFor="let item of items"
+            (click)="handleItemClick(item)">
+            {{ item[textField] }}
+          </div>
+        </ng-template>
+        <ng-template #elseTemplate>
+          <div class="text-item">
+            No Result Found
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ax-drop-down>
+</div>

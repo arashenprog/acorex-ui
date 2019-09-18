@@ -16,12 +16,14 @@ import { PopoverDemoPage } from './popover/popover-demo.page';
 import { DemoDataModule } from './data/demo-data.module';
 import { Routes, RouterModule } from '@angular/router';
 import { TextBoxPage } from './formcontroll/text-box.page';
+import { SelectBoxPage } from './formcontroll/select-box.page';
 
 const pages = [
   DemoPage,
   DashboardPage,
   PopoverDemoPage,
   TextBoxPage,
+  SelectBoxPage,
   AliPage,
   TestPage,
   WidgetsPage,
@@ -35,6 +37,10 @@ const ROUTES: Routes = [
   {
     path:"data",
     loadChildren : "./data/demo-data.module#DemoDataModule" 
+  },
+  {
+    path:"components/form/search-box",
+    component:SelectBoxPage
   },
   {
     path:"DemoPage",

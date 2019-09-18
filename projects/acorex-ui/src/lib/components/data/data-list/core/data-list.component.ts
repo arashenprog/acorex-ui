@@ -3,18 +3,16 @@ import { AXDataSourceComponent, AXDataSourceReadParams } from "../../data-source
 import { AXBaseComponent } from "../../../../core/base.class";
 
 export abstract class AXDataListComponent extends AXBaseComponent {
+
   @Input()
   items: any[] = [];
-
   @ContentChild(AXDataSourceComponent)
   private dataSource: AXDataSourceComponent;
 
 
-  @Input() width: string = "";
-  @Input() height: string = "auto";
+
 
   ngOnInit(): void {
-
     this.dataSource.onDataReceived.subscribe(data => {
       this.dataReceived(data);
     });

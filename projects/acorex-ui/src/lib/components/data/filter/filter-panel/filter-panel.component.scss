@@ -3,11 +3,11 @@
     position: relative;
     height: 100%;
     font-size: var(--font-md-size);
-    .empty-list
-    {
+
+    .empty-list {
         text-align: center;
         padding: var(--sp-sm-size);
-        color:var(--gray)
+        color: var(--gray)
     }
 
     .saved-list {
@@ -37,31 +37,29 @@
                             }
                         }
 
+                        .tools {
+
+                            display: inline;
+
+                            i {
+                                opacity: 0.2;
+                                cursor: pointer;
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
                         &.selected {
                             font-weight: bold;
-
                             .title {
                                 i {
                                     opacity: 1;
                                 }
                             }
-
-                            .tools {
-                                display: inline;
-                                cursor: pointer;
-                                i {
-                                    opacity: 0.2;
-                                    &:hover {
-                                        opacity: 1;
-                                        
-                                    }
-                                }
-                            }
                         }
 
-                        .tools {
-                            display: none;
-                        }
+
                     }
                 }
             }
@@ -124,7 +122,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        >div{
+
+        >div {
             flex: 1
         }
     }
