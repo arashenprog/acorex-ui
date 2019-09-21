@@ -1,5 +1,4 @@
 import * as moment_ from "jalali-moment";
-import { Type } from "@angular/core";
 const moment = moment_;
 
 export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "hours" | "day" | "days" | "month" | "year" | "week";
@@ -16,7 +15,9 @@ export class AXDateTime {
 
 
     private get _moment(): moment_.Moment {
-        return moment(this.date)
+        let m= moment(this.date);
+        //m.locale("fa");
+        return m;
     }
 
     constructor(value: Date | string = new Date()) {
@@ -114,6 +115,8 @@ export class AXDateTime {
     }
 
     format(format: string): string {
+        if (format == "P")
+            return this._moment.fromNow();
         return this._moment.format(format);
     }
 

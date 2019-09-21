@@ -48,6 +48,7 @@ import { AXColorPickerModule } from "./components/form/color-picker/color-picker
 import { AXFilterModule } from "./components/data/filter/filter.module";
 import { AXEditBoxModule } from "./components/form/edit-box/edit-box.module";
 import { AXSearchBoxModule } from "./components/form/search-box/search-box.module";
+import { AXTooltipModule } from "./components/layout/tooltip/tooltip.module";
 
 window["$"] = $;
 
@@ -91,7 +92,8 @@ let modules = [
   AXDropDownModule,
   AXColorPickerModule,
   AXFilterModule,
-  AXEditBoxModule
+  AXEditBoxModule,
+  AXTooltipModule
 ]
 @NgModule({
   declarations: [AXThemeWrapperComponent],

@@ -18,6 +18,7 @@ import { AXBasePageComponent, CheckItem } from 'acorex-ui';
                         </ax-text-box>
                     </ax-col>
                 </ax-row>
+                
             </ax-container>
         </ax-page-content>
     </ax-page>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AXBasePageComponent, CheckItem, PromisResult, AXDataSourceReadParams } from 'acorex-ui';
+import { AXBasePageComponent, CheckItem, PromisResult, AXDataSourceReadParams, AXDateTime } from 'acorex-ui';
 
 @Component({
     template: `
@@ -15,6 +15,11 @@ import { AXBasePageComponent, CheckItem, PromisResult, AXDataSourceReadParams } 
                        </ax-select-box>
                     </ax-col>
                 </ax-row>
+                <ax-row>
+                    <ax-col col-xs="6" col-md="12">
+                        <span tooltip='{{ theTime | dt:"L LT"}}' placement="top">{{ theTime | dt:"P"}}</span>
+                    </ax-col>
+                </ax-row>
             </ax-container>
         </ax-page-content>
     </ax-page>
@@ -26,6 +31,7 @@ export class SelectBoxPage extends AXBasePageComponent {
         super()
     }
 
+    theTime = new AXDateTime();
 
     data = [
         {

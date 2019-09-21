@@ -26,6 +26,7 @@ export * from "./lib/components/layout/toolbar/api";
 export * from "./lib/components/layout/tab-view/api";
 export * from "./lib/components/layout/popover/api";
 export * from "./lib/components/layout/menu/api";
+export * from "./lib/components/layout/tooltip/api";
 
 
 export * from "./lib/components/data/data-grid/api";

@@ -1,0 +1,54 @@
+.ax-tooltip {
+    position: absolute;
+    max-width: 150px;
+    font-size: var(--font-sm-size);
+    text-align: center;
+    color: #f8f8f2;
+    padding: 3px 8px;
+    background: #282a36;
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0;
+  
+    &:after {
+      content: "";
+      position: absolute;
+      border-style: solid;
+    }
+  
+    &.ax-tooltip-top:after {
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-color: black transparent transparent transparent;
+    }
+  
+    &.ax-tooltip-bottom:after {
+      bottom: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-color: transparent transparent black transparent;
+    }
+  
+    &.ax-tooltip-left:after {
+      top: 50%;
+      left: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-color: transparent transparent transparent black;
+    }
+  
+    &.ax-tooltip-right:after {
+      top: 50%;
+      right: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-color: transparent black transparent transparent;
+    }
+  
+    &.ax-tooltip-show {
+      opacity: 1;
+    }
+  }
