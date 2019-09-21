@@ -47,6 +47,7 @@ import { AXDropDownModule } from "./components/form/drop-down/drop-down.module";
 import { AXColorPickerModule } from "./components/form/color-picker/color-picker.module";
 import { AXFilterModule } from "./components/data/filter/filter.module";
 import { AXEditBoxModule } from "./components/form/edit-box/edit-box.module";
+import { AXSearchBoxModule } from "./components/form/search-box/search-box.module";
 
 window["$"] = $;
 
@@ -71,6 +72,7 @@ let modules = [
   AXSelectionListModule,
   AXTextBoxModule,
   AXTextAreaModule,
+  AXSearchBoxModule,
   AXUploadFileModule,
   AXValidationModule,
   AXTabViewModule,

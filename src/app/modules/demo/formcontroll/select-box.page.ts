@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { AXBasePageComponent, CheckItem, PromisResult, AXDataSourceReadParams } from 'acorex-ui';
+
+@Component({
+    template: `
+    <ax-page>
+        <ax-page-content>
+            <ax-container>
+                <ax-row>
+                    <ax-col col-md="12">
+                       <ax-select-box>
+                            <ax-data-source>
+                                <ax-callback-read [provideData]="provideData"></ax-callback-read>
+                            </ax-data-source>
+                       </ax-select-box>
+                    </ax-col>
+                </ax-row>
+            </ax-container>
+        </ax-page-content>
+    </ax-page>
+  `
+})
+export class SelectBoxPage extends AXBasePageComponent {
+
+    constructor() {
+        super()
+    }
+
+
+    data = [
+        {
+            value: 1,
+            text: "item 1",
+        },
+        {
+            value: 2,
+            text: "item 2",
+        }, {
+            value: 3,
+            text: "item 3",
+        }
+    ];
+    provideData = (params: AXDataSourceReadParams) => {
+        debugger;
+        return PromisResult.resolve(this.data.filter(c => !params.searchText || c.text.includes(params.searchText)));
+    }
+
+}

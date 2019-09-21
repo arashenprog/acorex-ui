@@ -54,7 +54,14 @@ export class NavMenuService extends AXNavMenuService {
       data: {}
 
     },
-
+    {
+      name: "search-box",
+      text: "Search Box",
+      id: "003-002-002",
+      parentId: "003-002",
+      visible: true,
+      data: { path: "components/form/search-box" }
+    },
     {
       name: "data",
       text: "Data",

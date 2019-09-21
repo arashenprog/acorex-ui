@@ -1,11 +1,26 @@
-.ax-select-item {
-  height: var(--el-md-size);
-  padding: 0 var(--sp-md-size);
-  cursor: pointer;
-  border-bottom: 1px solid;
-  border-color: var(--border-color);
+.ax-select-box {
   font-size: var(--font-md-size);
-  &:hover {
-    background: var(--gray-light-color);
+
+  .list-container {
+    padding: var(--sp-sm-size);
+
+    .search {
+      margin-bottom: var(--sp-sm-size);
+    }
+
+    .text-item {
+      padding: var(--sp-sm-size);
+      cursor: pointer;
+
+      &:hover {
+        background: var(--primary-color) !important;
+        color: var(--primary-fore-color) !important;
+      }
+
+      &.selected {
+        background: var(--gray-dark-color) ;
+      }
+
+    }
   }
 }

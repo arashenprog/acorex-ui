@@ -28,6 +28,9 @@ export class AXListComponent extends AXDataListComponent {
     super();
   }
 
+  @Input() width: string = "";
+  @Input() height: string = "auto";
+
   @Input("dropId") public dropId: string;
   @Input("connectedList") public connectedList: string[] = [];
 
