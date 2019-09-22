@@ -3,7 +3,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  Input
 } from "@angular/core";
 import { AXGridDataColumn } from "./column.component";
 import { ICellRendererAngularComp, IFilterAngularComp } from "ag-grid-angular";
@@ -27,9 +28,27 @@ export class AXGridDateColumn extends AXGridDataColumn {
     super();
   }
 
+  @Input()
+  format: string = "YYYY-MM-DD";
+
   render() {
     let col = super.render();
     col.cellRendererFramework = DateRenderer;
+    col.cellRendererParams = {
+      format: this.format,
+    }
+    col.comparator =  (valueA:AXDateTime, valueB:AXDateTime, nodeA, nodeB, isInverted) => {
+      if (valueA === null && valueB === null) {
+        return 0;
+      }
+      if (valueA === null) {
+        return -1;
+      }
+      if (valueB === null) {
+        return 1;
+      }
+      return (valueA.date.getTime() - valueB.date.getTime());
+    };
     //col.filterFramework = DateFilterRenderer;
     return col;
   }
@@ -37,16 +56,20 @@ export class AXGridDateColumn extends AXGridDataColumn {
 
 @Component({
   template: `
-    {{ value | dt:"YYYY-MM-DD"}}
+    {{ value | dt:format}}
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DateRenderer implements ICellRendererAngularComp {
   value: AXDateTime;
-  constructor() {}
+  format: string = "YYYY-MM-DD";
+
+  constructor() { }
   agInit(params: ICellRendererParams): void {
+    this.format = (<any>params).format;
     this.value = params.value;
   }
+
   refresh(params: ICellRendererParams): boolean {
     this.value = params.value;
     return true;
