@@ -6,7 +6,11 @@ export class AXHtmlToTextPipe implements PipeTransform {
     if (value) {
       let regexHtml = /<\/?[^>]+>/gi;
       let regexNbsp = /&nbsp;/gi;
-      return value.replace(regexHtml, "").replace(regexNbsp, "");
+      let regexAmp = /&amp;/gi;
+      return value
+        .replace(regexHtml, "")
+        .replace(regexNbsp, "")
+        .replace(regexAmp, "");
     } else {
       return "";
     }
