@@ -9,7 +9,8 @@
         <ax-dock-panel type="stack" [size]="20">
           <ax-dock-content caption="Filters">
             <ng-template>
-              <ax-filter-panel [groups]="filterGroups" [predefinedFilters]="savedList" #filterPanel (filterChange)="onFilterChange($event)">
+              <ax-filter-panel [groups]="filterGroups" [predefinedFilters]="savedList" #filterPanel
+                (filterChange)="onFilterChange($event)">
               </ax-filter-panel>
             </ng-template>
           </ax-dock-content>
@@ -18,12 +19,17 @@
         <ax-dock-panel type="stack" [size]="80">
           <ax-dock-content caption="Leads">
             <ng-template>
-              <ax-data-grid #grid height="100%" (rowClick)="onRowClick($event)" [loadOnInit]="false">
+              <ax-data-grid #grid height="100%" [rowClass]="gridCellClass" (rowClick)="onRowClick($event)"
+                [loadOnInit]="false">
                 <ax-data-source>
                   <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
                 </ax-data-source>
                 <ax-selection-column></ax-selection-column>
-                <ax-text-column field="firstname" caption="Firstname" [width]="100"></ax-text-column>
+                <ax-text-column field="firstname" caption="Firstname" [width]="100">
+                  <ng-template let-value="cellValue" let-data="rowData">
+                    {{data.lastname}} Arash
+                  </ng-template>
+                </ax-text-column>
                 <ax-text-column field="lastname" caption="Lastname" [width]="100"></ax-text-column>
                 <ax-text-column field="source" caption="Source" [width]="100"></ax-text-column>
                 <ax-text-column field="number" caption="Number" [width]="100"></ax-text-column>

@@ -1,12 +1,12 @@
 <div class="ax-grid-toolbar" *ngIf="toolbar">
   <ng-content select="ax-toolbar"></ng-content>
 </div>
-<ag-grid-angular class="ag-theme-balham" [style.height]="internalHeight" [columnDefs]="columnDefs" [enableRtl]="false" [pagination]="true"
+<ag-grid-angular class="ag-theme-balham" [getRowClass]="internalGetRowClass" [style.height]="internalHeight" [columnDefs]="columnDefs" [enableRtl]="false" [pagination]="true"
   [rowGroupPanelShow]="rowGroupPanelShow" [enableFilter]="true" [rowModelType]="rowModelType" [enableSorting]="true"
   [enableColResize]="true" [suppressMenuHide]="true" [frameworkComponents]="frameworkComponents"
   [isFullWidthCell]="isFullWidthCell" [fullWidthCellRendererFramework]="fullWidthCellRendererFramework"
-  [fullWidthCellRendererParams]="fullWidthCellRendererParams" (cellClicked)="onGridCellClicked($event)"
-  (cellDoubleClicked)="onGridCellDoubleClicked($event)" (cellFocused)="onGridCellFocused($event)"
-  (rowClicked)="onGridRowClicked($event)" (selectionChanged)="onGridSelectionChanged($event)"
-  (rowDoubleClicked)="onGridRowDoubleClicked($event)" (gridReady)="onGridReady($event)">
+  [fullWidthCellRendererParams]="fullWidthCellRendererParams" (cellClicked)="internalGridCellClicked($event)"
+  (cellDoubleClicked)="internalGridCellDoubleClicked($event)" (cellFocused)="internalGridCellFocused($event)"
+  (rowClicked)="internalGridRowClicked($event)" (selectionChanged)="internalGridSelectionChanged($event)"
+  (rowDoubleClicked)="internalGridRowDoubleClicked($event)" (gridReady)="internalGridReady($event)" >
 </ag-grid-angular>

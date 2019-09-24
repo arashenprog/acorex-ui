@@ -1,7 +1,12 @@
-import { Input } from '@angular/core';
+import { Input, ContentChild, TemplateRef, Component, ChangeDetectionStrategy } from '@angular/core';
+import { AXGridCellParams } from '../events.class';
+import { ICellRendererAngularComp } from 'ag-grid-angular';
+import { ICellRendererParams } from 'ag-grid-community';
 
 
 export abstract class AXGridDataColumn {
+
+    @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
 
     @Input()
     width: number = 100;
@@ -23,9 +28,10 @@ export abstract class AXGridDataColumn {
 
     @Input()
     enableRowGroup: boolean = true;
-    
 
 
+    @Input()
+    cellClass: (params: AXGridCellParams) => (string | string[]) | (string | string[]);
 
 
     @Input()
@@ -58,12 +64,57 @@ export abstract class AXGridDataColumn {
             col.sort = this.sort;
         if (this.enableRowGroup)
             col.enableRowGroup = this.enableRowGroup;
-        if (this.rowGroupIndex >= 0)
-        {
+        if (this.rowGroupIndex >= 0) {
             col.rowGroupIndex = this.rowGroupIndex;
             col.rowGroup = true;
         }
+        if (this.cellClass) {
+            let THAT = this;
+            if (this.cellClass instanceof Function)
+                col.cellClass = function (p) {
+                    return THAT.cellClass({
+                        column: THAT,
+                        rowIndex: p.node.rowIndex,
+                        rowLevel: p.node.level,
+                        data: p.data,
+                        value: p.value
+                    });
+                }
+            else
+                col.cellClass = this.cellClass;
+        }
+        //
+        if (this.templateRef != null) {
+            col.cellRendererFramework = AXDataGridCellTemplateRenderer;
+            col.cellRendererParams = {
+                templateRef: this.templateRef
+            }
+        }
         return col;
+    }
+}
+
+@Component({
+    template: `
+        <ng-container *ngTemplateOutlet="templateRef; context: { cellValue: cellValue,rowData:rowData }">
+        </ng-container>
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class AXDataGridCellTemplateRenderer implements ICellRendererAngularComp {
+    cellValue: any;
+    rowData: any;
+    templateRef: TemplateRef<any>;
+
+    constructor() { }
+    agInit(params: ICellRendererParams): void {
+        this.cellValue = params.value;
+        this.rowData = params.data;
+        this.templateRef = (<any>params).templateRef;
+    }
+
+    refresh(params: ICellRendererParams): boolean {
+        return true;
     }
 }
 

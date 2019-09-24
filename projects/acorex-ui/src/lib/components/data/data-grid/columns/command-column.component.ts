@@ -28,7 +28,8 @@ export class AXGridCommandColumn extends AXGridDataColumn {
 
   render() {
     let col = super.render();
-    col.cellRendererFramework = CommandRenderer;
+    if (!col.cellRendererFramework)
+      col.cellRendererFramework = CommandRenderer;
     col.cellRendererParams = {
       items: this.items,
       onClick: e => {

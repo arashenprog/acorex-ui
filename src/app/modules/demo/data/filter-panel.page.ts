@@ -13,6 +13,7 @@ import {
     AXFilterPredefined,
     AXMathUtil
 } from 'acorex-ui';
+import { AXGridRowParams } from 'acorex-ui';
 
 const STATUS = [
     {
@@ -257,6 +258,13 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             resolve(this.leads.query(this.gridFilter));
         });
     };
+
+    gridCellClass = (e: AXGridRowParams) => {
+        console.log("form", e);
+        if (e.data)
+            return e.data.lastname == "Enprog" ? "text-danger" : "";
+        return "";
+    }
 
     constructor(
         private http: AXHttpService,

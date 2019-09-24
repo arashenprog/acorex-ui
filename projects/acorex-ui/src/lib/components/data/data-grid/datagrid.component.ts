@@ -4,7 +4,7 @@ import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../data-source/read-param';
 import { GridOptions, CellClickedEvent, RowClickedEvent, CellEvent, RowEvent } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
-import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent } from './events.class';
+import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent, AXGridRowParams } from './events.class';
 import { AXToolbarSearchComponent } from "../../layout/toolbar/search/toolbar-search.component";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
 import { AXDataGridRowTemplateComponent } from "./templates/row-template.component";
@@ -19,6 +19,7 @@ import { AXDataGridRowTemplateComponent } from "./templates/row-template.compone
 })
 export class AXDataGridComponent {
 
+  gridOptions: GridOptions;
   private gridApi;
   private dataSourceSuccessCallback;
   columnDefs: any[] = [];
@@ -107,7 +108,8 @@ export class AXDataGridComponent {
 
 
 
-
+  @Input()
+  rowClass?: (params: AXGridRowParams) => (string | string[]) | (string | string[]);
 
 
   constructor() {
@@ -121,7 +123,7 @@ export class AXDataGridComponent {
 
 
 
-  private calcHeight():void {
+  private calcHeight(): void {
     if (this.toolbar)
       this.internalHeight = `calc(100% - ${40}px)`;
     else
@@ -139,9 +141,9 @@ export class AXDataGridComponent {
 
 
 
-  onGridReady(gridOptions: GridOptions) {
+  internalGridReady(gridOptions: GridOptions) {
     this.gridApi = gridOptions.api;
-    ;
+    //   
     if (!this.loadOnInit)
       return;
     const that = this;
@@ -176,25 +178,31 @@ export class AXDataGridComponent {
     else {
       this.dataSource.fetch();
     }
+    //
+
+
   }
 
 
 
 
   ngAfterContentInit(): void {
+    let that = this;
+    //
     if (this.rowTemplate) {
       this.fullWidthCellRendererFramework = this.rowTemplate.renderer;
       this.fullWidthCellRendererParams = this.rowTemplate.params;
     }
-    let that = this;
+
     this.isFullWidthCell = function () {
       return that.rowTemplate != null;
     }
-
   }
 
 
   ngAfterViewInit(): void {
+    let that = this;
+    //
     this.remoteOperation = (<any>this.dataSource.read).remoteOperation;
     if (this.remoteOperation)
       this.rowModelType = "infinite";
@@ -218,6 +226,8 @@ export class AXDataGridComponent {
     }
     //
     this.calcHeight();
+    //
+
   }
 
   mapColumns() {
@@ -240,27 +250,27 @@ export class AXDataGridComponent {
 
 
 
-  onGridCellClicked(e: CellClickedEvent) {
+  internalGridCellClicked(e: CellClickedEvent) {
     this.cellClick.emit(this.mapCellEvent(e));
   }
 
-  onGridCellDoubleClicked(e: CellClickedEvent) {
+  internalGridCellDoubleClicked(e: CellClickedEvent) {
     this.cellDbClick.emit(this.mapCellEvent(e));
   }
 
-  onGridCellFocused(e: CellClickedEvent) {
+  internalGridCellFocused(e: CellClickedEvent) {
     this.cellFocuse.emit(this.mapCellEvent(e));
   }
 
-  onGridRowClicked(e: RowClickedEvent) {
+  internalGridRowClicked(e: RowClickedEvent) {
     this.rowClick.emit(this.mapRowEvent(e));
   }
 
-  onGridRowDoubleClicked(e: CellClickedEvent) {
+  internalGridRowDoubleClicked(e: CellClickedEvent) {
     this.rowDbClick.emit(this.mapRowEvent(e));
   }
 
-  onGridSelectionChanged(e) {
+  internalGridSelectionChanged(e) {
     let args: AXGridRowSelectionEvent = { items: [] };
     let nodes = this.gridApi.getSelectedNodes();
     nodes.forEach(i => {
@@ -290,5 +300,22 @@ export class AXDataGridComponent {
       data: e.data,
       rowIndex: e.rowIndex,
     };
+  }
+
+
+  internalGetRowClass = (p: any) => {
+    debugger;
+    if (this.rowClass) {
+      if (this.rowClass instanceof Function) {
+        return this.rowClass({
+          rowIndex: p.node.rowIndex,
+          rowLevel: p.node.level,
+          data: p.data,
+        });
+      }
+      else {
+        return this.rowClass;
+      }
+    }
   }
 }

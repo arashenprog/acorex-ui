@@ -14,6 +14,14 @@ export interface AXGridCellEvent extends AXGridRowEvent {
     value: any;
 }
 
+
+export interface AXGridRowParams extends AXGridRowEvent {
+}
+export interface AXGridCellParams extends AXGridCellEvent {
+}
+
+
+
 export interface AXGridRowSelectionEvent {
     items: AXGridRowEvent[];
 }

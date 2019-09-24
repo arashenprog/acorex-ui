@@ -33,11 +33,12 @@ export class AXGridDateColumn extends AXGridDataColumn {
 
   render() {
     let col = super.render();
-    col.cellRendererFramework = DateRenderer;
+    if (!col.cellRendererFramework)
+      col.cellRendererFramework = DateRenderer;
     col.cellRendererParams = {
       format: this.format,
     }
-    col.comparator =  (valueA:AXDateTime, valueB:AXDateTime, nodeA, nodeB, isInverted) => {
+    col.comparator = (valueA: AXDateTime, valueB: AXDateTime, nodeA, nodeB, isInverted) => {
       if (valueA === null && valueB === null) {
         return 0;
       }

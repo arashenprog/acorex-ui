@@ -17,6 +17,7 @@ import { AXSelectBoxModule } from '../../form/select-box/select-box.module';
 import { AXButtonModule } from '../../form/button/button.module';
 import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from "./templates/row-template.component";
 import { DateRenderer, AXGridDateColumn } from "./columns/date-column.component";
+import { AXDataGridCellTemplateRenderer } from "./columns/column.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DateRenderer, AXGridDateColumn } from "./columns/date-column.component"
     AXDataGridFilterComponent,
     AXDataGridRowTemplateComponent,
     AXDataGridRowTemplateRenderer,
+    AXDataGridCellTemplateRenderer,
     CommandRenderer],
   imports: [
     CommonModule,
@@ -65,7 +67,8 @@ import { DateRenderer, AXGridDateColumn } from "./columns/date-column.component"
     BooleanFilterRenderer,
     CommandRenderer,
     TextFilterRenderer,
-    AXDataGridRowTemplateRenderer
+    AXDataGridRowTemplateRenderer,
+    AXDataGridCellTemplateRenderer
   ],
   providers: []
 })
