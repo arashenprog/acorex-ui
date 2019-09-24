@@ -5,7 +5,9 @@
   </ax-toolbar>
   <ax-page-content>
     <ax-container>
-      {{ htmlContent | html2text }}
+      <ax-row>
+        <ax-editor></ax-editor>
+      </ax-row>
       <ax-row>
         <ax-col col-sm="3" col-xs="12">
           <ax-text-box disabled="true" label="Textbox">
