@@ -24,6 +24,77 @@ export class DemoPage extends AXBasePageComponent {
   ) {
     super();
   }
+  htmlContent = `
+  <div>
+  <p><span style="color:#000000">Hi Craig,</span></p>
+  <p><span style="color:#000000">Please find attached invoice in regards to Job #4469CQ.</span></p>
+  <p>&nbsp;</p>
+  <p><span style="color:#000000"><strong>Total amount: $4,397.80</strong></span></p>
+  <p><span style="color:#000000">Please send us the proof of the payment by replying to this email.</span></p>
+  <p><span style="color:#000000"><strong>Bank Account Details:</strong></span></p>
+  <p><span style="color:#000000"><strong>Account Name: CQ Flooring</strong></span></p>
+  <p><span style="color:#000000"><strong>BSB: 063074</strong></span></p>
+  <p><span style="color:#000000"><strong>ACC No. : 10060205</strong></span></p>
+  <p>&nbsp;</p>
+  <p><span style="color:#000000">We appreciate your prompt payment.</span></p>
+  <!--[if mso]>				</td>				<![endif]-->
+  <!--[if mso]>				</tr>				</table>				<![endif]-->
+  <!--[if (gte mso 9)</td><td align="left" >(IE)]>                        </td>                        </tr>                        </table>                        <![endif]-->
+  <!-- // END TEMPLATE --><br><span><br><br></span>
+  <div dir="ltr" style="margin-left:0pt;"><br><br>
+      <table style="border:none;border-collapse:collapse;">
+          <colgroup>
+              <col width="210">
+              <col width="382">
+          </colgroup>
+          <tbody>
+              <tr style="height:137.25pt;">
+                  <td
+                      style="border-right:solid #538135 .9960975000000001pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span
+                              style="font-size:8pt;font-family:Arial;color:rgb(34,34,34);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">
+                              &nbsp;&nbsp;&nbsp;</span></p>&nbsp; &nbsp; &nbsp; <img border="0"
+                          src="https://no-cookies-cdn.servicem8.com/VendorLogo_ShowLogo?uuid=ac31c109-71ef-4462-878f-b08dc282e17b&amp;boolEmailSignature=1">
+                  </td>
+                  <td
+                      style="border-left:solid #538135 .9960975000000001pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+                      <br>
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span
+                              style="font-size:10pt;font-family:Arial;color:rgb(176,162,134);background-color:transparent;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">Regards,</span>
+                      </p>
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span
+                              style="font-size:10pt;font-family:Arial;color:rgb(176,162,134);background-color:transparent;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">Tara
+                          </span></p>
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span
+                              style="font-size:10pt;font-family:Arial;color:rgb(205,196,178);background-color:transparent;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">Accounts
+                          </span><span
+                              style="background-color:transparent;color:rgb(205,196,178);font-family:Arial;font-size:10pt;font-weight:700;white-space:pre-wrap;">Manager</span>
+                      </p>
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span
+                              style="font-size:7.5pt;font-family:Arial;color:rgb(106,168,79);background-color:transparent;font-weight:700;vertical-align:baseline;white-space:pre-wrap;">Tel</span><span
+                              style="font-size:7.5pt;font-family:Arial;color:rgb(106,168,79);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">:</span><span
+                              style="font-size:7.5pt;font-family:Arial;color:rgb(153,153,153);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">
+                          </span><span
+                              style="font-size:7.5pt;font-family:Arial;color:rgb(17,85,204);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">1300
+                              040 444</span><span
+                              style="font-size:7.5pt;font-family:Arial;color:rgb(102,102,102);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">
+                          </span></p>
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><a
+                              href="http://cqflooring.com.au/"><span
+                                  style="font-size:10pt;font-family:Arial;color:rgb(17,85,204);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">http://cqflooring.com.au/</span></a>
+                      </p>
+                      <p dir="ltr" style="line-height:1.656;margin-top:0pt;margin-bottom:0pt;"><span
+                              style="font-size:8pt;font-family:Arial;color:rgb(153,153,153);background-color:transparent;vertical-align:baseline;white-space:pre-wrap;">5/216
+                              Blackshaws Road Altona North VIC 3025</span></p><br>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <div></div><img src="https://go.servicem8.com/rr---?/07bc6323-d04c-4570-88d2-ba0c036498bb/spacer.gif"
+      style="border: 0; width: 0px; height: 0px;" width="0" height="0">
+</div>
+  `;
   drawerOpen: boolean = false;
   //TODO : data structure select box
   selectBoxItems: SelectItem[] = [
