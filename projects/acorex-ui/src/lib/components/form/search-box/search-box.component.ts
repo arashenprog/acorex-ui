@@ -22,7 +22,6 @@ export class AXSearchBoxComponent {
         return this._text;
     }
     public set text(v: string) {
-        debugger;
         if (v !== this._text) {
             this._text = v;
             this.onTextChanged.emit(v);

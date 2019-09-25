@@ -47,7 +47,6 @@ export class SelectBoxPage extends AXBasePageComponent {
         }
     ];
     provideData = (params: AXDataSourceReadParams) => {
-        debugger;
         return PromisResult.resolve(this.data.filter(c => !params.searchText || c.text.includes(params.searchText)));
     }
 

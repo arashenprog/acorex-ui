@@ -304,7 +304,6 @@ export class AXDataGridComponent {
 
 
   internalGetRowClass = (p: any) => {
-    debugger;
     if (this.rowClass) {
       if (this.rowClass instanceof Function) {
         return this.rowClass({

@@ -1,4 +1,26 @@
 
+.popup-wrapper{
+    .page-content-wrap {
+      position: relative;
+      height: 100%;
+      .ax-page-toolbar {
+        width: 100%;
+        padding: var(--sp-sm-size);
+        display: flex;
+        align-items: center;
+        box-shadow: 0 5px 4px -3px var(--shadow-color);
+        -webkit-box-shadow: 0 5px 4px -3px var(--shadow-color);
+        -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
+      }
+      .ax-page-content {
+        width: 100%;
+        height: 90%;
+        padding: 5px 2px;
+        overflow: auto;
+      }
+    }
+  }
+
 @mixin transition($second) {
     transition: $second ease;
 }

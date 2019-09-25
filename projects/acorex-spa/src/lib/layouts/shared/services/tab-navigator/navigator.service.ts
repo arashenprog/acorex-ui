@@ -16,7 +16,6 @@ export class AXTabNavService extends AXNavigator {
             let data = {
                 route: params.path,
             };
-            Object.assign(data, params.data);
             this.tab.open({
                 title: params.title ? params.title : (route.data ? route.data.title : null),
                 content: route.component,

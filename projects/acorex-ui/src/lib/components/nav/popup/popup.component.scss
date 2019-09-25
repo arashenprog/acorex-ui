@@ -50,33 +50,9 @@
       }
     }
     .popup-body {
-      max-height: 95vh;
+      max-height: 90vh;
       position: relative;
-      .page-content-wrap {
-        position: relative;
-        .ax-page-toolbar {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          padding: 5px 10px;
-          z-index: 2;
-          box-shadow: 0 5px 4px -3px var(--shadow-color);
-          -webkit-box-shadow: 0 5px 4px -3px var(--shadow-color);
-          -moz-box-shadow: 0 5px 4px -3px var(--shadow-color);
-        }
-        .ax-page-content {
-          position: absolute;
-          width: 100%;
-          top: 0px;
-          padding: 5px 2px;
-          overflow: auto;
-          .inner-content {
-            padding: 0px 15px;
-          }
-        }
-      }
+     
     }
     .popup-footer {
       display: flex;
