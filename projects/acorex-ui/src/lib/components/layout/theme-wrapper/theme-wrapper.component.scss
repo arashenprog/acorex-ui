@@ -315,9 +315,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: var(--el-md-size);
+    min-width: var(--el-md-size);
     height: var(--el-md-size);
     margin-left: var(--sp-xs-size);
+    font-size: var(--font-md-size);
+    padding: 0 var(--sp-md-size);
 
     i {
       font-size: var(--font-sm-size);
