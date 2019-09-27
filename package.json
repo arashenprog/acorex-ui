@@ -23,6 +23,8 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@ckeditor/ckeditor5-angular": "^1.1.0",
+    "@ckeditor/ckeditor5-build-classic": "^12.4.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "ag-grid-angular": "^21.0.0",
     "ag-grid-community": "^21.0.0",

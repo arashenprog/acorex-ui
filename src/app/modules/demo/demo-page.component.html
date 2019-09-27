@@ -6,7 +6,10 @@
   <ax-page-content>
     <ax-container>
       <ax-row>
-        <ax-editor></ax-editor>
+          <ax-editor (onChange)="handleEditorChange($event)"></ax-editor>
+
+        <div style="height: 200px">
+        </div>
       </ax-row>
       <ax-row>
         <ax-col col-sm="3" col-xs="12">

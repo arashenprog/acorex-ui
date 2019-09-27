@@ -274,7 +274,9 @@ height="0"
       alert("you clicked confirm");
     });
   }
-
+  handleEditorChange(e){
+    console.log("editor",e)
+  }
   toolbarItems: MenuItem[] = [
     {
       id: "1",
