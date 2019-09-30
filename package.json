@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "deploy": "@powershell .\\deploy.ps1",
     "ui": "@powershell .\\ui.ps1",
-    "spa": "@powershell .\\spa.ps1"
+    "spa": "@powershell .\\spa.ps1",
+    "editor": "@powershell .\\editor.ps1"
   },
   "private": true,
   "dependencies": {

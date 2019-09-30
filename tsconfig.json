@@ -6,22 +6,46 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "es2015"],
+    "lib": [
+      "dom",
+      "es2015"
+    ],
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "importHelpers": true,
     "target": "es5",
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "paths": {
-      "@angular/*": ["node_modules/@angular/*"],
-      "acorex-ui": ["dist/acorex-ui"],
-      "acorex-ui/*": ["dist/acorex-ui/*"],
-      "acorex-spa": ["dist/acorex-spa"],
-      "acorex-spa/*": ["dist/acorex-spa/*"]
+      "@angular/*": [
+        "node_modules/@angular/*"
+      ],
+      "acorex-ui": [
+        "dist/acorex-ui"
+      ],
+      "acorex-ui/*": [
+        "dist/acorex-ui/*"
+      ],
+      "acorex-spa": [
+        "dist/acorex-spa"
+      ],
+      "acorex-spa/*": [
+        "dist/acorex-spa/*"
+      ],
+      "acorex-editor": [
+        "dist/acorex-editor"
+      ],
+      "acorex-editor/*": [
+        "dist/acorex-editor/*"
+      ]
     }
   },
-  "include": ["src/**/*.ts", "node_modules/ng4-fittext/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "node_modules/ng4-fittext/*.d.ts"
+  ],
   "exclude": [],
   "compileOnSave": false
 }

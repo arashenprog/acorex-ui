@@ -50,7 +50,6 @@ import { AXEditBoxModule } from "./components/form/edit-box/edit-box.module";
 import { AXSearchBoxModule } from "./components/form/search-box/search-box.module";
 import { AXTooltipModule } from "./components/layout/tooltip/tooltip.module";
 import { AXHtmlModule } from "./core/utils/html/html.module";
-import { AXEditorModule } from "./components/form/editor/editor.module";
 
 window["$"] = $;
 
@@ -96,8 +95,7 @@ let modules = [
   AXFilterModule,
   AXEditBoxModule,
   AXTooltipModule,
-  AXHtmlModule,
-  AXEditorModule
+  AXHtmlModule
 ];
 @NgModule({
   declarations: [AXThemeWrapperComponent],
