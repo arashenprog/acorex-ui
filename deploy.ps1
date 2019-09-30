@@ -38,12 +38,12 @@ if (!(Test-Path -Path $ACoreX_Deploy_Folder)) {
 
 
 # Build ACoreX UI
-#Set-Location -Path $ACoreX_UI_Project
-#ng build acorex-ui
+Set-Location -Path $ACoreX_UI_Project
+ng build acorex-ui
 
 # Create NPM Package ACoreX UI
-#Set-Location -Path $ACoreX_UI_Dist
-#npm pack
+Set-Location -Path $ACoreX_UI_Dist
+npm pack
 
 # Copy To ACoreX Folder
 Copy-Item -Path $ACoreX_UI_Package -Destination $ACoreX_Deploy_Folder

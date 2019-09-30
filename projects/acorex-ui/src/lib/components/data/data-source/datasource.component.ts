@@ -19,17 +19,21 @@ export class AXDataSourceComponent {
 
 
     ngOnInit(): void {
-        this.read.onDataReceived.subscribe(c => {
-            this.onDataReceived.emit(c);
-        })
+        if (this.read) {
+            this.read.onDataReceived.subscribe(c => {
+                this.onDataReceived.emit(c);
+            })
+        }
     }
 
     ngAfterViewInit(): void {
-        
+
     }
 
 
-    fetch(params: AXDataSourceReadParams = {}){
-        this.read.fetch(params);
+    fetch(params: AXDataSourceReadParams = {}) {
+        if (this.read) {
+            this.read.fetch(params);
+        }
     }
 }

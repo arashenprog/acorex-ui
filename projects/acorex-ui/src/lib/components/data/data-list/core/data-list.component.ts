@@ -13,9 +13,11 @@ export abstract class AXDataListComponent extends AXBaseComponent {
 
 
   ngOnInit(): void {
-    this.dataSource.onDataReceived.subscribe(data => {
-      this.dataReceived(data);
-    });
+    if (this.dataSource) {
+      this.dataSource.onDataReceived.subscribe(data => {
+        this.dataReceived(data);
+      });
+    }
   }
 
   private dataReceived(data: any) {
@@ -25,8 +27,10 @@ export abstract class AXDataListComponent extends AXBaseComponent {
   private params: AXDataSourceReadParams = {};
 
   fetch(params: AXDataSourceReadParams = {}) {
-    this.dataSource.fetch(params);
     this.params = params;
+    if (this.dataSource) {
+      this.dataSource.fetch(params);
+    }
   }
 
   refresh() {
