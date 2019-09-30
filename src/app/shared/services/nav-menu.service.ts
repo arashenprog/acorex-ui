@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { PromisResult, MenuItem, AXNavigator } from "acorex-ui";
 import { AXNavMenuService } from "acorex-spa";
 
-
 @Injectable()
 export class NavMenuService extends AXNavMenuService {
   register(items: MenuItem[]): void {
@@ -20,7 +19,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-tachometer-alt",
       id: "0",
       visible: true,
-      data: { path: 'DemoPage' }
+      data: { path: "DemoPage" }
     },
     {
       name: "ali",
@@ -28,7 +27,7 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fab fa-artstation",
       id: "00",
       visible: true,
-      data: { path: 'AliPage' }
+      data: { path: "AliPage" }
     },
     {
       name: "test",
@@ -36,14 +35,14 @@ export class NavMenuService extends AXNavMenuService {
       icon: "fas fa-vial",
       id: "00",
       visible: true,
-      data: { path: 'TestPage' }
+      data: { path: "TestPage" }
     },
     {
       name: "components",
       text: "Components",
       icon: "fas fa-vial",
       id: "003",
-      visible: true,
+      visible: true
     },
     {
       name: "forms",
@@ -52,7 +51,6 @@ export class NavMenuService extends AXNavMenuService {
       parentId: "003",
       visible: true,
       data: {}
-
     },
     {
       name: "search-box",
@@ -67,7 +65,7 @@ export class NavMenuService extends AXNavMenuService {
       text: "Data",
       id: "003-003",
       parentId: "003",
-      visible: true,
+      visible: true
     },
     {
       name: "filter",
@@ -75,14 +73,14 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003-001",
       parentId: "003-003",
       visible: true,
-      data: { path: 'components/Data/filter' }
+      data: { path: "components/Data/filter" }
     },
     {
       name: "layout",
       text: "Layouts",
       id: "003-001",
       parentId: "003",
-      visible: true,
+      visible: true
     },
     {
       name: "widgets",
@@ -90,7 +88,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-001",
       parentId: "003-001",
       visible: true,
-      data: { path: 'components/layout/widgets' }
+      data: { path: "components/layout/widgets" }
     },
     {
       name: "dock",
@@ -112,7 +110,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-001-004",
       parentId: "003-001",
       visible: true,
-      data: { path: 'components/layout/popover' }
+      data: { path: "components/layout/popover" }
     },
     {
       name: "color-picker",
@@ -120,8 +118,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-003",
       parentId: "003",
       visible: true,
-      data: { path: 'components/forms/colorpicker' }
-
+      data: { path: "components/forms/colorpicker" }
     },
     {
       name: "pickers",
@@ -129,8 +126,7 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-004",
       parentId: "003",
       visible: true,
-      data: { path: 'components/forms/pickers' }
-
+      data: { path: "components/forms/pickers" }
     },
     {
       name: "toolbar",
@@ -138,9 +134,16 @@ export class NavMenuService extends AXNavMenuService {
       id: "003-005",
       parentId: "003",
       visible: true,
-      data: { path: 'components/components/pickers' }
-
+      data: { path: "components/components/pickers" }
     },
+    {
+      name: "editors",
+      text: "Editors",
+      id: "003-005",
+      parentId: "003",
+      visible: true,
+      data: { path: "Editors" }
+    }
   ];
   getItems(): PromisResult<MenuItem[]> {
     return new PromisResult(resolve => {
@@ -193,7 +196,7 @@ export class NavMenuService extends AXNavMenuService {
       this.nav.navigate({
         title: item.text,
         path: item.data.path
-      })
+      });
     }
     return PromisResult.resolve(true);
   }
