@@ -15,15 +15,15 @@ import { NavMenuService } from "./shared/services/nav-menu.service";
 import { HeaderBarMenuService } from "./shared/services/header-bar-menu.service";
 import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
-import { FormControllPage } from './modules/demo/formcontroll/formcontroll.page';
-import { FilterPanelDemoPage } from './modules/demo/data/filter-panel.page';
-import { TextBoxPage } from './modules/demo/formcontroll/text-box.page';
+import { FormControllPage } from "./modules/demo/formcontroll/formcontroll.page";
+import { FilterPanelDemoPage } from "./modules/demo/data/filter-panel.page";
+import { TextBoxPage } from "./modules/demo/formcontroll/text-box.page";
+import { UploaderPage } from "./modules/demo/uploader/uploader-page.component";
 
 const routes: Routes = [
   {
     path: "layout1",
-    component: AXTabularLayoutComponent,    
-   
+    component: AXTabularLayoutComponent
   },
   {
     path: "layout2",
@@ -48,7 +48,7 @@ const routes: Routes = [
     ACoreXUIModule,
     ACoreXSPAModule,
     DemoModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes)
   ],
   providers: [
     {
@@ -62,7 +62,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-        content: FilterPanelDemoPage,
+        content: UploaderPage,
         title: "Dashboard",
         closable: true,
         uid: "dashboard"
@@ -72,4 +72,4 @@ const routes: Routes = [
   entryComponents: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

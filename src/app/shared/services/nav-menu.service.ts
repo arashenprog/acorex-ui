@@ -143,6 +143,14 @@ export class NavMenuService extends AXNavMenuService {
       parentId: "003",
       visible: true,
       data: { path: "Editors" }
+    },
+    {
+      name: "uploader",
+      text: "Uploader",
+      id: "003-005",
+      parentId: "003",
+      visible: true,
+      data: { path: "Uploader" }
     }
   ];
   getItems(): PromisResult<MenuItem[]> {

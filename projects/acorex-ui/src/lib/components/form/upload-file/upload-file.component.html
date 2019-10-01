@@ -1,24 +1,37 @@
 <div class="upload-file-box" (click)="onUploadClick()" *ngIf="type == 'box'">
-    <input type="file" accept="image/*" #file class="d-none" (change)="onFileChange($event)">
+  <input
+    #file
+    type="file"
+    accept="image/*"
+    class="d-none"
+    (change)="onFileChange($event)"
+  />
 
-    <div class="upload-content" *ngIf="!data">
-        <i class="fas fa-upload"></i>
-        <p>Add File</p>
+  <div class="upload-content" *ngIf="!data">
+    <i class="fas fa-upload"></i>
+    <p>Add File</p>
+  </div>
+  <div
+    class="preview"
+    [style.background]="'url(' + data + ')'"
+    *ngIf="data"
+  ></div>
+  <div class="action-container" *ngIf="data">
+    <div class="circle-button" (click)="onUploadButtonClick()">
+      <i class="fas fa-upload"></i>
     </div>
-    <div class="preview" [style.background]="'url(' + data + ')'" *ngIf="data">
+    <div class="circle-button" (click)="onDeleteClick($event)">
+      <i class="fas fa-trash-alt"></i>
     </div>
-    <div class="action-container" *ngIf="data">
-        <div class="circle-button" (click)="onUploadButtonClick()">
-            <i class="fas fa-upload"></i>
-        </div>
-        <div class="circle-button" (click)="onDeleteClick($event)">
-            <i class="fas fa-trash-alt"></i>
-        </div>
-    </div>
+  </div>
 </div>
 
 <div class="upload-file-inline" *ngIf="type == 'inline'">
-    <ax-button  (click)="onInlineButtonClick($event)">
-        <ax-text-box placeholder="..."></ax-text-box>
+  <ax-text-box label="{{ label }}">
+    <ax-button (click)="onInlineButtonClick($event)">
+      <i class="fas fa-upload"></i>
     </ax-button>
+  </ax-text-box>
 </div>
+
+<div class="upload-file-inline" *ngIf="type == 'hidden'"></div>

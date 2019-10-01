@@ -1,21 +1,25 @@
-import { Component, OnInit, ViewChild, Input } from "@angular/core";
+import { Component, OnInit, ViewChild, Input, ElementRef } from "@angular/core";
+import { AXTextInputBaseComponent } from "../../../core/base.class";
 
 @Component({
   selector: "ax-upload-file",
   templateUrl: "./upload-file.component.html",
   styleUrls: ["./upload-file.component.scss"]
 })
-export class AXUploadFileComponent implements OnInit {
-  @ViewChild("file") file;
-
+export class AXUploadFileComponent extends AXTextInputBaseComponent {
   fileName: string = "";
   data: any;
 
   @Input()
-  size: "sm" | "md" | "lg" = "md";
+  dropRef: HTMLElement;
 
   @Input()
-  type: "box" | "inline" = "box";
+  progressRef: HTMLElement;
+
+  @ViewChild("file") file;
+
+  @Input()
+  type: "box" | "inline" | "hidden" = "box";
 
   inlineButtons: any[] = [
     {
@@ -25,7 +29,7 @@ export class AXUploadFileComponent implements OnInit {
     },
     {
       name: "view",
-      text: "نمایش",
+      text: "View",
       icon: "fas fa-eye",
       type: "primary",
       dropdown: true,
@@ -33,16 +37,13 @@ export class AXUploadFileComponent implements OnInit {
     },
     {
       name: "delete",
-      text: "حذف",
+      text: "Delete",
       icon: "fas fa-trash-alt",
       type: "danger",
       dropdown: true,
       visible: false
     }
   ];
-  constructor() {}
-
-  ngOnInit(): void {}
 
   onUploadClick() {
     let _file = this.file.nativeElement;
@@ -74,6 +75,26 @@ export class AXUploadFileComponent implements OnInit {
     this.fileName = files[0].name;
     this.readFile(files[0]);
   }
-  onInlineButtonClick(e) {
+  onInlineButtonClick(e) {}
+
+  ngAfterViewInit(): void {
+    debugger;
+    if (this.dropRef != null) {
+      this.dropRef.addEventListener("dragover", this.handleDragOver.bind(this));
+      this.dropRef.addEventListener("drop", this.handleDrop.bind(this));
+    }
+  }
+
+  handleDragOver(e: DragEvent) {
+    console.log(e);
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  handleDrop(e: DragEvent) {
+    debugger;
+    console.log(e);
+    e.stopPropagation();
+    e.preventDefault();
   }
 }

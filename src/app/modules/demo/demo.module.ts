@@ -18,6 +18,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { TextBoxPage } from "./formcontroll/text-box.page";
 import { SelectBoxPage } from "./formcontroll/select-box.page";
 import { EditorsPage } from "./editors/editors.page";
+import { UploaderPage } from "./uploader/uploader-page.component";
 
 const pages = [
   DemoPage,
@@ -32,7 +33,8 @@ const pages = [
   FormControllPage,
   PickerPage,
   ToolbarPage,
-  EditorsPage
+  EditorsPage,
+  UploaderPage
 ];
 
 const ROUTES: Routes = [
@@ -55,6 +57,10 @@ const ROUTES: Routes = [
   {
     path: "Editors",
     component: EditorsPage
+  },
+  {
+    path: "Uploader",
+    component: UploaderPage
   }
 ];
 
