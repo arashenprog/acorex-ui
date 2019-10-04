@@ -17,28 +17,35 @@
   border: var(--border-width-size) solid;
   border-color: var(--border-color);
   font-size: var(--font-md-size);
+
   &:hover {
     border-color: var(--primary-color);
     border-style: solid;
     @include transition(0.5s);
+
     .upload-content {
       color: var(--primary-color);
     }
+
     .action-container {
       display: flex !important;
     }
   }
+
   .upload-content {
     text-align: center;
     color: var(--border-color);
+
     i {
       font-size: 30px;
     }
+
     p {
       padding-top: var(--sp-md-size);
- 
+
     }
   }
+
   .preview {
     background-position: center !important;
     background-size: contain !important;
@@ -50,6 +57,7 @@
     align-items: center;
     min-height: 200px;
   }
+
   .action-container {
     background: rgba(var(--secondary-color), 0.5);
     min-height: 195px;
@@ -64,5 +72,40 @@
     left: 0;
     right: 0;
   }
+
+}
+
+.ax-upload-drop-over {
+  position: relative;
+
+  * {
+    pointer-events: none;
+  }
+
+  .overlay {
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: var(--white-color);
+    outline: 2px dashed var(--border-color);
+    outline-offset: 0;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.15s linear, outline-offset 0.15s linear;
   
+
+    &.show {
+      visibility: visible;
+      opacity: 0.95;
+      outline-offset: calc(-1 * var(--sp-md-size));
+    }
+  }
 }

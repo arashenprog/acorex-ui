@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, Input, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, Input, ElementRef, ViewEncapsulation, TemplateRef, ViewContainerRef, Renderer2 } from "@angular/core";
 import { AXTextInputBaseComponent } from "../../../core/base.class";
 
 @Component({
   selector: "ax-upload-file",
   templateUrl: "./upload-file.component.html",
-  styleUrls: ["./upload-file.component.scss"]
+  styleUrls: ["./upload-file.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AXUploadFileComponent extends AXTextInputBaseComponent {
   fileName: string = "";
@@ -21,6 +22,11 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
   @Input()
   type: "box" | "inline" | "hidden" = "box";
 
+
+  @Input()
+  @ViewChild(TemplateRef)
+  public template: TemplateRef<any>;
+  private overlayDiv: HTMLElement;
   inlineButtons: any[] = [
     {
       name: "upload",
@@ -44,6 +50,13 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
       visible: false
     }
   ];
+
+  constructor(
+    private el: ElementRef<HTMLElement>,
+    private viewContainerRef: ViewContainerRef,
+    private rendrer: Renderer2) {
+    super();
+  }
 
   onUploadClick() {
     let _file = this.file.nativeElement;
@@ -75,26 +88,45 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
     this.fileName = files[0].name;
     this.readFile(files[0]);
   }
-  onInlineButtonClick(e) {}
+  onInlineButtonClick(e) { }
+
 
   ngAfterViewInit(): void {
-    debugger;
     if (this.dropRef != null) {
-      this.dropRef.addEventListener("dragover", this.handleDragOver.bind(this));
-      this.dropRef.addEventListener("drop", this.handleDrop.bind(this));
     }
+    else {
+      this.dropRef = this.el.nativeElement;
+    }
+    //
+    this.dropRef.classList.add("ax-upload-drop-over");
+    this.overlayDiv = this.rendrer.createElement("div") as HTMLElement;
+    this.overlayDiv.classList.add("overlay");
+    this.overlayDiv.innerText = "Drop Here";
+    this.rendrer.appendChild(this.dropRef, this.overlayDiv);
+    //
+    this.dropRef.addEventListener("dragover", this.handleDragOver.bind(this));
+    //
+    this.dropRef.addEventListener("dragleave", this.handleDragLeave.bind(this));
+    this.dropRef.addEventListener("drop", this.handleDrop.bind(this));
   }
 
-  handleDragOver(e: DragEvent) {
-    console.log(e);
-    e.stopPropagation();
+  private handleDragOver(e: DragEvent) {
     e.preventDefault();
+    e.stopPropagation();
+    this.overlayDiv.classList.add("show");
+  }
+
+  private handleDragLeave(e: DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.overlayDiv.classList.remove("show");
   }
 
   handleDrop(e: DragEvent) {
-    debugger;
-    console.log(e);
-    e.stopPropagation();
-    e.preventDefault();
+    this.handleDragLeave(e);
+    for (let i = 0; i < e.dataTransfer.files.length; i++) {
+      const file = e.dataTransfer.files[i];
+      console.log(file);
+    }
   }
 }
