@@ -34,6 +34,7 @@ export * from "./lib/components/data/data-source/api";
 export * from "./lib/components/data/filter/api";
 
 export * from "./lib/components/form/checkbox/checkbox.module";
+export * from "./lib/components/form/upload-file/api";
 
 export * from "./lib/components/calendar/scheduler/api";
 export * from "./lib/components/calendar/calendar-box/api";

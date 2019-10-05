@@ -4,7 +4,7 @@ import { AXGridDataColumn } from './columns/column.component';
 import { AXDataSourceReadParams } from '../data-source/read-param';
 import { GridOptions, CellClickedEvent, RowClickedEvent, CellEvent, RowEvent } from 'ag-grid-community';
 import { ViewEncapsulation } from '@angular/core';
-import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent, AXGridRowParams } from './events.class';
+import { AXGridCellEvent, AXGridRowEvent, AXGridRowSelectionEvent, AXGridRowParams } from './datagrid.events';
 import { AXToolbarSearchComponent } from "../../layout/toolbar/search/toolbar-search.component";
 import { AXToolbarComponent } from "../../layout/toolbar/toolbar.component";
 import { AXDataGridRowTemplateComponent } from "./templates/row-template.component";

@@ -6,6 +6,7 @@ import { AXProgressBarComponent } from "./progress-bar.component";
   declarations: [AXProgressBarComponent],
   imports: [CommonModule],
   exports: [AXProgressBarComponent],
+  entryComponents:[AXProgressBarComponent],
   providers: []
 })
 export class AXProgressBarModule {}

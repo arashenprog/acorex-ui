@@ -1,5 +1,5 @@
 import { Input, ContentChild, TemplateRef, Component, ChangeDetectionStrategy } from '@angular/core';
-import { AXGridCellParams } from '../events.class';
+import { AXGridCellParams } from '../datagrid.events';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 

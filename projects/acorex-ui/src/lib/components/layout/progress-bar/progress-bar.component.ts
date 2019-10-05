@@ -6,5 +6,5 @@ import { AXBaseComponent } from "../../../core/base.class";
   templateUrl: "./progress-bar.component.html"
 })
 export class AXProgressBarComponent extends AXBaseComponent {
-  @Input() progress: string = "0";
+  @Input() progress: number = 0;
 }

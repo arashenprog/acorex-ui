@@ -1,29 +1,18 @@
 <div class="upload-file-box" (click)="onUploadClick()" *ngIf="type == 'box'">
-  <input
-    #file
-    type="file"
-    accept="image/*"
-    class="d-none"
-    (change)="onFileChange($event)"
-  />
-
-  <div class="upload-content" *ngIf="!data">
+  <input #fileInput type="file" accept="image/*" class="d-none" (change)="onFileChange($event)" />
+  <!-- <div class="upload-content" *ngIf="!data">
     <i class="fas fa-upload"></i>
     <p>Add File</p>
   </div>
-  <div
-    class="preview"
-    [style.background]="'url(' + data + ')'"
-    *ngIf="data"
-  ></div>
-  <div class="action-container" *ngIf="data">
+  <div class="preview" [style.background]="'url(' + data + ')'" *ngIf="data"></div>
+  <div class="action-container" *ngIf="files && files.length">
     <div class="circle-button" (click)="onUploadButtonClick()">
       <i class="fas fa-upload"></i>
     </div>
     <div class="circle-button" (click)="onDeleteClick($event)">
       <i class="fas fa-trash-alt"></i>
     </div>
-  </div>
+  </div>-->
 </div>
 
 <div class="upload-file-inline" *ngIf="type == 'inline'">
@@ -33,5 +22,3 @@
     </ax-button>
   </ax-text-box>
 </div>
-
-<div class="upload-file-inline" *ngIf="type == 'hidden'"></div>

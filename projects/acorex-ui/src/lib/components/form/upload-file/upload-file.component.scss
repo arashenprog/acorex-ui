@@ -78,13 +78,14 @@
 .ax-upload-drop-over {
   position: relative;
 
-  * {
-    pointer-events: none;
+  &.dd {
+    * {
+      pointer-events: none;
+    }
   }
 
   .overlay {
-    visibility: hidden;
-    display: flex;
+    display: none;
     position: absolute;
     align-items: center;
     text-align: center;
@@ -99,13 +100,29 @@
     outline: 2px dashed var(--border-color);
     outline-offset: 0;
     opacity: 0;
-    transition: visibility 0s, opacity 0.15s linear, outline-offset 0.15s linear;
-  
+    transition: display 0s, opacity 0.15s linear, outline-offset 0.15s linear;
+
 
     &.show {
-      visibility: visible;
+      display: flex;
       opacity: 0.95;
       outline-offset: calc(-1 * var(--sp-md-size));
     }
+  }
+}
+
+.ax-upload-progress-panel {
+  padding: var(--sp-md-size);
+  background-color: var(--white-color);
+
+  .file-item {}
+
+  small {
+    display: block;
+    font-size: var(--font-xs-size);
+    margin: var(--sp-sm-size) 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
