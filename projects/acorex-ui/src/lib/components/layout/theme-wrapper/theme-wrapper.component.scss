@@ -13,108 +13,123 @@ $info: #2732cc;
 $shadow: rgba(0, 0, 0, 0.1);
 //
 $grid-gutter-width: 5px;
-$colors: (white: $white,
+$colors: (
+  white: $white,
   black: #000,
-  danger: ("": $danger,
+  danger: (
+    "": $danger,
     light: lighten($danger, 15%),
     dark: darken($danger, 15%),
-    fore: $white),
-  success: ("": $success,
+    fore: $white
+  ),
+  success: (
+    "": $success,
     light: lighten($success, 15%),
     dark: darken($success, 15%),
-    fore: $white),
-  warning: ("": $warning,
+    fore: $white
+  ),
+  warning: (
+    "": $warning,
     light: lighten($warning, 15%),
     dark: darken($warning, 15%),
-    fore: $white),
-  info: ("": $info,
+    fore: $white
+  ),
+  info: (
+    "": $info,
     light: lighten($info, 15%),
     dark: darken($info, 15%),
-    fore: $white),
-  gray: ("": $gray,
+    fore: $white
+  ),
+  gray: (
+    "": $gray,
     light: #f7f7f7,
     dark: #e8e8e8,
-    fore: $black),
-  primary: ("": $primary,
+    fore: $black
+  ),
+  primary: (
+    "": $primary,
     fore: $white,
     light: lighten($primary, 15%),
     dark: darken($primary, 15%),
     trans: transparentize($primary, 0.5),
-    lighter: transparentize($primary, 0.9)),
-  secondary: ("": $secondary,
+    lighter: transparentize($primary, 0.9)
+  ),
+  secondary: (
+    "": $secondary,
     fore: $white,
     light: lighten($secondary, 15%),
     dark: darken($secondary, 15%),
-    trans: transparentize($secondary, 0.5)),
+    trans: transparentize($secondary, 0.5)
+  ),
   shadow: $shadow,
   border: $gray,
-  outline: $primary);
+  outline: $primary
+);
 
-$sizes: (el: (base: 35px,
+$sizes: (
+  el: (
+    base: 35px,
     sm: 15px,
     md: 25px,
     lg: 35px,
     xl: 45px,
     xxl: 55px,
-    xxxl: 65px),
-  sp: (xs: 2.5px,
-    sm: 5px,
+    xxxl: 65px
+  ),
+  sp: (
+    xs: 2.5px,
+    sm: 10px,
     md: 10px,
     lg: 15px,
-    xl: 20px),
-  font: (xs: 0.65em,
+    xl: 20px
+  ),
+  font: (
+    xs: 0.65em,
     sm: 0.75em,
     md: 0.875rem,
     lg: 1.25em,
-    xl: 1.5em),
-  border: (width: 1px,
+    xl: 1.5em
+  ),
+  border: (
+    width: 1px,
     radius: 4px,
-    circle: 50px),
-  media: ( // smaller phone viewpoints,
-    xs: 320px,
+    circle: 50px
+  ),
+  media: (
+    // smaller phone viewpoints,
+      xs: 320px,
     // small devices and most phones,
-    sm: 480px,
+      sm: 480px,
     // most tablets,
-    md: 768px,
+      md: 768px,
     // smaller desktop viewpoints,
-    lg: 992px,
+      lg: 992px,
     // large devices and wide screens
-    xl: 1200px));
+      xl: 1200px
+  )
+);
 
 :root {
-
-  @each $name,
-  $color in $colors {
-    @if type-of($color)=="map" {
-
-      @each $subname,
-      $variant in $color {
-        @if $subname=="" {
+  @each $name, $color in $colors {
+    @if type-of($color) == "map" {
+      @each $subname, $variant in $color {
+        @if $subname== "" {
           --#{$name}-#{$color-suffix}: #{$variant};
-        }
-
-        @else {
+        } @else {
           --#{$name}-#{$subname}-#{$color-suffix}: #{$variant};
         }
       }
-    }
-
-    @else {
+    } @else {
       --#{$name}-#{$color-suffix}: #{$color};
     }
   }
 
-  @each $name,
-  $size in $sizes {
-    @if type-of($size)=="map" {
-
-      @each $subname,
-      $variant in $size {
+  @each $name, $size in $sizes {
+    @if type-of($size) == "map" {
+      @each $subname, $variant in $size {
         --#{$name}-#{$subname}-#{$size-suffix}: #{$variant};
       }
-    }
-
-    @else {
+    } @else {
       --#{$name}-#{$size-suffix}: #{$size};
     }
   }
@@ -200,9 +215,8 @@ body {
     input {
       margin-top: 0 !important;
     }
-
     .ax-field-set-button {
-      margin: 0 var(--sp-sm-size) !important;
+      top: 0px !important;
     }
   }
 
@@ -229,8 +243,8 @@ body {
 
       legend {
         width: auto !important;
-        padding: 0 var(--sp-sm-size);
-        margin: 0 var(--sp-sm-size);
+        padding: 0 5px;
+        margin: 0 5px;
         font-size: var(--font-sm-size);
         line-height: inherit;
         color: inherit;
@@ -243,10 +257,9 @@ body {
     font-size: var(--font-md-size);
     color: currentColor;
     width: 100%;
-
     border: 0;
     margin: 0;
-    padding: 5px 12px;
+    padding: var(--sp-sm-size) 12px;
     margin-top: 8px;
     display: block;
     background: 0 0;
@@ -275,8 +288,6 @@ body {
     outline-color: transparent;
     padding: 15px 12px 7px 12px;
   }
-
-
 }
 
 .edit-box {
@@ -287,7 +298,6 @@ body {
       display: flex !important;
     }
   }
-
 }
 
 .ax-disabled {
@@ -296,21 +306,18 @@ body {
   }
 }
 
-.ax-readonly {}
+.ax-readonly {
+}
 
 .ax-field-set-button {
   position: absolute;
-  right: var(--sp-xs-size);
+  right: var(--sp-sm-size);
+  top: 10px;
+  bottom: 0;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: var(--sp-sm-size) var(--sp-xs-size);
-  border: none;
-
-  &:first-child {
-    margin-right: 10px;
-  }
-
   button {
     display: flex;
     justify-content: center;
@@ -348,13 +355,10 @@ body {
   padding: var(--sp-sm-size) var(--sp-lg-size);
 }
 
-@each $name,
-$color in $colors {
-  @if type-of($color)=="map" {
-
-    @each $subname,
-    $variant in $color {
-      @if $subname=="" {
+@each $name, $color in $colors {
+  @if type-of($color) == "map" {
+    @each $subname, $variant in $color {
+      @if $subname== "" {
         .#{$name} {
           color: var(--#{$name}-#{$color-suffix}) !important;
         }
@@ -396,15 +400,15 @@ $color in $colors {
             background-color: var(--#{$name}-light-color) !important;
           }
         }
-      }
-
-      @else {
+      } @else {
         .#{$name}-#{$subname} {
           color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
         }
 
         .bk-#{$name}-#{$subname} {
-          background-color: var(--#{$name}-#{$subname}-#{$color-suffix}) !important;
+          background-color: var(
+            --#{$name}-#{$subname}-#{$color-suffix}
+          ) !important;
           color: var(--#{$name}-fore-#{$color-suffix}) !important;
         }
 
@@ -425,9 +429,7 @@ $color in $colors {
         }
       }
     }
-  }
-
-  @else {
+  } @else {
     .#{$name} {
       color: var(--#{$name}-#{$color-suffix}) !important;
     }
@@ -606,13 +608,11 @@ $color in $colors {
 
 .btn-light:not(:disabled):not(.disabled).active,
 .btn-light:not(:disabled):not(.disabled):active,
-.show>.btn-light.dropdown-toggle {
+.show > .btn-light.dropdown-toggle {
   color: var(--white-color);
   background-color: var(--primary-color);
   border-color: var(--primary-light-color);
 }
 
-
-@import './tooltip';
-@import './animations';
-
+@import "./tooltip";
+@import "./animations";

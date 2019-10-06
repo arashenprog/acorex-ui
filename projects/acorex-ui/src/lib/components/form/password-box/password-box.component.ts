@@ -1,13 +1,17 @@
 import { Component, Input } from "@angular/core";
-import { AXTextInputBaseComponent, AXValidatableComponent } from "../../../core/base.class";
+import {
+  AXTextInputBaseComponent,
+  AXValidatableComponent
+} from "../../../core/base.class";
 
 @Component({
-  selector: "ax-pass-box",
+  selector: "ax-password-box",
   templateUrl: "./password-box.component.html",
-  providers: [{ provide: AXValidatableComponent, useExisting: AXPasswordBoxComponent }]
+  providers: [
+    { provide: AXValidatableComponent, useExisting: AXPasswordBoxComponent }
+  ]
 })
 export class AXPasswordBoxComponent extends AXTextInputBaseComponent {
-
   private _showOn: string = "mouseup";
   @Input()
   get showOn(): string {
