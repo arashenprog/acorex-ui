@@ -1,4 +1,12 @@
-import { Component, OnInit, Inject, ViewEncapsulation, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef,
+  TemplateRef
+} from "@angular/core";
 import { BaseMenuItem, MenuItem, AXTabPageService } from "acorex-ui";
 import { AXHeaderBarMenuService, AXNavMenuService } from "../shared/api";
 
@@ -10,40 +18,36 @@ import { AXHeaderBarMenuService, AXNavMenuService } from "../shared/api";
 })
 export class AXTopMenuLayoutComponent {
   hasToolbar: boolean = false;
-  headerItems: BaseMenuItem[]=[];
+  headerItems: BaseMenuItem[] = [];
 
-  @ViewChild('topMenuWrapper')
+  @ViewChild("topMenuWrapper")
   topMenuWrapper: ElementRef<HTMLElement>;
 
-  @ViewChild('header')
+  @ViewChild("header")
   header: ElementRef<HTMLElement>;
 
-  constructor(
-    public headerBarMenuService: AXHeaderBarMenuService,
-  ) { }
-
+  constructor(public headerBarMenuService: AXHeaderBarMenuService) {}
 
   ngAfterViewInit() {
     this.applySize();
   }
 
-
   applySize() {
-    this.topMenuWrapper.nativeElement.style.height = `calc(100% - ${this.header.nativeElement.clientHeight}px)`
+    this.topMenuWrapper.nativeElement.style.height = `calc(100% - ${
+      this.header.nativeElement.clientHeight
+    }px)`;
   }
-
-  
 
   ngOnInit(): void {
     this.headerBarMenuService.getItems().then(c => {
       this.headerItems = c;
     });
+    //
+    let logoNode = document.querySelector("#logo") as HTMLElement;
+    document.querySelector(".logo-container").innerHTML = logoNode.innerHTML;
   }
-
-
 
   onHeaderClick(e: BaseMenuItem) {
-    this.headerBarMenuService.clickItem(e).then(c => { });
+    this.headerBarMenuService.clickItem(e).then(c => {});
   }
-
 }

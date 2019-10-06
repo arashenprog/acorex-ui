@@ -1,13 +1,18 @@
 <div class="top-menu-layout">
   <header #header>
     <div class="menu-container">
-      <div class="logo-container">CQ Flooring</div>
+      <div class="logo-container"></div>
       <div class="toolbar-container">
         <ax-top-menu #menu></ax-top-menu>
       </div>
       <div class="commands-container">
         <ng-container *ngFor="let b of headerItems">
-          <button type="button" class="circle-button {{ b.style }}" [attr.title]="b.tooltip" (click)="onHeaderClick(b)">
+          <button
+            type="button"
+            class="circle-button {{ b.style }}"
+            [attr.title]="b.tooltip"
+            (click)="onHeaderClick(b)"
+          >
             <i [class]="b.icon"></i>
           </button>
         </ng-container>
