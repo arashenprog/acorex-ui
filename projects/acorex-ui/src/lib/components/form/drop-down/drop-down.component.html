@@ -9,7 +9,6 @@
     </fieldset>
     <input
       [placeholder]="placeholder"
-      [value]="defaultValue"
       [(ngModel)]="text"
       [ngClass]="{ 'no-label': !label }"
       (blur)="handleBlurEvent($event)"

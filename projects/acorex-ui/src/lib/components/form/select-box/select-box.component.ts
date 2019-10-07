@@ -28,7 +28,6 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input() label: string;
   @Input() textField: string = "text";
   @Input() valueField: string = "value";
-  @Input() defaultValue: SelectItem;
 
   @Output()
   searchTextChange: EventEmitter<string> = new EventEmitter<string>();

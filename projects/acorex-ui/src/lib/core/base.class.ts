@@ -143,7 +143,6 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
 
 export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
   @Input() notFoundText: string = "Not Found";
-  @Input() defaultValue: SelectItem;
 }
 
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {

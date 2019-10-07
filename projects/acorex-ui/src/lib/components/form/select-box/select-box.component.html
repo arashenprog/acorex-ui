@@ -1,10 +1,5 @@
 <div class="ax-select-box">
-  <ax-drop-down
-    [text]="text"
-    label="{{ label }}"
-    defaultValue=" {{ defaultValue }} "
-    #d
-  >
+  <ax-drop-down [text]="text" label="{{ label }}" #d>
     <div class="list-container">
       <div *ngIf="allowSearch" class="search">
         <ax-search-box

@@ -188,6 +188,10 @@ body {
     left: 2px;
     right: initial !important;
   }
+  i {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
 }
 
 .gutter {
