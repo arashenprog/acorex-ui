@@ -14,14 +14,14 @@
     overflow-y: hidden;
 
     .header-content {
-      // position: fixed;
       width: calc(100vw - 266px);
       background: var(--white-color);
-      height: 40px;
+      height: var(--el-base-size);
       display: flex;
       align-items: center;
       z-index: 1;
       flex-grow: 12;
+      border-bottom: 2px solid var(--primary-color);
       @include box-shadow(0px, -10px, 30px, var(--shadow-color));
 
       .toggle {

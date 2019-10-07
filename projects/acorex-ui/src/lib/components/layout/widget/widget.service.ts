@@ -36,6 +36,5 @@ const injector = ReflectiveInjector.fromResolvedProviders(providers);
 const widgetService = injector.get(AXWidgetService);
 
 export function registerWidget(widget: IWidget) {
-    console.log("register widgets");
     widgetService.register(widget);
 }

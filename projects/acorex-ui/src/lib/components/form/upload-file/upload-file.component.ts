@@ -155,7 +155,6 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
         .pipe(debounceTime(500))
         .pipe(distinctUntilChanged())
         .subscribe(c => {
-          console.log("drag leave");
           this.overlayDiv.classList.remove("show");
           this.dropRef.classList.remove("dd");
         });

@@ -153,7 +153,6 @@ export class AXDataGridComponent {
         rowCount: null,
         getRows: function (params) {
           that.dataSourceSuccessCallback = params.successCallback;
-          console.log("grid filter", params);
           let loadParams: AXDataSourceReadParams = {};
           loadParams.searchText = that.searchText;
           loadParams.skip = params.startRow;

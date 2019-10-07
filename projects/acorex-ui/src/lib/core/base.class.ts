@@ -11,6 +11,7 @@ import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
 import { IValidationRuleResult } from "../components/form/validation/validation.classs";
 import { AXKeyboardEvent } from "./events/keyboard";
+import { SelectItem } from "./select.class";
 
 export class PromisResult<T> {
   private _executor: (then: (e?: T) => void) => void;
@@ -31,7 +32,7 @@ export class PromisResult<T> {
   static resolve<T>(value: T): PromisResult<T> {
     const r = new PromisResult<T>(z => {
       z(value);
-    }).then(c => { });
+    }).then(c => {});
     return r;
   }
 }
@@ -56,8 +57,6 @@ export abstract class AXEditableBaseComponent extends AXBaseComponent {
   handleFocusEvent(e: UIEvent) {
     this._isFocused = true;
   }
-
-
 
   abstract focus();
 }
@@ -111,14 +110,12 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
 
   handleBlurEvent(e) {
     super.handleBlurEvent(e);
-    if (this.validator && this.validator.validateOn == "blur")
-      this.validate();
+    if (this.validator && this.validator.validateOn == "blur") this.validate();
   }
 
   handleKeyEvent(e: KeyboardEvent) {
     let ev = <AXKeyboardEvent>e;
-    if (this.onKey)
-      this.onKey.emit(ev);
+    if (this.onKey) this.onKey.emit(ev);
   }
 
   focus() {
@@ -146,6 +143,7 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
 
 export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
   @Input() notFoundText: string = "Not Found";
+  @Input() defaultValue: SelectItem;
 }
 
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
