@@ -22,6 +22,11 @@
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAQUlEQVR4nHXOQQ4AMAgCQeT/f6aXpsGK3jSTuCVJAAr7iBdoAwCKd0nwfaAdHbYERw5b44+E8JoBjEYGMBq5gAYP3usUDu2IvoUAAAAASUVORK5CYII=) !important ;
   }
 }
+.rtl {
+  .lm_tab {
+    padding: 0 10px 0px 25px !important;
+  }
+}
 .lm_tab {
   border-top-right-radius: var(--border-radius-size) !important;
   border-top-left-radius: var(--border-radius-size) !important;

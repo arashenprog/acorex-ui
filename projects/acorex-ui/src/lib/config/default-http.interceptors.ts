@@ -18,7 +18,6 @@ export class AXDefaultHttpInterceptor implements AXHttpEventInterceptor {
         return new PromisResult((resolve)=>{
             request.headers.autentication = "brear askdjaskjhdj;laksnbdkjakjsdk";
             request.params.random = Math.random();
-            console.log("begin request", request);
             resolve(request);
         });
     }
@@ -33,7 +32,6 @@ export class AXDefaultHttpInterceptor implements AXHttpEventInterceptor {
         return PromisResult.resolve(result);
     }
     complete(request: AXHttpRequestOptions) {
-        console.log("request completed");
     }
     error(request: AXHttpRequestOptions, error: IHttpError) {
         this.errorService.handle(error.message)

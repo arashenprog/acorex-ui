@@ -1,19 +1,38 @@
 <div class="ax-field-set" #dropSelectBox [attr.id]="_uid">
   <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
-    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+    <fieldset
+      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
+    >
       <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
-    <input [placeholder]="placeholder" [(ngModel)]="text" [ngClass]="{ 'no-label': !label }"
-      (blur)="handleBlurEvent($event)" (focus)="handleFocusEvent($event)" (keyup)="handleKeyEvent($event)"
-      class="ax-text-box" type="text" disabled />
+    <input
+      [placeholder]="placeholder"
+      [(ngModel)]="text"
+      [ngClass]="{ 'no-label': !label }"
+      (blur)="handleBlurEvent($event)"
+      (focus)="handleFocusEvent($event)"
+      (keyup)="handleKeyEvent($event)"
+      class="ax-text-box"
+      type="text"
+      disabled
+    />
     <div class="ax-field-set-button">
-      <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">
+      <button
+        *ngIf="text && showClear"
+        type="button"
+        class="btn btn-light"
+        (click)="clearText()"
+      >
         <i class="fas fa-times"></i>
       </button>
-      <button type="button" class=" btn btn-primary" (click)="popSelectBox.toggle()">
-        <i class="{{icon}}"></i>
+      <button
+        type="button"
+        class=" btn btn-primary"
+        (click)="popSelectBox.toggle()"
+      >
+        <i class="{{ icon }}"></i>
       </button>
     </div>
   </div>
@@ -21,7 +40,14 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<ax-popover [fitParent]="fitParent" distance="10" height="'200px'" target="#{{_uid}}" placement="bottom-start"
-  alignment="top-start" #popSelectBox>
+<ax-popover
+  [fitParent]="fitParent"
+  distance="10"
+  height="'200px'"
+  target="#{{ _uid }}"
+  placement="bottom-start"
+  alignment="top-start"
+  #popSelectBox
+>
   <ng-content> </ng-content>
 </ax-popover>

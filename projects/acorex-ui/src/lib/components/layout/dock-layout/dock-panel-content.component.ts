@@ -33,7 +33,6 @@ export class AXDockPanelContentComponent  {
         conf.componentState = {
             text: this.caption,
             render: (el: any) => {
-                //console.log(self, el);
                 if (self.template) {
                     let view = self.viewContainerRef.createEmbeddedView(self.template)
                     view.rootNodes.forEach(element => {

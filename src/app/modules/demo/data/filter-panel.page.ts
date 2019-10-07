@@ -260,7 +260,6 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     };
 
     gridCellClass = (e: AXGridRowParams) => {
-        console.log("form", e);
         if (e.data)
             return e.data.lastname == "Enprog" ? "text-danger" : "";
         return "";
@@ -311,6 +310,5 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     }
 
     onRowClick(e) {
-        console.log(e);
     }
 }

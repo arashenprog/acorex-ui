@@ -112,7 +112,6 @@ export class AXToolbarFilterViewComponent {
                 this.selectAll();
             }
             else {
-                console.log(e);
                 this.setCurrent(e);
                 this.filterPanel.load(e.data);
             }

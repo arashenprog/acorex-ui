@@ -215,7 +215,6 @@ height="0"
         .get("https://jsonplaceholder.typicode.com/todos", {})
         .result(c => {
           resolve(c);
-          console.log(c);
         });
     });
   };
@@ -225,7 +224,6 @@ height="0"
         .get("https://jsonplaceholder.typicode.com/users", {})
         .result(c => {
           resolve((<any>c).slice(0, 8));
-          console.log(c);
         });
     });
   };
@@ -274,9 +272,7 @@ height="0"
       alert("you clicked confirm");
     });
   }
-  handleEditorChange(e){
-    console.log("editor",e)
-  }
+  handleEditorChange(e) {}
   toolbarItems: MenuItem[] = [
     {
       id: "1",

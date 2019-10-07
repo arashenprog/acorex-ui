@@ -8,12 +8,10 @@ export class UploaderPage extends AXBasePageComponent {
 
   onFileLoad(e: AXUploadFileLoadEvent) {
     debugger;
-    console.log(e);
   }
 
   onFileProgress(e: AXUploadFileProgressEvent) {
     debugger;
-    console.log(e);
 
   }
 

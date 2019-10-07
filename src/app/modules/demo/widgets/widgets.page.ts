@@ -38,7 +38,6 @@ export class WidgetsPage extends AXBasePageComponent {
     ngOnInit(): void {
         if (localStorage.getItem("widgets")) {
             this.widgets = JSON.parse(localStorage.getItem("widgets"));
-            console.log("widgets", this.widgets);
         }
     }
 
@@ -47,7 +46,6 @@ export class WidgetsPage extends AXBasePageComponent {
 
     onWidgetChange(e) {
         localStorage.setItem("widgets", e.json)
-        console.log("json", e);
     }
 
     onToolbarItemClick(e: MenuItem) {

@@ -16,7 +16,6 @@ export class ToolbarPage extends AXBasePageComponent {
         }
     ]
     onOpenPopup(event): void {
-        console.log("clicked")
     }
     onToolbarClick(item) {
         switch (item.name) {
