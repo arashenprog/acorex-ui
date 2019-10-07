@@ -3,8 +3,6 @@ import { AXTextInputBaseComponent } from "../../../core/base.class";
 import { InjectionService } from "../../../core/injection.service";
 import { AXProgressBarComponent } from "../../layout/progress-bar/progress-bar.component";
 import { AXUploadFileLoadEvent, AXUploadFileProgressEvent } from "./upload-file.events";
-import { Observable } from "rxjs";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
   selector: "ax-upload-file",
@@ -20,7 +18,7 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
   @Input()
   progressRef: HTMLElement;
 
-  @ViewChild("fileInput") fileInput: ElementRef<HTMLInputElement>;
+  @ViewChild("fileInput") fileInput: ElementRef;
 
   @Input()
   type: "box" | "inline" | "hidden" = "box";
@@ -37,7 +35,6 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
   onProgress: EventEmitter<AXUploadFileProgressEvent> = new EventEmitter<AXUploadFileProgressEvent>();
   //
   files: File[] = [];
-  private dragOverObserver: any;
 
   inlineButtons: any[] = [
     {
@@ -71,40 +68,18 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
     super();
   }
 
-  onUploadClick() {
-    let _file = this.fileInput.nativeElement;
-    // if (!this.data) {
-    //   _file.click();
-    // }
-    _file.click();
-  }
-
-  onUploadButtonClick() {
-    let _file = this.fileInput.nativeElement;
-    _file.click();
-  }
 
   onDeleteClick(e) {
     e.stopPropagation();
   }
 
-  readFile(item: any) {
-    let fileReader = new FileReader();
-    fileReader.addEventListener(
-      "load",
-      () => {
-      },
-      false
-    );
-    fileReader.readAsDataURL(item);
-  }
 
   onFileChange(e) {
+    debugger;
     let files = e.target.files;
-    this.readFile(files[0]);
+    this.addFile(files[0]);
+    (this.fileInput.nativeElement as HTMLInputElement).value = null;
   }
-
-  onInlineButtonClick(e) { }
 
 
   open() {
@@ -125,42 +100,39 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
       this.progressRef = this.el.nativeElement;
     }
     //
-    this.dropRef.classList.add("ax-upload-drop-over");
     this.overlayDiv = this.rendrer.createElement("div") as HTMLElement;
     this.overlayDiv.classList.add("overlay");
     this.overlayDiv.innerText = "Drop Here";
+    this.overlayDiv.addEventListener("drag",this.handleOverlayDragOver);
+    this.overlayDiv.addEventListener("dragover",this.handleOverlayDragOver);
+    this.overlayDiv.addEventListener("dragleave",this.handleOverlayDragOver);
     this.rendrer.appendChild(this.dropRef, this.overlayDiv);
     //
+    this.dropRef.classList.add("ax-upload-drop-over");
     this.dropRef.addEventListener("dragover", this.handleDragOver.bind(this));
-    //
     this.dropRef.addEventListener("dragleave", this.handleDragLeave.bind(this));
     this.dropRef.addEventListener("drop", this.handleDrop.bind(this));
+  }
+
+
+  private handleOverlayDragOver(e: DragEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
   }
 
   private handleDragOver(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
-    this.dropRef.classList.add("dd");
     this.overlayDiv.classList.add("show");
+    return false;
   }
 
   private handleDragLeave(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
-
-    if (!this.dragOverObserver) {
-      Observable.create(observer => {
-        this.dragOverObserver = observer;
-      })
-        .pipe(debounceTime(500))
-        .pipe(distinctUntilChanged())
-        .subscribe(c => {
-          console.log("drag leave");
-          this.overlayDiv.classList.remove("show");
-          this.dropRef.classList.remove("dd");
-        });
-    }
-    this.dragOverObserver.next(e.timeStamp);
+    this.overlayDiv.classList.remove("show");
+    return false;
   }
 
   handleDrop(e: DragEvent) {

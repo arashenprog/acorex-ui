@@ -14,7 +14,7 @@ import {
   ChangeDetectorRef,
   NgZone
 } from "@angular/core";
-import { ClosingEventArgs } from "./events.class";
+import { ClosingEventArgs } from "./popup.events";
 
 @Component({
   selector: "ax-popup",

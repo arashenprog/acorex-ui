@@ -1,7 +1,7 @@
 import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, ViewRef, ComponentRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AXTabPageService, AXTabPage, AXTabPageMessage } from './tab-page.service';
-import { ClosingEventArgs } from '../popup/events.class';
+import { ClosingEventArgs } from '../popup/popup.events';
 
 
 @Component({

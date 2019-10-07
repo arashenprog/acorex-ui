@@ -1,5 +1,5 @@
 import { EventEmitter} from "@angular/core";
-import { ClosingAction, ClosingEventArgs } from "./popup/events.class";
+import { ClosingAction, ClosingEventArgs } from "./popup/popup.events";
 
 export abstract class AXBasePageComponent  {
     //closeHandler: Function;
