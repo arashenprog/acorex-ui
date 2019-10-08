@@ -3,9 +3,8 @@ import {
   ContentChild,
   TemplateRef,
   Input,
-  ViewChild,
-  ElementRef,
-  Attribute
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { AXDataListComponent } from "../core/data-list.component";
 import { AXToolbarSearchComponent } from "../../../layout/toolbar/search/toolbar-search.component";
@@ -27,7 +26,7 @@ export class AXListComponent extends AXDataListComponent {
   constructor() {
     super();
   }
-
+  style: any = {};
   @Input() width: string = "";
   @Input() height: string = "auto";
 
@@ -47,19 +46,33 @@ export class AXListComponent extends AXDataListComponent {
 
 
 
-  @Input() direction: AXListViewDirection = "vertical";
+  @Output()
+  directionChange: EventEmitter<AXListViewDirection> = new EventEmitter<AXListViewDirection>();
+
+  private _direction: AXListViewDirection = "vertical";
+  @Input()
+  public get direction(): AXListViewDirection {
+    return this._direction;
+  }
+  public set direction(v: AXListViewDirection) {
+    if (this._direction != v) {
+      this._direction = v;
+      this.setDirection(v);
+      this.directionChange.emit(v);
+    }
+  }
+
 
   ngAfterViewInit(): void {
     this.fetch();
     if (this.viewToolbar) {
       this.viewToolbar.onDirectionChanged.subscribe(c => {
-        this.setDirection(c);
+        this.direction = c;
       });
     }
-    this.setDirection(this.direction);
   }
 
-  setDirection(e: AXListViewDirection) {
+  private setDirection(e: AXListViewDirection) {
     switch (e) {
       case "vertical": {
         this.style = "ax-flex-col";
@@ -76,8 +89,9 @@ export class AXListComponent extends AXDataListComponent {
       default:
         this.style = "ax-flex-wrap ";
     }
+    this.direction = e;
   }
-  style: any = {};
+
 
 
   dragDrop(event: CdkDragDrop<any[]>) {

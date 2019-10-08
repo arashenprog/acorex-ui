@@ -42,7 +42,7 @@ export class AXDataGridComponent {
   private dataSourceSuccessCallback;
   columnDefs: any[] = [];
   rowModelType = "clientSide";
-  rowGroupPanelShow = "always";
+  rowGroupPanelShow = "onlyWhenGrouping";
   private remoteOperation: boolean = false;
   fullWidthCellRendererFramework: any;
   fullWidthCellRendererParams: any;
