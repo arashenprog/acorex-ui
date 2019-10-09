@@ -102,7 +102,12 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
     //
     this.overlayDiv = this.rendrer.createElement("div") as HTMLElement;
     this.overlayDiv.classList.add("overlay");
-    this.overlayDiv.innerText = "Drop Here";
+    this.overlayDiv.innerHTML = `
+      <div class="icon-wrapper">
+        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+        <span>Drop File(s) Here</span>
+      </div>
+    `;
     this.overlayDiv.addEventListener("drag",this.handleOverlayDragOver);
     this.overlayDiv.addEventListener("dragover",this.handleOverlayDragOver);
     this.overlayDiv.addEventListener("dragleave",this.handleOverlayDragOver);

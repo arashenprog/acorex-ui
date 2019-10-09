@@ -26,12 +26,13 @@ export class AXListComponent extends AXDataListComponent {
   constructor() {
     super();
   }
-  style: any = {};
   @Input() width: string = "";
   @Input() height: string = "auto";
 
   @Input("dropId") public dropId: string;
   @Input("connectedList") public connectedList: string[] = [];
+
+  @Input() public allowMoveItem: boolean = false;
 
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
 
@@ -73,22 +74,6 @@ export class AXListComponent extends AXDataListComponent {
   }
 
   private setDirection(e: AXListViewDirection) {
-    switch (e) {
-      case "vertical": {
-        this.style = "ax-flex-col";
-        break;
-      }
-      case "vertical-wrap": {
-        this.style = "ax-flex-row ax-flex-wrap";
-        break;
-      }
-      case "horizontal-wrap": {
-        this.style = "ax-flex-row ax-full-width ax-overflow-auto";
-        break;
-      }
-      default:
-        this.style = "ax-flex-wrap ";
-    }
     this.direction = e;
   }
 
