@@ -9,6 +9,7 @@ import { AXStorageService } from "./storage.service";
 import { AXScrollModule } from "../core/utils/scroll/scroll.module";
 import { AXDateTimePipe } from "../core/calendar/datatime.pipe";
 import { AXGridLayoutModule } from "./../components/layout/grid-layout/grid.layout.module";
+import { AXComponentFactoryService } from "./component-factory.service";
 
 @NgModule({
   declarations: [TranslatePipe,AXDateTimePipe],
@@ -22,6 +23,7 @@ import { AXGridLayoutModule } from "./../components/layout/grid-layout/grid.layo
   exports: [TranslatePipe, BrowserAnimationsModule, AXScrollModule,AXDateTimePipe,AXGridLayoutModule],
   providers: [
     EventService,
+    AXComponentFactoryService,
     InjectionService,
     TranslateService,
     AXStorageService

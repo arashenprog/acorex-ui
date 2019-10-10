@@ -50,6 +50,7 @@ import { AXEditBoxModule } from "./components/form/edit-box/edit-box.module";
 import { AXSearchBoxModule } from "./components/form/search-box/search-box.module";
 import { AXTooltipModule } from "./components/layout/tooltip/tooltip.module";
 import { AXHtmlModule } from "./core/utils/html/html.module";
+import { InjectionService } from "./core/injection.service";
 
 window["$"] = $;
 
@@ -102,6 +103,7 @@ let modules = [
   imports: [CommonModule, ...modules],
   exports: [AXThemeWrapperComponent, ...modules],
   providers: [
+    InjectionService,
     {
       provide: AX_ERROR_DISPLAY_INTERCEPTOR,
       useClass: AXDefaultErrorDisplayInterceptor

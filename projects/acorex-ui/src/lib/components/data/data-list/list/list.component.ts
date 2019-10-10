@@ -34,7 +34,15 @@ export class AXListComponent extends AXDataListComponent {
 
   @Input() public allowMoveItem: boolean = false;
 
-  @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+ 
+  @Input()
+  @ContentChild('itemTemplate')
+  itemTemplate: TemplateRef<any>;
+
+  @Input()
+  @ContentChild('emptyTemplate')
+  emptyTemplate: TemplateRef<any>;
+  
 
   @ContentChild(AXToolbarSearchComponent)
   searchToolbar: AXToolbarSearchComponent;

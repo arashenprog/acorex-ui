@@ -6,19 +6,27 @@
     (cdkDropListDropped)="dragDrop($event)" [cdkDropListData]="items"
     [ngClass]="{'overflow-y': direction=='vertical' || direction=='horizontal-wrap','overflow-x': direction=='horizontal' || direction=='vertical-wrap'}">
     <div class="item-wrapper" [ngClass]="direction">
+      <!-- <ng-container *ngIf="items && items.length; else emptyTemplate"> -->
       <ng-container *ngIf="allowMoveItem; else elseTemplate">
         <div class="ax-list-item" *ngFor="let item of items" cdkDrag [cdkDragData]="item">
-          <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item }">
+          <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item,direction:direction}">
           </ng-container>
           <div class="drop-placeholder" *cdkDragPlaceholder></div>
         </div>
       </ng-container>
       <ng-template #elseTemplate>
         <div class="ax-list-item" *ngFor="let item of items">
-          <ng-container *ngTemplateOutlet="templateRef; context: { $implicit: item,direction:direction }">
+          <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item,direction:direction }">
           </ng-container>
         </div>
       </ng-template>
+      <!-- </ng-container> -->
+
     </div>
+    <ng-container *ngIf="items==null || items.length==0">
+      <ng-container *ngTemplateOutlet="emptyTemplate">
+      </ng-container>
+    </ng-container>
+
   </div>
 </div>
