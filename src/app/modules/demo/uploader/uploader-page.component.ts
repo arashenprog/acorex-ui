@@ -1,10 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { AXBasePageComponent, AXUploadFileLoadEvent, AXUploadFileProgressEvent } from "acorex-ui";
+import {
+  AXBasePageComponent,
+  AXUploadFileLoadEvent,
+  AXUploadFileProgressEvent
+} from "acorex-ui";
 
 @Component({
   templateUrl: "./uploader-page.component.html"
 })
 export class UploaderPage extends AXBasePageComponent {
+  showTooltip: boolean = true;
 
   onFileLoad(e: AXUploadFileLoadEvent) {
     debugger;
@@ -12,12 +17,13 @@ export class UploaderPage extends AXBasePageComponent {
 
   onFileProgress(e: AXUploadFileProgressEvent) {
     debugger;
-
   }
 
-  aalert(e)
-  {
+  aalert(e) {
     alert(e);
   }
 
+  spanClick() {
+    this.showTooltip = false;
+  }
 }
