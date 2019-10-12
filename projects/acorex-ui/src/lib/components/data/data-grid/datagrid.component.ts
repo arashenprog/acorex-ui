@@ -186,7 +186,9 @@ export class AXDataGridComponent {
       return that.rowTemplate != null;
     };
   }
-
+  ngOnInit(): void {
+    this.enableRTL();
+  }
   ngAfterViewInit(): void {
     let that = this;
     //
@@ -211,7 +213,6 @@ export class AXDataGridComponent {
     //
     this.calcHeight();
     //
-    this.enableRTL();
   }
 
   mapColumns() {
