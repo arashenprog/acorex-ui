@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { ClosingAction, ClosingEventArgs, ClosedEventArgs } from "../popup/events.class";
+import { ClosingAction, ClosingEventArgs, ClosedEventArgs } from "../popup/popup.events";
 
 export interface AXTabPage {
     title: string;

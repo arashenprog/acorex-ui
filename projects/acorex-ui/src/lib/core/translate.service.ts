@@ -17,7 +17,7 @@ export class TranslateService {
         { "Close": "بستن" },
         {"LOGO_TITLE" : "هوشمند تصمیم آریا"}
     ]
-    private lang: Lang = "fa";
+    private lang: Lang = "en";
 
     constructor() {
     }
