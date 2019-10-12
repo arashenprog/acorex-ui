@@ -76,7 +76,7 @@ export class AXTabViewComponent implements AfterContentInit {
 
     // set the according properties on our component instance
     const instance: AXTabComponent = componentRef.instance as AXTabComponent;
-    instance.title = title;
+    instance.caption = title;
     instance.template = template;
     instance.dataContext = data;
     instance.isCloseable = isCloseable;

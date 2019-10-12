@@ -6,7 +6,7 @@
     [class.flex-sm-fill]="fullWidth"
     class="nav-item text-sm-center nav-link"
   >
-    <i class="{{ tab.icon }}"></i><a>{{ tab.title }}</a>
+    <i class="{{ tab.icon }}"></i><a>{{ tab.caption }}</a>
   </li>
   <!-- dynamic tabs -->
   <li
@@ -18,7 +18,7 @@
   >
     <i class="{{ tab.icon }}"></i>
     <a>
-      {{ tab.title }}
+      {{ tab.caption }}
       <i
         *ngIf="tab.isCloseable"
         (click)="closeTab(tab)"
