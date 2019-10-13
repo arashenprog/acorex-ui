@@ -16,7 +16,7 @@ export class AXTooltipDirective {
   tooltip: HTMLElement;
   offset = 10;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   @HostListener("mouseenter") onMouseEnter() {
     if (!this.tooltip) {
@@ -37,12 +37,17 @@ export class AXTooltipDirective {
   }
 
   hide() {
-    console.log("hide tooltip");
-    this.renderer.removeClass(this.tooltip, "ax-tooltip-show");
-    window.setTimeout(() => {
-      this.renderer.removeChild(document.body, this.tooltip);
-      this.tooltip = null;
-    }, this.delay);
+    if (this.tooltip) {
+      try {
+        this.renderer.removeClass(this.tooltip, "ax-tooltip-show");
+        //window.setTimeout(() => {
+        this.renderer.removeChild(document.body, this.tooltip);
+        this.tooltip = null;
+        //}, this.delay);
+      } catch (error) {
+
+      }
+    }
   }
 
   create() {
@@ -81,7 +86,6 @@ export class AXTooltipDirective {
   }
 
   ngOnDestroy(): void {
-    console.log("ngOnDestroy tooltip");
     this.hide();
   }
 
