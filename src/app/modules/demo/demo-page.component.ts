@@ -11,6 +11,7 @@ import {
 } from "acorex-ui";
 import { Component } from "@angular/core";
 import { AliPage } from "./ali/ali.page";
+import { ClosingAction } from 'acorex-ui/lib/components/nav/popup/popup.events';
 
 @Component({
   templateUrl: "./demo-page.component.html"
@@ -209,6 +210,13 @@ height="0"
     }
   ];
 
+  onClosing(e:ClosingAction)
+  {
+    debugger;
+    e.data = "Hi arash";
+    e.resolve();
+  }
+
   provideGridData = () => {
     return new PromisResult(resolve => {
       this.http
@@ -259,6 +267,14 @@ height="0"
     this.popup.open(DemoPage, {
       title: "Title Popup Here",
       size: "lg"
+    })
+    .closing(d=>{
+      debugger;
+      d.data = "asdasdasd"
+      d.resolve();
+    })
+    .closed(c=>{
+      console.log(c);
     });
   }
   openDrawer() {

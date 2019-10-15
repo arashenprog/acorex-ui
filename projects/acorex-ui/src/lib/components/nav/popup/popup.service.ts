@@ -1,4 +1,4 @@
-import { Injectable,  ComponentRef } from "@angular/core";
+import { Injectable, ComponentRef } from "@angular/core";
 import { InjectionService } from "../../../core/injection.service";
 import { AXPopupComponent } from "./popup.component";
 import { ClosingAction, ClosedEventArgs, ClosingEventArgs } from "./popup.events";
@@ -42,7 +42,7 @@ export class AXPopupResult {
 export class AXPopupService {
   private stack: Array<AXPopupComponent> = [];
 
-  constructor(private injection: InjectionService) {}
+  constructor(private injection: InjectionService) { }
 
   open(content: any, title: string): AXPopupResult;
   open(
@@ -108,7 +108,9 @@ export class AXPopupService {
                 closing(d);
               } else {
                 if (e == null || e.cancel != true) {
-                  this.closePopup(closed, e, com);
+                  this.closePopup(closed, {
+                    data: z.data
+                  }, com);
                 }
               }
             }
