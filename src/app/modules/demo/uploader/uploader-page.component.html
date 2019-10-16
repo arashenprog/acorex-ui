@@ -1,12 +1,5 @@
-<ax-upload-file
-  #up
-  type="hidden"
-  label="upload avatar"
-  [dropRef]="el"
-  [progressRef]="el"
-  (onLoad)="onFileLoad($event)"
-  (onProgress)="onFileProgress($event)"
->
+<ax-upload-file #up type="hidden" label="upload avatar" [dropRef]="el" [progressRef]="el" (onLoad)="onFileLoad($event)"
+  (onProgress)="onFileProgress($event)">
 </ax-upload-file>
 <div #el id="elm" style="width: 300px;height: 400px;background: #f00">
   DROP ZONE
@@ -15,6 +8,11 @@
 
 <button (click)="up.open()">OPEN</button>
 
-<span tooltip="This sis tooltip" *ngIf="showTooltip" (click)="spanClick()"
-  >This sis tooltip</span
->
+<span tooltip="This sis tooltip" *ngIf="showTooltip" (click)="spanClick()">This sis tooltip</span>
+
+
+
+<ax-selection-list [items]="items" [(selectedValues)]="selectedValues" mode="multiple"></ax-selection-list>
+<br>
+<br>
+<div *ngFor="let item of selectedValues">{{item}}</div>
