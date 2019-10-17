@@ -1,0 +1,9 @@
+<ax-drop-down [text]="_text" label="{{ label }}"  #dropdown fitParent="false">
+    <ax-color-box ></ax-color-box>
+    <ng-template #editorTemplate>
+        HI
+    </ng-template>
+</ax-drop-down>
+<div class="validation-text" *ngIf="errorText">
+    {{ errorText }}
+</div>

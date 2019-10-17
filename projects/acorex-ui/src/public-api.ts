@@ -2,6 +2,7 @@
  * Public API Surface of acorex-ui
  */
 
+export * from "./lib/core/error/api";
 export * from "./lib/core/http/api";
 export * from "./lib/core/core.module";
 export * from "./lib/core/calendar/datetime";

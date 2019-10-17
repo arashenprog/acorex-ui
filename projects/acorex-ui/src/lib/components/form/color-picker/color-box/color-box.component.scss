@@ -1,14 +1,16 @@
 .color-box {
   display: flex;
-  width: 260px;
-  height: 235px;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  padding: 5px;
   flex-wrap: wrap;
   border: 1px solid var(--border-color);
   justify-content: center;
   align-items: center;
   div {
-    width: var(--el-xxl-size);
-    height: var(--el-xxl-size);
+    width: var(--el-md-size);
+    height: var(--el-md-size);
     cursor: pointer;
     display: flex;
     justify-content: center;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Color } from '../../../../core/color.class';
 
 @Component({
@@ -10,6 +10,24 @@ export class AXColorBoxComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void { }
+
+
+    @Output()
+    valueChange: EventEmitter<string> = new EventEmitter<string>();
+
+    private _value: string;
+
+    @Input()
+    public get value(): string {
+        return this._value;
+    }
+    public set value(v: string) {
+        if (v != this._value) {
+            this._value = v;
+            this.valueChange.emit(v);
+        }
+    }
+
 
     colors: Color[] = [
         {
@@ -95,6 +113,7 @@ export class AXColorBoxComponent implements OnInit {
     ]
 
     onColorClick(item: Color) {
+        this.value = item.color;
         this.colors.forEach((i) => {
             i.active = false
         });
