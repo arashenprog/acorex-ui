@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { AXDropDownComponent } from '../drop-down/drop-down.component';
 import { AXValidatableComponent } from '../../../core/base.class';
-import { IValidationRuleResult } from '../validation/validation.classs';
+import { AXColorBoxComponent } from './color-box/color-box.component';
+import { Color, AXColorUtil } from '../../../core/color.class';
 
 @Component({
     selector: 'ax-color-picker',
@@ -10,8 +11,8 @@ import { IValidationRuleResult } from '../validation/validation.classs';
         { provide: AXValidatableComponent, useExisting: AXColorPickerComponent },
     ]
 })
-export class AXColorPickerComponent extends AXValidatableComponent {
-   
+export class AXColorPickerComponent extends AXColorBoxComponent {
+
     @ViewChild("dropdown")
     dropdown: AXDropDownComponent;
     @Input() placeholder: string = "";
@@ -19,60 +20,22 @@ export class AXColorPickerComponent extends AXValidatableComponent {
 
     @Input() label: string;
 
-    model: any = null;
     _text: string = ""
     constructor() {
         super();
     }
 
-    
-    clear(): void {
-    }
-
-    focus():void{
+    focus(): void {
         this.dropdown.focus();
     }
 
-    ngAfterViewInit(): void {
-        //this.selectToday();
+    handleValueChange(c: Color) {
+        this.dropdown.close();
     }
 
-    @Output()
-    valueChange: EventEmitter<string> = new EventEmitter<string>();
-
-    private _value: string;
-    @Input()
-    public get value(): string {
-        return this._value;
-    }
-    public set value(v: string) {
-        if (v!=this._value) {
-            this._value = v;
-            this.valueChange.emit(v);
-            this._text = v;
-        }
+    findTextColor(color: string) {
+        console.log(AXColorUtil.contrastToWhite(color));
+        return !(AXColorUtil.contrastToWhite(color) > 2.0) ? "#000" : "#fff";
     }
 
-
-    validate(): Promise<IValidationRuleResult> {
-
-        return new Promise<IValidationRuleResult>(resolve => {
-            if (!this.validator) {
-                resolve({ result: true });
-            } else {
-                // this.validator.validate(this.model).then(r => {
-                //     r.target = this;
-                //     if (r.result) {
-                //         this.errorText = null;
-                //     } else {
-                //         this.errorText = r.message;
-                //     }
-                //     resolve(r);
-                // });
-
-                resolve()
-            }
-        });
-    }
-    
 }

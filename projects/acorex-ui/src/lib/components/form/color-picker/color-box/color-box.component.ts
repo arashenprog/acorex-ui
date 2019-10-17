@@ -1,28 +1,37 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Color } from '../../../../core/color.class';
+import { AXValidatableComponent } from '../../../../core/base.class';
+import { IValidationRuleResult } from '../../validation/validation.classs';
 
 @Component({
     selector: 'ax-color-box',
     templateUrl: './color-box.component.html',
-    styleUrls: ['./color-box.component.scss']
+    styleUrls: ['./color-box.component.scss'],
+    providers: [
+        { provide: AXValidatableComponent, useExisting: AXColorBoxComponent },
+    ]
 })
-export class AXColorBoxComponent implements OnInit {
-    constructor() { }
+export class AXColorBoxComponent extends AXValidatableComponent {
 
-    ngOnInit(): void { }
+
+
+    constructor() {
+        super();
+    }
+
 
 
     @Output()
-    valueChange: EventEmitter<string> = new EventEmitter<string>();
+    valueChange: EventEmitter<Color> = new EventEmitter<Color>();
 
-    private _value: string;
+    private _value: Color;
 
     @Input()
-    public get value(): string {
+    public get value(): Color {
         return this._value;
     }
-    public set value(v: string) {
-        if (v != this._value) {
+    public set value(v: Color) {
+        if ((!v && this._value) || (v && !this._value) || (v.code != this._value.code)) {
             this._value = v;
             this.valueChange.emit(v);
         }
@@ -112,8 +121,37 @@ export class AXColorBoxComponent implements OnInit {
         }
     ]
 
+
+    validate(): Promise<IValidationRuleResult> {
+
+        return new Promise<IValidationRuleResult>(resolve => {
+            if (!this.validator) {
+                resolve({ result: true });
+            } else {
+                // this.validator.validate(this.model).then(r => {
+                //     r.target = this;
+                //     if (r.result) {
+                //         this.errorText = null;
+                //     } else {
+                //         this.errorText = r.message;
+                //     }
+                //     resolve(r);
+                // });
+
+                resolve()
+            }
+        });
+    }
+
+    focus() {
+    }
+
+    clear(): void {
+        this.value = null;
+    }
+
     onColorClick(item: Color) {
-        this.value = item.color;
+        this.value = item;
         this.colors.forEach((i) => {
             i.active = false
         });

@@ -1,7 +1,12 @@
 <ax-drop-down [text]="_text" label="{{ label }}"  #dropdown fitParent="false">
-    <ax-color-box ></ax-color-box>
+    <ax-color-box [(value)]="value" (valueChange)="handleValueChange($event)"></ax-color-box>
     <ng-template #editorTemplate>
-        HI
+        <ng-container *ngIf="value; else elseTemplate">
+            <div [style.background-color]="value.color" [style.color]="findTextColor(value.color)" style="padding:0px 5px;">{{value.color}}&nbsp;</div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            {{placeholder}}&nbsp;
+        </ng-template>
     </ng-template>
 </ax-drop-down>
 <div class="validation-text" *ngIf="errorText">
