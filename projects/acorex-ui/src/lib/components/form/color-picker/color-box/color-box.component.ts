@@ -19,20 +19,23 @@ export class AXColorBoxComponent extends AXValidatableComponent {
         super();
     }
 
-
-
     @Output()
-    valueChange: EventEmitter<Color> = new EventEmitter<Color>();
+    valueChange: EventEmitter<string> = new EventEmitter<string>();
 
-    private _value: Color;
+    private _value: string;
 
     @Input()
-    public get value(): Color {
+    public get value(): string {
         return this._value;
     }
-    public set value(v: Color) {
-        if ((!v && this._value) || (v && !this._value) || (v.code != this._value.code)) {
+    public set value(v: string) {
+        if (v != this._value) {
             this._value = v;
+            if (v) {
+                let selected = this.colors.find(c => c.color == v);
+                if (selected)
+                    this.selectColor(selected);
+            }
             this.valueChange.emit(v);
         }
     }
@@ -151,7 +154,12 @@ export class AXColorBoxComponent extends AXValidatableComponent {
     }
 
     onColorClick(item: Color) {
-        this.value = item;
+        this.value = item ? item.code : null;
+        this.selectColor(item);
+
+    }
+
+    private selectColor(item: Color) {
         this.colors.forEach((i) => {
             i.active = false
         });

@@ -1,14 +1,16 @@
-<div *ngIf=" mode == 'multiple' ">
-    <ax-check-box label="{{item[textField]}}" *ngFor="let item of items" [value]="selectedValues.indexOf(item[valueField])>-1" (valueChange)="onCheckValueChange(item[valueField],$event)"
-        [style.display]="direction=='vertical'?'block':'inline'">
-    </ax-check-box>
-</div>
-<div *ngIf=" mode == 'single' ">
-    <div *ngFor="let item of items" [style.display]="direction=='vertical'?'block':'inline'">
-        <label class="radio-container">
+<div class="ax-selection-list" [ngClass]="direction">
+    <ng-container *ngIf=" mode == 'multiple' ">
+        <ax-check-box label="{{item[textField]}}" *ngFor="let item of items"
+            [value]="selectedValues.indexOf(item[valueField])>-1"
+            (valueChange)="onCheckValueChange(item[valueField],$event)">
+        </ax-check-box>
+    </ng-container>
+    <ng-container *ngIf=" mode == 'single' ">
+        <label class="radio-container" *ngFor="let item of items">
             {{ item[textField] }}
-            <input type="radio" (change)="onCheckValueChange(item[valueField],true)"  [value]="item[valueField]" [attr.checked]="selectedValues[0]==item[valueField] ? 'checked' : null" [name]="_uid" />
+            <input type="radio" (change)="onCheckValueChange(item[valueField],true)" [value]="item[valueField]"
+                [attr.checked]="selectedValues[0]==item[valueField] ? 'checked' : null" [name]="_uid" />
             <span class="checkmark"></span>
         </label>
-    </div>
+    </ng-container>
 </div>

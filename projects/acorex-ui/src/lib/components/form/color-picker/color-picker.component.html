@@ -2,7 +2,7 @@
     <ax-color-box [(value)]="value" (valueChange)="handleValueChange($event)"></ax-color-box>
     <ng-template #editorTemplate>
         <ng-container *ngIf="value; else elseTemplate">
-            <div [style.background-color]="value.color" [style.color]="findTextColor(value.color)" style="padding:0px 5px;">{{value.color}}&nbsp;</div>
+            <div [style.background-color]="value" [style.color]="findTextColor(value)" style="padding:0px 5px;">{{value}}&nbsp;</div>
         </ng-container>
         <ng-template #elseTemplate>
             {{placeholder}}&nbsp;

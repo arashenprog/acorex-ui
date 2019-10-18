@@ -1,77 +1,95 @@
 @import "../../../styles/mixins";
 
 .rtl {
-  .radio-container {
-    padding-right: 30px !important;
-    padding-left: 0 !important;
-    margin-left: 10px !important;
-    margin-right: 0 !important;
-    .checkmark {
-      right: 0 !important;
-      left: inherit !important;
+  .ax-selection-list {
+    .radio-container {
+      padding-right: 30px !important;
+      padding-left: 0 !important;
+      margin-left: 10px !important;
+      margin-right: 0 !important;
+
+      .checkmark {
+        right: 0 !important;
+        left: inherit !important;
+      }
     }
   }
 }
-// Check Box Custom Style
-.radio-container {
-  display: inline-block;
-  position: relative;
-  padding-left: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 20px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  margin: 0 var(--sp-md-size) 0 0;
-  input {
-    position: absolute;
-    opacity: 0;
+
+.ax-selection-list {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+  }
+
+  // Check Box Custom Style
+  .radio-container {
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
     cursor: pointer;
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 var(--sp-md-size) 0 0;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .checkmark {
+      position: absolute;
+      top: 3px;
+      left: 0;
+      height: 15px;
+      width: 15px;
+      background-color: var(--white-color);
+      border: 1px solid;
+      border-color: var(--border-color);
+      @include border-radius(50%);
+    }
   }
-  .checkmark {
-    position: absolute;
-    top: 3px;
-    left: 0;
-    height: 15px;
-    width: 15px;
+
+  /* On mouse-over, add a grey background color */
+  .radio-container:hover input~.checkmark {
+    background-color: var(--border-color);
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .radio-container input:checked~.checkmark {
     background-color: var(--white-color);
-    border: 1px solid;
-    border-color: var(--border-color);
-    @include border-radius(50%);
+    border-color: var(--primary-color);
   }
-}
 
-/* On mouse-over, add a grey background color */
-.radio-container:hover input ~ .checkmark {
-  background-color: var(--border-color);
-}
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
 
-/* When the radio button is checked, add a blue background */
-.radio-container input:checked ~ .checkmark {
-  background-color: var(--white-color);
-  border-color: var(--primary-color);
-}
+  /* Show the indicator (dot/circle) when checked */
+  .radio-container input:checked~.checkmark:after {
+    display: block;
+  }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.radio-container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.radio-container .checkmark:after {
-  top: 4px;
-  left: 4px;
-  width: 5px;
-  height: 5px;
-  @include border-radius(50%);
-  background: var(--primary-color);
+  /* Style the indicator (dot/circle) */
+  .radio-container .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 5px;
+    height: 5px;
+    @include border-radius(50%);
+    background: var(--primary-color);
+  }
 }

@@ -7,7 +7,7 @@ export interface Color {
 }
 
 export class AXColorUtil {
-  
+
 
     static hex2Rgb(hexColor: string) {
         let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
@@ -20,6 +20,8 @@ export class AXColorUtil {
 
     static illuminance(hexColor: string) {
         let rgbColor = AXColorUtil.hex2Rgb(hexColor);
+        if (!rgbColor)
+            return -1;
         let r = rgbColor.r, g = rgbColor.g, b = rgbColor.b;
         let a = [r, g, b].map(v => {
             v /= 255;
@@ -30,10 +32,10 @@ export class AXColorUtil {
         return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
     };
 
-    static contrastToWhite (hexColor:string){
+    static contrastToWhite(hexColor: string) {
         let whiteIlluminance = 1;
         let illuminance = AXColorUtil.illuminance(hexColor);
         return whiteIlluminance / illuminance;
     };
-    
+
 }
