@@ -120,7 +120,7 @@ export class AXHttpService {
 
     private mapOptions(options: AXHttpRequestOptions) {
         let headers = new HttpHeaders();
-        let params = new HttpParams();
+
         for (const key in options.headers) {
             if (options.headers.hasOwnProperty(key)) {
                 const value = options.headers[key];
@@ -128,16 +128,26 @@ export class AXHttpService {
             }
         }
 
-        for (const key in options.params) {
-            if (options.params.hasOwnProperty(key)) {
-                const value = options.params[key];
-                params = params.set(key, value);
+
+        if (options.method == "get") {
+            let params = new HttpParams();
+            for (const key in options.params) {
+                if (options.params.hasOwnProperty(key)) {
+                    const value = options.params[key];
+                    params = params.set(key, value);
+                }
             }
+            return {
+                headers: headers,
+                params: params
+            };
         }
-        return {
-            headers: headers,
-            params: params
-        };
+        else {
+            return {
+                headers: headers,
+                body: options.params
+            };
+        }
     }
 
 }
