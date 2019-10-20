@@ -26,4 +26,21 @@ export class UploaderPage extends AXBasePageComponent {
   spanClick() {
     this.showTooltip = false;
   }
+
+  items: any[] = [
+    {
+      value: 0,
+      text: "items 1"
+    },
+    {
+      value: 1,
+      text: "items 2"
+    },
+    {
+      value: 2,
+      text: "items 3"
+    },
+  ]
+
+  selectedValues: any[] = [1];
 }

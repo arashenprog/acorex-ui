@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, TemplateRef, ContentChild } from "@angular/core";
 import { SelectItem } from "../../../core/select.class";
 import { AXSelectBaseComponent } from "../../../core/base.class";
 import { AXPopoverComponent } from "../../layout/popover/popover.component";
@@ -16,9 +16,20 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
   @Input() allowSearch: boolean = false;
   @Input() icon: string = "fas fa-angle-down";
   @Input() fitParent: boolean = true;
+
+  @Input()
+  @ContentChild('editorTemplate')
+  editorTemplate: TemplateRef<any>;
+
   close() {
     this.popSelectBox.close();
   }
 
-  focus(): void {}
+  focus(): void { }
+
+  handleDropdownButtonClick(e: MouseEvent) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.popSelectBox.toggle()
+  }
 }

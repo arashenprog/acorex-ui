@@ -29,6 +29,8 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input() textField: string = "text";
   @Input() valueField: string = "value";
 
+  // #region Search 
+
   @Output()
   searchTextChange: EventEmitter<string> = new EventEmitter<string>();
   private _searchText: string;
@@ -43,6 +45,8 @@ export class AXSelectBoxComponent extends AXDataListComponent {
     }
   }
   text: string = "";
+
+  // #endregion 
 
   @Output()
   selectedItemsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
@@ -63,12 +67,25 @@ export class AXSelectBoxComponent extends AXDataListComponent {
     this.selectedItemsChange.emit(v);
   }
 
+
+  @Output()
+  selectedValuesChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  @Input()
+  public get selectedValues(): any[] {
+    return this._selectedItems.map(c => c[this.valueField]) || [];
+  }
+  public set selectedValues(v: any[]) {
+    this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+    this.selectedValuesChange.emit(this.selectedValues);
+  }
+
   ngAfterViewInit(): void {
     this.refresh();
   }
 
   handleItemClick(item: any) {
-    this.selectedItems = [item];
+    this.selectedValues = [item[this.valueField]];
     this.dropdown.close();
   }
 

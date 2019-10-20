@@ -16,6 +16,7 @@ export class AXSelectionListComponent extends AXBaseComponent {
   @Input() items: Array<any> = [];
   @Input() mode: string = "single";
   @Input() textField: string = "text";
+  @Input() valueField: string = "value";
 
 
   @Output()
@@ -29,36 +30,44 @@ export class AXSelectionListComponent extends AXBaseComponent {
   public set selectedItems(v: any[]) {
     this._selectedItems = v;
     this.selectedItemsChange.emit(this.selectedItems);
+    //this.selectedValuesChange.emit(this.selectedValues);
+    //this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
-  ngOnInit(): void {
+  @Output()
+  selectedValuesChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  @Input()
+  public get selectedValues(): any[] {
+    return this._selectedItems.map(c => c[this.valueField]) || [];
+  }
+  public set selectedValues(v: any[]) {
+    this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+    this.selectedValuesChange.emit(this.selectedValues);
   }
 
-  constructor(private cdr: ChangeDetectorRef, private differs: IterableDiffers) {
+  ngAfterViewInit(): void {
+   this.cdr.detectChanges();
+  }
+
+  constructor(private cdr: ChangeDetectorRef) {
     super();
   }
 
-  onCheckValueChange(item: any, checked: boolean) {
+  onCheckValueChange(value: any, checked: boolean) {
     if (this.mode == "single") {
-      this._selectedItems = [...item];
+      this.selectedValues = [value];
     }
     else {
-      this._selectedItems = this._selectedItems.filter(c => c != item);
-      if (checked)
-        this._selectedItems.push(item);
+      if (checked) {
+        if (!this.selectedValues.includes(value)) {
+          this.selectedValues = [...this.selectedValues, ...[value]];
+        }
+      }
       else {
-        this._selectedItems = this._selectedItems.filter(c => c != item);
+        this.selectedValues = this.selectedValues.filter(c => c != value);
       }
     }
-    //this.cdr.detectChanges();
   }
-
-  ngDoCheck() {
-    const changes = this.differs.find(this.selectedItems);
-    if (changes) {
-      this.cdr.detectChanges();
-      this.selectedItemsChange.emit(this.selectedItems);
-    }
-  }
-
 }
