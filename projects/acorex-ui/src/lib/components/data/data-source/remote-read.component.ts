@@ -29,16 +29,15 @@ export class AXDataSourceRemoteRead extends AXDataSourceRead {
     @Input()
     method: "get" | "post" = "get";
 
-    @Input()
-    remoteOperation: boolean = false;
+   
 
     onDataReceived: EventEmitter<any> = new EventEmitter<any>();
 
     fetch(params: AXDataSourceReadParams = {}) {
         if (!this.params) this.params = {};
-        if (this.remoteOperation) {
+        //if (this.remoteOperation) {
             Object.assign(this.params, params);
-        }
+        //}
         this.http.request({
             url: this.url,
             method: this.method,

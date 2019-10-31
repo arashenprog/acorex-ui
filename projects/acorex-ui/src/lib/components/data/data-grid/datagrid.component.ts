@@ -43,7 +43,8 @@ export class AXDataGridComponent {
   columnDefs: any[] = [];
   rowModelType = "clientSide";
   rowGroupPanelShow = "onlyWhenGrouping";
-  private remoteOperation: boolean = false;
+  @Input()
+  public remoteOperation: boolean = false;
   fullWidthCellRendererFramework: any;
   fullWidthCellRendererParams: any;
   frameworkComponents: any = {};
@@ -138,40 +139,44 @@ export class AXDataGridComponent {
   }
 
   internalGridReady(gridOptions: GridOptions) {
+    const that = this;
+    debugger;
     this.gridApi = gridOptions.api;
     //
+    this.mapColumns();
+    //
+  
+    //
     if (!this.loadOnInit) return;
-    const that = this;
+    //
+    
     //
     if (that.remoteOperation) {
       let dataSource = {
         rowCount: null,
         getRows: function(params) {
+          debugger;
           that.dataSourceSuccessCallback = params.successCallback;
           let loadParams: AXDataSourceReadParams = {};
           loadParams.searchText = that.searchText;
-          loadParams.skip = params.startRow;
-          loadParams.take = params.endRow - params.startRow;
-          loadParams.sort = params.sortModel.map(c => {
+          loadParams.skip = params.request.startRow;
+          loadParams.take = params.request.endRow - params.request.startRow;
+          loadParams.sort = params.request.sortModel.map(c => {
             return {
               field: c.colId,
               sort: c.sort
             };
           });
-          // loadParams.filter = params.sortModel.map(c => {
-          //   return {
-          //     field: c.colId,
-          //     sort: c.sort
-          //   }
-          // });
+          loadParams.filter = params.request.filterModel;
           that.dataSource.fetch(loadParams);
         }
       };
-      gridOptions.api.setDatasource(dataSource);
+      gridOptions.api.setServerSideDatasource(dataSource);
     } else {
       this.dataSource.fetch();
     }
     //
+    this.calcHeight();
   }
 
   ngAfterContentInit(): void {
@@ -186,19 +191,18 @@ export class AXDataGridComponent {
       return that.rowTemplate != null;
     };
   }
+
   ngOnInit(): void {
-    this.enableRTL();
+    if (this.remoteOperation) 
+      this.rowModelType = "serverSide";
   }
+ 
   ngAfterViewInit(): void {
     let that = this;
-    //
-    this.remoteOperation = (<any>this.dataSource.read).remoteOperation;
-    if (this.remoteOperation) this.rowModelType = "infinite";
-
-    this.mapColumns();
+    this.enableRTL();
     //
     this.dataSource.onDataReceived.subscribe(c => {
-      if (this.remoteOperation && this.dataSourceSuccessCallback) {
+      if (this.dataSourceSuccessCallback) {
         this.dataSourceSuccessCallback(c, c.length);
       } else {
         this.gridApi.setRowData(c);
@@ -211,8 +215,6 @@ export class AXDataGridComponent {
       });
     }
     //
-    this.calcHeight();
-    //
   }
 
   mapColumns() {
@@ -220,7 +222,6 @@ export class AXDataGridComponent {
   }
 
   enableRTL() {
-    debugger;
     let body = document.querySelector("body");
     if (this.rtl == false) {
       body.classList.forEach(c => {
@@ -228,9 +229,9 @@ export class AXDataGridComponent {
           this.rtl = true;
         }
       });
-      console.log("Grid RTL", this.rtl);
     }
   }
+
   refresh() {
     this.loadOnInit = true;
     if (this.remoteOperation) {

@@ -28,7 +28,9 @@ export class AXGridTextColumn extends AXGridDataColumn {
 
   render() {
     let col = super.render();
-    col.filterFramework = TextFilterRenderer;
+    if (this.allowFiltering) {
+      col.filterFramework = TextFilterRenderer;
+    }
     return col;
   }
 }
@@ -63,7 +65,7 @@ export class TextFilterRenderer implements IFilterAngularComp {
   }
 
   getModel(): any {
-    return { value: this.value, hi: "arash" };
+    return { value: this.value };
   }
 
   setModel(model: any): void {

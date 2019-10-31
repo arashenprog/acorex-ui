@@ -21,7 +21,10 @@ export abstract class AXGridDataColumn {
     pinned: "start" | "end" | null = null;
 
     @Input()
-    sortable: boolean = true;
+    allowSorting: boolean = true;
+
+    @Input()
+    allowFiltering: boolean = false;
 
     @Input()
     rowGroupIndex: number = -1;
@@ -58,8 +61,8 @@ export abstract class AXGridDataColumn {
             col.maxWidth = this.maxWidth;
         if (this.pinned)
             col.pinned = this.pinned == "start" ? "left" : "right"; //TODO: Change based on layout
-        if (this.sortable)
-            col.sortable = this.sortable;
+        if (this.allowSorting)
+            col.sortable = this.allowSorting;
         if (this.sort)
             col.sort = this.sort;
         if (this.enableRowGroup)
@@ -89,6 +92,9 @@ export abstract class AXGridDataColumn {
             col.cellRendererParams = {
                 templateRef: this.templateRef
             }
+        }
+        if (!this.allowFiltering) {
+            col.filter = false;
         }
         return col;
     }

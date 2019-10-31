@@ -212,12 +212,12 @@ height="0"
 
   onClosing(e:ClosingAction)
   {
-    debugger;
     e.data = "Hi arash";
     e.resolve();
   }
 
-  provideGridData = () => {
+  provideGridData = (e) => {
+    console.log(e);
     return new PromisResult(resolve => {
       this.http
         .get("https://jsonplaceholder.typicode.com/todos", {})
@@ -269,7 +269,6 @@ height="0"
       size: "lg"
     })
     .closing(d=>{
-      debugger;
       d.data = "asdasdasd"
       d.resolve();
     })

@@ -12,11 +12,9 @@ export class UploaderPage extends AXBasePageComponent {
   showTooltip: boolean = true;
 
   onFileLoad(e: AXUploadFileLoadEvent) {
-    debugger;
   }
 
   onFileProgress(e: AXUploadFileProgressEvent) {
-    debugger;
   }
 
   aalert(e) {
