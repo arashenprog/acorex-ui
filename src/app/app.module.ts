@@ -19,6 +19,7 @@ import { FormControllPage } from "./modules/demo/formcontroll/formcontroll.page"
 import { FilterPanelDemoPage } from "./modules/demo/data/filter-panel.page";
 import { TextBoxPage } from "./modules/demo/formcontroll/text-box.page";
 import { UploaderPage } from "./modules/demo/uploader/uploader-page.component";
+import { DashboardPage } from './modules/demo/dashboard/dashboard.page';
 
 const routes: Routes = [
   {
@@ -62,7 +63,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-        content: UploaderPage,
+        content: DashboardPage,
         title: "Dashboard",
         closable: true,
         uid: "dashboard"
