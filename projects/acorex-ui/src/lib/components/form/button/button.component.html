@@ -1,10 +1,16 @@
-<button #container class="btn btn-{{type}} btn-{{size}}" [disabled]="loading || disabled" (click)="onClickInner()">
-    <ng-container *ngIf="loading; else elseTemplate">
-        <i class="fas fa-spinner fa-spin"></i>
-        {{ loadingText ? loadingText : text  }}
-    </ng-container>
-    <ng-template #elseTemplate>
-        <ng-content *ngIf="!text"></ng-content>
-        <span *ngIf="text">{{text}}</span>
-    </ng-template>
+<button
+  #container
+  class="btn btn-{{ type }} btn-{{ size }}"
+  [class.btn-block]="block"
+  [disabled]="loading || disabled"
+  (click)="onClickInner()"
+>
+  <ng-container *ngIf="loading; else elseTemplate">
+    <i class="fas fa-spinner fa-spin"></i>
+    {{ loadingText ? loadingText : text }}
+  </ng-container>
+  <ng-template #elseTemplate>
+    <ng-content *ngIf="!text"></ng-content>
+    <span *ngIf="text">{{ text }}</span>
+  </ng-template>
 </button>
