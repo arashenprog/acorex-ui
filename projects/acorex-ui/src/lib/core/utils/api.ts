@@ -5,3 +5,5 @@ export * from "./object/object-util";
 export * from "./math/math-util";
 export * from "./scroll/api";
 export * from "./seprator/seprator.pipe";
+export * from "./html/api";
+export * from "./seprator/api";
