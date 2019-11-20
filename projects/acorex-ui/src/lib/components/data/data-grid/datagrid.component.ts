@@ -140,7 +140,6 @@ export class AXDataGridComponent {
 
   internalGridReady(gridOptions: GridOptions) {
     const that = this;
-    debugger;
     this.gridApi = gridOptions.api;
     //
     this.mapColumns();
@@ -155,7 +154,6 @@ export class AXDataGridComponent {
       let dataSource = {
         rowCount: null,
         getRows: function(params) {
-          debugger;
           that.dataSourceSuccessCallback = params.successCallback;
           let loadParams: AXDataSourceReadParams = {};
           loadParams.searchText = that.searchText;

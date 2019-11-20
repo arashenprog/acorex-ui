@@ -42,6 +42,8 @@ export * from "./lib/components/form/upload-file/api";
 export * from "./lib/components/calendar/scheduler/api";
 export * from "./lib/components/calendar/calendar-box/api";
 
+export * from "./lib/components/data/data-lov/api"
+
 export * from "./lib/core/utils/html/htmlToText.pipe";
 
 export * from "./lib/acorex-ui.module";

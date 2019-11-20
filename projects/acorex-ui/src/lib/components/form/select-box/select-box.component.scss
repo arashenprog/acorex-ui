@@ -1,9 +1,7 @@
 .ax-select-box {
-  font-size: var(--font-md-size);
-
   .list-container {
     padding: var(--sp-sm-size);
-
+    
     .search {
       margin-bottom: var(--sp-sm-size);
     }
@@ -18,9 +16,8 @@
       }
 
       &.selected {
-        background: var(--gray-dark-color) ;
+        background: var(--gray-dark-color);
       }
-
     }
   }
 }

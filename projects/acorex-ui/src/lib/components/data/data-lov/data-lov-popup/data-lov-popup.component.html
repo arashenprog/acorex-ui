@@ -1,0 +1,17 @@
+<div style="height: 100vh;">
+
+    <div style="height: calc(50vh - 50px);">
+        <ax-data-grid title="Test remote data" [remoteOperation]="true">
+            <ax-data-source>
+                <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
+            </ax-data-source>
+            <ax-selection-column></ax-selection-column>
+            <ax-text-column *ngFor="let c of data[0] | keyvalue" field="{{c.key}}" caption="{{c.key}}">
+            </ax-text-column>
+        </ax-data-grid>
+    </div>
+    <div class="lov-footer">
+        <ax-button type="success" (onClick)="onDoneClick()">Done</ax-button>
+        <ax-button type="light" (onClick)="onCancelClick()">Cancel</ax-button>
+    </div>
+</div>

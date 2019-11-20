@@ -4,7 +4,11 @@
     <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
+    
+
     <ax-container>
+      <h4>Editors</h4>
+
       <ax-row>
         <ax-col col-sm="3" col-xs="12">
           <ax-text-box disabled="true" label="Textbox">
@@ -39,8 +43,12 @@
         <ax-col col-sm="3" col-xs="12">
           <ax-text-area label="Text Area"> </ax-text-area>
         </ax-col>
+        <ax-col col-sm="3">
+            <ax-lov label="Data LOV" [dataSource]="dataSource"></ax-lov>
+        </ax-col>
       </ax-row>
-
+      <hr>
+      <h4>Buttons</h4>
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
           <ax-button [block]="true" size="lg" (onClick)="infoToast()">Primary</ax-button>
@@ -61,12 +69,13 @@
           <ax-button type="warning" [block]="true" size="lg" (onClick)="warningToast()">Warning</ax-button>
         </ax-col>
       </ax-row>
+      <div class="ax-mar-sm"></div>
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
           <ax-button [block]="true" (onClick)="infoToast()">Primary</ax-button>
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="secondary btn-sm btn-block" [block]="true" (onClick)="infoToast()">Secondary</ax-button>
+          <ax-button type="secondary" [block]="true" (onClick)="infoToast()">Secondary</ax-button>
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
           <ax-button type="success" [block]="true" (onClick)="successToast()">Success</ax-button>
@@ -81,6 +90,8 @@
           <ax-button type="warning" [block]="true" (onClick)="warningToast()">Warning</ax-button>
         </ax-col>
       </ax-row>
+      <div class="ax-mar-sm"></div>
+
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
           <ax-button [block]="true" size="sm" (onClick)="infoToast()">Primary</ax-button>
@@ -101,7 +112,9 @@
           <ax-button type="warning" [block]="true" size="sm" (onClick)="warningToast()">Warning</ax-button>
         </ax-col>
       </ax-row>
-      <ax-row>
+      <hr>
+      <!-- TODO: Check the ax-tab-view component -->
+      <!-- <ax-row>
         <ax-col col-sm="12">
           <ax-tab-view>
             <ax-tab title="First Tab">
@@ -124,7 +137,8 @@
             <ax-tab title="Fifth Tab">Empty</ax-tab>
           </ax-tab-view>
         </ax-col>
-      </ax-row>
+      </ax-row> -->
+      <h4>Radio & Check Button</h4>
       <ax-row>
         <ax-col col-sm="6">
           <p>Radio Section</p>
@@ -136,31 +150,42 @@
           </ax-selection-list>
         </ax-col>
       </ax-row>
+      <hr>
+      <h4>Popups & Drawer</h4>
+        <ax-row>
+          <ax-col col-sm="3">
+              <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
+          </ax-col>
+          <ax-col col-sm="3">
+          <ax-button [block]="true" type="danger" (onClick)="openAlert()">Open Alert</ax-button>
+              
+          </ax-col>
+          <ax-col col-sm="3">
+          <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()">Open Confirm</ax-button>
+          </ax-col>
+          <ax-col col-sm="3">
+          <ax-button type="secondary" [block]="true" (onClick)="openDrawer()">Open Drawer</ax-button>
+          </ax-col>
+        </ax-row>
+      <hr>
+      <h4>Loading & Progressbar</h4>
+      <ax-row>
+        <ax-col col-sm="6">
+            <ax-loading></ax-loading>
+        </ax-col>
+        <ax-col col-sm="6">
+            <ax-progress-bar progress="58"></ax-progress-bar>
+        </ax-col>
+      </ax-row>
+      <hr>
+      <h4>Uploader</h4>
       <ax-row>
         <ax-col col-sm="4">
-          <p>Popup Section</p>
-          <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
-          <div class="ax-pad-sm"></div>
-          <ax-button [block]="true" type="danger" (onClick)="openAlert()">Open Alert</ax-button>
-          <div class="ax-pad-sm"></div>
-          <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()">Open Confirm</ax-button>
+            <ax-upload-file></ax-upload-file>
         </ax-col>
-        <ax-col col-sm="4">
-          <p>Drawer Section</p>
-          <ax-button type="secondary" [block]="true" (onClick)="openDrawer()">Open Drawer</ax-button>
-          <ax-drawer [show]="drawerOpen" [overlay]="true" mode="outer" onBlur="onBlur" close="button">
-            <h5>Content can be here</h5>
-          </ax-drawer>
-          <br />
-          <p>Loading Section</p>
-          <ax-loading></ax-loading>
-          <p>Progressbar Section</p>
-          <ax-progress-bar progress="58"></ax-progress-bar>
-        </ax-col>
-        <ax-col col-sm="4">
-          <p>Upload Section</p>
-          <ax-upload-file></ax-upload-file>
-        </ax-col>
+        <ax-col col-sm="4"></ax-col>
+        <ax-col col-sm="4"></ax-col>
+
       </ax-row>
       <ax-row>
         <ax-col col-sm="4">
@@ -200,7 +225,7 @@
           <div style="height: 500px">
             <ax-data-grid title="Test remote data" [remoteOperation]="true">
               <ax-data-source>
-                <ax-callback-read [provideData]="provideGridData" ></ax-callback-read>
+                <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
               </ax-data-source>
               <ax-selection-column></ax-selection-column>
               <ax-text-column field="id" caption="ID" [width]="100"></ax-text-column>

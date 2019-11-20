@@ -246,9 +246,9 @@ body {
       border-color: var(--border-color);
 
       legend {
-        width: auto !important;
-        padding: 0 5px;
-        margin: 0 5px;
+        width: auto!important;
+        padding: 0;
+        margin: var(--sp-sm-size);
         font-size: var(--font-sm-size);
         line-height: inherit;
         color: inherit;
@@ -262,12 +262,17 @@ body {
     width: 100%;
     border: 0;
     margin: 0;
-    padding: var(--sp-sm-size) 12px;
+    height: var(--el-base-size);
+    padding: var(--sp-sm-size);
     margin-top: 8px;
     display: block;
     background: 0 0;
     -webkit-tap-highlight-color: transparent;
     outline-color: transparent;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
   }
 
   .edit-box-value {
@@ -328,7 +333,7 @@ body {
     height: var(--el-md-size);
     margin-left: var(--sp-xs-size);
     font-size: var(--font-md-size);
-    padding: 0 var(--sp-md-size);
+    padding: 0 ;
 
     i {
       font-size: var(--font-sm-size);
