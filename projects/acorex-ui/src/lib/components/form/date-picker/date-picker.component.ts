@@ -17,7 +17,7 @@ import { AXDropDownComponent } from "../drop-down/drop-down.component";
 export class AXDatePickerComponent extends AXValidatableComponent {
 
 
-    @ViewChild("dropdown")
+    @ViewChild("dropdown", /* TODO: add static flag */ {})
     dropdown: AXDropDownComponent;
     @Input() placeholder: string = "";
     @Input() showClear: boolean = false;

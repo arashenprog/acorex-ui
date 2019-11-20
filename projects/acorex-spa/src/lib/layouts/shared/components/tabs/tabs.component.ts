@@ -10,7 +10,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class AXLayoutTabsComponent implements OnInit {
 
-  @ViewChild(AXMenuComponent) menu: AXMenuComponent;
+  @ViewChild(AXMenuComponent, /* TODO: add static flag */ {}) menu: AXMenuComponent;
 
   
   constructor(

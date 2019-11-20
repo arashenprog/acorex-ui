@@ -44,25 +44,25 @@ export class AXSchedulerComponent {
     private cdr: ChangeDetectorRef
   ) { }
 
-  @ViewChild(CdkPortalOutlet)
+  @ViewChild(CdkPortalOutlet, /* TODO: add static flag */ {})
   private portalOutlet: CdkPortalOutlet
 
 
-  @ViewChild("container")
+  @ViewChild("container", /* TODO: add static flag */ {})
   private container: ElementRef<HTMLElement>;
 
-  @ContentChild(AXSchedulerViewsProperty)
+  @ContentChild(AXSchedulerViewsProperty, /* TODO: add static flag */ {})
   private viewManager: AXSchedulerViewsProperty;
 
-  @ContentChild(AXToolbarSchedulerViewsComponent)
+  @ContentChild(AXToolbarSchedulerViewsComponent, /* TODO: add static flag */ {})
   private toolbarView: AXToolbarSchedulerViewsComponent;
-  @ContentChild(AXToolbarSchedulerNavigatorComponent)
+  @ContentChild(AXToolbarSchedulerNavigatorComponent, /* TODO: add static flag */ {})
   private toolbarNavigator: AXToolbarSchedulerNavigatorComponent;
 
-  @ContentChild(AXToolbarSearchComponent)
+  @ContentChild(AXToolbarSearchComponent, /* TODO: add static flag */ {})
   searchInput: AXToolbarSearchComponent;
 
-  @ContentChild(AXDataSourceComponent)
+  @ContentChild(AXDataSourceComponent, /* TODO: add static flag */ {})
   private dataSource: AXDataSourceComponent;
 
   view: AXSchedulerBaseViewComponent;

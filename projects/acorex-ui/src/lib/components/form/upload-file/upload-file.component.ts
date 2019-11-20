@@ -18,15 +18,30 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
   @Input()
   progressRef: HTMLElement;
 
-  @ViewChild("fileInput") fileInput: ElementRef;
+  @ViewChild("fileInput", /* TODO: add static flag */ {}) fileInput: ElementRef;
 
   @Input()
   type: "box" | "inline" | "hidden" = "box";
 
 
+ 
+  @ViewChild(TemplateRef, /* TODO: add static flag */ {})
+  private _contentTemplate: TemplateRef<any>;
+
+  
+  private _template : TemplateRef<any>;
   @Input()
-  @ViewChild(TemplateRef)
-  public template: TemplateRef<any>;
+  public get template() : TemplateRef<any> {
+    return this._template ? this._template : this._contentTemplate;
+  }
+  public set template(v : TemplateRef<any>) {
+    this._template = v;
+  }
+  
+
+
+
+
   private overlayDiv: HTMLElement;
 
   @Output()

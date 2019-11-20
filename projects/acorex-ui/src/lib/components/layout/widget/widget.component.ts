@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, Input, ViewEncapsulation, EventEmitter, Output, ViewChild, Directive } from '@angular/core';
 
 
 export interface IWidgetComponent {
@@ -38,6 +38,7 @@ export class AXWidgetContainerComponent implements IWidgetComponent {
     }
 }
 
+@Directive()
 export abstract class AXWidgetComponent implements IWidgetComponent {
 
     @ViewChild(AXWidgetContainerComponent) container: AXWidgetContainerComponent;

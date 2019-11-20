@@ -1,2 +1,2 @@
-import * from './search-box.component';
-import * from './search-box.module';
+export * from './search-box.component';
+export * from './search-box.module';

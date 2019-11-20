@@ -7,7 +7,7 @@ import { Component, ContentChild, TemplateRef } from "@angular/core";
 })
 
 export class AXDataGridRowTemplateComponent {
-    @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+    @ContentChild(TemplateRef, /* TODO: add static flag */ {}) templateRef: TemplateRef<any>;
     renderer: any;
     params: any;
     constructor()

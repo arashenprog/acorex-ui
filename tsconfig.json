@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "",
+    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "allowSyntheticDefaultImports": true,
     "declaration": false,
@@ -10,11 +11,11 @@
       "dom",
       "es2015"
     ],
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
     "importHelpers": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],

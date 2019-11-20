@@ -36,19 +36,28 @@ export class AXMenuComponent {
     });
   }
 
-  @ViewChild("container")
+  @ViewChild("container", /* TODO: add static flag */ {})
   private container: ElementRef<HTMLElement>;
-  @ViewChild("root")
+  @ViewChild("root", /* TODO: add static flag */ {})
   private root: ElementRef<HTMLElement>;
-  @ViewChild("moreUL")
+  @ViewChild("moreUL", /* TODO: add static flag */ {})
   private moreUL: ElementRef<HTMLElement>;
-  @ViewChild("moreLI")
+  @ViewChild("moreLI", /* TODO: add static flag */ {})
   private moreLI: ElementRef<HTMLElement>;
 
 
+  @ContentChild(TemplateRef, /* TODO: add static flag */ {})
+  _contentMenuTemplate: TemplateRef<any>;
+
+
+  private _menuTemplate: TemplateRef<any>;
   @Input()
-  @ContentChild(TemplateRef)
-  menuTemplate: TemplateRef<any>;
+  public get menuTemplate(): TemplateRef<any> {
+    return this._menuTemplate ? this._menuTemplate : this._contentMenuTemplate;
+  }
+  public set menuTemplate(v: TemplateRef<any>) {
+    this._menuTemplate = v;
+  }
 
   resizeChangeObserver: any;
 

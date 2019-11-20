@@ -1,12 +1,13 @@
-import { Input, ContentChild, TemplateRef, Component, ChangeDetectionStrategy } from '@angular/core';
+import { Input, ContentChild, TemplateRef, Component, ChangeDetectionStrategy, Directive } from '@angular/core';
 import { AXGridCellParams } from '../datagrid.events';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 
 
+@Directive()
 export abstract class AXGridDataColumn {
 
-    @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+    @ContentChild(TemplateRef, /* TODO: add static flag */ {}) templateRef: TemplateRef<any>;
 
     @Input()
     width: number = 100;

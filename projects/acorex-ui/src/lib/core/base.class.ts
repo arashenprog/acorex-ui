@@ -1,12 +1,4 @@
-import {
-  Input,
-  Output,
-  EventEmitter,
-  ContentChild,
-  ViewChild,
-  ElementRef,
-  ChangeDetectorRef
-} from "@angular/core";
+import { Input, Output, EventEmitter, ContentChild, ViewChild, ElementRef, ChangeDetectorRef, Directive } from "@angular/core";
 import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
 import { IValidationRuleResult } from "../components/form/validation/validation.classs";
@@ -41,6 +33,7 @@ export abstract class AXBaseComponent {
   _uid: string = "M" + Math.ceil(Math.random() * 100000000);
 }
 
+@Directive()
 export abstract class AXEditableBaseComponent extends AXBaseComponent {
   @Input() readOnly: boolean = false;
   protected _isFocused: boolean = false;
@@ -61,6 +54,7 @@ export abstract class AXEditableBaseComponent extends AXBaseComponent {
   abstract focus();
 }
 
+@Directive()
 export class AXButtonBaseComponent extends AXBaseComponent {
   @Input() text: string;
   @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
@@ -69,14 +63,16 @@ export class AXButtonBaseComponent extends AXBaseComponent {
   @Input() height: string = "auto";
 }
 
+@Directive()
 export abstract class AXValidatableComponent extends AXEditableBaseComponent {
   abstract validate(): Promise<IValidationRuleResult>;
   errorText: string = null;
 
-  @ContentChild(AXValidationComponent)
+  @ContentChild(AXValidationComponent, /* TODO: add static flag */ {})
   public validator: AXValidationComponent;
 }
 
+@Directive()
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @ViewChild("input") input: ElementRef<HTMLInputElement>;
   @Output()
@@ -141,10 +137,12 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   }
 }
 
+@Directive()
 export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
   @Input() notFoundText: string = "Not Found";
 }
 
+@Directive()
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   @Input() label: string = "";
 
@@ -173,11 +171,13 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   }
 }
 
+@Directive()
 export abstract class AXLoadingBaseComponent extends AXBaseComponent {
   @Input() text: string;
   @Input() color: string = "#0062cc";
 }
 
+@Directive()
 export abstract class AXCardBaseComponent extends AXBaseComponent {
   @Input() title: string = "Title";
   @Input() content: string = "Content";

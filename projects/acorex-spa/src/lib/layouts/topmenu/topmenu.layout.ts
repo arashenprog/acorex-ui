@@ -20,10 +20,10 @@ export class AXTopMenuLayoutComponent {
   hasToolbar: boolean = false;
   headerItems: BaseMenuItem[] = [];
 
-  @ViewChild("topMenuWrapper")
+  @ViewChild("topMenuWrapper", /* TODO: add static flag */ {})
   topMenuWrapper: ElementRef<HTMLElement>;
 
-  @ViewChild("header")
+  @ViewChild("header", /* TODO: add static flag */ {})
   header: ElementRef<HTMLElement>;
 
   constructor(public headerBarMenuService: AXHeaderBarMenuService) {}

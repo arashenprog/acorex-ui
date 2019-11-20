@@ -48,7 +48,7 @@ export class TextFilterRenderer implements IFilterAngularComp {
   public value?: string = null;
   private params: IFilterParams;
   private valueGetter: (rowNode: RowNode) => any;
-  @ViewChild(AXTextBoxComponent)
+  @ViewChild(AXTextBoxComponent, /* TODO: add static flag */ {})
   private input: AXTextBoxComponent;
 
   agInit(params: IFilterParams): void {

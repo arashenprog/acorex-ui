@@ -1,12 +1,13 @@
-import { ContentChild, Input } from "@angular/core";
+import { ContentChild, Input, Directive } from "@angular/core";
 import { AXDataSourceComponent, AXDataSourceReadParams } from "../../data-source/api";
 import { AXBaseComponent } from "../../../../core/base.class";
 
+@Directive()
 export abstract class AXDataListComponent extends AXBaseComponent {
 
   @Input()
   items: any[] = [];
-  @ContentChild(AXDataSourceComponent)
+  @ContentChild(AXDataSourceComponent, /* TODO: add static flag */ {})
   private dataSource: AXDataSourceComponent;
 
 

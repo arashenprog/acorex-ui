@@ -20,7 +20,7 @@ export class AXLOVComponent extends AXTextInputBaseComponent {
     @Input()
     mode: "inline" | "hidden" = "inline"
 
-    @ContentChild(AXDataSourceComponent)
+    @ContentChild(AXDataSourceComponent, /* TODO: add static flag */ {})
     dataSource: AXDataSourceComponent;
 
     @ContentChildren(AXGridDataColumn)

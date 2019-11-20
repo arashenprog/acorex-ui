@@ -1,2 +1,2 @@
-import * from './select-box.component';
-import * from './select-box.module';
+export * from './select-box.component';
+export * from './select-box.module';

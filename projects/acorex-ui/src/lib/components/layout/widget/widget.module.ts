@@ -48,7 +48,7 @@ import { FormsModule } from '@angular/forms';
     AXNoteWidgetComponent]
 })
 export class AXWidgetModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<AXWidgetModule> {
     return {
       ngModule: AXWidgetModule,
       providers: [AXWidgetService]

@@ -35,22 +35,43 @@ export class AXListComponent extends AXDataListComponent {
   @Input() public allowMoveItem: boolean = false;
 
  
-  @Input()
-  @ContentChild('itemTemplate')
-  itemTemplate: TemplateRef<any>;
 
+  @ContentChild('itemTemplate', /* TODO: add static flag */ {})
+  _contentItemTemplate: TemplateRef<any>;
+
+  
+  private _itemTemplate : TemplateRef<any>;
   @Input()
-  @ContentChild('emptyTemplate')
-  emptyTemplate: TemplateRef<any>;
+  public get itemTemplate() : TemplateRef<any> {
+    return this._itemTemplate ? this._itemTemplate : this._contentItemTemplate;
+  }
+  public set itemTemplate(v : TemplateRef<any>) {
+    this._itemTemplate = v;
+  }
   
 
-  @ContentChild(AXToolbarSearchComponent)
+  
+
+  @ContentChild('emptyTemplate', /* TODO: add static flag */ {})
+  _contentEmptyTemplate: TemplateRef<any>;
+
+  private _emptyTemplate : TemplateRef<any>;
+  @Input()
+  public get emptyTemplate() : TemplateRef<any> {
+    return this._emptyTemplate ? this._emptyTemplate : this._contentEmptyTemplate;
+  }
+  public set emptyTemplate(v : TemplateRef<any>) {
+    this._emptyTemplate = v;
+  }
+  
+
+  @ContentChild(AXToolbarSearchComponent, /* TODO: add static flag */ {})
   searchToolbar: AXToolbarSearchComponent;
 
-  @ContentChild(AXToolbarListViewComponent)
+  @ContentChild(AXToolbarListViewComponent, /* TODO: add static flag */ {})
   viewToolbar: AXToolbarListViewComponent;
 
-  @ContentChild(AXToolbarComponent)
+  @ContentChild(AXToolbarComponent, /* TODO: add static flag */ {})
   toolbar: AXToolbarComponent;
 
 

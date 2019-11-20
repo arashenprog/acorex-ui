@@ -10,11 +10,11 @@ import { AXNavMenuService } from "../../../shared/services/nav-menu.service";
 export class AXSPATopMenuComponent {
 
 
-    @ViewChild('contexMenu')
+    @ViewChild('contexMenu', /* TODO: add static flag */ {})
     contexMenu: AXMenuComponent;
 
 
-    @ViewChild('menu')
+    @ViewChild('menu', /* TODO: add static flag */ {})
     menu: AXToolbarMenuComponent;
 
     showFavs: boolean = false;

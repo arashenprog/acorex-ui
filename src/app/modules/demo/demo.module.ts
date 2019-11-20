@@ -40,7 +40,7 @@ const pages = [
 const ROUTES: Routes = [
   {
     path: "data",
-    loadChildren: "./data/demo-data.module#DemoDataModule"
+    loadChildren: () => import('./data/demo-data.module').then(m => m.DemoDataModule)
   },
   {
     path: "components/form/search-box",

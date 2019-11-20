@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/acorex-framework",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -60,6 +61,10 @@
                   "type": "initial",
                   "maximumWarning": "5mb",
                   "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -152,6 +157,11 @@
           "options": {
             "tsConfig": "projects/acorex-ui/tsconfig.lib.json",
             "project": "projects/acorex-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/acorex-ui/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -187,6 +197,11 @@
           "options": {
             "tsConfig": "projects/acorex-spa/tsconfig.lib.json",
             "project": "projects/acorex-spa/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/acorex-spa/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -222,6 +237,11 @@
           "options": {
             "tsConfig": "projects/acorex-editor/tsconfig.lib.json",
             "project": "projects/acorex-editor/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/acorex-editor/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -247,5 +267,8 @@
       }
     }
   },
-  "defaultProject": "acorex-framework"
+  "defaultProject": "acorex-framework",
+  "cli": {
+    "analytics": "01c02604-3b7e-4a4b-a609-29408034cf00"
+  }
 }

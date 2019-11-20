@@ -1,12 +1,13 @@
 import { Input, EventEmitter, OnDestroy } from "@angular/core";
 import { AXDateTime, AXDateTimeRange, TimeUnit } from "../../../../core/calendar/datetime";
-import { Output } from "@angular/core";
+import { Output, Directive } from "@angular/core";
 import { AXSchedulerSlot, AXSchedulerEventChangeArgs, AXSchedulerEvent, AXSchedulerViewType } from "../scheduler.class";
 
 
 
 
 
+@Directive()
 export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
 
     type: AXSchedulerViewType;

@@ -31,14 +31,24 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     super();
   }
 
-  @ViewChild('menu') menu: AXMenuComponent
+  @ViewChild('menu', /* TODO: add static flag */ {}) menu: AXMenuComponent
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
+  @ContentChild(TemplateRef, /* TODO: add static flag */ {})
+  _contentMenuTemplate: TemplateRef<any>;
+
+
+  private _menuTemplate: TemplateRef<any>;
   @Input()
-  @ContentChild(TemplateRef)
-  menuTemplate: TemplateRef<any>;
+  public get menuTemplate(): TemplateRef<any> {
+    return this._menuTemplate ? this._menuTemplate : this._contentMenuTemplate;
+  }
+  public set menuTemplate(v: TemplateRef<any>) {
+    this._menuTemplate = v;
+  }
+
 
   @Input()
   public selection: "none" | "single" | "multiple" = "none";

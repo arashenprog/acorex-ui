@@ -9,7 +9,7 @@ import { AXPopoverComponent } from "../../layout/popover/popover.component";
   styleUrls: ["./drop-down.component.scss"]
 })
 export class AXDropDownComponent extends AXSelectBaseComponent {
-  @ViewChild("popSelectBox")
+  @ViewChild("popSelectBox", /* TODO: add static flag */ {})
   popSelectBox: AXPopoverComponent;
 
   @Input() items: SelectItem[] = [];
@@ -17,9 +17,18 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
   @Input() icon: string = "fas fa-angle-down";
   @Input() fitParent: boolean = true;
 
+  @ContentChild('editorTemplate', /* TODO: add static flag */ {})
+  _contentEditorTemplate: TemplateRef<any>;
+
+  private _editorTemplate: TemplateRef<any>;
   @Input()
-  @ContentChild('editorTemplate')
-  editorTemplate: TemplateRef<any>;
+  public get editorTemplate(): TemplateRef<any> {
+    return this._editorTemplate ? this._editorTemplate : this._contentEditorTemplate;
+  }
+  public set editorTemplate(v: TemplateRef<any>) {
+    this._editorTemplate = v;
+  }
+
 
   close() {
     this.popSelectBox.close();

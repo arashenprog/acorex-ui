@@ -22,7 +22,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   constructor() {
     super();
   }
-  @ViewChild("d") dropdown: AXDropDownComponent;
+  @ViewChild("d", /* TODO: add static flag */ {}) dropdown: AXDropDownComponent;
 
   @Input() allowSearch: boolean = true;
   @Input() label: string;

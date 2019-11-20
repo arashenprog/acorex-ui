@@ -1,4 +1,4 @@
-import { Input, ChangeDetectorRef, EventEmitter, Output } from "@angular/core";
+import { Input, ChangeDetectorRef, EventEmitter, Output, Directive } from "@angular/core";
 
 //export type AXFilterConditionEnum = "is" | "is-not" | "contains" | "not-contains" | "start-width" | "end-width" | "is-empty" | "is-not-empty";
 
@@ -28,6 +28,7 @@ export interface AXFilterPredefined
     value:AXFilterCondition[];
 }
 
+@Directive()
 export abstract class AXFilterColumnComponent {
 
     constructor(protected cdr: ChangeDetectorRef) {

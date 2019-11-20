@@ -14,7 +14,7 @@ import {
 export class AXCarouselComponent implements OnInit {
   constructor() {}
 
-  @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ContentChild(TemplateRef, /* TODO: add static flag */ {}) templateRef: TemplateRef<any>;
 
   private _items: any[];
   @Input()
