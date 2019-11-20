@@ -99,7 +99,7 @@ let modules = [
   AXEditBoxModule,
   AXTooltipModule,
   AXHtmlModule,
-  AXLOVModule
+  AXLOVModule,
   AXSepratorModule
 ];
 @NgModule({
