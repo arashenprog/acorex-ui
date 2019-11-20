@@ -7,7 +7,6 @@ export * from "./lib/core/http/api";
 export * from "./lib/core/core.module";
 export * from "./lib/core/calendar/datetime";
 
-
 export * from "./lib/core/translate.service";
 export * from "./lib/core/storage.service";
 export * from "./lib/core/event.service";
@@ -45,5 +44,6 @@ export * from "./lib/components/calendar/calendar-box/api";
 export * from "./lib/components/data/data-lov/api"
 
 export * from "./lib/core/utils/html/htmlToText.pipe";
+export * from "./lib/core/utils/seprator/seprator.pipe";
 
 export * from "./lib/acorex-ui.module";

@@ -9,7 +9,7 @@
     </fieldset>
     <input
       #input
-      type="text"
+      type="{{ type }}"
       [(ngModel)]="text"
       [placeholder]="placeholder"
       [textMask]="{ mask: maskInner, guide: true }"
