@@ -42,7 +42,6 @@ export class AXDataGridComponent {
   private dataSourceSuccessCallback;
   columnDefs: any[] = [];
   rowModelType = "clientSide";
-  rowGroupPanelShow = "always";
   @Input()
   public remoteOperation: boolean = false;
   fullWidthCellRendererFramework: any;
@@ -50,6 +49,12 @@ export class AXDataGridComponent {
   frameworkComponents: any = {};
   isFullWidthCell: Function;
   internalHeight: string = "100%";
+
+  @Input()
+  selectionMode: "single" | "multiple" = "single";
+
+  @Input()
+  rowGroupPanelShow = "always";
 
   @Input()
   loadOnInit: boolean = true;
@@ -87,7 +92,24 @@ export class AXDataGridComponent {
   }
 
   @ContentChildren(AXGridDataColumn)
-  private _columns: QueryList<AXGridDataColumn>;
+  private _inlineColumns: QueryList<AXGridDataColumn>;
+
+  @Output()
+  columnsChange: EventEmitter<AXGridDataColumn[]> = new EventEmitter<AXGridDataColumn[]>();
+
+  private _columns: AXGridDataColumn[] = [];
+
+  @Input()
+  public get columns(): AXGridDataColumn[] {
+    return this._inlineColumns ? [...this._columns, ...this._inlineColumns.toArray()] : this._columns;
+  }
+
+  public set columns(val: AXGridDataColumn[]) {
+    if (val && val.length) {
+      this._columns = val;
+      this.columnsChange.emit(val);
+    }
+  }
 
   @ContentChild(AXToolbarSearchComponent)
   searchInput: AXToolbarSearchComponent;
@@ -98,8 +120,26 @@ export class AXDataGridComponent {
   @ContentChild(AXDataGridRowTemplateComponent)
   rowTemplate: AXDataGridRowTemplateComponent;
 
+
+
   @ContentChild(AXDataSourceComponent)
-  private dataSource: AXDataSourceComponent;
+  private _contentDataSource: AXDataSourceComponent;
+
+
+  private _dataSource: AXDataSourceComponent;
+
+  @Input()
+  public get dataSource(): AXDataSourceComponent {
+    return this._dataSource ? this._dataSource : this._contentDataSource;
+  }
+
+  public set dataSource(v: AXDataSourceComponent) {
+    this._dataSource = v;
+    // this.dataSourceChange.emit(v);
+  }
+
+
+
 
   @Output()
   cellClick: EventEmitter<AXGridCellEvent> = new EventEmitter<
@@ -131,7 +171,7 @@ export class AXDataGridComponent {
   @Input()
   rtl: boolean = false;
 
-  constructor() {}
+  constructor() { }
 
   private calcHeight(): void {
     if (this.toolbar) this.internalHeight = `calc(100% - ${40}px)`;
@@ -144,16 +184,17 @@ export class AXDataGridComponent {
     //
     this.mapColumns();
     //
-  
+
     //
     if (!this.loadOnInit) return;
     //
-    
+
     //
+    debugger;
     if (that.remoteOperation) {
       let dataSource = {
         rowCount: null,
-        getRows: function(params) {
+        getRows: function (params) {
           that.dataSourceSuccessCallback = params.successCallback;
           let loadParams: AXDataSourceReadParams = {};
           loadParams.searchText = that.searchText;
@@ -185,16 +226,16 @@ export class AXDataGridComponent {
       this.fullWidthCellRendererParams = this.rowTemplate.params;
     }
 
-    this.isFullWidthCell = function() {
+    this.isFullWidthCell = function () {
       return that.rowTemplate != null;
     };
   }
 
   ngOnInit(): void {
-    if (this.remoteOperation) 
+    if (this.remoteOperation)
       this.rowModelType = "serverSide";
   }
- 
+
   ngAfterViewInit(): void {
     let that = this;
     this.enableRTL();
@@ -216,7 +257,7 @@ export class AXDataGridComponent {
   }
 
   mapColumns() {
-    this.columnDefs = this._columns.map(c => c.render());
+    this.columnDefs = this.columns.map(c => c.render());
   }
 
   enableRTL() {

@@ -4,7 +4,7 @@
     <ax-toolbar-menu [items]="toolbarItems"></ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
-    
+
 
     <ax-container>
       <h4>Editors</h4>
@@ -44,14 +44,21 @@
           <ax-text-area label="Text Area"> </ax-text-area>
         </ax-col>
         <ax-col col-sm="3">
-            <ax-lov label="Data LOV" [dataSource]="dataSource"></ax-lov>
+          <ax-lov #lov1 label="Data LOV" selectionMode="multiple"
+            (onSelectionChange)="handleLovSelectionChange($event)">
+            <ax-data-source>
+              <ax-callback-read [provideData]="provideListData"></ax-callback-read>
+            </ax-data-source>
+            <ax-text-column field="id" caption="Id" [width]="100"></ax-text-column>
+            <ax-text-column field="title" caption="Title" [width]="100"></ax-text-column>
+          </ax-lov>
         </ax-col>
       </ax-row>
       <hr>
       <h4>Buttons</h4>
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button [block]="true" size="lg" (onClick)="infoToast()">Primary</ax-button>
+          <ax-button [block]="true" size="lg" (onClick)="lov1.open().then()">Primary</ax-button>
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
           <ax-button type="secondary" [block]="true" size="lg" (onClick)="infoToast()">Secondary</ax-button>
@@ -152,36 +159,36 @@
       </ax-row>
       <hr>
       <h4>Popups & Drawer</h4>
-        <ax-row>
-          <ax-col col-sm="3">
-              <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
-          </ax-col>
-          <ax-col col-sm="3">
+      <ax-row>
+        <ax-col col-sm="3">
+          <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
+        </ax-col>
+        <ax-col col-sm="3">
           <ax-button [block]="true" type="danger" (onClick)="openAlert()">Open Alert</ax-button>
-              
-          </ax-col>
-          <ax-col col-sm="3">
+
+        </ax-col>
+        <ax-col col-sm="3">
           <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()">Open Confirm</ax-button>
-          </ax-col>
-          <ax-col col-sm="3">
+        </ax-col>
+        <ax-col col-sm="3">
           <ax-button type="secondary" [block]="true" (onClick)="openDrawer()">Open Drawer</ax-button>
-          </ax-col>
-        </ax-row>
+        </ax-col>
+      </ax-row>
       <hr>
       <h4>Loading & Progressbar</h4>
       <ax-row>
         <ax-col col-sm="6">
-            <ax-loading></ax-loading>
+          <ax-loading></ax-loading>
         </ax-col>
         <ax-col col-sm="6">
-            <ax-progress-bar progress="58"></ax-progress-bar>
+          <ax-progress-bar progress="58"></ax-progress-bar>
         </ax-col>
       </ax-row>
       <hr>
       <h4>Uploader</h4>
       <ax-row>
         <ax-col col-sm="4">
-            <ax-upload-file></ax-upload-file>
+          <ax-upload-file></ax-upload-file>
         </ax-col>
         <ax-col col-sm="4"></ax-col>
         <ax-col col-sm="4"></ax-col>

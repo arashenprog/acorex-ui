@@ -1,4 +1,4 @@
-<div class="ax-lov-box">
+<div class="ax-lov-box" [style.display]="mode=='hidden' ? 'none':'unset'">
     <div class="ax-field-set">
         <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
             <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">

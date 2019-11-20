@@ -11,20 +11,20 @@ import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
 import { IValidationRuleResult } from "../components/form/validation/validation.classs";
 import { AXKeyboardEvent } from "./events/keyboard";
-import { SelectItem } from "./select.class";
 
 export class PromisResult<T> {
-  private _executor: (then: (e?: T) => void) => void;
-  constructor(executor: (then: (e?: T) => void) => void) {
+  private _executor: (then?: (e?: T) => void) => void;
+
+  constructor(executor: (then?: (e?: T) => void) => void) {
     this._executor = executor;
     setTimeout(() => {
       this._executor(this.thenAction);
     }, 50);
   }
 
-  private thenAction: (e?: T) => void;
+  private thenAction?: (e?: T) => void;
 
-  then(action: (e?: T) => void): PromisResult<T> {
+  then(action?: (e?: T) => void): PromisResult<T> {
     this.thenAction = action;
     return this;
   }
@@ -32,7 +32,7 @@ export class PromisResult<T> {
   static resolve<T>(value: T): PromisResult<T> {
     const r = new PromisResult<T>(z => {
       z(value);
-    }).then(c => {});
+    }).then(c => { });
     return r;
   }
 }

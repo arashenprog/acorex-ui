@@ -620,6 +620,14 @@ body {
   background-color: var(--primary-color);
   border-color: var(--primary-light-color);
 }
-
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  background-color: var(--primary-dark-color) !important;
+  border-color: var(--primary-dark-color) !important;
+  color: var(--primary-fore-color) !important;
+ 
+}
+.btn-primary.focus, .btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem var(--primary-lighter-color) !important;
+}
 @import "./tooltip";
 @import "./animations";

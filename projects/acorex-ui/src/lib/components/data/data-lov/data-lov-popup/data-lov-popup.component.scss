@@ -1,0 +1,11 @@
+.lov-popup-footer{
+position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    padding: 0 var(--sp-md-size);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+}

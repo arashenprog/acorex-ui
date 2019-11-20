@@ -6,12 +6,13 @@ import { AXDataLovPopupComponent } from './data-lov-popup/data-lov-popup.compone
 import { AXDataGridModule } from '../data-grid/datagrid.module';
 import { AXDataSourceModule } from '../data-source/datasource.module';
 import { AXButtonModule } from '../../form/button/button.module';
+import { AXToolbarModule } from '../../layout/toolbar/toolbar.module';
 
 @NgModule({
-    declarations: [AXLOVComponent,AXDataLovPopupComponent],
-    imports: [ CommonModule,FormsModule ,AXDataGridModule,AXDataSourceModule,AXButtonModule],
-    exports: [AXLOVComponent,AXDataLovPopupComponent],
+    declarations: [AXLOVComponent, AXDataLovPopupComponent],
+    imports: [CommonModule, FormsModule, AXDataGridModule, AXDataSourceModule, AXButtonModule, AXToolbarModule],
+    exports: [AXLOVComponent, AXDataLovPopupComponent],
     providers: [],
-    entryComponents:[AXDataLovPopupComponent]
+    entryComponents: [AXDataLovPopupComponent]
 })
-export class AXLOVModule {}
+export class AXLOVModule { }

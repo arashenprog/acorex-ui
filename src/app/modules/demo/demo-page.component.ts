@@ -224,22 +224,25 @@ height="0"
 
   provideGridData = (e) => {
     console.log(e);
-    return new PromisResult(resolve => {
-      this.http
-        .get("https://jsonplaceholder.typicode.com/todos", {})
-        .result(c => {
-          resolve(c);
-        });
-    });
+    // return new PromisResult(resolve => {
+    //   this.http
+    //     .get("https://jsonplaceholder.typicode.com/todos", {})
+    //     .result(c => {
+    //       resolve(c);
+    //     });
+    // });
+    return PromisResult.resolve(this.dataSource);
   };
   provideListData = () => {
-    return new PromisResult(resolve => {
-      this.http
-        .get("https://jsonplaceholder.typicode.com/users", {})
-        .result(c => {
-          resolve((<any>c).slice(0, 8));
-        });
-    });
+    // return new PromisResult(resolve => {
+    //   // this.http
+    //   //   .get("https://jsonplaceholder.typicode.com/users", {})
+    //   //   .result(c => {
+    //   //     resolve((<any>c).slice(0, 8));
+    //   //   });
+
+    // });
+    return PromisResult.resolve(this.dataSource);
   };
   warningToast() {
     this.toast.warning("This is warning message", {
@@ -360,4 +363,9 @@ height="0"
       style: "ax-secondary"
     }
   ];
+
+
+  handleLovSelectionChange(e) {
+    console.log("lov select chnage", e);
+  }
 }
