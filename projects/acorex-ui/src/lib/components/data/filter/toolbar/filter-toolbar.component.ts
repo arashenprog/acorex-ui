@@ -19,8 +19,8 @@ export class AXToolbarFilterViewComponent {
     constructor() { }
     _uid: string = AXHtmlUtil.getUID();
 
-    @ViewChild('menu', /* TODO: add static flag */ {}) menu: AXToolbarMenuComponent;
-    @ViewChild('contextMenu', /* TODO: add static flag */ {}) contextMenu: AXMenuComponent;
+    @ViewChild('menu', { static: true }) menu: AXToolbarMenuComponent;
+    @ViewChild('contextMenu', { static: true }) contextMenu: AXMenuComponent;
 
     @Input()
     filterPanel: AXFilterPanelComponent;

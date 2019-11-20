@@ -16,11 +16,11 @@ import { AXTextBoxComponent } from '../../../../components/form/text-box/text-bo
 })
 export class AXFilterPanelComponent {
 
-    @ViewChild('footer', /* TODO: add static flag */ {}) footer: ElementRef<HTMLDivElement>;
-    @ViewChild('savedList', /* TODO: add static flag */ {}) savedList: ElementRef<HTMLDivElement>;
-    @ViewChild('body', /* TODO: add static flag */ {}) body: ElementRef<HTMLDivElement>;
-    @ViewChild('menu', /* TODO: add static flag */ {}) menu: AXMenuComponent;
-    @ViewChild('tbxName', /* TODO: add static flag */ {}) tbxName: AXTextBoxComponent;
+    @ViewChild('footer', { static: true }) footer: ElementRef<HTMLDivElement>;
+    @ViewChild('savedList', { static: true }) savedList: ElementRef<HTMLDivElement>;
+    @ViewChild('body', { static: true }) body: ElementRef<HTMLDivElement>;
+    @ViewChild('menu', { static: true }) menu: AXMenuComponent;
+    @ViewChild('tbxName', { static: true }) tbxName: AXTextBoxComponent;
 
     @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
 

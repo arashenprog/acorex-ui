@@ -15,7 +15,7 @@ import { AXToolbarMenuComponent } from '../../../layout/toolbar/menu/toolbar-men
 export class AXToolbarSchedulerViewsComponent {
     constructor() { }
 
-    @ViewChild(AXToolbarMenuComponent, /* TODO: add static flag */ {}) menu: AXToolbarMenuComponent;
+    @ViewChild(AXToolbarMenuComponent, { static: true }) menu: AXToolbarMenuComponent;
     items: MenuItem[] = [];
 
     update(): void {

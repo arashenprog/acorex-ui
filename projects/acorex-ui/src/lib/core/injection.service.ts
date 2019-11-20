@@ -16,6 +16,7 @@ export class InjectionService {
 
 
     getRootViewContainer(): ComponentRef<any> {
+        debugger;
         if (this._container) return this._container;
 
         if (this.applicationRef.components.length) return this.applicationRef.components[0];
@@ -34,6 +35,7 @@ export class InjectionService {
     }
 
     getRootViewContainerNode(): HTMLElement {
+        debugger;
         return this.getComponentRootNode(this.getRootViewContainer());
     }
 

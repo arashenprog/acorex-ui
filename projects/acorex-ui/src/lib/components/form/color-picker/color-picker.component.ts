@@ -13,7 +13,7 @@ import { Color, AXColorUtil } from '../../../core/color.class';
 })
 export class AXColorPickerComponent extends AXColorBoxComponent {
 
-    @ViewChild("dropdown", /* TODO: add static flag */ {})
+    @ViewChild("dropdown", { static: true })
     dropdown: AXDropDownComponent;
     @Input() placeholder: string = "";
     @Input() showClear: boolean = false;

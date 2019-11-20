@@ -11,7 +11,7 @@ import { AXDataSourceComponent } from '../../data-source/datasource.component';
 export class AXDataLovPopupComponent extends AXBasePageComponent {
 
 
-    @ViewChild("grid", /* TODO: add static flag */ {})
+    @ViewChild("grid", { static: true })
     grid: AXDataGridComponent;
 
 

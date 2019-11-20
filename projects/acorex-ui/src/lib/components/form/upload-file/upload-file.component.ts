@@ -18,14 +18,14 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
   @Input()
   progressRef: HTMLElement;
 
-  @ViewChild("fileInput", /* TODO: add static flag */ {}) fileInput: ElementRef;
+  @ViewChild("fileInput", { static: true }) fileInput: ElementRef;
 
   @Input()
   type: "box" | "inline" | "hidden" = "box";
 
 
  
-  @ViewChild(TemplateRef, /* TODO: add static flag */ {})
+  @ViewChild(TemplateRef, { static: true })
   private _contentTemplate: TemplateRef<any>;
 
   

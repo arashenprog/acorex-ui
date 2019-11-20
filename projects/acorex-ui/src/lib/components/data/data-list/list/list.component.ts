@@ -36,7 +36,7 @@ export class AXListComponent extends AXDataListComponent {
 
  
 
-  @ContentChild('itemTemplate', /* TODO: add static flag */ {})
+  @ContentChild('itemTemplate', { static: true })
   _contentItemTemplate: TemplateRef<any>;
 
   
@@ -52,7 +52,7 @@ export class AXListComponent extends AXDataListComponent {
 
   
 
-  @ContentChild('emptyTemplate', /* TODO: add static flag */ {})
+  @ContentChild('emptyTemplate', { static: true })
   _contentEmptyTemplate: TemplateRef<any>;
 
   private _emptyTemplate : TemplateRef<any>;
@@ -65,13 +65,13 @@ export class AXListComponent extends AXDataListComponent {
   }
   
 
-  @ContentChild(AXToolbarSearchComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXToolbarSearchComponent, { static: true })
   searchToolbar: AXToolbarSearchComponent;
 
-  @ContentChild(AXToolbarListViewComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXToolbarListViewComponent, { static: true })
   viewToolbar: AXToolbarListViewComponent;
 
-  @ContentChild(AXToolbarComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXToolbarComponent, { static: true })
   toolbar: AXToolbarComponent;
 
 

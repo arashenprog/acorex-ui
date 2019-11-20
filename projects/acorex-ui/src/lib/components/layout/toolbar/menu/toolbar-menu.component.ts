@@ -31,12 +31,12 @@ export class AXToolbarMenuComponent extends AXToolbarItem {
     super();
   }
 
-  @ViewChild('menu', /* TODO: add static flag */ {}) menu: AXMenuComponent
+  @ViewChild('menu', { static: true }) menu: AXMenuComponent
 
   @Output()
   itemClick: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-  @ContentChild(TemplateRef, /* TODO: add static flag */ {})
+  @ContentChild(TemplateRef, { static: true })
   _contentMenuTemplate: TemplateRef<any>;
 
 

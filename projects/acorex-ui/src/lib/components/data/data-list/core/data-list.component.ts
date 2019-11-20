@@ -7,7 +7,7 @@ export abstract class AXDataListComponent extends AXBaseComponent {
 
   @Input()
   items: any[] = [];
-  @ContentChild(AXDataSourceComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXDataSourceComponent, { static: true })
   private dataSource: AXDataSourceComponent;
 
 

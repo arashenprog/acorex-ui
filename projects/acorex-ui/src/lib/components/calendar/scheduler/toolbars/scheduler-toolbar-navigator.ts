@@ -25,13 +25,13 @@ import { AXCalendarBoxComponent } from '../../calendar-box/calendar-box.componen
 export class AXToolbarSchedulerNavigatorComponent {
     constructor(private cdr: ChangeDetectorRef) { }
 
-    @ViewChild(AXToolbarMenuComponent, /* TODO: add static flag */ {})
+    @ViewChild(AXToolbarMenuComponent, { static: true })
     toolbar: AXToolbarMenuComponent;
 
-    @ViewChild('pop', /* TODO: add static flag */ {})
+    @ViewChild('pop', { static: true })
     pop: AXPopoverComponent;
 
-    @ViewChild('cal', /* TODO: add static flag */ {})
+    @ViewChild('cal', { static: true })
     cal: AXCalendarBoxComponent;
 
     viewDepth: string = "day";

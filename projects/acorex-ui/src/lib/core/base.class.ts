@@ -68,7 +68,7 @@ export abstract class AXValidatableComponent extends AXEditableBaseComponent {
   abstract validate(): Promise<IValidationRuleResult>;
   errorText: string = null;
 
-  @ContentChild(AXValidationComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXValidationComponent, { static: true })
   public validator: AXValidationComponent;
 }
 

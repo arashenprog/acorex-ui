@@ -7,7 +7,7 @@ import { Component, OnInit, Input, ElementRef, ContentChild, TemplateRef, ViewCh
 })
 export class AXDockPanelContentComponent  {
 
-    @ContentChild(TemplateRef, /* TODO: add static flag */ {}) template: TemplateRef<any>;
+    @ContentChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
     constructor(
         public viewContainerRef: ViewContainerRef,

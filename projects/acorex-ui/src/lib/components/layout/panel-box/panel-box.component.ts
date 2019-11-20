@@ -36,7 +36,7 @@ import { AXButtonBaseComponent } from "../../../core/base.class";
 export class AXPanelBoxComponent extends AXButtonBaseComponent {
 
 
-  @ContentChild('header', /* TODO: add static flag */ {}) headerTemplate: TemplateRef<any>;
+  @ContentChild('header', { static: true }) headerTemplate: TemplateRef<any>;
 
   @Input()
   caption: string = "Caption"

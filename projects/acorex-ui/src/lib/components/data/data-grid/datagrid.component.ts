@@ -111,18 +111,18 @@ export class AXDataGridComponent {
     }
   }
 
-  @ContentChild(AXToolbarSearchComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXToolbarSearchComponent, { static: true })
   searchInput: AXToolbarSearchComponent;
 
-  @ContentChild(AXToolbarComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXToolbarComponent, { static: true })
   toolbar: AXToolbarComponent;
 
-  @ContentChild(AXDataGridRowTemplateComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXDataGridRowTemplateComponent, { static: true })
   rowTemplate: AXDataGridRowTemplateComponent;
 
 
 
-  @ContentChild(AXDataSourceComponent, /* TODO: add static flag */ {})
+  @ContentChild(AXDataSourceComponent, { static: true })
   private _contentDataSource: AXDataSourceComponent;
 
 

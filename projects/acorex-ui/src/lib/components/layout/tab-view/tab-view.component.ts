@@ -28,7 +28,7 @@ export class AXTabViewComponent implements AfterContentInit {
 
   @ContentChildren(AXTabComponent) tabs: QueryList<AXTabComponent>;
 
-  @ViewChild(DynamicTabsDirective, /* TODO: add static flag */ {}) dynamicTabPlaceholder: DynamicTabsDirective;
+  @ViewChild(DynamicTabsDirective, { static: true }) dynamicTabPlaceholder: DynamicTabsDirective;
 
   /*
     Alternative approach of using an anchor directive

@@ -36,17 +36,17 @@ export class AXMenuComponent {
     });
   }
 
-  @ViewChild("container", /* TODO: add static flag */ {})
+  @ViewChild("container", { static: true })
   private container: ElementRef<HTMLElement>;
-  @ViewChild("root", /* TODO: add static flag */ {})
+  @ViewChild("root", { static: true })
   private root: ElementRef<HTMLElement>;
-  @ViewChild("moreUL", /* TODO: add static flag */ {})
+  @ViewChild("moreUL", { static: true })
   private moreUL: ElementRef<HTMLElement>;
-  @ViewChild("moreLI", /* TODO: add static flag */ {})
+  @ViewChild("moreLI", { static: true })
   private moreLI: ElementRef<HTMLElement>;
 
 
-  @ContentChild(TemplateRef, /* TODO: add static flag */ {})
+  @ContentChild(TemplateRef, { static: true })
   _contentMenuTemplate: TemplateRef<any>;
 
 

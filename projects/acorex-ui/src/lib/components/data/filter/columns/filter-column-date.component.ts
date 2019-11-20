@@ -26,7 +26,7 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
 })
 export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
 
-    @ViewChild(AXSelectionListComponent, /* TODO: add static flag */ {}) selection: AXSelectionListComponent;
+    @ViewChild(AXSelectionListComponent, { static: true }) selection: AXSelectionListComponent;
 
     items: any = [
         {

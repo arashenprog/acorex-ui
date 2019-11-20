@@ -7,7 +7,7 @@ import { ICellRendererParams } from 'ag-grid-community';
 @Directive()
 export abstract class AXGridDataColumn {
 
-    @ContentChild(TemplateRef, /* TODO: add static flag */ {}) templateRef: TemplateRef<any>;
+    @ContentChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
 
     @Input()
     width: number = 100;

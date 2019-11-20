@@ -48,7 +48,7 @@ export class AXToolbarDropdownComponent {
 
   }
 
-  @ViewChild('pop', /* TODO: add static flag */ {})
+  @ViewChild('pop', { static: true })
   pop: AXPopoverComponent;
 
 

@@ -10,7 +10,7 @@ import { AXDataSourceReadParams, AXDataSourceRead } from './read-param';
 })
 export class AXDataSourceComponent {
 
-    @ContentChild(AXDataSourceRead, /* TODO: add static flag */ {})
+    @ContentChild(AXDataSourceRead, { static: true })
     read: AXDataSourceRead;
 
     onDataReceived: EventEmitter<any> = new EventEmitter<any>();

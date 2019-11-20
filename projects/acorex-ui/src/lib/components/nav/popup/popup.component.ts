@@ -26,7 +26,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   @ViewChild("popupBody", /* TODO: add static flag */ { read: ViewContainerRef })
   private popupBody: ViewContainerRef;
 
-  @ViewChild("container", /* TODO: add static flag */ {})
+  @ViewChild("container", { static: true })
   private container: ElementRef;
 
   @HostListener("keydown.escape", ["$event"])
