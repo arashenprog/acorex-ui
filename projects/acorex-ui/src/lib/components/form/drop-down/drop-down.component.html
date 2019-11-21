@@ -12,9 +12,15 @@
       </div>
     </ng-container>
     <ng-template #elseTemplate>
-      <input [placeholder]="placeholder" [(ngModel)]="text" [ngClass]="{ 'no-label': !label }"
-        (blur)="handleBlurEvent($event)" (focus)="handleFocusEvent($event)" (keyup)="handleKeyEvent($event)"
-        class="ax-text-box" type="text" disabled />
+      <input 
+      type="text"
+      [(ngModel)]="text" 
+      [placeholder]="placeholder"
+      (keyup)="handleKeyEvent($event)"
+        (blur)="handleBlurEvent($event)"
+         (focus)="handleFocusEvent($event)"
+        class="ax-text-box" 
+         disabled />
     </ng-template>
     <div class="ax-field-set-button">
       <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">

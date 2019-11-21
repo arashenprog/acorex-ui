@@ -7,3 +7,4 @@ export * from "./lib/layouts/tabular/api";
 export * from "./lib/layouts/shared/api";
 export * from "./lib/layouts/topmenu/api";
 export * from "./lib/layouts/mobile/api";
+export * from "./lib/layouts/blank/api";

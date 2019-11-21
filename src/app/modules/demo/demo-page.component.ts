@@ -178,6 +178,13 @@ width="0"
 height="0"
 />
   `;
+
+  dataSource: any[] = [
+    { id: "1", title: "Same Title 1", number: 1000 },
+    { id: "2", title: "Same Title 2", number: 2000 },
+    { id: "3", title: "Same Title 3", number: 3000 },
+    { id: "4", title: "Same Title 4", number: 4000 }
+  ]
   drawerOpen: boolean = false;
   //TODO : data structure select box
   selectBoxItems: SelectItem[] = [
@@ -210,30 +217,32 @@ height="0"
     }
   ];
 
-  onClosing(e:ClosingAction)
-  {
-    debugger;
+  onClosing(e: ClosingAction) {
     e.data = "Hi arash";
     e.resolve();
   }
 
-  provideGridData = () => {
-    return new PromisResult(resolve => {
-      this.http
-        .get("https://jsonplaceholder.typicode.com/todos", {})
-        .result(c => {
-          resolve(c);
-        });
-    });
+  provideGridData = (e) => {
+    console.log(e);
+    // return new PromisResult(resolve => {
+    //   this.http
+    //     .get("https://jsonplaceholder.typicode.com/todos", {})
+    //     .result(c => {
+    //       resolve(c);
+    //     });
+    // });
+    return PromisResult.resolve(this.dataSource);
   };
   provideListData = () => {
-    return new PromisResult(resolve => {
-      this.http
-        .get("https://jsonplaceholder.typicode.com/users", {})
-        .result(c => {
-          resolve((<any>c).slice(0, 8));
-        });
-    });
+    // return new PromisResult(resolve => {
+    //   // this.http
+    //   //   .get("https://jsonplaceholder.typicode.com/users", {})
+    //   //   .result(c => {
+    //   //     resolve((<any>c).slice(0, 8));
+    //   //   });
+
+    // });
+    return PromisResult.resolve(this.dataSource);
   };
   warningToast() {
     this.toast.warning("This is warning message", {
@@ -268,17 +277,16 @@ height="0"
       title: "Title Popup Here",
       size: "lg"
     })
-    .closing(d=>{
-      debugger;
-      d.data = "asdasdasd"
-      d.resolve();
-    })
-    .closed(c=>{
-      console.log(c);
-    });
+      .closing(d => {
+        d.data = "asdasdasd"
+        d.resolve();
+      })
+      .closed(c => {
+        console.log(c);
+      });
   }
   openDrawer() {
-    this.drawerOpen = true;
+    this.drawerOpen = !this.drawerOpen;
   }
   openAlert() {
     this.dialog.alert("Alert", "This is alert message");
@@ -288,7 +296,7 @@ height="0"
       alert("you clicked confirm");
     });
   }
-  handleEditorChange(e) {}
+  handleEditorChange(e) { }
   toolbarItems: MenuItem[] = [
     {
       id: "1",
@@ -355,4 +363,9 @@ height="0"
       style: "ax-secondary"
     }
   ];
+
+
+  handleLovSelectionChange(e) {
+    console.log("lov select chnage", e);
+  }
 }

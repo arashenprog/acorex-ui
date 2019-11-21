@@ -33,8 +33,10 @@ export class AXGridDateColumn extends AXGridDataColumn {
 
   render() {
     let col = super.render();
+
     if (!col.cellRendererFramework)
       col.cellRendererFramework = DateRenderer;
+
     col.cellRendererParams = {
       format: this.format,
     }

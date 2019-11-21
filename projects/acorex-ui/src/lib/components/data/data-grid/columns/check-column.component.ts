@@ -27,9 +27,12 @@ export class AXGridCheckColumn extends AXGridDataColumn {
 
   render() {
     let col = super.render();
+
     if (!col.cellRendererFramework)
       col.cellRendererFramework = BooleanRenderer;
-    col.filterFramework = BooleanFilterRenderer;
+    if (this.allowFiltering) {
+      col.filterFramework = BooleanFilterRenderer;
+    }
     return col;
   }
 }
@@ -87,7 +90,7 @@ export class BooleanFilterRenderer implements IFilterAngularComp {
   }
 
   getModel(): any {
-    return { value: this.value, hi: "arash" };
+    return { value: this.value };
   }
 
   setModel(model: any): void {

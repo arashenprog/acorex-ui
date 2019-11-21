@@ -16,9 +16,10 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent {
     return this.mask ? this.mask : false;
   }
 
+  @Input()
+  type: "text" | "number" = "text";
 
   focus(): void {
-    if (this.input)
-      this.input.nativeElement.focus();
+    if (this.input) this.input.nativeElement.focus();
   }
 }

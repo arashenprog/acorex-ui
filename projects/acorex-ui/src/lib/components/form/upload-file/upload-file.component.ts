@@ -75,7 +75,6 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
 
 
   onFileChange(e) {
-    debugger;
     let files = e.target.files;
     this.addFile(files[0]);
     (this.fileInput.nativeElement as HTMLInputElement).value = null;

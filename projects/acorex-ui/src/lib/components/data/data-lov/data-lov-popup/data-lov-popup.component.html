@@ -1,0 +1,16 @@
+<div style="height: 100vh;">
+    <div style="height: 83%;">
+        <ax-data-grid #grid [columns]="columns" [selectionMode]="selectionMode"
+            (selectionChanged)="onSelectionChanged($event)" [dataSource]="dataSource" loadOnInit="false">
+            <ax-toolbar>
+                <ax-toolbar-search></ax-toolbar-search>
+            </ax-toolbar>
+            <ax-selection-column></ax-selection-column>
+        </ax-data-grid>
+        <div class="lov-popup-footer">
+            <ax-button type="danger" (onClick)="onCancelClick()">Cancel</ax-button>
+            <ax-button type="success" (onClick)="onDoneClick()">Done</ax-button>
+        </div>
+    </div>
+
+</div>

@@ -51,6 +51,8 @@ import { AXSearchBoxModule } from "./components/form/search-box/search-box.modul
 import { AXTooltipModule } from "./components/layout/tooltip/tooltip.module";
 import { AXHtmlModule } from "./core/utils/html/html.module";
 import { InjectionService } from "./core/injection.service";
+import { AXLOVModule } from "./components/data/data-lov/data-lov.module";
+import { AXSepratorModule } from "./core/utils/seprator/seprator.module";
 
 window["$"] = $;
 
@@ -96,7 +98,9 @@ let modules = [
   AXFilterModule,
   AXEditBoxModule,
   AXTooltipModule,
-  AXHtmlModule
+  AXHtmlModule,
+  AXLOVModule,
+  AXSepratorModule
 ];
 @NgModule({
   declarations: [AXThemeWrapperComponent],

@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import {
   AXBasePageComponent,
   AXUploadFileLoadEvent,
-  AXUploadFileProgressEvent
+  AXUploadFileProgressEvent,
+  AXSepratorPipe
 } from "acorex-ui";
 
 @Component({
@@ -10,14 +11,16 @@ import {
 })
 export class UploaderPage extends AXBasePageComponent {
   showTooltip: boolean = true;
+  sampleNumber: number = 1000000000;
+  stringNumber: string = "";
 
-  onFileLoad(e: AXUploadFileLoadEvent) {
-    debugger;
+  constructor(private seprator: AXSepratorPipe) {
+    super();
   }
+  ngOnInit() {}
+  onFileLoad(e: AXUploadFileLoadEvent) {}
 
-  onFileProgress(e: AXUploadFileProgressEvent) {
-    debugger;
-  }
+  onFileProgress(e: AXUploadFileProgressEvent) {}
 
   aalert(e) {
     alert(e);
@@ -39,8 +42,13 @@ export class UploaderPage extends AXBasePageComponent {
     {
       value: 2,
       text: "items 3"
-    },
-  ]
+    }
+  ];
 
   selectedValues: any[] = [1];
+
+  handleOnKey(e) {
+    let s = this.seprator.transform(this.stringNumber);
+    console.log(s, "seprator");
+  }
 }

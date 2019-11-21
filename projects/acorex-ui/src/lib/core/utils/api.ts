@@ -4,3 +4,4 @@ export * from "./html/htmlToText.pipe";
 export * from "./object/object-util";
 export * from "./math/math-util";
 export * from "./scroll/api";
+export * from "./seprator/seprator.pipe";
