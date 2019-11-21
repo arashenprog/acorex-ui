@@ -1,7 +1,7 @@
 import { Injectable, ComponentRef } from "@angular/core";
-import { InjectionService } from "../../../core/injection.service";
 import { AXPopupComponent } from "./popup.component";
 import { ClosingAction, ClosedEventArgs, ClosingEventArgs } from "./popup.events";
+import { AXRenderService} from "../../../core/utils/render/render.service";
 
 export class AXPopupResult {
   private _executor: (
@@ -42,7 +42,7 @@ export class AXPopupResult {
 export class AXPopupService {
   private stack: Array<AXPopupComponent> = [];
 
-  constructor(private injection: InjectionService) { }
+  constructor(private injection: AXRenderService) { }
 
   open(content: any, title: string): AXPopupResult;
   open(

@@ -23,7 +23,7 @@ import { ClosingEventArgs } from "./popup.events";
   encapsulation: ViewEncapsulation.None
 })
 export class AXPopupComponent implements OnInit, OnDestroy {
-  @ViewChild("popupBody", /* TODO: add static flag */ { read: ViewContainerRef })
+  @ViewChild("popupBody", { read: ViewContainerRef, static: true })
   private popupBody: ViewContainerRef;
 
   @ViewChild("container", { static: true })
@@ -41,7 +41,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     private resolver: ComponentFactoryResolver,
     private element: ElementRef,
     private zone: NgZone
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const factory = this.resolver.resolveComponentFactory(this.content);
@@ -98,7 +98,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   deactive() {
     this.isActivated = false;
   }
-  onFullScreen() {}
+  onFullScreen() { }
 
   resizeBody() {
     //this.zone.runOutsideAngular(() => {

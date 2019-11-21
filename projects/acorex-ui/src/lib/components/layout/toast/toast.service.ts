@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { InjectionService } from "../../../core/injection.service";
+
 import { AXToastWrapperComponent } from "./toast-wrapper/toast-wrapper.component";
 import { AXToastMessageComponent } from "./toast-message/toast-message.component";
+import { AXRenderService } from "../../../core/utils/render/render.service";
 
 export interface IToastOptions {
   timeOut?: number;
@@ -11,7 +12,7 @@ export interface IToastOptions {
 
 @Injectable({providedIn:"root"})
 export class AXToastService {
-  constructor(private injectionService: InjectionService) {}
+  constructor(private injectionService: AXRenderService) {}
 
   info(message: string, options?: IToastOptions) {
     this.show(message, "info", options);

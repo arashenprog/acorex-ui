@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { EventService } from "./event.service";
-import { InjectionService } from "./injection.service";
+
 import { TranslateService, TranslatePipe } from "./translate.service";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -24,7 +24,6 @@ import { AXComponentFactoryService } from "./component-factory.service";
   providers: [
     EventService,
     AXComponentFactoryService,
-    InjectionService,
     TranslateService,
     AXStorageService
   ]

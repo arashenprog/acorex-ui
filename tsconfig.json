@@ -48,5 +48,6 @@
     "node_modules/ng4-fittext/*.d.ts"
   ],
   "exclude": [],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "enableIvy": true  
 }

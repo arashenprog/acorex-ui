@@ -3,8 +3,9 @@ import { AXWidgetService, IWidget } from './widget.service';
 import { GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 import { AXWidgetPickerPage } from './widget-picker.page';
 import { AXWidgetComponent } from './widget.component';
-import { InjectionService } from '../../../core/injection.service';
+
 import { AXPopupService } from '../../nav/popup/popup.service';
+import { AXRenderService } from '../../../core/utils/render/render.service';
 
 export interface AXWidgetManagerChangeEvent {
     json: string,
@@ -32,7 +33,7 @@ export class AXWidgetManagerComponent implements OnInit {
     gridItems: Array<GridsterItem> = [];
 
     constructor(
-        private injection: InjectionService,
+        private injection: AXRenderService,
         private el: ElementRef,
         private widgetService: AXWidgetService,
         private popupService: AXPopupService) {

@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, Input, ElementRef, ViewEncapsulation, TemplateRef, ViewContainerRef, Renderer2, EventEmitter, Output } from "@angular/core";
 import { AXTextInputBaseComponent } from "../../../core/base.class";
-import { InjectionService } from "../../../core/injection.service";
+
 import { AXProgressBarComponent } from "../../layout/progress-bar/progress-bar.component";
 import { AXUploadFileLoadEvent, AXUploadFileProgressEvent } from "./upload-file.events";
+import { AXRenderService } from "../../../core/utils/render/render.service";
 
 @Component({
   selector: "ax-upload-file",
@@ -78,7 +79,7 @@ export class AXUploadFileComponent extends AXTextInputBaseComponent {
   constructor(
     private el: ElementRef<HTMLElement>,
     private viewContainerRef: ViewContainerRef,
-    private injectionService: InjectionService,
+    private injectionService: AXRenderService,
     private rendrer: Renderer2) {
     super();
   }
