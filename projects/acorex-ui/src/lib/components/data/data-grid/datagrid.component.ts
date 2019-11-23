@@ -188,9 +188,6 @@ export class AXDataGridComponent {
     //
     if (!this.loadOnInit) return;
     //
-
-    //
-    debugger;
     if (that.remoteOperation) {
       let dataSource = {
         rowCount: null,
