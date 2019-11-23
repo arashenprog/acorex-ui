@@ -15,9 +15,9 @@ import { AXTextBoxModule } from '../../form/text-box/text-box.module';
 import { AXCheckBoxModule } from '../../form/checkbox/checkbox.module';
 import { AXSelectBoxModule } from '../../form/select-box/select-box.module';
 import { AXButtonModule } from '../../form/button/button.module';
-import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from "./templates/row-template.component";
 import { DateRenderer, AXGridDateColumn } from "./columns/date-column.component";
-import { AXDataGridCellTemplateRenderer } from "./columns/column.component";
+import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from './templates/row-template.component'
+import { AXDataGridCellTemplateComponent, AXDataGridCellTemplateRenderer } from './templates/cell-template.component'
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import { AXDataGridCellTemplateRenderer } from "./columns/column.component";
     AXDataGridFilterComponent,
     AXDataGridRowTemplateComponent,
     AXDataGridRowTemplateRenderer,
+    AXDataGridCellTemplateComponent,
     AXDataGridCellTemplateRenderer,
     CommandRenderer],
   imports: [
@@ -51,6 +52,9 @@ import { AXDataGridCellTemplateRenderer } from "./columns/column.component";
     AXDataGridComponent,
     AXDataGridFilterComponent,
     AXDataGridRowTemplateComponent,
+    AXDataGridRowTemplateRenderer,
+    AXDataGridCellTemplateComponent,
+    AXDataGridCellTemplateRenderer,
     AXGridTextColumn,
     AXGridCheckColumn,
     AXGridDateColumn,
@@ -67,8 +71,10 @@ import { AXDataGridCellTemplateRenderer } from "./columns/column.component";
     BooleanFilterRenderer,
     CommandRenderer,
     TextFilterRenderer,
+    AXDataGridRowTemplateComponent,
     AXDataGridRowTemplateRenderer,
-    AXDataGridCellTemplateRenderer
+    AXDataGridCellTemplateComponent,
+    AXDataGridCellTemplateRenderer,
   ],
   providers: []
 })

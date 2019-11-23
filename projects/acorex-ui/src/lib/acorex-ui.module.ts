@@ -52,7 +52,7 @@ import { AXTooltipModule } from "./components/layout/tooltip/tooltip.module";
 import { AXHtmlModule } from "./core/utils/html/html.module";
 import { InjectionService } from "./core/injection.service";
 import { AXLOVModule } from "./components/data/data-lov/data-lov.module";
-import { AXSepratorModule } from "./core/utils/seprator/seprator.module";
+import { AXSeparatorModule } from "./core/utils/separator/separator.module";
 
 window["$"] = $;
 
@@ -100,7 +100,7 @@ let modules = [
   AXTooltipModule,
   AXHtmlModule,
   AXLOVModule,
-  AXSepratorModule
+  AXSeparatorModule
 ];
 @NgModule({
   declarations: [AXThemeWrapperComponent],
@@ -118,4 +118,4 @@ let modules = [
     }
   ]
 })
-export class ACoreXUIModule {}
+export class ACoreXUIModule { }

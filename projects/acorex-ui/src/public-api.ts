@@ -44,6 +44,6 @@ export * from "./lib/components/calendar/calendar-box/api";
 export * from "./lib/components/data/data-lov/api"
 
 export * from "./lib/core/utils/html/htmlToText.pipe";
-export * from "./lib/core/utils/seprator/seprator.pipe";
+export * from "./lib/core/utils/separator/separator.pipe";
 
 export * from "./lib/acorex-ui.module";

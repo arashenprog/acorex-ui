@@ -344,4 +344,14 @@ export class AXDataGridComponent {
       }
     }
   };
+
+
+
+  showLoading(): void {
+    this.gridApi.showLoadingOverlay();
+  }
+
+  hideLoading(): void {
+    this.gridApi.hideOverlay();
+  }
 }

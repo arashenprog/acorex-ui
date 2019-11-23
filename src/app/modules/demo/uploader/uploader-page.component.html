@@ -1,13 +1,6 @@
 <div class="ax-pad-md">
-  <ax-upload-file
-    #up
-    type="hidden"
-    label="upload avatar"
-    [dropRef]="el"
-    [progressRef]="el"
-    (onLoad)="onFileLoad($event)"
-    (onProgress)="onFileProgress($event)"
-  >
+  <ax-upload-file #up type="hidden" label="upload avatar" [dropRef]="el" [progressRef]="el"
+    (onLoad)="onFileLoad($event)" (onProgress)="onFileProgress($event)">
   </ax-upload-file>
   <div #el id="elm" style="width: 100px;height: 100px;background: #f00">
     DROP ZONE
@@ -16,36 +9,22 @@
 
   <button (click)="up.open()">OPEN</button>
 
-  <span tooltip="This sis tooltip" *ngIf="showTooltip" (click)="spanClick()"
-    >This sis tooltip</span
-  >
+  <span tooltip="This sis tooltip" *ngIf="showTooltip" (click)="spanClick()">This sis tooltip</span>
 
-  <ax-selection-list
-    [items]="items"
-    [(selectedValues)]="selectedValues"
-    mode="single"
-  ></ax-selection-list>
+  <ax-selection-list [items]="items" [(selectedValues)]="selectedValues" mode="single"></ax-selection-list>
   <br />
   <br />
   <div *ngFor="let item of selectedValues">{{ item }}</div>
 
-  <ax-select-box
-    [items]="items"
-    [allowSearch]="false"
-    [(selectedValues)]="selectedValues"
-  ></ax-select-box>
+  <ax-select-box [items]="items" [allowSearch]="false" [(selectedValues)]="selectedValues"></ax-select-box>
   <br />
   <br />
 
   <ax-color-picker></ax-color-picker>
 </div>
 
-<h1>Seprator {{ sampleNumber | seprator }}</h1>
-<ax-text-box
-  type="text"
-  [(text)]="stringNumber"
-  (textChange)="handleOnKey($event)"
-></ax-text-box>
+<h1>Separator {{ sampleNumber | separator }}</h1>
+<ax-text-box type="text" [(text)]="stringNumber" (textChange)="handleOnKey($event)"></ax-text-box>
 {{ stringNumber }}
 
 <ax-button [block]="true">aasd</ax-button>
