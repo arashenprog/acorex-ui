@@ -3,7 +3,7 @@ import {
   AXBasePageComponent,
   AXUploadFileLoadEvent,
   AXUploadFileProgressEvent,
-  AXseparatorPipe
+  AXSeparatorPipe
 } from "acorex-ui";
 
 @Component({
@@ -14,7 +14,7 @@ export class UploaderPage extends AXBasePageComponent {
   sampleNumber: number = 1000000000;
   stringNumber: string = "";
 
-  constructor(private separator: AXseparatorPipe) {
+  constructor(private separator: AXSeparatorPipe) {
     super();
   }
   ngOnInit() { }
