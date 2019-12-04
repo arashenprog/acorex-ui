@@ -19,7 +19,7 @@ export class AXFilterPanelComponent {
     @ViewChild('footer', { static: true }) footer: ElementRef<HTMLDivElement>;
     @ViewChild('savedList', { static: true }) savedList: ElementRef<HTMLDivElement>;
     @ViewChild('body', { static: true }) body: ElementRef<HTMLDivElement>;
-    @ViewChild('menu', { static: true }) menu: AXMenuComponent;
+    @ViewChild('menu', { static: false }) menu: AXMenuComponent;
     @ViewChild('tbxName', { static: true }) tbxName: AXTextBoxComponent;
 
     @ViewChildren(AXFilterColumnComponent) filters: QueryList<AXFilterColumnComponent>;
@@ -134,7 +134,7 @@ export class AXFilterPanelComponent {
         }
     }
 
-   
+
 
     removeFilter(f: AXFilterPredefined) {
         this.predefinedFilters = this.predefinedFilters.filter(c => c.name != f.name);
@@ -149,8 +149,8 @@ export class AXFilterPanelComponent {
     private applySize() {
         let h = 0;
         h += this.footer.nativeElement.getBoundingClientRect().height;
-        if (this.predefinedFilters && this.predefinedFilters.length)
-            h += this.savedList.nativeElement.getBoundingClientRect().height;
+        h += this.savedList.nativeElement.getBoundingClientRect().height;
+        h += 10;
         this.body.nativeElement.style.height = `calc(100% - ${h}px)`;
     }
 

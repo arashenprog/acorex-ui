@@ -238,11 +238,15 @@ export class AXDataGridComponent {
     this.enableRTL();
     //
     this.dataSource.onDataReceived.subscribe(c => {
+      this.hideLoading();
       if (this.dataSourceSuccessCallback) {
         this.dataSourceSuccessCallback(c, c.length);
       } else {
         this.gridApi.setRowData(c);
       }
+    });
+    this.dataSource.onFetchStart.subscribe(() => {
+      this.showLoading();
     });
     //
     if (this.searchInput) {

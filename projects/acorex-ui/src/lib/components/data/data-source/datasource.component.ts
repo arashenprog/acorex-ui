@@ -14,9 +14,7 @@ export class AXDataSourceComponent {
     read: AXDataSourceRead;
 
     onDataReceived: EventEmitter<any> = new EventEmitter<any>();
-
-
-
+    onFetchStart: EventEmitter<void> = new EventEmitter<void>();
 
     ngOnInit(): void {
         if (this.read) {
@@ -26,12 +24,8 @@ export class AXDataSourceComponent {
         }
     }
 
-    ngAfterViewInit(): void {
-
-    }
-
-
     fetch(params: AXDataSourceReadParams = {}) {
+        this.onFetchStart.emit();
         if (this.read) {
             this.read.fetch(params);
         }
