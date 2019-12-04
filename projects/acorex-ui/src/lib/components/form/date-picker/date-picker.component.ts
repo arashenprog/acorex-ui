@@ -22,7 +22,7 @@ export class AXDatePickerComponent extends AXValidatableComponent {
     @Input() placeholder: string = "";
     @Input() showClear: boolean = false;
 
-    @Input() label: string = "Date";
+    @Input() label: string = null;
 
     model: any = null;
     _text: string = ""

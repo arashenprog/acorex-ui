@@ -4,7 +4,7 @@ import {
   AXHttpService,
   CheckItem,
   AXToastService,
-  DialogService,
+  AXDialogService,
   AXPopupService,
   MenuItem,
   SelectItem
@@ -20,7 +20,7 @@ export class DemoPage extends AXBasePageComponent {
   constructor(
     private http: AXHttpService,
     private toast: AXToastService,
-    private dialog: DialogService,
+    private dialog: AXDialogService,
     private popup: AXPopupService
   ) {
     super();

@@ -16,6 +16,7 @@ speed-measure-plugin.json
 package-lock.json
 # IDEs and editors
 /.idea
+/.vs
 .project
 .classpath
 .c9/

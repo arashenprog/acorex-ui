@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {
     AXHttpService,
     AXToastService,
-    DialogService,
+    AXDialogService,
     AXPopupService,
     AXBasePageComponent,
     AXFilterColumnGroup,
@@ -268,7 +268,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     constructor(
         private http: AXHttpService,
         private toast: AXToastService,
-        private dialog: DialogService,
+        private dialog: AXDialogService,
         private popup: AXPopupService
     ) {
         super();
