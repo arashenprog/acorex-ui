@@ -9,3 +9,4 @@ export * from "./datagrid.events";
 export * from "./datagrid.module";
 export * from "./filters/filter.component";
 export * from "./templates/row-template.component";
+export * from "./templates/cell-template.component";

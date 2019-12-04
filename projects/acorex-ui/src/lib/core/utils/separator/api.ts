@@ -1,2 +1,2 @@
-export * from './seprator.module'
-export * from './seprator.pipe'
+export * from './separator.module'
+export * from './separator.pipe'
