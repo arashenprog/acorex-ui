@@ -3,11 +3,6 @@
 .rtl {
   .ax-selection-list {
     .radio-container {
-      padding-right: 30px !important;
-      padding-left: 0 !important;
-      margin-left: 10px !important;
-      margin-right: 0 !important;
-
       .checkmark {
         right: 0 !important;
         left: inherit !important;
@@ -31,7 +26,7 @@
   .radio-container {
     display: inline-block;
     position: relative;
-    padding-left: 20px;
+    padding-inline-start: 20px;
     cursor: pointer;
     font-size: 14px;
     line-height: 20px;

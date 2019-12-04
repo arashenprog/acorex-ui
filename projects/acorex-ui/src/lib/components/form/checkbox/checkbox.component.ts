@@ -13,6 +13,7 @@ import { AXBaseComponent, AXCheckedBaseComponent } from "../../../core/base.clas
   selector: "ax-check-box",
   templateUrl: "./checkbox.component.html",
   styleUrls: ["./checkbox.component.scss"],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXCheckBoxComponent extends AXCheckedBaseComponent {

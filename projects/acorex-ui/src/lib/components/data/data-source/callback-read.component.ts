@@ -22,8 +22,10 @@ export class AXDataSourceCallbackRead extends AXDataSourceRead {
     }
 
     fetch(params: AXDataSourceReadParams) {
-        this.provideData(params).then(data => {
-            this.onDataReceived.emit(data);
-        });
+        if (this.provideData) {
+            this.provideData(params).then(data => {
+                this.onDataReceived.emit(data);
+            });
+        }
     }
 }

@@ -3,7 +3,7 @@ import {
   AXBasePageComponent,
   AXUploadFileLoadEvent,
   AXUploadFileProgressEvent,
-  AXSepratorPipe
+  AXSeparatorPipe
 } from "acorex-ui";
 
 @Component({
@@ -14,13 +14,13 @@ export class UploaderPage extends AXBasePageComponent {
   sampleNumber: number = 1000000000;
   stringNumber: string = "";
 
-  constructor(private seprator: AXSepratorPipe) {
+  constructor(private separator: AXSeparatorPipe) {
     super();
   }
-  ngOnInit() {}
-  onFileLoad(e: AXUploadFileLoadEvent) {}
+  ngOnInit() { }
+  onFileLoad(e: AXUploadFileLoadEvent) { }
 
-  onFileProgress(e: AXUploadFileProgressEvent) {}
+  onFileProgress(e: AXUploadFileProgressEvent) { }
 
   aalert(e) {
     alert(e);
@@ -48,7 +48,7 @@ export class UploaderPage extends AXBasePageComponent {
   selectedValues: any[] = [1];
 
   handleOnKey(e) {
-    let s = this.seprator.transform(this.stringNumber);
-    console.log(s, "seprator");
+    let s = this.separator.transform(this.stringNumber);
+    console.log(s, "separator");
   }
 }

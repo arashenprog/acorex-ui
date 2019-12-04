@@ -98,7 +98,7 @@ export class AXTabPageService {
                 uid: options.uid,
                 active: true,
                 singleton: options.singleton,
-                pinned : options.pinned,
+                pinned: options.pinned,
             };
         }
         else {
@@ -216,6 +216,13 @@ export class AXTabPageService {
 
     sendMessage(message: AXTabPageMessage) {
         this.received.emit(message);
+    }
+
+    clear(): void {
+        this.tabs.forEach(c => {
+            this.close(c, {});
+        });
+        this.tabs = [];
     }
 
 }

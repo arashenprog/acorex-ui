@@ -1,13 +1,13 @@
-import { Input, ContentChild, TemplateRef, Component, ChangeDetectionStrategy, Directive } from '@angular/core';
+import { Input, ContentChild, TemplateRef } from '@angular/core';
 import { AXGridCellParams } from '../datagrid.events';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams } from 'ag-grid-community';
+import { AXDataGridCellTemplateRenderer, AXDataGridCellTemplateComponent } from '../templates/cell-template.component';
 
 
-@Directive()
 export abstract class AXGridDataColumn {
 
-    @ContentChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
+
+    @ContentChild(AXDataGridCellTemplateComponent)
+    cellTemplate: AXDataGridCellTemplateComponent;
 
     @Input()
     width: number = 100;
@@ -88,11 +88,9 @@ export abstract class AXGridDataColumn {
                 col.cellClass = this.cellClass;
         }
         //
-        if (this.templateRef != null) {
-            col.cellRendererFramework = AXDataGridCellTemplateRenderer;
-            col.cellRendererParams = {
-                templateRef: this.templateRef
-            }
+        if (this.cellTemplate != null) {
+            col.cellRendererFramework = this.cellTemplate.renderer;
+            col.cellRendererParams = this.cellTemplate.params;
         }
         if (!this.allowFiltering) {
             col.filter = false;
@@ -101,29 +99,7 @@ export abstract class AXGridDataColumn {
     }
 }
 
-@Component({
-    template: `
-        <ng-container *ngTemplateOutlet="templateRef; context: { cellValue: cellValue,rowData:rowData }">
-        </ng-container>
-    `,
-    changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class AXDataGridCellTemplateRenderer implements ICellRendererAngularComp {
-    cellValue: any;
-    rowData: any;
-    templateRef: TemplateRef<any>;
 
-    constructor() { }
-    agInit(params: ICellRendererParams): void {
-        this.cellValue = params.value;
-        this.rowData = params.data;
-        this.templateRef = (<any>params).templateRef;
-    }
-
-    refresh(params: ICellRendererParams): boolean {
-        return true;
-    }
-}
 
 
 
