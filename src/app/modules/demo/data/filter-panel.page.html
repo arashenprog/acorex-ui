@@ -26,16 +26,21 @@
                 </ax-data-source>
                 <ax-selection-column></ax-selection-column>
                 <ax-text-column field="firstname" caption="Firstname" [width]="100" sort="desc">
-                  <ng-template let-value="cellValue" let-data="rowData">
-                    {{data.lastname}} Arash
-                  </ng-template>
                 </ax-text-column>
                 <ax-text-column field="lastname" caption="Lastname" [width]="100"></ax-text-column>
                 <ax-text-column field="source" caption="Source" [width]="100"></ax-text-column>
                 <ax-text-column field="number" caption="Number" [width]="100"></ax-text-column>
                 <ax-text-column field="status" caption="Status" [width]="200"></ax-text-column>
-                <ax-text-column field="nextAction" caption="Next Action" [width]="200"></ax-text-column>
-                <ax-date-column field="registerDate" caption="Registered" format="P" [width]="100"></ax-date-column>
+                <ax-text-column field="nextAction" caption="Next Action" [width]="200">
+                  <ax-cell-template>
+                    <ng-template let-data>
+                       A# {{data.number}}
+                    </ng-template>
+                  </ax-cell-template>
+                </ax-text-column>
+                <ax-date-column field="registerDate" caption="Registered" format="P" [width]="100">
+                 
+                </ax-date-column>
                 <!-- <ax-date-column field="registerDate" caption="Registered" format="LLLL" [width]="100"></ax-date-column> -->
                 <!-- <ax-row-template>
                           <ng-template let-data>

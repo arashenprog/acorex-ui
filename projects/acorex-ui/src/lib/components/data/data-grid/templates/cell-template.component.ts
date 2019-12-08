@@ -9,7 +9,7 @@ import { ICellRendererParams } from "ag-grid-community";
 })
 
 export class AXDataGridCellTemplateComponent {
-    @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+    @ContentChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
     renderer: any;
     params: any;
     constructor() {
@@ -33,20 +33,18 @@ export class AXDataGridCellTemplateComponent {
     `
 })
 export class AXDataGridCellTemplateRenderer implements ICellRendererAngularComp {
-    cellValue: any;
     rowData: any;
     templateRef: TemplateRef<any>;
 
     constructor() { }
 
     agInit(params: ICellRendererParams): void {
-        debugger;
-        this.cellValue = params.value;
         this.rowData = params.data;
         this.templateRef = (<any>params).templateRef;
     }
 
     refresh(params: ICellRendererParams): boolean {
+        this.rowData = params.data;
         return true;
     }
 }

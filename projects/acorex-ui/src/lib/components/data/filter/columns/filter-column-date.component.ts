@@ -87,14 +87,14 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
                     condition: "equal",
                     field: this.field,
                     dataType: "date",
-                    value: this.fromDate
+                    value: this.fromDate.toISOString()
                 }
             case "specific":
                 return {
                     condition: "equal",
                     field: this.field,
                     dataType: "date",
-                    value: this.fromDate
+                    value: this.fromDate.toISOString()
                 }
             case "this-week":
                 this.toDate = today.endOf("week");
@@ -114,7 +114,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
             condition: "between",
             field: this.field,
             dataType: "date",
-            value: [this.fromDate, this.toDate]
+            value: [this.fromDate.toISOString(), this.toDate.toISOString()]
         }
     }
 }
