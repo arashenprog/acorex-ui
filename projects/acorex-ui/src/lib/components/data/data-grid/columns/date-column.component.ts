@@ -46,7 +46,6 @@ export class AXGridDateColumn extends AXGridDataColumn {
     };
 
     col.valueFormatter = function (params) {
-      debugger;
       let date: AXDateTime = AXDateTime.convert(params.value);
       if (date)
         return date.format(THAT.format)

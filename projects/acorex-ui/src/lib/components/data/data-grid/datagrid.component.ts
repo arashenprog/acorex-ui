@@ -178,41 +178,40 @@ export class AXDataGridComponent {
     else this.internalHeight = "100%";
   }
 
+
+  private get intenalGridDataSource()
+  {
+    let that=this;
+    return {
+      rowCount: null,
+      getRows: function (params) {
+        that.dataSourceSuccessCallback = params.successCallback;
+        let loadParams: AXDataSourceReadParams = {};
+        loadParams.searchText = that.searchText;
+        loadParams.skip = params.request.startRow;
+        loadParams.take = params.request.endRow - params.request.startRow;
+        loadParams.sort = params.request.sortModel.map(c => {
+          return {
+            field: c.colId,
+            sort: c.sort
+          };
+        });
+        loadParams.filter = params.request.filterModel;
+        that.dataSource.fetch(loadParams);
+      }
+    };
+  }
+
   internalGridReady(gridOptions: GridOptions) {
-    const that = this;
     this.gridApi = gridOptions.api;
     //
     this.mapColumns();
     //
-
+    this.calcHeight();
     //
     if (!this.loadOnInit) return;
-    //
-    if (that.remoteOperation) {
-      let dataSource = {
-        rowCount: null,
-        getRows: function (params) {
-          that.dataSourceSuccessCallback = params.successCallback;
-          let loadParams: AXDataSourceReadParams = {};
-          loadParams.searchText = that.searchText;
-          loadParams.skip = params.request.startRow;
-          loadParams.take = params.request.endRow - params.request.startRow;
-          loadParams.sort = params.request.sortModel.map(c => {
-            return {
-              field: c.colId,
-              sort: c.sort
-            };
-          });
-          loadParams.filter = params.request.filterModel;
-          that.dataSource.fetch(loadParams);
-        }
-      };
-      gridOptions.api.setServerSideDatasource(dataSource);
-    } else {
-      this.dataSource.fetch();
-    }
-    //
-    this.calcHeight();
+    this.refresh();
+    
   }
 
   ngAfterContentInit(): void {
@@ -275,7 +274,7 @@ export class AXDataGridComponent {
   refresh() {
     this.loadOnInit = true;
     if (this.remoteOperation) {
-      this.gridApi.refreshView();
+      this.gridApi.setServerSideDatasource(this.intenalGridDataSource);     
     } else {
       this.dataSource.fetch();
     }

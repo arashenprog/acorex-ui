@@ -19,13 +19,13 @@
         <ax-dock-panel type="stack" [size]="80">
           <ax-dock-content caption="Leads">
             <ng-template>
-              <ax-data-grid #grid height="100%" remoteOperation="true" [rowClass]="gridCellClass" (rowClick)="onRowClick($event)"
+              <ax-data-grid #grid height="100%"  [rowClass]="gridCellClass" (rowClick)="onRowClick($event)"
                 [loadOnInit]="false">
                 <ax-data-source>
                   <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
                 </ax-data-source>
                 <ax-selection-column></ax-selection-column>
-                <ax-text-column field="firstname" caption="Firstname" [width]="100">
+                <ax-text-column field="firstname" caption="Firstname" [width]="100" sort="desc">
                   <ng-template let-value="cellValue" let-data="rowData">
                     {{data.lastname}} Arash
                   </ng-template>
