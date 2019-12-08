@@ -2,19 +2,9 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewChild,
-  ViewContainerRef,
   Input
 } from "@angular/core";
 import { AXGridDataColumn } from "./column.component";
-import { ICellRendererAngularComp, IFilterAngularComp } from "ag-grid-angular";
-import {
-  ICellRendererParams,
-  IFilterParams,
-  RowNode,
-  IDoesFilterPassParams,
-  IAfterGuiAttachedParams
-} from "ag-grid-community";
 import { AXDateTime } from "../../../../core/calendar/datetime";
 
 @Component({
@@ -32,105 +22,38 @@ export class AXGridDateColumn extends AXGridDataColumn {
   format: string = "YYYY-MM-DD";
 
   render() {
+    let THAT = this;
     let col = super.render();
 
-    if (!col.cellRendererFramework)
-      col.cellRendererFramework = DateRenderer;
 
     col.cellRendererParams = {
       format: this.format,
     }
-    col.comparator = (valueA: AXDateTime, valueB: AXDateTime, nodeA, nodeB, isInverted) => {
-      if (valueA === null && valueB === null) {
+    col.comparator = (valueA: any, valueB: any, nodeA, nodeB, isInverted) => {
+      let date1 = AXDateTime.convert(valueA);
+      let date2 = AXDateTime.convert(valueB);
+      //
+      if (date1 === null && date2 === null) {
         return 0;
       }
-      if (valueA === null) {
+      if (date1 === null) {
         return -1;
       }
-      if (valueB === null) {
+      if (date2 === null) {
         return 1;
       }
-      return (valueA.date.getTime() - valueB.date.getTime());
+      return (date1.date.getTime() - date2.date.getTime());
     };
-    //col.filterFramework = DateFilterRenderer;
+
+    col.valueFormatter = function (params) {
+      debugger;
+      let date: AXDateTime = AXDateTime.convert(params.value);
+      if (date)
+        return date.format(THAT.format)
+      else
+        return null
+    }
+
     return col;
   }
 }
-
-@Component({
-  template: `
-    {{ value | dt:format}}
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class DateRenderer implements ICellRendererAngularComp {
-  value: AXDateTime;
-  format: string = "YYYY-MM-DD";
-
-  constructor() { }
-  agInit(params: ICellRendererParams): void {
-    this.format = (<any>params).format;
-    this.value = params.value;
-  }
-
-  refresh(params: ICellRendererParams): boolean {
-    this.value = params.value;
-    return true;
-  }
-}
-
-// @Component({
-//   template: `
-//     <ax-data-grid-filter>
-//       <ax-select-box
-//         label="Select Box"
-//         [items]="selectItem"
-//       ></ax-select-box>
-//     </ax-data-grid-filter>
-//   `,
-//   changeDetection: ChangeDetectionStrategy.OnPush
-// })
-// export class DateFilterRenderer implements IFilterAngularComp {
-//   public value?: boolean = null;
-//   private params: IFilterParams;
-//   private valueGetter: (rowNode: RowNode) => any;
-//   @ViewChild("input", { read: ViewContainerRef }) public input;
-
-//   selectItem = [
-//     { value: 0, label: "True" },
-//     { value: 1, label: "False" },
-//   ];
-//   agInit(params: IFilterParams): void {
-//     this.params = params;
-//     this.valueGetter = params.valueGetter;
-//   }
-
-//   isFilterActive(): boolean {
-//     return this.value !== null && this.value !== undefined;
-//   }
-
-//   doesFilterPass(params: IDoesFilterPassParams): boolean {
-//     return this.value == this.valueGetter(params.node);
-//   }
-
-//   getModel(): any {
-//     return { value: this.value, hi: "arash" };
-//   }
-
-//   setModel(model: any): void {
-//     this.value = model ? model.value : null;
-//   }
-
-//   ngAfterViewInit(params: IAfterGuiAttachedParams): void {
-//     window.setTimeout(() => {
-//       this.input.element.nativeElement.focus();
-//     });
-//   }
-
-//   onChange(newValue): void {
-//     if (this.value !== newValue) {
-//       this.value = newValue;
-//       this.params.filterChangedCallback();
-//     }
-//   }
-// }

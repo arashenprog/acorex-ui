@@ -7,6 +7,8 @@ import { AXToastService } from '../../../layout/toast/toast.service';
 import { AXKeyboardEvent } from '../../../../core/events/keyboard';
 import { AXTextBoxComponent } from '../../../../components/form/text-box/text-box.component';
 
+
+
 @Component({
     selector: 'ax-filter-panel',
     templateUrl: './filter-panel.component.html',

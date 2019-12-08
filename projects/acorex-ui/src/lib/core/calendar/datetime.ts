@@ -8,6 +8,21 @@ export type TimeDuration = "seconds" | "minutes" | "hours" | "days" | "weeks" | 
 export class AXDateTime {
 
 
+    static convert(value: any): AXDateTime {
+        let date: AXDateTime;
+        if (typeof value === "string" || value instanceof String) {
+            date = new AXDateTime(<string>value);
+        }
+        else if (value instanceof Date) {
+            date = new AXDateTime(<Date>value);
+        }
+        else if (value instanceof AXDateTime) {
+            date = value
+        }
+        return date;
+    }
+
+
     private _date: Date;
     get date(): Date {
         return this._date;
@@ -15,7 +30,7 @@ export class AXDateTime {
 
 
     private get _moment(): moment_.Moment {
-        let m= moment(this.date);
+        let m = moment(this.date);
         //m.locale("fa");
         return m;
     }
@@ -137,6 +152,10 @@ export class AXDateTime {
             return 1;
         else
             return 0;
+    }
+
+    toISOString() {
+        return this._date.toISOString();
     }
 
 }

@@ -5,16 +5,13 @@ import { AXDateTime } from "./datetime";
 export class AXDateTimePipe implements PipeTransform {
     constructor() { }
 
-    transform(value: AXDateTime | Date, format: string): string {
+    transform(value: any, format: string): string {
+        let date: AXDateTime = AXDateTime.convert(value);
         if (value == null)
             return "";
         if (!format)
-            value.toString();
-        if (value instanceof Date)
-            return new AXDateTime(value).format(format);
+            date.toString();
         else
-            return value.format(format);
-
-
+            return date.format(format);
     }
 }

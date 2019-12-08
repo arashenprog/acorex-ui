@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+
+
 import {
     AXHttpService,
     AXToastService,
@@ -11,8 +13,11 @@ import {
     AXDataGridComponent,
     AXFilterPanelComponent,
     AXFilterPredefined,
-    AXMathUtil
+    AXMathUtil,
+    ArrayUtil,
+    AXDataSourceReadParams
 } from 'acorex-ui';
+
 import { AXGridRowParams } from 'acorex-ui';
 
 const STATUS = [
@@ -253,9 +258,10 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         // }, 500);
     }
 
-    provideGridData = () => {
+    provideGridData = (e:AXDataSourceReadParams) => {
+        debugger;
         return new PromisResult(resolve => {
-            resolve(this.leads.query(this.gridFilter));
+            resolve(ArrayUtil.filter(this.leads,this.gridFilter));
         });
     };
 
@@ -274,26 +280,26 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         super();
         for (let i = 0; i < 300; i++) {
             let lead: any = {};
-            lead.firstname = ["Arash", "Reza", "Ali", "Alireza", "Kit", "Rod", "Sam"].pickRandom();
-            lead.lastname = ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom();
-            lead.source = ["Chat", "Website", "Social", "Ads", null].pickRandom();
-            let status = STATUS.pickRandom();
-            let nextAction = STATUS.pickRandom();
+            lead.firstname = ArrayUtil.pickRandom(["Arash", "Reza", "Ali", "Alireza", "Kit", "Rod", "Sam"]);
+            lead.lastname = ArrayUtil.pickRandom(["Enprog", "Safari", "Jenson", "Hamish"]);
+            lead.source = ArrayUtil.pickRandom(["Chat", "Website", "Social", "Ads", null]);
+            let status = ArrayUtil.pickRandom(STATUS);
+            let nextAction = ArrayUtil.pickRandom(STATUS);
             lead.status = status.text;
             lead.statusId = status.value;
             lead.nextAction = nextAction.text;
             lead.nextActionId = nextAction.value;
             lead.number = AXMathUtil.randomRange(1000, 1000000);
-            lead.registerDate = new AXDateTime().add("day", i - [10, 0, 23, 37, 98].pickRandom());
+            lead.registerDate = new AXDateTime().add("day", i - ArrayUtil.pickRandom([10, 0, 23, 37, 98])).toISOString();
             lead.staff = {
-                id: [1, 2, 3, 4].pickRandom(),
-                firstname: ["Sam", "Fred", "Kia", "Alex", "Bahar"].pickRandom(),
-                lastname: ["Enprog", "Safari", "Jenson", "Hamish"].pickRandom()
+                id: ArrayUtil.pickRandom([1, 2, 3, 4]),
+                firstname:  ArrayUtil.pickRandom(["Sam", "Fred", "Kia", "Alex", "Bahar"]),
+                lastname:  ArrayUtil.pickRandom(["Enprog", "Safari", "Jenson", "Hamish"])
             }
             lead.jobs = [];
-            for (let j = 0; j < [0, 1, 2, 3].pickRandom(); j++) {
+            for (let j = 0; j <  ArrayUtil.pickRandom([0, 1, 2, 3]); j++) {
                 lead.jobs.push({
-                    id: (i + j) * [120, 18, 39, 12].pickRandom(),
+                    id: (i + j) * ArrayUtil.pickRandom([120, 18, 39, 12]),
                     title: "Job #" + i + j
                 })
             }

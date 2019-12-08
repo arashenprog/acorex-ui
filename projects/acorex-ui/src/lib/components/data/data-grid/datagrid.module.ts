@@ -15,7 +15,7 @@ import { AXTextBoxModule } from '../../form/text-box/text-box.module';
 import { AXCheckBoxModule } from '../../form/checkbox/checkbox.module';
 import { AXSelectBoxModule } from '../../form/select-box/select-box.module';
 import { AXButtonModule } from '../../form/button/button.module';
-import { DateRenderer, AXGridDateColumn } from "./columns/date-column.component";
+import { AXGridDateColumn } from "./columns/date-column.component";
 import { AXDataGridRowTemplateComponent, AXDataGridRowTemplateRenderer } from './templates/row-template.component'
 import { AXDataGridCellTemplateComponent, AXDataGridCellTemplateRenderer } from './templates/cell-template.component'
 
@@ -29,7 +29,6 @@ import { AXDataGridCellTemplateComponent, AXDataGridCellTemplateRenderer } from 
     AXGridCommandColumn,
     BooleanRenderer,
     BooleanFilterRenderer,
-    DateRenderer,
     TextFilterRenderer,
     AXDataGridFilterComponent,
     AXDataGridRowTemplateComponent,
@@ -62,12 +61,10 @@ import { AXDataGridCellTemplateComponent, AXDataGridCellTemplateRenderer } from 
     AXGridCommandColumn,
     BooleanRenderer,
     BooleanFilterRenderer,
-    DateRenderer,
     CommandRenderer
   ],
   entryComponents: [
     BooleanRenderer,
-    DateRenderer,
     BooleanFilterRenderer,
     CommandRenderer,
     TextFilterRenderer,
