@@ -43,12 +43,17 @@ export class AXSelectionListComponent extends AXBaseComponent {
     return this._selectedItems.map(c => c[this.valueField]) || [];
   }
   public set selectedValues(v: any[]) {
-    this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
-    this.selectedValuesChange.emit(this.selectedValues);
+    let old = this.selectedValues;
+    if (v == null)
+      v = [];
+    if (JSON.stringify(old) != JSON.stringify(v)) {
+      this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+      this.selectedValuesChange.emit(this.selectedValues);
+    }
   }
 
   ngAfterViewInit(): void {
-   this.cdr.detectChanges();
+    this.cdr.detectChanges();
   }
 
   constructor(private cdr: ChangeDetectorRef) {
