@@ -46,4 +46,7 @@ export * from "./lib/components/data/data-lov/api"
 export * from "./lib/core/utils/html/htmlToText.pipe";
 export * from "./lib/core/utils/separator/separator.pipe";
 
+export * from "./lib/core/utils/scroll/api";
+
 export * from "./lib/acorex-ui.module";
+
