@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AXHorizontalScrollDirective } from "./scroll.directive";
+import { AXHorizontalScrollDirective, AXVerticalScrollDirective } from "./scroll.directive";
 
 @NgModule({
-  declarations: [AXHorizontalScrollDirective],
+  declarations: [AXHorizontalScrollDirective, AXVerticalScrollDirective],
   imports: [CommonModule],
-  exports: [AXHorizontalScrollDirective],
+  exports: [AXHorizontalScrollDirective, AXVerticalScrollDirective],
   providers: []
 })
-export class AXScrollModule {}
+export class AXScrollModule { }
