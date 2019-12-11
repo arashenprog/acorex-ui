@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, Input, ViewEncapsulation, HostListener } from "@angular/core";
 
 @Component({
   selector: "ax-image",
@@ -7,12 +7,12 @@ import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
   encapsulation: ViewEncapsulation.None
 })
 export class AXImageViewComponent implements OnInit {
-  constructor() {}
+  constructor() { }
   @Input()
   src: string;
   imageSrc: string;
   showModal: boolean = false;
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onImageClick(e) {
     this.imageSrc = e.target.currentSrc;
@@ -20,5 +20,11 @@ export class AXImageViewComponent implements OnInit {
   }
   onContainerImageClick() {
     this.showModal = false;
+  }
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.keyCode == 27) {
+      this.showModal = false;
+    }
   }
 }
