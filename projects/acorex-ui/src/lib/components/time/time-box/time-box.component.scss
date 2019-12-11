@@ -1,3 +1,26 @@
 .time-box{
-    
+    display: flex;
+    max-height: 300px;
+    >div{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: auto;
+        span{
+            border-bottom: 1px solid var(--border-color);
+            padding: 5px;
+            cursor: pointer;
+            text-align: center;
+            &:hover{
+                background: var(--border-color);
+            }
+        }
+        
+    }
+    .moment {
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        
+    }
 }
