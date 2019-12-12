@@ -4,22 +4,12 @@ import { fetchProp } from "../object/object-util";
 
 export class ArrayUtil {
 
-    /**
-    * pick randoem element from array
-    * @param array input array
-    * @returns array's element
-    */
+   
     static pickRandom(array: any[]):any {
         return array[Math.floor(Math.random() * array.length)]
     }
 
-    /**
-    * contact array at specific index
-    * @param array input array
-    * @param index index of concat
-    * @param rest array to concat
-    * @returns array's element
-    */
+  
     static insert(array: any[], index, ...rest) {
         array.splice.apply(array, [index, 0].concat(Array.prototype.slice.call(rest, 1)));
         return array;

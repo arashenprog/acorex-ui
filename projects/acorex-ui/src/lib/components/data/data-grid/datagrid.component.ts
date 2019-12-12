@@ -229,7 +229,7 @@ export class AXDataGridComponent {
 
   ngOnInit(): void {
     if (this.remoteOperation)
-      this.rowModelType = "serverSide";
+      this.rowModelType = "serverSide";         
   }
 
   ngAfterViewInit(): void {
@@ -254,6 +254,10 @@ export class AXDataGridComponent {
       });
     }
     //
+    if(this.remoteOperation)
+    {
+      this.gridApi.setServerSideDatasource(this.intenalGridDataSource); 
+    }
   }
 
   mapColumns() {
@@ -272,12 +276,12 @@ export class AXDataGridComponent {
   }
 
   refresh() {
-    this.loadOnInit = true;
     if (this.remoteOperation) {
-      this.gridApi.setServerSideDatasource(this.intenalGridDataSource);     
+      this.gridApi.purgeServerSideCache([]);       
     } else {
       this.dataSource.fetch();
     }
+    this.loadOnInit = true;
   }
 
   internalGridCellClicked(e: CellClickedEvent) {
