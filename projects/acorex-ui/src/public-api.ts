@@ -13,6 +13,7 @@ export * from "./lib/components/calendar/calendar-box/api";
 
 
 export * from "./lib/core/utils/scroll/api";
+export * from "./lib/components/time/time-box/api";
 
 export * from "./lib/acorex-ui.module";
 

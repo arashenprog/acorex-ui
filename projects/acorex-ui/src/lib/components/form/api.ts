@@ -12,3 +12,4 @@ export * from './text-area/api';
 export * from './text-box/api';
 export * from './upload-file/api';
 export * from './validation/api';
+export * from './time-picker/api';

@@ -161,7 +161,6 @@ export abstract class AXCheckedBaseComponent extends AXBaseComponent {
       this._value = val;
       this.valueChange.emit(val);
       this.cdr.markForCheck();
-      this.cdr.detectChanges();
     }
   }
   //

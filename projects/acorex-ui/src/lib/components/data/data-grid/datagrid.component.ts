@@ -204,14 +204,18 @@ export class AXDataGridComponent {
 
   internalGridReady(gridOptions: GridOptions) {
     this.gridApi = gridOptions.api;
-    //
+    //    
     this.mapColumns();
     //
     this.calcHeight();
     //
-    if (!this.loadOnInit) return;
+    if(this.remoteOperation)
+     {
+       this.gridApi.setServerSideDatasource(this.intenalGridDataSource); 
+     }
+    //
+    if (!this.loadOnInit) return;  
     this.refresh();
-    
   }
 
   ngAfterContentInit(): void {
@@ -229,19 +233,37 @@ export class AXDataGridComponent {
 
   ngOnInit(): void {
     if (this.remoteOperation)
-      this.rowModelType = "serverSide";
+      this.rowModelType = "serverSide";         
   }
 
   ngAfterViewInit(): void {
     let that = this;
     this.enableRTL();
     //
-    this.dataSource.onDataReceived.subscribe(c => {
+    this.dataSource.onDataReceived.subscribe(data => {
       this.hideLoading();
+      let items:any[];
+      let totalCount:number;
+      if(Array.isArray(data))
+      {
+        items=data;
+        totalCount=data.length;
+      }
+      else
+      {
+        items=data.items;
+        totalCount=data.totalCount;
+      }
       if (this.dataSourceSuccessCallback) {
-        this.dataSourceSuccessCallback(c, c.length);
+        if(!this.loadOnInit)
+          this.dataSourceSuccessCallback([], 0);
+        else
+          this.dataSourceSuccessCallback(items, totalCount);
       } else {
-        this.gridApi.setRowData(c);
+        if(!this.loadOnInit)
+          this.gridApi.setRowData([]);
+        else 
+          this.gridApi.setRowData(items);
       }
     });
     this.dataSource.onFetchStart.subscribe(() => {
@@ -253,7 +275,7 @@ export class AXDataGridComponent {
         this.searchText = c;
       });
     }
-    //
+   
   }
 
   mapColumns() {
@@ -274,10 +296,10 @@ export class AXDataGridComponent {
   refresh() {
     this.loadOnInit = true;
     if (this.remoteOperation) {
-      this.gridApi.setServerSideDatasource(this.intenalGridDataSource);     
+      this.gridApi.purgeServerSideCache([]);       
     } else {
       this.dataSource.fetch();
-    }
+    }    
   }
 
   internalGridCellClicked(e: CellClickedEvent) {
