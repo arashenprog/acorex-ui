@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../filter.class';
 import { CheckItem, BaseMenuItem } from '../../../../core/menu.class';
 import { AXSelectionListComponent } from '../../../form/selection-list/selection-list.component';
@@ -7,7 +7,7 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
     selector: 'ax-filter-column-selection',
     template: `
         <div class="ax-filter-section">
-           <ax-selection-list  [items]="items" [mode]="mode" direction="vertical" [(selectedItems)]="selectedItems">
+           <ax-selection-list  [items]="items" (selectedItemsChange)="onSelectChange($event)" [mode]="mode" direction="vertical" [(selectedItems)]="selectedItems">
            </ax-selection-list>
         </div>
     `,
@@ -30,6 +30,8 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
     @Input()
     dataType: any = "number";
 
+
+
     constructor(protected cdr: ChangeDetectorRef) {
         super(cdr);
     }
@@ -49,7 +51,10 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
         this.selectedItems = [];
         super.clear();
     }
+    onSelectChange(e) {
+        this.valueChange.emit(e);
 
+    }
 
     setFilter(value: any, operator: string) {
         ;

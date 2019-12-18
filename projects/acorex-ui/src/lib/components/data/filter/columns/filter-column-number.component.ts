@@ -1,5 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../filter.class';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 
 @Component({
     selector: 'ax-filter-column-number',
@@ -13,7 +16,7 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
                 </select>
             </div>
             <div>
-                <ax-text-box placeholder="Type here" [(text)]="value" *ngIf="operator!='is-not-empty' && operator!='is-empty'">
+                <ax-text-box placeholder="Type here" (textChange)="onTextChange($event)" [(text)]="value" *ngIf="operator!='is-not-empty' && operator!='is-empty'">
                 </ax-text-box>
             </div>
         </div>
@@ -23,6 +26,8 @@ import { AXFilterCondition, AXFilterColumn, AXFilterColumnComponent } from '../f
     ]
 })
 export class AXFilterColumnNumberComponent extends AXFilterColumnComponent {
+
+
 
     operator: string = "equal";
     operators: any[] = [
@@ -63,7 +68,21 @@ export class AXFilterColumnNumberComponent extends AXFilterColumnComponent {
     constructor(protected cdr: ChangeDetectorRef) {
         super(cdr);
     }
-    
+    private searchChangeObserver: any;
+    onTextChange(e) {
+        if (!this.searchChangeObserver) {
+            Observable.create(observer => {
+                this.searchChangeObserver = observer;
+            })
+                .pipe(debounceTime(500))
+                .pipe(distinctUntilChanged())
+                .subscribe(c => {
+                    this.valueChange.emit(e);
+                });
+        }
+        this.searchChangeObserver.next(e);
+    }
+
     get condition(): AXFilterCondition {
         return {
             condition: this.operator,

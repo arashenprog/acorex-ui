@@ -9,7 +9,7 @@
         <ax-dock-panel type="stack" [size]="20">
           <ax-dock-content caption="Filters">
             <ng-template>
-              <ax-filter-panel [groups]="filterGroups" [predefinedFilters]="savedList" #filterPanel
+              <ax-filter-panel [mode]="'immediate'" [groups]="filterGroups" [predefinedFilters]="savedList" #filterPanel
                 (filterChange)="onFilterChange($event)">
               </ax-filter-panel>
             </ng-template>
@@ -19,7 +19,7 @@
         <ax-dock-panel type="stack" [size]="80">
           <ax-dock-content caption="Leads">
             <ng-template>
-              <ax-data-grid #grid height="100%"  [rowClass]="gridCellClass" (rowClick)="onRowClick($event)"
+              <ax-data-grid #grid height="100%" [rowClass]="gridCellClass" (rowClick)="onRowClick($event)"
                 [loadOnInit]="false">
                 <ax-data-source>
                   <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
@@ -34,12 +34,12 @@
                 <ax-text-column field="nextAction" caption="Next Action" [width]="200">
                   <ax-cell-template>
                     <ng-template let-data>
-                       A# {{data.number}}
+                      A# {{data.number}}
                     </ng-template>
                   </ax-cell-template>
                 </ax-text-column>
                 <ax-date-column field="registerDate" caption="Registered" format="P" [width]="100">
-                 
+
                 </ax-date-column>
                 <!-- <ax-date-column field="registerDate" caption="Registered" format="LLLL" [width]="100"></ax-date-column> -->
                 <!-- <ax-row-template>

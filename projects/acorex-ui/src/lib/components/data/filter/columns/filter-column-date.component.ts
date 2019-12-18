@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { AXFilterCondition, AXFilterColumnComponent } from '../filter.class';
 import { AXDateTime } from '../../../../core/calendar/datetime';
 import { AXSelectionListComponent } from '../../../form/selection-list/selection-list.component';
@@ -11,11 +11,11 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
             </ax-selection-list>
         </div>
         <div class="ax-filter-section-value" [hidden]="!showCustom">
-            <ax-date-picker label="From" [(value)]="fromDate"></ax-date-picker>
-            <ax-date-picker label="To" [(value)]="toDate"></ax-date-picker>
+            <ax-date-picker label="From" [(value)]="fromDate" (onDateChange)="dateChange($event)"></ax-date-picker>
+            <ax-date-picker label="To" [(value)]="toDate" (onDateChange)="dateChange($event)"></ax-date-picker>
         </div>
         <div class="ax-filter-section-value" [hidden]="!showSpecific">
-            <ax-date-picker label="Date" [(value)]="fromDate"></ax-date-picker>            
+            <ax-date-picker label="Date" [(value)]="fromDate" (onDateChange)="dateChange($event)"></ax-date-picker>            
         </div>
         
     `,
@@ -25,6 +25,8 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
+
+
 
     @ViewChild(AXSelectionListComponent, { static: true }) selection: AXSelectionListComponent;
 
@@ -70,7 +72,10 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
     ngAfterViewInit(): void {
         this.selection.selectedItems = [this.items[0]];
     }
+    dateChange(e) {
+        this.valueChange.emit(e);
 
+    }
     onSelectedChanged(items: any[]) {
         this.selectedItem = items[0];
         this.showCustom = this.selectedItem && this.selectedItem.value == "range";

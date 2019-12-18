@@ -21,11 +21,10 @@ export interface AXFilterCondition {
     value: any;
 }
 
-export interface AXFilterPredefined
-{
-    name:string;
-    title:string,
-    value:AXFilterCondition[];
+export interface AXFilterPredefined {
+    name: string;
+    title: string,
+    value: AXFilterCondition[];
 }
 
 @Directive()
@@ -39,7 +38,8 @@ export abstract class AXFilterColumnComponent {
     @Input()
     field: string = null;
 
-   
+    @Output()
+    valueChange: EventEmitter<AXFilterCondition[]> = new EventEmitter<AXFilterCondition[]>();
 
 
     @Output()
@@ -56,7 +56,7 @@ export abstract class AXFilterColumnComponent {
     }
 
 
-    abstract get  condition(): AXFilterCondition ;
+    abstract get condition(): AXFilterCondition;
 
     clear() {
         this.active = false;

@@ -18,6 +18,7 @@ import { AXTextBoxComponent } from '../../../../components/form/text-box/text-bo
 })
 export class AXFilterPanelComponent {
 
+    @ViewChild('panel', { static: true }) panel: ElementRef<HTMLDivElement>;
     @ViewChild('footer', { static: true }) footer: ElementRef<HTMLDivElement>;
     @ViewChild('savedList', { static: true }) savedList: ElementRef<HTMLDivElement>;
     @ViewChild('body', { static: true }) body: ElementRef<HTMLDivElement>;
@@ -31,6 +32,11 @@ export class AXFilterPanelComponent {
 
     @Input()
     predefinedFilters: AXFilterPredefined[] = [];
+
+    @Input()
+    mode: "click" | "immediate" = "click";
+
+
 
     saveItems: MenuItem[] = [
         {
@@ -77,6 +83,17 @@ export class AXFilterPanelComponent {
 
 
 
+    onValueChange(e) {
+
+        console.log("mode", this.mode)
+        if (this.mode == "immediate") {
+            console.log("change", this.value)
+            this.filterChange.emit(this.value);
+            this.updateMenu();
+
+        }
+    }
+
 
 
     get value(): AXFilterCondition[] {
@@ -107,6 +124,10 @@ export class AXFilterPanelComponent {
     }
 
     ngAfterViewInit(): void {
+        let footer = this.panel.nativeElement.querySelector(".footer");
+        if (!footer) {
+            this.body.nativeElement.style.height = 'calc(100% - 110px)'
+        }
         setTimeout(() => {
             if (this.predefinedFilters) {
                 this.setFilterByIndex(0);
