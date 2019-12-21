@@ -139,6 +139,11 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             caption: "STATUS",
             columns: [
                 {
+                    caption: "Date within",
+                    type: "date",
+                    field: "date"
+                },
+                {
                     caption: "Current Status",
                     type: "selection",
                     options: {
@@ -258,10 +263,10 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
         // }, 500);
     }
 
-    provideGridData = (e:AXDataSourceReadParams) => {
+    provideGridData = (e: AXDataSourceReadParams) => {
         debugger;
         return new PromisResult(resolve => {
-            resolve(ArrayUtil.filter(this.leads,this.gridFilter));
+            resolve(ArrayUtil.filter(this.leads, this.gridFilter));
         });
     };
 
@@ -293,11 +298,11 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
             lead.registerDate = new AXDateTime().add("day", i - ArrayUtil.pickRandom([10, 0, 23, 37, 98])).toISOString();
             lead.staff = {
                 id: ArrayUtil.pickRandom([1, 2, 3, 4]),
-                firstname:  ArrayUtil.pickRandom(["Sam", "Fred", "Kia", "Alex", "Bahar"]),
-                lastname:  ArrayUtil.pickRandom(["Enprog", "Safari", "Jenson", "Hamish"])
+                firstname: ArrayUtil.pickRandom(["Sam", "Fred", "Kia", "Alex", "Bahar"]),
+                lastname: ArrayUtil.pickRandom(["Enprog", "Safari", "Jenson", "Hamish"])
             }
             lead.jobs = [];
-            for (let j = 0; j <  ArrayUtil.pickRandom([0, 1, 2, 3]); j++) {
+            for (let j = 0; j < ArrayUtil.pickRandom([0, 1, 2, 3]); j++) {
                 lead.jobs.push({
                     id: (i + j) * ArrayUtil.pickRandom([120, 18, 39, 12]),
                     title: "Job #" + i + j
@@ -311,6 +316,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
 
     gridFilter: any = null;
     onFilterChange(filter) {
+        console.log("f", filter)
         this.gridFilter = filter;
         this.grid.refresh();
     }

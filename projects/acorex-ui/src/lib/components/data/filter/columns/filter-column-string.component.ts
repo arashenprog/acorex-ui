@@ -75,7 +75,7 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
                 .pipe(debounceTime(500))
                 .pipe(distinctUntilChanged())
                 .subscribe(c => {
-                    this.valueChange.emit(e);
+                    this.valueChange.emit();
                 });
         }
         this.searchChangeObserver.next(e);

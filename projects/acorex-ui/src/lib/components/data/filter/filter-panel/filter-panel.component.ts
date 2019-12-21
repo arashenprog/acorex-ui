@@ -36,8 +36,6 @@ export class AXFilterPanelComponent {
     @Input()
     mode: "click" | "immediate" = "click";
 
-
-
     saveItems: MenuItem[] = [
         {
             name: "saveAs",
@@ -56,9 +54,6 @@ export class AXFilterPanelComponent {
         },
 
     ];
-
-
-
 
     @Output()
     filterChange: EventEmitter<AXFilterCondition[]> = new EventEmitter<AXFilterCondition[]>();
@@ -81,20 +76,13 @@ export class AXFilterPanelComponent {
         this.updateMenu();
     }
 
-
-
     onValueChange(e) {
 
-        console.log("mode", this.mode)
         if (this.mode == "immediate") {
-            console.log("change", this.value)
             this.filterChange.emit(this.value);
             this.updateMenu();
-
         }
     }
-
-
 
     get value(): AXFilterCondition[] {
         let con: AXFilterCondition[] = [];
@@ -107,6 +95,8 @@ export class AXFilterPanelComponent {
         }
         return con;
     }
+
+
 
     public load(filters: AXFilterCondition[]): void {
         this.filters.forEach(e => {

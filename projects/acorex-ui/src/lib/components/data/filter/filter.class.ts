@@ -39,7 +39,7 @@ export abstract class AXFilterColumnComponent {
     field: string = null;
 
     @Output()
-    valueChange: EventEmitter<AXFilterCondition[]> = new EventEmitter<AXFilterCondition[]>();
+    valueChange: EventEmitter<void> = new EventEmitter<void>();
 
 
     @Output()

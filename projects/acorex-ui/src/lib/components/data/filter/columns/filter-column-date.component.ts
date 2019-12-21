@@ -11,11 +11,11 @@ import { AXSelectionListComponent } from '../../../form/selection-list/selection
             </ax-selection-list>
         </div>
         <div class="ax-filter-section-value" [hidden]="!showCustom">
-            <ax-date-picker label="From" [(value)]="fromDate" (onDateChange)="dateChange($event)"></ax-date-picker>
-            <ax-date-picker label="To" [(value)]="toDate" (onDateChange)="dateChange($event)"></ax-date-picker>
+            <ax-date-picker label="From" [(value)]="fromDate" (valueChange)="dateChange($event)"></ax-date-picker>
+            <ax-date-picker label="To" [(value)]="toDate" (valueChange)="dateChange($event)"></ax-date-picker>
         </div>
         <div class="ax-filter-section-value" [hidden]="!showSpecific">
-            <ax-date-picker label="Date" [(value)]="fromDate" (onDateChange)="dateChange($event)"></ax-date-picker>            
+            <ax-date-picker label="Date" [(value)]="fromDate" (valueChange)="dateChange($event)"></ax-date-picker>            
         </div>
         
     `,
@@ -73,14 +73,16 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         this.selection.selectedItems = [this.items[0]];
     }
     dateChange(e) {
-        this.valueChange.emit(e);
+        this.valueChange.emit();
 
     }
     onSelectedChanged(items: any[]) {
+
         this.selectedItem = items[0];
         this.showCustom = this.selectedItem && this.selectedItem.value == "range";
         this.showSpecific = this.selectedItem && this.selectedItem.value == "specific";
         this.cdr.markForCheck();
+        this.valueChange.emit();
     }
 
     get condition(): AXFilterCondition {
@@ -88,6 +90,7 @@ export class AXFilterColumnDateComponent extends AXFilterColumnComponent {
         switch (this.selectedItem.value) {
             case "today":
                 this.fromDate = this.toDate = today;
+
                 return {
                     condition: "equal",
                     field: this.field,

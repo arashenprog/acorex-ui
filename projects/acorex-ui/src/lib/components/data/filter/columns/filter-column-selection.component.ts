@@ -52,7 +52,7 @@ export class AXFilterColumnSelectionComponent extends AXFilterColumnComponent {
         super.clear();
     }
     onSelectChange(e) {
-        this.valueChange.emit(e);
+        this.valueChange.emit();
 
     }
 
