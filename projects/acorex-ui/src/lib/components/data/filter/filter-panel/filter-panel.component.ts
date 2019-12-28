@@ -84,7 +84,7 @@ export class AXFilterPanelComponent {
     }
 
     onCheckValueChange(v, e) {
-        debugger
+
 
         if (!e && this.mode == "immediate") {
             this.filters.forEach(c => {
