@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
     template: `
         <div class="ax-filter-section">
             <div>
-                <select class="form-control form-control-sm"  [(ngModel)]="operator">
+                <select (ngModelChange)="onOperatorChange($event)" class="form-control form-control-sm"  [(ngModel)]="operator">
                     <option *ngFor="let o of operators" [attr.value]="o.value">
                         {{o.title}}
                     </option>
@@ -66,6 +66,13 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
     }
 
     private searchChangeObserver: any;
+
+    onOperatorChange(e) {
+        if (e == "is-empty" || e == "is-not-empty") {
+            this.valueChange.emit();
+        }
+    }
+
     onTextChange(e) {
 
         if (!this.searchChangeObserver) {
