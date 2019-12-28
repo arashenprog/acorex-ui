@@ -77,9 +77,13 @@ export class AXFilterPanelComponent {
     }
 
     onValueChange(e) {
+        debugger
         if (this.mode == "immediate") {
-            this.filterChange.emit(this.value);
-            this.updateMenu();
+            setTimeout(() => {
+                this.filterChange.emit(this.value);
+                this.updateMenu();
+            }, 50);
+
         }
     }
 
@@ -92,8 +96,11 @@ export class AXFilterPanelComponent {
                     c.clear();
                 }
             })
-            this.filterChange.emit(this.value.filter(c => c.field != v.field));
-            this.updateMenu();
+            setTimeout(() => {
+                this.filterChange.emit(this.value.filter(c => c.field != v.field));
+                this.updateMenu();
+            }, 50);
+
         }
     }
 

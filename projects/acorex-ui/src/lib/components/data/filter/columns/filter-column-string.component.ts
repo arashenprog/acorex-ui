@@ -68,6 +68,7 @@ export class AXFilterColumnStringComponent extends AXFilterColumnComponent {
     private searchChangeObserver: any;
 
     onOperatorChange(e) {
+        debugger
         if (e == "is-empty" || e == "is-not-empty") {
             this.valueChange.emit();
         }
