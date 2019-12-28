@@ -77,9 +77,22 @@ export class AXFilterPanelComponent {
     }
 
     onValueChange(e) {
-
         if (this.mode == "immediate") {
             this.filterChange.emit(this.value);
+            this.updateMenu();
+        }
+    }
+
+    onCheckValueChange(v, e) {
+        debugger
+
+        if (!e && this.mode == "immediate") {
+            this.filters.forEach(c => {
+                if (c.field == v.field) {
+                    c.clear();
+                }
+            })
+            this.filterChange.emit(this.value.filter(c => c.field != v.field));
             this.updateMenu();
         }
     }

@@ -71,7 +71,8 @@
                 </ng-template>
                 <ng-container *ngFor="let c of g.columns">
                     <div class="ax-filter-item-header" [style.margin-bottom.px]="c.active ? 0 : 2">
-                        <ax-check-box (valueChange)="onValueChange($event)" [label]="c.caption" [(value)]="c.active">
+                        <ax-check-box (valueChange)="onCheckValueChange(c,$event)" [label]="c.caption"
+                            [(value)]="c.active">
                         </ax-check-box>
                     </div>
                     <div [hidden]="!c.active">
