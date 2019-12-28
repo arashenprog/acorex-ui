@@ -108,7 +108,8 @@ export class AXFilterPanelComponent {
         let con: AXFilterCondition[] = [];
         if (this.filters) {
             this.filters.forEach(e => {
-                if (e.active && e.condition) {
+
+                if (e.active && e.condition && ((e.condition.value != null) || (e.condition.value == null && (e.condition.condition == "is-empty" || e.condition.condition == "is-not-empty")))) {
                     con.push(e.condition);
                 }
             });

@@ -70,9 +70,9 @@ export class AXFilterColumnNumberComponent extends AXFilterColumnComponent {
     }
     private searchChangeObserver: any;
     onOperatorChange(e) {
-        if (e == "is-empty" || e == "is-not-empty") {
-            this.valueChange.emit();
-        }
+
+        this.valueChange.emit();
+
     }
     onTextChange(e) {
         if (!this.searchChangeObserver) {
