@@ -68,6 +68,7 @@ export abstract class AXGridDataColumn {
             col.sort = this.sort;
         if (this.enableRowGroup)
             col.enableRowGroup = this.enableRowGroup;
+
         if (this.rowGroupIndex >= 0) {
             col.rowGroupIndex = this.rowGroupIndex;
             col.rowGroup = true;

@@ -7,6 +7,9 @@ export interface AXSortParams {
     field?: string;
     sort?: "asc" | "desc";
 }
+export interface AXGroups {
+    field?: string;
+}
 
 export interface AXFilterParams {
     field?: string;
@@ -25,6 +28,8 @@ export interface AXDataSourceReadParams {
     sort?: AXSortParams[];
     filter?: AXFilterParams[];
     searchText?: string;
+    groups?: string[];
+    groupKeys?: string[];
 }
 
 

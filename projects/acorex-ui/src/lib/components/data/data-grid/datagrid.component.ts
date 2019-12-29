@@ -179,9 +179,9 @@ export class AXDataGridComponent {
   }
 
 
-  private get intenalGridDataSource()
-  {
-    let that=this;
+  private get intenalGridDataSource() {
+
+    let that = this;
     return {
       rowCount: null,
       getRows: function (params) {
@@ -190,13 +190,18 @@ export class AXDataGridComponent {
         loadParams.searchText = that.searchText;
         loadParams.skip = params.request.startRow;
         loadParams.take = params.request.endRow - params.request.startRow;
+        debugger
         loadParams.sort = params.request.sortModel.map(c => {
           return {
             field: c.colId,
             sort: c.sort
           };
         });
+        loadParams.groups = params.request.rowGroupCols.map(r => { return r.field });
+
+        loadParams.groupKeys = params.request.groupKeys;
         loadParams.filter = params.request.filterModel;
+        // loadParams.groups = params.request.rowGroupCols;
         that.dataSource.fetch(loadParams);
       }
     };
@@ -209,12 +214,11 @@ export class AXDataGridComponent {
     //
     this.calcHeight();
     //
-    if(this.remoteOperation)
-     {
-       this.gridApi.setServerSideDatasource(this.intenalGridDataSource); 
-     }
+    if (this.remoteOperation) {
+      this.gridApi.setServerSideDatasource(this.intenalGridDataSource);
+    }
     //
-    if (!this.loadOnInit) return;  
+    if (!this.loadOnInit) return;
     this.refresh();
   }
 
@@ -233,7 +237,7 @@ export class AXDataGridComponent {
 
   ngOnInit(): void {
     if (this.remoteOperation)
-      this.rowModelType = "serverSide";         
+      this.rowModelType = "serverSide";
   }
 
   ngAfterViewInit(): void {
@@ -242,27 +246,25 @@ export class AXDataGridComponent {
     //
     this.dataSource.onDataReceived.subscribe(data => {
       this.hideLoading();
-      let items:any[];
-      let totalCount:number;
-      if(Array.isArray(data))
-      {
-        items=data;
-        totalCount=data.length;
+      let items: any[];
+      let totalCount: number;
+      if (Array.isArray(data)) {
+        items = data;
+        totalCount = data.length;
       }
-      else
-      {
-        items=data.items;
-        totalCount=data.totalCount;
+      else {
+        items = data.items;
+        totalCount = data.totalCount;
       }
       if (this.dataSourceSuccessCallback) {
-        if(!this.loadOnInit)
+        if (!this.loadOnInit)
           this.dataSourceSuccessCallback([], 0);
         else
           this.dataSourceSuccessCallback(items, totalCount);
       } else {
-        if(!this.loadOnInit)
+        if (!this.loadOnInit)
           this.gridApi.setRowData([]);
-        else 
+        else
           this.gridApi.setRowData(items);
       }
     });
@@ -275,7 +277,7 @@ export class AXDataGridComponent {
         this.searchText = c;
       });
     }
-   
+
   }
 
   mapColumns() {
@@ -296,10 +298,10 @@ export class AXDataGridComponent {
   refresh() {
     this.loadOnInit = true;
     if (this.remoteOperation) {
-      this.gridApi.purgeServerSideCache([]);       
+      this.gridApi.purgeServerSideCache([]);
     } else {
       this.dataSource.fetch();
-    }    
+    }
   }
 
   internalGridCellClicked(e: CellClickedEvent) {
