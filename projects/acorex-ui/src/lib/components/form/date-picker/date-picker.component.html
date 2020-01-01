@@ -1,4 +1,4 @@
-<ax-drop-down [text]="_text" label="{{ label }}" icon="fas fa-calendar-alt" #dropdown fitParent="false">
+<ax-drop-down [text]="_text" label="{{ label }}" icon="fas fa-calendar-alt" #dropdown fitParent="false" maxHeight="unset">
   <ax-calendar-box (valueChange)="onDateChange($event)" [(value)]="value"></ax-calendar-box>
 </ax-drop-down>
 <div class="validation-text" *ngIf="errorText">

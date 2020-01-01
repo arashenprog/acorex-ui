@@ -30,6 +30,8 @@ export class AXPopoverComponent {
   @Input("openMode") openMode: "manual" | "click" | "hover" = "manual";
   @Input("closeMode") closeMode: "manual" | "clickout" | "mouseout" = "clickout";
 
+  @Input("maxHeight") maxHeight: string="300px";
+
   @Input() distance: number = 5;
   private _visible: boolean;
 

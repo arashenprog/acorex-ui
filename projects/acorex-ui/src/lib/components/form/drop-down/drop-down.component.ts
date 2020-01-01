@@ -16,6 +16,7 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
   @Input() allowSearch: boolean = false;
   @Input() icon: string = "fas fa-angle-down";
   @Input() fitParent: boolean = true;
+  @Input("maxHeight") maxHeight: string="300px";
 
   @ContentChild('editorTemplate', { static: true })
   _contentEditorTemplate: TemplateRef<any>;
@@ -37,7 +38,7 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
   focus(): void { }
 
   handleDropdownButtonClick(e: MouseEvent) {
-    e.stopPropagation();
+    //e.stopPropagation();
     e.preventDefault();
     this.popSelectBox.toggle()
   }

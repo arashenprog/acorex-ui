@@ -1,8 +1,15 @@
 <div style="padding: 20px 100px">
   <ax-text-box label="Text Box"></ax-text-box>
+  <br>
   <ax-password-box></ax-password-box>
   <br>
-  <ax-selection-list mode="multiple" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
+  <ax-date-picker></ax-date-picker>
+  <br>
+  <!-- <ax-selection-list mode="single" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
 
-  </ax-selection-list>
+  </ax-selection-list> -->
+  <br>
+  <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
+
+  </ax-select-box>
 </div>

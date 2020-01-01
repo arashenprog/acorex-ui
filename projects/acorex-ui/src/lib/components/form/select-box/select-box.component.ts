@@ -24,10 +24,11 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   }
   @ViewChild("d", { static: true }) dropdown: AXDropDownComponent;
 
-  @Input() allowSearch: boolean = true;
+  @Input() allowSearch: boolean = false;
   @Input() label: string;
   @Input() textField: string = "text";
   @Input() valueField: string = "value";
+  @Input() mode: "single" | "multiple" = "single";
 
   // #region Search 
 
@@ -62,25 +63,36 @@ export class AXSelectBoxComponent extends AXDataListComponent {
     if (v) {
       this.items.forEach(c => (c.selected = false));
       v.forEach(c => (c.selected = true));
-      this.text = v.map(c => c[this.textField]).join(",");
+      this.text = v.map(c => c[this.textField]).join(", ");
     }
     this.selectedItemsChange.emit(v);
   }
 
-
   @Output()
-  selectedValuesChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  selectedValuesChange: EventEmitter<any[] | any> = new EventEmitter<any[] | any>();
 
   @Input()
-  public get selectedValues(): any[] {
-    return this._selectedItems.map(c => c[this.valueField]) || [];
+  public get selectedValues(): any[] | any {
+    if (this.mode == "single")
+      return this._selectedItems.map(c => c[this.valueField])[0];
+    else
+      return this._selectedItems.map(c => c[this.valueField]) || [];
   }
-  public set selectedValues(v: any[]) {
+  public set selectedValues(v: any[] | any) {
+    debugger;
     let old = this.selectedValues;
-    if (v == null)
-      v = [];
     if (JSON.stringify(old) != JSON.stringify(v)) {
-      this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+      if (this.mode == "single") {
+        this.selectedItems = this.items.filter(c => v == c[this.valueField]);
+      }
+      else {
+        if (Array.isArray(v))
+          this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+        else if (v)
+          this.selectedItems = this.items.filter(c => v == c[this.valueField]);
+        else
+          this.selectedItems = [];
+      }
       this.selectedValuesChange.emit(this.selectedValues);
     }
   }
@@ -91,7 +103,20 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   }
 
   handleItemClick(item: any) {
-    this.selectedValues = [item[this.valueField]];
+    let value = item[this.valueField];
+    if (this.mode == "single") {
+      this.selectedValues = value;
+    }
+    else {
+      let exists = this.selectedValues.slice(0);
+      if (exists.includes(value)) {
+        this.selectedValues = exists.filter(c => c != value);
+      }
+      else {
+        exists.push(value);
+        this.selectedValues = exists;
+      }
+    }
     this.dropdown.close();
   }
 

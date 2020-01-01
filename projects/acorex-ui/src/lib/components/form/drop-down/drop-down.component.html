@@ -36,6 +36,6 @@
   {{ errorText }}
 </div>
 <ax-popover [fitParent]="fitParent" distance="10" height="'auto'" target="#{{ _uid }}" placement="bottom-start"
-  alignment="top-start" #popSelectBox>
+  alignment="top-start" #popSelectBox [maxHeight]="maxHeight">
   <ng-content> </ng-content>
 </ax-popover>

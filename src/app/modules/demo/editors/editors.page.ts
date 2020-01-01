@@ -9,28 +9,25 @@ export class EditorsPage extends AXBasePageComponent {
     super();
   }
 
-  ngOnInit(): void { }
+  items: any[] = []
+
+  ngOnInit(): void {
+
+    for (let i = 0; i < 50; i++) {
+      this.items.push(
+        {
+          value: i,
+          text: "Items " + i,
+        })
+
+    }
+  }
 
 
-  items = [
-    {
-      value: 1,
-      text: "Items 1",
-    },
-    {
-      value: 2,
-      text: "Items 2",
-    },
-    {
-      value: 3,
-      text: "Items 3",
-    },
-  ]
 
-  selectedValues=[];
+  selectedValues = 2;
 
-  handleSelectedValuesChange(e)
-  {
-    debugger;
+  handleSelectedValuesChange(e) {
+    console.log(e)
   }
 }
