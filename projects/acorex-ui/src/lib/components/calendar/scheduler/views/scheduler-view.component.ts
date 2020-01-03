@@ -104,7 +104,7 @@ export abstract class AXSchedulerBaseViewComponent implements OnDestroy {
                     er.event.range.endTime = er.event.range.endTime.add("day", durDay);
                     er.oldSlot.events = er.oldSlot.events.filter(c => c.uid != er.event.uid);
                     if (time) {
-                        er.event.range.startTime.set("hour", time);
+                        er.event.range.startTime = er.event.range.startTime.set("hour", time);
                         let durTime = er.event.range.startTime.duration(z, "hours") % 24;
                         er.event.range.endTime = er.event.range.endTime.add("hour", durTime);
                     }

@@ -20,6 +20,7 @@ import { FilterPanelDemoPage } from "./modules/demo/data/filter-panel.page";
 import { TextBoxPage } from "./modules/demo/formcontroll/text-box.page";
 import { UploaderPage } from "./modules/demo/uploader/uploader-page.component";
 import { DashboardPage } from './modules/demo/dashboard/dashboard.page';
+import { EditorsPage } from './modules/demo/editors/editors.page';
 
 const routes: Routes = [
   {
@@ -63,7 +64,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-        content: DashboardPage,
+        content: EditorsPage,
         title: "Dashboard",
         closable: true,
         uid: "dashboard"

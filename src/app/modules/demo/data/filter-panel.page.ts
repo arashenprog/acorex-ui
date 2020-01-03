@@ -264,7 +264,7 @@ export class FilterPanelDemoPage extends AXBasePageComponent {
     }
 
     provideGridData = (e: AXDataSourceReadParams) => {
-        debugger;
+        ;
         return new PromisResult(resolve => {
             resolve(ArrayUtil.filter(this.leads, this.gridFilter));
         });

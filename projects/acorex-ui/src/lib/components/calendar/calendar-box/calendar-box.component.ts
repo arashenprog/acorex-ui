@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, Attribute } from '@angular/core';
-import { AXDateTime, AXDateTimeRange } from '../../../core/calendar/datetime';
+import { AXDateTime, AXDateTimeRange, CalendarType } from '../../../core/calendar/datetime';
 
 export type AXCalendarViewType = "year" | "month" | "day";
 
@@ -12,17 +12,27 @@ export type AXCalendarViewType = "year" | "month" | "day";
 export class AXCalendarBoxComponent {
 
     constructor(
-        private cdr: ChangeDetectorRef,
-        @Attribute("showTodayButton") public showTodayButton: boolean = false
+        private cdr: ChangeDetectorRef
     ) {
 
-        this.viewRange = new AXDateTimeRange(this.today.month.startDate, this.today.month.endDate);
+
+    }
+
+
+    ngOnInit() {
+        this.today = new AXDateTime();
+        this.today.type = this.type;
+        this.viewRange = this.today.month.range;
         this.value = new AXDateTime();
         this.view = "day";
     }
 
+    @Input()
+    type: CalendarType = "gregorian"
 
 
+    @Input("showTodayButton")
+    public showTodayButton: boolean = false
 
     matrix: any = [];
 
@@ -60,14 +70,15 @@ export class AXCalendarBoxComponent {
     public set value(v: AXDateTime) {
         if (v && !v.equal(this._value)) {
             this._value = v;
-            this.setFocus(v);
-            this.valueChange.emit(v);
+            this._value.type = this.type;
+            this.setFocus(this._value.clone());
+            this.valueChange.emit(this._value);
         }
     }
 
 
     focusedValue: AXDateTime;
-    today: AXDateTime = new AXDateTime();
+    today: AXDateTime;
 
 
 
@@ -130,7 +141,7 @@ export class AXCalendarBoxComponent {
     }
 
     private applyStyle(dates: AXDateTime[]): any[] {
-        let items: any[]=[];
+        let items: any[] = [];
         dates.forEach(d => {
             let item: any = {};
             item.date = d;
@@ -176,7 +187,7 @@ export class AXCalendarBoxComponent {
         }
         else {
             this.view = "day";
-            this.setFocus(this.value.clone().set("year", date.year).set("month", date.monthOfYear));
+            this.setFocus(this.value.set("year", date.year).set("month", date.monthOfYear));
         }
         event.stopPropagation();
     }
@@ -187,7 +198,7 @@ export class AXCalendarBoxComponent {
         }
         else {
             this.view = "month";
-            this.setFocus(this.value.clone().set("year", date.year));
+            this.setFocus(this.value.set("year", date.year));
         }
         event.stopPropagation();
     }

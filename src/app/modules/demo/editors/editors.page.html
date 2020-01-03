@@ -5,11 +5,24 @@
   <br>
   <ax-date-picker></ax-date-picker>
   <br>
-  <!-- <ax-selection-list mode="single" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
-
-  </ax-selection-list> -->
   <br>
-  <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
-
+  <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues"
+    (selectedValuesChange)="handleSelectedValuesChange($event)">
   </ax-select-box>
+  <br>
+  <br>
+  <ax-calendar-box #d1 type="jalali" showTodayButton="true"></ax-calendar-box>
+  <br>
+  <br>
+  <ax-accordion>
+    <ax-panel-box caption="Panel A">
+      <!-- <ax-calendar-box [value]="d1.value"></ax-calendar-box> -->
+    </ax-panel-box>
+    <ax-panel-box caption="Panel B">
+      Panel 2
+    </ax-panel-box>
+    <ax-panel-box caption="Panel C">
+      Panel 3
+    </ax-panel-box>
+  </ax-accordion>
 </div>

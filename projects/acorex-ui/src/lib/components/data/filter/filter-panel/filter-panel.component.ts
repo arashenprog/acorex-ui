@@ -77,7 +77,7 @@ export class AXFilterPanelComponent {
     }
 
     onValueChange(e) {
-        debugger
+        
         if (this.mode == "immediate") {
             setTimeout(() => {
                 this.filterChange.emit(this.value);
