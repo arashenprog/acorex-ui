@@ -30,7 +30,7 @@ export class AXPopoverComponent {
   @Input("openMode") openMode: "manual" | "click" | "hover" = "manual";
   @Input("closeMode") closeMode: "manual" | "clickout" | "mouseout" = "clickout";
 
-  @Input("maxHeight") maxHeight: string="300px";
+  @Input("maxHeight") maxHeight: string = "300px";
 
   @Input() distance: number = 5;
   private _visible: boolean;
@@ -121,6 +121,13 @@ export class AXPopoverComponent {
         break;
     }
     pop.style.top = top + "px";
+    debugger;
+    if (left < 0) {
+      left = 0;
+    }
+    if (left + pop.offsetWidth > window.innerWidth) {
+      left -= (window.innerWidth - left);
+    }
     pop.style.left = left + "px";
   }
 
@@ -137,7 +144,7 @@ export class AXPopoverComponent {
 
   private addCloseRemoveOpenListeners() {
     this.zone.runOutsideAngular(() => {
-      window.addEventListener("scroll",this.HandleScrollListener.bind(this));
+      window.addEventListener("scroll", this.HandleScrollListener.bind(this));
       //add close listeners
       if (this.closeMode == "clickout") {
         window.document.addEventListener("click", this.clickOutListener.bind(this));
@@ -155,7 +162,7 @@ export class AXPopoverComponent {
 
   private addOpenRemoveCloseListener() {
     this.zone.runOutsideAngular(() => {
-     
+
 
       //add open listeners
       if (this.openMode == "hover" && this.targetEl) {
@@ -174,27 +181,25 @@ export class AXPopoverComponent {
   }
 
   private removeOpenListeners() {
-    if (this.targetEl)
-    {
+    if (this.targetEl) {
       this.targetEl.removeEventListener("click", this.open.bind(this));
       window.document.removeEventListener("mouseover", this.handleMouseOver.bind(this));
-     
+
     }
   }
 
   private removeCloseListeners() {
     window.document.removeEventListener("click", this.clickOutListener.bind(this));
     window.document.removeEventListener("mousemove", this.clickOutListener.bind(this));
-    window.removeEventListener("scroll",this.HandleScrollListener.bind(this));
+    window.removeEventListener("scroll", this.HandleScrollListener.bind(this));
   }
 
 
-  private handleMouseOver(e:MouseEvent) {
+  private handleMouseOver(e: MouseEvent) {
     this.open();
   }
 
-  private HandleScrollListener(e:UIEvent)
-  {
+  private HandleScrollListener(e: UIEvent) {
     this.close();
   }
 
@@ -228,5 +233,5 @@ export class AXPopoverComponent {
     }
   }
 
-  
+
 }
