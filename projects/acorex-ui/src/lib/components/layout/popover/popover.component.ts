@@ -120,13 +120,16 @@ export class AXPopoverComponent {
         left = targetPos.x;
         break;
     }
+    if (top + pop.offsetHeight > window.innerHeight) {
+      top = window.innerHeight - pop.offsetHeight - 10;
+    }
     pop.style.top = top + "px";
     debugger;
     if (left < 0) {
       left = 0;
     }
     if (left + pop.offsetWidth > window.innerWidth) {
-      left -= (window.innerWidth - left);
+      left = (window.innerWidth - pop.offsetWidth) - 10;
     }
     pop.style.left = left + "px";
   }
@@ -144,7 +147,8 @@ export class AXPopoverComponent {
 
   private addCloseRemoveOpenListeners() {
     this.zone.runOutsideAngular(() => {
-      window.addEventListener("scroll", this.HandleScrollListener.bind(this));
+      window.addEventListener("scroll", this.handleScrollListener.bind(this));
+     //window.addEventListener("mousewheel", this.handleScrollListener.bind(this));
       //add close listeners
       if (this.closeMode == "clickout") {
         window.document.addEventListener("click", this.clickOutListener.bind(this));
@@ -191,7 +195,8 @@ export class AXPopoverComponent {
   private removeCloseListeners() {
     window.document.removeEventListener("click", this.clickOutListener.bind(this));
     window.document.removeEventListener("mousemove", this.clickOutListener.bind(this));
-    window.removeEventListener("scroll", this.HandleScrollListener.bind(this));
+    window.removeEventListener("scroll", this.handleScrollListener.bind(this));
+    //window.removeEventListener("mousewheel", this.handleScrollListener.bind(this));
   }
 
 
@@ -199,7 +204,7 @@ export class AXPopoverComponent {
     this.open();
   }
 
-  private HandleScrollListener(e: UIEvent) {
+  private handleScrollListener(e: UIEvent) {
     this.close();
   }
 
