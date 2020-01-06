@@ -4,7 +4,7 @@
       <div *ngIf="allowSearch" class="search">
         <ax-search-box [(text)]="searchText" (onTextChanged)="handleSearchChanged($event)"></ax-search-box>
       </div>
-      <div>
+      <div style="max-height: 300px;overflow-y: auto;">
         <ng-container *ngIf="items && items.length; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate>
           <div class="text-item" [class.selected]="item.selected" *ngFor="let item of items"

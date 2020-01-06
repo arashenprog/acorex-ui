@@ -1,23 +1,10 @@
-.popover-container {
+.ax-popover-container {
   position: fixed;
-  font-size: var(--font-md-size);
-  background: var(--white-color);
-  border: 1px solid;
-  border-color: var(--border-color);
-  border-radius: var(--border-radius-size);
   z-index: 2000;
-  overflow-y: auto;
-  .arrow {
-    width: var(--el-md-size);
-    height: var(--el-md-size);
-    background: white;
-    position: absolute;
-    right: 50%;
-    -webkit-transform: rotate(20deg);
-    transform: rotate(45deg);
-    top: -9px;
-    border-left: 1px solid;
-    border-top: 1px solid;
+  .ax-popover-container-bordered {  
+    background: var(--white-color);
+    border: 1px solid;
     border-color: var(--border-color);
+    border-radius: var(--border-radius-size);
   }
 }

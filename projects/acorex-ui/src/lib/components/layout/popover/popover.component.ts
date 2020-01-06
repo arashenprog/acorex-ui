@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
+import { Component, Input, NgZone, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from "@angular/core";
 import { ElementRef } from "@angular/core";
 import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-util";
 
@@ -8,6 +8,7 @@ import { AXPlacement, AXHtmlUtil, AXPoint } from "../../../core/utils/html/html-
   selector: "ax-popover",
   templateUrl: "./popover.component.html",
   styleUrls: ["./popover.component.scss"],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXPopoverComponent {
@@ -30,11 +31,6 @@ export class AXPopoverComponent {
   @Input("openMode") openMode: "manual" | "click" | "hover" = "manual";
   @Input("closeMode") closeMode: "manual" | "clickout" | "mouseout" = "clickout";
 
-  @Input("height") height: string = "300px";
-  @Input("width") width: string = "300px";
-
-  @Input("maxHeight") maxHeight: string = "300px";
-  @Input("maxWidth") maxWidth: string = "300px";
 
 
 
@@ -78,7 +74,7 @@ export class AXPopoverComponent {
 
   setPosition() {
     let pop = this.el.nativeElement.querySelector<HTMLElement>(
-      ".popover-container"
+      ".ax-popover-container"
     );
     if (!this.targetEl || !pop)
       return;
@@ -155,7 +151,7 @@ export class AXPopoverComponent {
   private addCloseRemoveOpenListeners() {
     this.zone.runOutsideAngular(() => {
       window.addEventListener("scroll", this.handleScrollListener.bind(this));
-     //window.addEventListener("mousewheel", this.handleScrollListener.bind(this));
+      //window.addEventListener("mousewheel", this.handleScrollListener.bind(this));
       //add close listeners
       if (this.closeMode == "clickout") {
         window.document.addEventListener("click", this.clickOutListener.bind(this));
@@ -219,7 +215,7 @@ export class AXPopoverComponent {
   private clickOutListener(event: MouseEvent) {
     if (this.visible) {
       this.zone.runOutsideAngular(() => {
-        let pop = this.el.nativeElement.querySelector('.popover-container');
+        let pop = this.el.nativeElement.querySelector('.ax-popover-container');
         if (this.targetEl && pop) {
           let targetBound = this.targetEl.getBoundingClientRect();
           let elBound = pop.getBoundingClientRect();
