@@ -28,7 +28,7 @@ import { AXCoreModule } from "./core/core.module";
 import { AXToastModule } from "./components/layout/toast/toast.module";
 import { AXHttpModule } from "./core/http/http.module";
 import { AXTabViewModule } from "./components/layout/tab-view/api";
-import { AXTabPageModule } from "./components/nav/api";
+import { AXTabPageModule, AXPageModule } from "./components/nav/api";
 import { AXThemeWrapperComponent } from "./components/layout/theme-wrapper/theme-wrapper.component";
 import { AXDefaultHttpInterceptor } from "./config/default-http.interceptors";
 import { AX_ERROR_DISPLAY_INTERCEPTOR } from "./core/error/error.service";
@@ -60,7 +60,9 @@ import { AXTimeBoxModule } from "./components/time/time-box/time-box.module";
 window["$"] = $;
 
 let modules = [
+  
   AXCoreModule,
+  AXPageModule,
   AXToastModule,
   AXButtonModule,
   AXBadgeModule,

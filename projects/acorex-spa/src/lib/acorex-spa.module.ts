@@ -4,7 +4,6 @@ import { AXNavMenuService } from './layouts/shared/services/nav-menu.service';
 import { AXBlankModule } from './layouts/blank/blank.module';
 import { AXTopMenuModule } from "./layouts/topmenu/topmenu.module";
 import { AXMobileModule } from "./layouts/mobile/mobile.module";
-import { AXPageModule } from "./layouts/shared/page/page.module";
 
 
 @NgModule({
@@ -12,14 +11,12 @@ import { AXPageModule } from "./layouts/shared/page/page.module";
     
   ],
   imports: [
-    AXPageModule,
     AXTabularModule,
     AXBlankModule,
     AXTopMenuModule,
     AXMobileModule
   ],
   exports: [
-    AXPageModule,
     AXTabularModule,
     AXBlankModule,
     AXTopMenuModule,
