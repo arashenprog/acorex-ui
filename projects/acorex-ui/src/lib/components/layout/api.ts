@@ -9,6 +9,7 @@ export * from "./image-view/api";
 export * from "./loading/api";
 export * from "./menu/api";
 export * from "./panel-box/api";
+export * from "./accordion/api";
 export * from "./popover/api";
 export * from "./progress-bar/api";
 export * from "./tab-view/api";

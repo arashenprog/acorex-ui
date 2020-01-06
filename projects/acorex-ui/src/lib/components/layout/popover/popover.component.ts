@@ -128,6 +128,13 @@ export class AXPopoverComponent {
         break;
     }
     pop.style.top = top + "px";
+    debugger;
+    if (left < 0) {
+      left = 0;
+    }
+    if (left + pop.offsetWidth > window.innerWidth) {
+      left -= (window.innerWidth - left);
+    }
     pop.style.left = left + "px";
   }
 

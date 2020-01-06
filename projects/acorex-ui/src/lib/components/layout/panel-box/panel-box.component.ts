@@ -29,7 +29,9 @@ import { AXButtonBaseComponent } from "../../../core/base.class";
           padding:0
         })
       ),
-      transition("* => *", animate("200ms"))
+      transition("Void => *", animate("0ms")),
+      transition("shown => hidden", animate("200ms")),
+      transition("hidden => shown", animate("200ms")),
     ])
   ]
 })

@@ -3,13 +3,31 @@
   <br>
   <ax-password-box></ax-password-box>
   <br>
-  <ax-date-picker></ax-date-picker>
+  <div class="row">
+    <div class="col-11"></div>
+    <div class="col-1">
+      <ax-date-picker></ax-date-picker>
+    </div>
+  </div>
   <br>
-  <!-- <ax-selection-list mode="single" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
-
-  </ax-selection-list> -->
   <br>
-  <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
-
+  <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues"
+    (selectedValuesChange)="handleSelectedValuesChange($event)">
   </ax-select-box>
+  <br>
+  <br>
+  <ax-calendar-box #d1 type="jalali" showTodayButton="true"></ax-calendar-box>
+  <br>
+  <br>
+  <ax-accordion>
+    <ax-panel-box caption="Panel A">
+      <ax-text-area label="asdasd asdasd" rows="8"></ax-text-area>
+    </ax-panel-box>
+    <ax-panel-box caption="Panel B">
+      Panel 2
+    </ax-panel-box>
+    <ax-panel-box caption="Panel C">
+      Panel 3
+    </ax-panel-box>
+  </ax-accordion>
 </div>

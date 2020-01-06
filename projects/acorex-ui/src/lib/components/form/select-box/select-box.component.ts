@@ -79,7 +79,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
       return this._selectedItems.map(c => c[this.valueField]) || [];
   }
   public set selectedValues(v: any[] | any) {
-    debugger;
+    ;
     let old = this.selectedValues;
     if (JSON.stringify(old) != JSON.stringify(v)) {
       if (this.mode == "single") {

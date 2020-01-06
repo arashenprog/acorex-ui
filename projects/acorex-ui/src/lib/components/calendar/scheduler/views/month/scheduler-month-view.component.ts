@@ -101,8 +101,8 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
 
     navigate(date: AXDateTime = new AXDateTime()) {
 
-        let start = date.month.startDate.firstDayOfWeek;
-        let end = date.month.endDate.endDayOfWeek;
+        let start = date.month.range.startTime.firstDayOfWeek;
+        let end = date.month.range.startTime.endDayOfWeek;
         let dur = end.duration(start);
         this.slots = [];
         for (let i = 0; i < dur; i++) {
@@ -214,10 +214,9 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
                     let z = er.event.range.startTime.clone();
                     let durDay = slotTime.duration(z.startOf(), "days");
                     er.event.range.startTime = er.event.range.startTime.add("day", durDay);
-                    if (this.dragHour != null)
-                    {
-                        er.event.range.startTime.set("hour", this.dragHour);
-                        er.event.range.startTime.set("minute", 0);
+                    if (this.dragHour != null) {
+                        er.event.range.startTime = er.event.range.startTime.set("hour", this.dragHour);
+                        er.event.range.startTime = er.event.range.startTime.set("minute", 0);
                     }
                     er.event.range.endTime = er.event.range.endTime.add("day", durDay);
                     er.oldSlot.events = er.oldSlot.events.filter(c => c.uid != er.event.uid);
@@ -226,7 +225,7 @@ export class AXSchedulerMonthViewComponent extends AXSchedulerBaseViewComponent 
             })
             this.onEventChanged.emit(r);
         }
-        
+
     }
 
 }

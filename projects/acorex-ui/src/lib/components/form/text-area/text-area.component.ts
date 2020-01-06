@@ -12,8 +12,8 @@ import {
   ]
 })
 export class AXTextAreaComponent extends AXTextInputBaseComponent {
-  @Input() mask: any;
-  get maskInner() {
-    return this.mask ? this.mask : false;
-  }
+ 
+  @Input()
+  rows:number=3;
+
 }
