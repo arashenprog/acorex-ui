@@ -59,7 +59,8 @@ export class AXTabPageRendererComponent {
         });
         tabService.closed.subscribe((tab: AXTabPage) => {
             let com = this.childs.find(c => c.id == tab.id);
-            com.destroy();
+            if (com)
+                com.destroy();
             this.childs = this.childs.filter(c => c.id != tab.id);
         });
         tabService.received.subscribe((m: AXTabPageMessage) => {

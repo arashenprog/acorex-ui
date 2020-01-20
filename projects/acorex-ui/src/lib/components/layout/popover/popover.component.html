@@ -1,3 +1,6 @@
-<div class="ax-popover-container" *ngIf="visible">
+<div class="ax-popover-container" 
+    [@visibilityChanged]="visible ? 'shown' :  'hidden'"
+    (@visibilityChanged.start)="handleAnimationStart($event)"
+    (@visibilityChanged.done)="handleAnimationDone($event)">
   <ng-content></ng-content>
 </div>

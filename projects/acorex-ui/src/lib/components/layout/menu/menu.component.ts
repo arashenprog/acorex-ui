@@ -185,7 +185,6 @@ export class AXMenuComponent {
       root.querySelectorAll("ul.sub-menu").forEach(c => {
         if (!c.contains(el)) c.classList.add("collapsed");
       });
-
     });
   }
 
@@ -295,11 +294,18 @@ export class AXMenuComponent {
         if (!root.classList.contains("contextMenu"))
           root.classList.add("contextMenu");
         if (this.mode != "manual") {
-          let eventType: string = this.mode == "click" ? "click" : "contextmenu";
-          document.querySelectorAll(this.target).forEach(t => {
-            t.removeEventListener(eventType, this.onContextHandler.bind(this, t));
-            t.addEventListener(eventType, this.onContextHandler.bind(this, t));
-          });
+          if (this.mode == "click") {
+            document.querySelectorAll(this.target).forEach(t => {
+              t.removeEventListener("click", this.onContextHandler.bind(this, t));
+              t.addEventListener("click", this.onContextHandler.bind(this, t));
+            });
+          }
+          else {
+            document.querySelectorAll(this.target).forEach(t => {
+              document.removeEventListener("contextmenu", this.onContextHandler.bind(this, t));
+              document.addEventListener("contextmenu", this.onContextHandler.bind(this, t));
+            });
+          }
         }
       });
     }
@@ -334,7 +340,11 @@ export class AXMenuComponent {
     e.preventDefault();
     e.stopPropagation();
     this.currentTarget = target;
-    this.show({ x: e.pageX, y: e.pageY });
+    const pos = { x: e.pageX, y: e.pageY };
+    this.closeOnOut();
+    if (AXHtmlUtil.isInElementBound(pos, target)) {
+      this.show(pos);
+    }
   }
 
   ngOnDestroy(): void {
@@ -342,9 +352,9 @@ export class AXMenuComponent {
       window.document.removeEventListener("click", this.clickOutsideHandler.bind(this));
       window.removeEventListener("resize", this.onResize);
       document.querySelectorAll(this.target).forEach(t => {
-        t.removeEventListener("contextmenu", this.onContextHandler.bind(this));
         t.removeEventListener("click", this.onContextHandler.bind(this));
       });
+      document.removeEventListener("contextmenu", this.onContextHandler.bind(this));
     });
   }
 

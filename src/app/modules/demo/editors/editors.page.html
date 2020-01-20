@@ -1,14 +1,22 @@
 <ax-page>
   <ax-page-content>
     <div style="padding: 20px 100px">
-      <ax-text-box label="Text Box"></ax-text-box>
+      <div class="row">
+        <div class="col-11" id="tbx1">
+          <ax-text-box label="Text Box"></ax-text-box>
+          <ax-menu mode="context" target="#tbx1" direction="vertical" [items]="menuItems">
+          </ax-menu>
+        </div>
+      </div>
       <br>
       <ax-password-box></ax-password-box>
       <br>
       <div class="row">
-        <div class="col-11"></div>
-        <div class="col-1">
+        <div class="col-6"></div>
+        <div class="col-6" id="tbx2">
           <ax-date-picker></ax-date-picker>
+          <ax-menu mode="context" target="#tbx2" direction="vertical" [items]="menuItems">
+          </ax-menu>
         </div>
       </div>
       <br>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AXBasePageComponent } from "acorex-ui";
+import { AXBasePageComponent, MenuItem } from "acorex-ui";
 
 @Component({
   templateUrl: "./editors.page.html"
@@ -22,6 +22,22 @@ export class EditorsPage extends AXBasePageComponent {
 
     }
   }
+
+
+  menuItems: MenuItem[] = [
+    {
+      name: "new",
+      text: "new Item",
+     
+      icon: "fas fa-plus"
+    },
+    {
+      name: "delete",
+      text: "Delete",
+      split: true,
+      icon: "fas fa-trash"
+    }
+  ]
 
 
 
