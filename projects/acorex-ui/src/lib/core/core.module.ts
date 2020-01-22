@@ -4,7 +4,6 @@ import { EventService } from "./event.service";
 
 import { TranslateService, TranslatePipe } from "./translate.service";
 import { FormsModule } from "@angular/forms";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AXStorageService } from "./storage.service";
 import { AXScrollModule } from "../core/utils/scroll/scroll.module";
 import { AXDateTimePipe } from "../core/calendar/datatime.pipe";
@@ -16,11 +15,10 @@ import { AXComponentFactoryService } from "./component-factory.service";
   imports: [
     CommonModule, 
     FormsModule, 
-    BrowserAnimationsModule, 
     AXScrollModule,
     AXGridLayoutModule
   ],
-  exports: [TranslatePipe, BrowserAnimationsModule, AXScrollModule,AXDateTimePipe,AXGridLayoutModule],
+  exports: [TranslatePipe, AXScrollModule,AXDateTimePipe,AXGridLayoutModule],
   providers: [
     EventService,
     AXComponentFactoryService,
