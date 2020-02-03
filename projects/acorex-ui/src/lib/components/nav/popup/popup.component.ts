@@ -35,19 +35,15 @@ export class AXPopupComponent implements OnInit, OnDestroy {
   }
 
   private comRef: ComponentRef<any>;
-  private isActivated: boolean = false;
 
   constructor(
     private resolver: ComponentFactoryResolver,
-    private element: ElementRef,
-    private zone: NgZone
   ) { }
 
   ngOnInit(): void {
     const factory = this.resolver.resolveComponentFactory(this.content);
     this.comRef = this.popupBody.createComponent(factory);
     let com = this.comRef.instance as any;
-    //Object.assign(com, this.data);
     if (com.closeEvent) {
       com.closeEvent.subscribe((e: ClosingEventArgs) => {
         this.close.emit(e);
@@ -56,19 +52,18 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     this.content = com;
     Object.assign(this.content, this.data);
     //
-    if (com.onReceiveData && this.data) {
-      com.onReceiveData(this.data);
-    }
+    // if (com.onReceiveData && this.data) {
+    //   com.onReceiveData(this.data);
+    // }
   }
 
   ngAfterViewInit() {
     this.focus();
-    this.resizeBody();
   }
 
   close: EventEmitter<ClosingEventArgs> = new EventEmitter<ClosingEventArgs>();
 
-  width: number = 100;
+  size: "sm" | "md" | "lg" | "full" = "sm";
 
   data: any = {};
 
@@ -91,36 +86,7 @@ export class AXPopupComponent implements OnInit, OnDestroy {
     setTimeout(() => this.container.nativeElement.focus());
   }
 
-  active() {
-    this.isActivated = true;
-  }
 
-  deactive() {
-    this.isActivated = false;
-  }
   onFullScreen() { }
 
-  resizeBody() {
-    //this.zone.runOutsideAngular(() => {
-    //TODO
-    // this.popupBody.element.nativeElement;
-    // let toolbar = this.element.nativeElement.querySelector(".ax-page-toolbar");
-    // let pageContent = this.element.nativeElement.querySelector(
-    //   ".ax-page-content"
-    // );
-    // let popupContent = this.element.nativeElement.querySelector(
-    //   ".page-content-wrap"
-    // );
-    // if (toolbar) {
-    //   if (popupContent)
-    //     popupContent.style.height =
-    //       pageContent.scrollHeight + toolbar.scrollHeight + "px";
-    //   if (pageContent)
-    //     pageContent.style.top = toolbar.scrollHeight + "px";
-    // } else {
-    //   if (popupContent && pageContent)
-    //     popupContent.style.height = pageContent.scrollHeight + "px";
-    // }
-    //});
-  }
 }

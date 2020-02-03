@@ -1,11 +1,10 @@
 <ax-page>
   <ax-page-content>
-    <div style="padding: 20px 100px">
+    <div >
       <div class="row">
         <div class="col-11" id="tbx1">
           <ax-text-box label="Text Box"></ax-text-box>
-          <ax-menu mode="context" target="#tbx1" direction="vertical" [items]="menuItems">
-          </ax-menu>
+         
         </div>
       </div>
       <br>
@@ -15,8 +14,7 @@
         <div class="col-6"></div>
         <div class="col-6" id="tbx2">
           <ax-date-picker></ax-date-picker>
-          <ax-menu mode="context" target="#tbx2" direction="vertical" [items]="menuItems">
-          </ax-menu>
+      
         </div>
       </div>
       <br>
@@ -34,7 +32,7 @@
           <ax-text-area label="asdasd asdasd" rows="8"></ax-text-area>
         </ax-panel-box>
         <ax-panel-box caption="Panel B">
-          Panel 2
+          <ax-button (onClick)="showPopup()" text="Open"></ax-button>
         </ax-panel-box>
         <ax-panel-box caption="Panel C">
           <ax-date-picker></ax-date-picker>

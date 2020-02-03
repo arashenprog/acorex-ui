@@ -1,7 +1,7 @@
 import { Injectable, ComponentRef } from "@angular/core";
 import { AXPopupComponent } from "./popup.component";
 import { ClosingAction, ClosedEventArgs, ClosingEventArgs } from "./popup.events";
-import { AXRenderService} from "../../../core/utils/render/render.service";
+import { AXRenderService } from "../../../core/utils/render/render.service";
 
 export class AXPopupResult {
   private _executor: (
@@ -66,25 +66,13 @@ export class AXPopupService {
     const com = this.injection.appendComponent(AXPopupComponent, options);
     const popup = com.instance as AXPopupComponent;
     popup.content = arg1;
-    this.stack.forEach(p => {
-      p.deactive();
-    });
+    if (options.size)
+      popup.size = options.size
+    // this.stack.forEach(p => {
+    //   p.deactive();
+    // });
     this.stack.push(popup);
-    popup.active();
-    switch (options.size) {
-      case "sm":
-        popup.width = 30;
-        break;
-      case "md":
-        popup.width = 50;
-        break;
-      case "lg":
-        popup.width = 80;
-        break;
-      default:
-        popup.width = 100;
-        break;
-    }
+    //popup.active();
     return new AXPopupResult(popup, (closing, closed) => {
       popup.close.subscribe((e: ClosingEventArgs) => {
         if (popup.content.onClosing) {

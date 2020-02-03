@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { AXBasePageComponent, MenuItem } from "acorex-ui";
+import { AXBasePageComponent, MenuItem, AXPopupService } from "acorex-ui";
 
 @Component({
   templateUrl: "./editors.page.html"
 })
 export class EditorsPage extends AXBasePageComponent {
-  constructor() {
+  constructor(private popupService: AXPopupService) {
     super();
   }
 
@@ -28,7 +28,7 @@ export class EditorsPage extends AXBasePageComponent {
     {
       name: "new",
       text: "new Item",
-     
+
       icon: "fas fa-plus"
     },
     {
@@ -45,5 +45,12 @@ export class EditorsPage extends AXBasePageComponent {
 
   handleSelectedValuesChange(e) {
     console.log(e)
+  }
+
+  showPopup() {
+    this.popupService.open(EditorsPage, {
+      title: "test",
+      size: "lg"
+    });
   }
 }

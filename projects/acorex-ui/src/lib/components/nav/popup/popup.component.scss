@@ -1,4 +1,5 @@
 @import "../../../styles/mixins";
+
 .popup-wrapper {
   position: fixed;
   top: 0;
@@ -11,17 +12,27 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+
   .popup-container {
     &:focus {
       box-shadow: 0 0 0 0.2rem rgba(var(--outline-color), 0.8);
       outline-color: transparent;
     }
+
     opacity: 1;
     background: var(--white-color);
     display: flex;
     flex-direction: column;
     border-radius: 4px;
     overflow: hidden;
+    max-height: 95vh;
+    height: fit-content;
+
+
+    &.full {
+      width: 95vw;
+    }
+
     .ppoup-header {
       background: var(--primary-color);
       color: var(--white-color);
@@ -32,9 +43,11 @@
       align-items: center;
       padding: 0 10px;
       font-size: 16px;
+
       .header-buttons {
         display: flex;
         flex-direction: row;
+
         .popup-header-button {
           width: 25px !important;
           height: 25px !important;
@@ -49,11 +62,12 @@
         }
       }
     }
+
     .popup-body {
       max-height: 90vh;
       position: relative;
-     
     }
+
     .popup-footer {
       display: flex;
       flex-direction: row;
@@ -65,15 +79,87 @@
   }
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+@media all and (min-width:1280px) {
   .popup-container {
-    width: 100vw !important;
-    height: 100vh;
-    border-radius: 0px !important;
+    &.sm {
+      width: 420px !important;
+    }
+    &.md
+    {
+      width: 680px !important;
+    }
+    &.lg {
+      width: 1024px !important;
+    }
   }
+}
+@media all and (min-width:1024px)  and (max-width: 1279px){
+  .popup-container {
+    &.sm {
+      width: 300px !important;
+    }
+    &.md
+    {
+      width: 500px !important;
+    }
+    &.lg {
+      width: 900px !important;
+    }
+  }
+}
+
+@media all and (min-width:768px) and (max-width: 1023px)  {
+  .popup-container {
+    &.sm {
+      width: 300px !important;
+    }
+    &.md
+    {
+      width: 500px !important;
+    }
+    &.lg {
+      width: 700px !important;
+    }
+  }
+}
+
+
+
+
+@media all and (min-width:425px) and (max-width: 767px) {
+  .popup-container {
+    &.sm {
+      width: 300px !important;
+    }
+    &.md,
+    &.lg {
+      width: 460px !important;
+    }
+  }
+}
+
+
+
+@media all and (min-width:0px) and (max-width: 424px) {
+  .popup-container {
+
+    &.sm,
+    &.md,
+    &.lg {
+      width: 300px !important;
+    }
+  }
+}
+
+
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   .popup-wrapper {
     padding: 0 !important;
   }
+
   .popup-body {
     min-height: 93vh !important;
   }

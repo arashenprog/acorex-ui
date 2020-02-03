@@ -16,6 +16,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { DemoModule } from "./modules/demo/demo.module";
 import { EditorsPage } from './modules/demo/editors/editors.page';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -41,6 +43,8 @@ const routes: Routes = [
   declarations: [AppComponent],
   imports: [
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ACoreXUIModule,
     ACoreXSPAModule,
