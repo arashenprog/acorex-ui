@@ -10,11 +10,12 @@ import { AXCheckBoxModule } from "./components/form/checkbox/checkbox.module";
 import { AXDataGridModule } from "./components/data/data-grid/datagrid.module";
 import { AXDatePickerModule } from "./components/form/date-picker/date-picker.module";
 
-import { AXImageViewModule } from "./components/layout/image-view/image-view.module";
-import { AXLoadingModule } from "./components/layout/loading/loading.module";
-import { AXMenuModule } from "./components/layout/menu/menu.module";
-import { AXPanelBoxModule } from "./components/layout/panel-box/panel-box.module";
-import { AXPasswordBoxModule } from "./components/form/password-box/password-box.module";
+import { AXImageViewModule } from "./components/layout/image-view/api";
+import { AXLoadingModule } from "./components/layout/loading/api";
+import { AXMenuModule } from "./components/layout/menu/api";
+import { AXPanelBoxModule } from "./components/layout/panel-box/api";
+import { AXAccordionModule } from "./components/layout/accordion/api";
+import { AXPasswordBoxModule } from "./components/form/password-box/api";
 import { AXPopupModule } from "./components/nav/popup/popup.module";
 import { AXProgressBarModule } from "./components/layout/progress-bar/progress-bar.module";
 import { AXSelectBoxModule } from "./components/form/select-box/select-box.module";
@@ -27,7 +28,7 @@ import { AXCoreModule } from "./core/core.module";
 import { AXToastModule } from "./components/layout/toast/toast.module";
 import { AXHttpModule } from "./core/http/http.module";
 import { AXTabViewModule } from "./components/layout/tab-view/api";
-import { AXTabPageModule } from "./components/nav/api";
+import { AXTabPageModule, AXPageModule } from "./components/nav/api";
 import { AXThemeWrapperComponent } from "./components/layout/theme-wrapper/theme-wrapper.component";
 import { AXDefaultHttpInterceptor } from "./config/default-http.interceptors";
 import { AX_ERROR_DISPLAY_INTERCEPTOR } from "./core/error/error.service";
@@ -59,7 +60,9 @@ import { AXTimeBoxModule } from "./components/time/time-box/time-box.module";
 window["$"] = $;
 
 let modules = [
+  
   AXCoreModule,
+  AXPageModule,
   AXToastModule,
   AXButtonModule,
   AXBadgeModule,
@@ -74,6 +77,7 @@ let modules = [
   AXLoadingModule,
   AXMenuModule,
   AXPanelBoxModule,
+  AXAccordionModule,
   AXPasswordBoxModule,
   AXPopupModule,
   AXProgressBarModule,

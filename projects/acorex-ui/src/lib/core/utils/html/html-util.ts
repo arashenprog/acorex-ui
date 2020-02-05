@@ -63,6 +63,16 @@ export class AXHtmlUtil {
     return pos.x >= rec.left && pos.x <= (rec.left + rec.width) && pos.y >= rec.top && (pos.y <= (rec.top + rec.height));
   }
 
+  static isInElementBound(pos: AXIPoint, element: HTMLElement): boolean {
+    let elBound = element.getBoundingClientRect();
+    return AXHtmlUtil.isInRecPoint(pos, {
+      left: elBound.left,
+      width: elBound.width,
+      top: elBound.top,
+      height: elBound.height
+    });
+  }
+
   static getUID(): string {
     return "el-" + AXMathUtil.randomRange(1000000000, 9999999999).toString();
   }

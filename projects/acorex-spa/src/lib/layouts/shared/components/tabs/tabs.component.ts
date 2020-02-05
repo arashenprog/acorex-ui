@@ -17,16 +17,16 @@ export class AXLayoutTabsComponent implements OnInit {
     public tabService: AXTabPageService,
     @Inject("startUpTab") private startUpTab: any
   ) {
-    this.tabService.opened.subscribe(t => {
+    this.tabService.opened=(t) => {
       setTimeout(() => {
         this.menu.applyContextMenu();
       }, 50);
-    });
-    this.tabService.closed.subscribe(t => {
+    };
+    this.tabService.closed=(t) => {
       setTimeout(() => {
         this.menu.applyContextMenu();
       }, 50);
-    });
+    };
   }
 
   ngOnInit(): void { }

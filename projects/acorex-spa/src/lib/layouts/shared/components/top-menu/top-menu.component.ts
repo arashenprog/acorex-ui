@@ -10,8 +10,7 @@ import { AXNavMenuService } from "../../../shared/services/nav-menu.service";
 export class AXSPATopMenuComponent {
 
 
-    @ViewChild('contexMenu', { static: true })
-    contexMenu: AXMenuComponent;
+
 
 
     @ViewChild('menu', { static: true })
@@ -99,7 +98,6 @@ export class AXSPATopMenuComponent {
             this.navMenuService.getFavorites().then((all: MenuItem[]) => {
                 this.all = all;
                 this.navMenuItems = this.all.slice();
-                this.contexMenu.items = this.favCtxItems;
                 this.renderMenu();
             });
         }
@@ -107,7 +105,6 @@ export class AXSPATopMenuComponent {
             this.navMenuService.getItems().then((all: MenuItem[]) => {
                 this.all = all;
                 this.navMenuItems = this.all.filter(c => c.parentId == null).slice();
-                this.contexMenu.items = this.allCtxItems;
                 this.renderMenu();
             });
         }
@@ -119,9 +116,6 @@ export class AXSPATopMenuComponent {
         this.navMenuItems.forEach(i => {
             this.transformMenus(i, this.all.slice());
         });
-        setTimeout(() => {
-            this.contexMenu.update();
-        }, 500);
     }
 
     private transformMenus(item: MenuItem, items: MenuItem[]) {
@@ -138,58 +132,5 @@ export class AXSPATopMenuComponent {
         this.navMenuService.clickItem(e).then(c => {
             //
         });
-    }
-
-    onContextItemClick(e: MenuItem) {
-        let target = this.contexMenu.currentTarget as HTMLElement;
-        let uid = target.getAttribute("data-uid");
-        let selectedMenu = this.all.find(c => c.uid == uid);
-        if (!selectedMenu)
-            return;
-        switch (e.name) {
-            case "open":
-                {
-                    this.onItemClick(selectedMenu);
-                    this.menu.close();
-                    this.contexMenu.close();
-                    break;
-                }
-            case "hide":
-                {
-                    selectedMenu.visible = false;
-                    this.menu.update();
-                    break;
-                }
-            case "addFav":
-                {
-                    this.navMenuService.setFavorites(selectedMenu, true);
-                    break;
-                }
-            case "removeFav":
-                {
-                    this.navMenuService.setFavorites(selectedMenu, false);
-                    this.reloadMenu();
-                    break;
-                }
-            case "showFavs":
-                {
-                    this.showFavs = true;
-                    this.reloadMenu();
-                    break;
-                }
-            case "showAll":
-                {
-                    this.showFavs = false;
-                    this.reloadMenu();
-                    break;
-                }
-            case "reset":
-                {
-                    this.all.forEach(c => { c.visible = true });
-                    this.reloadMenu();
-                    break;
-                }
-        }
-
     }
 }

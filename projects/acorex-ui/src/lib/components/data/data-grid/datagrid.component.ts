@@ -198,7 +198,7 @@ export class AXDataGridComponent {
         loadParams.searchText = that.searchText;
         loadParams.skip = params.request.startRow;
         loadParams.take = params.request.endRow - params.request.startRow;
-        debugger
+        
         loadParams.sort = params.request.sortModel.map(c => {
           return {
             field: c.colId,

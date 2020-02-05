@@ -9,7 +9,7 @@
         <label class="radio-container" *ngFor="let item of items">
             {{ item[textField] }}
             <input type="radio" (change)="onCheckValueChange(item[valueField],true)" [value]="item[valueField]"
-                [attr.checked]="selectedValues[0]==item[valueField] ? 'checked' : null" [name]="_uid" />
+                [attr.checked]="selectedValues==item[valueField] ? 'checked' : null" [name]="_uid" />
             <span class="checkmark"></span>
         </label>
     </ng-container>

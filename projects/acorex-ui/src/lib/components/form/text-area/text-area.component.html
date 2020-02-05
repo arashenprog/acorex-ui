@@ -7,7 +7,7 @@
     </fieldset>
     <textarea #textarea [(ngModel)]="text" type="text" class="ax-text-area" [placeholder]="placeholder"
       (blur)="handleBlurEvent($event)" (keyup)="handleKeyEvent($event)" (focus)="handleFocusEvent($event)"
-      [attr.disabled]="disabled ? 'disabled' : null">
+      [attr.disabled]="disabled ? 'disabled' : null" [attr.rows]="rows">
     </textarea>
     <div class="ax-field-set-button">
       <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">

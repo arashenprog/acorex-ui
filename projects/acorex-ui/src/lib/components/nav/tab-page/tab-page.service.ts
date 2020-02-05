@@ -71,10 +71,9 @@ export class AXTabPageService {
     tabs: AXTabPage[] = new Array<AXTabPage>();
 
 
-    opened: EventEmitter<AXTabPage> = new EventEmitter<AXTabPage>();
-    closed: EventEmitter<AXTabPage> = new EventEmitter<AXTabPage>();
-    received: EventEmitter<AXTabPageMessage> = new EventEmitter<AXTabPageMessage>();
-
+    opened: (tab:AXTabPage) => void;
+    closed: (tab:AXTabPage) => void;
+    received: (tab:AXTabPageMessage) => void;
 
     constructor() {
 
@@ -136,7 +135,7 @@ export class AXTabPageService {
                 this.tabs.filter(c => c.id != newTab.id).forEach(t => {
                     t.active = false;
                 });
-                this.opened.emit(newTab);
+                this.opened(newTab);
                 if (newTab.data) {
                     newTab.send(newTab.data);
                 }
@@ -183,7 +182,7 @@ export class AXTabPageService {
         this.tabs = this.tabs.filter(c => c.id != tab.id);
         let prev = this.tabs.filter(c => c.id < tab.id).reverse()[0];
         this.active(prev);
-        this.closed.emit(tab);
+        this.closed(tab);
         if (tab.closed) tab.closed(e);
     }
 
@@ -202,7 +201,7 @@ export class AXTabPageService {
             this.tabs.filter(c => c.id != tab.id).forEach(t => {
                 t.active = false;
             });
-            this.opened.emit(tab);
+            this.opened(tab);
         }
         else if (typeof (arg1) === 'string') {
             let tab = this.tabs.find(c => c.uid == arg1);
@@ -215,7 +214,7 @@ export class AXTabPageService {
 
 
     sendMessage(message: AXTabPageMessage) {
-        this.received.emit(message);
+        this.received(message);
     }
 
     clear(): void {

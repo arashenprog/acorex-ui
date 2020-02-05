@@ -9,4 +9,5 @@ export * from "./popup/popup.module";
 export * from "./dialog/dialog.component";
 export * from "./dialog/dialog.service";
 //
+export * from "./page/api";
 export * from "./page.component";

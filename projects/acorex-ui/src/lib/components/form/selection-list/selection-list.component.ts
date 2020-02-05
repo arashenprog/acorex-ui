@@ -14,7 +14,7 @@ export class AXSelectionListComponent extends AXBaseComponent {
   _uid: string = "M" + Math.ceil(Math.random() * 10000);
   @Input() direction: string = "horizontal";
   @Input() items: Array<any> = [];
-  @Input() mode: string = "single";
+  @Input() mode: "single" | "multiple" = "single";
   @Input() textField: string = "text";
   @Input() valueField: string = "value";
 
@@ -36,18 +36,29 @@ export class AXSelectionListComponent extends AXBaseComponent {
   }
 
   @Output()
-  selectedValuesChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  selectedValuesChange: EventEmitter<any[] | any> = new EventEmitter<any[] | any>();
 
   @Input()
-  public get selectedValues(): any[] {
-    return this._selectedItems.map(c => c[this.valueField]) || [];
+  public get selectedValues(): any[] | any {
+    if (this.mode == "single")
+      return this._selectedItems.map(c => c[this.valueField])[0];
+    else
+      return this._selectedItems.map(c => c[this.valueField]) || [];
   }
-  public set selectedValues(v: any[]) {
+  public set selectedValues(v: any[] | any) {
     let old = this.selectedValues;
     if (v == null)
       v = [];
     if (JSON.stringify(old) != JSON.stringify(v)) {
-      this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+      if (this.mode == "single") {
+        this.selectedItems = this.items.filter(c => v == c[this.valueField]);
+      }
+      else {
+        if (Array.isArray(v))
+          this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+        else
+          this.selectedItems = [];
+      }
       this.selectedValuesChange.emit(this.selectedValues);
     }
   }

@@ -37,7 +37,7 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
   focus(): void { }
 
   handleDropdownButtonClick(e: MouseEvent) {
-    e.stopPropagation();
+    //e.stopPropagation();
     e.preventDefault();
     this.popSelectBox.toggle()
   }

@@ -1,8 +1,43 @@
-<div style="padding: 20px 100px">
-  <ax-text-box label="Text Box"></ax-text-box>
-  <ax-password-box></ax-password-box>
-  <br>
-  <ax-selection-list mode="multiple" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
-
-  </ax-selection-list>
-</div>
+<ax-page>
+  <ax-page-content>
+    <div >
+      <div class="row">
+        <div class="col-11" id="tbx1">
+          <ax-text-box label="Text Box"></ax-text-box>
+         
+        </div>
+      </div>
+      <br>
+      <ax-password-box></ax-password-box>
+      <br>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6" id="tbx2">
+          <ax-date-picker></ax-date-picker>
+      
+        </div>
+      </div>
+      <br>
+      <br>
+      <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues"
+        (selectedValuesChange)="handleSelectedValuesChange($event)">
+      </ax-select-box>
+      <br>
+      <br>
+      <ax-calendar-box #d1 type="jalali" showTodayButton="true"></ax-calendar-box>
+      <br>
+      <br>
+      <ax-accordion>
+        <ax-panel-box caption="Panel A">
+          <ax-text-area label="asdasd asdasd" rows="8"></ax-text-area>
+        </ax-panel-box>
+        <ax-panel-box caption="Panel B">
+          <ax-button (onClick)="showPopup()" text="Open"></ax-button>
+        </ax-panel-box>
+        <ax-panel-box caption="Panel C">
+          <ax-date-picker></ax-date-picker>
+        </ax-panel-box>
+      </ax-accordion>
+    </div>
+  </ax-page-content>
+</ax-page>

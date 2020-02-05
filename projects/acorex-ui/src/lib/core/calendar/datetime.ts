@@ -5,16 +5,18 @@ export type TimeUnit = "second" | "minute" | "minutes" | "hour" | "hours" | "day
 
 export type TimeDuration = "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" | "years";
 
+export type CalendarType = "jalali" | "gregorian";
+
 export class AXDateTime {
 
 
-    static convert(value: any): AXDateTime {
+    static convert(value: any, type: CalendarType = "gregorian"): AXDateTime {
         let date: AXDateTime;
         if (typeof value === "string" || value instanceof String) {
-            date = new AXDateTime(<string>value);
+            date = new AXDateTime(<string>value, type);
         }
         else if (value instanceof Date) {
-            date = new AXDateTime(<Date>value);
+            date = new AXDateTime(<Date>value, type);
         }
         else if (value instanceof AXDateTime) {
             date = value
@@ -29,13 +31,20 @@ export class AXDateTime {
     }
 
 
+
+    private resolveUnit(unit: TimeUnit): any {
+        return this.type == "jalali" ? "j" + unit : unit;
+    }
+
+
     private get _moment(): moment_.Moment {
         let m = moment(this.date);
-        //m.locale("fa");
+        if (this.type == "jalali")
+            m.locale("fa");
         return m;
     }
 
-    constructor(value: Date | string = new Date()) {
+    constructor(value: Date | string = new Date(), public type: CalendarType = "gregorian") {
 
         if (value instanceof Date) {
             this._date = (<Date>value);
@@ -46,7 +55,7 @@ export class AXDateTime {
     }
 
     clone(): AXDateTime {
-        return new AXDateTime(this.date);
+        return new AXDateTime(this.date, this.type);
     }
 
 
@@ -87,32 +96,31 @@ export class AXDateTime {
 
 
     get month(): AXCalendarMonth {
-        return new AXCalendarMonth(this.date);
+        return new AXCalendarMonth(this);
     }
 
     get firstDayOfWeek(): AXDateTime {
-        return new AXDateTime(moment(this.date).startOf('w').toDate());
+        return new AXDateTime(moment(this.date).startOf('w').toDate(), this.type);
     }
 
     get endDayOfWeek(): AXDateTime {
-        return new AXDateTime(moment(this.date).endOf('w').toDate());
+        return new AXDateTime(moment(this.date).endOf('w').toDate(), this.type);
     }
 
     add(unit: TimeUnit = "day", amount: number): AXDateTime {
-        return new AXDateTime(moment(this.date).add(amount, unit).toDate());
+        return new AXDateTime(moment(this.date).add(amount, this.resolveUnit(unit)).toDate(), this.type);
     }
 
     addDay(amount: number): AXDateTime {
-        return new AXDateTime(moment(this.date).add(amount, "d").toDate());
+        return new AXDateTime(moment(this.date).add(amount, "d").toDate(), this.type);
     }
 
     addMonth(amount: number): AXDateTime {
-        return new AXDateTime(moment(this.date).add(amount, "months").toDate());
+        return new AXDateTime(moment(this.date).add(amount, "months").toDate(), this.type);
     }
 
     set(unit: TimeUnit = "day", value: number): AXDateTime {
-        this._date = this._moment.set(unit, value).toDate();
-        return this;
+        return new AXDateTime(this._moment.set(unit, value).toDate(), this.type);
     }
 
 
@@ -122,11 +130,11 @@ export class AXDateTime {
     }
 
     startOf(unit: TimeUnit = "day"): AXDateTime {
-        return new AXDateTime(moment(this.date).startOf(unit).toDate());
+        return new AXDateTime(moment(this.date).startOf(this.resolveUnit(unit)).toDate(), this.type);
     }
 
     endOf(unit: TimeUnit = "day"): AXDateTime {
-        return new AXDateTime(moment(this.date).endOf(unit).toDate());
+        return new AXDateTime(moment(this.date).endOf(this.resolveUnit(unit)).toDate(), this.type);
     }
 
     format(format: string): string {
@@ -142,16 +150,23 @@ export class AXDateTime {
     equal(value: AXDateTime, unit: TimeUnit = "day") {
         if (!value)
             return false;
-        return this._moment.isSame(value.date, unit);
+        return this._moment.isSame(moment(value.date), this.resolveUnit(unit));
     }
 
     compaire(value: AXDateTime, unit: TimeUnit = "day") {
-        if (this._moment.isBefore(value.date, unit))
-            return -1;
-        else if (this._moment.isAfter(value.date, unit))
+        // if (this._moment.isBefore(moment(value.date), this.resolveUnit(unit)))
+        //     return -1;
+        // else if (this._moment.isAfter(moment(value.date), this.resolveUnit(unit)))
+        //     return 1;
+        // else
+        //     return 0;
+
+        if (this._moment.isSame(moment(value.date), this.resolveUnit(unit)))
+            return 0;
+        else if (this._moment.isAfter(moment(value.date), this.resolveUnit(unit)))
             return 1;
         else
-            return 0;
+            return -1;
     }
 
     toISOString() {
@@ -164,27 +179,41 @@ export class AXDateTime {
 export class AXCalendarMonth {
 
     private _moment: moment_.Moment;
-    constructor(date: Date) {
-        this._moment = moment(date);
-        this.index = date.getMonth();
+
+    private _range: AXDateTimeRange;
+    public get range(): AXDateTimeRange {
+        return this._range;
+    }
+    public set range(v: AXDateTimeRange) {
+        this._range = v;
+    }
+
+
+    constructor(date: AXDateTime) {
+        this._moment = moment(date.date);
+        this.index = date.date.getMonth();
         this.name = this._moment.format("MMMM");
-        this._startDate = new AXDateTime(this._moment.startOf('month').toDate());
-        this._endDate = new AXDateTime(this._moment.endOf('month').toDate());
+        this.range = new AXDateTimeRange(
+            new AXDateTime(this._moment.startOf('month').toDate(), date.type),
+            new AXDateTime(this._moment.endOf('month').toDate(), date.type)
+        );
+        //this._startDate = new AXDateTime(this._moment.startOf('month').toDate(), date.type);
+        //this._endDate = new AXDateTime(this._moment.endOf('month').toDate(), date.type);
     }
 
     private readonly index: number;
     private readonly name: string;
 
-    private _startDate: AXDateTime;
-    public get startDate(): AXDateTime {
-        return this._startDate;
-    }
+    // private _startDate: AXDateTime;
+    // public get startDate(): AXDateTime {
+    //     return this._startDate;
+    // }
 
 
-    private _endDate: AXDateTime;
-    public get endDate(): AXDateTime {
-        return this._endDate;
-    }
+    // private _endDate: AXDateTime;
+    // public get endDate(): AXDateTime {
+    //     return this._endDate;
+    // }
 }
 
 export class AXDateTimeRange {

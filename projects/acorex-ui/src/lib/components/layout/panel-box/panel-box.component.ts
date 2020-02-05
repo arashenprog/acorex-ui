@@ -26,10 +26,12 @@ import { AXButtonBaseComponent } from "../../../core/base.class";
         style({
           height: "0px",
           opacity: 0,
-          padding:0
+          padding: 0
         })
       ),
-      transition("* => *", animate("200ms"))
+      transition("Void => *", animate("0ms")),
+      transition("shown => hidden", animate("200ms")),
+      transition("hidden => shown", animate("200ms")),
     ])
   ]
 })
@@ -62,4 +64,5 @@ export class AXPanelBoxComponent extends AXButtonBaseComponent {
       this.collapsed = !this.collapsed;
     }
   }
+
 }

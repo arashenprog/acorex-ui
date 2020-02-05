@@ -13,13 +13,13 @@ import { ClosingEventArgs } from '../popup/popup.events';
 export class AXTabPageRendererComponent {
     childs: any[] = [];
     isBusy: boolean = false;
-    @ViewChild("container", /* TODO: add static flag */ { read: ViewContainerRef }) container;
+    @ViewChild("container", { read: ViewContainerRef }) container;
 
     constructor(
         private resolver: ComponentFactoryResolver,
         tabService: AXTabPageService,
         titleService: Title) {
-        tabService.opened.subscribe((tab: AXTabPage) => {
+        tabService.opened = (tab: AXTabPage) => {
             this.isBusy = tab.isBusy;
             this.childs.forEach((v: ComponentRef<HTMLElement>) => {
                 v.changeDetectorRef.detach();
@@ -56,13 +56,14 @@ export class AXTabPageRendererComponent {
                 this.childs.push(componentRef);
             }
             titleService.setTitle(tab.title);
-        });
-        tabService.closed.subscribe((tab: AXTabPage) => {
+        };
+        tabService.closed = ((tab: AXTabPage) => {
             let com = this.childs.find(c => c.id == tab.id);
-            com.destroy();
+            if (com)
+                com.destroy();
             this.childs = this.childs.filter(c => c.id != tab.id);
         });
-        tabService.received.subscribe((m: AXTabPageMessage) => {
+        tabService.received = ((m: AXTabPageMessage) => {
             let com = this.childs.find(c => c.id == m.tab.id);
             if (com)
                 com.instance.onReceiveData(m.data);

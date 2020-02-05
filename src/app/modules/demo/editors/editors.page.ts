@@ -1,36 +1,56 @@
 import { Component, OnInit } from "@angular/core";
-import { AXBasePageComponent } from "acorex-ui";
+import { AXBasePageComponent, MenuItem, AXPopupService } from "acorex-ui";
 
 @Component({
   templateUrl: "./editors.page.html"
 })
 export class EditorsPage extends AXBasePageComponent {
-  constructor() {
+  constructor(private popupService: AXPopupService) {
     super();
   }
 
-  ngOnInit(): void { }
+  items: any[] = []
+
+  ngOnInit(): void {
+
+    for (let i = 0; i < 50; i++) {
+      this.items.push(
+        {
+          value: i,
+          text: "Items " + i,
+        })
+
+    }
+  }
 
 
-  items = [
+  menuItems: MenuItem[] = [
     {
-      value: 1,
-      text: "Items 1",
+      name: "new",
+      text: "new Item",
+
+      icon: "fas fa-plus"
     },
     {
-      value: 2,
-      text: "Items 2",
-    },
-    {
-      value: 3,
-      text: "Items 3",
-    },
+      name: "delete",
+      text: "Delete",
+      split: true,
+      icon: "fas fa-trash"
+    }
   ]
 
-  selectedValues=[];
 
-  handleSelectedValuesChange(e)
-  {
-    debugger;
+
+  selectedValues = 2;
+
+  handleSelectedValuesChange(e) {
+    console.log(e)
+  }
+
+  showPopup() {
+    this.popupService.open(EditorsPage, {
+      title: "test",
+      size: "lg"
+    });
   }
 }

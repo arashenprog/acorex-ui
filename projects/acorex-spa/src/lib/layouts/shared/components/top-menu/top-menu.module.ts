@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AXSPATopMenuComponent } from './top-menu.component';
 import { ACoreXUIModule} from 'acorex-ui';
-import { AXPageModule } from '../../../shared/page/page.module';
 import { AXLayoutTabsModule } from '../../../shared/components/tabs/tabs.module';
 import { AXTabNavigatorModule } from '../../../shared/services/tab-navigator/tab-navigator.module';
 
@@ -11,7 +10,6 @@ import { AXTabNavigatorModule } from '../../../shared/services/tab-navigator/tab
     imports: [
         CommonModule,
         ACoreXUIModule,
-        AXPageModule,
         AXLayoutTabsModule,
         AXTabNavigatorModule
     ],
