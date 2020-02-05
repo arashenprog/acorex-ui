@@ -50,6 +50,14 @@ export class AXDataGridComponent {
   isFullWidthCell: Function;
   internalHeight: string = "100%";
 
+  autoGroupColumnDef = {
+    headerName: "Group by",
+    field: "group by",
+    width: 200,
+    cellRenderer: "agGroupCellRenderer",
+    cellRendererParams: { checkbox: true }
+  }
+
   @Input()
   selectionMode: "single" | "multiple" = "single";
 
@@ -211,6 +219,7 @@ export class AXDataGridComponent {
     this.gridApi = gridOptions.api;
     //    
     this.mapColumns();
+
     //
     this.calcHeight();
     //
@@ -225,6 +234,8 @@ export class AXDataGridComponent {
   ngAfterContentInit(): void {
     let that = this;
     //
+    //
+
     if (this.rowTemplate) {
       this.fullWidthCellRendererFramework = this.rowTemplate.renderer;
       this.fullWidthCellRendererParams = this.rowTemplate.params;
@@ -243,6 +254,7 @@ export class AXDataGridComponent {
   ngAfterViewInit(): void {
     let that = this;
     this.enableRTL();
+
     //
     this.dataSource.onDataReceived.subscribe(data => {
       this.hideLoading();
@@ -268,6 +280,7 @@ export class AXDataGridComponent {
           this.gridApi.setRowData(items);
       }
     });
+
     this.dataSource.onFetchStart.subscribe(() => {
       this.showLoading();
     });
@@ -309,7 +322,9 @@ export class AXDataGridComponent {
   }
 
   internalGridCellDoubleClicked(e: CellClickedEvent) {
+
     this.cellDbClick.emit(this.mapCellEvent(e));
+
   }
 
   internalGridCellFocused(e: CellClickedEvent) {
@@ -317,11 +332,16 @@ export class AXDataGridComponent {
   }
 
   internalGridRowClicked(e: RowClickedEvent) {
-    this.rowClick.emit(this.mapRowEvent(e));
+    if (!e.node.group) {
+      this.rowClick.emit(this.mapRowEvent(e));
+    }
+
   }
 
   internalGridRowDoubleClicked(e: CellClickedEvent) {
-    this.rowDbClick.emit(this.mapRowEvent(e));
+    if (!e.node.group) {
+      this.rowDbClick.emit(this.mapRowEvent(e));
+    }
   }
 
   internalGridSelectionChanged(e) {

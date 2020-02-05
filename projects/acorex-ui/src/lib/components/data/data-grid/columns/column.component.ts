@@ -54,6 +54,7 @@ export abstract class AXGridDataColumn {
             field: this.field,
             width: this.width,
         };
+
         if (this.caption)
             col.headerName = this.caption;
         if (this.minWidth)
@@ -69,10 +70,13 @@ export abstract class AXGridDataColumn {
         if (this.enableRowGroup)
             col.enableRowGroup = this.enableRowGroup;
 
+
         if (this.rowGroupIndex >= 0) {
+
             col.rowGroupIndex = this.rowGroupIndex;
             col.rowGroup = true;
         }
+
         if (this.cellClass) {
             let THAT = this;
             if (this.cellClass instanceof Function)

@@ -4,11 +4,13 @@
 <ag-grid-angular class="ag-theme-balham" [getRowClass]="internalGetRowClass" [style.height]="internalHeight"
   [columnDefs]="columnDefs" [enableRtl]="rtl" [pagination]="true" [rowGroupPanelShow]="rowGroupPanelShow"
   [enableFilter]="true" [rowModelType]="rowModelType" [enableSorting]="true" [enableColResize]="true"
-  [paginationAutoPageSize]="true"
-  [suppressMenuHide]="true" [frameworkComponents]="frameworkComponents" [isFullWidthCell]="isFullWidthCell"
-  [rowSelection]="selectionMode" [fullWidthCellRendererFramework]="fullWidthCellRendererFramework"
+  [paginationAutoPageSize]="true" [suppressMenuHide]="true" [frameworkComponents]="frameworkComponents"
+  [isFullWidthCell]="isFullWidthCell" [rowSelection]="selectionMode"
+  [fullWidthCellRendererFramework]="fullWidthCellRendererFramework"
   [fullWidthCellRendererParams]="fullWidthCellRendererParams" (cellClicked)="internalGridCellClicked($event)"
   (cellDoubleClicked)="internalGridCellDoubleClicked($event)" (cellFocused)="internalGridCellFocused($event)"
   (rowClicked)="internalGridRowClicked($event)" (selectionChanged)="internalGridSelectionChanged($event)"
-  (rowDoubleClicked)="internalGridRowDoubleClicked($event)" (gridReady)="internalGridReady($event)">
+  (rowDoubleClicked)="internalGridRowDoubleClicked($event)" (gridReady)="internalGridReady($event)"
+  [groupSelectsChildren]="true" [suppressRowClickSelection]="true" [groupSelectsFiltered]="true"
+  [autoGroupColumnDef]="autoGroupColumnDef" [suppressAggFuncInHeader]="true" [getChildCount]="getChildCount">
 </ag-grid-angular>
