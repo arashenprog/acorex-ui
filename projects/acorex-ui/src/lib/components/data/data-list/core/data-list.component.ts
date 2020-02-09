@@ -1,14 +1,30 @@
-import { ContentChild, Input, Directive } from "@angular/core";
+import { ContentChild, Input, Directive, EventEmitter, Output } from "@angular/core";
 import { AXDataSourceComponent, AXDataSourceReadParams } from "../../data-source/api";
 import { AXBaseComponent } from "../../../../core/base.class";
 
 @Directive()
 export abstract class AXDataListComponent extends AXBaseComponent {
 
+
+  @Output()
+  itemsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  private _items: any[];
+
   @Input()
-  items: any[] = [];
+  public get items(): any[] {
+    return this._items;
+  }
+  public set items(v: any[]) {
+    this._items = v;
+    this.itemsChange.emit(v);
+  }
+
+
+
+
   @ContentChild(AXDataSourceComponent, { static: true })
-  private dataSource: AXDataSourceComponent;
+  protected dataSource: AXDataSourceComponent;
 
 
 

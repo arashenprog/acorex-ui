@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, ContentChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, TemplateRef, ContentChild, EventEmitter, Output } from "@angular/core";
 import { SelectItem } from "../../../core/select.class";
 import { AXSelectBaseComponent } from "../../../core/base.class";
 import { AXPopoverComponent } from "../../layout/popover/popover.component";
@@ -9,6 +9,13 @@ import { AXPopoverComponent } from "../../layout/popover/popover.component";
   styleUrls: ["./drop-down.component.scss"]
 })
 export class AXDropDownComponent extends AXSelectBaseComponent {
+
+  @Output()
+  onOpen: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output()
+  onClose: EventEmitter<void> = new EventEmitter<void>();
+
   @ViewChild("popSelectBox", { static: true })
   popSelectBox: AXPopoverComponent;
 
@@ -40,5 +47,18 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
     //e.stopPropagation();
     e.preventDefault();
     this.popSelectBox.toggle()
+  }
+
+
+  ngAdterViewInit() {
+   
+  }
+
+  handleOnOpen() {
+    this.onOpen.emit();
+  }
+
+  handleOnClose() {
+    this.onClose.emit();
   }
 }

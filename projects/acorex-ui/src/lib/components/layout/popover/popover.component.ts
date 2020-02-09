@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from "@angular/core";
+import { Component, Input, NgZone, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation, EventEmitter, Output } from "@angular/core";
 import { ElementRef } from "@angular/core";
 import { AXPlacement, AXHtmlUtil, AXPoint, AXIPoint } from "../../../core/utils/html/html-util";
 import {
@@ -60,6 +60,12 @@ export class AXPopoverComponent {
   @Input("closeMode") closeMode: "manual" | "clickout" | "mouseout" = "clickout";
 
 
+  @Output()
+  onOpen:EventEmitter<void>=new EventEmitter<void>();
+
+  @Output()
+  onClose:EventEmitter<void>=new EventEmitter<void>();
+
   @Input() distance: number = 5;
 
 
@@ -75,9 +81,11 @@ export class AXPopoverComponent {
     this._visible = v;
     if (this._visible) {
       this.addCloseRemoveOpenListeners();
+      this.onOpen.emit();
     }
     else {
       this.addOpenRemoveCloseListener()
+      this.onClose.emit();
     }
     this.cdr.markForCheck();
   }
