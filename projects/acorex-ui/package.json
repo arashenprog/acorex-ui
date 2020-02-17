@@ -11,10 +11,10 @@
   ],
   "author": "Arash Oshnoudi & Ali Safari",
   "dependencies": {
-    "@angular/animations": "~9.0.0-rc.2",
+    "@angular/animations": "^9.0.1",
     "@angular/cdk": "^8.2.3",
-    "@angular/common": "~9.0.0-rc.2",
-    "@angular/core": "~9.0.0-rc.2",
+    "@angular/common": "^9.0.1",
+    "@angular/core": "^9.0.1",
     "ag-grid-angular": "^21.0.0",
     "ag-grid-community": "^21.0.0",
     "ag-grid-enterprise": "^21.0.0",
@@ -29,8 +29,8 @@
     "popper.js": "^1.15.0"
   },
   "peerDependencies": {
-    "@angular/common": "~9.0.0-rc.2",
-    "@angular/core": "~9.0.0-rc.2"
+    "@angular/common": "^9.0.1",
+    "@angular/core": "^9.0.1"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29"
