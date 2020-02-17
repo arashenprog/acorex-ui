@@ -1,23 +1,30 @@
 <div class="ax-select-box">
-  <ax-drop-down [text]="text" label="{{ label }}" #d>
+  <ax-drop-down [text]="text" label="{{ label }}" #d (onOpen)="handleOnOpen()" (onClose)="handleOnClose()">
     <div class="list-container">
       <div *ngIf="allowSearch" class="search">
-        <ax-search-box [(text)]="searchText" (onTextChanged)="handleSearchChanged($event)"></ax-search-box>
+        <ax-search-box [text]="searchText" (onTextChanged)="handleSearchChanged($event)"></ax-search-box>
       </div>
-      <div style="max-height: 300px;overflow-y: auto;">
-        <ng-container *ngIf="items && items.length; then thenTemplate; else elseTemplate"></ng-container>
+      <ng-container *ngIf="isLoading then loadingTemplate; else elseLoadingTemplate">
+      </ng-container>
+      <ng-template #elseLoadingTemplate>
+        <ng-container *ngIf="displayItems.length; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate>
-          <div class="text-item" [class.selected]="item.selected" *ngFor="let item of items"
-            (click)="handleItemClick(item)">
-            {{ item[textField] }}
-          </div>
+          <cdk-virtual-scroll-viewport itemSize="34" class="viewport">
+            <div class="text-item" [class.selected]="isItemSelected(item)" *cdkVirtualFor="let item of displayItems"
+              (click)="handleItemClick(item)">
+              {{ item ?  item[textField] : 'Loading...' }}
+            </div>
+          </cdk-virtual-scroll-viewport>
         </ng-template>
         <ng-template #elseTemplate>
           <div class="text-item">
             No Result Found
           </div>
         </ng-template>
-      </div>
+      </ng-template>
+      <ng-template #loadingTemplate>
+        Loading...
+      </ng-template>
     </div>
   </ax-drop-down>
 </div>

@@ -72,7 +72,6 @@ export abstract class AXValidatableComponent extends AXEditableBaseComponent {
   public validator: AXValidationComponent;
 }
 
-@Directive()
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @ViewChild("input") input: ElementRef<HTMLInputElement>;
   @Output()

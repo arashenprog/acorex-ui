@@ -2,12 +2,10 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpResult } from './http-result.class';
 import { IHttpError } from './http-error.class';
-
 import { AXHttpRequestOptions } from './http-request.class';
 import {
     AX_HTTP_EVENT_INTERCEPTOR, AXHttpEventInterceptor
 } from './http-events.interceptor';
-import { PromisResult } from '../base.class';
 // import { catchError, retry, retryWhen, mergeMap, delay, switchMap, scan, takeWhile, flatMap } from 'rxjs/operators';
 // import { of, concat, throwError } from 'rxjs';
 
@@ -20,16 +18,6 @@ export class AXHttpService {
         this.interceptor = this.injector.get(AX_HTTP_EVENT_INTERCEPTOR);
     }
 
-    // private retry = retryWhen(errors => {
-    //     let retries = 0;
-    //     return errors.pipe(delay(1500),
-    //         flatMap(err => {
-    //             if (retries-- > 0) {
-    //                 return of(err);
-    //             }
-    //         })
-    //     );
-    // });
 
     get<T>(url: string, config: AXHttpRequestOptions = {}): HttpResult<T> {
         config.url = url;
@@ -40,6 +28,18 @@ export class AXHttpService {
     post<T>(url: string, config: AXHttpRequestOptions = {}): HttpResult<T> {
         config.url = url;
         config.method = "post";
+        return this.request(config);
+    }
+
+    delete<T>(url: string, config: AXHttpRequestOptions = {}): HttpResult<T> {
+        config.url = url;
+        config.method = "delete";
+        return this.request(config);
+    }
+
+    put<T>(url: string, config: AXHttpRequestOptions = {}): HttpResult<T> {
+        config.url = url;
+        config.method = "put";
         return this.request(config);
     }
 
@@ -76,8 +76,8 @@ export class AXHttpService {
         }
     }
 
-    private handleBegin(config: AXHttpRequestOptions): PromisResult<AXHttpRequestOptions> {
-        return new PromisResult((resolve) => {
+    private handleBegin(config: AXHttpRequestOptions): Promise<AXHttpRequestOptions> {
+        return new Promise((resolve) => {
             if (!config.headers)
                 config.headers = {};
             if (!config.params)
@@ -127,16 +127,14 @@ export class AXHttpService {
                 headers = headers.set(key, value)
             }
         }
-
-
-        if (options.method == "get") {
-            let params = new HttpParams();
-            for (const key in options.params) {
-                if (options.params.hasOwnProperty(key)) {
-                    const value = options.params[key];
-                    params = params.set(key, value);
-                }
+        let params = new HttpParams();
+        for (const key in options.params) {
+            if (options.params.hasOwnProperty(key)) {
+                const value = options.params[key];
+                params = params.set(key, value);
             }
+        }
+        if (options.method == "get") {
             return {
                 headers: headers,
                 params: params
@@ -145,7 +143,8 @@ export class AXHttpService {
         else {
             return {
                 headers: headers,
-                body: options.params
+                params: params,
+                body: options.body
             };
         }
     }

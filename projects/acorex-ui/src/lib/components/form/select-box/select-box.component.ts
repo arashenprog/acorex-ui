@@ -4,22 +4,27 @@ import {
   ViewChild,
   ElementRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from "@angular/core";
-import { SelectItem } from "../../../core/select.class";
-import { AXSelectBaseComponent } from "../../../core/base.class";
-import { AXPopoverComponent } from "../../layout/popover/popover.component";
 import { AXDropDownComponent } from "../drop-down/drop-down.component";
 import { AXDataListComponent } from "../../data/data-list/core/data-list.component";
-import { AXKeyboardEvent } from "../../../core/events/keyboard";
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: "ax-select-box",
   templateUrl: "./select-box.component.html",
-  styleUrls: ["./select-box.component.scss"]
+  styleUrls: ["./select-box.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXSelectBoxComponent extends AXDataListComponent {
-  constructor() {
+
+  @ViewChild(CdkVirtualScrollViewport) virtualScroll: CdkVirtualScrollViewport;
+
+  constructor(private cdr: ChangeDetectorRef) {
     super();
   }
   @ViewChild("d", { static: true }) dropdown: AXDropDownComponent;
@@ -29,6 +34,31 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input() textField: string = "text";
   @Input() valueField: string = "value";
   @Input() mode: "single" | "multiple" = "single";
+
+
+  @Output()
+  onOpen: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output()
+  onClose: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output()
+  isLoadingChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  private _isLoading: boolean;
+  @Input()
+  public get isLoading(): boolean {
+    return this._isLoading;
+  }
+  public set isLoading(v: boolean) {
+
+    if (v != this._isLoading) {
+      this._isLoading = v;
+      this.cdr.markForCheck();
+      this.isLoadingChange.emit(v);
+    }
+  }
+
 
   // #region Search 
 
@@ -42,6 +72,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   public set searchText(v: string) {
     if (v != this._searchText) {
       this._searchText = v;
+      this.cdr.markForCheck();
       this.searchTextChange.emit(v);
     }
   }
@@ -58,14 +89,15 @@ export class AXSelectBoxComponent extends AXDataListComponent {
     return this._selectedItems;
   }
   public set selectedItems(v: any[]) {
-    if (!v) v = [];
-    this._selectedItems = v;
-    if (v) {
-      this.items.forEach(c => (c.selected = false));
-      v.forEach(c => (c.selected = true));
-      this.text = v.map(c => c[this.textField]).join(", ");
+    if (!v) {
+      v = [];
     }
-    this.selectedItemsChange.emit(v);
+    if (JSON.stringify(this._selectedItems) != JSON.stringify(v)) {
+      this._selectedItems = [...new Set(v)];
+      this.text = this._selectedItems.map(c => c[this.textField]).join(", ");
+      this.selectedItemsChange.emit(this._selectedItems);
+      this.selectedValuesChange.emit(this.selectedValues);
+    }
   }
 
   @Output()
@@ -74,55 +106,128 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input()
   public get selectedValues(): any[] | any {
     if (this.mode == "single")
-      return this._selectedItems.map(c => c[this.valueField])[0];
+      return this.selectedItems.map(c => c[this.valueField])[0];
     else
-      return this._selectedItems.map(c => c[this.valueField]) || [];
+      return this.selectedItems.map(c => c[this.valueField]) || [];
   }
   public set selectedValues(v: any[] | any) {
-    ;
     let old = this.selectedValues;
     if (JSON.stringify(old) != JSON.stringify(v)) {
-      if (this.mode == "single") {
-        this.selectedItems = this.items.filter(c => v == c[this.valueField]);
-      }
-      else {
-        if (Array.isArray(v))
-          this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
-        else if (v)
-          this.selectedItems = this.items.filter(c => v == c[this.valueField]);
-        else
-          this.selectedItems = [];
-      }
-      this.selectedValuesChange.emit(this.selectedValues);
+      this.waitForData(() => {
+        if (this.mode === 'single') {
+          this.selectedItems = this.items.filter(c => v === c[this.valueField]);
+        }
+        else {
+          if (Array.isArray(v)) {
+            this.selectedItems = this.items.filter(c => v.includes(c[this.valueField]));
+          }
+          else if (v) {
+            this.selectedItems = this.items.filter(c => v === c[this.valueField]);
+          }
+          else {
+            this.selectedItems = [];
+          }
+        }
+      });
+      
     }
   }
+
 
 
   ngAfterViewInit(): void {
+    if (this.dataSource) {
+      this.dataSource.onFetchStart.subscribe(() => {
+        this.isLoading = true;
+      });
+      this.dataSource.onDataReceived.subscribe(() => {
+        this.isLoading = false;
+      });
+    }
+    //
+    this.itemsChange.subscribe(() => {
+      if (this.virtualScroll) {
+        this.virtualScroll.scrollToIndex(0);
+        this.cdr.markForCheck();
+      }
+    });
+    //  
     this.refresh();
   }
 
+
+
   handleItemClick(item: any) {
-    let value = item[this.valueField];
     if (this.mode == "single") {
-      this.selectedValues = value;
+      this.selectedItems = [item];
     }
     else {
-      let exists = this.selectedValues.slice(0);
-      if (exists.includes(value)) {
-        this.selectedValues = exists.filter(c => c != value);
+      let exists = this.selectedItems.slice(0);
+      if (exists.some(c => c[this.valueField] === item[this.valueField])) {
+        this.selectedItems = exists.filter(c => c[this.valueField] !== item[this.valueField]);
       }
       else {
-        exists.push(value);
-        this.selectedValues = exists;
+        exists.push(item);
+        this.selectedItems = exists;
       }
     }
     this.dropdown.close();
   }
 
   handleSearchChanged(text: string) {
+    this.searchText = text;
     super.fetch({
-      searchText: text
+      searchText: this.searchText
     });
   }
+
+  isItemSelected(item) {
+    return this.selectedItems.some(c => c[this.valueField] == item[this.valueField]);
+  }
+
+  get displayItems(): any[] {
+    if (this.items == null) {
+      return [];
+    }
+    return this.searchText ?
+      this.items.filter(c => (c[this.textField] as string).toLowerCase().includes(this.searchText.toLowerCase())) :
+      this.items;
+  }
+
+  private itemsStatusObserver: any;
+  private waitForData(callbackfn: () => void) {
+    if (this.items && this.items.length) {
+      callbackfn();
+    }
+    else if (!this.itemsStatusObserver) {
+      Observable.create(observer => {
+        this.itemsStatusObserver = observer;
+      })
+        .pipe(debounceTime(50))
+        .pipe(distinctUntilChanged())
+        .subscribe(c => {
+          callbackfn();
+        });
+    }
+  }
+
+  ngDoCheck() {
+    if (this.itemsStatusObserver) {
+      this.itemsStatusObserver.next(this.items ? this.items.length : -1);
+    }
+
+  }
+
+  trackByFn(index, item) {
+    return item[this.valueField];
+  }
+
+  handleOnOpen() {
+    this.onOpen.emit();
+  }
+
+  handleOnClose() {
+    this.onClose.emit();
+  }
+
 }

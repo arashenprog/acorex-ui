@@ -398,4 +398,9 @@ export class AXDataGridComponent {
   hideLoading(): void {
     this.gridApi.hideOverlay();
   }
+
+  getChildCount()
+  {
+    return 0
+  }
 }

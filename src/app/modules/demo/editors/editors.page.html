@@ -1,10 +1,10 @@
 <ax-page>
   <ax-page-content>
-    <div >
+    <!-- <div>
       <div class="row">
         <div class="col-11" id="tbx1">
           <ax-text-box label="Text Box"></ax-text-box>
-         
+
         </div>
       </div>
       <br>
@@ -14,12 +14,12 @@
         <div class="col-6"></div>
         <div class="col-6" id="tbx2">
           <ax-date-picker></ax-date-picker>
-      
+
         </div>
       </div>
       <br>
       <br>
-      <ax-select-box mode="multiple" [items]="items" [selectedValues]="selectedValues"
+      <ax-select-box mode="multiple" [items]="items" [(selectedItems)]="selectedItems" [isLoading]="isLoading" [allowSearch]="true"
         (selectedValuesChange)="handleSelectedValuesChange($event)">
       </ax-select-box>
       <br>
@@ -38,6 +38,9 @@
           <ax-date-picker></ax-date-picker>
         </ax-panel-box>
       </ax-accordion>
-    </div>
+    </div> -->
+    <ax-select-box mode="multiple" [items]="items" [(selectedItems)]="selectedItems" [isLoading]="isLoading"
+      [allowSearch]="true" (selectedValuesChange)="handleSelectedValuesChange($event)" (onOpen)="onOpen()">
+    </ax-select-box>
   </ax-page-content>
 </ax-page>

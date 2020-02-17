@@ -1,9 +1,15 @@
 .ax-select-box {
   .list-container {
     padding: var(--sp-sm-size);
-    
+
     .search {
       margin-bottom: var(--sp-sm-size);
+    }
+
+
+    .viewport {
+      height: 150px;
+      min-height: 40px;
     }
 
     .text-item {
