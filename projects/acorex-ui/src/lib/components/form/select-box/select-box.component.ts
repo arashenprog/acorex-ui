@@ -12,6 +12,7 @@ import { AXDropDownComponent } from "../drop-down/drop-down.component";
 import { AXDataListComponent } from "../../data/data-list/core/data-list.component";
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: "ax-select-box",
@@ -21,8 +22,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class AXSelectBoxComponent extends AXDataListComponent {
 
+  @ViewChild(CdkVirtualScrollViewport) virtualScroll: CdkVirtualScrollViewport;
+
   constructor(private cdr: ChangeDetectorRef) {
-    super();    
+    super();
   }
   @ViewChild("d", { static: true }) dropdown: AXDropDownComponent;
 
@@ -48,6 +51,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
     return this._isLoading;
   }
   public set isLoading(v: boolean) {
+
     if (v != this._isLoading) {
       this._isLoading = v;
       this.cdr.markForCheck();
@@ -92,6 +96,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
       this._selectedItems = [...new Set(v)];
       this.text = this._selectedItems.map(c => c[this.textField]).join(", ");
       this.selectedItemsChange.emit(this._selectedItems);
+      this.selectedValuesChange.emit(this.selectedValues);
     }
   }
 
@@ -124,7 +129,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
           }
         }
       });
-      this.selectedValuesChange.emit(this.selectedValues);
+      
     }
   }
 
@@ -140,6 +145,13 @@ export class AXSelectBoxComponent extends AXDataListComponent {
       });
     }
     //
+    this.itemsChange.subscribe(() => {
+      if (this.virtualScroll) {
+        this.virtualScroll.scrollToIndex(0);
+        this.cdr.markForCheck();
+      }
+    });
+    //  
     this.refresh();
   }
 
