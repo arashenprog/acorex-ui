@@ -4,11 +4,9 @@ import { fetchProp } from "../object/object-util";
 
 export class ArrayUtil {
 
-   
     static pickRandom(array: any[]):any {
         return array[Math.floor(Math.random() * array.length)]
     }
-
   
     static insert(array: any[], index, ...rest) {
         array.splice.apply(array, [index, 0].concat(Array.prototype.slice.call(rest, 1)));
@@ -27,7 +25,6 @@ export class ArrayUtil {
             for (const key in filters) {
                 if (filters.hasOwnProperty(key)) {
                     const f = filters[key];
-                    ;
                     if (f != "AND") {
                         let vals = [];
                         let mt = f.field.match(/\[\:(.*?)\]/)
