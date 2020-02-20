@@ -42,5 +42,7 @@
     <ax-select-box mode="multiple" [items]="items" [(selectedItems)]="selectedItems" [isLoading]="isLoading"
       [allowSearch]="true" (selectedValuesChange)="handleSelectedValuesChange($event)" (onOpen)="onOpen()">
     </ax-select-box>
+    <br>
+    <ax-date-picker type="jalali" displayFormat="YYYY/MM/DD"></ax-date-picker>
   </ax-page-content>
 </ax-page>

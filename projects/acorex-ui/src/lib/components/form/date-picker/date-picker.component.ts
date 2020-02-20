@@ -1,7 +1,7 @@
 import { AXValidatableComponent } from "../../../core/base.class";
 import { Input, ViewChild, Output, EventEmitter, ViewEncapsulation, Component } from "@angular/core";
 import { IValidationRuleResult } from "../validation/validation.classs";
-import { AXDateTime } from "../../../core/calendar/datetime";
+import { AXDateTime, CalendarType } from "../../../core/calendar/datetime";
 import { AXDropDownComponent } from "../drop-down/drop-down.component";
 
 
@@ -24,8 +24,17 @@ export class AXDatePickerComponent extends AXValidatableComponent {
 
     @Input() label: string = null;
 
+    @Input()
+    type: CalendarType = "gregorian"
+
+    @Input()
+    displayFormat: string = 'DD/MM/YYYY';
+
     model: any = null;
     _text: string = ""
+
+
+
     constructor() {
         super();
     }
@@ -36,12 +45,12 @@ export class AXDatePickerComponent extends AXValidatableComponent {
     clear(): void {
     }
 
-    focus():void{
+    focus(): void {
         this.dropdown.focus();
     }
 
     ngAfterViewInit(): void {
-        this.selectToday();
+        //this.selectToday();
     }
 
     @Output()
@@ -53,10 +62,10 @@ export class AXDatePickerComponent extends AXValidatableComponent {
         return this._value;
     }
     public set value(v: AXDateTime) {
-        if (!v.equal(this._value)) {
+        if ((v != this._value) && !v.equal(this._value)) {
             this._value = v;
             this.valueChange.emit(v);
-            this._text = v.format("DD/MM/YYYY")
+            this._text = v.format(this.displayFormat);
         }
     }
 

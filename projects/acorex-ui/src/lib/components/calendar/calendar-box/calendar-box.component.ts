@@ -23,7 +23,7 @@ export class AXCalendarBoxComponent {
         this.today = new AXDateTime();
         this.today.type = this.type;
         this.viewRange = this.today.month.range;
-        this.value = new AXDateTime();
+        this.setFocus(this.today);
         this.view = "day";
     }
 
@@ -145,7 +145,9 @@ export class AXCalendarBoxComponent {
         dates.forEach(d => {
             let item: any = {};
             item.date = d;
-            item.selected = d.compaire(this.value, this.view) == 0;
+            if (this.value) {
+                item.selected = d.compaire(this.value, this.view) == 0;
+            }
             item.focused = d.compaire(this.focusedValue, this.view) == 0;
             item.today = d.compaire(this.today, this.view) == 0;
             if (this.view == "day")
