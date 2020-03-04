@@ -66,6 +66,7 @@
     .popup-body {
       max-height: 90vh;
       position: relative;
+      overflow-y: auto;
     }
 
     .popup-footer {

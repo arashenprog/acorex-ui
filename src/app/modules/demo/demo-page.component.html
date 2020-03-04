@@ -9,72 +9,141 @@
 
       <ax-row>
         <ax-col col-sm="3" col-xs="12">
-          <ax-text-box disabled="true" label="Textbox">
+          <ax-text-box readonly="true" label="Textbox">
             <ax-validation>
-              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+              <ax-validation-rule
+                type="required"
+                message="this field is required"
+              ></ax-validation-rule>
             </ax-validation>
           </ax-text-box>
         </ax-col>
         <ax-col col-sm="3" col-xs="12">
-          <ax-password-box label="Password Box">
+          <ax-password-box label="Password Box" readonly="true">
             <ax-validation>
-              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+              <ax-validation-rule
+                type="required"
+                message="this field is required"
+              ></ax-validation-rule>
             </ax-validation>
           </ax-password-box>
         </ax-col>
         <ax-col col-sm="3" col-xs="12">
-          <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems" placeholder="ax-select-box">
+          <ax-select-box
+            label="Selectbox"
+            readonly="true"
+            [allowSearch]="true"
+            [items]="selectBoxItems"
+            placeholder="ax-select-box"
+          >
             <ax-validation>
-              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+              <ax-validation-rule
+                type="required"
+                message="this field is required"
+              ></ax-validation-rule>
             </ax-validation>
           </ax-select-box>
         </ax-col>
         <ax-col col-sm="3" col-xs="12">
-          <ax-date-picker label="Date Picker" calendar="persian" placeholder="Enter Date here">
+          <ax-date-picker
+            label="Date Picker"
+            readonly="true"
+            calendar="persian"
+            placeholder="Enter Date here"
+          >
             <ax-validation>
-              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+              <ax-validation-rule
+                type="required"
+                message="this field is required"
+              ></ax-validation-rule>
             </ax-validation>
           </ax-date-picker>
         </ax-col>
       </ax-row>
       <ax-row>
         <ax-col col-sm="3" col-xs="12">
-          <ax-text-area label="Text Area"> </ax-text-area>
+          <ax-text-area label="Text Area" disabled="true"> </ax-text-area>
         </ax-col>
         <ax-col col-sm="3">
-          <ax-lov #lov1 label="Data LOV" selectionMode="multiple"
-            (onSelectionChange)="handleLovSelectionChange($event)">
+          <ax-lov
+            #lov1
+            label="Data LOV"
+            selectionMode="multiple"
+            (onSelectionChange)="handleLovSelectionChange($event)"
+          >
             <ax-data-source>
-              <ax-callback-read [provideData]="provideListData"></ax-callback-read>
+              <ax-callback-read
+                [provideData]="provideListData"
+              ></ax-callback-read>
             </ax-data-source>
-            <ax-text-column field="id" caption="Id" [width]="100"></ax-text-column>
-            <ax-text-column field="title" caption="Title" [width]="100"></ax-text-column>
+            <ax-text-column
+              field="id"
+              caption="Id"
+              [width]="100"
+            ></ax-text-column>
+            <ax-text-column
+              field="title"
+              caption="Title"
+              [width]="100"
+            ></ax-text-column>
           </ax-lov>
         </ax-col>
         <ax-col col-sm="3">
           <ax-time-picker></ax-time-picker>
         </ax-col>
       </ax-row>
-      <hr>
+      <hr />
       <h4>Buttons</h4>
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button [block]="true" size="lg" (onClick)="lov1.open().then()">Primary</ax-button>
+          <ax-button [block]="true" size="lg" (onClick)="lov1.open().then()"
+            >Primary</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="secondary" [block]="true" size="lg" (onClick)="infoToast()">Secondary</ax-button>
+          <ax-button
+            type="secondary"
+            [block]="true"
+            size="lg"
+            (onClick)="infoToast()"
+            >Secondary</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="success" [block]="true" size="lg" (onClick)="successToast()">Success</ax-button>
+          <ax-button
+            type="success"
+            [block]="true"
+            size="lg"
+            (onClick)="successToast()"
+            >Success</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="danger" [block]="true" size="lg" (onClick)="errorToast()">Danger</ax-button>
+          <ax-button
+            type="danger"
+            [block]="true"
+            size="lg"
+            (onClick)="errorToast()"
+            >Danger</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="info" [block]="true" size="lg" (onClick)="infoToast()">Info</ax-button>
+          <ax-button
+            type="info"
+            [block]="true"
+            size="lg"
+            (onClick)="infoToast()"
+            >Info</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="warning" [block]="true" size="lg" (onClick)="warningToast()">Warning</ax-button>
+          <ax-button
+            type="warning"
+            [block]="true"
+            size="lg"
+            (onClick)="warningToast()"
+            >Warning</ax-button
+          >
         </ax-col>
       </ax-row>
       <div class="ax-mar-sm"></div>
@@ -83,44 +152,86 @@
           <ax-button [block]="true" (onClick)="infoToast()">Primary</ax-button>
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="secondary" [block]="true" (onClick)="infoToast()">Secondary</ax-button>
+          <ax-button type="secondary" [block]="true" (onClick)="infoToast()"
+            >Secondary</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="success" [block]="true" (onClick)="successToast()">Success</ax-button>
+          <ax-button type="success" [block]="true" (onClick)="successToast()"
+            >Success</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="danger" [block]="true" (onClick)="errorToast()">Danger</ax-button>
+          <ax-button type="danger" [block]="true" (onClick)="errorToast()"
+            >Danger</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="info" [block]="true" (onClick)="infoToast()">Info</ax-button>
+          <ax-button type="info" [block]="true" (onClick)="infoToast()"
+            >Info</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="warning" [block]="true" (onClick)="warningToast()">Warning</ax-button>
+          <ax-button type="warning" [block]="true" (onClick)="warningToast()"
+            >Warning</ax-button
+          >
         </ax-col>
       </ax-row>
       <div class="ax-mar-sm"></div>
 
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button [block]="true" size="sm" (onClick)="infoToast()">Primary</ax-button>
+          <ax-button [block]="true" size="sm" (onClick)="infoToast()"
+            >Primary</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="secondary" [block]="true" size="sm" (onClick)="infoToast()">Secondary</ax-button>
+          <ax-button
+            type="secondary"
+            [block]="true"
+            size="sm"
+            (onClick)="infoToast()"
+            >Secondary</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="success" [block]="true" size="sm" (onClick)="successToast()">Success</ax-button>
+          <ax-button
+            type="success"
+            [block]="true"
+            size="sm"
+            (onClick)="successToast()"
+            >Success</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="danger" [block]="true" size="sm" (onClick)="errorToast()">Danger</ax-button>
+          <ax-button
+            type="danger"
+            [block]="true"
+            size="sm"
+            (onClick)="errorToast()"
+            >Danger</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="info" [block]="true" size="sm" (onClick)="infoToast()">Info</ax-button>
+          <ax-button
+            type="info"
+            [block]="true"
+            size="sm"
+            (onClick)="infoToast()"
+            >Info</ax-button
+          >
         </ax-col>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button type="warning" [block]="true" size="sm" (onClick)="warningToast()">Warning</ax-button>
+          <ax-button
+            type="warning"
+            [block]="true"
+            size="sm"
+            (onClick)="warningToast()"
+            >Warning</ax-button
+          >
         </ax-col>
       </ax-row>
-      <hr>
+      <hr />
       <!-- TODO: Check the ax-tab-view component -->
       <!-- <ax-row>
         <ax-col col-sm="12">
@@ -156,26 +267,42 @@
           <p>Checkbox Section</p>
           <ax-selection-list mode="multiple" [items]="sectionList">
           </ax-selection-list>
+          <ax-check-box label="with lable"></ax-check-box>
+          <ax-check-box label="disabled" disabled="true"></ax-check-box>
+          <ax-check-box label="readonly" readonly="true"></ax-check-box>
+
+          <p>without label</p>
+          <ax-check-box></ax-check-box>
         </ax-col>
       </ax-row>
-      <hr>
+      <hr />
       <h4>Popups & Drawer</h4>
       <ax-row>
         <ax-col col-sm="3">
-          <ax-button [block]="true" (onClick)="openPopup()">Open Popup</ax-button>
+          <ax-button [block]="true" (onClick)="openPopup()"
+            >Open Popup</ax-button
+          >
         </ax-col>
         <ax-col col-sm="3">
-          <ax-button [block]="true" type="danger" (onClick)="openAlert()">Open Alert</ax-button>
-
+          <ax-button [block]="true" type="danger" (onClick)="openAlert()"
+            >Open Alert</ax-button
+          >
         </ax-col>
         <ax-col col-sm="3">
-          <ax-button [block]="true" type="success" (onClick)="openAlertConfirm()">Open Confirm</ax-button>
+          <ax-button
+            [block]="true"
+            type="success"
+            (onClick)="openAlertConfirm()"
+            >Open Confirm</ax-button
+          >
         </ax-col>
         <ax-col col-sm="3">
-          <ax-button type="secondary" [block]="true" (onClick)="openDrawer()">Open Drawer</ax-button>
+          <ax-button type="secondary" [block]="true" (onClick)="openDrawer()"
+            >Open Drawer</ax-button
+          >
         </ax-col>
       </ax-row>
-      <hr>
+      <hr />
       <h4>Loading & Progressbar</h4>
       <ax-row>
         <ax-col col-sm="6">
@@ -185,7 +312,7 @@
           <ax-progress-bar progress="58"></ax-progress-bar>
         </ax-col>
       </ax-row>
-      <hr>
+      <hr />
       <h4>Uploader</h4>
       <ax-row>
         <ax-col col-sm="4">
@@ -193,12 +320,13 @@
         </ax-col>
         <ax-col col-sm="4"></ax-col>
         <ax-col col-sm="4"></ax-col>
-
       </ax-row>
       <ax-row>
         <ax-col col-sm="4">
           <p>Image Section</p>
-          <ax-image src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"></ax-image>
+          <ax-image
+            src="http://lorempixel.com/output/city-q-c-650-650-10.jpg"
+          ></ax-image>
         </ax-col>
         <ax-col col-sm="4"> </ax-col>
         <ax-col col-sm="4"> </ax-col>
@@ -206,19 +334,29 @@
       <ax-row>
         <ax-col col-sm="12">
           <p>List Section</p>
-          <ax-list title="List Title" [height]="'300px'" [emptyTemplate]="empty" [itemTemplate]="itemTemplatee">
+          <ax-list
+            title="List Title"
+            [height]="'300px'"
+            [emptyTemplate]="empty"
+            [itemTemplate]="itemTemplatee"
+          >
             <ax-toolbar>
               <ax-toolbar-list-view></ax-toolbar-list-view>
               <ax-toolbar-title text="LEAD"></ax-toolbar-title>
               <ax-toolbar-search></ax-toolbar-search>
             </ax-toolbar>
             <ax-data-source>
-              <ax-callback-read [provideData]="provideListData"></ax-callback-read>
+              <ax-callback-read
+                [provideData]="provideListData"
+              ></ax-callback-read>
             </ax-data-source>
 
             <ng-template #itemTemplatee let-item>
-              <div class="ax-card-box ax-pad-md ax-full-width" style="margin-bottom: 10px">
-                {{ item.name }}
+              <div
+                class="ax-card-box ax-pad-md ax-full-width"
+                style="margin-bottom: 10px"
+              >
+                {{ item.title }}
               </div>
             </ng-template>
             <ng-template #empty>
@@ -233,19 +371,31 @@
           <div style="height: 500px">
             <ax-data-grid title="Test remote data" [remoteOperation]="true">
               <ax-data-source>
-                <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
+                <ax-callback-read
+                  [provideData]="provideGridData"
+                ></ax-callback-read>
               </ax-data-source>
               <ax-selection-column></ax-selection-column>
               <ax-text-column field="id" caption="ID" [width]="100">
                 <ax-cell-template>
-                  <ng-template let-data>
-                    AAAAA {{data.id}}
-                  </ng-template>
+                  <ng-template let-data> AAAAA {{ data.id }} </ng-template>
                 </ax-cell-template>
               </ax-text-column>
-              <ax-text-column field="userId" caption="UserId" [width]="100"></ax-text-column>
-              <ax-text-column field="title" caption="Title" [width]="300"></ax-text-column>
-              <ax-check-column field="completed" caption="Completed" [width]="100"></ax-check-column>
+              <ax-text-column
+                field="userId"
+                caption="UserId"
+                [width]="100"
+              ></ax-text-column>
+              <ax-text-column
+                field="title"
+                caption="Title"
+                [width]="300"
+              ></ax-text-column>
+              <ax-check-column
+                field="completed"
+                caption="Completed"
+                [width]="100"
+              ></ax-check-column>
               <!-- <ax-row-template>
                 <ng-template let-data>
                   <div style="text-align: center">

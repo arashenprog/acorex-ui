@@ -1,16 +1,36 @@
-<div class="ax-field-set">
+<div
+  class="ax-field-set"
+  [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }"
+>
   <div class="ax-field-set-wrapper">
-    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+    <fieldset
+      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
+    >
       <legend>
         {{ label }}
       </legend>
     </fieldset>
-    <textarea #textarea [(ngModel)]="text" type="text" class="ax-text-area" [placeholder]="placeholder"
-      (blur)="handleBlurEvent($event)" (keyup)="handleKeyEvent($event)" (focus)="handleFocusEvent($event)"
-      [attr.disabled]="disabled ? 'disabled' : null" [attr.rows]="rows">
+    <textarea
+      #textarea
+      [(ngModel)]="text"
+      type="text"
+      class="ax-text-area"
+      [placeholder]="placeholder"
+      (blur)="handleBlurEvent($event)"
+      (keyup)="handleKeyEvent($event)"
+      (focus)="handleFocusEvent($event)"
+      [attr.disabled]="disabled ? 'disabled' : null"
+      [readonly]="readonly"
+      [attr.rows]="rows"
+    >
     </textarea>
     <div class="ax-field-set-button">
-      <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">
+      <button
+        *ngIf="text && showClear"
+        type="button"
+        class="btn btn-light"
+        (click)="clearText()"
+      >
         <i class="fas fa-times"></i>
       </button>
     </div>

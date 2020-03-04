@@ -18,6 +18,8 @@ import { EditorsPage } from './modules/demo/editors/editors.page';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardPage } from './modules/demo/dashboard/dashboard.page';
+import { DemoPage } from './modules/demo/demo-page.component';
 
 const routes: Routes = [
   {
@@ -63,7 +65,7 @@ const routes: Routes = [
     {
       provide: "startUpTab",
       useValue: {
-        content: EditorsPage,
+        content: DemoPage,
         title: "Dashboard",
         closable: true,
         uid: "dashboard"

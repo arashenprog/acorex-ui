@@ -1,5 +1,6 @@
-<label class="checkbox-container" for="{{ _uid }}">
+<label class="checkbox-container" for="{{ _uid }}" [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }">
   {{ label }}
-  <input  type="checkbox" id="{{ _uid }}"  [(ngModel)]="value"  />
+  <input  type="checkbox" id="{{ _uid }}" [(ngModel)]="value"  [readonly]="readonly"
+  [attr.disabled]="disabled ? 'disabled' : null" />
   <span class="checkmark"></span>
 </label> 

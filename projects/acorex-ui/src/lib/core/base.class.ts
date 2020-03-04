@@ -1,4 +1,13 @@
-import { Input, Output, EventEmitter, ContentChild, ViewChild, ElementRef, ChangeDetectorRef, Directive } from "@angular/core";
+import {
+  Input,
+  Output,
+  EventEmitter,
+  ContentChild,
+  ViewChild,
+  ElementRef,
+  ChangeDetectorRef,
+  Directive
+} from "@angular/core";
 import { ButtonItem } from "./menu.class";
 import { AXValidationComponent } from "../components/form/validation/validation.component";
 import { IValidationRuleResult } from "../components/form/validation/validation.classs";
@@ -24,7 +33,7 @@ export class PromisResult<T> {
   static resolve<T>(value: T): PromisResult<T> {
     const r = new PromisResult<T>(z => {
       z(value);
-    }).then(c => { });
+    }).then(c => {});
     return r;
   }
 }
@@ -35,7 +44,7 @@ export abstract class AXBaseComponent {
 
 @Directive()
 export abstract class AXEditableBaseComponent extends AXBaseComponent {
-  @Input() readOnly: boolean = false;
+  @Input() readonly: boolean = false;
   protected _isFocused: boolean = false;
   @Input() disabled: boolean = false;
 
@@ -144,6 +153,8 @@ export abstract class AXSelectBaseComponent extends AXTextInputBaseComponent {
 @Directive()
 export abstract class AXCheckedBaseComponent extends AXBaseComponent {
   @Input() label: string = "";
+  @Input() disabled: boolean = false;
+  @Input() readonly: boolean = false;
 
   constructor(protected cdr: ChangeDetectorRef) {
     super();

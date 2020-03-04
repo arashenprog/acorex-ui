@@ -1,32 +1,53 @@
-<div class="ax-field-set" #dropSelectBox [attr.id]="_uid">
-  <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }" (click)="handleDropdownButtonClick($event)">
-    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+<div
+  class="ax-field-set"
+  #dropSelectBox
+  [attr.id]="_uid"
+  [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }"
+>
+  <div
+    class="ax-field-set-wrapper"
+    [ngClass]="{ 'no-label': !label }"
+    (click)="handleDropdownButtonClick($event)"
+  >
+    <fieldset
+      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
+    >
       <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
     <ng-container *ngIf="editorTemplate; else elseTemplate">
       <div class="editor-template">
-        <ng-container *ngTemplateOutlet="editorTemplate">
-        </ng-container>
+        <ng-container *ngTemplateOutlet="editorTemplate"> </ng-container>
       </div>
     </ng-container>
     <ng-template #elseTemplate>
-      <input 
-      type="text"
-      [(ngModel)]="text" 
-      [placeholder]="placeholder"
-      (keyup)="handleKeyEvent($event)"
+      <input
+        type="text"
+        [(ngModel)]="text"
+        [placeholder]="placeholder"
+        (keyup)="handleKeyEvent($event)"
         (blur)="handleBlurEvent($event)"
-         (focus)="handleFocusEvent($event)"
-        class="ax-text-box" 
-         disabled />
+        (focus)="handleFocusEvent($event)"
+        class="ax-text-box"
+        [readonly]="readonly"
+        disabled
+      />
     </ng-template>
     <div class="ax-field-set-button">
-      <button *ngIf="text && showClear" type="button" class="btn btn-light" (click)="clearText()">
+      <button
+        *ngIf="text && showClear"
+        type="button"
+        class="btn btn-light"
+        (click)="clearText()"
+      >
         <i class="fas fa-times"></i>
       </button>
-      <button type="button" class=" btn btn-primary" ((click)="handleDropdownButtonClick($event)">
+      <button
+        type="button"
+        class=" btn btn-primary"
+        ((click)="handleDropdownButtonClick($event)"
+      >
         <i class="{{ icon }}"></i>
       </button>
     </div>
@@ -35,12 +56,18 @@
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<ax-popover [fitParent]="fitParent" distance="10" height="'auto'" target="#{{ _uid }}" placement="bottom-start"
-  alignment="top-start" #popSelectBox
+<ax-popover
+  [fitParent]="fitParent"
+  distance="10"
+  height="'auto'"
+  target="#{{ _uid }}"
+  placement="bottom-start"
+  alignment="top-start"
+  #popSelectBox
   (onOpen)="handleOnOpen()"
-  (onClose)="handleOnClose()" >
+  (onClose)="handleOnClose()"
+>
   <div class="ax-popover-container-bordered">
     <ng-content> </ng-content>
   </div>
-  
 </ax-popover>

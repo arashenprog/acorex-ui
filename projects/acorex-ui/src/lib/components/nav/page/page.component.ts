@@ -27,6 +27,7 @@ export class AXPageComponent {
     let page = this.el.nativeElement.querySelector<HTMLDivElement>(".page-content-wrap");
 
     if (page) {
+      // TODO: Check height
       let popup = this.closest(page, '.popup-body');
       if (page.clientHeight <= 100) {
         page.style.height = "100vh";

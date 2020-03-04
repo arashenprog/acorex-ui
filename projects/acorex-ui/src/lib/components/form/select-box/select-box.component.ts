@@ -35,6 +35,9 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input() valueField: string = "value";
   @Input() mode: "single" | "multiple" = "single";
   @Input() itemHeight: number = 34;
+  @Input() disabled: boolean = false;
+  @Input() readonly: boolean = false;
+
 
 
   @Output()

@@ -1,13 +1,28 @@
-<div class="ax-select-box">
-  <ax-drop-down [text]="text" label="{{ label }}" #d (onOpen)="handleOnOpen()" (onClose)="handleOnClose()">
+<div class="ax-select-box" [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }">
+  <ax-drop-down
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [text]="text"
+    label="{{ label }}"
+    #d
+    (onOpen)="handleOnOpen()"
+    (onClose)="handleOnClose()"
+  >
     <div class="list-container">
       <div *ngIf="allowSearch" class="search">
-        <ax-search-box [text]="searchText" (onTextChanged)="handleSearchChanged($event)"></ax-search-box>
+        <ax-search-box
+          [text]="searchText"
+          (onTextChanged)="handleSearchChanged($event)"
+        ></ax-search-box>
       </div>
-      <ng-container *ngIf="isLoading then loadingTemplate; else elseLoadingTemplate">
+      <ng-container
+        *ngIf="isLoading; then loadingTemplate; else elseLoadingTemplate"
+      >
       </ng-container>
       <ng-template #elseLoadingTemplate>
-        <ng-container *ngIf="displayItems.length; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-container
+          *ngIf="displayItems.length; then thenTemplate; else elseTemplate"
+        ></ng-container>
         <ng-template #thenTemplate>
           <!-- <cdk-virtual-scroll-viewport [itemSize]="itemHeight" class="viewport">
             <div class="text-item" [class.selected]="isItemSelected(item)" *cdkVirtualFor="let item of displayItems"
@@ -16,8 +31,12 @@
             </div>
           </cdk-virtual-scroll-viewport> -->
           <div class="viewport">
-            <div class="text-item" [class.selected]="isItemSelected(item)" *ngFor="let item of displayItems"
-              (click)="handleItemClick(item)">
+            <div
+              class="text-item"
+              [class.selected]="isItemSelected(item)"
+              *ngFor="let item of displayItems"
+              (click)="handleItemClick(item)"
+            >
               {{ item[textField] }}
             </div>
           </div>

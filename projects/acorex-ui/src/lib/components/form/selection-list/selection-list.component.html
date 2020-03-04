@@ -2,6 +2,8 @@
     <ng-container *ngIf=" mode == 'multiple' ">
         <ax-check-box label="{{item[textField]}}" *ngFor="let item of items"
             [value]="selectedValues.indexOf(item[valueField])>-1"
+            [disabled]='item.disabled'
+            [readonly]='item.readonly'
             (valueChange)="onCheckValueChange(item[valueField],$event)">
         </ax-check-box>
     </ng-container>
@@ -9,7 +11,8 @@
         <label class="radio-container" *ngFor="let item of items">
             {{ item[textField] }}
             <input type="radio" (change)="onCheckValueChange(item[valueField],true)" [value]="item[valueField]"
-                [attr.checked]="selectedValues==item[valueField] ? 'checked' : null" [name]="_uid" />
+                [attr.checked]="selectedValues==item[valueField] ? 'checked' : null" [name]="_uid" [readonly]="item.readonly"
+                [attr.disabled]="item.disabled ? 'disabled' : null" />
             <span class="checkmark"></span>
         </label>
     </ng-container>
