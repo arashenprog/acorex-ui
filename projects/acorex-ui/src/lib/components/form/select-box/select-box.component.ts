@@ -34,6 +34,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input() textField: string = "text";
   @Input() valueField: string = "value";
   @Input() mode: "single" | "multiple" = "single";
+  @Input() itemHeight: number = 34;
 
 
   @Output()
@@ -129,7 +130,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
           }
         }
       });
-      
+
     }
   }
 

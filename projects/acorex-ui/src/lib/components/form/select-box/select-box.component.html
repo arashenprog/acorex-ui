@@ -9,12 +9,18 @@
       <ng-template #elseLoadingTemplate>
         <ng-container *ngIf="displayItems.length; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate>
-          <cdk-virtual-scroll-viewport itemSize="34" class="viewport">
+          <!-- <cdk-virtual-scroll-viewport [itemSize]="itemHeight" class="viewport">
             <div class="text-item" [class.selected]="isItemSelected(item)" *cdkVirtualFor="let item of displayItems"
               (click)="handleItemClick(item)">
               {{ item ?  item[textField] : 'Loading...' }}
             </div>
-          </cdk-virtual-scroll-viewport>
+          </cdk-virtual-scroll-viewport> -->
+          <div class="viewport">
+            <div class="text-item" [class.selected]="isItemSelected(item)" *ngFor="let item of displayItems"
+              (click)="handleItemClick(item)">
+              {{ item[textField] }}
+            </div>
+          </div>
         </ng-template>
         <ng-template #elseTemplate>
           <div class="text-item">

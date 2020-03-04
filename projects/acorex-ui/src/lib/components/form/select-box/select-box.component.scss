@@ -8,8 +8,10 @@
 
 
     .viewport {
-      height: 150px;
-      min-height: 40px;
+      // height: 150px;
+      //min-height: 40px;
+      max-height: 250px;
+      overflow-y: auto;
     }
 
     .text-item {
