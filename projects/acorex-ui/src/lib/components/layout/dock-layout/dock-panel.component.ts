@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ContentChildren, QueryList, Attribute, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ContentChildren, QueryList, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AXDockPanelContentComponent } from './dock-panel-content.component';
 
 @Component({

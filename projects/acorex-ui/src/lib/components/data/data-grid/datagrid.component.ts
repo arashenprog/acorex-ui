@@ -58,6 +58,19 @@ export class AXDataGridComponent {
     cellRendererParams: { checkbox: true }
   }
 
+  treeData: boolean = false;
+  @Input()
+  keyField: string = 'null';
+
+  @Input()
+  ParentField: string;
+
+  @Input()
+  childField: string;
+
+  @Input()
+  hasChildField: string = 'null';
+
   @Input()
   selectionMode: "single" | "multiple" = "single";
 
@@ -66,6 +79,12 @@ export class AXDataGridComponent {
 
   @Input()
   loadOnInit: boolean = true;
+
+  @Input()
+  getDataPath: (item: any) => void;
+
+  @Input()
+  groupDefaultExpanded: number = 0;
 
   private _searchText: string;
   @Input()
@@ -186,6 +205,13 @@ export class AXDataGridComponent {
     else this.internalHeight = "100%";
   }
 
+  isServerSideGroup = (e) => {
+    return e[this.hasChildField];
+  }
+
+  getServerSideGroupKey = (e) => {
+    return e[this.keyField];
+  }
 
   private get intenalGridDataSource() {
 
@@ -198,7 +224,7 @@ export class AXDataGridComponent {
         loadParams.searchText = that.searchText;
         loadParams.skip = params.request.startRow;
         loadParams.take = params.request.endRow - params.request.startRow;
-        
+
         loadParams.sort = params.request.sortModel.map(c => {
           return {
             field: c.colId,
@@ -247,6 +273,10 @@ export class AXDataGridComponent {
   }
 
   ngOnInit(): void {
+    if (this.keyField !== 'null' || this.hasChildField !== 'null') {
+      this.rowGroupPanelShow = 'null';
+      this.treeData = true;
+    }
     if (this.remoteOperation)
       this.rowModelType = "serverSide";
   }
@@ -399,8 +429,7 @@ export class AXDataGridComponent {
     this.gridApi.hideOverlay();
   }
 
-  getChildCount()
-  {
+  getChildCount() {
     return 0
   }
 }

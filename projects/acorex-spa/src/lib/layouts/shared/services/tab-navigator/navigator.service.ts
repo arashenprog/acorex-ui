@@ -1,6 +1,8 @@
-import { AXNavigator, AXNavigatorParam, AXTabPageService } from 'acorex-ui';
+import { AXNavigator, AXNavigatorParam, AXTabPageService, AXTabPage } from 'acorex-ui';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
+
 
 @Injectable()
 export class AXTabNavService extends AXNavigator {
@@ -17,15 +19,32 @@ export class AXTabNavService extends AXNavigator {
                 route: params.path,
             };
             data = Object.assign(data, params.data);
-            this.tab.open({
+            return this.tab.open({
                 title: params.title ? params.title : (route.data ? route.data.title : null),
                 content: route.component,
                 data: data
             });
         }
+        return null
     }
 
     popup(params: AXNavigatorParam) {
 
     }
+
+    private findExistTab(component: any, data: any): AXTabPage {
+        try {
+            if (!data)
+                data = {};
+            let result = this.tab.tabs.find(c =>
+                c.content == component &&
+                ((!c.option) ||
+                    JSON.stringify(data) == JSON.stringify(c.option))
+            );
+            return result;
+        } catch (error) {
+            return null;
+        }
+    }
+
 }

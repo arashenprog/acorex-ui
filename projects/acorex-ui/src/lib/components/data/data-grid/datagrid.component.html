@@ -12,5 +12,7 @@
   (rowClicked)="internalGridRowClicked($event)" (selectionChanged)="internalGridSelectionChanged($event)"
   (rowDoubleClicked)="internalGridRowDoubleClicked($event)" (gridReady)="internalGridReady($event)"
   [groupSelectsChildren]="true" [suppressRowClickSelection]="true" [groupSelectsFiltered]="true"
-  [autoGroupColumnDef]="autoGroupColumnDef" [suppressAggFuncInHeader]="true" >
+  [autoGroupColumnDef]="autoGroupColumnDef" [suppressAggFuncInHeader]="true" [treeData]="treeData" [animateRows]="true"
+  [getDataPath]="getDataPath" [groupDefaultExpanded]="groupDefaultExpanded" [isServerSideGroup]="isServerSideGroup"
+  [getServerSideGroupKey]="getServerSideGroupKey">
 </ag-grid-angular>
