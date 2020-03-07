@@ -70,6 +70,7 @@
             label="Data LOV"
             selectionMode="multiple"
             (onSelectionChange)="handleLovSelectionChange($event)"
+            [readonly]="true"
           >
             <ax-data-source>
               <ax-callback-read

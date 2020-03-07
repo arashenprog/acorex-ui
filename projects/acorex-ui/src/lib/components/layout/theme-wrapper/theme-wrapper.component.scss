@@ -308,7 +308,7 @@ label {
   }
 
 
-  button {
+  button ,.btn {
     background-color: var(--gray-dark-color) !important;
     color: var(--gray-fore-color) !important;
     border-color: var(--border-color) !important;
@@ -641,14 +641,14 @@ $color in $colors {
   border-color: var(--primary-light-color);
 }
 
-.btn-primary:not(:disabled):not(.disabled).active,
-.btn-primary:not(:disabled):not(.disabled):active,
-.show>.btn-primary.dropdown-toggle {
-  background-color: var(--primary-dark-color);
-  border-color: var(--primary-dark-color);
-  color: var(--primary-fore-color);
+// .btn-primary:not(:disabled):not(.disabled).active,
+// .btn-primary:not(:disabled):not(.disabled):active,
+// .show>.btn-primary.dropdown-toggle {
+//   background-color: var(--primary-dark-color);
+//   border-color: var(--primary-dark-color);
+//   color: var(--primary-fore-color);
 
-}
+// }
 
 .btn-primary.focus,
 .btn-primary:focus {
