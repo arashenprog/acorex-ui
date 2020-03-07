@@ -49,7 +49,7 @@ export class AXDataGridComponent {
   frameworkComponents: any = {};
   isFullWidthCell: Function;
   internalHeight: string = "100%";
-
+  @Input()
   autoGroupColumnDef = {
     headerName: "Group by",
     field: "group by",
