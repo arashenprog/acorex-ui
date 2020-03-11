@@ -7,7 +7,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from "@angular/core";
-import { AXBaseComponent, AXCheckedBaseComponent } from "../../../core/base.class";
+import {
+  AXBaseComponent,
+  AXCheckedBaseComponent
+} from "../../../core/base.class";
 
 @Component({
   selector: "ax-check-box",
@@ -17,7 +20,6 @@ import { AXBaseComponent, AXCheckedBaseComponent } from "../../../core/base.clas
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AXCheckBoxComponent extends AXCheckedBaseComponent {
-
   constructor(protected cdr: ChangeDetectorRef) {
     super(cdr);
   }
@@ -43,4 +45,13 @@ export class AXCheckBoxComponent extends AXCheckedBaseComponent {
   // get value() {
   //   return this._value;
   // }
+
+  handleClick(e:Event) {
+    debugger
+    if (this.readonly) {
+      return false;
+    }
+    e.stopPropagation();
+    e.preventDefault()
+  }
 }
