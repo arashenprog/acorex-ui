@@ -32,19 +32,19 @@ export class AXTabNavService extends AXNavigator {
 
     }
 
-    private findExistTab(component: any, data: any): AXTabPage {
-        try {
-            if (!data)
-                data = {};
-            let result = this.tab.tabs.find(c =>
-                c.content == component &&
-                ((!c.option) ||
-                    JSON.stringify(data) == JSON.stringify(c.option))
-            );
-            return result;
-        } catch (error) {
-            return null;
-        }
-    }
+    // private findExistTab(component: any, data: any): AXTabPage {
+    //     try {
+    //         if (!data)
+    //             data = {};
+    //         let result = this.tab.tabs.find(c =>
+    //             c.content == component &&
+    //             ((!c.option) ||
+    //                 JSON.stringify(data) == JSON.stringify(c.option))
+    //         );
+    //         return result;
+    //     } catch (error) {
+    //         return null;
+    //     }
+    // }
 
 }

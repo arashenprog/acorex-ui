@@ -7,7 +7,6 @@ import { AXBadgeModule } from "./components/layout/badge/badge.module";
 import { AXCardModule } from "./components/layout/cards/card.module";
 import { AXCarouselModule } from "./components/layout/carousel/carousel.module";
 import { AXCheckBoxModule } from "./components/form/checkbox/checkbox.module";
-import { AXDataGridModule } from "./components/data/data-grid/datagrid.module";
 import { AXDatePickerModule } from "./components/form/date-picker/date-picker.module";
 
 import { AXImageViewModule } from "./components/layout/image-view/api";
@@ -51,7 +50,6 @@ import { AXEditBoxModule } from "./components/form/edit-box/edit-box.module";
 import { AXSearchBoxModule } from "./components/form/search-box/search-box.module";
 import { AXTooltipModule } from "./components/layout/tooltip/tooltip.module";
 import { AXHtmlModule } from "./core/utils/html/html.module";
-import { AXLOVModule } from "./components/data/data-lov/data-lov.module";
 import { AXSeparatorModule } from "./core/utils/separator/separator.module";
 import { AXTimePickerModule } from "./components/form/time-picker/time-picker.module";
 import { AXTimeBoxModule } from "./components/time/time-box/time-box.module";
@@ -69,7 +67,6 @@ let modules = [
   AXCardModule,
   AXCarouselModule,
   AXCheckBoxModule,
-  AXDataGridModule,
   AXDatePickerModule,
   AXTimePickerModule,
   AXTimeBoxModule,
@@ -107,7 +104,6 @@ let modules = [
   AXEditBoxModule,
   AXTooltipModule,
   AXHtmlModule,
-  AXLOVModule,
   AXSeparatorModule
 ];
 @NgModule({
