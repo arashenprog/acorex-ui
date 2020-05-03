@@ -2,7 +2,6 @@
 export * from "./badge/api";
 export * from "./cards/api";
 export * from "./carousel/api";
-export * from "./dock-layout/api";
 export * from "./drawer/api";
 export * from "./grid-layout/api";
 export * from "./image-view/api";
@@ -17,4 +16,3 @@ export * from "./theme-wrapper/api";
 export * from "./toast/api";
 export * from "./toolbar/api";
 export * from "./tooltip/api";
-export * from "./widget/api";

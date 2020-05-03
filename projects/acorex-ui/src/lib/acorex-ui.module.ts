@@ -1,4 +1,3 @@
-import * as $ from "jquery";
 
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -36,9 +35,7 @@ import { AXDrawerModule } from "./components/layout/drawer/drawer.module";
 import { AX_HTTP_EVENT_INTERCEPTOR } from "./core/http/http-events.interceptor";
 import { AXDataSourceModule } from "./components/data/data-source/datasource.module";
 import { AXListModule } from "./components/data/data-list/list/list.module";
-import { AXWidgetModule } from "./components/layout/widget/widget.module";
 import { AXToolbarModule } from "./components/layout/toolbar/api";
-import { AXDockLayoutModule } from "./components/layout/dock-layout/dock-layout.module";
 import { AXTreeListModule } from "./components/data/tree-list/tree-list.module";
 import { AXSchedulerModule } from "./components/calendar/scheduler/scheduler.module";
 import { AXCalendarBoxModule } from "./components/calendar/calendar-box/api";
@@ -55,7 +52,6 @@ import { AXTimePickerModule } from "./components/form/time-picker/time-picker.mo
 import { AXTimeBoxModule } from "./components/time/time-box/time-box.module";
 
 
-window["$"] = $;
 
 let modules = [
   
@@ -89,9 +85,7 @@ let modules = [
   AXTabPageModule,
   AXDrawerModule,
   AXListModule,
-  AXWidgetModule,
   AXToolbarModule,
-  AXDockLayoutModule,
   AXHttpModule,
   AXDataSourceModule,
   AXTreeListModule,
