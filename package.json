@@ -17,7 +17,7 @@
   "dependencies": {
     "@acorex/core": "^1.0.3",
     "@angular/animations": "^9.0.1",
-    "@angular/cdk": "^8.2.3",
+    "@angular/cdk": "^9.2.2",
     "@angular/common": "^9.0.1",
     "@angular/compiler": "^9.0.1",
     "@angular/core": "^9.0.1",
