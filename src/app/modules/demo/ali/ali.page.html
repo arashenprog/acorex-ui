@@ -4,55 +4,6 @@
     </ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
-      <ax-dock-layout #layout autoSave="true" storageKey="Test">
-        <ax-dock-panel type="row">
-          <ax-dock-panel type="stack" [size]="20">
-            <ax-dock-content caption="Filters">
-              <ng-template>
-                <ax-menu [items]="verMenuItems" target="#target"  direction="vertical">
-                  <ng-template let-item>
-                      <span>{{item.text}}</span>
-                  </ng-template>
-                </ax-menu>
-                <div id="target">Right click / Touch hold to open the ContextMenu</div>
-              </ng-template>
-            </ax-dock-content>
-          </ax-dock-panel>
-          <ax-dock-panel type="stack" [size]="80">
-            <ax-dock-content caption="Leads">
-              <ng-template>
-                L
-              </ng-template>
-            </ax-dock-content>
-            <ax-dock-content caption="Calendar">
-              <ng-template>
-                <ax-scheduler [currentView]="view" [events]="data" (onEventChanged)="onEventChanged($event)">
-                  <ax-toolbar>
-                    <ax-toolbar-scheduler-navigator>
-                    </ax-toolbar-scheduler-navigator>
-                    <div></div>
-                    <div style="display: flex">
-                      <ax-toolbar-scheduler-view>
-                      </ax-toolbar-scheduler-view>
-                      <ax-toolbar-search></ax-toolbar-search>
-                    </div>
-                  </ax-toolbar>
-                  <ax-data-source>
-                    <ax-callback-read [provideData]="provideGridData"></ax-callback-read>
-                  </ax-data-source>
-                  <ax-scheduler-views>
-                    <ax-scheduler-view type="day" name="day" caption="Day"></ax-scheduler-view>
-                    <ax-scheduler-view type="week" name="week" caption="Week"></ax-scheduler-view>
-                    <ax-scheduler-view type="month" name="month" caption="Month"></ax-scheduler-view>
-                    <ax-scheduler-view type="agenda" name="agenda" caption="Agenda" interval="14"></ax-scheduler-view>
-                    <ax-scheduler-view type="timeline" name="timeline" caption="Timeline"></ax-scheduler-view>
-                  </ax-scheduler-views>
-                </ax-scheduler>
-              </ng-template>
-            </ax-dock-content>
-
-          </ax-dock-panel>
-        </ax-dock-panel>
-      </ax-dock-layout>
+    
   </ax-page-content>
 </ax-page>

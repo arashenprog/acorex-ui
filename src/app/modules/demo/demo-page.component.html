@@ -65,29 +65,7 @@
           <ax-text-area label="Text Area" disabled="true"> </ax-text-area>
         </ax-col>
         <ax-col col-sm="3">
-          <ax-lov
-            #lov1
-            label="Data LOV"
-            selectionMode="multiple"
-            (onSelectionChange)="handleLovSelectionChange($event)"
-            [readonly]="true"
-          >
-            <ax-data-source>
-              <ax-callback-read
-                [provideData]="provideListData"
-              ></ax-callback-read>
-            </ax-data-source>
-            <ax-text-column
-              field="id"
-              caption="Id"
-              [width]="100"
-            ></ax-text-column>
-            <ax-text-column
-              field="title"
-              caption="Title"
-              [width]="100"
-            ></ax-text-column>
-          </ax-lov>
+        
         </ax-col>
         <ax-col col-sm="3">
           <ax-time-picker></ax-time-picker>
@@ -97,7 +75,7 @@
       <h4>Buttons</h4>
       <ax-row>
         <ax-col col-sm="2" col-xs="12">
-          <ax-button [block]="true" size="lg" (onClick)="lov1.open().then()"
+          <ax-button [block]="true" size="lg" 
             >Primary</ax-button
           >
         </ax-col>
@@ -271,8 +249,6 @@
           <ax-check-box label="with lable"></ax-check-box>
           <ax-check-box label="disabled" disabled="true"></ax-check-box>
           <ax-check-box label="readonly" readonly="true"></ax-check-box>
-
-          <p>without label</p>
           <ax-check-box></ax-check-box>
         </ax-col>
       </ax-row>
@@ -370,41 +346,7 @@
         <ax-col col-sm="12">
           <p>Grid Section</p>
           <div style="height: 500px">
-            <ax-data-grid title="Test remote data" [remoteOperation]="true">
-              <ax-data-source>
-                <ax-callback-read
-                  [provideData]="provideGridData"
-                ></ax-callback-read>
-              </ax-data-source>
-              <ax-selection-column></ax-selection-column>
-              <ax-text-column field="id" caption="ID" [width]="100">
-                <ax-cell-template>
-                  <ng-template let-data> AAAAA {{ data.id }} </ng-template>
-                </ax-cell-template>
-              </ax-text-column>
-              <ax-text-column
-                field="userId"
-                caption="UserId"
-                [width]="100"
-              ></ax-text-column>
-              <ax-text-column
-                field="title"
-                caption="Title"
-                [width]="300"
-              ></ax-text-column>
-              <ax-check-column
-                field="completed"
-                caption="Completed"
-                [width]="100"
-              ></ax-check-column>
-              <!-- <ax-row-template>
-                <ng-template let-data>
-                  <div style="text-align: center">
-                    {{data.title}}
-                  </div>
-                </ng-template>
-              </ax-row-template> -->
-            </ax-data-grid>
+            
           </div>
         </ax-col>
       </ax-row>

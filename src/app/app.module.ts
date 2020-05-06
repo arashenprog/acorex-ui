@@ -18,13 +18,12 @@ import { EditorsPage } from './modules/demo/editors/editors.page';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardPage } from './modules/demo/dashboard/dashboard.page';
 import { DemoPage } from './modules/demo/demo-page.component';
 
 const routes: Routes = [
   {
     path: "layout1",
-    component: AXTabularLayoutComponent
+    component: DemoPage
   },
   {
     path: "layout2",

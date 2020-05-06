@@ -16,8 +16,6 @@
     "@angular/cli": "^9.1.4",
     "@angular/common": "^9.0.1",
     "@angular/core": "^9.0.1",
-    "@ckeditor/ckeditor5-angular": "^1.1.0",
-    "@ckeditor/ckeditor5-build-classic": "^12.4.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "ag-grid-angular": "^21.0.0",
     "ag-grid-community": "^21.0.0",

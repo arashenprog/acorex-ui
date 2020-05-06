@@ -24,34 +24,34 @@ export class AXCheckBoxComponent extends AXCheckedBaseComponent {
     super(cdr);
   }
 
-  // @Input() label: string = "";
+  @Input() label: string;
 
-  // // Value
-  // @Output()
-  // valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  // //
-  // protected _value: boolean = false;
-  // //
-  // set value(val: boolean) {
-  //   if (this._value !== val) {
-  //     this._value = val;
-  //     this.valueChange.emit(val);
-  //     this.cdr.markForCheck();
-  //     this.cdr.detectChanges();
-  //   }
-  // }
-  // //
-  // @Input()
-  // get value() {
-  //   return this._value;
-  // }
+  // Value
+  @Output()
+  valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  //
+  protected _value: boolean = false;
+  //
+  set value(val: boolean) {
+    if (this._value !== val) {
+      this._value = val;
+      this.valueChange.emit(val);
+      this.cdr.markForCheck();
+      this.cdr.detectChanges();
+    }
+  }
+  //
+  @Input()
+  get value() {
+    return this._value;
+  }
 
   handleClick(e:Event) {
-    debugger
     if (this.readonly) {
+      e.stopPropagation();
+      e.preventDefault()
       return false;
     }
-    e.stopPropagation();
-    e.preventDefault()
+   
   }
 }

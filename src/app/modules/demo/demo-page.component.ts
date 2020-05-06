@@ -196,22 +196,27 @@ height="0"
   ];
   sectionList: CheckItem[] = [
     {
+      value:1,
       text: "First",
       selected: false
     },
     {
+      value:2,
       text: "Second",
-      selected: false
+      selected: true
     },
     {
+      value:3,
       text: "Third",
       selected: false
     },
     {
+      value:4,
       text: "Fourth",
       selected: false
     },
     {
+      value:5,
       text: "Fifth",
       selected: false
     }

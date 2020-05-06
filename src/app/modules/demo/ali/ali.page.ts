@@ -2,11 +2,9 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import {
   AXBasePageComponent,
   PromisResult,
-  AXHttpService,
   MenuItem,
   AXDateTime,
   AXDateTimeRange,
-  AXDockLayoutComponent,
   AXSchedulerEvent
 } from "acorex-ui";
 
