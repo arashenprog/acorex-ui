@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoPage } from './modules/demo/demo-page.component';
+import { TestPage } from './modules/demo/test-page/test-page';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: "layout3",
     component: AXMobileLayoutComponent
+  },
+  {
+    path: "test",
+    component: TestPage
   },
   {
     path: "",

@@ -1,7 +1,125 @@
 <ax-page>
   <ax-page-content>
     <!-- <ax-calendar-box></ax-calendar-box> -->
-    <ax-calendar-box #c1 ></ax-calendar-box>
-    {{ c1.value | dt:"YYYY MM DD"}}
+    <div style="padding: 10px;">
+      <div class="row">
+        <div class="col-12">
+          <table>
+            <tr>
+              <td>
+                Date1:
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ax-date-picker #c1></ax-date-picker>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Elementum pulvinar etiam non quam lacus suspendisse. Interdum varius sit amet
+                mattis
+                vulputate. Arcu bibendum at varius vel pharetra vel turpis nunc eget. Odio ut sem nulla pharetra diam
+                sit
+                amet nisl suscipit. Ac turpis egestas sed tempus urna. Posuere sollicitudin aliquam ultrices sagittis.
+                Feugiat sed lectus vestibulum mattis. Dolor magna eget est lorem ipsum. Blandit massa enim nec dui nunc
+                mattis enim.
+                <br>
+                Eu feugiat pretium nibh ipsum consequat nisl vel pretium. Quam lacus suspendisse faucibus interdum
+                posuere
+                lorem. Commodo ullamcorper a lacus vestibulum sed arcu non. Purus ut faucibus pulvinar elementum integer
+                enim neque volutpat. Blandit turpis cursus in hac. Etiam non quam lacus suspendisse faucibus. Lacus
+                vestibulum sed arcu non odio. Eu facilisis sed odio morbi quis commodo odio aenean. Sed vulputate odio
+                ut
+                enim blandit volutpat maecenas volutpat blandit. Morbi non arcu risus quis varius quam. Leo urna
+                molestie
+                at elementum eu facilisis sed odio morbi. Varius vel pharetra vel turpis. Sed vulputate odio ut enim
+                blandit volutpat maecenas volutpat. Nibh mauris cursus mattis molestie a iaculis. Dolor sit amet
+                consectetur adipiscing elit pellentesque habitant morbi tristique. Sit amet risus nullam eget felis eget
+                nunc lobortis mattis. Id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis
+                massa
+                tincidunt dui ut ornare. Vel orci porta non pulvinar neque laoreet. Amet nisl suscipit adipiscing
+                bibendum
+                est.
+                <br>
+                Non blandit massa enim nec dui nunc mattis enim ut. Nibh mauris cursus mattis molestie a iaculis. Quam
+                vulputate dignissim suspendisse in est. Sit amet nisl suscipit adipiscing. Urna porttitor rhoncus dolor
+                purus non enim praesent elementum. Vitae semper quis lectus nulla at volutpat diam ut. Sagittis id
+                consectetur purus ut faucibus pulvinar elementum integer enim. Commodo sed egestas egestas fringilla.
+                Tortor consequat id porta nibh venenatis cras. Integer vitae justo eget magna fermentum iaculis eu.
+                <br>
+                Massa tincidunt dui ut ornare lectus sit amet est. Blandit cursus risus at ultrices mi tempus. Vitae
+                auctor eu augue ut lectus arcu. Arcu felis bibendum ut tristique. Laoreet id donec ultrices tincidunt.
+                Praesent tristique magna sit amet. Pretium aenean pharetra magna ac placerat vestibulum lectus.
+                Fermentum
+                et sollicitudin ac orci phasellus egestas. Augue mauris augue neque gravida in fermentum et
+                sollicitudin.
+                Eget mi proin sed libero enim sed faucibus. Euismod lacinia at quis risus sed vulputate odio ut. Massa
+                id
+                neque aliquam vestibulum morbi blandit. In est ante in nibh. Ut sem nulla pharetra diam sit amet nisl
+                suscipit adipiscing. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Dolor sit amet
+                consectetur adipiscing. Mauris pellentesque pulvinar pellentesque habitant.
+                <br>
+                Id eu nisl nunc mi ipsum faucibus. Et malesuada fames ac turpis egestas integer. Nunc scelerisque
+                viverra
+                mauris in. Vestibulum sed arcu non odio euismod lacinia. Mi sit amet mauris commodo quis imperdiet
+                massa.
+                Cursus in hac habitasse platea dictumst quisque sagittis purus sit. In iaculis nunc sed augue lacus
+                viverra vitae congue eu. Lorem ipsum dolor sit amet consectetur adipiscing elit duis. Est velit egestas
+                dui id ornare arcu odio. Viverra tellus in hac habitasse. Vulputate enim nulla aliquet porttitor lacus
+                luctus. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat.
+                <br>
+                <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems"
+                  placeholder="ax-select-box" fitParent="true">
+
+                </ax-select-box>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                Date2:
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td>AAAAA</td>
+                    <td>BBBB</td>
+                    <td>
+                      <ax-date-picker #c1></ax-date-picker>
+                    </td>
+                    <td>DDDD</td>
+                    <td>
+                      <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems"
+                        placeholder="ax-select-box">
+                      </ax-select-box>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <br>
+      <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems" placeholder="ax-select-box">
+
+      </ax-select-box>
+      Non blandit massa enim nec dui nunc mattis enim ut. Nibh mauris cursus mattis molestie a iaculis. Quam vulputate
+      dignissim suspendisse in est. Sit amet nisl suscipit adipiscing. Urna porttitor rhoncus dolor purus non enim
+      praesent elementum. Vitae semper quis lectus nulla at volutpat diam ut. Sagittis id consectetur purus ut faucibus
+      pulvinar elementum integer enim. Commodo sed egestas egestas fringilla. Tortor consequat id porta nibh venenatis
+      cras. Integer vitae justo eget magna fermentum iaculis eu.
+      <br>
+      {{ c1.value | dt:"YYYY MM DD"}}
+      <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems" placeholder="ax-select-box">
+
+      </ax-select-box>
+      <br />
+      <ax-date-picker #c1></ax-date-picker>
+    </div>
   </ax-page-content>
 </ax-page>
