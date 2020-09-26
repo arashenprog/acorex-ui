@@ -1,6 +1,6 @@
 <div class="ax-field-set" #dropSelectBox [attr.id]="_uid"
   [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }">
-  <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }" (click)="handleDropdownButtonClick($event)" #ff>
+  <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }" (click)="handleDropdownButtonClick($event)" >
     <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
         {{ label }}
@@ -24,16 +24,16 @@
         <i class="{{ icon }}"></i>
       </button>
     </div>
-    <div class="ax-popover-container" #popup (click)="handlePopupClick($event)">
-      <div class="ax-popover-container-bordered">
-        <ng-content> </ng-content>
-      </div>
+   
+  </div>
+</div>
+<div class="ax-dropdown-overlay" #ff>
+  <div class="ax-dropdown-popover-container" #popup (click)="handlePopupClick($event)">
+    <div class="ax-dropdown-popover-container-bordered">
+      <ng-content> </ng-content>
     </div>
   </div>
 </div>
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
-<!-- <ax-popover [fitParent]="fitParent" distance="10" height="'auto'" target="#{{ _uid }}" placement="bottom-start"
-  alignment="top-start" #popSelectBox (onOpen)="handleOnOpen()" (onClose)="handleOnClose()">
-</ax-popover> -->

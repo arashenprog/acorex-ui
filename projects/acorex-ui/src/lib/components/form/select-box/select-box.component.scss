@@ -1,31 +1,32 @@
 .ax-select-box {
-  .list-container {
+  
+}
+.list-container {
+  padding: var(--sp-sm-size);
+
+  .search {
+    margin-bottom: var(--sp-sm-size);
+  }
+
+
+  .viewport {
+    // height: 150px;
+    //min-height: 40px;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+  .text-item {
     padding: var(--sp-sm-size);
+    cursor: pointer;
 
-    .search {
-      margin-bottom: var(--sp-sm-size);
+    &:hover {
+      background: var(--primary-color) !important;
+      color: var(--primary-fore-color) !important;
     }
 
-
-    .viewport {
-      // height: 150px;
-      //min-height: 40px;
-      max-height: 250px;
-      overflow-y: auto;
-    }
-
-    .text-item {
-      padding: var(--sp-sm-size);
-      cursor: pointer;
-
-      &:hover {
-        background: var(--primary-color) !important;
-        color: var(--primary-fore-color) !important;
-      }
-
-      &.selected {
-        background: var(--gray-dark-color);
-      }
+    &.selected {
+      background: var(--gray-dark-color);
     }
   }
 }

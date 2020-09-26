@@ -30,13 +30,18 @@ export class AXColorPickerComponent extends AXColorBoxComponent {
     }
 
     handleValueChange(c: string) {
-        this.dropdown.close();
+       
     }
 
     findTextColor(color: string) {
         if (!color)
             return "#000";
         return !(AXColorUtil.contrastToWhite(color) > 2.0) ? "#000" : "#fff";
+    }
+
+    handleItemClick(e)
+    {
+        this.dropdown.close();
     }
 
 }

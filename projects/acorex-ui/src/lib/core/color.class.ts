@@ -1,6 +1,6 @@
 export interface Color {
     id?: string,
-    color: string,
+    color?: string,
     code: string,
     selected?: boolean,
     active?: boolean
@@ -16,6 +16,23 @@ export class AXColorUtil {
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
+    };
+
+    static rgb2Hex(r: number, g: number, b: number, a: number = 255): string {
+        let alpha;
+        let hex = (r | 1 << 8).toString(16).slice(1) +
+            (g | 1 << 8).toString(16).slice(1) +
+            (b | 1 << 8).toString(16).slice(1);
+        if (a !== 255) {
+            alpha = a;
+        } else {
+            alpha = 1;
+        }
+
+        alpha = Math.round(alpha * 100) / 100;
+        alpha = Math.round(alpha * 255);
+        const hexAlpha = (alpha + 0x10000).toString(16).substr(-2).toUpperCase();
+        return '#' + hex + (alpha == 255 ? '' : hexAlpha);
     };
 
     static illuminance(hexColor: string) {

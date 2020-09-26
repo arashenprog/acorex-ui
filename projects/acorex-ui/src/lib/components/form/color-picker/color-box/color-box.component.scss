@@ -1,26 +1,60 @@
 .color-box {
-  display: flex;
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  padding: 5px;
-  flex-wrap: wrap;
   border: 1px solid var(--border-color);
-  justify-content: center;
-  align-items: center;
-  div {
-    width: var(--el-md-size);
-    height: var(--el-md-size);
-    cursor: pointer;
+  max-width: 300px;
+  padding: 5px;
+
+  .color-box-pallet {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--border-color);
-    margin: 1px;
+
+    div {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      margin: 1px;
+    }
+
+    .color-active {
+      color: #fff;
+      box-shadow: 1px 1px 4px 0px #5a5a5a;
+      border-radius: 50%;
+      font-size: 14px;
+    }
   }
-  .color-active {
-    color: #fff;
-    box-shadow: 1px 1px 4px 0px #5a5a5a;
-    border-radius: 50%;
+
+  .text-input {
+    display: flex;
+    justify-content: space-between;
+
+    .color-part {
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      &.switch {
+        cursor: pointer;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .ax-field-set .no-label input {
+        margin-top: 0 !important;
+        text-align: center;
+        height: var(--el-md-size);
+      }
+    }
   }
 }
