@@ -8,10 +8,18 @@ export class EditorsPage extends AXBasePageComponent {
   constructor() {
     super();
   }
-
+  value = "100"
+  minValue = 5;
+  maxValue = 200;
   ngOnInit(): void { }
 
-
+  onValueChanged(e) {
+    console.log('1', e)
+  }
+  valueChange(e) {
+    console.log('2', e)
+  }
+  decimalNumber = 2;
   items = [
     {
       value: 1,
@@ -27,10 +35,9 @@ export class EditorsPage extends AXBasePageComponent {
     },
   ]
 
-  selectedValues=[];
+  selectedValues = [];
 
-  handleSelectedValuesChange(e)
-  {
+  handleSelectedValuesChange(e) {
     debugger;
   }
 }

@@ -55,6 +55,8 @@ import { AXLOVModule } from "./components/data/data-lov/data-lov.module";
 import { AXSeparatorModule } from "./core/utils/separator/separator.module";
 import { AXTimePickerModule } from "./components/form/time-picker/time-picker.module";
 import { AXTimeBoxModule } from "./components/time/time-box/time-box.module";
+import { AXNumberBoxComponent } from "./components/form/number-box/number-box.component";
+import { AXNumberBoxModule } from "./components/form/number-box/number-box.module";
 
 
 window["$"] = $;
@@ -91,6 +93,7 @@ let modules = [
   AXListModule,
   AXWidgetModule,
   AXToolbarModule,
+  AXNumberBoxModule,
   AXDockLayoutModule,
   AXHttpModule,
   AXDataSourceModule,

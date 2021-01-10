@@ -2,7 +2,14 @@
   <ax-text-box label="Text Box"></ax-text-box>
   <ax-password-box></ax-password-box>
   <br>
-  <ax-selection-list mode="multiple" [items]="items" [selectedValues]="selectedValues" (selectedValuesChange)="handleSelectedValuesChange($event)">
+  <ax-selection-list mode="multiple" [items]="items" [selectedValues]="selectedValues"
+    (selectedValuesChange)="handleSelectedValuesChange($event)">
 
   </ax-selection-list>
+
+
+  <ax-number-box label="شماره تماس" [(value)]="value" [min]="minValue" [max]="maxValue" [decimalNumber]="decimalNumber"
+    [allowClear]="true" (onValueChanged)="onValueChanged($event)" (valueChange)="valueChange($event)">
+  </ax-number-box>
+  {{value}}
 </div>
