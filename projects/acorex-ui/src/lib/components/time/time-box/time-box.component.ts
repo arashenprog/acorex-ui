@@ -15,13 +15,11 @@ export class AXTimeBoxComponent {
         for (let i = 1; i <= 12; i++) {
             this.hours.push(i)
         }
-        console.log(this.hours)
         return this.hours;
     }
     ngOnInit(): void {
         this.setHours()
     }
     ngAfterViewInit(): void {
-        console.log(this.hours)
     }
 }

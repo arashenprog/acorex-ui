@@ -5,7 +5,9 @@ import {
   MenuItem,
   AXDateTime,
   AXDateTimeRange,
-  AXSchedulerEvent
+  AXSchedulerEvent,
+  SelectItem,
+  AXDataColumn
 } from "acorex-ui";
 
 @Component({
@@ -83,6 +85,27 @@ export class AliPage extends AXBasePageComponent {
     }
   ]
 
+  selectBoxItems: any[] = [
+  ];
+
+
+  ngAfterViewInit() {
+    for (let i = 1; i < 100; i++) {
+      this.selectBoxItems.push({ id: i, text: "Select Option " + i, code: i * 10 },)
+    }
+  }
+
+  columns: AXDataColumn[] = [
+    {
+      dataField: "text",
+      title: "Text"
+    },
+    {
+      dataField: "code",
+      title: "Code"
+    }
+  ]
+
   data: AXSchedulerEvent[] = [
     {
       range: new AXDateTimeRange(new AXDateTime("2019-06-05 19:30"), new AXDateTime("2019-06-05 22:30")),
@@ -144,5 +167,12 @@ export class AliPage extends AXBasePageComponent {
       }
     });
   };
+
+
+  ttt: any = "50";
+
+  handleTextChnage(e) {
+    console.log(this.ttt);
+  }
 
 }

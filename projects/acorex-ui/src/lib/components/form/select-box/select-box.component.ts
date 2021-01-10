@@ -14,6 +14,11 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
+export class AXDataColumn {
+  title:string;
+  dataField: string;
+}
+
 @Component({
   selector: "ax-select-box",
   templateUrl: "./select-box.component.html",
@@ -37,6 +42,9 @@ export class AXSelectBoxComponent extends AXDataListComponent {
   @Input() itemHeight: number = 34;
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
+
+
+  @Input() columns: AXDataColumn[] = [];
 
 
 

@@ -1,35 +1,16 @@
-<div
-  class="ax-field-set"
-  [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }"
->
+<div class="ax-field-set" [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }">
   <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
-    <fieldset
-      [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }"
-    >
+    <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
         {{ label }}
       </legend>
     </fieldset>
-    <input
-      #input
-      type="{{ type }}"
-      [(ngModel)]="text"
-      [placeholder]="placeholder"
-      [textMask]="{ mask: maskInner, guide: true }"
-      (blur)="handleBlurEvent($event)"
-      (focus)="handleFocusEvent($event)"
-      (keyup)="handleKeyEvent($event)"
-      class="ax-text-box"
-      [readonly]="readonly"
-      [attr.disabled]="disabled ? 'disabled' : null"
-    />
+    <input #input type="{{ type }}" [(ngModel)]="text" [placeholder]="placeholder"
+      [textMask]="{ mask: maskInner, guide: true }" (blur)="handleBlurEvent($event)" (focus)="handleFocusEvent($event)"
+      (keyup)="handleKeyEvent($event)" class="ax-text-box" [readonly]="readonly"
+      [attr.disabled]="disabled ? 'disabled' : null"   [attr.min]="minValue" [attr.max]="maxValue"/>
     <div class="ax-field-set-button">
-      <button
-        type="button"
-        class="btn btn-light"
-        (click)="clearText()"
-        *ngIf="text && showClear"
-      >
+      <button type="button" class="btn btn-light" (click)="clearText()" *ngIf="text && showClear">
         <i class="fas fa-times"></i>
       </button>
       <ng-content select="ax-button"> </ng-content>

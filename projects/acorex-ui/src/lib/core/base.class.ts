@@ -84,17 +84,17 @@ export abstract class AXValidatableComponent extends AXEditableBaseComponent {
 export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @ViewChild("input") input: ElementRef<HTMLInputElement>;
   @Output()
-  textChange: EventEmitter<string> = new EventEmitter<string>();
+  textChange: EventEmitter<any> = new EventEmitter<any>();
 
   @Output()
   onKey: EventEmitter<AXKeyboardEvent> = new EventEmitter<AXKeyboardEvent>();
 
-  private _text: string;
+  protected _text: any;
   @Input()
-  public get text(): string {
+  public get text(): any {
     return this._text;
   }
-  public set text(v: string) {
+  public set text(v: any) {
     if (v != this._text) {
       this._text = v;
       this.textChange.emit(v);
@@ -109,7 +109,7 @@ export abstract class AXTextInputBaseComponent extends AXValidatableComponent {
   @Input() showClear: boolean = false;
 
   clearText(): void {
-    this.text = "";
+    this.text = undefined;
   }
 
   handleBlurEvent(e) {

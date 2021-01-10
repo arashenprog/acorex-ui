@@ -1,6 +1,5 @@
-.ax-select-box {
-  
-}
+.ax-select-box {}
+
 .list-container {
   padding: var(--sp-sm-size);
 
@@ -27,6 +26,36 @@
 
     &.selected {
       background: var(--gray-dark-color);
+    }
+  }
+
+  .table {
+    position: relative;
+    border-collapse: collapse; 
+    thead {
+      tr {
+        th {
+          background: var(--primary-light-color);
+          color: var(--primary-fore-color) !important;
+          position: sticky;
+          top: 0;
+          box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        cursor: pointer;
+
+        &:hover {
+          background: var(--primary-lighter-color) !important;
+        }
+
+        &.selected {
+          background: var(--gray-dark-color);
+        }
+      }
     }
   }
 }

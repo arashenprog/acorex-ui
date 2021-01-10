@@ -19,6 +19,28 @@ export class AXTextBoxComponent extends AXTextInputBaseComponent {
   @Input()
   type: "text" | "number" = "text";
 
+
+  @Input()
+  minValue: any;
+
+  @Input()
+  maxValue: any;
+
+
+  protected _text: any;
+  @Input()
+  public get text(): any {
+    return this.type == 'number' ? Number(this._text) : this._text;
+  }
+  public set text(v: any) {
+    if (v != this._text) {
+      this._text = this.type == 'number' ? Number(v) : v;
+      this.textChange.emit(this._text);
+      if (this.validator && this.validator.validateOn == "change")
+        this.validate();
+    }
+  }
+
   focus(): void {
     if (this.input) this.input.nativeElement.focus();
   }
