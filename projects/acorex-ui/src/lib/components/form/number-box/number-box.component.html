@@ -1,0 +1,33 @@
+<div class="ax-field-set" [ngClass]="{ 'ax-disabled': disabled }">
+    <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }">
+        <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
+            <legend *ngIf="label">
+                {{ label }}
+            </legend>
+        </fieldset>
+        <input class="ax-text-box" #input type="text" [(ngModel)]="value" placeholder="{{placeholder}}"
+            (focus)="handleFocusEvent($event)" [readonly]="readonly" [disabled]="disabled" [ngClass]="setTextAlign()"
+            [class.clear]="value && allowClear" (blur)="handleInputBlur($event)" (keypress)="handleKeyPress($event)"
+            (ngModelChange)="this.userQuestionUpdate.next($event)" (keydown)="handleKeyDown($event)"
+            (click)="handleClick()" (keyup)="handleKeyUp($event)">
+        <div class="ax-field-set-button">
+            <button type="button" class="btn btn-primary" (click)="clear()" *ngIf="value && allowClear">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <button [disabled]="disabled" type="button" class="btn btn-primary" (mousedown)="upStepHandel()"
+                (mouseup)="delaySearch()">
+                <i class="fas fa-angle-up"></i>
+            </button>
+
+            <button [disabled]="disabled" type="button" class="btn btn-primary" (mousedown)="downStepHandel()"
+                (mouseup)="delaySearch()">
+                <i class="fas fa-angle-down"></i>
+            </button>
+            <ng-content select="ax-button"> </ng-content>
+        </div>
+    </div>
+</div>
+<div class="validation-text" *ngIf="errorText">
+    {{ errorText }}
+</div>

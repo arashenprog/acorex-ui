@@ -5,8 +5,8 @@
   </ax-toolbar>
   <ax-page-content>
     <div style="padding:20px">
-      <ax-text-box type="number"  [minValue]="10" [maxValue]="100" [(text)]="ttt" (textChange)="handleTextChnage($event)">
-      </ax-text-box>
+      <ax-number-box [min]="10" [max]="100" [(value)]="ttt">
+      </ax-number-box>
       <br>
       <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems" textField="text" valueField="id"
         placeholder="ax-select-box" [columns]="columns">

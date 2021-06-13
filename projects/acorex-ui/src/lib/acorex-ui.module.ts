@@ -50,11 +50,12 @@ import { AXHtmlModule } from "./core/utils/html/html.module";
 import { AXSeparatorModule } from "./core/utils/separator/separator.module";
 import { AXTimePickerModule } from "./components/form/time-picker/time-picker.module";
 import { AXTimeBoxModule } from "./components/time/time-box/time-box.module";
+import { AXNumberBoxModule } from "./components/form/number-box/number-box.module";
 
 
 
 let modules = [
-  
+
   AXCoreModule,
   AXPageModule,
   AXToastModule,
@@ -98,7 +99,8 @@ let modules = [
   AXEditBoxModule,
   AXTooltipModule,
   AXHtmlModule,
-  AXSeparatorModule
+  AXSeparatorModule,
+  AXNumberBoxModule
 ];
 @NgModule({
   declarations: [AXThemeWrapperComponent],
