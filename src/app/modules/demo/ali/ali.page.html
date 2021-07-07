@@ -4,16 +4,54 @@
     </ax-toolbar-menu>
   </ax-toolbar>
   <ax-page-content>
-    <div style="padding:20px">
+    <div style="padding:20px;" class="rtl">
       <ax-number-box [min]="10" [max]="100" [(value)]="ttt">
       </ax-number-box>
       <br>
-      <ax-select-box label="Selectbox" [allowSearch]="true" [items]="selectBoxItems" textField="text" valueField="id"
-        placeholder="ax-select-box" [columns]="columns">
-        <ax-validation>
-          <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
-        </ax-validation>
-      </ax-select-box>
+      <ax-search-box></ax-search-box>
+      <br>
+      <div class="row">
+        <div class="col-3">
+          <ax-select-box label="Selectbox" [allowSearch]="true"  textField="text"
+            valueField="id" placeholder="ax-select-box" [columns]="columns">
+            <ax-data-source>
+              <ax-callback-read
+                [provideData]="provideListData"
+              ></ax-callback-read>
+            </ax-data-source>
+            <ax-validation>
+              <ax-validation-rule type="required" message="this field is required"></ax-validation-rule>
+            </ax-validation>
+          </ax-select-box>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3">
+          <ax-date-picker >
+
+          </ax-date-picker>
+          <ax-date-picker >
+
+          </ax-date-picker>
+          <ax-date-picker >
+
+          </ax-date-picker>
+          <ax-date-picker >
+
+          </ax-date-picker>
+          <ax-date-picker >
+
+          </ax-date-picker>
+          <ax-date-picker >
+
+          </ax-date-picker>
+          <ax-date-picker >
+
+          </ax-date-picker>
+        </div>
+        <div class="col-3">
+       
+        </div>
+      </div>
     </div>
   </ax-page-content>
 </ax-page>

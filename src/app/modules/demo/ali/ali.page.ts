@@ -22,6 +22,8 @@ export class AliPage extends AXBasePageComponent {
 
   // TODO: add explicit constructor
 
+  currentDate:AXDateTime= new AXDateTime();
+
 
   view: string = "week";
 
@@ -150,6 +152,23 @@ export class AliPage extends AXBasePageComponent {
       color: "rgb(26, 170, 85)"
     },
   ]
+
+
+  provideListData = () => {
+    // return new PromisResult(resolve => {
+    //   // this.http
+    //   //   .get("https://jsonplaceholder.typicode.com/users", {})
+    //   //   .result(c => {
+    //   //     resolve((<any>c).slice(0, 8));
+    //   //   });
+
+    // });
+    return new Promise((resolve)=>{
+      setTimeout(() => {
+        resolve(this.selectBoxItems);
+      }, 2000);
+    })
+  };
 
   onEventChanged(e) {
     e.complete();

@@ -69,7 +69,6 @@ export class AXNumberBoxComponent implements OnInit {
     return this._value;
   }
   public set value(v: string) {
-    debugger
     if (v === '-') {
       this.textValue = '-';
       this._value = '-';
@@ -242,7 +241,6 @@ export class AXNumberBoxComponent implements OnInit {
   }
 
   handleKeyPress(event: any) {
-    debugger
     const NumberDotpattern = /[0-9\.]/g;
     const NumberMinusPattern = /[0-9\-]/g;
     const inputChar = String.fromCharCode(event.charCode);

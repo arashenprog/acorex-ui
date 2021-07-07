@@ -15,7 +15,6 @@ export class AXCalendarBoxComponent {
         private cdr: ChangeDetectorRef
     ) {
 
-
     }
 
 
@@ -137,11 +136,14 @@ export class AXCalendarBoxComponent {
         else if (this.view == "year") {
             this.matrix = this.matrixify(this.applyStyle(this.viewRange.enumurate('year')), 3);
         }
-        this.cdr.markForCheck();
+        this.cdr.detectChanges();
     }
 
     private applyStyle(dates: AXDateTime[]): any[] {
+
         let items: any[] = [];
+        if (!this.today)
+            return items;
         dates.forEach(d => {
             let item: any = {};
             item.date = d;

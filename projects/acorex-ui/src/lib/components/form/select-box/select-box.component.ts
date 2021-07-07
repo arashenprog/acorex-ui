@@ -12,7 +12,6 @@ import { AXDropDownComponent } from "../drop-down/drop-down.component";
 import { AXDataListComponent } from "../../data/data-list/core/data-list.component";
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 export class AXDataColumn {
   title:string;
@@ -27,7 +26,6 @@ export class AXDataColumn {
 })
 export class AXSelectBoxComponent extends AXDataListComponent {
 
-  @ViewChild(CdkVirtualScrollViewport) virtualScroll: CdkVirtualScrollViewport;
 
   constructor(private cdr: ChangeDetectorRef) {
     super();
@@ -158,10 +156,7 @@ export class AXSelectBoxComponent extends AXDataListComponent {
     }
     //
     this.itemsChange.subscribe(() => {
-      if (this.virtualScroll) {
-        this.virtualScroll.scrollToIndex(0);
-        this.cdr.markForCheck();
-      }
+      this.dropdown.updateLayout();
     });
     //  
     this.refresh();

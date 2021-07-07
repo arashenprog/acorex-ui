@@ -5,7 +5,8 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation,
-  Component
+  Component,
+  ChangeDetectorRef
 } from "@angular/core";
 import { IValidationRuleResult } from "../validation/validation.classs";
 import { AXDateTime, CalendarType } from "../../../core/calendar/datetime";
@@ -40,16 +41,19 @@ export class AXDatePickerComponent extends AXValidatableComponent {
   @Input()
   displayFormat: string = "DD/MM/YYYY";
 
+
+  _renderPicker: boolean = false;
+
   model: any = null;
   _text: string = "";
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     super();
   }
 
-  selectToday() {}
+  selectToday() { }
 
-  clear(): void {}
+  clear(): void { }
 
   focus(): void {
     this.dropdown.focus();
@@ -96,5 +100,10 @@ export class AXDatePickerComponent extends AXValidatableComponent {
   }
   onDateChange(date: AXDateTime) {
     this.dropdown.close();
+  }
+
+  handleOnOpen() {
+    this._renderPicker = true;
+    this.cdr.detectChanges();
   }
 }

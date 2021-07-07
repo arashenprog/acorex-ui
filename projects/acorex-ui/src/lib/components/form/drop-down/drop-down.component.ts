@@ -7,39 +7,58 @@ import {
   ContentChild,
   EventEmitter,
   Output,
-  ElementRef
+  ElementRef,
+  HostListener,
+  ViewContainerRef,
+  ChangeDetectorRef,
+  ViewEncapsulation
 } from "@angular/core";
-import { SelectItem } from "../../../core/select.class";
+
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 import { AXSelectBaseComponent } from "../../../core/base.class";
-import { throws } from "assert";
 
 @Component({
   selector: "ax-drop-down",
   templateUrl: "./drop-down.component.html",
-  styleUrls: ["./drop-down.component.scss"]
+  styleUrls: ["./drop-down.component.scss"],
+  encapsulation: ViewEncapsulation.None,
+  host: { style: 'display:contents;' }
 })
 export class AXDropDownComponent extends AXSelectBaseComponent {
+
   @Output()
   onOpen: EventEmitter<void> = new EventEmitter<void>();
 
   @Output()
   onClose: EventEmitter<void> = new EventEmitter<void>();
 
+  @ViewChild('baseTemplate') baseTemplate: TemplateRef<any>;
 
-  @ViewChild('popup')
-  popup: ElementRef<HTMLDivElement>;
+  @Output()
+  dropdownToggle: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('ff')
-  ff: ElementRef<HTMLDivElement>;
+  @HostListener('keydown', ['$event'])
+  onKeydownHandler(e: KeyboardEvent) {
+    if (!this.disabled && e.key === 'Enter' && e.type === 'keydown') {
+      if (!this.readonly) {
+        this.toggle();
+      }
+    }
+    if (e.key === 'Escape') {
+      if (this.isOpen) {
+        this.close();
+        e.stopPropagation();
+      }
+    }
+  }
 
-  @Input() items: SelectItem[] = [];
-  @Input() allowSearch: boolean = false;
+
   @Input() icon: string = "fas fa-angle-down";
   @Input() fitParent: boolean = false;
-  isOpened: boolean = false;
-
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
+  @Input() rtl: boolean = null;
 
   @ContentChild("editorTemplate", { static: true })
   _contentEditorTemplate: TemplateRef<any>;
@@ -55,10 +74,19 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
     this._editorTemplate = v;
   }
 
-  constructor(private el: ElementRef<HTMLElement>) {
+  @ViewChild('el', { static: true })
+  dropdownEL: ElementRef<HTMLDivElement>;
+
+  dropdownWidth: number;
+  private overlayRef: OverlayRef;
+  private templatePortal: TemplatePortal;
+
+  constructor(private cdr: ChangeDetectorRef,
+    private ref: ElementRef<HTMLDivElement>,
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef
+  ) {
     super();
-    //
-    window.addEventListener('click', this.closeOutsideListener.bind(this), { passive: true });
   }
 
   focus(): void { }
@@ -67,104 +95,129 @@ export class AXDropDownComponent extends AXSelectBaseComponent {
     if (this.disabled || this.readonly) {
       return;
     }
-    //e.stopPropagation();
-    e.preventDefault();
-    this.toggle();
-  }
-
-  handlePopupClick(e: MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
+    setTimeout(() => {
+      this.toggle();
+    }, 0);
   }
 
 
-  toggle(): void {
-    if (!this.isOpened) {
-      this.open();
-    }
-    else {
-      this.close();
-    }
-  }
-
-  public open() {
-    if (this.popup) {
-      const p = this.popup.nativeElement;
-      p.style.display = 'block';
-      const popupBound = this.popup.nativeElement.getBoundingClientRect();
-      this.ff.nativeElement.style.width = this.el.nativeElement.getBoundingClientRect().width + 'px';
-      const elBound = this.ff.nativeElement.getBoundingClientRect();
-
-      if (this.fitParent == true) {
-        p.style.width = `${elBound.width}px`;
-      }
-      let top = elBound.top + window.scrollY;
-      p.style.top = `${top}px`;
-
-      const offset = this.getOffset(this.el.nativeElement);
-      let left = offset.left - this.getLeftScroll(this.el.nativeElement);
-      p.style.left = `${left}px`;
-
-      p.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" })
 
 
-      // if (right > window.outerWidth) {
-      //   p.style.transform = `translateX(${window.outerWidth - right - 10}px)`;
-      //   //p.style.left = `${elBound.left - Math.abs(window.outerWidth - popupBound.right - 10)}px`;
-      // }
-
-      // if (popupBound.bottom > window.outerHeight) {
-      //   p.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
-      // }
-      this.isOpened = true;
-      this.onOpen.emit();
+  toggle() {
+    if (this.disabled !== true) {
+      this.isOpen ? this.close() : this.open();
     }
   }
 
-  public close() {
-    if (this.popup) {
-      this.popup.nativeElement.style.display = 'none';
-      this.isOpened = false;
-      this.onClose.emit();
+  close() {
+    if (!this.isOpen) {
+      return;
     }
+    if (this.overlayRef) this.overlayRef.detach();
+    this.onClose.emit();
+    this.dropdownToggle.emit({ mode: 'close' });
+  }
+
+  open() {
+    if (this.isOpen) {
+      return;
+    }
+    if (this.fitParent === true) {
+      this.dropdownWidth = this.dropdownEL.nativeElement.offsetWidth;
+    } else {
+      this.dropdownWidth = null;
+    }
+    this.ensureOverlayCreated();
+    this.overlayRef.attach(this.templatePortal);
+    this.onOpen.emit();
+    this.dropdownToggle.emit({ mode: 'open' });
+  }
+
+  ngOnInit(): void {
+    if (this.rtl == null) {
+      this.rtl = window.getComputedStyle(this.ref.nativeElement, null).getPropertyValue('direction') === 'rtl';
+    }
+    setTimeout(() => {
+      this.ref.nativeElement.classList.add(this.rtl ? 'rtl' : 'ltr');
+      this.dropdownEL.nativeElement.classList.add(this.rtl ? 'rtl' : 'ltr')
+    }, 5);
   }
 
   ngAfterViewInit() {
-    document.body.appendChild(this.popup.nativeElement);
+
   }
 
 
-  private closeOutsideListener(e: MouseEvent) {
-    if (!this.el.nativeElement.contains(<any>e.target)) {
-      this.close()
-    }
-  }
 
   ngOnDestroy() {
-    window.removeEventListener('click', this.closeOutsideListener.bind(this));
-    this.popup.nativeElement.remove();
-  }
-
-  getOffset(el) {
-    var _x = 0;
-    var _y = 0;
-    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-      _x += el.offsetLeft - el.scrollLeft;
-      _y += el.offsetTop - el.scrollTop;
-      el = el.offsetParent;
+    if (this.overlayRef) {
+      this.overlayRef.detach()
+      this.overlayRef.dispose();
     }
-    return { top: _y, left: _x };
   }
 
-  getLeftScroll(el) {
-    while (el && !isNaN(el.scrollLeft)) {
-      if (el.scrollLeft > 0)
-        return el.scrollLeft;
-      el = el.parentElement;
+  private ensureOverlayCreated() {
+    if (!this.overlayRef) {
+      const targetEl = document.querySelector<HTMLElement>('#' + this._uid);
+      const positionStrategy = this.overlay.position()
+        .flexibleConnectedTo(targetEl)
+        .withPositions([
+          {
+            originX: 'start',
+            originY: 'bottom',
+            overlayX: 'start',
+            overlayY: 'top'
+          },
+          {
+            originX: 'start',
+            originY: 'bottom',
+            overlayX: 'start',
+            overlayY: 'bottom'
+          },
+          {
+            originX: 'end',
+            originY: 'bottom',
+            overlayX: 'end',
+            overlayY: 'top'
+          },
+          {
+            originX: 'end',
+            originY: 'bottom',
+            overlayX: 'end',
+            overlayY: 'bottom'
+          }
+        ])
+        .withPush(false);
+      this.overlayRef = this.overlay.create({
+        positionStrategy,
+        //width: this.dropdownEL.nativeElement.clientWidth,
+        scrollStrategy: this.overlay.scrollStrategies.reposition({
+          autoClose: true
+        }),
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop'
+      });
+      this.overlayRef.setDirection(this.rtl ? 'rtl' : 'ltr');
+      this.overlayRef.backdropClick().subscribe(() => this.close());
     }
-    return 0;
+    if (!this.templatePortal) {
+      this.templatePortal = new TemplatePortal(this.baseTemplate, this.viewContainerRef);
+    }
   }
 
+  get isOpen(): boolean {
 
+    return this.overlayRef ? this.overlayRef.hasAttached() : false;
+  }
 
+  updateLayout() {
+    if (this.overlayRef)
+    {
+      this.overlayRef.detach();
+      setTimeout(() => {
+        this.overlayRef.attach(this.templatePortal);
+      }, 200);
+      
+    }
+  }
 }

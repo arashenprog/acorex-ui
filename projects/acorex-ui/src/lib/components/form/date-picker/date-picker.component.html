@@ -1,5 +1,5 @@
-<ax-drop-down [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }" [disabled]="disabled" [readonly]="readonly" [text]="_text" label="{{ label }}" icon="fas fa-calendar-alt" #dropdown [fitParent]="false" maxHeight="unset">
-  <ax-calendar-box (valueChange)="onDateChange($event)" [(value)]="value" [type]="type"></ax-calendar-box>
+<ax-drop-down [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }" [disabled]="disabled" [readonly]="readonly" [text]="_text" label="{{ label }}" icon="fas fa-calendar-alt" #dropdown [fitParent]="false" maxHeight="unset"  (onOpen)="handleOnOpen()">
+  <ax-calendar-box (valueChange)="onDateChange($event)" [(value)]="value" [type]="type" *ngIf="_renderPicker"></ax-calendar-box>
 </ax-drop-down>
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}

@@ -1,5 +1,5 @@
 <div class="ax-field-set" #dropSelectBox [attr.id]="_uid"
-  [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }">
+  [ngClass]="{ 'ax-disabled': disabled, 'ax-readonly': readonly }" #el>
   <div class="ax-field-set-wrapper" [ngClass]="{ 'no-label': !label }" (click)="handleDropdownButtonClick($event)" >
     <fieldset [ngClass]="{ 'input-focused': isFocused, 'input-error': errorText }">
       <legend *ngIf="label">
@@ -27,13 +27,15 @@
    
   </div>
 </div>
-<div class="ax-dropdown-overlay" #ff>
-  <div class="ax-dropdown-popover-container" #popup (click)="handlePopupClick($event)">
-    <div class="ax-dropdown-popover-container-bordered">
-      <ng-content> </ng-content>
-    </div>
-  </div>
-</div>
+
 <div class="validation-text" *ngIf="errorText">
   {{ errorText }}
 </div>
+
+
+<ng-template #baseTemplate>
+  <div class="ax-dropdown-container-bordered" [class.rtl]="rtl" [ngStyle]="{'min-width': dropdownWidth ? dropdownWidth + 'px' : 'unset'}">
+      <ng-content >
+      </ng-content>
+  </div>
+</ng-template>
